@@ -45,7 +45,7 @@ Finish by checking referenced artifacts and document links, and return the new o
 retrieved record paths, evidence status and gaps. The bounded local decision journal
 in `research/research_controller.py` supports frozen context, reserve/record,
 idempotent resumption and explicit branch status; see the
-[pilot review](../../../docs/tasks/2026-10-25-recursive-research-review.md) for proof
+[pilot review](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-review.md) for proof
 and caller-verification limits. It cannot detect missing historical trials or
 authenticate evidence truth. Preserve prior context versions; enumerate actual
 receipts and disclose incomplete history instead of inferring completeness from MLflow.

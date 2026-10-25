@@ -8,7 +8,7 @@ description: Explain a saved trading strategy's gains, losses or metric differen
 Read [performance diagnosis](../../../docs/research-development.md#performance-diagnosis).
 Identify the requested run IDs, immutable manifests, method definitions, ledgers,
 benchmark and comparison period. For the current local suite, consult the
-[suite protocol](../../../research/strategy-suite.md) and the relevant definition
+[suite protocol](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/research/strategy-suite.md) and the relevant definition
 owner; [performance operations](../../../docs/operations/performance.md) locates
 saved artifacts. Browser scores are summaries, not substitutes for account paths.
 

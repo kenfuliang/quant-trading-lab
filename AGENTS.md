@@ -17,7 +17,7 @@ strategy tuning belongs to an explicitly requested research task.
   exact prefixes and readiness; planned entries are not installed. Consultation
   does not launch agents or mutate platform/broker state by default.
 - Preserve existing datasets, run evidence, and unrelated work. Verify Git state
-  before changing it; this workspace currently has no baseline commit.
+  before changing it.
 - Credentials stay outside tracked files. Broker operations follow the paper SOP;
   ordinary local verification must remain offline and order-free.
 - Include a diagram when explaining structure or flow. Describe validation actually

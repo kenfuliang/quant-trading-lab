@@ -14,6 +14,11 @@ delivery priorities; [capability matrix](capabilities.md) owns native-tool evide
 Skills describe repeatable work and route to canonical procedures. They are not
 new trading infrastructure or evidence that the underlying workflow has shipped.
 
+Research execution dependency: this skills PR supplies instructions and contracts.
+The implementation and saved financial evidence are in the dependent
+[research/results PR](https://github.com/kenfuliang/quant-trading-lab/pull/1).
+Check root README on the checked-out branch before selecting executable tools.
+
 ## Ownership and maintenance
 
 ```mermaid
@@ -104,7 +109,7 @@ path; they do not establish a generic optimizer, native catalog validation,
 automatic research-history database or broker execution. A caller can request one
 stage without launching a full cycle. Use the
 [construction/evaluation receipt](tasks/2026-10-25-research-skills.md) for actual
-behavioral evidence and limitations; the later [feature-engineering receipt](tasks/2026-10-25-feature-engineering-skill.md) covers its added workflow. Format validation alone is not usefulness proof.
+behavioral evidence and limitations; the later [feature-engineering receipt](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-feature-engineering-skill.md) covers its added workflow. Format validation alone is not usefulness proof.
 
 | Skill | Trigger and observable output |
 | --- | --- |

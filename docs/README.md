@@ -34,7 +34,7 @@ runtime timestamps use UTC.
 | What evidence supports the capability review? | [Review receipt](tasks/2026-10-25-capability-review.md) |
 | What evidence completed the working foundation? | [M0 receipt](tasks/2026-10-25-working-foundation.md) |
 | Why did we choose this platform design? | [Native-capability decision](decisions/0002-native-capabilities-first.md) |
-| Which catalogue strategies are defined, runnable or blocked? | [Strategy-suite protocol](../research/strategy-suite.md) |
+| Which catalogue strategies are defined, runnable or blocked? | [Strategy-suite protocol](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/research/strategy-suite.md) |
 | How are leveraged SPY simulations financed and sized? | [Leverage research model](../research/leverage-model.md) |
 | What assumptions govern the SPY fixture? | [Research methodology](../research/README.md) |
 | What did a particular run produce? | That run's report and manifest in `reports/` |
