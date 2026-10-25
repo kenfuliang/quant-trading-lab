@@ -31,6 +31,7 @@ Define outcome → implement one slice → verify offline → record evidence
 | --- | --- |
 | Development workflow and SOPs | Established in `docs/`; project skills in `.agents/skills/` |
 | Local environment | Python 3.12 `.venv`; NautilusTrader 1.231.0 pinned in requirements.txt; exact packages in requirements.lock.txt |
+| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Hosted validation pending in the CI PR; no deployment or broker operation |
 | Offline regression checks | `make check`; tests use fixtures and build observer configuration without connecting |
 | IBKR observation tools | Implemented in `paper_trading/`; `scripts/paper.py` exposes doctor, probe, observe; no execution client |
 | Broker verification | Blocked by paper-account access in the last observed session on 2026-10-24; no successful engine-to-broker connection recorded |
