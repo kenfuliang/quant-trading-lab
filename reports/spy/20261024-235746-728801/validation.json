@@ -1,0 +1,20 @@
+{
+  "unit_tests": {
+    "exit_code": 0,
+    "passed": 6,
+    "evidence": "tests.txt"
+  },
+  "dependency_check": {
+    "exit_code": 0,
+    "result": "No broken requirements found."
+  },
+  "economic_reproducibility": {
+    "matched": true,
+    "comparison_run": "../20261024-235659-766081/summary.json"
+  },
+  "chart_qa": {
+    "inspected": true,
+    "artifact": "comparison.png"
+  },
+  "broker_orders_submitted": 0
+}

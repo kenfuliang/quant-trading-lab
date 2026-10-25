@@ -1,0 +1,68 @@
+{
+  "status": "completed",
+  "created_local": "2026-10-24T23:57:46.728801-07:00",
+  "source": {
+    "source": "Yahoo Finance chart endpoint; retail research data, not independently reconciled",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1072915200&period2=1767225600&interval=1d&events=div%2Csplits",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "raw_rows": 5535,
+    "first_date": "2004-01-02",
+    "last_date": "2025-12-31",
+    "dividend_events": 89,
+    "split_events": 0
+  },
+  "source_snapshot_relative": "reports/spy/20261024-235746-728801/source-data.json",
+  "parameters": {
+    "start": "2005-01-01",
+    "end": "2025-12-31",
+    "fast_ema": 50,
+    "slow_ema": 200,
+    "initial_cash_usd": 100000.0,
+    "entry_allocation": 0.99,
+    "cost_bps_per_side": 5.0,
+    "commission_per_order_usd": 1.0,
+    "cash_interest": 0,
+    "automatic_dividend_reinvestment": false
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "nautilus_trader": "1.231.0"
+  },
+  "audits": {
+    "trend": {
+      "passed": true,
+      "independently_checked_sessions": 5283,
+      "independently_checked_fills": 25,
+      "maximum_cash_or_equity_difference_usd": 5.820766091346741e-11,
+      "checks": [
+        "prior-close signal/next-open fill",
+        "whole-share sizing",
+        "per-order fee",
+        "spread/slippage fill price",
+        "prior-session dividend entitlement",
+        "daily cash and mark-to-market equity",
+        "no cash borrowing"
+      ]
+    },
+    "buy_hold": {
+      "passed": true,
+      "independently_checked_sessions": 5283,
+      "independently_checked_fills": 1,
+      "maximum_cash_or_equity_difference_usd": 1.1641532182693481e-10,
+      "checks": [
+        "prior-close signal/next-open fill",
+        "whole-share sizing",
+        "per-order fee",
+        "spread/slippage fill price",
+        "prior-session dividend entitlement",
+        "daily cash and mark-to-market equity",
+        "no cash borrowing"
+      ]
+    }
+  },
+  "source_code_sha256": {
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "research/spy_report.py": "cd071ecf80adda0db9625c8e3e06e864794ab9226bfe1985fedc1d978c206666",
+    "scripts/spy_backtest.py": "5d90c91ffde2f1c483574c04c3c78644d66bf81b6e889ebb9c8a2f4a3dc9edd7"
+  }
+}

@@ -1,0 +1,25 @@
+test_accepts_paper_accounts (test_setup.PaperBoundaryTests.test_accepts_paper_accounts) ... ok
+test_observer_has_no_execution_connection (test_setup.PaperBoundaryTests.test_observer_has_no_execution_connection) ... ok
+test_rejects_live_empty_and_mixed_accounts (test_setup.PaperBoundaryTests.test_rejects_live_empty_and_mixed_accounts) ... ok
+test_close_signal_cannot_fill_before_next_open (test_spy_backtest.BacktestBehaviorTests.test_close_signal_cannot_fill_before_next_open) ... /Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+ok
+test_ex_date_buy_is_not_entitled_but_prior_holder_is (test_spy_backtest.BacktestBehaviorTests.test_ex_date_buy_is_not_entitled_but_prior_holder_is) ... /Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+ok
+test_future_data_does_not_change_prior_trades_or_equity (test_spy_backtest.BacktestBehaviorTests.test_future_data_does_not_change_prior_trades_or_equity) ... /Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/spy_backtest.py:216: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  engine.run()
+ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.035s
+
+OK

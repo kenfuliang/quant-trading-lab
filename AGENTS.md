@@ -1,0 +1,27 @@
+# Project instructions
+
+This workspace is building a local trading platform. Current priority is
+infrastructure reliability and observability. Use existing research as a fixture;
+strategy tuning belongs to an explicitly requested research task.
+
+- Start with [README](README.md) for implemented capabilities and blockers.
+- Before documentation edits, read [documentation conventions](docs/README.md).
+- For implementation, review [architecture](docs/architecture.md), then follow
+  [development workflow](docs/workflow.md). Select work from [roadmap](docs/roadmap.md).
+- For environment checks, use [local operations](docs/operations/local.md).
+  For broker checks, use [paper observation](docs/operations/paper-connection.md).
+  For failures or uncertain external state, use [incident SOP](docs/operations/incidents.md).
+- For skill selection, read [skill hierarchy](docs/skills.md) or use `trade-project`.
+  Available specialists cover capability review, infrastructure changes, research
+  intake and local operations. Entry points are in `.agents/skills/`; read the
+  relevant SKILL.md when discovery is unavailable. Planned skills are not installed.
+- For `/ask-infra`, `/ask-quant`, `/ask-algo`, `/ask-director` or `/ask-risk`
+  message prefixes, read the matching `.agents/skills/ask-<role>/SKILL.md` and follow
+  [advisory role contracts](docs/advisory-team.md). Consultation does not launch
+  agents or mutate platform/broker state by default.
+- Preserve existing datasets, run evidence, and unrelated work. Verify Git state
+  before changing it; this workspace currently has no baseline commit.
+- Credentials stay outside tracked files. Broker operations follow the paper SOP;
+  ordinary local verification must remain offline and order-free.
+- Include a diagram when explaining structure or flow. Describe validation actually
+  performed and distinguish implemented, unverified, blocked, and planned behavior.

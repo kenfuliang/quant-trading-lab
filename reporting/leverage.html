@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SPY leverage comparison</title>
+<style>body{font:16px system-ui;color:#172b40;max-width:1450px;margin:24px auto;padding:0 20px}a{color:#175ca1}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{font-size:14px;padding:9px;border-bottom:1px solid #d9e2eb;text-align:right;white-space:nowrap}th{background:#eaf0f6}td:nth-child(2),th:nth-child(2){text-align:left}.table{overflow:auto}tr:nth-child(even){background:#f5f8fb}.controls{display:flex;flex-wrap:wrap;gap:18px;padding:16px;background:#eaf0f6;border-radius:8px}select{font:inherit;padding:7px;margin-left:8px}.note{background:#fff4d6;padding:16px;line-height:1.6}.winner{background:#e7f3ec!important}details{line-height:1.7;margin:20px 0}.muted{color:#53667a}h2{margin-top:30px}</style></head><body>
+<p><a href="../../">Performance home</a> · <a href="scores.csv" download>All scores CSV</a> · <a href="assumptions.md">Full model contract</a> · <a href="manifest.json">Run evidence</a></p>
+<h1>SPY leverage comparison</h1>
+<p>$300,000 per portfolio · 2005–2025 · two signals × four exposure targets · offline portfolio simulation</p>
+<p class="note"><strong>Model:</strong> daily next-open rebalancing to 99% of 1× / 1.25× / 1.5× / 2× equity exposure; 6% fixed illustrative borrowing rate, calendar days / 360; 50% initial and 25% maintenance margin. These are new daily-sizing baselines, not the original $100,000 entry-only portfolios. Actual IBKR rates and rules are not reconstructed.</p>
+<div class="controls"><label>Scenario<select id="scenario"><option value="base_6pct">Base · 6% interest / 25% maintenance</option><option value="rate_9pct">Financing stress · 9% / 25%</option><option value="maintenance_50pct">Margin stress · 6% / 50%</option></select></label>
+<label>Period<select id="period"><option value="Overall">Full period · 2005–2025</option></select></label>
+<label>Rank by<select id="metric"><option value="calmar">Calmar</option><option value="sharpe">Sharpe · 0% risk-free</option><option value="return_pct">Return</option></select></label>
+<label>Signal<select id="signal"><option value="all">Both signals</option><option value="trend">EMA 50/200</option><option value="buy_hold">Buy/hold signal</option></select></label></div>
+<p id="caption" aria-live="polite"></p>
+<div class="table"><table><thead><tr><th>Rank</th><th>Strategy / target</th><th id="return-label">CAGR %</th><th>Max DD %</th><th>Calmar</th><th>Sharpe</th><th>Financing $</th><th>Max exposure</th><th>Min margin buffer %</th><th>Liquidations</th><th>Status</th></tr></thead><tbody id="leaders"></tbody></table></div>
+<p class="muted">Ranks compare only the selected scenario and signal filter. Rank 1 is not a profitability or risk approval. Negative ratios can favor larger losses. 30% drawdown is a reassessment reference, not a guaranteed stop.</p>
+<details><summary>Model, metrics and limitations</summary><ul>
+<li>EMA uses only the previous completed close. Buy/hold means an always-long signal with daily resizing. Whole shares; $1 per trade plus 5 bps per side. Dividend cash is redeployed through daily sizing.</li>
+<li>Debit interest includes weekends and is charged before the next open, with no positive-cash interest. Fixed 6%/9% are scenarios for every year, not historical broker quotes.</li>
+<li>Margin checks at open before trading, after trading, daily low and close. A breach liquidates all at the checked price less costs and halts re-entry for the remaining sample. Daily-low liquidation is a conservative bar-based convention, not a guaranteed fill.</li>
+<li>Overall Calmar = CAGR / |full-period daily-close drawdown|. Annual Calmar = calendar return / |within-year daily-close drawdown|. Annual peaks reset at prior year-end equity. Sharpe uses sample daily stdev, √252 and 0% risk-free; synthetic starting anchor excluded.</li>
+<li>Undefined scores are N/A; insolvent paths stay recorded without flooring liabilities to zero. Exposure and margin buffers use checked marks. Broker SMA, settlement, changing house requirements, partial fills, taxes and intraday execution availability are omitted.</li>
+<li>All eight base paths and both stress sets have independently reconciled trade and financing ledgers. No options, futures, broker connection or live orders.</li></ul></details>
+<h2>Annual performance and scores</h2><p>All years below, or select one year above. Sorted by the selected score within each year.</p>
+<div class="table"><table><thead><tr><th>Year</th><th>Strategy / target</th><th>Rank</th><th>Return %</th><th>Max DD %</th><th>Calmar</th><th>Sharpe</th><th>Financing $</th><th>Liquidations</th><th>Status</th></tr></thead><tbody id="annual"></tbody></table></div>
+<h2>Annual chart</h2><p>Uses the selected metric, scenario and signal filter. The chart shows all years. When Return is selected, it shows calendar-year returns; the full-period leaderboard uses CAGR.</p><div id="annual-chart"></div>
+<h2>Base-scenario equity curves</h2><!--PLOTLY-->
+<script>
+const rows=<!--DATA-->;
+const scenario=document.getElementById('scenario'),period=document.getElementById('period'),metric=document.getElementById('metric'),signal=document.getElementById('signal');
+const years=[...new Set(rows.filter(r=>r.period!=='Overall').map(r=>r.period))].sort();for(const y of years){const o=document.createElement('option');o.value=y;o.textContent=y;period.append(o);}
+const ok=v=>typeof v==='number'&&Number.isFinite(v),fmt=(v,d=3)=>ok(v)?v.toFixed(d):'N/A';
+function group(p){return rows.filter(r=>r.scenario===scenario.value&&r.period===p&&(signal.value==='all'||signal.value===r.mode)).sort((a,b)=>{const x=a[metric.value],y=b[metric.value];return !ok(x)?(ok(y)?1:0):!ok(y)?-1:y-x||a.strategy.localeCompare(b.strategy);});}
+function rank(r,rs){return ok(r[metric.value])?1+rs.filter(a=>ok(a[metric.value])&&a[metric.value]>r[metric.value]).length:null;}
+function append(body,values,win){const tr=document.createElement('tr');if(win)tr.className='winner';for(const v of values){const td=document.createElement('td');td.textContent=v;tr.append(td);}body.append(tr);}
+function render(){const rs=group(period.value),body=document.getElementById('leaders');body.replaceChildren();for(const r of rs){const n=rank(r,rs);append(body,[fmt(n,0),r.strategy,fmt(r.return_pct,2),fmt(r.drawdown_pct,2),fmt(r.calmar),fmt(r.sharpe),fmt(r.financing_usd,0),fmt(r.max_leverage,2)+'×',fmt(r.min_buffer_pct,1),r.liquidations,r.status],n===1);}
+ document.getElementById('return-label').textContent=period.value==='Overall'?'CAGR %':'Return %';document.getElementById('caption').textContent=scenario.options[scenario.selectedIndex].text+' · '+period.options[period.selectedIndex].text+' · '+rs.length+' portfolios';
+ const annual=document.getElementById('annual');annual.replaceChildren();for(const y of years){if(period.value!=='Overall'&&period.value!==y)continue;const yr=group(y);for(const r of yr){const n=rank(r,yr);append(annual,[y,r.strategy,fmt(n,0),fmt(r.return_pct,2),fmt(r.drawdown_pct,2),fmt(r.calmar),fmt(r.sharpe),fmt(r.financing_usd,0),r.liquidations,r.status],n===1);}}
+ const names=[...new Set(group('Overall').map(r=>r.strategy))];const traces=names.map(name=>{const data=years.map(y=>group(y).find(r=>r.strategy===name));return {type:'bar',name,x:years,y:data.map(r=>r?r[metric.value]:null)};});Plotly.react('annual-chart',traces,{barmode:'group',height:430,margin:{t:25},yaxis:{title:metric.options[metric.selectedIndex].text},legend:{orientation:'h'}},{responsive:true});
+}for(const el of [scenario,period,metric,signal])el.addEventListener('change',render);render();
+</script></body></html>

@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPY strategy rankings</title>
+<style>
+body{font:16px system-ui;color:#172b40;max-width:1250px;margin:30px auto;padding:0 20px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{padding:12px;border-bottom:1px solid #d9e2eb;text-align:right;white-space:nowrap}th{background:#eaf0f6}td:nth-child(2),th:nth-child(2){text-align:left}tbody tr:nth-child(even){background:#f5f8fb}.table{overflow:auto}.note{padding:16px;background:#fff4d6;line-height:1.6}a{color:#175ca1}.controls{display:flex;gap:24px;flex-wrap:wrap;align-items:center;background:#eaf0f6;padding:18px;border-radius:8px}select{font:inherit;padding:8px;margin-left:8px}h2{margin-top:32px}.winner{background:#e7f3ec!important}.muted{color:#53667a}details{margin:20px 0;line-height:1.7}
+</style></head><body>
+<p><a href="../">Performance home</a> · <a href="annual-comparison.csv" download>Annual comparison CSV</a> · <a href="score-ranking.csv" download>Scores and ranks CSV</a></p>
+<h1>SPY strategy rankings</h1>
+<p>Saved historical simulation · $100,000 initial capital each · 2005–2025</p>
+<div class="controls"><label for="period">Ranking period<select id="period"><option value="Overall">Full period · 2005–2025</option></select></label>
+<label for="score">Rank by<select id="score"><option value="calmar">Calmar</option><option value="sharpe">Sharpe · 0% risk-free</option></select></label><span>Higher score ranks first.</span></div>
+<p id="ranking-caption" aria-live="polite"></p>
+<div class="table"><table><thead><tr><th>Rank</th><th>Strategy</th><th id="return-label">CAGR %</th><th>Max drawdown %</th><th>Calmar</th><th>Sharpe</th></tr></thead><tbody id="leaderboard"></tbody></table></div>
+<p class="note"><strong>When returns are negative:</strong> a higher Calmar or Sharpe can still accompany a larger dollar loss. Read return and drawdown alongside the rank; rank 1 does not mean profitable.</p>
+<p class="muted">Rankings describe this saved historical sample. They do not establish statistical significance or future performance. Overall scores use the full period, not an average of annual scores.</p>
+<details><summary>Metric definitions and limitations</summary>
+<ul><li><strong>Full-period Calmar:</strong> CAGR / absolute full-period maximum daily-close drawdown.</li>
+<li><strong>Annual Calmar:</strong> calendar-year return / absolute within-year maximum daily-close drawdown. This is a one-year window, not a trailing three-year Calmar.</li>
+<li><strong>Sharpe:</strong> mean daily simple portfolio return / sample standard deviation × √252, with 0% risk-free rate. Annual scores use only that year's sessions, including the first session's return from the prior year-end balance. The synthetic zero-return anchor is excluded.</li>
+<li><strong>Annual return:</strong> year-end equity / previous year-end equity − 1; the first year uses initial capital.</li>
+<li><strong>Annual drawdown:</strong> high-water mark resets to the previous year-end balance; losses crossing years require the full-period drawdown too.</li>
+<li><strong>N/A:</strong> Calmar has no rank when drawdown is zero; Sharpe has no rank with fewer than two daily returns or zero daily variance. Equal finite scores share a rank. Ranks use unrounded scores.</li></ul>
+<p>Cash dividends retained without automatic reinvestment. Commissions and modeled spread/slippage included. No borrowing or taxes; zero cash interest. Daily closes do not capture intraday losses. First evaluation session: January 3, 2005.</p>
+</details>
+<h2>Annual scores and performance</h2>
+<p>The table follows the selected ranking metric within each year. Choosing a year above also filters this table. N/A scores sort last.</p>
+<div class="table"><table><thead><tr><th>Year</th><th>Strategy</th><th>Return %</th><th>Max drawdown %</th><th>Calmar</th><th>Calmar rank</th><th>Sharpe</th><th>Sharpe rank</th></tr></thead><tbody id="annual-rows"></tbody></table></div>
+<h2>Year-by-year charts</h2>
+<!--CHARTS-->
+<noscript>Enable JavaScript for ranking controls, or download the CSV files above.</noscript>
+<script>
+const rows = <!--SCORE_DATA-->;
+const period = document.getElementById('period'), score = document.getElementById('score');
+const years = [...new Set(rows.filter(r=>r.period!=='Overall').map(r=>r.period))].sort();
+for (const year of years) { const option=document.createElement('option');option.value=year;option.textContent=year;period.append(option); }
+const finite = value => typeof value === 'number' && Number.isFinite(value);
+const fmt = (value,digits=3) => finite(value) ? value.toFixed(digits) : 'N/A';
+function sorted(items) { return [...items].sort((a,b)=> {
+ if (!finite(a[score.value])) return finite(b[score.value])?1:0;
+ if (!finite(b[score.value])) return -1;
+ return b[score.value]-a[score.value] || a.strategy.localeCompare(b.strategy);
+}); }
+function appendRow(body, values, winner) { const tr=document.createElement('tr');if(winner)tr.className='winner';
+ for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td);}body.append(tr); }
+function render(){
+ const selected=sorted(rows.filter(r=>r.period===period.value));
+ const body=document.getElementById('leaderboard');body.replaceChildren();
+ for(const r of selected)appendRow(body,[fmt(r[score.value+'_rank'],0),r.strategy,fmt(r.return_pct,2),fmt(r.drawdown_pct,2),fmt(r.calmar),fmt(r.sharpe)],r[score.value+'_rank']===1);
+ document.getElementById('return-label').textContent=period.value==='Overall'?'CAGR %':'Annual return %';
+ document.getElementById('ranking-caption').textContent=(period.value==='Overall'?'Full-period':'Year '+period.value)+' ranking by '+(score.value==='calmar'?'Calmar':'Sharpe')+' · matching dates and assumptions';
+ const annual=document.getElementById('annual-rows');annual.replaceChildren();
+ for(const year of years){if(period.value!=='Overall'&&period.value!==year)continue;
+ for(const r of sorted(rows.filter(r=>r.period===year)))appendRow(annual,[year,r.strategy,fmt(r.return_pct,2),fmt(r.drawdown_pct,2),fmt(r.calmar),fmt(r.calmar_rank,0),fmt(r.sharpe),fmt(r.sharpe_rank,0)],r[score.value+'_rank']===1);}
+}
+period.addEventListener('change',render);score.addEventListener('change',render);render();
+</script></body></html>

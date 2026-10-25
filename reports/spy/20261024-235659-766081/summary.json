@@ -1,0 +1,30 @@
+{
+  "trend": {
+    "ending_equity": 498269.2,
+    "total_return_pct": 398.2692,
+    "cagr_pct": 7.9509956067225,
+    "max_drawdown_pct": -28.599966560230072,
+    "annualized_volatility_pct": 13.173152058287252,
+    "sharpe_zero_rf": 0.6477940292239789,
+    "exposure_days_pct": 80.7117168275601,
+    "filled_orders": 25,
+    "dividend_cash": 63101.93000000001,
+    "commission_usd": 25.0,
+    "sessions": 5283,
+    "modeled_spread_slippage_usd": 2657.2126379395113
+  },
+  "buy_hold": {
+    "ending_equity": 629586.54,
+    "total_return_pct": 529.58654,
+    "cagr_pct": 9.160719138719276,
+    "max_drawdown_pct": -51.679987468876035,
+    "annualized_volatility_pct": 16.748236140628205,
+    "sharpe_zero_rf": 0.6078947525925026,
+    "exposure_days_pct": 100.0,
+    "filled_orders": 1,
+    "dividend_cash": 73503.33999999998,
+    "commission_usd": 1.0,
+    "sessions": 5283,
+    "modeled_spread_slippage_usd": 48.8419873046912
+  }
+}

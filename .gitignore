@@ -1,0 +1,21 @@
+lean.json
+lean.json.tmp
+data/
+.lean/
+.private/
+.env*
+**/backtests/
+**/live/
+**/storage/
+**/__pycache__/
+.DS_Store
+.local/
+.venv/
+vendor/
+logs/
+*.log
+
+# Regenerated experiment outputs stay local; source fixtures and audit receipts are tracked.
+reports/leverage/
+**/.idea/
+**/.vscode/

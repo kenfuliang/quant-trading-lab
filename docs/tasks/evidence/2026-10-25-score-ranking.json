@@ -1,0 +1,28 @@
+{
+  "annual_score_rows": 42,
+  "overall_score_rows": 2,
+  "checks": [
+    "Decimal annual Calmar and sample Sharpe from original balances",
+    "overall Sharpe reconciles to audited summary",
+    "all 44 rows: numeric ranks and ties verified"
+  ],
+  "verified_utc": "2026-10-25T07:54:02.968558+00:00",
+  "tests_passed": 17,
+  "mlflow_runs": 2,
+  "calmar_points_per_run": 1,
+  "daily_points_per_metric_per_run": 5284,
+  "browser_verified": [
+    "Full-period Calmar leaderboard",
+    "2020 period filtering",
+    "Sharpe selector updates leaderboard",
+    "tied annual ranks",
+    "four chart series groups present"
+  ],
+  "implementation_sha256": {
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "reporting/comparison.html": "dc66e6672be2a58538b84630c8a14676191480e61e2cbacfedac4a8ad9588855",
+    "reporting/saved_runs.py": "549b67c803faa032946e126ab3bae83d54a392a507c4194114dc8575d3934974",
+    "scripts/import_performance_mlflow.py": "c5340bbf88ad4a2265aa58b403af3a7ac4b0ffd96957b29e13262808aea51783",
+    "tests/test_annual_reports.py": "f163c1a62c31424de15f408b98102dae7a8b437cc201dad5573692fe0e1e1eae"
+  }
+}

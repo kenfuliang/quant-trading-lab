@@ -1,0 +1,37 @@
+{
+  "verified_utc": "2026-10-25T08:02:18.378499+00:00",
+  "financial_run": "3aba31cfafe4da76ff123bbf2d9c83bb2a7e29dc181c23b1459776c1ef9a0454",
+  "paths": 24,
+  "ledger_sessions_checked": 126792,
+  "ledger_fills_checked": 79448,
+  "maximum_ledger_difference_usd": 1.257285475730896e-08,
+  "independent_score_rows_checked": 528,
+  "checks": [
+    "Independent Decimal trade/financing/dividend/equity audit",
+    "Independent Decimal overall/annual scores and financing aggregates",
+    "Ranks, ties and undefined scores checked separately"
+  ],
+  "url": "http://127.0.0.1:8765/leverage/3aba31cfafe4da76/index.html",
+  "tests_passed": 27,
+  "original_mlflow_runs_preserved": 2,
+  "new_base_mlflow_runs": 8,
+  "daily_points_per_metric_per_run": 5284,
+  "repeat_import": "same eight FINISHED runs; one scalar point per summary and no duplicate daily histories",
+  "browser_verified": [
+    "Eight base portfolios and full-period metrics",
+    "Year 2020 annual metrics",
+    "Sharpe ranking selector",
+    "50 percent maintenance stress with HALTED paths and N/A scores"
+  ],
+  "implementation_sha256": {
+    "research/leveraged_spy.py": "69ec3e55f61394c07c9d52c96ca910f10cf09f877f2441a6c3d755cd8157dff2",
+    "research/leverage_audit.py": "1497bb26c53067bb6cc6d35533826abe7ffe9a3a80605e28be15f2d3e31adf7a",
+    "research/leverage-model.md": "a875cd6206dec06b974cdf7dd60d482af3e99b81c94b56920f5881b1f1a113ed",
+    "scripts/leverage_comparison.py": "ead2a1e2c6a987f820f7408aa71fc6bc27ac127353159325734933873f7db0c0",
+    "scripts/import_leverage_mlflow.py": "09c99bfaa92abd22db39b4d3d14e847acf6c3697c6eed7380cf480a05c7d47c2",
+    "reporting/leverage.py": "c9e880c0d4b4f73ebd4ee1267e38547b41ef00e01c6609ba26505ba7fc02463d",
+    "reporting/leverage.html": "0df182924f940099fabc5caefc15f809133c92a6cfb8069e390a01d112b4a522",
+    "tests/test_leverage.py": "07daa7e84e550f06282843a35fdae63de0c7951e098fcb7a9debe3f4260b5aa6",
+    "scripts/performance.py": "f15653a90c8f0e9db518dff6bce7c7402c8d4ae9ef80c9f6f3fc1305a3212f47"
+  }
+}

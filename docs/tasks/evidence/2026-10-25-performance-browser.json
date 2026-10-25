@@ -1,0 +1,24 @@
+{
+  "verified_at_utc": "2026-10-25T07:43:33.789379+00:00",
+  "experiment_id": "1",
+  "run_count": 2,
+  "source_snapshot_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+  "runs": [
+    {
+      "strategy": "buy_hold",
+      "run_id": "0d130ab701ca4e909eb550cfb54a454d",
+      "status": "FINISHED",
+      "summary_metrics_match": true,
+      "history_points_per_metric": 5284,
+      "html_artifact_present": true
+    },
+    {
+      "strategy": "trend",
+      "run_id": "60364fc4f0ab43be82e5ff5802ef7aa4",
+      "status": "FINISHED",
+      "summary_metrics_match": true,
+      "history_points_per_metric": 5284,
+      "html_artifact_present": true
+    }
+  ]
+}

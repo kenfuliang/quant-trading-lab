@@ -1,0 +1,5 @@
+nautilus_trader[ib]==1.231.0
+matplotlib==3.11.2
+
+# HTML reporting only; no Kaleido/browser engine required for HTML.
+plotly==6.9.0

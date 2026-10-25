@@ -1,0 +1,2 @@
+# Separate environment: .local/venvs/mlflow
+mlflow==3.17.2

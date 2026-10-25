@@ -1,0 +1,8 @@
+{
+    "algorithm-language": "Python",
+    "parameters": {
+        "smoke-order": "false"
+    },
+    "description": "IBKR paper connection starter; observe only by default.",
+    "local-id": 856011612
+}

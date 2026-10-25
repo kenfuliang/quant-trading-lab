@@ -1,0 +1,212 @@
+{
+  "recorded_at_utc": "2026-10-25T07:19:04.301362+00:00",
+  "scope": "imports, source identity, configuration only; no runtime, database, network, or strategy run",
+  "python": "3.12.13",
+  "platform": "Darwin arm64",
+  "engine_version": "1.231.0",
+  "upstream_commit": "27a8e54e7ac3c57d6cbf8891f0283dfbaee97317",
+  "upstream_worktree_clean": true,
+  "interfaces": {
+    "nautilus_trader.backtest": {
+      "import": "passed",
+      "symbols": {
+        "BacktestNode": false
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/backtest/__init__.py",
+      "sha256": "41b8e1a72d01603340f9e7f8c7b7cee52a70f31c4e5344a464e6961cf1108882",
+      "matches_installed": true
+    },
+    "nautilus_trader.backtest.node": {
+      "import": "passed",
+      "symbols": {
+        "BacktestNode": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/backtest/node.py",
+      "sha256": "1026c3efc631972c44f832e6021f7540a6971be201ca6257e896943b5788f856",
+      "matches_installed": true
+    },
+    "nautilus_trader.backtest.config": {
+      "import": "passed",
+      "symbols": {
+        "BacktestRunConfig": true,
+        "BacktestDataConfig": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/backtest/config.py",
+      "sha256": "75921f1e7db8df57de2a9ce6f79f093107b2de975ab7bd42067272106e8a9d8a",
+      "matches_installed": true
+    },
+    "nautilus_trader.live.node": {
+      "import": "passed",
+      "symbols": {
+        "TradingNode": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/live/node.py",
+      "sha256": "0f6da4a2c1447ee70b762d49922f6c6bca058c2b11978d32fe03b4477b810139",
+      "matches_installed": true
+    },
+    "nautilus_trader.persistence.catalog.parquet": {
+      "import": "passed",
+      "symbols": {
+        "ParquetDataCatalog": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/persistence/catalog/parquet.py",
+      "sha256": "87af54a1fe7938cf8d22d94e485de3f9dc2ac6f139311e373e400be9d66e7d82",
+      "matches_installed": true
+    },
+    "nautilus_trader.persistence.config": {
+      "import": "passed",
+      "symbols": {
+        "StreamingConfig": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/persistence/config.py",
+      "sha256": "8d7b93ea1a98d1a89a5794889f46a8bbb587c56ccbe01efc99f8ab0aaf61f9c0",
+      "matches_installed": true
+    },
+    "nautilus_trader.analysis.analyzer": {
+      "import": "passed",
+      "symbols": {
+        "PortfolioAnalyzer": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/analysis/analyzer.py",
+      "sha256": "fe6d9636b08ef22991e1ee11811d372182630dd5cb652d45b415357456c44734",
+      "matches_installed": true
+    },
+    "nautilus_trader.analysis.reporter": {
+      "import": "passed",
+      "symbols": {
+        "ReportProvider": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/analysis/reporter.py",
+      "sha256": "65ba5347d8b0f20f9a6bb9fe03a2e0a5d305eec1db5dd533a81ac69bbefddfcd",
+      "matches_installed": true
+    },
+    "nautilus_trader.analysis.tearsheet": {
+      "import": "passed",
+      "symbols": {
+        "create_tearsheet": true,
+        "create_tearsheet_from_stats": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/analysis/tearsheet.py",
+      "sha256": "2b6b5e66de6db49f8fec54ec7293fa716ca36762c43336f733b29ff45a04e773",
+      "matches_installed": true
+    },
+    "nautilus_trader.cache.adapter": {
+      "import": "passed",
+      "symbols": {
+        "CachePostgresAdapter": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/cache/adapter.py",
+      "sha256": "aae9698732a24bb7fb82e52d5b20003c8d02e56a546b8d9b9c5da91929e057fc",
+      "matches_installed": true
+    },
+    "nautilus_trader.risk.config": {
+      "import": "passed",
+      "symbols": {
+        "RiskEngineConfig": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/risk/config.py",
+      "sha256": "dd4f3b93e39fffff5f86d9af38dbb6338686d80dc8258c53d2e44aee004a8dda",
+      "matches_installed": true
+    },
+    "nautilus_trader.live.config": {
+      "import": "passed",
+      "symbols": {
+        "TradingNodeConfig": true,
+        "LiveExecEngineConfig": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/live/config.py",
+      "sha256": "e1c2a9900686b9edf0829fff2bbe39b4c9732568676f5b8f410d64c3bdeefbc8",
+      "matches_installed": true
+    },
+    "nautilus_trader.system.kernel": {
+      "import": "passed",
+      "symbols": {
+        "NautilusKernel": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/system/kernel.py",
+      "sha256": "d1e634827ecb32c52ee4960c7c55c5f79d22b4ede11195320c4cf86d6b4b6cc9",
+      "matches_installed": true
+    },
+    "nautilus_trader.system.config": {
+      "import": "passed",
+      "symbols": {
+        "NautilusKernelConfig": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/system/config.py",
+      "sha256": "dd8f4b5b22d5dcbb0c517b638468d71e3b8b847aa0ec070606f27dae9e468426",
+      "matches_installed": true
+    },
+    "nautilus_trader.model.instruments": {
+      "import": "passed",
+      "symbols": {
+        "OptionContract": true,
+        "OptionSpread": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/model/instruments/__init__.py",
+      "sha256": "54acac8b3151d183ab9b302df367b92ab098e518d7e1e142b9ea77b1c9c9e6a7",
+      "matches_installed": true
+    },
+    "nautilus_trader.model.greeks": {
+      "import": "passed",
+      "symbols": {
+        "GreeksCalculator": true
+      }
+    },
+    "nautilus_trader.core.nautilus_pyo3": {
+      "import": "passed",
+      "symbols": {
+        "EventStoreConfig": false,
+        "PostgresCacheDatabase": true,
+        "LiveNode": true,
+        "BacktestNode": true
+      }
+    },
+    "nautilus_trader.adapters.interactive_brokers.config": {
+      "import": "passed",
+      "symbols": {
+        "InteractiveBrokersExecClientConfig": true
+      },
+      "source": "vendor/nautilus_trader/nautilus_trader/adapters/interactive_brokers/config.py",
+      "sha256": "d617a9b92e594770a1fa76ffc605da4bbb8cd0de33bffb168a6fce381c14472a",
+      "matches_installed": true
+    }
+  },
+  "optional_packages": {
+    "plotly": false,
+    "kaleido": false,
+    "duckdb": false
+  },
+  "plotly_rendering_available": false,
+  "python_database_default": "redis",
+  "risk_config_fields": [
+    "bypass",
+    "max_order_submit_rate",
+    "max_order_modify_rate",
+    "max_notional_per_order",
+    "debug"
+  ],
+  "kernel_event_store_field": false,
+  "backtest_run_config_id_property": true,
+  "ib_execution_config_fields": [
+    "instrument_provider",
+    "routing",
+    "ibg_host",
+    "ibg_port",
+    "ibg_client_id",
+    "account_id",
+    "dockerized_gateway",
+    "connection_timeout",
+    "request_timeout_secs",
+    "fetch_all_open_orders",
+    "track_option_exercise_from_position_update"
+  ],
+  "default_reconciliation": true,
+  "observer": {
+    "execution_client_count": 0,
+    "cache_backing_configured": false,
+    "message_bus_backing_configured": false,
+    "streaming_configured": false,
+    "load_state": false,
+    "save_state": false
+  }
+}
