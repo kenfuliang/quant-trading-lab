@@ -43,4 +43,3 @@ before rerunning both events. The agent changed no billing, spending limit,
 repository visibility, runner configuration or merge policy. PR #3 remains draft.
 The final documentation-only update records this blocker; its runs may encounter
 the same restriction until account state changes.
-
