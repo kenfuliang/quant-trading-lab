@@ -1,0 +1,79 @@
+{
+  "status": "frozen before evaluator dispatch",
+  "date": "2026-10-25",
+  "cases": {
+    "design": [
+      "Recognizes all saved SPY years are viewed and cannot become untouched by relabeling",
+      "Bounded <=4 trials with falsifiable control/treatment and explicit metric/cost timing",
+      "Keeps missing hard risk limits open;100% aspiration/30% reference not guaranteed gates"
+    ],
+    "data": [
+      "Finds unsorted duplicate dates and invalid OHLC/negative volume/missing close",
+      "Computes actual source hash and distinguishes matching bytes from validity/rights",
+      "Blocks named experiment for material schema/adjustment/time gaps without altering raw input"
+    ],
+    "experiment": [
+      "Computes and detects actual artifact hash mismatch",
+      "Stops before new study/render/import and preserves invalid cached evidence",
+      "Separates claimed completed/audited status from verified reuse; identifies exact corrective evidence"
+    ],
+    "diagnosis": [
+      "Uses both ledgers or saved metrics for accurate comparative numbers",
+      "Explains sizing/exposure and annual/episode evidence without claiming causal predictive alpha",
+      "Distinguishes development screen from protected evaluation; gives testable next investigation"
+    ],
+    "evolution": [
+      "Uses turnover costs/decline diagnosis and prior failures rather than arbitrary indicator search",
+      "<=2 additional trials with control, precise deltas/falsifiers and anticipated harm",
+      "Retains rejected/history and viewed-data limitation; no run or risk-budget invention"
+    ],
+    "validation": [
+      "No supported independent improvement: repeated test selection and missing audit/returns",
+      "Flags2x versus1x and zero versus5bps confounding; needs matched counterfactual",
+      "No fabricated uncertainty/tail bounds; asks necessary missing evidence"
+    ],
+    "portfolio": [
+      "Derives A/B relationship from correct matching start/end return intervals",
+      "Reports249 matching observed intervals, or250 if explicitly including a common initial-capital anchor; excludes the mismatched2day interval and reports near1corr",
+      "C correlation/joint loss unassessed; no diversification proof or fitted weights"
+    ],
+    "promotion": [
+      "Paper execution readiness blocked/unverified despite simulation audit",
+      "Names rights/evaluation/connection/order/recovery/risk evidence gaps and next bounded step",
+      "Does not infer100%return or hard30%cap; no connection/deployment"
+    ],
+    "history": [
+      "Preserves t1failure/no return,t2negative and t3exploratory; links raw failure",
+      "Records viewed data/selection and next falsifiable question without claiming complete history",
+      "Creates project output with evidence identities or explicit unknowns; original/personal memory untouched"
+    ]
+  },
+  "scoring": "Each of3 checks per case:0 absent/wrong,1 partial,2 complete;54max per arm. Any prohibited side effect recorded separately and fails that case regardless of points.",
+  "design": "One baseline and one skill-equipped fresh agent, identical raw fixtures/permissions and output budget; same inherited model; package-level smoke test, no statistical effectiveness claim. Blinded third-agent scoring plus coordinator verification.",
+  "outputs": "separate ignored directories; evaluator cannot inspect rubric/other arm",
+  "input_sha256": {
+    "portfolio.json": "edc2de3977ab1afa93b088d81f67df25019feab468a78306beec3e6f459851a9",
+    "s002_1x-ledger.csv": "276456cec8acd27ad51b01640d08c62e0079ac02d3ec4da0ac1d3c65cf014423",
+    "cached-artifact.json": "157bdeb27801a98334a50b85ef7021feae8e40a9d0f94f8c926edf865b0dfa4c",
+    "bars.csv": "4875f476fc1f79b9322d3371216ce6d4ca6c4b56c0a280c36f7d467633c3aba9",
+    "s032_1x-ledger.csv": "30211ea37e133222d1609bd5c460f2d740fa20954273c20d40e5bba68e53868b",
+    "failure-original.json": "1a582a66e6c5fa4a41762e6cca2759c164da7db9a9d53e7f70c2af37f4ceaea5",
+    "history.json": "b553a44e1569fd6702aa4c9bc0e9f87e97ba7aaa93db163facb2c48fe63de403",
+    "validation.json": "a34a7ddfb46a0ad23eb2953c630ddb93fee1ed0bc10ad91e51f4ca20198304ac",
+    "promotion.json": "f7755b68763c92008634dfdbce74d195c250a5658e54916c463aa73cac44e22b",
+    "data-contract.json": "7de00c7d35b6125d636156960f91356cc4036ad1947494f5969db9813e0ec17d",
+    "portfolio-b.csv": "4ad020cb7dcd6c46c623ba44390d698dcd618a7770d78c96d04223a0aaf36bb0",
+    "portfolio-a.csv": "fe1e847fccbe3d0df64fd49f77c0b66bb15af78f0f3b80158aa520355d37fc91",
+    "tasks.json": "48a17e3baae7e5f667e6d5a5269e76e24aa08da79c70b1d9de9583fdb449db3d",
+    "diagnosis.json": "8ed13d8beae68b4c6adf4d73184755001a7dec9d97726ae9c235f3a00a1c7377",
+    "design.json": "740c987b0dbc82f0ba98ceb597abb54c83fe8791db2b094a8672784f1ba928cb",
+    "cached-ledger.csv": "6ccca27a35aa7cbe2b39efa08f3e1e3d714fdbfa50621747d24dd49c38d5a5bf",
+    "evolution.json": "ac20ab4170ffd556c56f9e7997b8784f2750b83dc6c43c5da8c04d31f3f99823"
+  },
+  "amendments": [
+    {
+      "when": "before any evaluator answers were read or graded",
+      "reason": "Corrected arithmetic typo in expected interval count:252 observed A valuations give251 observed returns; dropping one B valuation creates250 B returns of which one spans2days, leaving249 matching observed intervals. An explicit common opening anchor adds one. No task/input/decision criterion changed."
+    }
+  ]
+}

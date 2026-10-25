@@ -4,12 +4,39 @@ updated: 2026-10-25
 owner: project-maintainers
 ---
 
-# Project skill hierarchy
+# Teams and skills catalog
 
-This file owns skill selection, scope and readiness. [Roadmap](roadmap.md) owns
+This file is the single source of truth for the team roster, skill inventory,
+task routing, invocation and readiness. Detailed role contracts remain in
+[advisory team](advisory-team.md), executable instructions in each linked SKILL.md,
+and procedures in their canonical workflow documents. [Roadmap](roadmap.md) owns
 delivery priorities; [capability matrix](capabilities.md) owns native-tool evidence.
 Skills describe repeatable work and route to canonical procedures. They are not
 new trading infrastructure or evidence that the underlying workflow has shipped.
+
+Research execution dependency: this skills PR supplies instructions and contracts.
+The implementation and saved financial evidence are in the dependent
+[research/results PR](https://github.com/kenfuliang/quant-trading-lab/pull/1).
+Check root README on the checked-out branch before selecting executable tools.
+
+## Ownership and maintenance
+
+```mermaid
+flowchart TD
+    C[This catalog: teams, skills, routing and readiness]
+    C --> R[Advisory contracts: responsibilities and collaboration]
+    C --> S[SKILL.md: executable instructions]
+    C --> P[Workflow docs: procedures and evidence contracts]
+    V[Documentation check: installed skills match catalog] -. verifies .-> C
+    V -. verifies .-> S
+```
+
+Update this catalog when adding, renaming, retiring or changing the readiness of a
+role or skill. Other maintained documents link here for discovery rather than
+keeping their own rosters or counts. Historical task receipts retain the inventory
+observed when they were written. `make docs-check` verifies one catalog entry per
+installed skill, matching its folder and frontmatter name; it does not evaluate
+behavioral usefulness or automatically update session discovery.
 
 ## Hierarchy
 
@@ -18,6 +45,8 @@ Level 1: Advisory perspectives — available for consultation
 ask-director                         priorities and synthesis
 ├── ask-infra                        platform/data/operational design
 ├── ask-quant                        hypotheses and research evidence
+├── ask-ml                           predictive modeling and calibration
+├── ask-ml-infra                     reproducible ML data, jobs and artifacts
 ├── ask-algo                         strategy logic and execution mechanics
 └── ask-risk                         cross-review of downside assumptions
 
@@ -26,7 +55,17 @@ Level 2: Task workflows — trade-project selects the applicable procedure
 ├── trade-infra-change               AVAILABLE
 ├── trade-research-intake            AVAILABLE
 ├── trade-local-ops                  AVAILABLE
-├── trade-data-validation            PLANNED
+├── Research development — AVAILABLE instructions; evaluation receipt below
+│   ├── trade-research-design         study specification and trial budget
+│   ├── trade-data-audit              frozen-input fitness and provenance
+│   ├── trade-feature-engineering     causal features, redundancy and label diagnostics
+│   ├── trade-experiment              bounded offline execution/cache verification
+│   ├── trade-performance-diagnosis   explain observed gains/losses
+│   ├── trade-candidate-evolution     evidence-driven next hypotheses
+│   ├── trade-robust-evaluation       assess improvement and uncertainty
+│   ├── trade-portfolio-analysis      marginal contribution and joint risk
+│   ├── trade-promotion-review        stage-specific evidence decision
+│   └── trade-research-history        preserve trials, decisions and data exposure
 ├── trade-reproduce-research         PLANNED
 ├── trade-compare-strategies          PLANNED
 ├── trade-risk-review                PLANNED numerical/operational workflow
@@ -38,8 +77,8 @@ Level 3: Shared tools and canonical knowledge
 Nautilus native interfaces + project scripts + SOPs + evidence/templates
 ```
 
-Role remits, outputs, question examples, chat-prefix semantics and public sources
-are owned by [advisory team](advisory-team.md). The five roles are original project
+Detailed role remits, outputs, question examples and public sources
+are owned by [advisory team](advisory-team.md). These roles are original project
 advisers, not Jane Street representatives. An adviser can discuss a planned
 workflow without making its execution tools ready.
 
@@ -62,19 +101,54 @@ new skills can be read by path if the current session has not refreshed discover
 | [trade-research-intake](../.agents/skills/trade-research-intake/SKILL.md) | Find/screen an online repo, paper or reported strategy result | Source/goal-fit/rights/data/claim record and justified next action; unknowns explicit | Research intake SOP, mandate and intake template |
 | [trade-local-ops](../.agents/skills/trade-local-ops/SKILL.md) | Environment check, failed-run diagnosis, requested paper observation | Actual command outcomes, redacted evidence, unresolved uncertainty and next action | Local/paper/incident SOPs, make checks and paper CLI |
 
+## Available research workflows
+
+[Bounded research development](research-development.md) owns the lifecycle, handoff
+and evidence contracts. These instructions support the current saved-data/offline
+path; they do not establish a generic optimizer, native catalog validation,
+automatic research-history database or broker execution. A caller can request one
+stage without launching a full cycle. Use the
+[construction/evaluation receipt](tasks/2026-10-25-research-skills.md) for actual
+behavioral evidence and limitations; the later [feature-engineering receipt](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-feature-engineering-skill.md) covers its added workflow. Format validation alone is not usefulness proof.
+
+| Skill | Trigger and observable output |
+| --- | --- |
+| [trade-research-design](../.agents/skills/trade-research-design/SKILL.md) | New/amended study → falsifiable control/treatment, metric/split/trial specification and open decisions |
+| [trade-data-audit](../.agents/skills/trade-data-audit/SKILL.md) | Saved input fitness → actual hashes/quality/availability checks and named-experiment eligibility |
+| [trade-feature-engineering](../.agents/skills/trade-feature-engineering/SKILL.md) | Define/test causal features or bounded LLM proposals → registry, leakage/quality/redundancy evidence and target-specific saved-data diagnosis; [contract](feature-engineering.md) |
+| [trade-experiment](../.agents/skills/trade-experiment/SKILL.md) | Requested bounded offline run or cache preflight → actual execution/reuse/audit receipt or precise blocker |
+| [trade-performance-diagnosis](../.agents/skills/trade-performance-diagnosis/SKILL.md) | Explain saved performance → supported attribution, adverse episodes and testable uncertainties |
+| [trade-candidate-evolution](../.agents/skills/trade-candidate-evolution/SKILL.md) | Next iteration after diagnosis → bounded rule deltas, controls, falsifiers and expected harms |
+| [trade-robust-evaluation](../.agents/skills/trade-robust-evaluation/SKILL.md) | Assess claimed improvement → comparability/selection/uncertainty findings and scoped research verdict |
+| [trade-portfolio-analysis](../.agents/skills/trade-portfolio-analysis/SKILL.md) | Assess combination → interval-aligned dependence, exposures, joint-risk evidence and missing mechanics |
+| [trade-promotion-review](../.agents/skills/trade-promotion-review/SKILL.md) | Decide next stage → evidence-linked recommendation; operational readiness stated separately |
+| [trade-research-history](../.agents/skills/trade-research-history/SKILL.md) | Retrieve/record research learning → linked project history retaining failures and evaluation exposure |
+
 ## Available advisory skills
 
-| Chat prefix / local skill | Primary question |
-| --- | --- |
-| [/ask-director](../.agents/skills/ask-director/SKILL.md) | What should we prioritize, and what evidence supports the decision? |
-| [/ask-infra](../.agents/skills/ask-infra/SKILL.md) | How should the system work reliably using native facilities? |
-| [/ask-quant](../.agents/skills/ask-quant/SKILL.md) | Is the hypothesis or reported evidence credible? |
-| [/ask-algo](../.agents/skills/ask-algo/SKILL.md) | How should specified trading behavior be implemented and verified? |
-| [/ask-risk](../.agents/skills/ask-risk/SKILL.md) | What could cause unacceptable loss or invalidate the assumptions? |
+| Chat prefix / local skill | Primary question | Detailed contract |
+| --- | --- | --- |
+| [/ask-director](../.agents/skills/ask-director/SKILL.md) | What should we prioritize, and what evidence supports the decision? | [Role contract](advisory-team.md#ask-director) |
+| [/ask-infra](../.agents/skills/ask-infra/SKILL.md) | How should the system work reliably using native facilities? | [Role contract](advisory-team.md#ask-infra) |
+| [/ask-quant](../.agents/skills/ask-quant/SKILL.md) | Is the hypothesis or reported evidence credible? | [Role contract](advisory-team.md#ask-quant) |
+| [/ask-algo](../.agents/skills/ask-algo/SKILL.md) | How should specified trading behavior be implemented and verified? | [Role contract](advisory-team.md#ask-algo) |
+| [/ask-risk](../.agents/skills/ask-risk/SKILL.md) | What could cause unacceptable loss or invalidate the assumptions? | [Role contract](advisory-team.md#ask-risk) |
+| [/ask-ml](../.agents/skills/ask-ml/SKILL.md) | What should the model predict, and does it improve on a simple baseline? | [Role contract](advisory-team.md#ask-ml) |
+| [/ask-ml-infra](../.agents/skills/ask-ml-infra/SKILL.md) | Can data, transforms, training and model artifacts be reproduced and operated reliably? | [Role contract](advisory-team.md#ask-ml-infra) |
 
-These five advisers plus the five task-workflow skills above make ten local skill
-entrypoints. Adviser consultation is available; numerical tools and operational
-workflows retain their own capability/readiness status.
+## Invocation
+
+Use the exact advisory chat prefix listed above followed by a question. Match the
+whole prefix: `/ask-ml-infra` selects its own role, not `/ask-ml`. This is a chat
+routing convention; native slash-menu registration is not implemented. Read the
+linked skill and its role contract. Consultation does not launch agents, training,
+financial trials or broker actions; requested implementation uses the applicable
+workflow within its authorized scope.
+
+Skills are invoked by name (for example,
+`$trade-performance-diagnosis`) or read by path if session discovery has not refreshed.
+The `/ask-*` chat-prefix convention remains specific to advisory roles. Numerical
+tools and operational workflows retain their own capability/readiness status.
 
 ## Candidate skills and readiness gates
 
@@ -84,13 +158,20 @@ it. The milestone references are prerequisites, not independent roadmap prioriti
 
 | Candidate | Concrete task / expected artifact | Must exist before the skill is ready |
 | --- | --- | --- |
-| trade-data-validation | Validate source bytes, schema/time/calendar, duplicates, quality and provenance; produce receipt | M1 catalog behavior verified and provider-specific data contract available |
+| Native catalog/provider audit extensions | Extend available trade-data-audit with catalog round-trip and provider-specific validation | M1 catalog behavior verified and provider-specific data contract available |
 | trade-reproduce-research | Reproduce a pinned upstream claim with licensed inputs; discrepancy report | Scoped research request, accepted intake and reproducible isolated environment/data |
 | trade-compare-strategies | Compare saved runs; flag mismatched capital/dates/costs/leverage and show risk/return tradeoffs | M2 result definitions, native report checks and comparison entrypoint |
 | trade-risk-review | Assess exposures, drawdown scenarios, leverage, margin buffers, Greeks and assignment risks | Explicit mandate budgets and verified account/instrument calculations; link to M5 policies |
 | trade-recovery-verification | Exercise capture loss, restart, backup/restore and reconciliation; recovery receipt | M3 backend/capture decision, disposable environment and fault/restore procedure |
 | trade-paper-execution | Run an explicitly scoped paper order/reconciliation exercise; operational receipt | M5 native risk setup, account/feed permissions, bounded order plan and execution SOP |
 | trade-live-readiness | Review recovery, risk, operational and paper evidence; readiness assessment | Separately scoped live-operation request and explicit acceptance criteria; assessment alone never enables trading |
+
+Potential advisory specializations remain **planned, not installed**: ask-data
+(provider contracts/quality), ask-execution (broker/microstructure), ask-ops
+(incidents), ask-review (independent evidence challenge), ask-portfolio
+(allocation/correlation) and ask-options (volatility/Greeks). Keep these concerns
+inside current roles until repeated work justifies a distinct skill. A role alone
+does not establish independent review or operational capability.
 
 Avoid separate skills for every indicator, metric, order type or Nautilus class.
 Those belong to tool/reference documentation unless a distinctive repeatable
