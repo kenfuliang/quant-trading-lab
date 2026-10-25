@@ -7,8 +7,7 @@ NautilusTrader locally without QuantConnect.
 ## Start here
 
 - [Documentation map and conventions](docs/README.md)
-- [Skill hierarchy and available workflows](docs/skills.md)
-- [Advisory roles: director, infra, quant, algo, risk](docs/advisory-team.md)
+- [Teams, skills, routing and readiness](docs/skills.md)
 - [Goals and investment mandate](docs/goals.md)
 - [External research intake and source registry](docs/research-intake.md)
 - [NautilusTrader capability matrix](docs/capabilities.md)

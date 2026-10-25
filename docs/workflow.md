@@ -43,6 +43,12 @@ Seek missing user input only when it blocks a material decision.
 
 ## Implement and verify
 
+For changes involving NautilusTrader or MLflow, first apply the
+[dependency boundary decision](architecture.md#configure-extend-upgrade-or-patch).
+Record whether the change configures a supported feature, extends a public
+interface, upgrades a pinned dependency or requires a separately maintained
+upstream patch. Follow that choice's evidence requirements before adoption.
+
 - Test across the module's public interface. Use fixtures and fake adapters for
   broker behavior. Ordinary checks are offline and do not start Gateway.
 - Run focused checks while developing, then `make check` before handoff.

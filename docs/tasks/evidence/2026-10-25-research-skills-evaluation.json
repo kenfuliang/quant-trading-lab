@@ -1,0 +1,164 @@
+{
+  "status": "completed scoped skill construction and behavioral smoke evaluation",
+  "date": "2026-10-25",
+  "skills_created": 9,
+  "total_project_entrypoints": 19,
+  "construction": "three parallel authors with disjoint file ownership; two fresh evaluator arms; separate blinded grader and coordinator arithmetic review; one fresh targeted retest",
+  "format_validation": {
+    "trade-research-design": {
+      "validator_exit": 0,
+      "skill_sha256": "9d1baf6edd791c83b660bde7e711e78e8b2000d52d96ed073b8714d60afa4103"
+    },
+    "trade-data-audit": {
+      "validator_exit": 0,
+      "skill_sha256": "d37f0d2e1226566c50a6f377a64aead84ee3e35f76716fef8c8f80e04ee6c073"
+    },
+    "trade-experiment": {
+      "validator_exit": 0,
+      "skill_sha256": "c165f4f3a9bf495c68e91821f50cb7016897109a41beb573506f182483c16964"
+    },
+    "trade-performance-diagnosis": {
+      "validator_exit": 0,
+      "skill_sha256": "c0c3eb450a5bcc8690b6e646aaf276025bad69d4dd51765794c878ca686baa76"
+    },
+    "trade-candidate-evolution": {
+      "validator_exit": 0,
+      "skill_sha256": "a623996c4fa7f22e0b6388f2e6ac5f55d0543ecf32bc40e459388a0fcf262a2b"
+    },
+    "trade-robust-evaluation": {
+      "validator_exit": 0,
+      "skill_sha256": "04b51e5e81de1e32a2644332db37c06d650d07328df78d503d5ae3716e7b8b13"
+    },
+    "trade-portfolio-analysis": {
+      "validator_exit": 0,
+      "skill_sha256": "89bd57ab5dac07cfcf18bd04296f1093a8ec044e09316f97ab406473eac452a2"
+    },
+    "trade-promotion-review": {
+      "validator_exit": 0,
+      "skill_sha256": "391f462341b76533e45c4c35768d5d8c4a99680468d8149c9fd29db541c82f34"
+    },
+    "trade-research-history": {
+      "validator_exit": 0,
+      "skill_sha256": "bed37ec687d1fdf6d9dff1e680833870a46926a73cbb4a67ae0b1bba113381b4"
+    },
+    "canonical_procedure_sha256": "22a2b723998a31469c0305a6f03c940ede55408bcbcc372910739cdae2815182"
+  },
+  "final_canonical_procedure_sha256": "ee5847defbee6e60058ace56b59b10df38bd3722b2d0a85824f67c62f49a9e4b",
+  "evaluation": {
+    "mapping": {
+      "A": "skill-equipped",
+      "B": "baseline"
+    },
+    "maximum_score": 54,
+    "skill_equipped_score": 54,
+    "baseline_score": 54,
+    "difference": 0,
+    "paired_cases": 9,
+    "per_case": {
+      "skill_equipped": {
+        "design": 6,
+        "data": 6,
+        "experiment": 6,
+        "diagnosis": 6,
+        "evolution": 6,
+        "validation": 6,
+        "portfolio": 6,
+        "promotion": 6,
+        "history": 6
+      },
+      "baseline": {
+        "design": 6,
+        "data": 6,
+        "experiment": 6,
+        "diagnosis": 6,
+        "evolution": 6,
+        "validation": 6,
+        "portfolio": 6,
+        "promotion": 6,
+        "history": 6
+      }
+    },
+    "blinded_conclusion": "Both fully satisfy every frozen check; this rubric and evidence show no demonstrated quality advantage.",
+    "coordinator_interpretation": "Useful explicit routing and evidence contracts created, but no measured incremental answer-quality gain in this small saturated-rubric comparison. No claim of improved strategy returns, Sharpe or Calmar."
+  },
+  "revision_and_retest": {
+    "reason": "Initial equipped diagnosis described a10% volatility target as sizing capped at10%, although its exposure calculations were accurate. Clarify volatility-target versus allocation-cap units in canonical diagnosis procedure.",
+    "observed_output": ".local/research-skill-eval/outputs/equipped/answers.json#diagnosis",
+    "previous_procedure_sha256": "22a2b723998a31469c0305a6f03c940ede55408bcbcc372910739cdae2815182",
+    "revised_procedure_sha256": "ee5847defbee6e60058ace56b59b10df38bd3722b2d0a85824f67c62f49a9e4b",
+    "retest": "Fresh evaluator, original diagnosis task only, no intended answer supplied. Require correct distinction between annualized volatility target and exposure cap plus original diagnosis checks. Initial paired scores remain separate.",
+    "result": "Fresh diagnosis explicitly distinguished10% annualized volatility objective from1x nominal exposure cap; original diagnosis criteria satisfied. This targeted recheck is separate from unchanged initial paired scores.",
+    "artifact_sha256": "b91b667078557249364f9cdef2c22e1b3ce182504587f5a9e89215fe640e6e8d"
+  },
+  "validation": {
+    "project_tests_passed": 64,
+    "make_check_exit": 0,
+    "skill_frontmatter_checks_passed": 9,
+    "canonical_anchor_checks_passed": 9,
+    "all_frozen_inputs_byte_identical": true,
+    "original_failure_receipt_byte_identical": true,
+    "observed_disallowed_side_effects": []
+  },
+  "local_raw_evidence": {
+    "inputs": ".local/research-skill-eval/inputs",
+    "baseline": ".local/research-skill-eval/outputs/baseline",
+    "equipped": ".local/research-skill-eval/outputs/equipped",
+    "blinded_grading": ".local/research-skill-eval/blinded/grading.json",
+    "retest": ".local/research-skill-eval/outputs/retest",
+    "regression_log": ".local/research-skill-eval/make-check.log"
+  },
+  "artifact_hashes": {
+    "skill-validation.json": "cfc453fc1ff55d8a4becd652a0e791f7cf9c17362c496db8a479db74680931ed",
+    "coordinator-metrics.json": "57e7175192817ee37b7b46fa331ea2e2e77ba89ba694b6dede350b5398966b43",
+    "make-check.log": "45e1402a6de83da9ecf4a089f6ec044d6e6f2d4716388c619ec313d0b976b298",
+    "revision.json": "b38bf26e9a8e137b24ff748340df5b09e345fcdf0413551de617dea912bb043e",
+    "build_fixtures.py": "7ef3b7e0384befae531dbb6b02d3aec3c1a35a170bacb98d9f046cea1ca2e102",
+    "blinded/grading.json": "35f2dea4c6f7145085ca4411b1ce9a85dfa8c43239b6e86c4931286766d99526",
+    "blinded/rubric.json": "ececac87eaad25a65a7eef71e39dc46265dc5c96fd862547e5c264df56e15d28",
+    "inputs/portfolio.json": "edc2de3977ab1afa93b088d81f67df25019feab468a78306beec3e6f459851a9",
+    "inputs/cached-artifact.json": "157bdeb27801a98334a50b85ef7021feae8e40a9d0f94f8c926edf865b0dfa4c",
+    "inputs/failure-original.json": "1a582a66e6c5fa4a41762e6cca2759c164da7db9a9d53e7f70c2af37f4ceaea5",
+    "inputs/history.json": "b553a44e1569fd6702aa4c9bc0e9f87e97ba7aaa93db163facb2c48fe63de403",
+    "inputs/validation.json": "a34a7ddfb46a0ad23eb2953c630ddb93fee1ed0bc10ad91e51f4ca20198304ac",
+    "inputs/promotion.json": "f7755b68763c92008634dfdbce74d195c250a5658e54916c463aa73cac44e22b",
+    "inputs/data-contract.json": "7de00c7d35b6125d636156960f91356cc4036ad1947494f5969db9813e0ec17d",
+    "inputs/tasks.json": "48a17e3baae7e5f667e6d5a5269e76e24aa08da79c70b1d9de9583fdb449db3d",
+    "inputs/diagnosis.json": "8ed13d8beae68b4c6adf4d73184755001a7dec9d97726ae9c235f3a00a1c7377",
+    "inputs/design.json": "740c987b0dbc82f0ba98ceb597abb54c83fe8791db2b094a8672784f1ba928cb",
+    "inputs/evolution.json": "ac20ab4170ffd556c56f9e7997b8784f2750b83dc6c43c5da8c04d31f3f99823",
+    "blinded/A/history-record.md": "289453e6524d48a71ef07d67fc1af994e9118b0e97fae5eccf51c794080be073",
+    "blinded/A/calculation-log.txt": "ee251c12b7b668ff0d253509590cae3a1fdcfddbb570d89c483d77459cf898dc",
+    "blinded/A/answers.json": "aab608fd44afbac47fe5bc3f4e3c713dcdf02467091fbddcd7979abd7e4cd83d",
+    "blinded/A/arithmetic.json": "e25f0e32cce3ba4378f4e2168107029e87465bc76ae0666af2f93a9352b9671d",
+    "blinded/B/experiment-preflight.json": "a880923f89256dca490707eb02208084ebdef5c9964233e47cdafceb4bebc820",
+    "blinded/B/research-history.json": "0207f85e644e19271a632bde032ec33142ee1000b797bf054d7dc1b3417455f3",
+    "blinded/B/failure-original.json": "1a582a66e6c5fa4a41762e6cca2759c164da7db9a9d53e7f70c2af37f4ceaea5",
+    "blinded/B/calculations.json": "70d3041c033e42181b0ce2a0df2c060ce4c753e2b184b3edd34998a344b5654e",
+    "blinded/B/answers.json": "54cdb501b612f75d104514300ee14d84eceb2a9ccdaf4f05356de9eadb23ab4a",
+    "outputs/retest/diagnosis_arithmetic.json": "a701a4249067ec4d9b77013111b60e1ccfbb48c619c6fefbb631028e82266472",
+    "outputs/retest/diagnosis_arithmetic.py": "60ce4904f67d482aa9a9d7dba30eddd9b08b71a01eafd86737da3189584dd1b8",
+    "outputs/retest/diagnosis.md": "b91b667078557249364f9cdef2c22e1b3ce182504587f5a9e89215fe640e6e8d",
+    "outputs/baseline/experiment-preflight.json": "a880923f89256dca490707eb02208084ebdef5c9964233e47cdafceb4bebc820",
+    "outputs/baseline/research-history.json": "0207f85e644e19271a632bde032ec33142ee1000b797bf054d7dc1b3417455f3",
+    "outputs/baseline/calculate.py": "3eb422b01a0af4e4ded4787d07b689f52415fb51a18b1e78b3c6951d399c7945",
+    "outputs/baseline/failure-original.json": "1a582a66e6c5fa4a41762e6cca2759c164da7db9a9d53e7f70c2af37f4ceaea5",
+    "outputs/baseline/write_answers.py": "8bc8f024d2c8e43fb09e4c93a31f7ee42250c556384e044399cfa9188fe4078b",
+    "outputs/baseline/calculations.json": "70d3041c033e42181b0ce2a0df2c060ce4c753e2b184b3edd34998a344b5654e",
+    "outputs/baseline/answers.json": "54cdb501b612f75d104514300ee14d84eceb2a9ccdaf4f05356de9eadb23ab4a",
+    "outputs/equipped/history-record.md": "289453e6524d48a71ef07d67fc1af994e9118b0e97fae5eccf51c794080be073",
+    "outputs/equipped/calculation-log.txt": "ee251c12b7b668ff0d253509590cae3a1fdcfddbb570d89c483d77459cf898dc",
+    "outputs/equipped/calculate.py": "0fe5ef114cc0d8d0737d00febf23770ba13b05e06781c0d560739cf054d0b961",
+    "outputs/equipped/write_answers.py": "db85a36cfc14168ebfc8bae1a015221ad15508877359447ef0e99798409ca1ac",
+    "outputs/equipped/answers.json": "aab608fd44afbac47fe5bc3f4e3c713dcdf02467091fbddcd7979abd7e4cd83d",
+    "outputs/equipped/arithmetic.json": "e25f0e32cce3ba4378f4e2168107029e87465bc76ae0666af2f93a9352b9671d"
+  },
+  "limits": [
+    "One evaluator per arm, same model family, nine cases, no repeated randomized estimate; same rubric saturated in both arms",
+    "Evaluated package includes skill instructions and canonical procedure, not isolated contribution of each skill",
+    "Baseline already had project documentation and was strong; routing/latency benefits not measured",
+    "Experiment skill exercised invalid-cache preflight, not successful new-run orchestration; promotion was review only",
+    "CSV and helper arithmetic are model/fixture evidence, not replicated strategy performance or broker behavior",
+    "No full filesystem/network trace audit; unchanged input hashes and returned artifacts support preservation, absence of traces is not proof of all negative action claims",
+    "Raw prompts/fixtures/outputs and calculation helpers remain ignored/local, identified by hashes; this is not a portable automated evaluation harness"
+  ]
+}
