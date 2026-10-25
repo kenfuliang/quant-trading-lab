@@ -30,6 +30,7 @@ Define outcome → implement one slice → verify offline → record evidence
 | --- | --- |
 | Development workflow and SOPs | Established in `docs/`; project skills in `.agents/skills/` |
 | Local environment | Python 3.12 `.venv`; NautilusTrader 1.231.0 pinned in requirements.txt; exact packages in requirements.lock.txt |
+| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Push and PR hosted runs passed dependency installation and all 27 offline tests after repository publication; no deployment or broker operation |
 | Offline regression checks | `make check`; tests use fixtures and build observer configuration without connecting |
 | IBKR observation tools | Implemented in `paper_trading/`; `scripts/paper.py` exposes doctor, probe, observe; no execution client |
 | Broker verification | Blocked by paper-account access in the last observed session on 2026-10-24; no successful engine-to-broker connection recorded |
@@ -88,7 +89,7 @@ reports/             dated historical evidence
 
 `data/`, `vendor/`, `.venv/`, and `.local/` are ignored local material. Preserve
 source snapshots and prior reports. The retired LEAN setup is in `archive/lean/`.
-The private project repository is [kenfuliang/quant-trading-lab](https://github.com/kenfuliang/quant-trading-lab).
+The public project repository is [kenfuliang/quant-trading-lab](https://github.com/kenfuliang/quant-trading-lab).
 Generated leverage runs, MLflow state, environments and vendor checkouts remain
 local/ignored; the source SPY fixture and validation receipts are versioned.
 Follow [local setup](docs/operations/local.md) and the performance SOP to recreate

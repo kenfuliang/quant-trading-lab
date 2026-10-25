@@ -83,3 +83,30 @@ and generated bulk data. This SOP does not automatically stage or publish files.
   expanding operation.
 - When capabilities change: review roadmap sequence and affected SOPs. Add a new
   skill only for a repeatable workflow that the existing skills do not cover.
+
+## Continuous integration
+
+[GitHub Actions CI](../.github/workflows/ci.yml) runs `make check` for every pull
+request and branch/tag push. One Ubuntu 24.04 job uses Python 3.12, installs the
+locked binary dependencies plus direct requirements into `.venv`, then checks
+documentation, dependency consistency and offline tests. The dependency cache is
+keyed by both requirements files; changes on the same event/ref cancel stale runs.
+The job has a 15-minute timeout, read-only repository access and no persisted Git
+credentials. Actions are pinned to full commit revisions; update pins deliberately.
+
+```text
+PR / push → pinned environment → make check → GitHub check result
+```
+
+Dependency installation requires package-network access. Tests use saved/synthetic
+fixtures and do not start Gateway, submit orders, train models, launch MLflow or
+run strategy-suite batches. CI validates the checked-out branch's tests; it does
+not reproduce every historical report or establish broker readiness. The same
+workflow automatically covers additional tests when research branches include it.
+
+This reuses the pinned actions, explicit permissions and credential-free checkout
+practices in [NautilusTrader's test workflow](https://github.com/nautechsystems/nautilus_trader/blob/b23139911fd9fed82aed2811c5a8a373202b9480/.github/workflows/test.yml).
+Their Rust builds, self-hosted runners, release jobs and deployment credentials
+are outside this project's CI requirements. No CD or branch-protection rule is
+configured by this workflow. Requiring a successful check before merging is a
+separate repository setting.
