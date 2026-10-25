@@ -9,7 +9,7 @@ owner: project-maintainers
 Screened 2026-10-25. This is a source-backed proposal from one of the three
 requested parallel research lanes. It creates no financial-trial allocation and
 changes no strategy, score contract or investment mandate. The current epoch's
-[state](../../.local/rsi-risk-gate/state.json) records **16 financial attempts**;
+local-only state (`.local/rsi-risk-gate/state.json`, not versioned) records **16 financial attempts**;
 its results require final review. No simulation, price-data acquisition,
 installation, service, account or order operation was performed in this lane.
 
