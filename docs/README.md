@@ -24,6 +24,7 @@ runtime timestamps use UTC.
 | What contracts govern advisory collaboration? | [Advisory team and public-source review](advisory-team.md) |
 | Which teams and skills exist, and how do I select/invoke them? | [Teams and skills catalog](skills.md) |
 | What are we building and who owns state? | [Architecture](architecture.md) |
+| What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
 | What is next and what proves completion? | [Roadmap](roadmap.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |

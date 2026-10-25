@@ -38,6 +38,15 @@ observed when they were written. `make docs-check` verifies one catalog entry pe
 installed skill, matching its folder and frontmatter name; it does not evaluate
 behavioral usefulness or automatically update session discovery.
 
+## Team map export
+
+![Team structure and shared workflow skills](diagrams/team-skills.png)
+
+Regenerate this presentation from the available-entry tables below with
+`.venv/bin/python scripts/render_team_skills.py`.
+The [renderer](../scripts/render_team_skills.py) reads this catalog; the PNG is a
+convenience export, not another roster owner. Update it when the catalog changes.
+
 ## Hierarchy
 
 ```text

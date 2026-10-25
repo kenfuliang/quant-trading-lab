@@ -11,7 +11,7 @@ commands from the repository root. Root README owns current capability status.
 
 ## Fresh checkout
 
-The project repository is private:
+The project repository is public; local account data and credentials remain ignored:
 
 ```sh
 git clone https://github.com/kenfuliang/quant-trading-lab.git
