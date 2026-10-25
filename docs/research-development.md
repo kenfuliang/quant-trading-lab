@@ -42,6 +42,19 @@ experiment budgets and deployment authority come from the request or an explicit
 plan; missing values are recorded as open, not invented. Scope already authorized
 by the user remains valid; no redundant approval step is added to ordinary offline work.
 
+## Research workflow export
+
+![Layered bounded research workflow](diagrams/research-workflow.png)
+
+Regenerate both team and workflow PNGs with
+`.venv/bin/python scripts/render_team_skills.py`. The
+[renderer](../scripts/render_team_skills.py) validates displayed skill names against
+the [catalog](skills.md); this procedure owns stage handoffs, and root README owns
+current capability status. The image summarizes these owners rather than defining
+a separate execution or readiness policy. IMPLEMENTED is qualified to specific
+instructions, checks or saved-data tooling; it does not certify predictive value,
+broker execution or unattended optimization. PLANNED and UNVERIFIED remain distinct.
+
 ## Research design
 
 Latest completed readiness audit: [bounded ETF diversification readiness](tasks/2026-10-25-rsi-etf-readiness.md).

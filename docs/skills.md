@@ -43,8 +43,16 @@ behavioral usefulness or automatically update session discovery.
 
 Regenerate this presentation from the available-entry tables below with
 `.venv/bin/python scripts/render_team_skills.py`.
-The [renderer](../scripts/render_team_skills.py) reads this catalog; the PNG is a
-convenience export, not another roster owner. Update it when the catalog changes.
+The [trade-diagram workflow](../.agents/skills/trade-diagram/SKILL.md) follows the
+[style and QA SOP](diagram-style.md). The [renderer](../scripts/render_team_skills.py) reads this catalog and also exports
+the [research workflow map](research-development.md#research-workflow-export).
+These images are presentation snapshots, not another roster or readiness owner.
+The team map shows typical shared skill usage, not exclusive assignments or
+permanent agents. IMPLEMENTED labels name the scoped code or instructions that
+exist; PLANNED names work not built; UNVERIFIED names missing evidence. Operational
+readiness remains separate. Refresh the exports when their canonical owners change.
+The renderer uses local handwritten fonts when present and a readable fallback
+otherwise; pixel-identical typography across operating systems is not promised.
 
 ## Hierarchy
 
@@ -63,6 +71,7 @@ Level 2: Task workflows — trade-project selects the applicable procedure
 ├── trade-infra-change               AVAILABLE
 ├── trade-research-intake            AVAILABLE
 ├── trade-local-ops                  AVAILABLE
+├── trade-diagram                    AVAILABLE preferred-style PNG workflow
 ├── Research development — AVAILABLE instructions; evaluation receipt below
 │   ├── trade-research-design         study specification and trial budget
 │   ├── trade-data-audit              frozen-input fitness and provenance
@@ -108,6 +117,7 @@ new skills can be read by path if the current session has not refreshed discover
 | [trade-infra-change](../.agents/skills/trade-infra-change/SKILL.md) | Implement a data/run/monitoring/recovery infrastructure slice | Scoped acceptance met, behavior checks and canonical docs updated, limitations explicit | Development workflow, architecture and matrix; native interfaces first |
 | [trade-research-intake](../.agents/skills/trade-research-intake/SKILL.md) | Find/screen an online repo, paper or reported strategy result | Source/goal-fit/rights/data/claim record and justified next action; unknowns explicit | Research intake SOP, mandate and intake template |
 | [trade-local-ops](../.agents/skills/trade-local-ops/SKILL.md) | Environment check, failed-run diagnosis, requested paper observation | Actual command outcomes, redacted evidence, unresolved uncertainty and next action | Local/paper/incident SOPs, make checks and paper CLI |
+| [trade-diagram](../.agents/skills/trade-diagram/SKILL.md) | Create/refresh layered team, architecture, SOP or research PNGs in the preferred style | Source-grounded PNGs, explicit readiness/handoffs, visual inspection and validation receipt | [Diagram style and QA SOP](diagram-style.md), shared renderer; [two-view test](tasks/2026-10-25-trade-diagram-skill.md) |
 
 ## Available research workflows
 
