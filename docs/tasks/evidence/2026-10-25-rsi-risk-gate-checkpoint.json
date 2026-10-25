@@ -1,0 +1,63 @@
+{
+  "status": "stopped_performance_study_incomplete",
+  "goal_status": "active_incomplete",
+  "created_utc": "2026-10-25T18:52:15.761485+00:00",
+  "git_head": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+  "branch": "main",
+  "plan_sha256": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7",
+  "source_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+  "attempted_financial_cases": 1,
+  "failed_attempts": 1,
+  "never_started_cases": 11,
+  "followup_cases": 0,
+  "new_threshold_search": false,
+  "broker_operations": false,
+  "publication": false,
+  "simulation_exit": 1,
+  "stop_reason": "Legacy 14-column control vs current 15-column ledger triggered whole-frame schema assertion.",
+  "repairs": [
+    "Explicit legacy control schema parity; verified without financial retry",
+    "Flat-window rolling Sharpe temporal-v1.2; independently verified on saved references"
+  ],
+  "financial_manifest": {
+    "manifest_sha256": "76af7cd58df03b286baefeee109cdf447d762fdb2f3568398cef69a120728354",
+    "artifact_count": 14
+  },
+  "browser_manifest": {
+    "manifest_sha256": "0693a0d182cf69b8f4549889b3e0b8c0539e86b73e8de8d338060dd10139b334",
+    "artifact_count": 4
+  },
+  "proof_sha256": "0dcc56a4edf84636c44f3176e6a4b13cf5bc1b644f3f71e8b951fd39b721318c",
+  "reference_checks": {
+    "hold": {
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 1224
+      }
+    },
+    "ema": {
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 531
+      }
+    }
+  },
+  "historical_plan_reexecution_rejected": "Code changed after freeze.",
+  "validation": {
+    "prelaunch_tests": 185,
+    "post_stop_tests": 188,
+    "make_check_exit": 0
+  },
+  "artifact_paths": {
+    "financial": "reports/risk-gate/5da2f7dccff31178",
+    "browser": ".local/performance/risk-gate/20261025-checkpoint-v2",
+    "state": ".local/rsi-risk-gate/state.json",
+    "proof": ".local/rsi-risk-gate/proof/checkpoint.png"
+  },
+  "research_conclusion": "No gate comparison result; hypothesis remains unassessed. Existing SPY history is viewed development evidence.",
+  "next_decision": "Separately freeze an explicit repair/re-entry plan resolving the stop condition and budgets; no automatic reuse or retry."
+}

@@ -1,0 +1,958 @@
+{
+  "schema_version": 1,
+  "scores": [
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "ema-control",
+      "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 7.948349855285319,
+        "max_drawdown": 29.098873798737944,
+        "sharpe": 0.6381098330558693,
+        "calmar": 0.27314974147315796,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.0794834985528532,
+        "max_drawdown": 0.29098873798737945,
+        "sharpe": 0.6381098330558693,
+        "calmar": 0.27314974147315796,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Prior history already inspected",
+            "required": false
+          },
+          {
+            "name": "exchange_calendar_completeness",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider permission not established by local snapshot",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Prior history already inspected",
+          "required": false
+        },
+        {
+          "name": "exchange_calendar_completeness",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider permission not established by local snapshot",
+          "required": false
+        }
+      ]
+    },
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "rsi-control",
+      "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 2.6098307992542535,
+        "max_drawdown": 23.552123965240867,
+        "sharpe": 0.3126857143341481,
+        "calmar": 0.11081084674596407,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.026098307992542535,
+        "max_drawdown": 0.23552123965240868,
+        "sharpe": 0.3126857143341481,
+        "calmar": 0.11081084674596407,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Prior history already inspected",
+            "required": false
+          },
+          {
+            "name": "exchange_calendar_completeness",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider permission not established by local snapshot",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Prior history already inspected",
+          "required": false
+        },
+        {
+          "name": "exchange_calendar_completeness",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider permission not established by local snapshot",
+          "required": false
+        }
+      ]
+    },
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "mix-equal",
+      "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 5.407134960499316,
+        "max_drawdown": 21.732746465110274,
+        "sharpe": 0.586426639305244,
+        "calmar": 0.24880127181255823,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.05407134960499316,
+        "max_drawdown": 0.21732746465110275,
+        "sharpe": 0.586426639305244,
+        "calmar": 0.24880127181255823,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Prior history already inspected",
+            "required": false
+          },
+          {
+            "name": "exchange_calendar_completeness",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider permission not established by local snapshot",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Prior history already inspected",
+          "required": false
+        },
+        {
+          "name": "exchange_calendar_completeness",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider permission not established by local snapshot",
+          "required": false
+        }
+      ]
+    },
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "mix-trend-heavy",
+      "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 6.705304933773704,
+        "max_drawdown": 25.463833596007834,
+        "sharpe": 0.6313793811252681,
+        "calmar": 0.26332660824585924,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.06705304933773704,
+        "max_drawdown": 0.25463833596007834,
+        "sharpe": 0.6313793811252681,
+        "calmar": 0.26332660824585924,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ],
+            "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Prior history already inspected",
+            "required": false
+          },
+          {
+            "name": "exchange_calendar_completeness",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider permission not established by local snapshot",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+          ],
+          "reason": "Scoped modeled-account comparison on frozen viewed data; independent metric replay and per-case Decimalaudit",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Prior history already inspected",
+          "required": false
+        },
+        {
+          "name": "exchange_calendar_completeness",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Exact saved5283sessions verified, independent exchangecalendar comparison not performed",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider permission not established by local snapshot",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "pareto": {
+    "policy_version": "research-score-v0.2",
+    "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+    "context_id": "5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+    "stage": "development-account-arithmetic",
+    "front": [
+      "ema-control",
+      "mix-equal",
+      "mix-trend-heavy"
+    ],
+    "dominated_by": {
+      "ema-control": [],
+      "rsi-control": [
+        "mix-equal"
+      ],
+      "mix-equal": [],
+      "mix-trend-heavy": []
+    },
+    "evidence": {
+      "ema-control": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "rsi-control": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "mix-equal": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ],
+      "mix-trend-heavy": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+      ]
+    },
+    "excluded": []
+  },
+  "scenario_changes_10bp_minus_5bp": [
+    {
+      "candidate_id": "ema-control",
+      "return_pct_change": -0.06466786891632292,
+      "drawdown_pct_change": -0.037365896824990585,
+      "calmar_change": -0.0025764098073195463,
+      "sharpe_change": -0.0044818819813816635,
+      "commission_usd_change": 40.0,
+      "slippage_usd_change": 8179.780000000028
+    },
+    {
+      "candidate_id": "rsi-control",
+      "return_pct_change": -1.2187511424153197,
+      "drawdown_pct_change": -2.03435332230427,
+      "calmar_change": -0.06711566828203862,
+      "sharpe_change": -0.12126522712443832,
+      "commission_usd_change": -3.0,
+      "slippage_usd_change": 87866.19999999963
+    },
+    {
+      "candidate_id": "mix-equal",
+      "return_pct_change": -0.6697640260518112,
+      "drawdown_pct_change": -0.1396477298842953,
+      "calmar_change": -0.032626561268089715,
+      "sharpe_change": -0.06467159374511766,
+      "commission_usd_change": -18.0,
+      "slippage_usd_change": 64347.93999999987
+    },
+    {
+      "candidate_id": "mix-trend-heavy",
+      "return_pct_change": -0.3738477792803119,
+      "drawdown_pct_change": -0.08665534003483444,
+      "calmar_change": -0.015630833028676572,
+      "sharpe_change": -0.031006474121688443,
+      "commission_usd_change": -16.0,
+      "slippage_usd_change": 41552.11999999996
+    }
+  ],
+  "interpretation": "Bothmixtures lose their small5bpCalmar advantage overEMA at10bp; costrobustnessclaim rejected. Risk/return tradeoffs remain; RSI isdominated byequalmix within10bpcontext. Differentcostcontexts neverpooled."
+}

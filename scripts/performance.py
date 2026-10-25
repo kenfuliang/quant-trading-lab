@@ -106,6 +106,13 @@ def main():
     if latest.exists():
         from reporting.leverage import render
         render(json.loads(latest.read_text())['source'])
+    suite_latest = OUTPUT / 'strategy-suite-latest.json'
+    if suite_latest.exists():
+        from reporting.strategy_suite import render as render_suite
+        render_suite(json.loads(suite_latest.read_text())['source'])
+    if (OUTPUT / 'recursive-research-latest.json').exists():
+        from reporting.recursive_research import restore_review_link
+        restore_review_link(OUTPUT)
     print('Reports: http://127.0.0.1:8765/\nMLflow: http://127.0.0.1:5050/')
 
 

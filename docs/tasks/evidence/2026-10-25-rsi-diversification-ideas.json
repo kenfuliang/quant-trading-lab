@@ -1,0 +1,171 @@
+{
+  "schema_version": "rsi-idea-intake-v1",
+  "reviewed_utc": "2026-10-25T19:09:52.037777+00:00",
+  "scope": "read-only diversification feasibility and two unexecuted candidate proposals",
+  "git_head": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+  "local_data_file_count": 1145,
+  "observed_financial_attempts": 16,
+  "new_financial_attempts": 0,
+  "downloads": 0,
+  "installs": 0,
+  "broker_operations": 0,
+  "code_changes": 0,
+  "hashes_at_review": {
+    ".local/rsi-risk-gate/state.json": "88aed0f7124a1993145a607db5c180d0641d1841dae1ab01c85872b626e34f80",
+    "reports/spy/20261024-235746-728801/source-data.json": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "docs/tasks/2026-10-25-research-expansion-prerequisites.md": "8b5c859da0b47376c6940793bab99c92e73dca9b886db469c6cd01a2926ba7b2",
+    "docs/tasks/2026-10-25-rsi-diversification-ideas.md": "c8de9e95e8a147535b132c11556565ec8264ed0fc00cf0d1a62446f5bccc2c1e"
+  },
+  "archive_observations": [
+    {
+      "path": "data/equity/usa/daily/spy.zip",
+      "sha256": "aaa1febad0cb8f91011212c92ff7caac6d4d6415a3b7f73c4b98c438db4274ad",
+      "member_count": 1,
+      "inspected_member": "spy.csv",
+      "rows": 5849,
+      "first_timestamp": "19980102 00:00",
+      "last_timestamp": "20210331 00:00"
+    },
+    {
+      "path": "data/equity/usa/daily/qqq.zip",
+      "sha256": "09de2fda712d1d54f74b4bd2215c7df8787b7e2643b79c0c2ab531d188a5c056",
+      "member_count": 1,
+      "inspected_member": "qqq.csv",
+      "rows": 3964,
+      "first_timestamp": "19990310 00:00",
+      "last_timestamp": "20210331 00:00"
+    },
+    {
+      "path": "data/equity/usa/daily/eem.zip",
+      "sha256": "080c4172c03343788fa40555b18ef7f9707dbe5b36dc69863d026e792e956a13",
+      "member_count": 1,
+      "inspected_member": "eem.csv",
+      "rows": 5245,
+      "first_timestamp": "19980106 00:00",
+      "last_timestamp": "20210331 00:00"
+    },
+    {
+      "path": "data/equity/usa/daily/iwm.zip",
+      "sha256": "bf0b841f74504c9bbd346076f3ab3d8b28cdb82815d6cc6e8acc6307b87d77c5",
+      "member_count": 1,
+      "inspected_member": "iwm.csv",
+      "rows": 5244,
+      "first_timestamp": "20000526 00:00",
+      "last_timestamp": "20210331 00:00"
+    },
+    {
+      "path": "data/equity/usa/daily/uso.zip",
+      "sha256": "62426779b4629317563f495ca37d23d9560ea9964cc9a97982c9a4e0fa0b6a03",
+      "member_count": 1,
+      "inspected_member": "uso.csv",
+      "rows": 3910,
+      "first_timestamp": "19980102 00:00",
+      "last_timestamp": "20210331 00:00"
+    },
+    {
+      "path": "data/future/cme/daily/es_trade.zip",
+      "sha256": "ef131641e7d4766c5775101c79b643c7553bff53412d5f3d73bc8302b651fe25",
+      "member_count": 8,
+      "inspected_member": "es_trade_201312.csv",
+      "rows": 61,
+      "first_timestamp": "20131006 00:00",
+      "last_timestamp": "20131220 00:00"
+    },
+    {
+      "path": "data/future/comex/daily/gc_trade.zip",
+      "sha256": "7efb1575767c2fb6eb0876253326f4c53e8103e76ae0da80a8513885f5956561",
+      "member_count": 15,
+      "inspected_member": "gc_trade_201310.csv",
+      "rows": 5,
+      "first_timestamp": "20131007 00:00",
+      "last_timestamp": "20131011 00:00"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Moskowitz Ooi Pedersen 2012 author summary",
+      "url": "https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum",
+      "verified_scope": "verified primary author summary; full PDF Yale mirror timeout"
+    },
+    {
+      "title": "Century of Evidence 2017",
+      "url": "https://images.aqr.com/-/media/AQR/Documents/Insights/Journal-Article/AQR-JPM-Fall-2017.pdf",
+      "verified_scope": "verified PDF pages1-3 and cost/roll caveat page2; no replication"
+    },
+    {
+      "title": "Kim Tse Wald 2016",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1386418116301379",
+      "verified_scope": "publisher search-indexed abstract verified; direct page403; no full-method review"
+    },
+    {
+      "title": "Faber white papers",
+      "url": "https://mebfaber.com/white-papers/",
+      "verified_scope": "verified author page; no original dataset access"
+    },
+    {
+      "title": "Faber 2013 FAQ",
+      "url": "https://mebfaber.com/2013/06/14/qtaa-update-conclustions-and-faqs/",
+      "verified_scope": "verified monthly timing and non-shareable Global Financial Data inputs"
+    },
+    {
+      "title": "Marmi et al 2013",
+      "url": "https://ricerca.sns.it/handle/11384/6484",
+      "verified_scope": "verified institutional abstract; no full paper available there"
+    },
+    {
+      "title": "AQR monthly factors",
+      "url": "https://www.aqr.com/Insights/Datasets/Time-Series-Momentum-Factors-Monthly",
+      "verified_scope": "verified research-factor description; no data downloaded"
+    },
+    {
+      "title": "EEM inception",
+      "url": "https://www.ishares.com/us/products/239637/ISHARES-MSCI-EMERGING-MARKETS-ETF",
+      "verified_scope": "verified issuer inception2003-04-07; local archive pre-inception flag"
+    },
+    {
+      "title": "USO inception",
+      "url": "https://secure.alpsinc.com/MarketingAPI/api/v1/Content/uscfinvestments/united-states-oil-fund-10-q-20190930.pdf",
+      "verified_scope": "issuer-filed report indexed excerpt verifies listing/operations2006-04-10"
+    },
+    {
+      "title": "PyPortfolioOpt",
+      "url": "https://github.com/PyPortfolio/PyPortfolioOpt",
+      "verified_scope": "README/feature and MIT license declaration reviewed; not revision-pinned/installed/adopted"
+    },
+    {
+      "title": "Riskfolio-Lib",
+      "url": "https://github.com/dcajasn/Riskfolio-Lib",
+      "verified_scope": "README/feature and BSD-3-Clause declaration reviewed; not revision-pinned/installed/adopted"
+    }
+  ],
+  "conclusion": "Portfolio benefit not assessed; ETF prerequisite work preferred; both financial candidates blocked by missing verified inputs/accounting.",
+  "candidates": [
+    {
+      "id": "fixed-etf-diversification-monthly-trend",
+      "status": "proposed_blocked",
+      "proposed_future_cases": 6
+    },
+    {
+      "id": "four-market-directional-futures",
+      "status": "screened_blocked",
+      "proposed_future_cases": 4
+    }
+  ],
+  "cautions": [
+    "Archive first-member endpoints are not a coverage/action/rights audit.",
+    "EEM and USO first timestamps precede issuer inception/listing; preserve and flag.",
+    "Already viewed SPY history and publicly studied new universes are not untouched evaluation.",
+    "Separate future scoped authorization and budget required; current16-attempt budget unchanged."
+  ],
+  "validation": {
+    "docs_check": "passed:69files",
+    "brief_frontmatter": "passed",
+    "diagram": "present",
+    "candidate_count": 2,
+    "financial_execution": "none",
+    "source_failures_disclosed": true
+  }
+}

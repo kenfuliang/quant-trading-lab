@@ -17,9 +17,12 @@ runtime timestamps use UTC.
 | What works now and how do I start? | [Root README](../README.md) |
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
+| How do bounded research iterations produce evidence? | [Research development procedure](research-development.md) |
+| How do we define, validate and diagnose features? | [Feature engineering](feature-engineering.md) |
+| How do we score strategies and choose research directions? | [Research scoring contract](research-scoring.md) |
 | What does pinned NautilusTrader already provide? | [Capability matrix](capabilities.md) |
-| How do the advisory roles collaborate? | [Advisory team and public-source review](advisory-team.md) |
-| Which project skill should handle a task? | [Skill hierarchy and readiness](skills.md) |
+| What contracts govern advisory collaboration? | [Advisory team and public-source review](advisory-team.md) |
+| Which teams and skills exist, and how do I select/invoke them? | [Teams and skills catalog](skills.md) |
 | What are we building and who owns state? | [Architecture](architecture.md) |
 | What is next and what proves completion? | [Roadmap](roadmap.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
@@ -31,6 +34,7 @@ runtime timestamps use UTC.
 | What evidence supports the capability review? | [Review receipt](tasks/2026-10-25-capability-review.md) |
 | What evidence completed the working foundation? | [M0 receipt](tasks/2026-10-25-working-foundation.md) |
 | Why did we choose this platform design? | [Native-capability decision](decisions/0002-native-capabilities-first.md) |
+| Which catalogue strategies are defined, runnable or blocked? | [Strategy-suite protocol](../research/strategy-suite.md) |
 | How are leveraged SPY simulations financed and sized? | [Leverage research model](../research/leverage-model.md) |
 | What assumptions govern the SPY fixture? | [Research methodology](../research/README.md) |
 | What did a particular run produce? | That run's report and manifest in `reports/` |
@@ -38,6 +42,8 @@ runtime timestamps use UTC.
 ## Maintenance rules
 
 - Maintain one owner for each concept; other documents link to it.
+- Team rosters, skill inventories, routing and readiness belong in [the catalog](skills.md).
+  Other maintained documents link there; historical receipts preserve their dated observations.
 - Maintained documents under `docs/` use `status`, `updated`, and `owner`
   frontmatter. Status is `draft`, `active`, `proposed`, or `superseded`.
 - `active` means the document is maintained. Capability availability is stated

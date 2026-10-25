@@ -1,0 +1,421 @@
+{
+  "review_date": "2026-10-25",
+  "pre_fix": {
+    "policy_version": "research-score-v0.1",
+    "policy_hash": "2c228092aeaaeeb3e78087d053cedba31382b9b94b82262fd45abea34b96a4ae",
+    "source_sha256": "42d758e5b030a543d115e871941d8de0de3bc8558699be157453a27e99495701",
+    "reproductions": [
+      {
+        "case": "blocked_record_top_level_forgery",
+        "observed_front": [
+          "forged"
+        ],
+        "expected": "reject inconsistent record",
+        "critical": true
+      },
+      {
+        "case": "normalized_metric_changed_without_raw_unit_change",
+        "observed_front": [
+          "changed-units"
+        ],
+        "accepted_net_cagr": 10,
+        "expected": "reject inconsistent normalized metrics",
+        "critical": true
+      }
+    ]
+  },
+  "schema_version": 1,
+  "evaluation_kind": "fresh deterministic synthetic replay and structural adversarial regression; not investment evidence",
+  "post_fix": {
+    "policy_version": "research-score-v0.2",
+    "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+    "source_sha256": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "changes": [
+      "Pareto reconstructs all derived fields from canonical eligibility checks, raw metrics and units",
+      "percentage normalization uses decimal text before float conversion to preserve equivalent supplied values",
+      "pointer truth and frozen contract authenticity remain explicit caller boundaries"
+    ],
+    "additional_unit_bug": {
+      "fixture": ".137 fraction versus13.7 percent",
+      "observed_before_decimal_fix_front": [
+        "fraction"
+      ],
+      "expected_and_actual_after_front": [
+        "fraction",
+        "percent"
+      ]
+    },
+    "fresh_adversarial_tests": 14,
+    "combined_scoring_controller_adversarial_tests": 61,
+    "test_exit_code": 0
+  },
+  "matched_replays": [
+    {
+      "scenario": "shared-integrity",
+      "policy": "priority",
+      "candidate_set_sha256": "cd9c9e4cb178528f8caab5344f248fb8777e2802918f852489ec4370871c0839",
+      "decisions": [
+        {
+          "selected": "z-integrity",
+          "credited_questions": [
+            "cost",
+            "recovery"
+          ],
+          "excluded": [
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        },
+        {
+          "selected": "a-select",
+          "credited_questions": [
+            "selection"
+          ],
+          "excluded": [
+            {
+              "id": "b-recovery",
+              "state": "blocked"
+            },
+            {
+              "id": "z-integrity",
+              "state": "blocked"
+            },
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        }
+      ],
+      "resolved_questions": [
+        "cost",
+        "recovery",
+        "selection"
+      ],
+      "resolved_count": 3,
+      "usage": {
+        "attempts": 2,
+        "resource_units_committed": 2.0,
+        "resource_unit": "fixture_unit"
+      },
+      "execution_verified": false,
+      "financial_simulations": 0,
+      "critical_errors_observed": 0,
+      "critical_error_scope": "No blocked/unknown-cost action selected; no fabricated financial result or execution claim"
+    },
+    {
+      "scenario": "shared-integrity",
+      "policy": "breadth_first",
+      "candidate_set_sha256": "cd9c9e4cb178528f8caab5344f248fb8777e2802918f852489ec4370871c0839",
+      "decisions": [
+        {
+          "selected": "a-select",
+          "credited_questions": [
+            "selection"
+          ],
+          "excluded": [
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        },
+        {
+          "selected": "b-recovery",
+          "credited_questions": [
+            "recovery"
+          ],
+          "excluded": [
+            {
+              "id": "a-select",
+              "state": "blocked"
+            },
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        }
+      ],
+      "resolved_questions": [
+        "recovery",
+        "selection"
+      ],
+      "resolved_count": 2,
+      "usage": {
+        "attempts": 2,
+        "resource_units_committed": 2.0,
+        "resource_unit": "fixture_unit"
+      },
+      "execution_verified": false,
+      "financial_simulations": 0,
+      "critical_errors_observed": 0,
+      "critical_error_scope": "No blocked/unknown-cost action selected; no fabricated financial result or execution claim"
+    },
+    {
+      "scenario": "inconclusive-integrity",
+      "policy": "priority",
+      "candidate_set_sha256": "e596698e1eb6b46667d94d3f49a7cd5ac5ae2244cedbfb3803edbcbc4fad381b",
+      "decisions": [
+        {
+          "selected": "z-integrity",
+          "credited_questions": [],
+          "excluded": [
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        },
+        {
+          "selected": "a-select",
+          "credited_questions": [
+            "selection"
+          ],
+          "excluded": [
+            {
+              "id": "z-integrity",
+              "state": "blocked"
+            },
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        }
+      ],
+      "resolved_questions": [
+        "selection"
+      ],
+      "resolved_count": 1,
+      "usage": {
+        "attempts": 2,
+        "resource_units_committed": 2.0,
+        "resource_unit": "fixture_unit"
+      },
+      "execution_verified": false,
+      "financial_simulations": 0,
+      "critical_errors_observed": 0,
+      "critical_error_scope": "No blocked/unknown-cost action selected; no fabricated financial result or execution claim"
+    },
+    {
+      "scenario": "inconclusive-integrity",
+      "policy": "breadth_first",
+      "candidate_set_sha256": "e596698e1eb6b46667d94d3f49a7cd5ac5ae2244cedbfb3803edbcbc4fad381b",
+      "decisions": [
+        {
+          "selected": "a-select",
+          "credited_questions": [
+            "selection"
+          ],
+          "excluded": [
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        },
+        {
+          "selected": "b-recovery",
+          "credited_questions": [
+            "recovery"
+          ],
+          "excluded": [
+            {
+              "id": "a-select",
+              "state": "blocked"
+            },
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        }
+      ],
+      "resolved_questions": [
+        "recovery",
+        "selection"
+      ],
+      "resolved_count": 2,
+      "usage": {
+        "attempts": 2,
+        "resource_units_committed": 2.0,
+        "resource_unit": "fixture_unit"
+      },
+      "execution_verified": false,
+      "financial_simulations": 0,
+      "critical_errors_observed": 0,
+      "critical_error_scope": "No blocked/unknown-cost action selected; no fabricated financial result or execution claim"
+    },
+    {
+      "scenario": "equal-actions",
+      "policy": "priority",
+      "candidate_set_sha256": "7da76b34b25633952daa959044fa27a4f5bc68b13f9995f1eb60a1219ba42928",
+      "decisions": [
+        {
+          "selected": "a-select",
+          "credited_questions": [
+            "selection"
+          ],
+          "excluded": [
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        },
+        {
+          "selected": "b-recovery",
+          "credited_questions": [
+            "recovery"
+          ],
+          "excluded": [
+            {
+              "id": "a-select",
+              "state": "blocked"
+            },
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        }
+      ],
+      "resolved_questions": [
+        "recovery",
+        "selection"
+      ],
+      "resolved_count": 2,
+      "usage": {
+        "attempts": 2,
+        "resource_units_committed": 2.0,
+        "resource_unit": "fixture_unit"
+      },
+      "execution_verified": false,
+      "financial_simulations": 0,
+      "critical_errors_observed": 0,
+      "critical_error_scope": "No blocked/unknown-cost action selected; no fabricated financial result or execution claim"
+    },
+    {
+      "scenario": "equal-actions",
+      "policy": "breadth_first",
+      "candidate_set_sha256": "7da76b34b25633952daa959044fa27a4f5bc68b13f9995f1eb60a1219ba42928",
+      "decisions": [
+        {
+          "selected": "a-select",
+          "credited_questions": [
+            "selection"
+          ],
+          "excluded": [
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        },
+        {
+          "selected": "b-recovery",
+          "credited_questions": [
+            "recovery"
+          ],
+          "excluded": [
+            {
+              "id": "a-select",
+              "state": "blocked"
+            },
+            {
+              "id": "0-unknown-cost",
+              "state": "blocked"
+            }
+          ],
+          "inspection_trace": [
+            "Read frozen fictional outcome table",
+            "Recorded a negative or inconclusive finding"
+          ]
+        }
+      ],
+      "resolved_questions": [
+        "recovery",
+        "selection"
+      ],
+      "resolved_count": 2,
+      "usage": {
+        "attempts": 2,
+        "resource_units_committed": 2.0,
+        "resource_unit": "fixture_unit"
+      },
+      "execution_verified": false,
+      "financial_simulations": 0,
+      "critical_errors_observed": 0,
+      "critical_error_scope": "No blocked/unknown-cost action selected; no fabricated financial result or execution claim"
+    }
+  ],
+  "aggregate": {
+    "scenarios": 3,
+    "logical_action_limit_per_arm_per_scenario": 2,
+    "resource_unit": "fixture_unit",
+    "resource_limit_per_arm_per_scenario": 2,
+    "priority_total_resolved_questions": 6,
+    "breadth_first_total_resolved_questions": 6,
+    "priority_wins": 1,
+    "breadth_first_wins": 1,
+    "ties": 1,
+    "critical_errors_observed": 0,
+    "critical_error_scope": "Only fixture scheduling/exclusion/provenance invariants, not artifact correctness or investment edge"
+  },
+  "remaining_boundaries": [
+    "No authentication that caller evidence pointers exist or are correct",
+    "Caller must bind required-check definitions to frozen context/plan; consistent invented inputs can still be structurally scored",
+    "Witness strings and ordinalclasses require review; they are not calibrated probabilities",
+    "Identical semantic definitions/specs deduplicate; arbitrary paraphrase equivalence is not inferred",
+    "Replay cases were intentionally selected to exercise win/loss/tie and cannot estimate population efficiency",
+    "No learned policy/value function, GAE training or independent market evaluation",
+    "No financial simulations or real research journal runs in this evaluation"
+  ]
+}

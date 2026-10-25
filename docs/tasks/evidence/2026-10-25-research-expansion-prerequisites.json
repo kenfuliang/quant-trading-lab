@@ -1,0 +1,174 @@
+{
+  "status": "completed official-source prerequisite screening only",
+  "reviewed_utc": "2026-10-25T09:36:01.834266+00:00",
+  "document": "docs/tasks/2026-10-25-research-expansion-prerequisites.md",
+  "document_sha256": "8b5c859da0b47376c6940793bab99c92e73dca9b886db469c6cd01a2926ba7b2",
+  "sources": {
+    "alpaca-plans": {
+      "url": "https://docs.alpaca.markets/us/docs/about-market-data-api",
+      "official_finding": "Basic stock/ETF coverage; limited live IEX; history since2016; authentication required except historical crypto; account/feed entitlement not tested."
+    },
+    "alpaca-bars": {
+      "url": "https://docs.alpaca.markets/us/reference/stockbars",
+      "official_finding": "Historical bars interface documented; no actual response or completeness checked."
+    },
+    "alpaca-actions": {
+      "url": "https://docs.alpaca.markets/us/v1.1/reference/corporateactions-1",
+      "official_finding": "Corporate-action endpoint documented; live access, field completeness and historical availability unverified."
+    },
+    "alpaca-terms": {
+      "url": "https://files.alpaca.markets/disclosures/library/TermsAndConditions.pdf",
+      "official_finding": "Personal/noncommercial content-use restrictions; additional account and third-party agreements apply. No unrestricted redistribution approval inferred."
+    },
+    "sec-api": {
+      "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "official_finding": "Public no-key filings/XBRL API; facts aggregate across submissions; frame assembly uses latest filed matching fact. Does not supply complete tradable universe/prices."
+    },
+    "sec-developer": {
+      "url": "https://www.sec.gov/about/developer-resources",
+      "official_finding": "Automated access subject to SEC developer/fair-access policy."
+    },
+    "alpaca-options": {
+      "url": "https://docs.alpaca.markets/us/docs/historical-option-data",
+      "official_finding": "Historical options since February2024; free indicative quotes/trades are derivatives, not actual OPRA quote observations."
+    },
+    "ibkr-history": {
+      "url": "https://www.interactivebrokers.com/docs/tws-api/doc/md/introduction",
+      "official_finding": "Unavailable history includes expired options/EOD options, delisted securities and expired futures older than two years; delayed watchlist exception does not establish complete free historical data."
+    },
+    "oic-exercise": {
+      "url": "https://www.optionseducation.org/optionsoverview/exercising-options",
+      "official_finding": "American exercise, brokerage cutoffs and assignment mechanics require modeling."
+    },
+    "cme-roll": {
+      "url": "https://www.cmegroup.com/education/courses/introduction-to-futures/understanding-futures-expiration-contract-roll",
+      "official_finding": "Actual contracts expire; rolling offsets old and establishes next contract; cash or physical settlement differs."
+    },
+    "cme-mtm": {
+      "url": "https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market",
+      "official_finding": "Exchange settlement controls daily mark-to-market P&L and margin replenishment."
+    },
+    "cme-datamine": {
+      "url": "https://www.cmegroup.com/datamine.html",
+      "official_finding": "Historical access involves account/order/license; complete free contract data not verified."
+    },
+    "cme-settlement": {
+      "url": "https://www.cmegroup.com/articles/faqs/access-to-cme-group-settlement-data-faq.html",
+      "official_finding": "Settlement-data access channels and fees documented; website visibility is not unrestricted dataset rights."
+    },
+    "ecb-rates": {
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+      "official_finding": "Euro-base historical reference rates, publication schedule and informational/nontransaction purpose."
+    },
+    "ecb-rights": {
+      "url": "https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "official_finding": "Source acknowledgement, accurate reproduction, modifications disclosure and other context-specific conditions."
+    },
+    "oanda-funding": {
+      "url": "https://www.oanda.com/us-en/trading/financing-fees/",
+      "official_finding": "Broker funding side/pair, rate/admin and conversion mechanics; illustrative model reference only, not IBKR validation."
+    },
+    "oanda-faq": {
+      "url": "https://help.oanda.com/us/en/faqs/financing-costs-us.htm",
+      "official_finding": "Tom-next funding, currency conversion and multi-day rollover examples."
+    }
+  },
+  "branches": [
+    {
+      "id": "multiasset-etf",
+      "current_empirical_status": "blocked inputs/account contract",
+      "offline_prerequisite_task": "go",
+      "reopen_when": [
+        "approved source usage/access and frozen identity/coverage",
+        "inception/closure/actions/availability policy",
+        "independently reconciled shared cash multiasset allocation/rebalance model"
+      ],
+      "sources": [
+        "alpaca-plans",
+        "alpaca-bars",
+        "alpaca-actions",
+        "alpaca-terms"
+      ]
+    },
+    {
+      "id": "cross-sectional-stocks",
+      "current_empirical_status": "blocked PIT universe/prices/fundamentals",
+      "offline_prerequisite_task": "go narrow mechanics fixture only",
+      "reopen_when": [
+        "historical eligibility including delistings and identity mappings",
+        "filing-accession chronology and restatement-safe features",
+        "action-aware prices and account execution; borrow model if shorting"
+      ],
+      "sources": [
+        "sec-api",
+        "sec-developer",
+        "alpaca-bars",
+        "alpaca-actions",
+        "ibkr-history"
+      ]
+    },
+    {
+      "id": "options",
+      "current_empirical_status": "blocked complete executable chain and account events",
+      "offline_prerequisite_task": "go synthetic contract/account tests only",
+      "reopen_when": [
+        "licensed historical chain with actual synchronized quote provenance and liquidity",
+        "expiry/style/deliverables and exercise/assignment account events",
+        "portfolio equity/leg fills/margin/IV/dividend assumptions"
+      ],
+      "sources": [
+        "alpaca-options",
+        "ibkr-history",
+        "oic-exercise"
+      ]
+    },
+    {
+      "id": "futures",
+      "current_empirical_status": "blocked contract history and variation-margin account",
+      "offline_prerequisite_task": "go contract/settlement fixtures only",
+      "reopen_when": [
+        "approved per-contract prices/reference/settlement history",
+        "causal roll and raw execution prices separate from adjusted feature series",
+        "multiplier/expiry/delivery/variation-margin/collateral accounting"
+      ],
+      "sources": [
+        "cme-roll",
+        "cme-mtm",
+        "cme-datamine",
+        "cme-settlement",
+        "ibkr-history"
+      ]
+    },
+    {
+      "id": "fx",
+      "current_empirical_status": "blocked executable quote/funding model",
+      "offline_prerequisite_task": "go reference-rate contract only",
+      "reopen_when": [
+        "explicit reference-statistics versus tradable-quote question",
+        "availability lag/pair orientation/settlement/calendar",
+        "currency book/conversion and relevant rolling-spot/forward/funding model"
+      ],
+      "sources": [
+        "ecb-rates",
+        "ecb-rights",
+        "oanda-funding",
+        "oanda-faq"
+      ]
+    }
+  ],
+  "recommended_next_task": "Offline synthetic multi-instrument data contract/native catalog round-trip/account tests consistent with existing M1; then separately verify actual free-source rights/access/coverage.",
+  "reproduction_performed": false,
+  "market_datasets_downloaded": 0,
+  "accounts_created": 0,
+  "credentials_requested": 0,
+  "packages_installed": 0,
+  "strategy_runs": 0,
+  "broker_operations": 0,
+  "limits": [
+    "Source documentation is mutable; no pinned downloaded market dataset or provider entitlement proof.",
+    "New symbols do not establish untouched evaluation.",
+    "Free provider tier does not establish complete history, PIT correctness or redistribution rights.",
+    "No new market branch empirically ready under present locally verified SPY-only input/account model.",
+    "Feasibility ordering is engineering judgment, not expected return ranking."
+  ]
+}

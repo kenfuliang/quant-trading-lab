@@ -1,0 +1,69 @@
+{
+  "schema": "saved-spy-feature-diagnostic-v1",
+  "status": "frozen_for_requested_feature_diagnostic",
+  "created_utc": "2026-10-25T20:54:07.879020+00:00",
+  "feature_budget": 3,
+  "candidate_ids": [
+    "vol_ratio20_60",
+    "ema_gap_pct",
+    "range20_pct"
+  ],
+  "primary_candidate": "vol_ratio20_60",
+  "reference_features": [
+    "sigma20",
+    "ema_positive"
+  ],
+  "formulas": {
+    "vol_ratio20_60": "sample_std20(close simple returns)/sample_std60(close simple returns)",
+    "ema_gap_pct": "EMA50(close)/EMA200(close)-1; adjustFalse min_periods50/200",
+    "range20_pct": "mean20((high-low)/close)"
+  },
+  "availability": "Compute on completed bar; shift exactly once to next saved source session open; all source OHLC rounded cents as existing methodology. No fitted scaling or future data in features.",
+  "inputs": {
+    "reports/spy/20261024-235746-728801/source-data.json": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    ".local/performance/gate-decisions/20261025-v2/manifest.json": "bf8841aa48160c2d2e4fe44798b8e908c5454dd985d0678704f27c84d11b759f",
+    "docs/tasks/evidence/2026-10-25-gate-decision-labels.json": "3b2438f1c88d6c328392f1bb8c188505bc6ee757ad34944ffb4cfd5151b9abb4"
+  },
+  "selected_pair": "5_ablate_ema",
+  "outcome_horizon": 21,
+  "calibration": "2005-01-03 through2011-12-31",
+  "diagnostic_blocks": [
+    [
+      "2012-01-01",
+      "2018-12-31"
+    ],
+    [
+      "2019-01-01",
+      "2025-12-31"
+    ]
+  ],
+  "cutpoints": "Feature33.333/66.667percentiles on calibration features only; sigma20conditioning median on calibration only. Frozen across both diagnostic blocks. Labels must mature within block; never shorten censored windows.",
+  "outputs": [
+    "feature definitions/proposal provenance and dataset/code hash manifest",
+    "quality,causality,prefix/future perturbation and redundant-feature checks",
+    "time-series Spearman associations to existing base-account return and separately realized21session raw-SPY volatility; no cross-sectional IC claim",
+    "same diagnostics with fixed evaluation indices0,21,42,... to reduce outcome overlap; no independence claim",
+    "feature-tercile risk/return and actionable-policy outcome label counts, always with sample sizes",
+    "sigma20low/high strata by fixed calibration median to ask whether volatility-ratio relationships add context; descriptive only",
+    "readable review and retain/reject/inconclusive next-question decision"
+  ],
+  "primary_question": "Does volatility20/60 capture future risk variation beyond obvious redundancy with volatility20, and can the saved gate labels support a useful hypothesis? No pvalue, accuracy/alpha or performance improvement claim.",
+  "stop": {
+    "max_feature_candidates": 3,
+    "max_proposal_rounds": 1,
+    "new_financial_simulations": 0,
+    "new_market_snapshots": 0,
+    "paid_apis": 0,
+    "llm_api_calls": 0,
+    "new_packages": 0,
+    "parameter_search": false,
+    "automatic_followup": false
+  },
+  "LLM": "Current assistant proposes bounded formulas and reviews implementation; proposals informed by already viewed history and papers. No paid/external model call, new agent, trainedRL or claim LLM proposals outperform human proposals.",
+  "limits": [
+    "All periods viewed/publicdevelopment, not restored holdout",
+    "SPY raw-close features inherit dividend/split/rights/calendar/availability limitations",
+    "Conditional gate outcomes not independent risk forecast labels, and rare episode classes cannot establish calibrated classifier",
+    "No trading rule/threshold/portfolio modification; existing8casecontinuouscap proposal remains unexecuted"
+  ]
+}

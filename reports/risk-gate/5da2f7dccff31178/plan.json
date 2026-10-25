@@ -1,0 +1,98 @@
+{
+  "schema": "risk-gate-execution-v1",
+  "design_path": "research/plans/spy-risk-gate-development-v1.design.json",
+  "design_sha256": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079",
+  "code_hashes": {
+    "research/risk_gate.py": "33d3454f9865b03b256b6936e480bf584974c4d289684078e4722aa64b013365",
+    "research/risk_gate_study.py": "7bea5530176b38c6e8aec3bfba7e6c6f2b867de644bf7388e65c613a0753b8c6",
+    "research/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "research/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "reporting/temporal.py": "88392cdec7a2ea7d91bd842d18cdade225b6fc51216692ea30ac8886dc26b11f",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/leverage-model.md": "d6224928351d6e50c5b1c33accf59e49928a690825076424cde60e7a727ad307",
+    "tests/test_risk_gate.py": "7a02f9423b80495cd06ca9ca6112f64a4ab0cdf231bbc35542f0971b461e4bc8",
+    "tests/test_risk_gate_analysis.py": "91633897265578ea3a1e415ab788a431ac90a1ed4ab6936cf8def9838ff5defd",
+    "tests/test_risk_gate_study.py": "7126705b2ca6bb1b9f7f513d3caae670dd5f1781c607c557c4524670fe4fa137"
+  },
+  "model": {
+    "capital": 300000.0,
+    "annual_rate": 0.06,
+    "allocation": 0.99,
+    "initial_margin": 0.5,
+    "maintenance": 0.25,
+    "cost_bps": 5.0,
+    "commission": 1.0
+  },
+  "cases": [
+    {
+      "id": "5_hold",
+      "rule": "hold",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_ema",
+      "rule": "ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_gate_hold",
+      "rule": "gate_hold",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_gate_ema",
+      "rule": "gate_ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_half_hold",
+      "rule": "half_hold",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_buy_hold_entry_only",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 5
+    },
+    {
+      "id": "10_hold",
+      "rule": "hold",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_ema",
+      "rule": "ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_gate_hold",
+      "rule": "gate_hold",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_gate_ema",
+      "rule": "gate_ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_half_hold",
+      "rule": "half_hold",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_buy_hold_entry_only",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 10
+    }
+  ],
+  "created_utc": "2026-10-25T18:46:41.308285+00:00",
+  "max_cases": 12,
+  "wall_seconds": 900
+}

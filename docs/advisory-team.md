@@ -6,8 +6,9 @@ owner: project-maintainers
 
 # Advisory team and role contracts
 
-This document owns the five advisory roles, collaboration contract and supporting
-web research. [Skill catalog](skills.md) owns discovery/readiness;
+This document owns detailed advisory role contracts, collaboration and supporting
+web research. The [teams and skills catalog](skills.md) owns the roster, routing,
+invocation and readiness;
 [roadmap](roadmap.md) owns implementation priority. These are original project
 instructions, not Jane Street personnel, proprietary processes or an organizational
 chart reproduced from that firm.
@@ -15,8 +16,7 @@ chart reproduced from that firm.
 ## Public evidence and our interpretation
 
 Jane Street publicly describes collaboration among trading, research and ML;
-technology and data engineering are also named departments. Our separation into
-five advisory perspectives is a project design choice, not a verified internal
+technology and data engineering are also named departments. Our advisory perspectives are a project design choice, not a verified internal
 reporting structure. [Departments](https://www.janestreet.com/join-jane-street/departments/)
 
 Its technology page describes programmers, network engineers, IT operations, product
@@ -29,34 +29,13 @@ question a primary owner while preserving cross-review. The director and indepen
 risk perspective below are our proposed simplification; no authority or independence
 equivalent to staffed institutional teams is implied.
 
-## Proposed team
+## Collaboration and scope
 
-```mermaid
-flowchart TD
-    U[User sets mandate and task scope] --> D[ask-director: synthesize and prioritize]
-    D --> I[ask-infra: reliable platform]
-    D --> Q[ask-quant: evidence and hypotheses]
-    D --> A[ask-algo: executable trading logic]
-    D --> R[ask-risk: downside and uncertainty]
-    I --> D
-    Q --> D
-    A --> D
-    R --> D
-    R -. cross-review .-> I
-    R -. cross-review .-> Q
-    R -. cross-review .-> A
-```
-
-Arrows represent information flow, not automatic agent dispatch or delegation.
-The roles run as skills in this conversation. Multiple perspectives from one model
-are not independent validation; actual independent review needs separate evidence.
-
-## Invocation and scope
-
-Use message prefixes `/ask-infra`, `/ask-quant`, `/ask-algo`, `/ask-director` or
-`/ask-risk`, followed by the question. AGENTS.md maps them to matching local skills.
-This is a chat routing convention; native slash-menu registration has not been
-implemented. If discovery has not refreshed, read the relevant SKILL.md by path.
+Use the [canonical team hierarchy and invocation guide](skills.md) to choose a role.
+Roles supply advisory perspectives in this conversation; the hierarchy represents
+information flow, not automatic agent dispatch. Multiple perspectives from one
+model are not independent validation; actual independent review needs separate
+evidence.
 
 Default behavior is consultation: inspect relevant evidence, explain the tradeoff
 and propose a bounded next action. A question does not trigger strategy runs,
@@ -153,14 +132,74 @@ No automatic liquidation instruction follows from the user's reassessment tolera
 
 Example: `/ask-risk What could breach our drawdown tolerance before we can react?`
 
-## Additional roles to consider later
+## ask-ml
 
-Keep these responsibilities inside current roles until repeated work justifies a
-distinct skill: ask-data (provider contracts/quality), ask-execution (broker and
-microstructure specialization), ask-ops (incidents), ask-review (independent evidence
-challenge), ask-portfolio (allocation/correlation) and ask-options (volatility/Greeks).
-Roles are perspectives; task skills execute a defined procedure. Adding an adviser
-does not make a planned execution/restore workflow available.
+Purpose: own ML modeling questions, from the decision/target definition through
+baseline selection, fitting design, calibration, uncertainty and model diagnosis.
+The team perspective covers target/label design, tabular/time-series modeling,
+validation and interpretability. These are responsibilities within one adviser,
+not newly launched workers or independently staffed teams.
+
+Output: one model card/study proposal naming the target, horizon and prediction
+boundary; inputs/labels; simple constant or persistence baseline; chronological
+fit/selection/evaluation and label-maturity rules; metrics; resource/fit count;
+falsifier and readiness. Every tried feature/model/hyperparameter choice belongs
+to the trial history. Risk prediction, return prediction and a portfolio policy
+are separate claims; a better risk forecast does not automatically improve returns.
+
+Current fit: the saved feature pilot supports a bounded risk-forecast question,
+but only a few gate-reduction episodes exist in each feature bin. It does not
+justify a trained gate-success classifier or independent alpha claim. Prefer a
+simple risk baseline before a complex model. No predictor was trained by creating
+this role. ask-quant cross-reviews economic rationale/selection bias; ask-risk
+reviews downstream constraints; ask-algo owns forecast-to-order implementation.
+
+Example: `/ask-ml Design a bounded comparison of sigma20 alone versus sigma20 plus the volatility ratio for forecasting future risk.`
+
+## ask-ml-infra
+
+Purpose: own the reproducibility and operating contracts of ML work: immutable
+input/label snapshots, feature lineage, fold manifests, fitted transforms,
+training-job status, model artifacts, experiment tracking and resource limits.
+It coordinates inference packaging, train/serve consistency, drift visibility and
+rollback design when those stages are actually requested.
+
+Output: smallest viable pipeline/artifact contract and verification plan, using
+existing local tools before proposing infrastructure. Record code/dependency/data/
+feature identities, seeds, folds and maturity, transform/model hashes, parameters,
+fit attempts and failures. Verify reload/replay equivalence when implementation is
+requested; do not assume seeds alone ensure determinism. A failed job remains
+failed evidence, and retries consume their declared shared budget.
+
+Current fit: manifests, saved feature/label matrices and local MLflow comparison
+exist. Generic ML training orchestration, model registry/promotion, feature store,
+inference service, automated retraining and drift monitoring are unimplemented or
+unverified. MLflow tracking is an available reuse candidate, not proof those
+integrations are shipped. ask-infra retains the native platform/catalog/execution
+state architecture; this role owns the ML run/artifact requirements supplied to it.
+
+Example: `/ask-ml-infra Specify a reproducible local training receipt using our existing feature matrix and MLflow, without adding services.`
+
+## ML team handoff in RSI
+
+```mermaid
+flowchart LR
+    Q[Quant: mechanism and falsifier] --> F[Feature workflow: causal inputs]
+    F --> M[ML modeling: target, baselines and evaluation]
+    M <--> I[ML infra: data, folds and reproducible run contract]
+    I --> E[Separately scoped bounded experiment]
+    E --> V[Model and quant evaluation]
+    V --> R[Risk and promotion review]
+```
+
+The modeling team specifies statistical meaning and acceptance; ML infra binds
+the reproducible execution evidence. Shared handoff fields: decision/target and
+units/horizon, input/label/feature hashes and timing, chronological split and
+maturity rules, baseline/candidate definitions, fitted-transform policy, fit and
+resource limits, metrics/falsifier, expected artifacts and required reviews.
+A model can pass predictive tests yet fail portfolio cost/risk criteria.
+Neither team changes investment limits or authorizes trading. Team creation does
+not start training, new agents, model services, a paid API or an unattended loop.
 
 ## Web research: quant skills and agent-skill examples
 
@@ -182,6 +221,6 @@ validation, data engineering, portfolio/tail-risk analysis, options mathematics,
 microstructure/execution, software testing and operational reliability. This is our
 synthesis of the sources, not an empirically ranked list of what quants use.
 
-No external skill package was installed, executed or copied. These five role skills
+No external skill package was installed, executed or copied. These advisory role skills
 are original wrappers around our canonical project procedures. Review exact source,
 license, dependencies and overlap before any future third-party adoption.

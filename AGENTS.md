@@ -11,14 +11,11 @@ strategy tuning belongs to an explicitly requested research task.
 - For environment checks, use [local operations](docs/operations/local.md).
   For broker checks, use [paper observation](docs/operations/paper-connection.md).
   For failures or uncertain external state, use [incident SOP](docs/operations/incidents.md).
-- For skill selection, read [skill hierarchy](docs/skills.md) or use `trade-project`.
-  Available specialists cover capability review, infrastructure changes, research
-  intake and local operations. Entry points are in `.agents/skills/`; read the
-  relevant SKILL.md when discovery is unavailable. Planned skills are not installed.
-- For `/ask-infra`, `/ask-quant`, `/ask-algo`, `/ask-director` or `/ask-risk`
-  message prefixes, read the matching `.agents/skills/ask-<role>/SKILL.md` and follow
-  [advisory role contracts](docs/advisory-team.md). Consultation does not launch
-  agents or mutate platform/broker state by default.
+- For team selection, skill discovery or `/ask-*` routing, use the single
+  [teams and skills catalog](docs/skills.md), or the `trade-project` router.
+  Read the selected SKILL.md and linked role contract/procedure. The catalog owns
+  exact prefixes and readiness; planned entries are not installed. Consultation
+  does not launch agents or mutate platform/broker state by default.
 - Preserve existing datasets, run evidence, and unrelated work. Verify Git state
   before changing it; this workspace currently has no baseline commit.
 - Credentials stay outside tracked files. Broker operations follow the paper SOP;

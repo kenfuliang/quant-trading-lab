@@ -17,6 +17,7 @@ evidence handling. A mandate is not evidence that a return or loss target is ach
 | Intended objective | Double portfolio equity every year while controlling downside |
 | Annual growth aspiration | +100% per year; year-one scenario USD 300,000 to USD 600,000 |
 | Permitted research scope | Margin, options, and other forms of leverage are allowed for consideration |
+| Research data budget | Free/local data only; no paid datasets or subscriptions (confirmed 2026-10-25) |
 | Planned starting capital | USD 300,000 |
 | Investment horizon | One year |
 | Drawdown tolerance | About 30% peak-to-trough is a point to stop and reassess |
@@ -114,3 +115,42 @@ Record unsuitable candidates and reasons so we avoid repeated searches.
 
 No strategy family has been selected by this mandate. The current infrastructure
 milestones remain active while research intake proceeds as a separate planning lane.
+
+## Recursive research objective confirmed on2026-10-25
+
+Build an evidence-guided research process that scores candidate strategies and
+research actions from several perspectives, retains prior attempts, explores
+alternative mechanisms and pauses/retires specified dead-end hypotheses. Measure
+credible research progress and useful uncertainty reduction separately from
+investment returns. The user requested primary-source reuse/evaluation first,
+parallel work when useful and a review of results in ten hours.
+
+The [bounded program](tasks/2026-10-25-recursive-research-program.md) owns this
+initiative's timed deliverables and temporary experiment limits;
+[scoring](research-scoring.md) owns score meanings. Existing investment aspiration,
+free/local constraint and open investment-risk decisions above remain unchanged.
+Recursive instruction/state updates are not evidence of trained RL, improved
+future returns, or authority to operate a broker.
+
+## Current bounded improvement goal
+
+On 2026-10-25 the user authorized goal-backed recursive self-improvement. The
+[first risk-gate epoch](tasks/2026-10-25-rsi-risk-gate-epoch.md) defines the measurable
+experiment, budgets and stopping conditions. Research success is an audited
+retain/retire decision about downside depth, duration and growth tradeoffs;
+engineering progress is measured separately. The epoch subsequently resolved representation-only stops without rerunning failed
+controls, completed sixteen financial attempts and one component-removal follow-up,
+and recorded retain/retire decisions. The combined gate failed; the EMA/volatility
+variant passed its specified historical path test. Independent validation remains
+outstanding, and the epoch has no remaining financial budget.
+This goal does not change the investment mandate or authorize deployment.
+
+## Completed bounded goal: diversification readiness
+
+The user selected the next goal-setting task after reviewing three research lanes.
+The [ETF readiness epoch](tasks/2026-10-25-rsi-etf-readiness.md) records the chosen
+SPY/IEF/GLD direction, source/native-account prerequisites and60-minute bounds.
+Its current historical financial budget is zero; the fixed six-case study remains
+a non-executable proposal. The audit completed with a not-ready decision: data/action
+qualification and native corporate-action/allocator gaps remain. It does not amend the investment mandate,
+reopen the completed epoch or establish asset/weight selection for deployment.

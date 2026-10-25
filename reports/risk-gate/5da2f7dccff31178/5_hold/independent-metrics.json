@@ -1,0 +1,622 @@
+{
+  "overall": {
+    "return_pct": 10.472689127979319,
+    "drawdown_pct": -54.81490470818857,
+    "calmar": 0.19105550185175904,
+    "sharpe": 0.6232253198733059,
+    "commission_usd": 1218.0,
+    "slippage_usd": 439.840000000003,
+    "financing_usd": 0.0,
+    "dividend_usd": 281202.661,
+    "sessions": 5283,
+    "ending_equity_usd": 2427111.9709999994,
+    "mean_close_exposure": 0.9898348408707579,
+    "fraction_sessions_invested": 1.0,
+    "trades": 1218,
+    "worst_drawdown_episode": {
+      "peak": "2007-10-09",
+      "trough": "2009-03-09",
+      "recovery": "2012-08-16",
+      "sessions_peak_to_recovery": 1224,
+      "censored_at_end": false
+    }
+  },
+  "annual": [
+    {
+      "period": "2005",
+      "return_pct": 4.122213999999991,
+      "drawdown_pct": -6.8912447615198325,
+      "calmar": 0.5981813362686098,
+      "sharpe": 0.4448009347275134
+    },
+    {
+      "period": "2006",
+      "return_pct": 15.658673950210078,
+      "drawdown_pct": -7.519544333443518,
+      "calmar": 2.0823966527555946,
+      "sharpe": 1.5239853664709355
+    },
+    {
+      "period": "2007",
+      "return_pct": 5.076270447915965,
+      "drawdown_pct": -9.827636918193395,
+      "calmar": 0.516530117074078,
+      "sharpe": 0.3944685912431675
+    },
+    {
+      "period": "2008",
+      "return_pct": -36.48709924585075,
+      "drawdown_pct": -47.22540994636826,
+      "calmar": -0.7726158287940218,
+      "sharpe": -0.9029529701723584
+    },
+    {
+      "period": "2009",
+      "return_pct": 26.029442770004362,
+      "drawdown_pct": -26.895673351744353,
+      "calmar": 0.9677929393917253,
+      "sharpe": 1.009102929295172
+    },
+    {
+      "period": "2010",
+      "return_pct": 14.882475293662289,
+      "drawdown_pct": -15.553751663529447,
+      "calmar": 0.9568415142282893,
+      "sharpe": 0.8704143729999827
+    },
+    {
+      "period": "2011",
+      "return_pct": 1.8583703772114823,
+      "drawdown_pct": -18.43794765690908,
+      "calmar": 0.10079052244814853,
+      "sharpe": 0.19479741168252046
+    },
+    {
+      "period": "2012",
+      "return_pct": 15.813289315392698,
+      "drawdown_pct": -9.59374773638898,
+      "calmar": 1.6482911318809297,
+      "sharpe": 1.2369446890992757
+    },
+    {
+      "period": "2013",
+      "return_pct": 31.92124818170401,
+      "drawdown_pct": -5.498864788596491,
+      "calmar": 5.8050614824903635,
+      "sharpe": 2.5833981278952747
+    },
+    {
+      "period": "2014",
+      "return_pct": 13.305985527513343,
+      "drawdown_pct": -7.203979000384808,
+      "calmar": 1.8470328032331285,
+      "sharpe": 1.1781055168733237
+    },
+    {
+      "period": "2015",
+      "return_pct": 1.2332337913158575,
+      "drawdown_pct": -11.791135175094237,
+      "calmar": 0.10458991208248966,
+      "sharpe": 0.1564366390302102
+    },
+    {
+      "period": "2016",
+      "return_pct": 11.866037140128839,
+      "drawdown_pct": -10.205257994744855,
+      "calmar": 1.1627375952905055,
+      "sharpe": 0.9320067141010677
+    },
+    {
+      "period": "2017",
+      "return_pct": 21.4566871881104,
+      "drawdown_pct": -2.5850870691120242,
+      "calmar": 8.300179690071623,
+      "sharpe": 2.958171580896505
+    },
+    {
+      "period": "2018",
+      "return_pct": -4.522037508747889,
+      "drawdown_pct": -19.173514200621177,
+      "calmar": -0.23584813203420923,
+      "sharpe": -0.19121325935647207
+    },
+    {
+      "period": "2019",
+      "return_pct": 30.858789319335678,
+      "drawdown_pct": -6.5527808341878995,
+      "calmar": 4.709266203187471,
+      "sharpe": 2.234748333323237
+    },
+    {
+      "period": "2020",
+      "return_pct": 18.15096650760197,
+      "drawdown_pct": -33.4329221629338,
+      "calmar": 0.5429069711329473,
+      "sharpe": 0.6689267804306636
+    },
+    {
+      "period": "2021",
+      "return_pct": 28.41060415148482,
+      "drawdown_pct": -5.062764907543582,
+      "calmar": 5.611677545831265,
+      "sharpe": 2.0101163201522256
+    },
+    {
+      "period": "2022",
+      "return_pct": -17.986458189428646,
+      "drawdown_pct": -24.266133164218694,
+      "calmar": -0.7412164957517969,
+      "sharpe": -0.7096959657917657
+    },
+    {
+      "period": "2023",
+      "return_pct": 25.8877189352781,
+      "drawdown_pct": -9.87586995038473,
+      "calmar": 2.621310230423762,
+      "sharpe": 1.858230615122889
+    },
+    {
+      "period": "2024",
+      "return_pct": 24.616987352633313,
+      "drawdown_pct": -8.321949096476333,
+      "calmar": 2.9580795396905994,
+      "sharpe": 1.8317618073903723
+    },
+    {
+      "period": "2025",
+      "return_pct": 17.543508243051487,
+      "drawdown_pct": -18.57501919348391,
+      "calmar": 0.9444678393229183,
+      "sharpe": 0.9399203131692491
+    }
+  ],
+  "metric_checks": [
+    {
+      "period": "Overall",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "Overall",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "Overall",
+      "metric": "calmar",
+      "absolute_difference": 2.7755575615628914e-17
+    },
+    {
+      "period": "Overall",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2005",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2005",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2005",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2005",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2006",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2006",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2006",
+      "metric": "calmar",
+      "absolute_difference": 4.440892098500626e-16
+    },
+    {
+      "period": "2006",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2007",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2007",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2007",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2007",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2008",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2008",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2008",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2008",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2009",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2009",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2009",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2009",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2010",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2010",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2010",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2010",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2011",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2011",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2011",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2011",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2012",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2012",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2012",
+      "metric": "calmar",
+      "absolute_difference": 2.220446049250313e-16
+    },
+    {
+      "period": "2012",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2013",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2013",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2013",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2013",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2014",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2014",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2014",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2014",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2015",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2015",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2015",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2015",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2016",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2016",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2016",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2016",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2017",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2017",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2017",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2017",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2018",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2018",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2018",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2018",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2019",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2019",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2019",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2019",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2020",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2020",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2020",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2020",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2021",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2021",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2021",
+      "metric": "calmar",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2021",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2022",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2022",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2022",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2022",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2023",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2023",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2023",
+      "metric": "calmar",
+      "absolute_difference": 4.440892098500626e-16
+    },
+    {
+      "period": "2023",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2024",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2024",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2024",
+      "metric": "calmar",
+      "absolute_difference": 4.440892098500626e-16
+    },
+    {
+      "period": "2024",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2025",
+      "metric": "return_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2025",
+      "metric": "drawdown_pct",
+      "absolute_difference": 0.0
+    },
+    {
+      "period": "2025",
+      "metric": "calmar",
+      "absolute_difference": 1.1102230246251565e-16
+    },
+    {
+      "period": "2025",
+      "metric": "sharpe",
+      "absolute_difference": 0.0
+    }
+  ],
+  "artifact_hashes": {
+    "audit.json": "51f1e156a41ef2710afc489269f58439a75c213ac28dbd19e6770a6c1d597848",
+    "ledger.csv": "65368b4d8874847acb23b063352f7046018fd04e6c1a275141d4d73c88eac800",
+    "scores.json": "8f3927691b0a14825298efac13e1a47e5c70ac746e86b2ff3d4f29426fb94126",
+    "signal.csv": "f00eef1a7eb0e3a74e5ef97ef1f1de601ddb42be0ec9650fe7930c48c8bc92f8",
+    "trades.csv": "d4dc004731b2f24729ef60c9d4331f79a7446feeca6e4df770c4d5560ce2b77c"
+  }
+}

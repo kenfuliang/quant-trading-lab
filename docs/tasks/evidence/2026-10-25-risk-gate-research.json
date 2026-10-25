@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "checked_at_utc": "2026-10-25T09:40:50.279940+00:00",
+  "status": "proposal only; noimplementationorbacktest",
+  "source_count": 5,
+  "sources": [
+    {
+      "id": "moreira-muir",
+      "title": "Volatility-Managed Portfolios",
+      "publication": "Journal of Finance2017 DOI10.1111/jofi.12513",
+      "reviewed_version": "2016-10-25 author manuscript plus2017 publisher abstract",
+      "url": "https://law.yale.edu/sites/default/files/area/workshop/leo/leo17_moreira.pdf",
+      "publisher": "https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.12513",
+      "requested_nber": "https://www.nber.org/papers/w22208",
+      "nber_fetch_status": "403 via web tool; accessible primary alternatives used",
+      "claim_scope": "inverse previous-month variance factor exposure; reported manuscript alpha/Sharpe claims not independently reproduced",
+      "local_difference": "IDs31/32 inverse volatility capped sizing, not inversevariance replication",
+      "inspected_source_sha256": "6c93efca2d8b7342f8221ee714d02c7d1a79f74678ed3e6c0341b11e661af00a"
+    },
+    {
+      "id": "cederburg-et-al",
+      "title": "On the performance of volatility-managed portfolios",
+      "publication": "JFE138(2020)95-117 DOI10.1016/j.jfineco.2020.04.015",
+      "reviewed_version": "published author-hosted PDF",
+      "url": "https://www.lehigh.edu/~xuy219/research/COWY.pdf",
+      "claim_scope": "103 equity strategies; directscaledSharpe higher53 vsoriginal50; combination CERlower72/103 basecases; not independent reproduction",
+      "local_implication": "evaluate executable gate vsfixedrisk/cash, notexpostoptimalspanningweights",
+      "inspected_source_sha256": "5f82689700a360bed1fd371637d4a62090c6715d0cc9bd85c36fc78bc6129919"
+    },
+    {
+      "id": "goulding-harvey-mazzoleni",
+      "title": "Momentum turning points",
+      "publication": "JFE149(2023)378-406 DOI10.1016/j.jfineco.2023.05.007",
+      "reviewed_version": "published author-hosted PDF",
+      "url": "https://people.duke.edu/~charvey/Research/Published_Papers/P158_Momentum_turning_points.pdf",
+      "claim_scope": "slow/fastsignalturningpointtradeoff; longshortmomentum analysis not reproduced",
+      "local_implication": "falsealarm/misseddetection/missedrecovery/turnover measured separately",
+      "inspected_source_sha256": "519e261c158cdb0a928ab1b433e08857f796a1c06f25f40ea2de66f4a5238a4d"
+    },
+    {
+      "id": "aqr-trend",
+      "title": "You Can't Always Trend When You Want",
+      "publication": "AQR author/institutional page2020-03-31; peer-review/fullunderlyingreplication not established",
+      "url": "https://www.aqr.com/Insights/Research/Journal-Article/You-Cant-Always-Trend-When-You-Want",
+      "claim_scope": "hypothetical multimarket trendperformance attribution; not reproduced",
+      "local_implication": "sideways/whipsawconditionscanweakenreturnwithoutprovingmechanismgone"
+    },
+    {
+      "id": "adams-mackay",
+      "title": "Bayesian Online Changepoint Detection",
+      "publication": "arXiv0710.3742v1 2007-10-19 preprint",
+      "reviewed_version": "v1 primary PDF",
+      "url": "https://arxiv.org/pdf/0710.3742",
+      "claim_scope": "runlengthposterior causalfilter underlikelihood/hazardassumptions; nofinancialreturnclaim",
+      "local_implication": "detectobservedchange, notfuturecrashcolor",
+      "inspected_source_sha256": "b88ebb53033d361fe4b1feeca819a1b39a17dfb29f694d6ac2b71ed6a9fcde6f"
+    }
+  ],
+  "local_method_pins": [
+    {
+      "path": "research/allocation-strategies.md",
+      "sha256": "7e7c6d4e9d1ce0e4de828a843599f0c30cee29e287948f2856bc663e9f73e67f"
+    },
+    {
+      "path": "research/allocation_overlays.py",
+      "sha256": "c9f28c47248118a6857496ba418e79fa8deae43c8ae6a5ca8a655093c1e61465"
+    }
+  ],
+  "existing_methods_reused_as_references": [
+    31,
+    32,
+    33,
+    34
+  ],
+  "frozen_four_case_experiment_changed": false,
+  "financial_simulations": 0,
+  "broker_operations": 0,
+  "external_code_adopted": false,
+  "source_claims_reproduced": false,
+  "proposal": {
+    "inputs": "savedSPYcausalEMA50/200,20returnvolatilityandrawpricedrawdown",
+    "timing": "completedcloseobservations;nextopenexecutiononce",
+    "states": {
+      "green": "normal frozen research exposure budget; notsafe/profitforecast",
+      "yellow": "reducedcap",
+      "red": "zeroriskytargetnextopportunity; notguaranteedfillorstoploss"
+    },
+    "illustrative_conditions": {
+      "red": "dd<-0.20 orannualvol>=0.40",
+      "yellow": "notEMA50>EMA200 ordd<=-0.10 orannualvol>=0.25",
+      "green_candidate": "otherwise"
+    },
+    "hysteresis": {
+      "red_to_yellow": "5consecutivecloses dd>-0.18 andvol<0.35 andnored;resetonfailure",
+      "yellow_to_green": "5subsequentconsecutivecloses trendpositive dd>-0.08 vol<0.20;resetonfailure",
+      "deterioration": "immediateatcompletedclose;greenmaymovedirectlytored"
+    },
+    "cap": "min(base_target,nominalbudget*{green:1,yellow:0.5,red:0})",
+    "threshold_authority": "illustrative research specification only; notinvestmentlimits",
+    "operational_gate": "separateblocked/unassessed state;noinventedcashfill"
+  },
+  "temporal_diagnostics": [
+    "drawdowndepth/area/duration",
+    "censoredrecovery",
+    "rolling21/63/126/252sessionnetreturns",
+    "worst1/5/21sessionlosses",
+    "empiricaltailwithsamplecounts",
+    "colorparticipation/transitions/dwell/turnover/cost",
+    "missedreboundandup/downparticipation",
+    "prospectivelyavailablecolorconditionaloutcomes",
+    "falsealarm/leadlag/misseddrawdowncrossing"
+  ],
+  "comparators": [
+    "unchangedbase",
+    "existing31/32/33/34",
+    "trainingcalibratedthenfrozenfixedrisk/cash",
+    "fixed50/100percentresearchreferences",
+    "cashsameinterestpolicy"
+  ],
+  "limitations": [
+    "currentSPYsamplealreadyviewed",
+    "thresholdsnotoptimizedorindependentlyvalidated",
+    "newvariantconsumesbudgetifrun",
+    "inversevolatilitynotinversevariance",
+    "gapsandturningpointscanprecedereduction",
+    "hysteresiscanmissrecoveries",
+    "underlyingpricedrawdownnotportfolioequity",
+    "futureoutcomesforevaluationonly,nevercolors",
+    "nofinancialmetricsorprotectionclaimgenerated"
+  ],
+  "report": "docs/tasks/2026-10-25-risk-gate-research.md"
+}

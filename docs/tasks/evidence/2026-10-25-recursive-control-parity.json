@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "controls": [
+    {
+      "case": "ema-control",
+      "reference": "s002_1x",
+      "sessions": 5283,
+      "max_numeric_ledger_difference": 0.0,
+      "trades_exact": true
+    },
+    {
+      "case": "rsi-control",
+      "reference": "s011_1x",
+      "sessions": 5283,
+      "max_numeric_ledger_difference": 0.0,
+      "trades_exact": true
+    }
+  ],
+  "decimal_audits": {
+    "ema-control": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 800,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "rsi-control": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 613,
+      "maximum_difference_usd": 7.566995918750763e-10
+    },
+    "mix-equal": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 3790,
+      "maximum_difference_usd": 5.820766091346741e-10
+    },
+    "mix-trend-heavy": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 3726,
+      "maximum_difference_usd": 1.0477378964424133e-09
+    }
+  },
+  "execution": {
+    "directory": "reports/bounded-study/ad37800a507e37b175b1ef2c4b40711d5ec883f503cba33dca8be15adca2f21e",
+    "status": "completed",
+    "reused": false,
+    "local_compute_seconds": 2.8760635419748724
+  },
+  "development_only": true
+}

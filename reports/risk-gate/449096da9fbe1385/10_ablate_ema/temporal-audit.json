@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scalar_and_window_checks": 30933,
+  "longest_duration_sessions": 514,
+  "details": {
+    "passed": true,
+    "episode_field_checks": 2268,
+    "episodes": 252,
+    "tail_and_drawdown_checks": 6
+  }
+}

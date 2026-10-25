@@ -30,3 +30,7 @@ performance-stop:
 .PHONY: leverage-comparison
 leverage-comparison: performance
 	$(PYTHON) scripts/leverage_comparison.py
+
+.PHONY: strategy-suite
+strategy-suite: performance
+	$(PYTHON) scripts/strategy_suite.py

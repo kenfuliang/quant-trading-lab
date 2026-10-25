@@ -1,0 +1,35 @@
+{
+  "verified_utc": "2026-10-25T08:21:07.980171+00:00",
+  "financial_run": "97fc0717512bee9e83b35b7f477ae8218927d587bed17e4377bdcf2853bfca47",
+  "catalogue_entries": 100,
+  "simulated_adaptations": 22,
+  "remaining_data_instrument_blockers": 78,
+  "simulated_cases": 88,
+  "score_rows_checked_independently": 1936,
+  "ledger_sessions_checked": 464904,
+  "fills_checked": 246485,
+  "maximum_ledger_difference_usd": 1.0943040251731873e-08,
+  "url": "http://127.0.0.1:8765/strategy-suite/97fc0717512bee9e/index.html",
+  "checks": [
+    "Independent Decimal trade/financing/dividend/account replay for every case",
+    "Independent Decimal full-period and annual scores",
+    "Ranks/ties/undefined values across every period"
+  ],
+  "tests_passed": 64,
+  "mlflow_experiment_id": "5",
+  "base_cases_imported": 88,
+  "original_experiment_counts": {
+    "1": 2,
+    "2": 8
+  },
+  "repeat_import_count": 88,
+  "daily_metric_observations_per_run": 5284,
+  "browser_verified": [
+    "100-entry catalogue",
+    "22 adaptations / 88 cases",
+    "2008 period filter",
+    "1x exposure filter",
+    "Sharpe and Calmar rankings",
+    "execution schedule and overlay-cap disclosure"
+  ]
+}

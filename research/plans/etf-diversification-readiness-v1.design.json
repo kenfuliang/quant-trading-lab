@@ -1,0 +1,125 @@
+{
+  "schema": "etf-diversification-readiness-design-v1",
+  "status": "proposed_not_executable",
+  "historical_execution_authorized": false,
+  "direction": "SPY/IEF/GLD: isolate diversification, then incremental monthly trend filtering",
+  "symbols": [
+    "SPY",
+    "IEF",
+    "GLD"
+  ],
+  "selection_policy": "Fixed contemporary research universe by equity/Treasury/gold roles, not survivor-free market selection or highest past return; no symbol substitution.",
+  "current_goal": {
+    "type": "source_and_native_accounting_readiness",
+    "financial_case_budget": 0,
+    "max_providers": 2,
+    "max_snapshot_requests": 6,
+    "max_native_probe_revisions": 2,
+    "deadline_utc": "2026-10-25T20:38:24+00:00"
+  },
+  "future_study": {
+    "status": "proposed_requires_readiness_review_and_new_execution_scope",
+    "case_count": 6,
+    "cases": [
+      {
+        "id": "5bp_monthly_spy",
+        "cost_bps_per_side": 5,
+        "rule": "monthly_spy"
+      },
+      {
+        "id": "5bp_static_equal_thirds",
+        "cost_bps_per_side": 5,
+        "rule": "static_equal_thirds"
+      },
+      {
+        "id": "5bp_equal_thirds_10m_trend_cash",
+        "cost_bps_per_side": 5,
+        "rule": "equal_thirds_10m_trend_cash"
+      },
+      {
+        "id": "10bp_monthly_spy",
+        "cost_bps_per_side": 10,
+        "rule": "monthly_spy"
+      },
+      {
+        "id": "10bp_static_equal_thirds",
+        "cost_bps_per_side": 10,
+        "rule": "static_equal_thirds"
+      },
+      {
+        "id": "10bp_equal_thirds_10m_trend_cash",
+        "cost_bps_per_side": 10,
+        "rule": "equal_thirds_10m_trend_cash"
+      }
+    ],
+    "rules": {
+      "monthly_spy": "Target100%SPY before reserve; rebalance monthly at next open.",
+      "static_equal_thirds": "Target1/3 each SPY/IEF/GLD before reserve; rebalance monthly at next open.",
+      "equal_thirds_10m_trend_cash": "At each completed month-end, a sleeve receives1/3 only if its forward-constructed total-return index exceeds its trailing10month-end mean including current month. Otherwise that sleeve stays cash, without redistribution."
+    },
+    "decision_fill": "Last common completed regular session of month; next common regular session open. Never same-close fill; daily bars cannot validate intraday execution.",
+    "proposed_warmup_start": "2004-12-01",
+    "proposed_evaluation_start": "2006-01-03",
+    "proposed_evaluation_end": "2025-12-31",
+    "dates_status": "Proposed pending audited inception/common coverage/calendar and full10month warmup; no pre-inception backfill or automatic date/proxy amendment.",
+    "capital_usd": 300000,
+    "allocation_reserve": 0.99,
+    "nominal_gross_cap": 1,
+    "whole_shares": true,
+    "shorts": false,
+    "leverage": false,
+    "commission_usd_per_actual_instrument_order": 1,
+    "primary_cash_interest": 0,
+    "primary_cash_model": "One USD CASH account. No borrowing. Sell-before-buy; buys use realized available cash after all modeled costs. Unpaid dividend receivables belong to wealth but are excluded from spendable cash/investable target budget.",
+    "dividends": "Entitle prior eligible holdings at documented ex-date; accrue receivable; credit spendable cash only at verified payment date under declared date-level ordering. Unknown pay dates block primary tradable-cash study; do not fabricate them.",
+    "splits": "Preserve raw execution prices and adjust quantities/entitlements per verified effective split action/order. Do not treat split movement as profit/loss or double-adjust.",
+    "signal_series": "Forward total-return index from verified raw prices, distributions and splits; explicitly chosen reinvestment convention for signals only, separate from actual payment-cash availability. Do not use adjusted fills plus duplicate dividends.",
+    "rebalance": "Use available open marks; fixed deterministic symbol order after sells, cost-aware whole-share cash feasibility, residual cash retained. Rejections/partial fills do not create assumed cash; missing marks stop/flag rather than forward-fill.",
+    "paired_claims": [
+      {
+        "treatment": "static_equal_thirds",
+        "control": "monthly_spy",
+        "question": "Diversification"
+      },
+      {
+        "treatment": "equal_thirds_10m_trend_cash",
+        "control": "static_equal_thirds",
+        "question": "Incremental filter"
+      }
+    ],
+    "primary_criterion": "At each cost: no worse full-path drawdown magnitude AND longest observed peak-to-recovery/observed-end sessions, strictly better at leastone. Drawdown fraction tolerance1e-10; duration integerexact. Cost-robustclaimrequiresbothcontexts.",
+    "growth": "Report CAGR/endingwealth sacrifice separately; acceptable sacrifice not selected; path pass is not investment selection.",
+    "diagnostics": [
+      "annual return/drawdown/Sharpe/Calmar",
+      "rolling21/63/126/252cumulative returns",
+      "rolling63/252Sharpe",
+      "worst1/5/21/63returns",
+      "deepest/longest episodes, recovery/censoring",
+      "historicaldailyES95",
+      "cash/receivable/sleeve contributions",
+      "turnover/costs",
+      "joint stress/block behavior"
+    ],
+    "chronology": "Continuous capital/positions/features, no annual resets. Previously viewed/publicly studied2006\u20132025 remains development; new tickers do not create holdout independence.",
+    "cash_comparison": "Zero-return analytical cash under zero cash interest; undefined Sharpe/Calmar. Actual opportunity cost disclosed; do not import an undeclared cash-yield benefit."
+  },
+  "native_readiness": [
+    "Single sharedcash account andthree instrument identities",
+    "Fee-aware whole-share sells before buys",
+    "Dividend receivable versus pay-date availablecash",
+    "Split quantities and value continuity",
+    "Insufficientcash/order rejection and no syntheticcredits",
+    "Independent Decimal reconciliation or precise native blockinggap"
+  ],
+  "prohibited": [
+    "Historical performance execution in readiness phase",
+    "Parameter/weight/asset search",
+    "Further SPY gate tuning",
+    "Example/synthetic historicaldata treatedasinvestable",
+    "Paid/API/credentialed market access",
+    "Install/migrate framework/dependency",
+    "Broker operations,commits,publication"
+  ],
+  "stop": "Stop source/probe work at limits/deadline or integrity failure, preserveattempts, return explicit not-ready gaps. No hidden retries, third provider, split-adjusted proxy splice or automatic market-case launch.",
+  "setup_receipt": "docs/tasks/evidence/2026-10-25-rsi-etf-readiness-setup.json"
+}

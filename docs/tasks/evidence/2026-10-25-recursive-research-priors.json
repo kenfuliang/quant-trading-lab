@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "checked_at_utc": "2026-10-25T09:19:30.551561+00:00",
+  "scope": "primary-source text/code inspection only",
+  "source_count": 9,
+  "financial_results_reproduced": false,
+  "downloaded_code_executed": false,
+  "packages_installed": false,
+  "paid_services_or_data_used": false,
+  "broker_actions": false,
+  "sources": [
+    {
+      "id": "rd-agent",
+      "paper": "https://arxiv.org/html/2505.15155v2",
+      "paper_revision": "v2 2025-09-25",
+      "publication": "NeurIPS2025 as identified in paper/repository",
+      "claim_check": "primary tables inspected; not reproduced",
+      "reuse": "contextual research-direction allocation and bounded runtime comparison",
+      "blockers": [
+        "Linux-only current support",
+        "Docker/model configuration",
+        "local input rights and evaluation routing not verified"
+      ]
+    },
+    {
+      "id": "qlib",
+      "paper": null,
+      "primary": "https://github.com/microsoft/qlib/blob/54355232463878d2eebb91fe0ee5fa7fa1f5976c/examples/benchmarks/README.md",
+      "publication": "maintained benchmark implementation",
+      "claim_check": "table and workflow inspected; not reproduced",
+      "reuse": "separate predictive metrics from executable portfolio metrics; manifests and seeds",
+      "blockers": [
+        "cross-sectional dataset absent",
+        "source rights distinct from MIT code"
+      ]
+    },
+    {
+      "id": "alphaagent",
+      "paper": "https://arxiv.org/html/2502.16789v2",
+      "paper_revision": "v2 2025-06-09",
+      "publication": "KDD2025 DOI10.1145/3711896.3736838 in primary paper",
+      "claim_check": "tables/splits/costs inspected; not reproduced",
+      "reuse": "complexity, duplication and hypothesis-alignment controls",
+      "blockers": [
+        "current code dataset differs from published experiment",
+        "no explicit code license",
+        "evaluation-feedback visibility unverified"
+      ]
+    },
+    {
+      "id": "alphaagentevo",
+      "paper": "https://openreview.net/pdf?id=lNmZrawUMu",
+      "publication": "ICLR2026 identified by indexed primary PDF",
+      "claim_check": "limited indexed primary text; direct browser verification prevented full inspection",
+      "reuse": "distinguish policy training from generated factors and inspectable reward dimensions",
+      "blockers": [
+        "numeric results and training budget not verified",
+        "code/checkpoints/license not verified"
+      ]
+    },
+    {
+      "id": "alphamemo",
+      "paper": "https://arxiv.org/html/2606.20625v1",
+      "paper_revision": "v1 displayed 2026-05-26",
+      "publication": "preprint; peer-review status not established",
+      "claim_check": "primary tables, methods and selected code inspected; not reproduced",
+      "reuse": "parent-context edit memory, confidence fallback and negative lessons",
+      "blockers": [
+        "no explicit code license",
+        "full data absent",
+        "main defaults external inference",
+        "synthetic smoke is not real-market reproduction"
+      ]
+    },
+    {
+      "id": "evermine",
+      "paper": "https://arxiv.org/html/2609.33524v1",
+      "paper_revision": "v1 2026-09-27",
+      "publication": "preprint; peer-review status not established",
+      "claim_check": "primary methods/results inspected; no dedicated artifact release located; not reproduced",
+      "reuse": "fixed/evolving matched trajectories and shared-state continuation ablation",
+      "blockers": [
+        "U60 ten-minute crypto data absent",
+        "IC endpoint differs from investment PnL",
+        "code/data release not located"
+      ]
+    },
+    {
+      "id": "gae",
+      "paper": "https://arxiv.org/abs/1506.02438v6",
+      "paper_revision": "v6 2018-10-20; first submission2015-06-08",
+      "publication": "primary author arXiv revision inspected",
+      "claim_check": "method and robotics domain verified; no quant performance claim",
+      "reuse": "delayed credit assignment intuition",
+      "blockers": [
+        "no local learned value function or policy-training trajectories",
+        "code rights not assessed because adoption not proposed"
+      ]
+    },
+    {
+      "id": "dsr",
+      "paper": "https://www.davidhbailey.com/dhbpapers/deflated-sharpe.pdf",
+      "paper_revision": "2014-07-31 author manuscript",
+      "publication": "Journal of Portfolio Management2014; primary manuscript says forthcoming",
+      "claim_check": "statistical-method source inspected; not an investment strategy reproduction",
+      "reuse": "selection-aware Sharpe assessment with complete trial assumptions",
+      "blockers": [
+        "effective-trial/dependence assumptions and local numerical validation required"
+      ]
+    },
+    {
+      "id": "pbo",
+      "paper": "https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf",
+      "paper_revision": "2015-02-27 author manuscript",
+      "publication": "2017 Journal of Computational Finance; DOI10.21314/jcf.2016.322",
+      "journal_record": "https://escholarship.org/uc/item/4w1110bb",
+      "claim_check": "statistical-method source inspected; no local computation performed",
+      "reuse": "retrospective selection-degradation diagnostic",
+      "blockers": [
+        "complete comparable candidate-return matrix and partition assumptions required",
+        "does not restore holdout independence"
+      ]
+    }
+  ],
+  "repository_pins": [
+    {
+      "id": "rd-agent",
+      "repository": "https://github.com/microsoft/RD-Agent",
+      "sha": "484776c211e4fbbeef03e0ec00d6bbee7362a4f4",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/microsoft/RD-Agent/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/README.md",
+          "sha256": "b68ff14551944e1821023ae54a090fc0aabaad58170165cc9c17c6e0e7290c13"
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/microsoft/RD-Agent/484776c211e4fbbeef03e0ec00d6bbee7362a4f4/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ]
+    },
+    {
+      "id": "qlib",
+      "repository": "https://github.com/microsoft/qlib",
+      "sha": "54355232463878d2eebb91fe0ee5fa7fa1f5976c",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/microsoft/qlib/54355232463878d2eebb91fe0ee5fa7fa1f5976c/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "examples/benchmarks/README.md",
+          "url": "https://raw.githubusercontent.com/microsoft/qlib/54355232463878d2eebb91fe0ee5fa7fa1f5976c/examples/benchmarks/README.md",
+          "sha256": "bfc70f5d3193412ce18b6eee494fbe34be9110ac93bfb164c1fb22dcb05cb529"
+        },
+        {
+          "path": "examples/benchmarks/LightGBM/workflow_config_lightgbm_Alpha158.yaml",
+          "url": "https://raw.githubusercontent.com/microsoft/qlib/54355232463878d2eebb91fe0ee5fa7fa1f5976c/examples/benchmarks/LightGBM/workflow_config_lightgbm_Alpha158.yaml",
+          "sha256": "0cbe1f729f43a2b8cd735759e6244c2e9f8db967555bfe24a7143fce4605d680"
+        }
+      ]
+    },
+    {
+      "id": "alphaagent",
+      "repository": "https://github.com/RndmVariableQ/AlphaAgent",
+      "sha": "b42cb397025510da44355db9dcf278304321f589",
+      "license": "no_explicit_license_found_at_pin",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/RndmVariableQ/AlphaAgent/b42cb397025510da44355db9dcf278304321f589/README.md",
+          "sha256": "b90839541fdb8d2f31ba75d868e614561791f6f4e6f020a3a04ae6d1cf4ca292"
+        }
+      ]
+    },
+    {
+      "id": "alphamemo",
+      "repository": "https://github.com/jarrettyu/alphamemo",
+      "sha": "412fee13d905bf5a25f0958aa572b7c668ccb925",
+      "license": "no_explicit_license_found_at_pin",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/jarrettyu/alphamemo/412fee13d905bf5a25f0958aa572b7c668ccb925/README.md",
+          "sha256": "2df79fa9f1e5112669110bb4b8df4c94f9a90bc94f0623542b0c48fb4c04d74d"
+        },
+        {
+          "path": "scripts/run_main.sh",
+          "url": "https://raw.githubusercontent.com/jarrettyu/alphamemo/412fee13d905bf5a25f0958aa572b7c668ccb925/scripts/run_main.sh",
+          "sha256": "77257d925cdf882f15816db88411cb0d12bcc8821c63c734142f438ee100b636"
+        },
+        {
+          "path": "scripts/run_smoke_test.sh",
+          "url": "https://raw.githubusercontent.com/jarrettyu/alphamemo/412fee13d905bf5a25f0958aa572b7c668ccb925/scripts/run_smoke_test.sh",
+          "sha256": "9208f5f8f8af3f1dc5587acd2d6fadc65333f9951d37e61cc253e276a4c46987"
+        },
+        {
+          "path": "sspm/runner.py",
+          "url": "https://raw.githubusercontent.com/jarrettyu/alphamemo/412fee13d905bf5a25f0958aa572b7c668ccb925/sspm/runner.py",
+          "sha256": "d791034f19d3c720218c62c5b76e7451454cdeeb3238754051f28256ac493cdf"
+        },
+        {
+          "path": "configs/demo.json",
+          "url": "https://raw.githubusercontent.com/jarrettyu/alphamemo/412fee13d905bf5a25f0958aa572b7c668ccb925/configs/demo.json",
+          "sha256": "88ef9da7f9badfa565ece811e00ec710fb12349121ab891f09ae9f92d4652f9c"
+        }
+      ]
+    }
+  ],
+  "status": "screened; concepts recommended; upstream performance unverified",
+  "report": "docs/tasks/2026-10-25-recursive-research-priors.md"
+}

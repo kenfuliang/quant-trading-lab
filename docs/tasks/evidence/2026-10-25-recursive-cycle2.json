@@ -1,0 +1,2499 @@
+{
+  "schema_version": 1,
+  "observation_kind": "read_only_analysis",
+  "input_directory": "reports/bounded-study/ad37800a507e37b175b1ef2c4b40711d5ec883f503cba33dca8be15adca2f21e",
+  "manifest_sha256": "a4a1fbbefaab3ada0d16c0d736ec19134f794b80210450e94765e46b608797c0",
+  "artifact_count": 22,
+  "cases": {
+    "ema-control": {
+      "overall": {
+        "return_pct": 8.013017724201642,
+        "drawdown_pct": -29.061507901912954,
+        "calmar": 0.2757261512804775,
+        "sharpe": 0.642591715037251,
+        "commission_usd": 800.0,
+        "slippage_usd": 8312.840000000175,
+        "financing_usd": 0.0,
+        "dividend_usd": 193720.20400000003,
+        "sessions": 5283,
+        "ending_equity_usd": 1512939.2139999997,
+        "mean_close_exposure": 0.7988972750910143,
+        "fraction_sessions_invested": 0.807117168275601,
+        "trades": 800,
+        "worst_drawdown_episode": {
+          "peak": "2020-02-19",
+          "trough": "2020-03-19",
+          "recovery": "2021-04-15",
+          "sessions_peak_to_recovery": 291,
+          "censored_at_end": false
+        }
+      },
+      "annual": [
+        {
+          "period": "2005",
+          "return_pct": 4.122213999999991,
+          "drawdown_pct": -6.8912447615198325,
+          "calmar": 0.5981813362686098,
+          "sharpe": 0.4448009347275134
+        },
+        {
+          "period": "2006",
+          "return_pct": 15.658673950210078,
+          "drawdown_pct": -7.519544333443518,
+          "calmar": 2.0823966527555946,
+          "sharpe": 1.5239853664709355
+        },
+        {
+          "period": "2007",
+          "return_pct": 5.076270447915965,
+          "drawdown_pct": -9.827636918193395,
+          "calmar": 0.516530117074078,
+          "sharpe": 0.3944685912431675
+        },
+        {
+          "period": "2008",
+          "return_pct": -4.8688760185976125,
+          "drawdown_pct": -4.943111049339177,
+          "calmar": -0.9849821236058435,
+          "sharpe": -1.6319672138047643
+        },
+        {
+          "period": "2009",
+          "return_pct": 12.86352712950558,
+          "drawdown_pct": -5.618183751888239,
+          "calmar": 2.289623781917461,
+          "sharpe": 1.2684830680017556
+        },
+        {
+          "period": "2010",
+          "return_pct": 1.4189364048502906,
+          "drawdown_pct": -17.59524268579663,
+          "calmar": 0.08064318464875142,
+          "sharpe": 0.16766551076968592
+        },
+        {
+          "period": "2011",
+          "return_pct": -6.488326971675862,
+          "drawdown_pct": -17.15331725673922,
+          "calmar": -0.3782549389463848,
+          "sharpe": -0.3548144405459097
+        },
+        {
+          "period": "2012",
+          "return_pct": 13.347336169980274,
+          "drawdown_pct": -9.593442856879708,
+          "calmar": 1.3912978238473115,
+          "sharpe": 1.071461594690241
+        },
+        {
+          "period": "2013",
+          "return_pct": 31.920184825412147,
+          "drawdown_pct": -5.49982627227098,
+          "calmar": 5.80385329375717,
+          "sharpe": 2.5832903676983863
+        },
+        {
+          "period": "2014",
+          "return_pct": 13.309224788771367,
+          "drawdown_pct": -7.203472918775333,
+          "calmar": 1.8476122474316288,
+          "sharpe": 1.178360223608436
+        },
+        {
+          "period": "2015",
+          "return_pct": -5.917820149469444,
+          "drawdown_pct": -11.79391207883741,
+          "calmar": -0.5017690576215315,
+          "sharpe": -0.3861384839490696
+        },
+        {
+          "period": "2016",
+          "return_pct": 3.2210765820672282,
+          "drawdown_pct": -8.714418267144918,
+          "calmar": 0.3696261165488607,
+          "sharpe": 0.37881045637098093
+        },
+        {
+          "period": "2017",
+          "return_pct": 21.456342474927226,
+          "drawdown_pct": -2.5850624704531144,
+          "calmar": 8.300125323921598,
+          "sharpe": 2.9581852704346754
+        },
+        {
+          "period": "2018",
+          "return_pct": 1.5506804215391856,
+          "drawdown_pct": -10.002863992041465,
+          "calmar": 0.1550236435057946,
+          "sharpe": 0.17754139014647966
+        },
+        {
+          "period": "2019",
+          "return_pct": 17.22899963652185,
+          "drawdown_pct": -6.553149498006627,
+          "calmar": 2.6291174406692015,
+          "sharpe": 1.501080111722372
+        },
+        {
+          "period": "2020",
+          "return_pct": -5.585669376974578,
+          "drawdown_pct": -29.061507901912954,
+          "calmar": -0.1922016364679723,
+          "sharpe": -0.07617052122653334
+        },
+        {
+          "period": "2021",
+          "return_pct": 28.408997760077636,
+          "drawdown_pct": -5.0624652657402125,
+          "calmar": 5.61169238085109,
+          "sharpe": 2.010141302650605
+        },
+        {
+          "period": "2022",
+          "return_pct": -12.269393975597897,
+          "drawdown_pct": -13.351823426340815,
+          "calmar": -0.9189302152837437,
+          "sharpe": -0.9722716844423229
+        },
+        {
+          "period": "2023",
+          "return_pct": 15.134028088848073,
+          "drawdown_pct": -9.875671722466583,
+          "calmar": 1.5324555649636502,
+          "sharpe": 1.4582824985575333
+        },
+        {
+          "period": "2024",
+          "return_pct": 24.614662950046927,
+          "drawdown_pct": -8.32144781941626,
+          "calmar": 2.9579784052258367,
+          "sharpe": 1.831789995621193
+        },
+        {
+          "period": "2025",
+          "return_pct": 7.808699755432702,
+          "drawdown_pct": -18.574118367260574,
+          "calmar": 0.42040755857336437,
+          "sharpe": 0.5046393996605717
+        }
+      ],
+      "metric_checks": [
+        {
+          "period": "Overall",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "calmar",
+          "absolute_difference": 5.551115123125783e-17
+        },
+        {
+          "period": "Overall",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "calmar",
+          "absolute_difference": 4.440892098500626e-16
+        },
+        {
+          "period": "2006",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2007",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2008",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "calmar",
+          "absolute_difference": 5.551115123125783e-17
+        },
+        {
+          "period": "2011",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "calmar",
+          "absolute_difference": 8.881784197001252e-16
+        },
+        {
+          "period": "2013",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "calmar",
+          "absolute_difference": 2.7755575615628914e-17
+        },
+        {
+          "period": "2018",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "calmar",
+          "absolute_difference": 4.440892098500626e-16
+        },
+        {
+          "period": "2019",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "calmar",
+          "absolute_difference": 8.881784197001252e-16
+        },
+        {
+          "period": "2021",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2022",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "calmar",
+          "absolute_difference": 4.440892098500626e-16
+        },
+        {
+          "period": "2024",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "calmar",
+          "absolute_difference": 5.551115123125783e-17
+        },
+        {
+          "period": "2025",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        }
+      ],
+      "artifact_hashes": {
+        "audit.json": "ced7e7ea1374578b2e4bc4d3bb85b8657ac5e0146528f16b709f851dc9a9ab90",
+        "ledger.csv": "276456cec8acd27ad51b01640d08c62e0079ac02d3ec4da0ac1d3c65cf014423",
+        "scores.json": "8ddea925e2480773af164e75e9133ae9b200704b1c7fdafd88ff30ed4df4c648",
+        "signal.csv": "7e2f0023eb0d4979a3b8582e2ed315cd91a2af83c209ed43cda631f159108648",
+        "trades.csv": "68ddf4bf7294aafe5d435be8a7ab08545d4145d7472c35105d92d031d53f04a6"
+      }
+    },
+    "rsi-control": {
+      "overall": {
+        "return_pct": 3.828581941669573,
+        "drawdown_pct": -21.517770642936597,
+        "calmar": 0.1779265150280027,
+        "sharpe": 0.4339509414585864,
+        "commission_usd": 613.0,
+        "slippage_usd": 116905.75000000041,
+        "financing_usd": 0.0,
+        "dividend_usd": 18803.856,
+        "sessions": 5283,
+        "ending_equity_usd": 660132.9959999996,
+        "mean_close_exposure": 0.13414124863887278,
+        "fraction_sessions_invested": 0.13552905546091237,
+        "trades": 613,
+        "worst_drawdown_episode": {
+          "peak": "2017-11-16",
+          "trough": "2020-03-16",
+          "recovery": "2021-08-20",
+          "sessions_peak_to_recovery": 945,
+          "censored_at_end": false
+        }
+      },
+      "annual": [
+        {
+          "period": "2005",
+          "return_pct": -1.4756133333333588,
+          "drawdown_pct": -3.635786666666685,
+          "calmar": -0.40585806281263787,
+          "sharpe": -0.36503444598882046
+        },
+        {
+          "period": "2006",
+          "return_pct": 4.812649430009119,
+          "drawdown_pct": -5.0940928269492485,
+          "calmar": 0.9447510270226702,
+          "sharpe": 1.0081158607025837
+        },
+        {
+          "period": "2007",
+          "return_pct": 2.787394795177134,
+          "drawdown_pct": -7.816700239945618,
+          "calmar": 0.35659481745669785,
+          "sharpe": 0.3842989260405957
+        },
+        {
+          "period": "2008",
+          "return_pct": 34.50783602741618,
+          "drawdown_pct": -17.586569732088442,
+          "calmar": 1.9621698007686634,
+          "sharpe": 1.3829052891680713
+        },
+        {
+          "period": "2009",
+          "return_pct": -0.2049071902368027,
+          "drawdown_pct": -11.4556009143304,
+          "calmar": -0.01788707478282294,
+          "sharpe": 0.039081467687522214
+        },
+        {
+          "period": "2010",
+          "return_pct": 2.755262858887053,
+          "drawdown_pct": -8.697066423824197,
+          "calmar": 0.3168037042167989,
+          "sharpe": 0.32727742439241214
+        },
+        {
+          "period": "2011",
+          "return_pct": 2.3204468277944867,
+          "drawdown_pct": -14.852255747289133,
+          "calmar": 0.1562353131589469,
+          "sharpe": 0.24691601770229593
+        },
+        {
+          "period": "2012",
+          "return_pct": 7.597000758311401,
+          "drawdown_pct": -5.315276131271041,
+          "calmar": 1.4292767808649542,
+          "sharpe": 1.2073208915566103
+        },
+        {
+          "period": "2013",
+          "return_pct": 5.695942841349466,
+          "drawdown_pct": -1.6489039164003905,
+          "calmar": 3.4543812921397445,
+          "sharpe": 1.5783324222107986
+        },
+        {
+          "period": "2014",
+          "return_pct": 2.962976766338654,
+          "drawdown_pct": -3.7149312189398653,
+          "calmar": 0.7975859017880289,
+          "sharpe": 0.587158384085579
+        },
+        {
+          "period": "2015",
+          "return_pct": 1.7172622958584904,
+          "drawdown_pct": -7.587549843810315,
+          "calmar": 0.22632632815709,
+          "sharpe": 0.23354987893461546
+        },
+        {
+          "period": "2016",
+          "return_pct": 1.9145435850454362,
+          "drawdown_pct": -4.706812770510349,
+          "calmar": 0.4067600897661894,
+          "sharpe": 0.3766252906623192
+        },
+        {
+          "period": "2017",
+          "return_pct": 3.6254728421137195,
+          "drawdown_pct": -0.717888552951873,
+          "calmar": 5.050188956497778,
+          "sharpe": 1.7725514980698471
+        },
+        {
+          "period": "2018",
+          "return_pct": -11.540417492104904,
+          "drawdown_pct": -14.469769854608206,
+          "calmar": -0.7975536313336464,
+          "sharpe": -0.9434467897238483
+        },
+        {
+          "period": "2019",
+          "return_pct": 2.138421900618437,
+          "drawdown_pct": -4.631242118884515,
+          "calmar": 0.4617383081525219,
+          "sharpe": 0.3887536657080957
+        },
+        {
+          "period": "2020",
+          "return_pct": 3.3320445162552614,
+          "drawdown_pct": -13.746742938873568,
+          "calmar": 0.24238792643985346,
+          "sharpe": 0.29703026194966947
+        },
+        {
+          "period": "2021",
+          "return_pct": 8.823850778291087,
+          "drawdown_pct": -1.9811637760864587,
+          "calmar": 4.453872458601833,
+          "sharpe": 1.8090692964800061
+        },
+        {
+          "period": "2022",
+          "return_pct": -3.9172524037308754,
+          "drawdown_pct": -8.515015368587687,
+          "calmar": -0.4600405559080743,
+          "sharpe": -0.29710936532743587
+        },
+        {
+          "period": "2023",
+          "return_pct": 0.4080854210926965,
+          "drawdown_pct": -2.904008112714518,
+          "calmar": 0.14052489017024103,
+          "sharpe": 0.10208359467774672
+        },
+        {
+          "period": "2024",
+          "return_pct": 9.737317825006308,
+          "drawdown_pct": -1.9654338661715287,
+          "calmar": 4.954284136750754,
+          "sharpe": 2.0023563111234184
+        },
+        {
+          "period": "2025",
+          "return_pct": 8.565317688236362,
+          "drawdown_pct": -6.217253340219042,
+          "calmar": 1.3776690798214433,
+          "sharpe": 0.689196561158216
+        }
+      ],
+      "metric_checks": [
+        {
+          "period": "Overall",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "calmar",
+          "absolute_difference": 2.7755575615628914e-17
+        },
+        {
+          "period": "Overall",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2006",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "calmar",
+          "absolute_difference": 2.220446049250313e-16
+        },
+        {
+          "period": "2008",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "calmar",
+          "absolute_difference": 3.469446951953614e-18
+        },
+        {
+          "period": "2009",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "calmar",
+          "absolute_difference": 5.551115123125783e-17
+        },
+        {
+          "period": "2010",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "calmar",
+          "absolute_difference": 2.220446049250313e-16
+        },
+        {
+          "period": "2012",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "calmar",
+          "absolute_difference": 8.881784197001252e-16
+        },
+        {
+          "period": "2024",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        }
+      ],
+      "artifact_hashes": {
+        "audit.json": "16c12cfd09c5aa2a17178fd2eca69008ce9c13c31da03577c91c2cd21f814d5f",
+        "ledger.csv": "73bdf92ba22794ad81662f58db4bd3e131d1726e028295030a85f092224fb815",
+        "scores.json": "883fbd2b7b7f49c3f68fe3ee8ff1ed59891bbcf9654d355f6c46e7277f358021",
+        "signal.csv": "91a82afd2956bc35c565947ea813aee87f57ea676e2f60a2b629710ccb0c6b4e",
+        "trades.csv": "e811d2ac953c6c024f9e507f3625dce50003aa50f72763aabae1779906fa343b"
+      }
+    },
+    "mix-equal": {
+      "overall": {
+        "return_pct": 6.076898986551127,
+        "drawdown_pct": -21.59309873522598,
+        "calmar": 0.28142783308064795,
+        "sharpe": 0.6510982330503616,
+        "commission_usd": 3790.0,
+        "slippage_usd": 75398.05000000018,
+        "financing_usd": 0.0,
+        "dividend_usd": 94829.949,
+        "sessions": 5283,
+        "ending_equity_usd": 1034976.2890000001,
+        "mean_close_exposure": 0.46645380144179055,
+        "fraction_sessions_invested": 0.8364565587734242,
+        "trades": 3790,
+        "worst_drawdown_episode": {
+          "peak": "2020-02-19",
+          "trough": "2020-03-19",
+          "recovery": "2021-03-12",
+          "sessions_peak_to_recovery": 268,
+          "censored_at_end": false
+        }
+      },
+      "annual": [
+        {
+          "period": "2005",
+          "return_pct": 1.3064519999999469,
+          "drawdown_pct": -4.582012467365326,
+          "calmar": 0.2851262429565499,
+          "sharpe": 0.24241989907327977
+        },
+        {
+          "period": "2006",
+          "return_pct": 10.126637672922678,
+          "drawdown_pct": -6.298779469381033,
+          "calmar": 1.6077142757814,
+          "sharpe": 1.5168637742934883
+        },
+        {
+          "period": "2007",
+          "return_pct": 4.039768390775222,
+          "drawdown_pct": -6.093244635154804,
+          "calmar": 0.6629913342831981,
+          "sharpe": 0.43343168774988405
+        },
+        {
+          "period": "2008",
+          "return_pct": 14.087343058189372,
+          "drawdown_pct": -8.90800578556844,
+          "calmar": 1.5814250009819035,
+          "sharpe": 1.1653337735239413
+        },
+        {
+          "period": "2009",
+          "return_pct": 6.3182624520373265,
+          "drawdown_pct": -5.832556014102874,
+          "calmar": 1.0832750575836794,
+          "sharpe": 0.7967329213487805
+        },
+        {
+          "period": "2010",
+          "return_pct": 2.240701026613623,
+          "drawdown_pct": -10.476373135474493,
+          "calmar": 0.21388136883233855,
+          "sharpe": 0.24779769227175724
+        },
+        {
+          "period": "2011",
+          "return_pct": -2.00115402492963,
+          "drawdown_pct": -15.55824434566655,
+          "calmar": -0.12862338323456227,
+          "sharpe": -0.10069801720951015
+        },
+        {
+          "period": "2012",
+          "return_pct": 10.554237713267444,
+          "drawdown_pct": -6.584104015745895,
+          "calmar": 1.6029876940016392,
+          "sharpe": 1.258400945310302
+        },
+        {
+          "period": "2013",
+          "return_pct": 18.164188323563813,
+          "drawdown_pct": -3.176399180696632,
+          "calmar": 5.71848413573137,
+          "sharpe": 2.675868421080355
+        },
+        {
+          "period": "2014",
+          "return_pct": 8.097302500948356,
+          "drawdown_pct": -3.874736951532709,
+          "calmar": 2.0897683125935425,
+          "sharpe": 1.119632628709061
+        },
+        {
+          "period": "2015",
+          "return_pct": -2.042048999409074,
+          "drawdown_pct": -9.705936281469384,
+          "calmar": -0.21039175821788184,
+          "sharpe": -0.1548527622630886
+        },
+        {
+          "period": "2016",
+          "return_pct": 2.6278370137899243,
+          "drawdown_pct": -5.25093166563404,
+          "calmar": 0.5004515733823814,
+          "sharpe": 0.4359372536453678
+        },
+        {
+          "period": "2017",
+          "return_pct": 12.192692353356115,
+          "drawdown_pct": -1.3565916518553878,
+          "calmar": 8.987739484229005,
+          "sharpe": 3.0614787525748812
+        },
+        {
+          "period": "2018",
+          "return_pct": -5.0327797956264515,
+          "drawdown_pct": -10.427437336203948,
+          "calmar": -0.48264781013381836,
+          "sharpe": -0.36442151314982063
+        },
+        {
+          "period": "2019",
+          "return_pct": 9.49209896378964,
+          "drawdown_pct": -5.298063092741467,
+          "calmar": 1.7916168225316438,
+          "sharpe": 1.2401361992043056
+        },
+        {
+          "period": "2020",
+          "return_pct": -0.7267833248815414,
+          "drawdown_pct": -21.59309873522598,
+          "calmar": -0.03365813002540024,
+          "sharpe": 0.056286862926523094
+        },
+        {
+          "period": "2021",
+          "return_pct": 18.360979846703597,
+          "drawdown_pct": -2.7931119460569476,
+          "calmar": 6.573664142829613,
+          "sharpe": 2.2245474823258897
+        },
+        {
+          "period": "2022",
+          "return_pct": -7.9857451256795,
+          "drawdown_pct": -10.242770072423301,
+          "calmar": -0.7796470163066133,
+          "sharpe": -0.7937696910201145
+        },
+        {
+          "period": "2023",
+          "return_pct": 7.616922226761758,
+          "drawdown_pct": -6.428637236781098,
+          "calmar": 1.184842439573655,
+          "sharpe": 1.1634376428214805
+        },
+        {
+          "period": "2024",
+          "return_pct": 17.093554454642266,
+          "drawdown_pct": -3.7620871435107173,
+          "calmar": 4.543635966574354,
+          "sharpe": 2.159468040810491
+        },
+        {
+          "period": "2025",
+          "return_pct": 8.387394853283325,
+          "drawdown_pct": -12.176173529247459,
+          "calmar": 0.6888366721397822,
+          "sharpe": 0.6250024278586902
+        }
+      ],
+      "metric_checks": [
+        {
+          "period": "Overall",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "calmar",
+          "absolute_difference": 5.551115123125783e-17
+        },
+        {
+          "period": "2005",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "calmar",
+          "absolute_difference": 2.220446049250313e-16
+        },
+        {
+          "period": "2006",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2007",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "calmar",
+          "absolute_difference": 2.220446049250313e-16
+        },
+        {
+          "period": "2012",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "calmar",
+          "absolute_difference": 8.881784197001252e-16
+        },
+        {
+          "period": "2013",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "calmar",
+          "absolute_difference": 2.7755575615628914e-17
+        },
+        {
+          "period": "2015",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "calmar",
+          "absolute_difference": 1.7763568394002505e-15
+        },
+        {
+          "period": "2017",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "calmar",
+          "absolute_difference": 2.220446049250313e-16
+        },
+        {
+          "period": "2023",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "calmar",
+          "absolute_difference": 8.881784197001252e-16
+        },
+        {
+          "period": "2024",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2025",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        }
+      ],
+      "artifact_hashes": {
+        "audit.json": "9857adaa8cf45b41717fa46ed73bf4ca1d8765986e1f0b27d58d4c35d70af0bf",
+        "ledger.csv": "cf2343a62367f411861313213a6eb6263a2ef6ea3ac9f8279bb12a16471914ca",
+        "scores.json": "0f1470140f144822ce06491c79098345ba805ef5d63fe8443943013b2a161122",
+        "signal.csv": "2e2938c7df93cf6ba0bd92f6d12bc4ddeed113b9303dd1ac5b932945ecf6f113",
+        "trades.csv": "22b23f51d072323d31507460bfa716383b03b43166b0945e80b34d6afe51a8ee"
+      }
+    },
+    "mix-trend-heavy": {
+      "overall": {
+        "return_pct": 7.0791527130540155,
+        "drawdown_pct": -25.377178255973,
+        "calmar": 0.2789574412745358,
+        "sharpe": 0.6623858552469566,
+        "commission_usd": 3726.0,
+        "slippage_usd": 45357.930000000146,
+        "financing_usd": 0.0,
+        "dividend_usd": 141354.908,
+        "sessions": 5283,
+        "ending_equity_usd": 1260841.1879999998,
+        "mean_close_exposure": 0.6326779687949626,
+        "fraction_sessions_invested": 0.8364565587734242,
+        "trades": 3726,
+        "worst_drawdown_episode": {
+          "peak": "2020-02-19",
+          "trough": "2020-03-19",
+          "recovery": "2021-04-08",
+          "sessions_peak_to_recovery": 286,
+          "censored_at_end": false
+        }
+      },
+      "annual": [
+        {
+          "period": "2005",
+          "return_pct": 2.6972540000000267,
+          "drawdown_pct": -5.600644350120132,
+          "calmar": 0.48159708622493974,
+          "sharpe": 0.36861719018751243
+        },
+        {
+          "period": "2006",
+          "return_pct": 12.856813419113733,
+          "drawdown_pct": -6.910026382609136,
+          "calmar": 1.8606026529032105,
+          "sharpe": 1.5370406172822069
+        },
+        {
+          "period": "2007",
+          "return_pct": 4.581975953037709,
+          "drawdown_pct": -7.531226189346296,
+          "calmar": 0.6083970707876748,
+          "sharpe": 0.41310672796390174
+        },
+        {
+          "period": "2008",
+          "return_pct": 4.39050572010018,
+          "drawdown_pct": -5.737642515201102,
+          "calmar": 0.7652107478756532,
+          "sharpe": 0.6925227108099044
+        },
+        {
+          "period": "2009",
+          "return_pct": 9.584852218958773,
+          "drawdown_pct": -4.222326338795812,
+          "calmar": 2.2700406008154093,
+          "sharpe": 1.135932903964864
+        },
+        {
+          "period": "2010",
+          "return_pct": 1.8606333138638353,
+          "drawdown_pct": -12.892580392025899,
+          "calmar": 0.14431814712705945,
+          "sharpe": 0.20199644578253212
+        },
+        {
+          "period": "2011",
+          "return_pct": -4.232806880032847,
+          "drawdown_pct": -16.29105007217525,
+          "calmar": -0.25982406666727925,
+          "sharpe": -0.24860722413405073
+        },
+        {
+          "period": "2012",
+          "return_pct": 11.96345206326377,
+          "drawdown_pct": -8.014669332803848,
+          "calmar": 1.492694404034568,
+          "sharpe": 1.159625888373038
+        },
+        {
+          "period": "2013",
+          "return_pct": 24.86893377255639,
+          "drawdown_pct": -4.171696663926272,
+          "calmar": 5.961347570547116,
+          "sharpe": 2.6366562592302234
+        },
+        {
+          "period": "2014",
+          "return_pct": 10.686539575146558,
+          "drawdown_pct": -5.273790425575542,
+          "calmar": 2.0263489279592126,
+          "sharpe": 1.1679255498413788
+        },
+        {
+          "period": "2015",
+          "return_pct": -3.9813382444569667,
+          "drawdown_pct": -10.753971405871354,
+          "calmar": -0.3702202743707569,
+          "sharpe": -0.29379984964353906
+        },
+        {
+          "period": "2016",
+          "return_pct": 2.935457007353204,
+          "drawdown_pct": -6.829261880296378,
+          "calmar": 0.42983517967329876,
+          "sharpe": 0.40760678762250063
+        },
+        {
+          "period": "2017",
+          "return_pct": 16.730126904497755,
+          "drawdown_pct": -1.9728932503973895,
+          "calmar": 8.479996016575095,
+          "sharpe": 3.0154788897181573
+        },
+        {
+          "period": "2018",
+          "return_pct": -1.7477340603815672,
+          "drawdown_pct": -9.382779558242015,
+          "calmar": -0.18627039562560369,
+          "sharpe": -0.06404828409322345
+        },
+        {
+          "period": "2019",
+          "return_pct": 13.309916410844625,
+          "drawdown_pct": -5.631043525343349,
+          "calmar": 2.363667826565603,
+          "sharpe": 1.411902870565343
+        },
+        {
+          "period": "2020",
+          "return_pct": -3.068142598372725,
+          "drawdown_pct": -25.377178255973,
+          "calmar": -0.12090164506964361,
+          "sharpe": -0.023927241367273002
+        },
+        {
+          "period": "2021",
+          "return_pct": 23.321422432163907,
+          "drawdown_pct": -3.795250181392984,
+          "calmar": 6.144897257762376,
+          "sharpe": 2.109457736319468
+        },
+        {
+          "period": "2022",
+          "return_pct": -10.106786576966066,
+          "drawdown_pct": -11.48609263120025,
+          "calmar": -0.8799151200916221,
+          "sharpe": -0.9309487041324239
+        },
+        {
+          "period": "2023",
+          "return_pct": 11.332885300456773,
+          "drawdown_pct": -8.16346072889268,
+          "calmar": 1.3882452157020428,
+          "sharpe": 1.3675825674857878
+        },
+        {
+          "period": "2024",
+          "return_pct": 20.833689038188673,
+          "drawdown_pct": -6.06114617920861,
+          "calmar": 3.437252364850386,
+          "sharpe": 1.9738956083682815
+        },
+        {
+          "period": "2025",
+          "return_pct": 8.137907174603631,
+          "drawdown_pct": -15.427239716286822,
+          "calmar": 0.5275024777123475,
+          "sharpe": 0.5644076590685685
+        }
+      ],
+      "metric_checks": [
+        {
+          "period": "Overall",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "Overall",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2005",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2006",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2007",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2008",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2009",
+          "metric": "calmar",
+          "absolute_difference": 4.440892098500626e-16
+        },
+        {
+          "period": "2009",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2010",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2011",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2012",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2013",
+          "metric": "calmar",
+          "absolute_difference": 8.881784197001252e-16
+        },
+        {
+          "period": "2013",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2014",
+          "metric": "calmar",
+          "absolute_difference": 4.440892098500626e-16
+        },
+        {
+          "period": "2014",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2015",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2016",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2017",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2018",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2019",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2020",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2021",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2022",
+          "metric": "calmar",
+          "absolute_difference": 1.1102230246251565e-16
+        },
+        {
+          "period": "2022",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2023",
+          "metric": "calmar",
+          "absolute_difference": 2.220446049250313e-16
+        },
+        {
+          "period": "2023",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2024",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "return_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "drawdown_pct",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "calmar",
+          "absolute_difference": 0.0
+        },
+        {
+          "period": "2025",
+          "metric": "sharpe",
+          "absolute_difference": 0.0
+        }
+      ],
+      "artifact_hashes": {
+        "audit.json": "2a02b4394ecef22fccbf1db9e5230ee0fbcd00be32d7ef908623ef123c936f8a",
+        "ledger.csv": "0840b5db2eaa4e92c5daec67c38435de75fdfadffccb1ce63f0221b9dd6ff34d",
+        "scores.json": "563b07c4b61e847ba94f7996bee5dd89c648bb58eb613ed4653bf131d6bd7468",
+        "signal.csv": "580f2dd7c6389e1ac1733ac71beea35edeba665f9e5a5563c62e33253aae0760",
+        "trades.csv": "86053899a5c29d00b06ad4d9efda55c3b6a906b27236510c519287b16b101386"
+      }
+    }
+  },
+  "reviewer_code_sha256": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+  "executed_financial_trials": 0
+}

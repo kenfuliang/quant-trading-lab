@@ -1,0 +1,461 @@
+{
+  "status": "proposed design; no new study or synthetic test execution",
+  "date": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "contract_version": "design-v0.1",
+  "report": "docs/tasks/2026-10-25-recursive-research-scoring-design.md",
+  "report_sha256": "1c4ae378ecdd68852c2ef7c2b3e72bc200b4e212a85a79fb28c74ee9f0b3eea1",
+  "scope": {
+    "primary_web_research": true,
+    "implementation": false,
+    "new_strategy_runs": false,
+    "upstream_code_execution": false,
+    "dependency_installation": false,
+    "broker_operations": false,
+    "budget": "free/local data only"
+  },
+  "sources": [
+    {
+      "id": "gae",
+      "authors": "Schulman et al.",
+      "version": "ICLR2016",
+      "url": "https://arxiv.org/pdf/1506.02438",
+      "reviewed_sections": "Section3 equations11,16-19",
+      "local_inference": "Policy-gradient TD-residual estimator; no learned research critic established",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "ucb1",
+      "authors": "Auer, Cesa-Bianchi, Fischer",
+      "version": "2002",
+      "url": "https://homes.di.unimi.it/~cesabian/Pubblicazioni/ml-02.pdf",
+      "reviewed_sections": "Sections1-2",
+      "local_inference": "Stationary independent reward assumptions do not transfer to repeated historical backtests",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "correlated_kg",
+      "authors": "Frazier, Powell, Dayanik",
+      "version": "2009",
+      "url": "https://people.orie.cornell.edu/pfrazier/pub/CorrelatedKG.pdf",
+      "reviewed_sections": "Sections2-3",
+      "local_inference": "Decision-focused measurement value requires a specified correlated belief and observation model",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "pareto",
+      "authors": "Zitzler, Thiele",
+      "version": "1999",
+      "url": "https://cs.ijs.si/papa/courses/06_ZitzlerMultiObjective.pdf",
+      "reviewed_sections": "SectionsI-III",
+      "local_inference": "Nondominated alternatives expose tradeoffs rather than a unique preference",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "nonstationary_bandits",
+      "authors": "Garivier, Moulines",
+      "version": "2008 preprint;2011 publication",
+      "url": "https://arxiv.org/pdf/0805.3415",
+      "reviewed_sections": "Sections1-2",
+      "local_inference": "Changing reward distributions require contextual treatment; no inherited regret guarantee",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "pbo",
+      "authors": "Bailey, Borwein, Lopez de Prado, Zhu",
+      "version": "2015 working version;2017 publication",
+      "url": "https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf",
+      "reviewed_sections": "Sections2-3",
+      "local_inference": "Track selection and evaluation access; methods require suitable trial matrix and assumptions",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "dsr",
+      "authors": "Bailey, Lopez de Prado",
+      "version": "2014",
+      "url": "https://www.davidhbailey.com/dhbpapers/deflated-sharpe.pdf",
+      "reviewed_sections": "Sections2-3;appendix3",
+      "local_inference": "Search multiplicity and dependence must not be invented when unknown",
+      "accessed_date": "2026-10-25"
+    },
+    {
+      "id": "confidence_sequences",
+      "authors": "Howard, Ramdas, McAuliffe, Sekhon",
+      "version": "2021 publication;2022 author version",
+      "url": "https://arxiv.org/pdf/1810.08240",
+      "reviewed_sections": "Section1",
+      "local_inference": "Repeated monitoring needs appropriate inference under stated probabilistic assumptions",
+      "accessed_date": "2026-10-25"
+    }
+  ],
+  "access_notes": [
+    "Initial eScholarship PBO page returned429; author PDF reviewed instead",
+    "One guessed nonstationary-bandit URL inaccessible; arXiv author preprint reviewed",
+    "IEEE DOI inaccessible; authored paper PDF at academic host reviewed"
+  ],
+  "layers": {
+    "eligibility": {
+      "values": [
+        "pass",
+        "fail",
+        "unknown",
+        "not_applicable"
+      ],
+      "required_gate_failure": "claim invalid",
+      "required_gate_unknown": "claim blocked or unassessed",
+      "scope_specific": true,
+      "weighted_average": false
+    },
+    "strategy": {
+      "frontier_objectives": {
+        "net_CAGR": "maximize",
+        "max_drawdown_magnitude": "minimize"
+      },
+      "diagnostics": [
+        "Sharpe",
+        "Calmar",
+        "turnover",
+        "financing",
+        "exposure/beta",
+        "worst_year/stress",
+        "sample_coverage"
+      ],
+      "missing": "null with reason",
+      "comparability": "same frozen financial/evaluation contract",
+      "risk_limits": "none invented;30percent remains reassessment tolerance"
+    },
+    "action": {
+      "method": "lexicographic auditable ordinal rubric; not expected value",
+      "descending": [
+        "class",
+        "decision_value",
+        "shared_questions_resolvable"
+      ],
+      "ascending": [
+        "predeclared_upper_resource_bound",
+        "stable_action_id"
+      ],
+      "classes": {
+        "integrity_or_eligibility_investigation": 3,
+        "active_candidate_falsification": 2,
+        "distinct_question_exploration": 1
+      },
+      "decision_value": {
+        "executable_decision_flip_witness": 2,
+        "named_uncertainty_narrowing": 1,
+        "duplicate_or_irrelevant": 0,
+        "unsupported_or_unknown": null
+      },
+      "shared_question_cap": 2,
+      "EVSI": null,
+      "learned_critic": false,
+      "GAE": false,
+      "dependencies": "DAG;unique observation credit"
+    }
+  },
+  "pilot_choices": {
+    "minimum_research_decisions": 2,
+    "maximum_children_per_question": 2,
+    "reserve_distinct_question_slot": true,
+    "same_question_measurements_concurrent_maximum": 1,
+    "limits_are_investment_approvals": false,
+    "actual_bounds_frozen_by_coordinator_before_execution": true
+  },
+  "states": [
+    "explore",
+    "continue",
+    "retire_claim",
+    "blocked",
+    "stop_iteration",
+    "stop_program"
+  ],
+  "synthetic_edge_cases": [
+    {
+      "id": "invalid_high_return",
+      "input": {
+        "required_gate": "fail:lookahead",
+        "CAGR": 1.5,
+        "Sharpe": 4
+      },
+      "expected_state": "invalid",
+      "invariant": "No strategy rank; eligibility repair may be a separate action",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "unknown_rights",
+      "input": {
+        "required_new_use_rights": "unknown",
+        "input_hash_matches": true
+      },
+      "expected_state": "blocked",
+      "invariant": "Do not replace unknown permission with free/public availability",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "viewed_development",
+      "input": {
+        "prior_test_access": true,
+        "all_accounting_checks": "pass"
+      },
+      "expected_state": "eligible_development_only",
+      "invariant": "Reject untouched confirmation claim without discarding valid descriptive calculations",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "unknown_drawdown",
+      "input": {
+        "CAGR": 0.1,
+        "max_drawdown": null
+      },
+      "expected_state": "unassessed_comparison",
+      "invariant": "Do not impute0 drawdown or place on complete two-objective frontier",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "zero_variance",
+      "input": {
+        "constant_equity": true,
+        "Sharpe": null,
+        "Calmar": null
+      },
+      "expected_state": "undefined_ratios",
+      "invariant": "No positive infinity or silently ranked zero",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "insolvency",
+      "input": {
+        "equity_path": [
+          100,
+          -5,
+          1
+        ],
+        "return_metric": "CAGR"
+      },
+      "expected_state": "invalid_ratio_domain",
+      "invariant": "Retain liabilities/path and explicit insolvency; no clipping away loss",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "pareto_tradeoff",
+      "input": {
+        "A": {
+          "CAGR": 0.12,
+          "drawdown": 0.25
+        },
+        "B": {
+          "CAGR": 0.08,
+          "drawdown": 0.15
+        }
+      },
+      "expected_state": "both_nondominated",
+      "invariant": "Open preference remains; no return-plus-risk opaque blend",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "pareto_domination",
+      "input": {
+        "A": {
+          "CAGR": 0.12,
+          "drawdown": 0.15
+        },
+        "B": {
+          "CAGR": 0.08,
+          "drawdown": 0.2
+        }
+      },
+      "expected_state": "A_dominates_B",
+      "invariant": "Only if eligibility and comparison contracts match",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "unit_conversion",
+      "input": {
+        "operation": "represent CAGR and drawdown as percent instead of fractions"
+      },
+      "expected_state": "frontier_unchanged",
+      "invariant": "Display units cannot change membership",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "exposure_confound",
+      "input": {
+        "A_leverage": 2,
+        "B_leverage": 1,
+        "A_return_higher": true
+      },
+      "expected_state": "alpha_inconclusive",
+      "invariant": "Explicit control or different comparison class required",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "duplicate_rename",
+      "input": {
+        "A_question_hash": "q1",
+        "B_question_hash": "q1",
+        "A_name": "EMA",
+        "B_name": "NewEMA"
+      },
+      "expected_state": "no_incremental_credit",
+      "invariant": "Same question/data/config observation counts once",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "cache_replay",
+      "input": {
+        "input_code_config_hash": "unchanged",
+        "completed_artifact_hashes": "match"
+      },
+      "expected_state": "cache_reuse",
+      "invariant": "Not another trial or independent measurement",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "shared_dag_evidence",
+      "input": {
+        "parents": [
+          "p1",
+          "p2"
+        ],
+        "observation_id": "obs1"
+      },
+      "expected_state": "single_credit",
+      "invariant": "Link both parents but do not duplicate resolution/reward count",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "informative_negative",
+      "input": {
+        "predeclared_falsifier": "net advantage reverses at cost stress",
+        "observed": "reversed"
+      },
+      "expected_state": "retire_robustness_claim",
+      "invariant": "Research decision-resolution value can be high although return is worse",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "novel_irrelevant",
+      "input": {
+        "question": "change chart color",
+        "new_title": true,
+        "decision_witness": null
+      },
+      "expected_state": "zero_decision_value",
+      "invariant": "Novelty alone is not information value",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "resource_unknown",
+      "input": {
+        "EVSI": null,
+        "time_upper_bound": null
+      },
+      "expected_state": "blocked_until_bounded_probe",
+      "invariant": "No fabricated EV or division by near-zero estimated cost",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "gate_average_gaming",
+      "input": {
+        "passes": 9,
+        "failures": [
+          "causal_leak"
+        ]
+      },
+      "expected_state": "invalid",
+      "invariant": "An average eligibility score cannot outvote leak",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "historical_trial_count_unknown",
+      "input": {
+        "known_trials": 88,
+        "earlier_trial_count": null
+      },
+      "expected_state": "DSR_not_assessed",
+      "invariant": "Do not call88 total independent trials or earlier unknown0",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "gae_budget_truncation",
+      "input": {
+        "end_reason": "time_budget",
+        "trained_value_model": false,
+        "future_value": null
+      },
+      "expected_state": "heuristic_only",
+      "invariant": "Do not assert GAE/learned critic; truncation is not known zero terminal value",
+      "execution_status": "not_run_design_expectation"
+    },
+    {
+      "id": "drift_and_score_version",
+      "input": {
+        "new_metric_contract": "v0.2",
+        "prior_context": "v0.1",
+        "prior_failures": [
+          "f1"
+        ]
+      },
+      "expected_state": "new_context_preserve_history",
+      "invariant": "No pooled incompatible critic targets or erased failures",
+      "execution_status": "not_run_design_expectation"
+    }
+  ],
+  "evaluation_protocol": {
+    "baselines": [
+      "Calmar-only diagnostic ordering",
+      "breadth-first feasible-action ordering",
+      "existing nine-skill workflow without recursive controller"
+    ],
+    "paired_inputs": true,
+    "equal_wall_token_trial_budget": true,
+    "anonymize_names": true,
+    "record_randomization_seed": true,
+    "fresh_cases_excluded_from_tuning": true,
+    "critical_errors": [
+      "accept_leakage",
+      "fabricate_missing_metrics",
+      "alter_history",
+      "unauthorized_actions",
+      "false_OOS_or_live_claim"
+    ],
+    "primary": "decisions free from critical errors",
+    "secondary": [
+      "distinct_questions_correctly_resolved",
+      "redundant_actions",
+      "missed_useful_actions",
+      "cost_per_resolved_question"
+    ],
+    "cost_quality_blend": false,
+    "claim_limit": "two decisions feasibility only, no powered efficiency or financial effect claim"
+  },
+  "suggested_decisions": [
+    {
+      "id": "attribution",
+      "inputs": "existing1xEMA and EMA+voltarget saved evidence",
+      "question": "predictive improvement established or sizing-only evidence?",
+      "new_study_needed": false,
+      "expected_possible_outcomes": [
+        "reject alpha-improvement claim",
+        "inconclusive;matched-risk test required"
+      ]
+    },
+    {
+      "id": "cost_robustness",
+      "inputs": "same frozen local prices and two fixed rules",
+      "question": "does net ranking survive a predefined cost stress?",
+      "maximum_cases": 4,
+      "example_stress": "double modeled spread/slippage; unchanged other assumptions",
+      "new_study_needed": true,
+      "run_authorized_by_this_design": false,
+      "independent_holdout_claim": false
+    }
+  ],
+  "prior_skill_evaluation": {
+    "baseline": 54,
+    "equipped": 54,
+    "maximum": 54,
+    "benefit_demonstrated": false,
+    "source": "docs/tasks/evidence/2026-10-25-research-skills-evaluation.json"
+  }
+}

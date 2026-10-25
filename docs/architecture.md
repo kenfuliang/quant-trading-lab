@@ -63,6 +63,16 @@ uses a separate offline cash/share ledger with independent Decimal reconciliatio
 It feeds the comparison renderer and a separate MLflow experiment. It does not
 configure native margin execution or establish broker behavior.
 
+The [strategy catalogue suite](../research/strategy-suite.md) now extends the
+offline research path with causal signal adapters, optional sizing overlays and
+separate worker processes. An inventory of 100 candidates is distinct from the
+22 simulated adaptations. The renderer shows unmet data/execution prerequisites;
+it does not fabricate results for unsupported candidates.
+
+The [research development procedure](research-development.md) and [cataloged project skills](skills.md#available-research-workflows)
+provide the instruction layer for scoped research. They use existing artifacts/tools; they do not implement an
+autonomous optimizer, scheduler, new datastore or broker promotion path.
+
 ## State authority and durability
 
 Broker observations establish externally accepted orders, fills and account state.
@@ -116,6 +126,30 @@ processes. Keep current Python/Cython interfaces until a separate compatibility
 decision justifies migration; Rust/PyO3 examples do not automatically apply.
 
 ## Repository structure
+
+The scoped offline research controller is separate from native execution state:
+
+```mermaid
+flowchart LR
+    A[Agent verifies plan, evidence and global budget] --> B[Research controller: reserve decision]
+    B --> C[Bounded saved-SPY runner]
+    C --> D[Existing ledger plus guarded Decimal replay]
+    D --> E[Immutable results and independent metric review]
+    E --> F[Scoring and temporal reports]
+    F --> G[Research journal: outcome and branch decision]
+    G --> A
+```
+
+`research/research_controller.py` owns hash-chained decision events, idempotent
+operations, logical/resource reservations and branch state. Its journal is local
+research history, not broker truth or proof of native node recovery.
+`research/bounded_study.py` owns strict saved-SPY plans, per-plan case limits,
+finite/coverage guards, output hashes and verified cache reuse. The coordinator
+currently enforces the aggregate financial ceiling and deadline outside that runner.
+`research/scoring.py` owns score consistency and ordering; [scoring](research-scoring.md)
+owns meanings. `reporting/temporal.py` owns descriptive path calculations.
+The research ledger remains the existing Python simulator; neither this slice nor
+its tests establish Nautilus execution parity or new instrument support.
 
 ```text
 README.md                     current capabilities and entrypoints

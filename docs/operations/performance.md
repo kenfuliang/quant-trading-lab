@@ -148,6 +148,38 @@ initial rejection, gap/low liquidation, halt and negative-equity liabilities.
 Actual liquidation fills, time-varying borrowing rates, SMA/settlement and broker
 house rules remain unverified/omitted as documented. No broker connection is made.
 
+## Strategy catalogue suite
+
+Run `make strategy-suite` for the explicitly requested exploratory research batch.
+It starts/reuses the existing browser services, hash-verifies cached completed
+results or executes supported cases with three worker processes, independently
+audits ledgers, imports into a separate MLflow experiment and links the catalogue
+dashboard from performance home. `make performance` only refreshes a previously
+built suite view/link; it does not start a new strategy search.
+
+The [suite protocol](../../research/strategy-suite.md) owns trial policy, frozen
+rules, evidence levels and remaining prerequisites. The 100-entry catalogue is an
+inventory: 22 supported local SPY adaptations produce 88 exposure cases. The other
+78 remain unsupported (data/instrument gaps); their performance is unavailable. All runs are exploratory
+on already-viewed 2005–2025 history, not independent out-of-sample proof. User data
+budget is free/local only; no paid feed or new account is configured.
+
+The dashboard filters full period/year, score and nominal leverage. Rankings show
+top20 by default with an all-case toggle, and preserve all rows in CSV. Its annual
+chart retrospectively selects five leaders from the selected ranking; that selection
+is not a trading rule. Catalogue rows distinguish simulated adaptations from data, instrument or execution-model blockers. None is a paper/live readiness claim. CPPI and other overlays
+can reduce actual exposure below the nominal cap, as the protocol explains.
+
+Immutable output is ignored under `reports/strategy-suite/<hash>/`. Each manifest
+records inputs, method/code identities, 88 audits and artifact hashes. Failed worker
+folders and incomplete manifests remain for inspection and cannot be blindly reused.
+Original research directories and experiments remain intact; earlier 15- and 21-rule
+screens are separate evidence, not merged into the final22-rule ranking. Latest pointer
+is `.local/performance/strategy-suite-latest.json`. Read its URL for the current
+local dashboard rather than assuming a fixed financial-run hash. Repeat import
+reuses FINISHED cases; FAILED cases remain visible and retries use new attempts.
+Concurrent suite starts/imports are unsupported. Full backup/restore remains pending.
+
 ## Stop and storage
 
 ```sh
@@ -195,6 +227,33 @@ solely by the successful installation and checks on this machine.
 
 ## Verification and limits
 
+### Recursive research and temporal review
+
+The scoped [review browser](http://127.0.0.1:8765/recursive-research/20261025-review-v3/index.html)
+shows goals, inventory, primary-source reuse, eight new fixed-rule cases in separate
+5bp/10bp contexts, existing risk references, annual observations and temporal paths.
+Its [task review](../tasks/2026-10-25-recursive-research-review.md) owns evidence and
+limits; [research development](../research-development.md#performance-diagnosis)
+owns temporal definitions. No additional MLflow import was performed for this pilot.
+
+Rebuild into a **new** ignored snapshot directory after checking referenced evidence:
+
+```sh
+.venv/bin/python scripts/build_recursive_review.py --output .local/performance/recursive-research/<new-review-id>
+.venv/bin/python scripts/recursive_research_report.py --register-existing .local/performance/recursive-research/<new-review-id>
+```
+
+This reads saved receipts/ledgers and renders reports; it does not execute financial
+simulations or start services. Open that directory's `index.html` under the existing
+performance server. Preserve earlier snapshots and their manifests. The renderer's
+registration checks artifact hashes and stores a pinned manifest pointer; normal
+performance-home regeneration restores that verified link without new research.
+The renderer's
+unknown state is distinct from a failed check. No current market color is supplied:
+the financial snapshot ends2025-12-31.
+
+### Saved-run adapter and backup
+
 The adapter validates snapshot SHA-256, audit status, date ordering/uniqueness,
 positive finite equity, session counts, ending value, total return and maximum
 drawdown against saved summaries before rendering. The source directory is read-only
@@ -205,3 +264,29 @@ For a recovery copy, stop the browsers, copy `.local/performance/` and
 `.local/mlflow/` together with project code/locks and original reports. These local
 files are ignored by Git and need a separate backup. An automated backup/restore
 system and execution-state recovery are not supplied by MLflow.
+
+## Saved gate decision and outcome review
+
+The [gate decision review](http://127.0.0.1:8765/gate-decisions/20261025-v2/index.html)
+adds eight saved gate/base comparisons, separate decision/execution/outcome CSVs,
+5/21/63-session labels, episode/year filters and full-path warning counts. Existing
+`make performance` serves the files when local services are needed; this diagnosis
+used the already-running server and did not import MLflow or rerun strategies.
+
+Default: ablated gate / EMA,5bp,21sessions, first actionable reduction. Select2020
+and helped-during-base-loss to inspect protection;2022and missed-rebound to inspect
+missed upside. The outcome-label filter applies to the selected anchor/year, not
+all daily sessions. Select the anchor **Every warning already in cash** to inspect daily dates (first200
+matching rows displayed), or download `decisions.csv`
+and filter `warning_already_cash`; primary reduction anchors intentionally exclude
+these unactionable warnings. Full-path count cards do not change with year/horizon.
+
+[`scripts/gate_decision_review.py`](../../scripts/gate_decision_review.py) rebuilds
+this saved-evidence view into a **new** output directory using `--output PATH`.
+It hashes/checks all187parent artifacts and frozen source bytes, reads saved
+account paths and writes derived reports; it neither reserves nor consumes a
+financial trial. It refuses an existing output directory. Logs are reconstructed,
+not contemporaneously recorded. [Lifecycle contract](../research-development.md#decision-logs-and-outcome-labels)
+owns meaning and [task receipt](../tasks/2026-10-25-gate-decision-labels.md) owns
+validation/results. Existing/public history and modeled dividend/execution
+limitations remain unchanged.

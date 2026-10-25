@@ -1,0 +1,19 @@
+{
+  "status": "STOPPED_INCOMPLETE",
+  "artifact_hashes": {
+    "5_hold/audit.json": "51f1e156a41ef2710afc489269f58439a75c213ac28dbd19e6770a6c1d597848",
+    "5_hold/independent-metrics.json": "4c2fc65d1b94e5565557e6351501e9b30ec8fffaf2a9435308b0a7556725eb78",
+    "5_hold/ledger.csv": "65368b4d8874847acb23b063352f7046018fd04e6c1a275141d4d73c88eac800",
+    "5_hold/scores.json": "8f3927691b0a14825298efac13e1a47e5c70ac746e86b2ff3d4f29426fb94126",
+    "5_hold/signal.csv": "f00eef1a7eb0e3a74e5ef97ef1f1de601ddb42be0ec9650fe7930c48c8bc92f8",
+    "5_hold/temporal-audit.json": "c1dad9af2e3fd62575dd92b5edd203cc30312a0beaf7cf266918c7a85ed4f61b",
+    "5_hold/temporal.csv": "083e01f73c6e4dcc7e8df07c36c72d8f524de6e54e07f1d670922fb65e745174",
+    "5_hold/temporal.json": "ebc8166e1e936cb76d05063d14649337a97641264d3684d692ff4795c132bc50",
+    "5_hold/timeline.csv": "3f392441275021c1825d1c4e7a71c582e6fd3b2c4889e3dfa4b290e4428bb216",
+    "5_hold/trades.csv": "d4dc004731b2f24729ef60c9d4331f79a7446feeca6e4df770c4d5560ce2b77c",
+    "5_hold.log": "320224201c14bccfe48184a2e8f1a5a0ce6971ff2f3d6ef898bf81a3fefd06c6",
+    "failure.json": "71286fa113a1db966f4a42013f397c060e8eb80c17141f3dbaf525b91adf30a2",
+    "plan.json": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7",
+    "post-stop-control-parity.json": "2e388b0022f5c4d6ed88828b7b07c7bc6fef53fc4e5a645fa035d78adf99442e"
+  }
+}

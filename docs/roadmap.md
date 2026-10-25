@@ -84,6 +84,15 @@ against the intended broker behavior.
 
 ## Later scope
 
+The explicitly requested [recursive research pilot](tasks/2026-10-25-recursive-research-review.md)
+delivered a separate bounded offline journal/scoring/report slice. It does not
+complete native M1–M5. Follow-up research candidates include causal traffic-light
+gates with temporal diagnostics and selection-aware process evaluation; freeze
+their hypotheses/budgets separately. The expansion review recommends synthetic
+multi-instrument identity/calendar/corporate-action contracts within M1 before
+claiming broader empirical strategy coverage. Native infrastructure sequence above
+remains the portfolio priority.
+
 Hosted deployment, multi-user access, broad parameter search, machine-learning
 platform adoption and live-money operation remain future scope. Expand after an
 observed need and verified foundations establish the case.

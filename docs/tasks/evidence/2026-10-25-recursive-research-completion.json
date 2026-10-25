@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-10-25T09:58:02.770771+00:00",
+  "cache_checks": [
+    {
+      "cycle": 2,
+      "reused": true,
+      "manifest_sha256": "a4a1fbbefaab3ada0d16c0d736ec19134f794b80210450e94765e46b608797c0",
+      "directory": "reports/bounded-study/ad37800a507e37b175b1ef2c4b40711d5ec883f503cba33dca8be15adca2f21e"
+    },
+    {
+      "cycle": 3,
+      "reused": true,
+      "manifest_sha256": "e72c1914892e97c75da77888a5a3108762a2350e87bff3a56bbee882c9e98429",
+      "directory": "reports/bounded-study/5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3"
+    }
+  ],
+  "audits": {
+    "2": {
+      "ema-control": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 800,
+        "maximum_difference_usd": 4.656612873077393e-10
+      },
+      "rsi-control": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 613,
+        "maximum_difference_usd": 7.566995918750763e-10
+      },
+      "mix-equal": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 3790,
+        "maximum_difference_usd": 5.820766091346741e-10
+      },
+      "mix-trend-heavy": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 3726,
+        "maximum_difference_usd": 1.0477378964424133e-09
+      }
+    },
+    "3": {
+      "ema-control": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 840,
+        "maximum_difference_usd": 6.984919309616089e-10
+      },
+      "rsi-control": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 610,
+        "maximum_difference_usd": 5.820766091346741e-10
+      },
+      "mix-equal": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 3772,
+        "maximum_difference_usd": 1.862645149230957e-09
+      },
+      "mix-trend-heavy": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 3710,
+        "maximum_difference_usd": 1.1641532182693481e-09
+      }
+    }
+  },
+  "journal": {
+    "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+    "usage": {
+      "attempts": 3,
+      "resource_units_committed": 5.992717666983161,
+      "resource_unit": "local_compute_seconds_excluding_model_and_analyst_time"
+    },
+    "resolved_questions": [
+      "Q1",
+      "Q2",
+      "Q3"
+    ],
+    "branches": {
+      "Q1": {
+        "question_id": "Q1",
+        "mechanism": "sizing-diagnosis",
+        "parent_branch_id": null,
+        "status": "paused",
+        "reason": "Specified claim resolved; threshold tuning adds no declared information",
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle1.json"
+        ],
+        "seen_evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle1.json"
+        ],
+        "status_history": [
+          {
+            "status": "active",
+            "reason": "registered",
+            "evidence": []
+          },
+          {
+            "status": "paused",
+            "reason": "Specified claim resolved; threshold tuning adds no declared information",
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle1.json"
+            ]
+          }
+        ]
+      },
+      "Q2": {
+        "question_id": "Q2",
+        "mechanism": "timing-complementarity",
+        "parent_branch_id": null,
+        "status": "paused",
+        "reason": "Fixedweightpilot complete; no localweightsearch justified by these viewed outcomes",
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "seen_evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "status_history": [
+          {
+            "status": "active",
+            "reason": "registered",
+            "evidence": []
+          },
+          {
+            "status": "paused",
+            "reason": "Fixedweightpilot complete; no localweightsearch justified by these viewed outcomes",
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ]
+          }
+        ]
+      },
+      "Q3": {
+        "question_id": "Q3",
+        "mechanism": "cost-falsification",
+        "parent_branch_id": null,
+        "status": "paused",
+        "reason": "Namedcostsensitivity resolved; noadditionalcostgrid orweighttuning",
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle3-scores.json",
+          "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+        ],
+        "seen_evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle3-scores.json",
+          "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+        ],
+        "status_history": [
+          {
+            "status": "active",
+            "reason": "registered",
+            "evidence": []
+          },
+          {
+            "status": "paused",
+            "reason": "Namedcostsensitivity resolved; noadditionalcostgrid orweighttuning",
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3-scores.json",
+              "docs/tasks/evidence/2026-10-25-recursive-cycle3.json"
+            ]
+          }
+        ]
+      }
+    },
+    "events_sha256": "7919d571fedab27edf437b413e8493ad5a292d15d4f8c4bb374cb8a9e6a20923",
+    "snapshot_sha256": "b51e29ec526ea19daef0a330aa84d97791ede7f014e2a96e9f660610a4cece5f"
+  },
+  "baseline_git_sha": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+  "preexisting_dirty_paths_changed_this_program": [
+    ".agents/skills/trade-experiment/SKILL.md",
+    ".agents/skills/trade-research-history/SKILL.md",
+    "docs/research-development.md",
+    "docs/tasks/2026-10-25-recursive-research-priors.md",
+    "docs/tasks/2026-10-25-recursive-research-program.md",
+    ".gitignore",
+    "README.md",
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/goals.md",
+    "docs/operations/performance.md",
+    "scripts/performance.py"
+  ],
+  "preexisting_missing_paths": [],
+  "original_financial_core_unchanged_from_start": true,
+  "financial_code_hashes": {
+    "research/bounded_study.py": "9a6165423a8dfcff9c96acb1d8c0d8a31d7d037617f72c8d70b81b78042a09d0",
+    "scripts/bounded_study.py": "62c47d3f459e84816a54c57ec73d8316b78b2a5e233e6f8209f229c84a6d4826",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/allocation_overlays.py": "c9f28c47248118a6857496ba418e79fa8deae43c8ae6a5ca8a655093c1e61465",
+    "research/model_signals.py": "ebc03d8d14d76ac300c382255699fdf0cdef62d5b44a2dcc4597a80b71ddffa7",
+    "research/overnight_signal.py": "a5208a2f50768cdbad40d4dfd8fccd0c57b5773d51318b314d7cc0792c7e0771",
+    "research/leveraged_spy.py": "e1450d5801546fe6b41bd5b6c5728f7b3d6a9f2b32067c43e3474c588937caaa",
+    "research/leverage_audit.py": "dab6fb0d6c36f40d9f04436eb3317cdf19d5ec0d940284a5b3652046a3c02775",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "research/leverage-model.md": "a875cd6206dec06b974cdf7dd60d482af3e99b81c94b56920f5881b1f1a113ed",
+    "research/daily-strategies.md": "d0c544f899bf9d54da13b6a77b8cc9fb4048d7759da117ecfa2c60a0767da6c4",
+    "research/allocation-strategies.md": "7e7c6d4e9d1ce0e4de828a843599f0c30cee29e287948f2856bc663e9f73e67f",
+    "research/model-strategies.md": "47f5ec7a51c9a3e4ba5c0da7926e23eeab434bebbb249f7abfb78990e9cd4b26",
+    "research/overnight-strategy.md": "6d1d059fc0786316db344aa07f04d91049ab426d6ae9f6ff126ccbf963d58171"
+  },
+  "validation": {
+    "command": "make check",
+    "exit_code": 0,
+    "elapsed_seconds": 1.5288308750023134,
+    "completed_utc": "2026-10-25T10:04:27.377766+00:00",
+    "log": ".local/recursive-research/check-handoff.log"
+  },
+  "new_financial_cases": 8,
+  "financial_case_ceiling": 12,
+  "remaining_slots_unused": 4,
+  "upstream_financial_results_reproduced": false,
+  "broker_actions": 0,
+  "commits_or_publication": 0,
+  "goal_status": "All substantive deliverables complete early; scheduled read-only review reminder retained",
+  "completed_utc": "2026-10-25T10:05:27.614514+00:00",
+  "browser": {
+    "status": "verified",
+    "review_url": "http://127.0.0.1:8765/recursive-research/20261025-review-v3/index.html",
+    "manifest_sha256": "8168b2b6af55fb398d608ed30d42aafab29d9487c11f0846d7a202474d3346b5",
+    "artifact_count": 35,
+    "checks": [
+      "Performance home links verified review",
+      "2020 year filter selects13matching rows",
+      "Temporal selector changes EMA to EMA+volatilitytarget andupdates paths/title",
+      "Traffic-light definition/state limits visible",
+      "Plot title/dropdown overlap corrected in new immutablev3snapshot"
+    ],
+    "screenshots": {
+      ".local/recursive-research/proof/annual-2020.png": "09a63dd233e4fa199519205025aa426e3aae8f7d713ea5ffd47d7102ec2dfad9",
+      ".local/recursive-research/proof/risk-gates.png": "ef807085ed4e58b481c696c895a894b746a30da3c7268aa212115b49990f772a",
+      ".local/recursive-research/proof/temporal-ema-volatility.png": "a02af3301b87dfb1ddb5ad2ce03e284ed510294f24c9fd945d0b2bc7894d5ec9"
+    }
+  },
+  "final_code_hashes": {
+    "research/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "research/research_controller.py": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d",
+    "research/bounded_study.py": "9a6165423a8dfcff9c96acb1d8c0d8a31d7d037617f72c8d70b81b78042a09d0",
+    "reporting/temporal.py": "88392cdec7a2ea7d91bd842d18cdade225b6fc51216692ea30ac8886dc26b11f",
+    "reporting/recursive_research.py": "936f15d5faacaf26e6f5e62c7ab0eab2b5d6bb2696c2c39799934ce80c49528c",
+    "scripts/build_recursive_review.py": "c83e9cc9f39e923d2e87af497b3fb854ca8d938c1e06fe6f9ea196dc005aae39",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "scripts/recursive_research_report.py": "2556fc5256fbca935f1bf714f032bb14815b4d17b2aee8eded10b4947cde1b3b"
+  }
+}

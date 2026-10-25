@@ -1,0 +1,67 @@
+{
+  "status": "setup_verified_execution_not_yet_ready",
+  "observed_utc": "2026-10-25T19:41:18.815940+00:00",
+  "git_head": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+  "branch": "main",
+  "checked_briefs": {
+    "docs/tasks/2026-10-25-rsi-risk-mechanisms.md": "984fd8588a011d26bdfecc30c79668d47cb939cc531f353616aebf9f15a8c50c",
+    "docs/tasks/2026-10-25-rsi-diversification-ideas.md": "c8de9e95e8a147535b132c11556565ec8264ed0fc00cf0d1a62446f5bccc2c1e",
+    "docs/tasks/2026-10-25-rsi-frontier-and-selection.md": "d8e8bf23cedfc9ce37b80c71a69600d11f38a95996e29e329974e2aaadb59c83"
+  },
+  "selected_direction": "Small fixed ETF universe; data/native shared-cash readiness first",
+  "rejected_as_next": [
+    "Further SPY threshold tweaking: low mechanism novelty after viewed-history selection",
+    "Intraday SPY: lacks verified long intraday data/execution inputs",
+    "ML stock/futures/options: larger missing input/contract models"
+  ],
+  "local_discovery": {
+    "SPY": [
+      "data/equity/usa/hour/spy.zip",
+      "data/equity/usa/map_files/spy.csv",
+      "data/equity/usa/daily/spy.zip",
+      "data/equity/usa/factor_files/spy.csv",
+      "data/equity/usa/shortable/testbrokerage/symbols/spy.csv"
+    ],
+    "IEF": [],
+    "GLD": []
+  },
+  "discovery_scope": "Conventional file stems under data/reports/.local; no claim that arbitrary embedded data were exhausted",
+  "spy_source": {
+    "path": "reports/spy/20261024-235746-728801/source-data.json",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "rows": 5535,
+    "first_date": "2004-01-02",
+    "last_date": "2025-12-31",
+    "dividend_dates": 89,
+    "status": "Existing single-asset fixture; new portfolio eligibility not established",
+    "missing": [
+      "Verified dividend payment dates/cash availability",
+      "Independent venue-calendar completeness",
+      "Rights/provenance qualification for new scope"
+    ]
+  },
+  "runtime_version": "1.231.0",
+  "readiness": {
+    "IEF": "No conventionally named local source found",
+    "GLD": "No conventionally named local source found",
+    "shared_cash": "Native interfaces available; synthetic multi-instrument behavior proof outstanding",
+    "study_execution": "blocked: proposed non-executable design, zero new historical simulation budget"
+  },
+  "financial_attempts": 0,
+  "snapshot_requests": 0,
+  "native_probe_revisions": 0,
+  "sources_reviewed": [
+    {
+      "url": "https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum",
+      "use": "Motivation for cross-asset question; not a replication or performance prediction"
+    },
+    {
+      "url": "https://www.ishares.com/us/products/239456/ishares-710-year-treasury-bond-etf",
+      "use": "IEF asset role, inception and monthly distributions; not historical data qualification"
+    },
+    {
+      "url": "https://www.spdrgoldshares.com/usa/",
+      "use": "GLD product identity; historical fields/actions remain unqualified"
+    }
+  ]
+}
