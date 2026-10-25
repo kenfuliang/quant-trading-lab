@@ -1,0 +1,66 @@
+{
+  "status": "stopped_integrity_or_timeout",
+  "created_utc": "2026-10-25T18:42:40.170407+00:00",
+  "max_attempts": 16,
+  "initial_study_limit": 12,
+  "conditional_followup_limit": 4,
+  "attempts": [
+    {
+      "id": "5_hold",
+      "status": "failed",
+      "error": "Case 5_hold failed exit 1; preserved log."
+    },
+    {
+      "id": "5_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "5_gate_hold",
+      "status": "reserved"
+    },
+    {
+      "id": "5_gate_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "5_half_hold",
+      "status": "reserved"
+    },
+    {
+      "id": "5_buy_hold_entry_only",
+      "status": "reserved"
+    },
+    {
+      "id": "10_hold",
+      "status": "reserved"
+    },
+    {
+      "id": "10_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "10_gate_hold",
+      "status": "reserved"
+    },
+    {
+      "id": "10_gate_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "10_half_hold",
+      "status": "reserved"
+    },
+    {
+      "id": "10_buy_hold_entry_only",
+      "status": "reserved"
+    }
+  ],
+  "initial_sha256": {
+    "research/leveraged_spy.py": "e1450d5801546fe6b41bd5b6c5728f7b3d6a9f2b32067c43e3474c588937caaa",
+    "research/leverage_audit.py": "dab6fb0d6c36f40d9f04436eb3317cdf19d5ec0d940284a5b3652046a3c02775",
+    "research/plans/spy-risk-gate-development-v1.design.json": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079"
+  },
+  "plan_sha256": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7",
+  "output": "reports/risk-gate/5da2f7dccff31178",
+  "started_utc": "2026-10-25T18:46:50.145287+00:00"
+}

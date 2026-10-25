@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "plan_id": "recursive-cost-stress-v1",
+  "parent": "Q2 ad37800a507e37b175b1ef2c4b40711d5ec883f503cba33dca8be15adca2f21e",
+  "hypothesis": "Does the fixed four-case development tradeoff and Calmar ordering survive doubling adverse side cost from5to10bp? Falsification sensitivity, no weight tuning or confirmation claim.",
+  "assumptions": [
+    "Onlytreatment:10bp adverse sidecost versus saved5bpQ2",
+    "All4fixedrulesandweights retained; same sourceperiodcapitalaccountfeesdividendsfinance",
+    "Original5bpcontext reused, not rerun; rankcostcontextsseparately",
+    "MotivatedafterobservingQ2nearCalmarratios andhighermixturecosts; notuntouched",
+    "Fullresultsandannual/temporaladverseoutcomes retained; nopromotion"
+  ],
+  "evaluation": {
+    "label": "development/viewed-history",
+    "start": "2005-01-03",
+    "end": "2025-12-31",
+    "expected_sessions": 5283
+  },
+  "source": {
+    "path": "reports/spy/20261024-235746-728801/source-data.json",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba"
+  },
+  "code_hashes": {
+    "research/bounded_study.py": "9a6165423a8dfcff9c96acb1d8c0d8a31d7d037617f72c8d70b81b78042a09d0",
+    "scripts/bounded_study.py": "62c47d3f459e84816a54c57ec73d8316b78b2a5e233e6f8209f229c84a6d4826",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/allocation_overlays.py": "c9f28c47248118a6857496ba418e79fa8deae43c8ae6a5ca8a655093c1e61465",
+    "research/model_signals.py": "ebc03d8d14d76ac300c382255699fdf0cdef62d5b44a2dcc4597a80b71ddffa7",
+    "research/overnight_signal.py": "a5208a2f50768cdbad40d4dfd8fccd0c57b5773d51318b314d7cc0792c7e0771",
+    "research/leveraged_spy.py": "e1450d5801546fe6b41bd5b6c5728f7b3d6a9f2b32067c43e3474c588937caaa",
+    "research/leverage_audit.py": "dab6fb0d6c36f40d9f04436eb3317cdf19d5ec0d940284a5b3652046a3c02775",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "research/leverage-model.md": "a875cd6206dec06b974cdf7dd60d482af3e99b81c94b56920f5881b1f1a113ed",
+    "research/daily-strategies.md": "d0c544f899bf9d54da13b6a77b8cc9fb4048d7759da117ecfa2c60a0767da6c4",
+    "research/allocation-strategies.md": "7e7c6d4e9d1ce0e4de828a843599f0c30cee29e287948f2856bc663e9f73e67f",
+    "research/model-strategies.md": "47f5ec7a51c9a3e4ba5c0da7926e23eeab434bebbb249f7abfb78990e9cd4b26",
+    "research/overnight-strategy.md": "6d1d059fc0786316db344aa07f04d91049ab426d6ae9f6ff126ccbf963d58171"
+  },
+  "financing_model": {
+    "capital": 300000.0,
+    "annual_rate": 0.06,
+    "allocation": 0.99,
+    "initial_margin": 0.5,
+    "maintenance": 0.25,
+    "cost_bps": 10.0,
+    "commission": 1.0
+  },
+  "max_cases": 4,
+  "cases": [
+    {
+      "case_id": "ema-control",
+      "strategy_id": 2,
+      "exposure": 1.0
+    },
+    {
+      "case_id": "rsi-control",
+      "strategy_id": 11,
+      "exposure": 1.0
+    },
+    {
+      "case_id": "mix-equal",
+      "components": [
+        {
+          "strategy_id": 2,
+          "weight": 0.5
+        },
+        {
+          "strategy_id": 11,
+          "weight": 0.5
+        }
+      ],
+      "exposure": 1.0
+    },
+    {
+      "case_id": "mix-trend-heavy",
+      "components": [
+        {
+          "strategy_id": 2,
+          "weight": 0.75
+        },
+        {
+          "strategy_id": 11,
+          "weight": 0.25
+        }
+      ],
+      "exposure": 1.0
+    }
+  ]
+}

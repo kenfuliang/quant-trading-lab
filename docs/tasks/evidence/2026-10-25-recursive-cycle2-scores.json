@@ -1,0 +1,1128 @@
+{
+  "schema_version": 1,
+  "scores": [
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "ema-control",
+      "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 8.013017724201642,
+        "max_drawdown": 29.061507901912954,
+        "calmar": 0.2757261512804775,
+        "sharpe": 0.642591715037251,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.08013017724201642,
+        "max_drawdown": 0.29061507901912953,
+        "calmar": 0.2757261512804775,
+        "sharpe": 0.642591715037251,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "control_parity",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "control_parity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "History2005-2025 already viewed and influenced development",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider redistribution rights not established by snapshot ownership",
+            "required": false
+          },
+          {
+            "name": "statistical_superiority",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "No selection-aware confidence analysis or independent sample",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "control_parity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "History2005-2025 already viewed and influenced development",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider redistribution rights not established by snapshot ownership",
+          "required": false
+        },
+        {
+          "name": "statistical_superiority",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "No selection-aware confidence analysis or independent sample",
+          "required": false
+        }
+      ]
+    },
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "rsi-control",
+      "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 3.828581941669573,
+        "max_drawdown": 21.517770642936597,
+        "calmar": 0.1779265150280027,
+        "sharpe": 0.4339509414585864,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.03828581941669573,
+        "max_drawdown": 0.21517770642936598,
+        "calmar": 0.1779265150280027,
+        "sharpe": 0.4339509414585864,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "control_parity",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "control_parity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "History2005-2025 already viewed and influenced development",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider redistribution rights not established by snapshot ownership",
+            "required": false
+          },
+          {
+            "name": "statistical_superiority",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "No selection-aware confidence analysis or independent sample",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "control_parity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "History2005-2025 already viewed and influenced development",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider redistribution rights not established by snapshot ownership",
+          "required": false
+        },
+        {
+          "name": "statistical_superiority",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "No selection-aware confidence analysis or independent sample",
+          "required": false
+        }
+      ]
+    },
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "mix-equal",
+      "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 6.076898986551127,
+        "max_drawdown": 21.59309873522598,
+        "calmar": 0.28142783308064795,
+        "sharpe": 0.6510982330503616,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.06076898986551127,
+        "max_drawdown": 0.2159309873522598,
+        "calmar": 0.28142783308064795,
+        "sharpe": 0.6510982330503616,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "control_parity",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "control_parity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "History2005-2025 already viewed and influenced development",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider redistribution rights not established by snapshot ownership",
+            "required": false
+          },
+          {
+            "name": "statistical_superiority",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "No selection-aware confidence analysis or independent sample",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "control_parity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "History2005-2025 already viewed and influenced development",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider redistribution rights not established by snapshot ownership",
+          "required": false
+        },
+        {
+          "name": "statistical_superiority",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "No selection-aware confidence analysis or independent sample",
+          "required": false
+        }
+      ]
+    },
+    {
+      "policy_version": "research-score-v0.2",
+      "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+      "candidate_id": "mix-trend-heavy",
+      "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+      "stage": "development-account-arithmetic",
+      "eligibility": "eligible",
+      "rankable": true,
+      "missing_objectives": [],
+      "raw_metrics": {
+        "net_cagr": 7.0791527130540155,
+        "max_drawdown": 25.377178255973,
+        "calmar": 0.2789574412745358,
+        "sharpe": 0.6623858552469566,
+        "sample_count": 5283
+      },
+      "input_units": {
+        "net_cagr": "percent",
+        "max_drawdown": "percent"
+      },
+      "metrics": {
+        "net_cagr": 0.07079152713054015,
+        "max_drawdown": 0.25377178255973,
+        "calmar": 0.2789574412745358,
+        "sharpe": 0.6623858552469566,
+        "sample_count": 5283.0
+      },
+      "evidence": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "eligibility_record": {
+        "policy_version": "research-score-v0.2",
+        "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+        "stage": "development-account-arithmetic",
+        "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+        "state": "eligible",
+        "required_checks": [
+          "source_code_identity",
+          "timing",
+          "accounting",
+          "coverage",
+          "modeled_costs",
+          "control_parity",
+          "metric_recalculation"
+        ],
+        "failed": [],
+        "unknown": [],
+        "checks": [
+          {
+            "name": "source_code_identity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "timing",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "accounting",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "coverage",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "modeled_costs",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "control_parity",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "metric_recalculation",
+            "status": "pass",
+            "applicable": true,
+            "evidence": [
+              "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+            ],
+            "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+            "required": true
+          },
+          {
+            "name": "untouched_evaluation",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "History2005-2025 already viewed and influenced development",
+            "required": false
+          },
+          {
+            "name": "source_redistribution_rights",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "Provider redistribution rights not established by snapshot ownership",
+            "required": false
+          },
+          {
+            "name": "statistical_superiority",
+            "status": "unknown",
+            "applicable": true,
+            "evidence": [],
+            "reason": "No selection-aware confidence analysis or independent sample",
+            "required": false
+          }
+        ]
+      },
+      "eligibility_checks": [
+        {
+          "name": "source_code_identity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "timing",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "accounting",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "coverage",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "modeled_costs",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "control_parity",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "metric_recalculation",
+          "status": "pass",
+          "applicable": true,
+          "evidence": [
+            "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+          ],
+          "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+          "required": true
+        },
+        {
+          "name": "untouched_evaluation",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "History2005-2025 already viewed and influenced development",
+          "required": false
+        },
+        {
+          "name": "source_redistribution_rights",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "Provider redistribution rights not established by snapshot ownership",
+          "required": false
+        },
+        {
+          "name": "statistical_superiority",
+          "status": "unknown",
+          "applicable": true,
+          "evidence": [],
+          "reason": "No selection-aware confidence analysis or independent sample",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "pareto": {
+    "policy_version": "research-score-v0.2",
+    "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+    "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+    "stage": "development-account-arithmetic",
+    "front": [
+      "ema-control",
+      "mix-equal",
+      "mix-trend-heavy",
+      "rsi-control"
+    ],
+    "dominated_by": {
+      "ema-control": [],
+      "rsi-control": [],
+      "mix-equal": [],
+      "mix-trend-heavy": []
+    },
+    "evidence": {
+      "ema-control": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "rsi-control": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "mix-equal": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ],
+      "mix-trend-heavy": [
+        "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+        "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+      ]
+    },
+    "excluded": []
+  },
+  "confirmation_status": {
+    "policy_version": "research-score-v0.2",
+    "policy_hash": "d8e25acc7785d76fb43b863c84f7453b176edac5c5e35376ef393f2b7a1c55da",
+    "stage": "untouched-confirmation",
+    "context_id": "7ac7a79a35078985a0f39a4f8f915203393eb56a74ebb3b65a99eebfc69e81d4",
+    "state": "blocked",
+    "required_checks": [
+      "source_code_identity",
+      "timing",
+      "accounting",
+      "coverage",
+      "modeled_costs",
+      "control_parity",
+      "metric_recalculation",
+      "untouched_evaluation"
+    ],
+    "failed": [],
+    "unknown": [
+      "untouched_evaluation"
+    ],
+    "checks": [
+      {
+        "name": "source_code_identity",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "timing",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "accounting",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "coverage",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "modeled_costs",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "control_parity",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-control-parity.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "metric_recalculation",
+        "status": "pass",
+        "applicable": true,
+        "evidence": [
+          "docs/tasks/evidence/2026-10-25-recursive-cycle2.json"
+        ],
+        "reason": "Scoped development comparison; frozen v2 plan and verified receipts",
+        "required": true
+      },
+      {
+        "name": "untouched_evaluation",
+        "status": "unknown",
+        "applicable": true,
+        "evidence": [],
+        "reason": "History2005-2025 already viewed and influenced development",
+        "required": true
+      },
+      {
+        "name": "source_redistribution_rights",
+        "status": "unknown",
+        "applicable": true,
+        "evidence": [],
+        "reason": "Provider redistribution rights not established by snapshot ownership",
+        "required": false
+      },
+      {
+        "name": "statistical_superiority",
+        "status": "unknown",
+        "applicable": true,
+        "evidence": [],
+        "reason": "No selection-aware confidence analysis or independent sample",
+        "required": false
+      }
+    ]
+  },
+  "interpretation": "All4are nondominated tradeoffs in predefined2-objective context; neither mixture dominates EMA or RSI. No investment selection or predictive improvement established."
+}

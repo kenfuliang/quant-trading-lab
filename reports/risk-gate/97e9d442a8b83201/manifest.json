@@ -1,0 +1,19 @@
+{
+  "status": "recovery_failed_no_further_launch",
+  "artifact_hashes": {
+    "5_ema/audit.json": "ced7e7ea1374578b2e4bc4d3bb85b8657ac5e0146528f16b709f851dc9a9ab90",
+    "5_ema/independent-metrics.json": "d4ee79b3bb3032ef5590bfece67a8ea0b87a3e6ccd4427a66ddfe80f26e3c32f",
+    "5_ema/ledger.csv": "aa5c6c9ed6693caee5eb759ca4c3ec052b08a4615e6a15f6949d0bcbafacabc0",
+    "5_ema/scores.json": "876010cd0aa66214d00980fd040ca7961e3ce9e4dc1d1e4e70b86640c1dcad54",
+    "5_ema/signal.csv": "28abd54a28e20dd112f66a26df1d8204ddd8cf8013f6abfd2b428d21f34e4093",
+    "5_ema/temporal-audit.json": "b0ba6bcf22319a17603310235ebb1528b29d6ac18c0d364bfd9d4107ba15fe23",
+    "5_ema/temporal.csv": "a79b4c281b9f93f93be315843469b8b481cb14cfcf0ebce154c575ae3e244fde",
+    "5_ema/temporal.json": "449c5666dabf2a44c8a425908785c05bbc7afbb3d3a8381633613a257519fb16",
+    "5_ema/timeline.csv": "5222ee3eb7088fd9661c28b3fbb06d54e412254ec653f866b8210f2abb7b78d2",
+    "5_ema/trades.csv": "68ddf4bf7294aafe5d435be8a7ab08545d4145d7472c35105d92d031d53f04a6",
+    "5_ema.log": "22710d9e68c9dbc5ca3b1b1986a5d52fba108195817ceee7ba69b52fc9e330fd",
+    "failure.json": "00191f1181d9432abb4dda95023aa18c3fc81ffa713e9755d27b7b152608908b",
+    "plan.json": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5",
+    "state-before-recovery.json": "c0353878114f726c608e742a7a2c605d8bcd9f4dfbdd6477359c9a6cc6605acd"
+  }
+}

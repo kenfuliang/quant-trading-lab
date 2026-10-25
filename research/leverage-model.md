@@ -94,3 +94,19 @@ Each immutable report run records input/code/config hashes and independent ledge
 reconciliation. Stress ledgers and summaries are retained alongside base cases.
 No broker access or orders are needed. This research cannot establish actual
 account eligibility, liquidation safety or future achievement of return targets.
+
+## Explicit entry-only holding policy (2026-10-25)
+
+The risk-gate study adds `rebalance_policy=entry_only`: nominal 1x buy/hold only,
+constant full allocation factor, no CPPI or overnight schedule. Size once at the
+first evaluation open using the same initial reserve, whole shares and costs.
+Keep those shares thereafter; dividends accumulate as cash without reinvestment.
+Do not retry a denied first entry. Shared financing, dividends and mandatory
+open/low/close risk checks still run. No terminal liquidation is added.
+Frames without this field preserve daily target sizing. Historical reports and
+identities remain unchanged; see the [bounded epoch](../docs/tasks/2026-10-25-rsi-risk-gate-epoch.md).
+
+Direct Decimal audit callers now require exact unique ledger coverage, finite
+account values and valid finite trade coverage. Legacy insolvency risk-buffer
+sentinels remain allowed by that audit; bounded new-study output guards reject
+nonfinite evidence before scoring.

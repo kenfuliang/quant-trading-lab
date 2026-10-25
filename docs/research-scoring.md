@@ -6,21 +6,15 @@ owner: project-maintainers
 
 # Research scoring and direction decisions
 
-Skills-only integration note: executable research implementations and saved results
-are delivered in the dependent [research PR](https://github.com/kenfuliang/quant-trading-lab/pull/1).
-Implementation descriptions and linked historical evidence below refer to that
-reviewed snapshot; they do not establish runtime availability on this branch.
-
-
 This document owns scoring meanings and research-selection interpretation.
 [Research development](research-development.md) owns lifecycle/handoffs;
 [goals](goals.md) owns the mandate and open investment choices; [roadmap](roadmap.md)
 owns platform readiness. The versioned machine contract is implemented in
-[research/scoring.py](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/research/scoring.py); availability/test evidence is recorded
-in the [ten-hour program](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-program.md).
+[research/scoring.py](../research/scoring.py); availability/test evidence is recorded
+in the [ten-hour program](tasks/2026-10-25-recursive-research-program.md).
 This contract is initially a deterministic research heuristic, not trained RL/GAE,
 a calibrated expected-value model, investment advice or a promotion authority.
-Current machine policy is `research-score-v0.2`; the [fresh policy evaluation](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-policy-evaluation.md)
+Current machine policy is `research-score-v0.2`; the [fresh policy evaluation](tasks/2026-10-25-recursive-research-policy-evaluation.md)
 preserves the original defects and old/new identities. Scores reconstruct eligibility
 and normalized values before comparison. Consistency validation cannot authenticate
 source truth, evidence pointers or the caller's required-check contract: verify
@@ -133,14 +127,14 @@ separately from process measures; informative rejection is not investment profit
 One or two cycles establish feasibility only, not statistical effectiveness or
 monotonic self-improvement. No model weights are trained by updating this registry.
 
-Primary-source grounding and limitations: [method/design review](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-scoring-design.md)
-and [prior results/reuse review](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-priors.md).
+Primary-source grounding and limitations: [method/design review](tasks/2026-10-25-recursive-research-scoring-design.md)
+and [prior results/reuse review](tasks/2026-10-25-recursive-research-priors.md).
 
 ## Planned decision-layer records
 
 Design extension,2026-10-25; **not implemented** in `research-score-v0.2`. Existing
 scores and immutable results retain their versions. The
-[integration task and bounded proposal](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-rsi-decision-layer-plan.md)
+[integration task and bounded proposal](tasks/2026-10-25-rsi-decision-layer-plan.md)
 sequence this work; they do not change the current machine policy or promotion
 rules. A future implementation needs a separate schema/version and tests.
 

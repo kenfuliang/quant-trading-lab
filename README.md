@@ -29,14 +29,21 @@ Define outcome → implement one slice → verify offline → record evidence
 | Capability | State and evidence |
 | --- | --- |
 | Development workflow and SOPs | Established in `docs/`; project skills in `.agents/skills/` |
+| ML modeling and ML infrastructure advisers | Advisory availability is listed in the [catalog](docs/skills.md#available-advisory-skills); RSI handoff defined; [contracts](docs/advisory-team.md#ml-team-handoff-in-rsi). Consultation available; no generic training/orchestration or inference service implemented |
+| Bounded research skills | Available workflows are listed in the [catalog](docs/skills.md#available-research-workflows); [procedure](docs/research-development.md), [evaluation receipt](docs/tasks/2026-10-25-research-skills.md). Instructions support scoped offline work; no unattended optimizer or broker promotion implemented |
+| Research scoring and decision control | Versioned evidence gates, raw-unit Pareto comparisons, bounded action priority and hash-chained reserve/record journal implemented; three pilot decisions, eight audited new cases and fresh adversarial review. [Review package](docs/tasks/2026-10-25-recursive-research-review.md); caller evidence verification and coordinator-enforced aggregate financial limits remain necessary |
+| Temporal performance diagnostics | Rolling observed-session returns/Sharpe, deepest versus longest drawdowns, recovery/censoring and historical daily ES95; [research review](docs/tasks/2026-10-25-recursive-research-review.md). Descriptive history, not current risk signals or loss bounds |
+| Decision logs and outcome labels | Saved SPY gate inputs reconstructed separately from execution and matured5/21/63-session outcomes; protection, missed-rebound and already-cash warning analysis. [Contract](docs/research-development.md#decision-logs-and-outcome-labels), [review](http://127.0.0.1:8765/gate-decisions/20261025-v2/index.html). Prospective/live capture remains planned |
+| Feature engineering | Project-local skill, versioned three-feature registry and causal saved-SPY diagnostic implemented; [contract](docs/feature-engineering.md), [first test](docs/tasks/2026-10-25-feature-engineering-skill.md). Descriptive associations only; no trained predictor or changed strategy |
 | Local environment | Python 3.12 `.venv`; NautilusTrader 1.231.0 pinned in requirements.txt; exact packages in requirements.lock.txt |
-| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Push and PR hosted runs passed dependency installation and all 27 offline tests after repository publication; no deployment or broker operation |
+| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Hosted push/PR checks verify locked dependency installation, documentation and the checked-out branch’s offline suite; no deployment or broker operation |
 | Offline regression checks | `make check`; tests use fixtures and build observer configuration without connecting |
 | IBKR observation tools | Implemented in `paper_trading/`; `scripts/paper.py` exposes doctor, probe, observe; no execution client |
 | Broker verification | Blocked by paper-account access in the last observed session on 2026-10-24; no successful engine-to-broker connection recorded |
 | Historical SPY fixture | Completed and independently reconciled; [report](reports/spy/20261024-235746-728801/report.md), [methodology](research/README.md) |
 | Upstream capabilities | Native catalog, risk, reports, persistence and reconciliation assessed in the capability matrix; availability differs by runtime |
 | Native reports and local MLflow | Saved SPY reports rendered via native precomputed-statistics interface; two audited portfolios imported for browser comparison, including overall/annual Calmar and Sharpe rankings, charts and CSV; see performance SOP |
+| Strategy catalogue and exploratory suite | All 100 ideas catalogued; 22 local daily-SPY adaptations × four exposure targets, with independent ledger audits, annual/full-period rankings and explicit blockers for 78 unsupported entries; [protocol](research/strategy-suite.md) |
 | Leveraged SPY research | Eight $300,000 daily-sizing base cases plus financing/margin stress paths; annual/full-period rankings, independent ledger reconciliation and separate MLflow experiment; [model](research/leverage-model.md) |
 | Native catalog/execution persistence | Not configured or behavior-verified; see roadmap |
 | Project comparison view | Saved SPY slice available through local MLflow; generic strategy import and operational health view remain planned |
@@ -58,7 +65,32 @@ does not select an execution-state database or migrate the engine runtime.
 Run `make performance`, then open [performance home](http://127.0.0.1:8765/) or
 [MLflow](http://127.0.0.1:5050/). Use `make performance-stop` to stop both servers.
 Run `make leverage-comparison` for the separate leverage/financing research comparison.
+Run `make strategy-suite` for the supported catalogue batch; this does not implement
+all 100 candidates or obtain missing datasets.
 The [performance SOP](docs/operations/performance.md) owns setup and limitations.
+
+The [recursive research review](http://127.0.0.1:8765/recursive-research/20261025-review-v3/index.html)
+adds inventory, goals, prior research, fixed-rule cost sensitivity and temporal paths.
+The gate/entry-only infrastructure is implemented and behavior-tested. The bounded
+improvement epoch used all16 attempts across two studies: the combined gate failed
+the joint loss-depth/duration criterion; a predeclared four-case removal of price-peak
+conditions passed against both bases at5/10bp. Two control-check failures remain
+preserved with separately qualified account evidence. These are viewed-history
+results, not independent alpha, trained RL or broker readiness. See the
+[epoch record](docs/tasks/2026-10-25-rsi-risk-gate-epoch.md) and
+[browser comparison](http://127.0.0.1:8765/risk-gate/20261025-epoch-v1/index.html).
+Existing allocation rules31–34
+remain saved development references. Frozen history ends2025-12-31 and does not
+establish today's market state.
+
+The [SPY/IEF/GLD readiness audit](docs/tasks/2026-10-25-rsi-etf-readiness.md) is
+complete with a **not-ready** result. Three frozen inputs passed basic structural
+checks; two native synthetic probes verified shared cash, fee-aware whole shares
+and rejection. Dividend payment data, adjustment/calendar/rights qualification,
+native corporate actions and the monthly allocator remain open. The fixed six-case
+portfolio design remains non-executable with zero financial budget. The
+[decision-layer research map](docs/tasks/2026-10-25-research-decision-layers.md)
+screens industry/asset selection, exposure, risk and strategy allocation methods.
 
 ## Local checks
 

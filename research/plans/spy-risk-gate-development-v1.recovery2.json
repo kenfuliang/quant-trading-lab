@@ -1,0 +1,144 @@
+{
+  "schema": "risk-gate-execution-v1",
+  "design_path": "research/plans/spy-risk-gate-development-v1.design.json",
+  "design_sha256": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079",
+  "code_hashes": {
+    "research/risk_gate.py": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+    "research/risk_gate_study.py": "ed17c7ac37e36885781619721a61205ab9806333212a786764cbbc21b790c662",
+    "research/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "research/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/leverage-model.md": "d6224928351d6e50c5b1c33accf59e49928a690825076424cde60e7a727ad307",
+    "tests/test_risk_gate.py": "32de320c2e66ee709651889f2569607dea231fe79b768a5bc5b1ebb0eefedf0d",
+    "tests/test_risk_gate_analysis.py": "91633897265578ea3a1e415ab788a431ac90a1ed4ab6936cf8def9838ff5defd",
+    "tests/test_risk_gate_study.py": "7126705b2ca6bb1b9f7f513d3caae670dd5f1781c607c557c4524670fe4fa137",
+    "research/control_parity.py": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e",
+    "tests/test_control_parity.py": "fd19d5363926958e4b2f0dee0440652ec76e602b7f60de9cf5d5b20367910c4b",
+    "research/risk_gate_recovery.py": "066912fb95a7124dab3af0003ac1706fbd41c0c024b80516e3eccdc102e358de",
+    "tests/test_risk_gate_recovery.py": "dd82b340d4755e5700727e4dc9d356ebe362042eeafd9022834e0f370cafcc30",
+    "tests/test_temporal_flat_window.py": "9086c12108b4b35685393f27c70293a78b05380c35adb4541a67f01ee32b3a3e",
+    "research/risk_gate_recovery2.py": "e0c13bacb07f617a60c76c00ac9f1efa3c5c5cbf48bfad7208746830102a5792",
+    "tests/test_risk_gate_recovery2.py": "157e82d06e6ff24f3291fffd1d385cddc8d68f606c896b5f19cf84cc375af82e"
+  },
+  "model": {
+    "capital": 300000.0,
+    "annual_rate": 0.06,
+    "allocation": 0.99,
+    "initial_margin": 0.5,
+    "maintenance": 0.25,
+    "cost_bps": 5.0,
+    "commission": 1.0
+  },
+  "cases": [
+    {
+      "id": "5_hold",
+      "rule": "hold",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_ema",
+      "rule": "ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_gate_hold",
+      "rule": "gate_hold",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_gate_ema",
+      "rule": "gate_ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_half_hold",
+      "rule": "half_hold",
+      "cost_bps": 5
+    },
+    {
+      "id": "5_buy_hold_entry_only",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 5
+    },
+    {
+      "id": "10_hold",
+      "rule": "hold",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_ema",
+      "rule": "ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_gate_hold",
+      "rule": "gate_hold",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_gate_ema",
+      "rule": "gate_ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_half_hold",
+      "rule": "half_hold",
+      "cost_bps": 10
+    },
+    {
+      "id": "10_buy_hold_entry_only",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 10
+    }
+  ],
+  "created_utc": "2026-10-25T18:46:41.308285+00:00",
+  "max_cases": 12,
+  "wall_seconds": 900,
+  "recovery": {
+    "original_plan_sha256": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7",
+    "prior_recovery_sha256": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5",
+    "original_deadline_utc": "2026-10-25T19:01:50.145287+00:00",
+    "new_case_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "financial_retries": 0,
+    "failed_attempts_counted": 2,
+    "original_hold_source": "reports/risk-gate/5da2f7dccff31178/5_hold",
+    "ema_source": "reports/risk-gate/97e9d442a8b83201/5_ema",
+    "ema_source_manifest_sha256": "c0ee72d865a2ab20a17a2989e6b2afe7fb4d60a3093580cda35739aa584097e2",
+    "ema_audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 800,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "ema_derived_parity": {
+      "passed": true,
+      "trade_exact": true,
+      "ledger_atol_usd": 1e-07,
+      "historical_columns": 15,
+      "current_columns": 15,
+      "derived_diagnostic_columns": []
+    },
+    "ema_representation_correction": "Only derived effective_target_leverage becomes nominal 1x; raw CSV remains unchanged. want_long/intended_target, trades and all monetary fields unchanged.",
+    "unchanged_state_timeline": true,
+    "reason": "Resolve control budget-versus-desired-target representation; no rule/threshold, cost, simulation or accounting change."
+  }
+}

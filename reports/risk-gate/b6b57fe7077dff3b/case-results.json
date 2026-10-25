@@ -1,0 +1,162 @@
+[
+  {
+    "id": "5_gate_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1529,
+      "maximum_difference_usd": 1.1641532182693481e-09
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1453
+    },
+    "control_parity": null
+  },
+  {
+    "id": "5_gate_ema",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1129,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1384
+    },
+    "control_parity": null
+  },
+  {
+    "id": "5_half_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 4725,
+      "maximum_difference_usd": 1.3969838619232178e-09
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1089
+    },
+    "control_parity": null
+  },
+  {
+    "id": "5_buy_hold_entry_only",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1243
+    },
+    "control_parity": null
+  },
+  {
+    "id": "10_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1245,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1224
+    },
+    "control_parity": null
+  },
+  {
+    "id": "10_ema",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 840,
+      "maximum_difference_usd": 6.984919309616089e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 531
+    },
+    "control_parity": null
+  },
+  {
+    "id": "10_gate_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1546,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1455
+    },
+    "control_parity": null
+  },
+  {
+    "id": "10_gate_ema",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1116,
+      "maximum_difference_usd": 6.984919309616089e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1384
+    },
+    "control_parity": null
+  },
+  {
+    "id": "10_half_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 4693,
+      "maximum_difference_usd": 1.979060471057892e-09
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1089
+    },
+    "control_parity": null
+  },
+  {
+    "id": "10_buy_hold_entry_only",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1,
+      "maximum_difference_usd": 2.3283064365386963e-10
+    },
+    "independent_metrics": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 1243
+    },
+    "control_parity": null
+  }
+]

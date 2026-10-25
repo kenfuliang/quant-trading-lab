@@ -1,0 +1,107 @@
+{
+  "schema": "etf-diversification-frozen-prospective-v1",
+  "status": "frozen_not_executable",
+  "historical_execution_authorized": false,
+  "historical_case_budget": 0,
+  "parent_design": "research/plans/etf-diversification-readiness-v1.design.json",
+  "parent_sha256": "e4a04b22bfb3981da52c36235953b19c43d5bbdc7846877539914fc67f4c152a",
+  "future_study": {
+    "status": "proposed_requires_readiness_review_and_new_execution_scope",
+    "case_count": 6,
+    "cases": [
+      {
+        "id": "5bp_monthly_spy",
+        "cost_bps_per_side": 5,
+        "rule": "monthly_spy"
+      },
+      {
+        "id": "5bp_static_equal_thirds",
+        "cost_bps_per_side": 5,
+        "rule": "static_equal_thirds"
+      },
+      {
+        "id": "5bp_equal_thirds_10m_trend_cash",
+        "cost_bps_per_side": 5,
+        "rule": "equal_thirds_10m_trend_cash"
+      },
+      {
+        "id": "10bp_monthly_spy",
+        "cost_bps_per_side": 10,
+        "rule": "monthly_spy"
+      },
+      {
+        "id": "10bp_static_equal_thirds",
+        "cost_bps_per_side": 10,
+        "rule": "static_equal_thirds"
+      },
+      {
+        "id": "10bp_equal_thirds_10m_trend_cash",
+        "cost_bps_per_side": 10,
+        "rule": "equal_thirds_10m_trend_cash"
+      }
+    ],
+    "rules": {
+      "monthly_spy": "Target100%SPY before reserve; rebalance monthly at next open.",
+      "static_equal_thirds": "Target1/3 each SPY/IEF/GLD before reserve; rebalance monthly at next open.",
+      "equal_thirds_10m_trend_cash": "At each completed month-end, a sleeve receives1/3 only if its forward-constructed total-return index exceeds its trailing10month-end mean including current month. Otherwise that sleeve stays cash, without redistribution."
+    },
+    "decision_fill": "Last common completed regular session of month; next common regular session open. Never same-close fill; daily bars cannot validate intraday execution.",
+    "proposed_warmup_start": "2004-12-01",
+    "proposed_evaluation_start": "2006-01-03",
+    "proposed_evaluation_end": "2025-12-31",
+    "dates_status": "Proposed pending audited inception/common coverage/calendar and full10month warmup; no pre-inception backfill or automatic date/proxy amendment.",
+    "capital_usd": 300000,
+    "allocation_reserve": 0.99,
+    "nominal_gross_cap": 1,
+    "whole_shares": true,
+    "shorts": false,
+    "leverage": false,
+    "commission_usd_per_actual_instrument_order": 1,
+    "primary_cash_interest": 0,
+    "primary_cash_model": "One USD CASH account. No borrowing. Sell-before-buy; buys use realized available cash after all modeled costs. Unpaid dividend receivables belong to wealth but are excluded from spendable cash/investable target budget.",
+    "dividends": "Entitle prior eligible holdings at documented ex-date; accrue receivable; credit spendable cash only at verified payment date under declared date-level ordering. Unknown pay dates block primary tradable-cash study; do not fabricate them.",
+    "splits": "Preserve raw execution prices and adjust quantities/entitlements per verified effective split action/order. Do not treat split movement as profit/loss or double-adjust.",
+    "signal_series": "Forward total-return index from verified raw prices, distributions and splits; explicitly chosen reinvestment convention for signals only, separate from actual payment-cash availability. Do not use adjusted fills plus duplicate dividends.",
+    "rebalance": "Use available open marks; fixed deterministic symbol order after sells, cost-aware whole-share cash feasibility, residual cash retained. Rejections/partial fills do not create assumed cash; missing marks stop/flag rather than forward-fill.",
+    "paired_claims": [
+      {
+        "treatment": "static_equal_thirds",
+        "control": "monthly_spy",
+        "question": "Diversification"
+      },
+      {
+        "treatment": "equal_thirds_10m_trend_cash",
+        "control": "static_equal_thirds",
+        "question": "Incremental filter"
+      }
+    ],
+    "primary_criterion": "At each cost: no worse full-path drawdown magnitude AND longest observed peak-to-recovery/observed-end sessions, strictly better at leastone. Drawdown fraction tolerance1e-10; duration integerexact. Cost-robustclaimrequiresbothcontexts.",
+    "growth": "Report CAGR/endingwealth sacrifice separately; acceptable sacrifice not selected; path pass is not investment selection.",
+    "diagnostics": [
+      "annual return/drawdown/Sharpe/Calmar",
+      "rolling21/63/126/252cumulative returns",
+      "rolling63/252Sharpe",
+      "worst1/5/21/63returns",
+      "deepest/longest episodes, recovery/censoring",
+      "historicaldailyES95",
+      "cash/receivable/sleeve contributions",
+      "turnover/costs",
+      "joint stress/block behavior"
+    ],
+    "chronology": "Continuous capital/positions/features, no annual resets. Previously viewed/publicly studied2006\u20132025 remains development; new tickers do not create holdout independence.",
+    "cash_comparison": "Zero-return analytical cash under zero cash interest; undefined Sharpe/Calmar. Actual opportunity cost disclosed; do not import an undeclared cash-yield benefit."
+  },
+  "execution_conventions": {
+    "qualification": "Every data/action/calendar/availability gate and native model gap must be resolved in a new scope before implementation or market execution. This file allocates no trials.",
+    "ordering": "One synthetic USD CASH account; fixed symbol order GLD, IEF, SPY. At a session: verified effective splits, entitlement and verified payment-date transfers, open marks, complete sells, then buys. Prior eligible holdings determine ex-date entitlement; same-day action ordering must be supported by source conventions, otherwise block.",
+    "fractional_actions": "Fractional split/distribution entitlements require verified cash-in-lieu/rounding rules; unknown rules block. Do not silently discard entitlement.",
+    "pricing": "Raw open marks only. Buy adverse fill=open*(1+bps/10000); sell=open*(1-bps/10000), rounded to USD cents ROUND_HALF_EVEN; USD1 fixed fee per actual filled instrument order. One market order per nonzero instrument delta; incomplete/rejected execution invalidates primary case instead of assuming fill/cash. No order splitting to alter fees.",
+    "wealth": "Daily NAV=USD cash+raw marked holdings+unpaid verified receivables. Spending excludes receivables. Reserve target=1% of tradable marked equity; zero cash interest; tax, market impact beyond fixed slippage and settlement restrictions unmodeled. Not broker parity.",
+    "sizing": "At rebalance compute B=0.99*(available cash+sum(held whole shares*raw open mark)); exclude unpaid receivables. Freeze target whole shares=floor(weight*B/raw open mark). Sell positive excess first; await actual cash/fees. In GLD,IEF,SPY order buy min(target deficit,floor(max(available cash-1,0)/adverse rounded fill)); skip zero orders. Shortfall and residual allocation reported; never borrow or presume sale proceeds.",
+    "cash_timing": "Payment spendability uses verified date-level start-of-session availability assumption, disclosed as daily-resolution model, not evidence of intraday broker credit. Unknown payment date blocks.",
+    "signal": "Forward TRI anchored100 at first valid close; per day growth=(split ratio*(current raw close+distribution per post-split share))/previous raw close, only with verified compatible event units/order. Signals use ex-date distribution reinvestment convention; actual cash arrives only on pay date. Do not add cash dividends to adjusted-close fills.",
+    "monthly": "Last completed common regular session of month provides TRI close and trailing10 month-end arithmetic mean including current month. Strictly greater means active; equality inactive. At least10 qualified month ends required. Next common regular open executes targets. No partial-month signal or same-close execution.",
+    "missing": "Missing/invalid marks, session ambiguity, unavailable signals/actions or unknown entitlement semantics stop and invalidate rather than forward-fill or change dates.",
+    "metrics": "Continuous capital and positions; annual/rolling NAV returns include receivables; Sharpe uses daily zero cash benchmark and sqrt252, undefined at zero sample volatility; full-path Calmar=CAGR/absolute full-path MDD, annual Calmar=calendar-year cumulative return/absolute within-year MDD including prior-year closing wealth, undefined zero MDD. Rolling and annual periods are diagnostics, not independent trials. Historical ES95 is mean of worst ceil(0.05*N) daily losses; disclose finite-sample convention. Peak-to-recovery durations count observed sessions, distinguish censored episodes."
+  }
+}

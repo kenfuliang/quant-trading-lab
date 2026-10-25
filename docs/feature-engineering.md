@@ -6,12 +6,6 @@ owner: research-maintainers
 
 # Feature engineering contract
 
-Skills-only integration note: executable research implementations and saved results
-are delivered in the dependent [research PR](https://github.com/kenfuliang/quant-trading-lab/pull/1).
-Implementation descriptions and linked historical evidence below refer to that
-reviewed snapshot; they do not establish runtime availability on this branch.
-
-
 This file owns feature definitions, availability and diagnostic interpretation.
 [Research lifecycle](research-development.md) owns the RSI loop;
 [scoring](research-scoring.md) owns selection meanings; [intake](research-intake.md)
@@ -37,8 +31,8 @@ registry hashes bind every actual test. Keep raw fields, engineered inputs,
 execution observations and future labels distinct.
 
 The first local registry and pure builder are in
-[`research/feature_engineering.py`](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/research/feature_engineering.py).
-[`scripts/feature_diagnostic.py`](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/scripts/feature_diagnostic.py) is an offline
+[`research/feature_engineering.py`](../research/feature_engineering.py).
+[`scripts/feature_diagnostic.py`](../scripts/feature_diagnostic.py) is an offline
 saved-SPY diagnostic, not a generic model trainer or portfolio simulator. It
 reads the existing source and gate outcome manifest, checks exact joins, freezes
 calibration-only bin edges and reports later development blocks. No arbitrary

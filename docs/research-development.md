@@ -6,12 +6,6 @@ owner: project-maintainers
 
 # Bounded research development
 
-Skills-only integration note: executable research implementations and saved results
-are delivered in the dependent [research PR](https://github.com/kenfuliang/quant-trading-lab/pull/1).
-Implementation descriptions and linked historical evidence below refer to that
-reviewed snapshot; they do not establish runtime availability on this branch.
-
-
 This document owns the research-cycle handoffs and evidence contracts. The
 [mandate](goals.md) owns objectives/open risk decisions; [intake](research-intake.md)
 owns external claims/rights; [workflow](workflow.md) owns implementation; the
@@ -21,7 +15,7 @@ An implemented, agent-coordinated offline control slice now supports this proced
 [scoring contract](research-scoring.md), `research/research_controller.py` and
 `research/bounded_study.py`. It records decisions and reserves bounded work; it does
 not independently verify caller evidence or run itself against a broker. See the
-[scoped pilot review](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-review.md) for actual proof
+[scoped pilot review](tasks/2026-10-25-recursive-research-review.md) for actual proof
 and remaining aggregate-budget/orchestration boundaries.
 
 ```mermaid
@@ -50,15 +44,15 @@ by the user remains valid; no redundant approval step is added to ordinary offli
 
 ## Research design
 
-Latest completed readiness audit: [bounded ETF diversification readiness](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-rsi-etf-readiness.md).
+Latest completed readiness audit: [bounded ETF diversification readiness](tasks/2026-10-25-rsi-etf-readiness.md).
 Source qualification and native shared-cash proof precede a prospective six-case
 portfolio comparison. Its not-ready decision preserves zero historical financial attempts; the
 completed risk-gate study and its failures remain frozen.
 
 
-Fixed study specification: [bounded SPY risk-gate test](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-risk-gate-bounded-test.md)
+Fixed study specification: [bounded SPY risk-gate test](tasks/2026-10-25-risk-gate-bounded-test.md)
 defines the combined gate, unchanged controls and temporal comparisons. It is a
-development-only design. The [bounded improvement epoch](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-rsi-risk-gate-epoch.md)
+development-only design. The [bounded improvement epoch](tasks/2026-10-25-rsi-risk-gate-epoch.md)
 owns its newer implementation, recovery and completed bounded execution evidence; the original planning
 receipt remains historical.
 
@@ -105,7 +99,7 @@ and supported cases are in `research/bounded_study.py`. Before execution the
 coordinator reserves the aggregate financial attempts and checks the program's
 deadline; `max_cases` enforces only that plan's ceiling. Standalone CLI execution
 does not independently enforce a multi-study budget. The
-[pilot](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-recursive-research-pilot.md) and its machine plans demonstrate
+[pilot](tasks/2026-10-25-recursive-research-pilot.md) and its machine plans demonstrate
 the verified contract without replacing it with a full unattended optimizer.
 
 A requested new experiment needs its concrete bounded input/rule/configuration,
@@ -220,7 +214,7 @@ than claim the system learned solely because a note was written.
 
 ## Planned decision-layer integration
 
-The [decision-layer plan](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-rsi-decision-layer-plan.md) specifies how
+The [decision-layer plan](tasks/2026-10-25-rsi-decision-layer-plan.md) specifies how
 industry/target selection, market-state estimates, sizing, strategy allocation
 and execution eligibility enter this lifecycle. It selects one continuous sizing
 proposal with fixed controls. This is documented design, not an implemented
@@ -229,7 +223,7 @@ selector, forecast model, new runtime score version or allocated financial budge
 canonical owner; each prospective study binds its own metrics and stopping rules.
 No new platform milestone or unattended goal is created by this plan.
 
-The [parallel research checklist](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-parallel-research-checklist.md)
+The [parallel research checklist](tasks/2026-10-25-parallel-research-checklist.md)
 organizes proposed independent lanes and ownership/budget boundaries. Its initial
 wave is research/design only; it does not launch agents or allocate financial,
 market-data acquisition or native-probe attempts.
@@ -237,8 +231,8 @@ market-data acquisition or native-probe attempts.
 ## Decision logs and outcome labels
 
 Implemented saved-result reconstruction in
-[`reporting/decision_labels.py`](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/reporting/decision_labels.py), method
-`saved-gate-decision-outcomes-v1`. The [SPY diagnosis task](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-gate-decision-labels.md)
+[`reporting/decision_labels.py`](../reporting/decision_labels.py), method
+`saved-gate-decision-outcomes-v1`. The [SPY diagnosis task](tasks/2026-10-25-gate-decision-labels.md)
 owns this version's frozen diagnostic scope and observed results. This extends
 research evidence capture, not the trading rule, native execution journal or
 `research-score-v0.2` policy.
@@ -293,7 +287,7 @@ estimates or matched-capital avoided USD losses.
 
 ## Feature engineering in RSI
 
-[Feature engineering](feature-engineering.md) owns causal transforms, registry, LLM proposal limits and saved-label diagnostic interpretation. Use [trade-feature-engineering](../.agents/skills/trade-feature-engineering/SKILL.md) between data audit and experiment design when changing inputs, or after diagnosis to test a bounded feature hypothesis. A feature association is evidence for a next question, not permission to alter a policy or execute another financial trial. The [first skill test](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-feature-engineering-skill.md) records three fixed candidates on existing SPY/outcome artifacts.
+[Feature engineering](feature-engineering.md) owns causal transforms, registry, LLM proposal limits and saved-label diagnostic interpretation. Use [trade-feature-engineering](../.agents/skills/trade-feature-engineering/SKILL.md) between data audit and experiment design when changing inputs, or after diagnosis to test a bounded feature hypothesis. A feature association is evidence for a next question, not permission to alter a policy or execute another financial trial. The [first skill test](tasks/2026-10-25-feature-engineering-skill.md) records three fixed candidates on existing SPY/outcome artifacts.
 
 ## ML modeling and infrastructure consultation
 

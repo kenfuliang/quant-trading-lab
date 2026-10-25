@@ -1,0 +1,297 @@
+{
+  "schema": "etf-readiness-completion-v1",
+  "status": "completed_readiness_review",
+  "financial_readiness": "not_ready",
+  "created_utc": "2026-10-25T20:01:33.356626+00:00",
+  "started_utc": "2026-10-25T19:38:24+00:00",
+  "deadline_utc": "2026-10-25T20:38:24+00:00",
+  "goal_scope": "source qualification, native synthetic accounting proof or precise gap, frozen prospective specification; no historical financial executions",
+  "parent": {
+    "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-completion.json",
+    "sha256": "1e3b81c9fd2a4afd2761a5c029b7920509b65596f0fe91ebca70c8cc6e178c76"
+  },
+  "briefs": {
+    "docs/tasks/2026-10-25-rsi-risk-mechanisms.md": "984fd8588a011d26bdfecc30c79668d47cb939cc531f353616aebf9f15a8c50c",
+    "docs/tasks/2026-10-25-rsi-diversification-ideas.md": "c8de9e95e8a147535b132c11556565ec8264ed0fc00cf0d1a62446f5bccc2c1e",
+    "docs/tasks/2026-10-25-rsi-frontier-and-selection.md": "d8e8bf23cedfc9ce37b80c71a69600d11f38a95996e29e329974e2aaadb59c83"
+  },
+  "original_design": {
+    "path": "research/plans/etf-diversification-readiness-v1.design.json",
+    "sha256": "e4a04b22bfb3981da52c36235953b19c43d5bbdc7846877539914fc67f4c152a"
+  },
+  "frozen_prospective_spec": {
+    "path": "research/plans/etf-diversification-readiness-v1.frozen.json",
+    "sha256": "adace794f4fda55beb79bc15a8feeb17c1f98c61ede2e7b2145b7b8d736b75d0",
+    "cases": 6,
+    "authorized": false,
+    "allocated_financial_attempts": 0
+  },
+  "bounds": {
+    "providers_investigated": 2,
+    "provider_limit": 2,
+    "snapshot_requests": 3,
+    "snapshot_limit": 6,
+    "native_synthetic_probes": 2,
+    "native_probe_limit": 2,
+    "historical_financial_attempts": 0,
+    "historical_financial_limit": 0,
+    "acquisition_and_probing_closed": true
+  },
+  "snapshots": [
+    {
+      "provider": "Yahoo Finance",
+      "symbol": "SPY",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1101859200&period2=1767225600&interval=1d&events=div%2Csplits",
+      "status": "received",
+      "reserved_utc": "2026-10-25T19:45:32.383817+00:00",
+      "http_status": 200,
+      "completed_utc": "2026-10-25T19:45:32.763380+00:00",
+      "path": ".local/etf-readiness/acquisition/yahoo-spy-attempt-1.bin",
+      "bytes": 589203,
+      "sha256": "fb07ced3cda40ee637e12b17a6104ad49fc60cdd55c1ea558b56e74be341c92e"
+    },
+    {
+      "provider": "Yahoo Finance",
+      "symbol": "IEF",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/IEF?period1=1101859200&period2=1767225600&interval=1d&events=div%2Csplits",
+      "status": "received",
+      "reserved_utc": "2026-10-25T19:45:32.763880+00:00",
+      "http_status": 200,
+      "completed_utc": "2026-10-25T19:45:33.121925+00:00",
+      "path": ".local/etf-readiness/acquisition/yahoo-ief-attempt-2.bin",
+      "bytes": 585078,
+      "sha256": "0f9ec28fc4df9d89a7332bcf73e88b648f2bee792a92426454aa983d73b6730d"
+    },
+    {
+      "provider": "Yahoo Finance",
+      "symbol": "GLD",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/GLD?period1=1101859200&period2=1767225600&interval=1d&events=div%2Csplits",
+      "status": "received",
+      "reserved_utc": "2026-10-25T19:45:33.122258+00:00",
+      "http_status": 200,
+      "completed_utc": "2026-10-25T19:45:33.368346+00:00",
+      "path": ".local/etf-readiness/acquisition/yahoo-gld-attempt-3.bin",
+      "bytes": 580147,
+      "sha256": "1cdf05fbc73ddec46d7e835f9df79d8f36851ea66b8c94096c187219d923b4c5"
+    }
+  ],
+  "local_verification": {
+    "verified_artifact_count": 24,
+    "paths": [
+      ".local/etf-readiness/input-audit/GLD-receipt.json",
+      ".local/etf-readiness/input-audit/SPY-receipt.json",
+      ".local/etf-readiness/input-audit/source-readiness.json",
+      ".local/etf-readiness/input-audit/IEF-receipt.json",
+      ".local/etf-readiness/input-audit/IEF-observed-raw-fields.csv",
+      ".local/etf-readiness/input-audit/SPY-observed-raw-fields.csv",
+      ".local/etf-readiness/input-audit/GLD-observed-raw-fields.csv",
+      ".local/etf-readiness/native-r1/distribution-fixture.json",
+      ".local/etf-readiness/native-r1/native-observations.csv",
+      ".local/etf-readiness/native-r1/native-fills.csv",
+      ".local/etf-readiness/native-r1/native-orders.csv",
+      ".local/etf-readiness/native-r1/observed-fills.json",
+      ".local/etf-readiness/native-r1/rejections.json",
+      ".local/etf-readiness/native-r1/proof.json",
+      ".local/etf-readiness/native-r2/fills.json",
+      ".local/etf-readiness/native-r2/native-observations.csv",
+      ".local/etf-readiness/native-r2/native-fills.csv",
+      ".local/etf-readiness/native-r2/native-orders.csv",
+      ".local/etf-readiness/native-r2/rejections.json",
+      ".local/etf-readiness/native-r2/budget-decisions.json",
+      ".local/etf-readiness/native-r2/proof.json",
+      ".local/etf-readiness/acquisition/yahoo-spy-attempt-1.bin",
+      ".local/etf-readiness/acquisition/yahoo-ief-attempt-2.bin",
+      ".local/etf-readiness/acquisition/yahoo-gld-attempt-3.bin"
+    ],
+    "parent_and_brief_hashes_pass": true,
+    "original_design_sha256": "e4a04b22bfb3981da52c36235953b19c43d5bbdc7846877539914fc67f4c152a",
+    "frozen_spec_sha256": "adace794f4fda55beb79bc15a8feeb17c1f98c61ede2e7b2145b7b8d736b75d0",
+    "saved_fill_independent_replay": [
+      {
+        "revision": 1,
+        "ending_cash": "263.00",
+        "positions": {
+          "SPY": 1,
+          "IEF": 4,
+          "GLD": 18
+        },
+        "steps": [
+          "699.00",
+          "498.00",
+          "297.00",
+          "516.00",
+          "255.00"
+        ],
+        "payment_fixture": 8,
+        "pass": true
+      },
+      {
+        "revision": 2,
+        "ending_cash": "19.00",
+        "positions": {
+          "SPY": 0,
+          "IEF": 4,
+          "GLD": 3
+        },
+        "steps": [
+          "99.00",
+          "48.00",
+          "22.00",
+          "221.00",
+          "70.00",
+          "19.00"
+        ],
+        "payment_fixture": 0,
+        "pass": true
+      }
+    ],
+    "source_hashes": {
+      "research/etf_input_audit.py": "7485622d6d36558feb7b75f4841ae7286276e15fdabebe6235fdf08d7b4b25c0",
+      "research/etf_readiness_probe.py": "1ab48cb82bee47b03f8fd19f9d8aad98a845ce902658c602b8403d70b9530953",
+      "research/etf_readiness_rounding_probe.py": "ae674267a3238d842f4dec80bff767923024235d893079d68cf906f0c2b2ff24",
+      "tests/test_etf_input_audit.py": "c0e79744d9ec39933eaf9256e6e0c58086ca2be8d60a4bae80d3987aa9700b8b",
+      "tests/test_etf_readiness_proof.py": "380a51d5108b534280253291759357b32248f9e69ff3f60eb086037f6ecc1cb5"
+    },
+    "financial_simulations": 0
+  },
+  "native_proofs": [
+    {
+      "revision": 1,
+      "proof_path": ".local/etf-readiness/native-r1/proof.json",
+      "proof_sha256": "033367343b1e0a543a82959f83e4d3fce029b845e5ea2c8ecf5430ad3ba66f33",
+      "manifest_sha256": "c244d9c8033295d12becfb3da2aaa1a79ae623eec5beec9a3a5cb6c5e34a327c"
+    },
+    {
+      "revision": 2,
+      "proof_path": ".local/etf-readiness/native-r2/proof.json",
+      "proof_sha256": "5637eaf1a7ac20e016fc9c170fb3a275c3e65a9f3e01d674ebcf7b48d0e29bd9",
+      "manifest_sha256": "98e18616c126c9baaa130dfe53245a14d9b5dc8dada521b8be5fe06811aff001"
+    }
+  ],
+  "qualification": {
+    "per_instrument": ".local/etf-readiness/input-audit/source-readiness.json",
+    "manifest_sha256": "cc68d247d0770b403e3c8c1d5f4f20fa1ea2e67e0700259fed03671be6683950",
+    "basic_rows_per_symbol": 5305,
+    "observed_date_alignment": true,
+    "independent_calendar_certified": false,
+    "payment_dates_present": false,
+    "raw_adjustment_contract_verified": false,
+    "action_completeness_verified": false,
+    "point_in_time_availability_verified": false,
+    "data_use_rights_verified": false
+  },
+  "proof_passes": [
+    "Single synthetic venue shared USD CASH account and three equity identities",
+    "Actual native fill/position/cash agreement with independent Decimal replay",
+    "Fee-aware whole-share order deltas; cash shortage denies/rejects excess without fictitious credit",
+    "Observed sell before buy phases",
+    "Project fixture separates dividend receivable and verified fixture payment cash",
+    "Toy raw-price/total-return distinction and no payment double count"
+  ],
+  "precise_blockers": [
+    "Verified corporate-action/payment dates and historical availability, intended-use rights, raw/adjustment contract and independent sessions remain absent",
+    "Configured native split handler absent: known2:1 split retains4 IEF shares rather than8, missing100USD in marked synthetic wealth",
+    "Project-side receivable is not a native receivable service",
+    "Fixed-order synthetic fixture does not implement/prove monthly rebalance allocator, missing-mark stop handling or real cross-venue/broker policies"
+  ],
+  "negative_evidence_retained": [
+    "Synthetic unhandled split gap",
+    "Oversized denied/rejected orders in both probes",
+    "Yahoo terms999/help429 retrieval failures",
+    "Stooq browser-verification barrier; no bypass",
+    "All prior epoch failures unchanged"
+  ],
+  "environment": {
+    "nautilus_trader": "1.231.0",
+    "requirements_sha256": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "deps_changed": false,
+    "workspace_head": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+    "branch": "main",
+    "vendor_head": "27a8e54e7ac3c57d6cbf8891f0283dfbaee97317",
+    "vendor_worktree_clean": true
+  },
+  "checks": {
+    "make_check": {
+      "exit": 0,
+      "tests": 200,
+      "documentation_files_at_run": 70,
+      "log": ".local/etf-readiness/make-check.log",
+      "sha256": "5fba8856d8a7f622cce150de6a63f6a3a8bd897440de8c83ab640c38ee915ad8"
+    },
+    "final_docs_check": {
+      "exit": 0,
+      "files": 71,
+      "log": ".local/etf-readiness/final-docs-check.log",
+      "sha256": "f208a35f78f09d227fa0f203f878ff873055ffd055b282154a116a092414b1cc"
+    },
+    "git_diff_check": {
+      "exit": 0,
+      "log": ".local/etf-readiness/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "scope_exclusions": {
+    "paid_access": false,
+    "credentials": false,
+    "broker_operations": false,
+    "new_financial_simulation": false,
+    "new_rl_training": false,
+    "new_services_started": false,
+    "commits": false,
+    "publication": false,
+    "installations": false
+  },
+  "next_action": "Resolve named source/action/native allocator gaps in a new bounded scope before readiness review and any separately allocated six-case execution. No automatic launch.",
+  "review": "docs/tasks/2026-10-25-rsi-etf-readiness.md",
+  "question_screening": "docs/tasks/2026-10-25-research-decision-layers.md",
+  "local_evidence_files": {
+    ".local/etf-readiness/acquisition/yahoo-gld-attempt-3.bin": "1cdf05fbc73ddec46d7e835f9df79d8f36851ea66b8c94096c187219d923b4c5",
+    ".local/etf-readiness/acquisition/yahoo-ief-attempt-2.bin": "0f9ec28fc4df9d89a7332bcf73e88b648f2bee792a92426454aa983d73b6730d",
+    ".local/etf-readiness/acquisition/yahoo-spy-attempt-1.bin": "fb07ced3cda40ee637e12b17a6104ad49fc60cdd55c1ea558b56e74be341c92e",
+    ".local/etf-readiness/artifact-verification.json": "17cc5b68932a931fb9b76cd71e55aebb518a543fa88dbf79a5dbb16da1c8054a",
+    ".local/etf-readiness/input-audit/GLD-observed-raw-fields.csv": "ab8cdd672d4fe4a88a0c7984ae1a7f9a015ac9ae0ddff682394759b748c241ff",
+    ".local/etf-readiness/input-audit/GLD-receipt.json": "b909fe22bdaf058b84f9c957e68fced1f9dfc03acb9be412436033d2c49c6f3a",
+    ".local/etf-readiness/input-audit/IEF-observed-raw-fields.csv": "149907579e29f7733962773e11bd6e338f0c2be4883c52c3723c83216338ce0f",
+    ".local/etf-readiness/input-audit/IEF-receipt.json": "0406cbd315aff5bf95b6db13821fe5a64e33ff6edbffa27541aef311c6396e76",
+    ".local/etf-readiness/input-audit/SPY-observed-raw-fields.csv": "d22e45b55c651ab85e128d3743820b28b35ee6ec180dec007bcc6556650a9b44",
+    ".local/etf-readiness/input-audit/SPY-receipt.json": "f33364b1df9d168f1291c74b6febf3452ee31fd51201380a0a5a1cfe475a98ec",
+    ".local/etf-readiness/input-audit/manifest.json": "cc68d247d0770b403e3c8c1d5f4f20fa1ea2e67e0700259fed03671be6683950",
+    ".local/etf-readiness/input-audit/source-readiness.json": "26f90707688c813cdae6fabfbbe79596e5840caaf115b89d10c39fcf232a8eb8",
+    ".local/etf-readiness/make-check.log": "5fba8856d8a7f622cce150de6a63f6a3a8bd897440de8c83ab640c38ee915ad8",
+    ".local/etf-readiness/native-r1/distribution-fixture.json": "442a5b5f538f02d25aab85acd6548cb1b8ef7bf24317b77401aad721c0b5fdfb",
+    ".local/etf-readiness/native-r1/manifest.json": "c244d9c8033295d12becfb3da2aaa1a79ae623eec5beec9a3a5cb6c5e34a327c",
+    ".local/etf-readiness/native-r1/native-fills.csv": "9d38a919d20b8c0323593d925b37d0d578216ed9d05154fda7683f6262feb136",
+    ".local/etf-readiness/native-r1/native-observations.csv": "8d54a9dbdac20c462477b45d3bb6ced5d9831dcad1fd47f839d769f1e0b77918",
+    ".local/etf-readiness/native-r1/native-orders.csv": "b7fa7302fc902e7675f5a0169b779625547c9178448417d7b199791ccb1fb0bb",
+    ".local/etf-readiness/native-r1/observed-fills.json": "5cbe4f9c4a0f828e5a724860a9725b317a50e677ca800ddc5fe642aa4798b418",
+    ".local/etf-readiness/native-r1/proof.json": "033367343b1e0a543a82959f83e4d3fce029b845e5ea2c8ecf5430ad3ba66f33",
+    ".local/etf-readiness/native-r1/rejections.json": "e1b8521a814cafbe4a618155d2872109a823ef68190668254a5c702866ff8e2b",
+    ".local/etf-readiness/native-r1.log": "0e8f3137ea089b29a91bc31b8210894d1bfb50bf1878da09b150dbc892ff2c24",
+    ".local/etf-readiness/native-r2/budget-decisions.json": "8f7278d1bb4da14660868522689aac6ee413d48965b917590be399070343d8b0",
+    ".local/etf-readiness/native-r2/fills.json": "454400c20bad934b555d716e93165e1e3ed44bd2d58a5f58b94fc815e825eb93",
+    ".local/etf-readiness/native-r2/manifest.json": "98e18616c126c9baaa130dfe53245a14d9b5dc8dada521b8be5fe06811aff001",
+    ".local/etf-readiness/native-r2/native-fills.csv": "d2cb912aa45f148779fff51165ee165cd7f2beedb033928f51ebf301fa5a12ce",
+    ".local/etf-readiness/native-r2/native-observations.csv": "944bea98999886ab49925402d1259f2ae753737d44a49f9f65588eab296c217c",
+    ".local/etf-readiness/native-r2/native-orders.csv": "fd43646e17ad8ff0ae057fc28f6211acfd6bcc157c9df15a0b186fc0b427efdb",
+    ".local/etf-readiness/native-r2/proof.json": "5637eaf1a7ac20e016fc9c170fb3a275c3e65a9f3e01d674ebcf7b48d0e29bd9",
+    ".local/etf-readiness/native-r2/rejections.json": "5029915b65b8b77d914b73b59d4d394c2c1e54bc1c63c57c8c8b76a91a4f19c8",
+    ".local/etf-readiness/native-r2.log": "9b8e25625d01ef7b0a66013d33403bbe8181c6d1f27d9e2d85eebed502a5ddfe",
+    ".local/etf-readiness/source-snapshot/etf_input_audit.py": "7485622d6d36558feb7b75f4841ae7286276e15fdabebe6235fdf08d7b4b25c0",
+    ".local/etf-readiness/source-snapshot/etf_readiness_probe.py": "1ab48cb82bee47b03f8fd19f9d8aad98a845ce902658c602b8403d70b9530953",
+    ".local/etf-readiness/source-snapshot/etf_readiness_rounding_probe.py": "ae674267a3238d842f4dec80bff767923024235d893079d68cf906f0c2b2ff24",
+    ".local/etf-readiness/source-snapshot/test_etf_input_audit.py": "c0e79744d9ec39933eaf9256e6e0c58086ca2be8d60a4bae80d3987aa9700b8b",
+    ".local/etf-readiness/source-snapshot/test_etf_readiness_proof.py": "380a51d5108b534280253291759357b32248f9e69ff3f60eb086037f6ecc1cb5",
+    ".local/etf-readiness/final-docs-check.log": "f208a35f78f09d227fa0f203f878ff873055ffd055b282154a116a092414b1cc",
+    ".local/etf-readiness/diff-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "completed_utc": "2026-10-25T20:02:07.748755+00:00",
+  "final_audit": {
+    "all_saved_hashes_verified": true,
+    "source_snapshots_match_executed_code": true,
+    "within_deadline": true,
+    "six_proposed_cases_non_executable": true,
+    "financial_attempts": 0,
+    "scope_complete": true,
+    "market_execution_not_ready": true
+  }
+}

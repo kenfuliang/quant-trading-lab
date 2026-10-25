@@ -1,0 +1,127 @@
+{
+  "status": "completed independent adversarial review; identified numerical issue corrected and retested",
+  "reviewed_utc": "2026-10-25T09:44:07.575689+00:00",
+  "source": "reporting/temporal.py",
+  "initial_source_sha256": null,
+  "adversarial_tests": "tests/test_temporal_adversarial.py",
+  "initial_test_count": 7,
+  "initial_test_pass": 6,
+  "initial_test_fail": 1,
+  "issue": {
+    "description": "Constant nonzero geometric returns become enormous finite rolling Sharpe because equity-ratio roundoff standard deviations around1e-16 pass std>0.",
+    "expected": "Undefined ratios under a declared numerical zero-variance convention; preserve genuine1e-8 variation.",
+    "reported_to": [
+      "coordinator",
+      "source owner evidence_skills"
+    ],
+    "probes": [
+      {
+        "deterministic_growth_rate": 0.001,
+        "sample_std_from_equity_returns": 1.2231511850939158e-16,
+        "initial_63_observed_valid_windows": 238,
+        "initial_63_minimum_sharpe": 108633141715670.06,
+        "initial_63_maximum_sharpe": 170907165716141.28
+      },
+      {
+        "deterministic_growth_rate": 0.01,
+        "sample_std_from_equity_returns": 1.197603523837156e-16,
+        "initial_63_observed_valid_windows": 238,
+        "initial_63_minimum_sharpe": 1088921907282162.4,
+        "initial_63_maximum_sharpe": 1489028510468864.5
+      },
+      {
+        "deterministic_growth_rate": 0.125,
+        "sample_std_from_equity_returns": 1.2841171059069016e-16,
+        "initial_63_observed_valid_windows": 238,
+        "initial_63_minimum_sharpe": 1.2864705553831722e+16,
+        "initial_63_maximum_sharpe": 2.129585000422473e+16
+      }
+    ]
+  },
+  "passing_initial_checks": [
+    "Real1e-8 nonzero variation retained",
+    "Latest plateau peak and recovered deepest versus right-censored longest episode",
+    "Observed-duration ties resolved by calendar duration",
+    "ceil(.05*n) empirical ES count and non-expanded ties",
+    "Profitable historical tail has negative signed loss without clipping",
+    "Irregular observed-window count not calendar-month interpretation",
+    "Exact-peak recovery and underwater counts"
+  ],
+  "Q2_review": {
+    "input_receipt": "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+    "input_receipt_sha256": "5dc2b364bcb780c1959cb771707d4b7d1392a3fd7fa09346a7e19283edeecd77",
+    "parity_receipt": "docs/tasks/evidence/2026-10-25-recursive-control-parity.json",
+    "parity_receipt_sha256": "bb66cf6c658853f5b6069212c76d58fecd4219cd75daed7a1aee89b8ab879ccb",
+    "parity_receipt_reports": [
+      {
+        "case": "ema-control",
+        "reference": "s002_1x",
+        "sessions": 5283,
+        "max_numeric_ledger_difference": 0.0,
+        "trades_exact": true
+      },
+      {
+        "case": "rsi-control",
+        "reference": "s011_1x",
+        "sessions": 5283,
+        "max_numeric_ledger_difference": 0.0,
+        "trades_exact": true
+      }
+    ],
+    "interpretation": "All four cases are nondominated CAGR/drawdown tradeoffs. Neither mixture dominates either control. Small higher ratios do not establish predictive improvement, statistical superiority or suitability.",
+    "development_only": true,
+    "mixture_equal_vs_ema": {
+      "cagr_percent": [
+        8.013017724201642,
+        6.076898986551127
+      ],
+      "drawdown_signed_percent": [
+        -29.061507901912954,
+        -21.59309873522598
+      ]
+    },
+    "small_drawdown_difference_mixture_vs_rsi": "Equal mixture\u221221.593% versus RSI\u221221.518%: mixture has slightly deeper observed drawdown, so higher CAGR alone does not dominate."
+  },
+  "new_financial_runs": 0,
+  "previous_result_files_modified": false,
+  "final_reviewed_utc": "2026-10-25T09:44:21.343072+00:00",
+  "final_source_sha256": "88392cdec7a2ea7d91bd842d18cdade225b6fc51216692ea30ac8886dc26b11f",
+  "adversarial_test_sha256": "f680ffe49b0679b3481dca55363022aa74d2a7eed18651fd97e14c8a34d7d414",
+  "final_focused_tests_passed": 22,
+  "final_adversarial_tests_passed": 7,
+  "correction": {
+    "source_owner": "evidence_skills",
+    "method_version": "temporal-v1.1",
+    "convention": "Daily return sample standard deviation <=1e-15 is numerically zero; ratios remain undefined, matching annual.sharpe.",
+    "source_docstring_and_summary_declare_tolerance": true,
+    "genuine_variance_1e_minus8_preserved": true
+  },
+  "final_probes": [
+    {
+      "growth_rate": 0.001,
+      "method_version": "temporal-v1.1",
+      "valid_63_sharpe_windows": 0,
+      "last_63_sharpe": null,
+      "valid_252_sharpe_windows": 0,
+      "last_252_sharpe": null
+    },
+    {
+      "growth_rate": 0.01,
+      "method_version": "temporal-v1.1",
+      "valid_63_sharpe_windows": 0,
+      "last_63_sharpe": null,
+      "valid_252_sharpe_windows": 0,
+      "last_252_sharpe": null
+    },
+    {
+      "growth_rate": 0.125,
+      "method_version": "temporal-v1.1",
+      "valid_63_sharpe_windows": 0,
+      "last_63_sharpe": null,
+      "valid_252_sharpe_windows": 0,
+      "last_252_sharpe": null
+    }
+  ],
+  "verdict": "Temporal definitions and seven fresh synthetic edge cases pass after numerical-zero correction. Observed windows require caller calendar validation; empirical ES is descriptive, not a future loss bound. Q2 remains nondominated development-sample tradeoffs.",
+  "initial_source_identity_note": "Initial failure was observed in tool output before correction; source owner corrected the file before the receipt capture, so a pre-correction file checksum is not claimed."
+}

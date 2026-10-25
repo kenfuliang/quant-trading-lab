@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-25T09:34:33.590584+00:00",
+  "superseded_plan": "research/plans/recursive-portfolio-v1.json",
+  "superseded_sha256": "ea47b6046e0b9f03c7f96517078b3e9028ce65fedc38e6c27989c7eeb20d2ba9",
+  "superseded_executions": 0,
+  "replacement_plan": "research/plans/recursive-portfolio-v2.json",
+  "replacement_sha256": "fe39b9a648cde4da86605cf9aee5863f3c96d52b156629325517d80db6104d99",
+  "replacement_fingerprint": "ad37800a507e37b175b1ef2c4b40711d5ec883f503cba33dca8be15adca2f21e",
+  "reason": "Independent synthetic review exposed legacy audit nonfinite and surplus-row gaps. Wrapper guards added before any new financial attempts; no economic hypothesis/rule changed."
+}

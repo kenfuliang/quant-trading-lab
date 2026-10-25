@@ -1,0 +1,253 @@
+{
+  "schema_version": "risk-gate-design-v1",
+  "status": "proposed_design_not_executable",
+  "execution_requested": false,
+  "study_id": "spy-risk-gate-development-v1",
+  "created_utc": "2026-10-25T18:32:51.428704+00:00",
+  "parent_review": "docs/tasks/2026-10-25-recursive-research-review.md",
+  "protocol": "docs/tasks/2026-10-25-risk-gate-bounded-test.md",
+  "purpose": "Test downside depth/duration and growth cost of a fixed causal combined gate against its own unchanged base and a fixed half-exposure reference. No predictive-alpha, untouched-test, loss-guarantee or promotion claim.",
+  "source": {
+    "path": "reports/spy/20261024-235746-728801/source-data.json",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "warmup_start": "2004-01-02",
+    "evaluation_start": "2005-01-03",
+    "evaluation_end": "2025-12-31",
+    "expected_evaluation_sessions": 5283,
+    "historical_access": "already viewed development history; no protected holdout",
+    "raw_price_signal_policy": "Saved unadjusted OHLC rounded to cents before features; dividends separately credited by account ledger; raw-price peaks start at first saved2004close"
+  },
+  "gate": {
+    "trend": {
+      "fast_ema": 50,
+      "slow_ema": 200,
+      "adjust": false,
+      "minimum_closes": 200,
+      "positive": "fast > slow"
+    },
+    "volatility": {
+      "return_count": 20,
+      "return_type": "simple raw-close",
+      "ddof": 1,
+      "annual_sessions": 252
+    },
+    "drawdown": "raw close / expanding maximum raw close from saved2004start -1",
+    "provisional": {
+      "red": {
+        "drawdown_strictly_below": -0.2,
+        "volatility_at_least": 0.4,
+        "operator": "OR"
+      },
+      "yellow_if_not_red": {
+        "trend_not_positive": true,
+        "drawdown_at_most": -0.1,
+        "volatility_at_least": 0.25,
+        "operator": "OR"
+      },
+      "green_candidate": "otherwise"
+    },
+    "initial_state": "unassessed with zero target until all features ready; then yellow, evaluate immediate worsening and staged green confirmation",
+    "recovery": {
+      "consecutive_closes": 5,
+      "red_to_yellow": {
+        "drawdown_strictly_above": -0.18,
+        "volatility_strictly_below": 0.35,
+        "no_red_condition": true
+      },
+      "yellow_to_green": {
+        "trend_positive": true,
+        "drawdown_strictly_above": -0.08,
+        "volatility_strictly_below": 0.2
+      },
+      "worsening": "immediate at completed close; green may go directly red; reset counters on worsening or failed recovery band",
+      "stage_boundary": "red-to-yellow close never counts toward green confirmation; green count begins next close",
+      "persistence": "keep state when no deterioration/recovery transition applies"
+    },
+    "caps": {
+      "green": 1.0,
+      "yellow": 0.5,
+      "red": 0.0
+    },
+    "target": "min(base_target, state_cap * nominal_exposure); do not multiply two sizing reductions",
+    "nominal_exposure": 1.0,
+    "availability": "completed close t only; shift state/target once to next saved session open t+1; preserve warmup state into evaluation; new portfolio starts in cash"
+  },
+  "cases": [
+    {
+      "id": "hold",
+      "base": "always_long",
+      "factor": 1.0,
+      "gate": false
+    },
+    {
+      "id": "ema",
+      "base": "ema50_200",
+      "factor": 1.0,
+      "gate": false
+    },
+    {
+      "id": "gate_hold",
+      "base": "always_long",
+      "factor": 1.0,
+      "gate": true
+    },
+    {
+      "id": "gate_ema",
+      "base": "ema50_200",
+      "factor": 1.0,
+      "gate": true
+    },
+    {
+      "id": "half_hold",
+      "base": "always_long",
+      "factor": 0.5,
+      "gate": false
+    },
+    {
+      "id": "buy_hold_entry_only",
+      "base": "entry_once_long",
+      "factor": 1.0,
+      "gate": false,
+      "execution": "Buy maximum whole shares under99%initialsizingreserve at first evaluation open with modeled costs. Hold thereafter, cash dividends accumulate; no discretionary rebalance or dividend reinvestment. Preserve shared mandatory margin/halt checks."
+    }
+  ],
+  "cost_scenarios": [
+    {
+      "id": "base",
+      "cost_bps_per_side": 5.0
+    },
+    {
+      "id": "stress",
+      "cost_bps_per_side": 10.0
+    }
+  ],
+  "account": {
+    "capital_usd": 300000.0,
+    "sizing_reserve_allocation": 0.99,
+    "commission_usd_per_net_trade": 1.0,
+    "cash_interest_rate": 0.0,
+    "borrowing_rate_illustrative": 0.06,
+    "interest_day_count": "ACT/360 calendar days",
+    "initial_margin": 0.5,
+    "maintenance_margin": 0.25,
+    "quantity": "whole nonnegative shares",
+    "rebalance": "Daily next-open targets for five target-based cases, including always-long daily. Entry-only buy/hold explicitly holds initial shares without discretionary rebalancing.",
+    "dividends": "same saved ex-date cash dividend ledger policy",
+    "terminal": "mark holdings at final close; no extra terminal liquidation",
+    "model_owner": "research/leverage-model.md"
+  },
+  "evaluation": {
+    "primary_pair": [
+      {
+        "metric": "full_path_drawdown_magnitude",
+        "direction": "minimize"
+      },
+      {
+        "metric": "longest_underwater_observed_sessions",
+        "direction": "minimize"
+      }
+    ],
+    "growth_cost": "CAGR difference in percentage points and ending equity versus each own base and half-exposure reference; no chosen acceptable sacrifice",
+    "same_base_hypothesis": "For each gated/base pair, gate is no worse on both primary metrics and strictly better on at least one; otherwise reject this joint protective-path claim in that cost context",
+    "cost_robustness": "A claim surviving costs must satisfy its specified comparisons in both5bp and10bp contexts; never pool contexts",
+    "additional_claim_boundary": "Fixed half exposure is not an exact matched-risk control; protective alpha or general timing superiority stays unassessed even if both primary metrics improve",
+    "secondary": [
+      "CAGR",
+      "Sharpe_zero_rf",
+      "Calmar",
+      "annual_return_drawdown_Sharpe_Calmar",
+      "rolling_21_63_126_252_cumulative_returns",
+      "rolling_63_252_Sharpe",
+      "worst_1_5_21_63_session_returns",
+      "deepest_drawdown_recovery",
+      "longest_underwater_calendar_days",
+      "censored_recovery",
+      "historical_daily_ES95",
+      "actual_exposure",
+      "turnover_and_costs",
+      "state_transitions_and_dwell",
+      "warning_false_alarms_and_lead_lag",
+      "missed_rebounds"
+    ],
+    "chronological_blocks": [
+      [
+        "2005-01-03",
+        "2011-12-30"
+      ],
+      [
+        "2012-01-03",
+        "2018-12-31"
+      ],
+      [
+        "2019-01-02",
+        "2025-12-31"
+      ]
+    ],
+    "block_boundaries": "Read continuous full-path ledgers; no refit, state reset, artificial liquidation or capital restart. Prior saved close anchors block returns and within-block DD; full-path DD remains separate. All blocks already viewed.",
+    "warning_event": {
+      "start": "first executed green-to-yellow/red state transition; one episode until green returns",
+      "price_event": "any raw SPY close <=95% of executed-session open across that day and next20sessions",
+      "horizon_sessions": 21,
+      "actionable_warning": "separately record first day within each episode where gated intended target is below its own ungated base target; no-action warnings earn no avoided-loss credit",
+      "censor": "incomplete21-session horizons excluded from precision denominator and separately counted",
+      "dependence": "report episode counts and overlapping horizons; no independent-sample p-values",
+      "left_censor": "A reduced carried state at first evaluation day is left-censored; do not manufacture a new transition or warning."
+    },
+    "missed_rebounds": "For every red entry and red exit, report both net-account returns over5/21/63sessions from previous close through final horizon close, including transition overnight gap, against own base and hold. Report signed benchmark-minus-gate differences and actual exposure. Censor incomplete horizons; future outcomes never set colors.",
+    "paired_comparisons": [
+      [
+        "gate_hold",
+        "hold"
+      ],
+      [
+        "gate_ema",
+        "ema"
+      ]
+    ],
+    "headline_benchmarks": [
+      "buy_hold_entry_only",
+      "ema"
+    ],
+    "sizing_control": "hold is the always-long DAILY sizing reference. Its saved historical figures are NOT results for the new entry-only buy/hold case.",
+    "fixed_cash_reference": "half_hold is fixed half-target daily sizing for standalone-gate comparison; no exactly matched-risk reference or half-EMA claim is supplied.",
+    "drawdown_numeric_tolerance_fraction": 1e-10,
+    "duration_tolerance_sessions": 0,
+    "censoring_claim": "Compare observed durations only; any censored recovery stays explicitly unresolved, not a shorter eventual recovery claim.",
+    "primary_pair_implementation": "Separate predeclared paired path test, not a relabeling of existing CAGR/drawdown Pareto scores."
+  },
+  "resources": {
+    "proposed_new_financial_case_ceiling": 12,
+    "failures_count": true,
+    "sweeps": 0,
+    "automatic_retries": 0,
+    "financial_workers": 1,
+    "simultaneous_studies": 1,
+    "wall_clock_ceiling_seconds": 900,
+    "timeout_semantics": "stop new cases after cap; terminate/preserve a timed-out active process as failed; no silent resume/retry",
+    "prior_program": "8/12completed cases are a closed historical program; its4unused slots are not implicitly reused",
+    "synthetic_correctness_tests": "separate engineering validation, never financial-performance evidence",
+    "cash_control": "analytical zero-return/zero-cost path under zero cash interest; undefined Sharpe/Calmar, no trading study attempt"
+  },
+  "readiness": {
+    "design": "specified for implementation review",
+    "execution": "blocked until gate state machine, always-long/fixed-fraction plan support, attribution and guarded audits are implemented/tested; then freeze executable code/dependency hashes before any new market-data case Entry-only holding support also required; the existing daily sizing simulator does not implement literal buy-once hold.",
+    "required_tests": [
+      "exact threshold boundaries and red precedence",
+      "five-close staged recovery/reset and warmup continuity",
+      "today/future perturbations cannot alter an already scheduled target",
+      "no double signal lag or double multiplication",
+      "EMA and always-long controls match saved5bp ledgers/trades exactly within1e-7USD ledger tolerance",
+      "Decimal reconciliation plus explicit finite/coverage guards for every case",
+      "temporal metric parity and event horizon/censoring boundaries",
+      "12-case reservations, failure/timeout preservation, immutable cache checks",
+      "entry-only initial buy then no discretionary rebalance; preserve dividend cash and common mandatory risk handling"
+    ],
+    "launch_requirements": [
+      "implementation identity and reviewed exact plan",
+      "source/hash/coverage and timing checks",
+      "separate per-cost comparison contexts",
+      "fresh12-case coordinator reservation and deadline before launch",
+      "all gate-sensitive tests passing"
+    ]
+  }
+}

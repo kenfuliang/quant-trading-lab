@@ -1,0 +1,131 @@
+{
+  "schema": "decision-layer-sizing-design-v1",
+  "status": "proposed_design_not_executable",
+  "execution_requested": false,
+  "allocated_financial_attempts": 0,
+  "created_utc": "2026-10-25T20:15:05.299551+00:00",
+  "layer": "aggressiveness / position sizing",
+  "study_id": "spy-continuous-cap-development-v1",
+  "parent_hashes": {
+    "docs/tasks/evidence/2026-10-25-rsi-risk-gate-completion.json": "1e3b81c9fd2a4afd2761a5c029b7920509b65596f0fe91ebca70c8cc6e178c76",
+    "docs/tasks/evidence/2026-10-25-rsi-etf-readiness-completion.json": "9d2ec12c8fd3340743894fe8f1ab79cd71d4dfd75ce14e4190d85caf654074cf",
+    "research/plans/spy-risk-gate-price-peak-ablation-v1.json": "449096da9fbe13855546c99e7c464fa6f570deacc83e680f78aca4e0372dfa05"
+  },
+  "source": {
+    "path": "reports/spy/20261024-235746-728801/source-data.json",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "warmup": "2004-01-02 through 2004-12-31",
+    "evaluation_start": "2005-01-03",
+    "evaluation_end": "2025-12-31",
+    "expected_sessions": 5283,
+    "classification": "already viewed development history; no independent confirmation",
+    "new_requests": 0
+  },
+  "question": "Does one fixed smooth volatility cap improve the frozen discrete EMA gate joint depth/duration outcome, and does it add anything beyond a simple lower-exposure EMA?",
+  "rules": {
+    "ema": "Prior completed close EMA50>EMA200; full nominal1 when true else0; adjust=False, min_periods50/200; unchanged saved rule.",
+    "half_ema": "Same EMA eligibility; target0.5 when eligible else0. New matched sizing control, not the saved half_hold rule.",
+    "discrete_ema": "Frozen price-peak ablation from parent plan: set drawdown feature0 in original state recurrence, retaining EMA, sigma20, all thresholds/confirmations/caps. Do not simplify it by name.",
+    "continuous_ema": "Same EMA eligibility; target=min(1,0.20/sigma20) when eligible and sigma20>0 else0; sigma20=sample std(ddof1) of20 raw-close simple returns * sqrt252. One lag to next open. Valid zero volatility gives0; invalid/nonfinite after warmup fails preflight/stops execution. No state hysteresis, price-peak input, color-triggered caps or fitted parameters."
+  },
+  "interpretation": "EMA vs continuous changes only sizing. Discrete vs continuous replaces the entire cap policy, including its memory; cannot attribute differences solely to color discretization. 20% is prior agent proposal, not a tuned budget, forecast return or approved risk limit. Inverse volatility, not paper inverse variance.",
+  "proposed_cases": [
+    {
+      "id": "5bp_ema",
+      "rule": "ema",
+      "cost_bps_per_side": 5
+    },
+    {
+      "id": "5bp_half_ema",
+      "rule": "half_ema",
+      "cost_bps_per_side": 5
+    },
+    {
+      "id": "5bp_discrete_ema",
+      "rule": "discrete_ema",
+      "cost_bps_per_side": 5
+    },
+    {
+      "id": "5bp_continuous_ema",
+      "rule": "continuous_ema",
+      "cost_bps_per_side": 5
+    },
+    {
+      "id": "10bp_ema",
+      "rule": "ema",
+      "cost_bps_per_side": 10
+    },
+    {
+      "id": "10bp_half_ema",
+      "rule": "half_ema",
+      "cost_bps_per_side": 10
+    },
+    {
+      "id": "10bp_discrete_ema",
+      "rule": "discrete_ema",
+      "cost_bps_per_side": 10
+    },
+    {
+      "id": "10bp_continuous_ema",
+      "rule": "continuous_ema",
+      "cost_bps_per_side": 10
+    }
+  ],
+  "proposed_limits": {
+    "financial_attempts": 8,
+    "candidate_variants": 1,
+    "financial_workers": 1,
+    "wall_seconds_from_execution_goal_start": 3600,
+    "automatic_retries": 0,
+    "new_downloads": 0,
+    "new_packages": 0,
+    "old_budget_carried": false,
+    "failed_attempts_count": true,
+    "controls_reused_to_expand_search": false
+  },
+  "financial_model": {
+    "capital": 300000.0,
+    "annual_rate": 0.06,
+    "allocation": 0.99,
+    "initial_margin": 0.5,
+    "maintenance": 0.25,
+    "cost_bps": 5.0,
+    "commission": 1.0
+  },
+  "model_overrides_by_case": "Only cost_bps5/10 and target rule; all other financial-model parameters unchanged. Nominal exposure1, no intended borrowing/shorts,99% reserve, daily whole-share targets after modeled costs,USD1 per nonzero trade, zero credit interest. Ex-date cash credit retained as stylized fixture assumption; not payment-date cash or broker parity.",
+  "primary_claim": {
+    "control": "discrete_ema",
+    "treatment": "continuous_ema",
+    "criterion": "At each cost, longest observed peak-to-recovery/observed-end duration strictly shorter and maximum drawdown magnitude no worse (fraction tolerance1e-10); require both costs. Failure at either cost rejects this specified historical claim; invalid evidence means unassessed, not a financial rejection."
+  },
+  "simplicity_check": {
+    "control": "half_ema",
+    "criterion": "Same-context full-path vector netCAGR maximize, MDD magnitude minimize, duration minimize. If half_ema no worse on all3 and strictly better on1 at both costs, retire added-complexity claim for continuous. Equality is no evidence to prefer complexity. Mixed results tradeoff/inconclusive; no scalar tie-break."
+  },
+  "growth": "Report net CAGR/wealth gaps versus all controls; acceptable sacrifice unset, so path pass is not investment selection. Sharpe/Calmar diagnostic, never rescue primary failure.",
+  "diagnostics": [
+    "annual return/MDD/Sharpe/Calmar",
+    "rolling21/63/126/252 returns and63/252Sharpe",
+    "worst1/5/21/63 returns and historicaldailyES95",
+    "deepest/longest episodes, censoring and strictly underwater counts",
+    "turnover,fees,slippage,average/min/max allocation and realized exposure",
+    "return/exposure/cost attribution and rebound participation",
+    "three fixed calendar blocks2005-2011,2012-2018,2019-2025 from continuous account; no resets or winner selection"
+  ],
+  "implementation_gates": [
+    "New exact implementation and code hashes frozen before run; do not modify old executable plans/runners to reopen budgets",
+    "Causal prefix/future-perturbation and exactly-one-lag tests; invalid features and zero sigma handled explicitly",
+    "Exact old control fill parity and monetary ledger tolerance1e-7USD; known diagnostic-only representations separately qualified",
+    "Independent Decimal ledger reconciliation and independent annual/temporal checks; hash all artifacts",
+    "Reserve aggregate attempts and deadline before each case; failed attempts consume limit; no retry/new target/lookback",
+    "Claim-specific source eligibility retained: not entitled to market realism, independent alpha or redistribution claims"
+  ],
+  "outputs": [
+    "immutable plan and executed code/config hashes",
+    "decision daily records with sigma20,EMA eligibility,target,available_at,reason",
+    "signals,ledger,trades,costs,audit,annual+temporal outputs and hashed manifests",
+    "comparison report: supported/rejected/tradeoff/unassessed plus named next uncertainty"
+  ],
+  "stop": "Stop at8attempts or60minutes or source/hash/accounting/causality failure; preserve all evidence. Do not substitute20% with another risk budget or add variants after results. Current document alone executes0cases.",
+  "next_independent_evidence": "After development decision, freeze rule/config and prospectively observe future data with qualified source/availability; do not call later slices of viewed2005-2025 an untouched test."
+}

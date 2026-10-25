@@ -81,3 +81,34 @@ install three frameworks. Candidate-specific findings belong in
 `docs/tasks/<date>-research-<topic>.md` using the
 [intake template](templates/research-intake.md). Keep bulky licensed material in an
 appropriate ignored dataset/vendor location, and private evidence in `.local/`.
+
+## Free-data constraint and remaining prerequisites
+
+
+Confirmed user constraint on 2026-10-25: free/local data only. No subscription,
+purchase, account creation or credentials were used by the strategy suite.
+
+The other 78 entries need instruments/data beyond the frozen SPY daily snapshot.
+This is a local-availability blocker, not a claim that no free source exists.
+Public source checks identify possible follow-up paths:
+
+| Source | Available context | Unresolved prerequisite |
+| --- | --- | --- |
+| [French data library](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html) | Published research factor/portfolio return series | Return series do not reconstruct tradable point-in-time stock holdings, costs or raw fundamentals; separate study/input rights review needed |
+| [Alpaca Basic documentation](https://docs.alpaca.markets/us/docs/about-market-data-api) | Free tier describes IEX equities and indicative options coverage | Eligible account/access, actual coverage/history and licensing unverified; no credentials or complete historical option chain present locally |
+| [Cboe historical option quotes](https://datashop.cboe.com/option-quote-intervals) | Historical quote products have defined fields and purchase terms | No paid purchase permitted; no matching complete local dataset. Public product description is not a dataset |
+
+Option payoff formulas alone cannot establish historical fills, assignment or
+volatility returns. Factor return indexes cannot be relabeled as our implemented
+stock selection. Market-making needs timestamped quotes/book events and execution
+assumptions. Multi-asset allocation needs a frozen common universe/calendar and
+prices; event-driven systems additionally need point-in-time event records. These
+requirements remain attached to each catalogue entry rather than fabricated results.
+
+## Completed source screenings
+
+- [Strategy Survival Funnel review](tasks/2026-10-25-research-strategy-survival-funnel.md)
+  (2026-10-25): pinned source and published CSV consistency reviewed; 47 families,
+  318 configurations and 9222 cases. Screened for process/definition reuse; direct
+  code adoption held for license clarification, returns not independently reproduced.
+  This screening supersedes discovery-only descriptions for this candidate.

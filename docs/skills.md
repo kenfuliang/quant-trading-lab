@@ -14,10 +14,9 @@ delivery priorities; [capability matrix](capabilities.md) owns native-tool evide
 Skills describe repeatable work and route to canonical procedures. They are not
 new trading infrastructure or evidence that the underlying workflow has shipped.
 
-Research execution dependency: this skills PR supplies instructions and contracts.
-The implementation and saved financial evidence are in the dependent
-[research/results PR](https://github.com/kenfuliang/quant-trading-lab/pull/1).
-Check root README on the checked-out branch before selecting executable tools.
+Research execution requires each workflow's documented inputs and tools. Check
+root README for current runtime readiness; the [research review](tasks/2026-10-25-pr-review.md)
+records the implementation and evaluation limits.
 
 ## Ownership and maintenance
 

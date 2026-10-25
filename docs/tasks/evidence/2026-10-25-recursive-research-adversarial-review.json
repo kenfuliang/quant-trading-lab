@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-25",
+  "status": "completed scoped independent review and wrapper mitigation",
+  "scope": {
+    "new_historical_financial_studies": 0,
+    "synthetic_mocked_execution": true,
+    "broker_operations": 0,
+    "upstream_code_execution": false,
+    "historical_artifacts_changed": false
+  },
+  "findings": [
+    {
+      "id": "legacy-nonfinite",
+      "priority": 1,
+      "before_probe": {
+        "input_sessions": 2,
+        "corruption": "finalcashandequityNaN",
+        "audit_result": {
+          "passed": true,
+          "sessions": 2,
+          "fills": 0,
+          "maximum_difference_usd": 0.0
+        }
+      },
+      "mitigation": "new wrapper finite/schema guards before replay and cache reuse",
+      "after": "fresh rejection tests passed",
+      "legacy_core_changed": false
+    },
+    {
+      "id": "legacy-extra-output-date",
+      "priority": 1,
+      "before_probe": {
+        "input_sessions": 2,
+        "output_sessions": 3,
+        "extra_equity_usd": 9999999,
+        "audit_result": {
+          "passed": true,
+          "sessions": 3,
+          "fills": 0,
+          "maximum_difference_usd": 0.0
+        }
+      },
+      "mitigation": "exact ledger/input index equality and trade-session membership",
+      "after": "extra/missing/duplicate/reordered date tests passed"
+    },
+    {
+      "id": "controller-preview-state",
+      "priority": 2,
+      "before_probe": {
+        "max_attempts": 1,
+        "observed_state": "ready",
+        "selected": null,
+        "stop_reason": "Logical attempt budget exhausted (failures included)"
+      },
+      "mitigation": "reported to controller owner",
+      "after_independently_retested_here": false,
+      "reservation_bypass_observed": false
+    }
+  ],
+  "validation": {
+    "existing_wrapper_tests": 9,
+    "new_adversarial_tests": 8,
+    "combined_tests_passed": 17,
+    "combined_exit": 0,
+    "command": ".venv/bin/python -m unittest discover -s tests -p 'test_bounded_study*.py' -v",
+    "synthetic_cache_semantic_recheck_passed": true,
+    "same_day_lag_probe_passed": true
+  },
+  "old_saved_ledgers_scan": {
+    "directory": "reports/strategy-suite/97fc0717512bee9e",
+    "cases": 88,
+    "rows": 464904,
+    "nonfinite_numeric_ledger_cases": [],
+    "scope": "numeric finiteness only; no new financial calculation or hash-identity verdict"
+  },
+  "stable_wrapper_sha256": "9a6165423a8dfcff9c96acb1d8c0d8a31d7d037617f72c8d70b81b78042a09d0",
+  "file_hashes_at_review": {
+    "research/bounded_study.py": "9a6165423a8dfcff9c96acb1d8c0d8a31d7d037617f72c8d70b81b78042a09d0",
+    "tests/test_bounded_study_adversarial.py": "f8757ec21201994fc0b6dcf7472b171d05942a241efd6147b3a1ce6f371696b0",
+    "research/leverage_audit.py": "dab6fb0d6c36f40d9f04436eb3317cdf19d5ec0d940284a5b3652046a3c02775",
+    "research/research_controller.py": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d"
+  },
+  "retained_limitations": [
+    "legacy direct audit remains vulnerable; future callers need equivalent guard or separately versioned core repair",
+    "per-plan bound is not global attempt enforcement",
+    "controller does not verify caller evidence or meter processes",
+    "journal is not adversary-proof when both log and snapshot rewritten",
+    "semantic duplicate equivalence beyond exact canonical equality not inferred",
+    "controller laterfix not independently verified by this receipt"
+  ],
+  "next": "Coordinator supersedes preflight-only plan with stable hashes before actual study launch; run final integration checks separately",
+  "report_sha256": "ad45c6ae288a8b900b4d01cd5c5c3b0cbd4af4de45c2098770a7a894e72b6413"
+}

@@ -1,0 +1,143 @@
+{
+  "schema": "rsi-risk-gate-completion-v1",
+  "status": "complete_bounded_research_epoch",
+  "requirements": {
+    "fixed_causal_gate_and_entry_only": "research/risk_gate.py; tests/test_risk_gate.py; literal holding cases each have exactly1fill",
+    "six_rules_two_costs_failures_counted": "12 originalattempts:10 completed processes+2 preserved failed controls separately requalified",
+    "one_justified_followup_four_cases": "prospectively frozen price-peak ablation plan;4 completed processes,16total across2studies",
+    "control_parity": "Exact parsed fills; raw monetary ledger fields within1e-7USD. Explicit unitless EMA budget diagnostic conversion preserved separately.",
+    "accounting": "16 guarded saved-ledger Decimal replays; maxdifference1.979060471057892e-9USD",
+    "metrics": "1408 independent annual/overall financial checks;494928scalar/window temporal checks; everydrawdownepisode/tail field verified",
+    "events": "1456independent eventfield checks; complete warning/transition/netred-window/exposure/cost files saved",
+    "temporal_and_cash": "rolling21/63/126/252 returns,63/252Sharpe,ES95,worst1/5/21/63,episodes/censoring; fixedhalf and analyticalcash references;3continuousblocks",
+    "decision_log": "D1-D4 in review-bundle.json:combinedjointclaimrejected,componentablationretaineddevelopmentonly,budgetstop",
+    "browser": "Realbrowsercost5/10andyear2020/2008filterchecks;localPlotlycharts and timelines;76artifactmanifestverified",
+    "negative_evidence_preserved": "Four distinct immutable financialevidencedirectories;originalfailed logs/rawCSVs/statuses,failedreportbuild,andold35artifactreviewallretained",
+    "boundaries": "Free/local source;no broker/orders/paiddata/install/commit/deployment/publication;vieweddevelopment,noRLtrainingoruntouchedalpha",
+    "parallel_research": "Three requested agents completed primarysourcebriefs,zeroadditionalfinancialsimulations;newideas remainunbudgeted",
+    "final_checks": "make check exit0:195tests,documentationlinks/metadata,anddependencyconsistency passed"
+  },
+  "checked_utc": "2026-10-25T19:16:33.195439+00:00",
+  "git_head": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+  "branch": "main",
+  "attempt_count": 16,
+  "failed_processes_preserved": 2,
+  "completed_processes": 14,
+  "qualified_failed_controls": 2,
+  "studies": 2,
+  "financial_retries": 0,
+  "original_study": {
+    "started_utc": "2026-10-25T18:46:50.145287+00:00",
+    "finished_utc": "2026-10-25T18:58:02.466100+00:00",
+    "original_deadline_utc": "2026-10-25T19:01:50.145287+00:00"
+  },
+  "followup": {
+    "plan_sha256": "449096da9fbe13855546c99e7c464fa6f570deacc83e680f78aca4e0372dfa05",
+    "created_utc": "2026-10-25T19:02:21.342740+00:00",
+    "started_utc": "2026-10-25T19:02:25.468188+00:00",
+    "finished_utc": "2026-10-25T19:02:32.275331+00:00",
+    "wall_seconds": 6.806939666043036
+  },
+  "source_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+  "source_manifests": {
+    "reports/risk-gate/5da2f7dccff31178": {
+      "manifest_sha256": "76af7cd58df03b286baefeee109cdf447d762fdb2f3568398cef69a120728354",
+      "artifact_count": 14
+    },
+    "reports/risk-gate/97e9d442a8b83201": {
+      "manifest_sha256": "c0ee72d865a2ab20a17a2989e6b2afe7fb4d60a3093580cda35739aa584097e2",
+      "artifact_count": 14
+    },
+    "reports/risk-gate/b6b57fe7077dff3b": {
+      "manifest_sha256": "bf4314e20b107b654feeea3faccf122e2ddf772efcc497a14bfac0c70e2ffd1f",
+      "artifact_count": 113
+    },
+    "reports/risk-gate/449096da9fbe1385": {
+      "manifest_sha256": "99e76d57ca2912fdb9f02256a4ef378ceced25d12dc1f12d37a16d08504df80d",
+      "artifact_count": 46
+    }
+  },
+  "review_manifest": {
+    "manifest_sha256": "b6b04c8545c9a25af22eb0f583d4dae0ad03dff6e2f29c515676f0e0209dfba8",
+    "artifact_count": 76
+  },
+  "control_parity": {
+    "5_hold": {
+      "passed": true,
+      "trade_exact": true,
+      "ledger_atol_usd": 1e-07,
+      "historical_columns": 14,
+      "current_columns": 15,
+      "derived_diagnostic_columns": [
+        "effective_target_leverage"
+      ],
+      "raw_source_preserved": true,
+      "diagnostic_transform": "Missing historical diagnostic verified constant1 in current control."
+    },
+    "5_ema": {
+      "passed": true,
+      "trade_exact": true,
+      "ledger_atol_usd": 1e-07,
+      "historical_columns": 15,
+      "current_columns": 15,
+      "derived_diagnostic_columns": [],
+      "raw_source_preserved": true,
+      "diagnostic_transform": "Only EMA effective_target_leverage re-expressed as legacy nominal budget 1; all monetary fields/shares/fills unchanged."
+    }
+  },
+  "independent_financial_metric_checks": 1408,
+  "temporal_window_checks": 494928,
+  "independent_event_checks": 1456,
+  "max_decimal_discrepancy_usd": 1.979060471057892e-09,
+  "execution_snapshots": {
+    "research/risk_gate_recovery2.py": {
+      "execution_snapshot": ".local/rsi-risk-gate/code-at-execution/risk_gate_recovery2.py",
+      "execution_sha256": "e0c13bacb07f617a60c76c00ac9f1efa3c5c5cbf48bfad7208746830102a5792",
+      "current_sha256": "84014cdebeb2dc1e1de643167170752af3b89f2d20fc851f5ab52768844871c2",
+      "change": "Post-execution terminal timeout bookkeeping only; synthetic checks, no financial retry."
+    },
+    "research/risk_gate_ablation.py": {
+      "execution_snapshot": ".local/rsi-risk-gate/code-at-execution/risk_gate_ablation.py",
+      "execution_sha256": "007316bd8977874d5f5e7f6db4fa32d12b81c70d7b50b89cb0d9641e9dc44cca",
+      "current_sha256": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb",
+      "change": "Post-execution terminal timeout bookkeeping only; synthetic checks, no financial retry."
+    }
+  },
+  "proof_hashes": {
+    ".local/rsi-risk-gate/proof/epoch-chart.png": "c66a4a40e20c217c3321a1e1cfefbe5f55f2fc0cdf903d2be46ea98d63b0a313",
+    ".local/rsi-risk-gate/proof/epoch-overview.png": "08d060b579788cc35bb1834dc70866d59d3a2036e1c511a6de108b911b4daabd"
+  },
+  "parallel_brief_hashes": {
+    "docs/tasks/2026-10-25-rsi-risk-mechanisms.md": "984fd8588a011d26bdfecc30c79668d47cb939cc531f353616aebf9f15a8c50c",
+    "docs/tasks/2026-10-25-rsi-diversification-ideas.md": "c8de9e95e8a147535b132c11556565ec8264ed0fc00cf0d1a62446f5bccc2c1e",
+    "docs/tasks/2026-10-25-rsi-frontier-and-selection.md": "d8e8bf23cedfc9ce37b80c71a69600d11f38a95996e29e329974e2aaadb59c83"
+  },
+  "state_sha256": "d0802fc1a4486eb052d188798352df25e31e421ee6fee948d49dafdee021b748",
+  "prior_completed_review": {
+    "manifest_sha256": "8168b2b6af55fb398d608ed30d42aafab29d9487c11f0846d7a202474d3346b5",
+    "artifact_count": 35
+  },
+  "earlier_heartbeat": "Delete check returned not_found: already absent; no replacement automation created.",
+  "conclusion": "Combined joint protection claimrejected;fixedEMA/volatility-onlycandidate retained for independentvalidation,nopaper/livepromotion,alphaortrainedRLclaim.",
+  "remaining_boundaries": [
+    "Viewed2005\u20132025development history",
+    "No independently validatednewdata/provider rights/calendar",
+    "No native fill/broker parity",
+    "Multiasset/futures/optionsinputandaccountinggaps",
+    "Annualdoublingunestablished"
+  ],
+  "final_check": {
+    "status": "passed",
+    "command": "make check",
+    "exit_code": 0,
+    "tests": 195,
+    "log": ".local/rsi-risk-gate/completion-check.log",
+    "log_sha256": "3d1cc13864cfedca8b2757f20c292d72af55a2c199ee22ded330838b4b2e7bd1"
+  },
+  "execution_source_snapshots": {
+    "manifest": ".local/rsi-risk-gate/code-at-execution/snapshot-manifest.json",
+    "sha256": "ab2f749249c67fea21607a1b0a74e4f0ab3dd83ee4fe5fce90d935a6d2939ced",
+    "note": "All declared code/dependency/method bytes match each frozen execution identity; exact earlier variants reconstructed from retained edits and accepted only on SHA256 equality. Current timeout bookkeeping patch has synthetic validation only."
+  },
+  "completed_utc": "2026-10-25T19:17:46.302230+00:00"
+}

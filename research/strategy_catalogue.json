@@ -1,0 +1,2888 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-25",
+  "purpose": "All 100 previously listed strategy ideas, with explicit data/definition gates. IDs are catalogue identifiers, never a profitability ranking.",
+  "source_policy": "References identify family context only. No exact published strategy or claimed performance has been reproduced. No source code or dataset was copied. Rights and exact specifications require candidate-specific review. Runnable evidence lives in suite manifests, not catalogue status.",
+  "sources": {
+    "nautilus_examples": {
+      "url": "https://github.com/nautechsystems/nautilus_trader/tree/v1.231.0/nautilus_trader/examples/strategies",
+      "reviewed": "2026-10-25",
+      "scope": "Pinned local example source context; not an exact rule provenance for every daily candidate.",
+      "access": "local pinned checkout; web listing unavailable"
+    },
+    "aqr_momentum": {
+      "url": "https://www.aqr.com/Insights/Datasets/Time-Series-Momentum-Factors-Monthly",
+      "reviewed": "2026-10-25",
+      "scope": "Time-series momentum family and research data context; not our SPY rule replication.",
+      "access": "primary page opened"
+    },
+    "french_factors": {
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "reviewed": "2026-10-25",
+      "scope": "Factor definitions and research portfolio data context; no point-in-time tradable universe acquired.",
+      "access": "primary page opened"
+    },
+    "oic_options": {
+      "url": "https://www.optionseducation.org/strategies/all-strategies-en",
+      "reviewed": "2026-10-25",
+      "scope": "Options structure catalogue; no entry timing rule, historical chains or profitability evidence.",
+      "access": "primary page opened"
+    },
+    "cme_spreads": {
+      "url": "https://www.cmegroup.com/education/courses/understanding-futures-spreads/futures-spread-overview",
+      "reviewed": "2026-10-25",
+      "scope": "Futures spread mechanics context; not an exact signal or performance reproduction.",
+      "access": "primary page opened"
+    },
+    "nber_ml": {
+      "url": "https://www.nber.org/papers/w25398",
+      "reviewed": "2026-10-25",
+      "scope": "Machine-learning asset-pricing research context; no paper replication or dataset rights established.",
+      "access": "primary search extract; direct HTML returned 403"
+    }
+  },
+  "strategies": [
+    {
+      "id": 1,
+      "slug": "sma-crossover",
+      "name": "SMA crossover",
+      "family": "Trend following",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Long when fast SMA exceeds slow SMA; otherwise cash.",
+      "default_parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 2,
+      "slug": "ema-crossover",
+      "name": "EMA crossover",
+      "family": "Trend following",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Long when fast EMA exceeds slow EMA; otherwise cash.",
+      "default_parameters": {
+        "fast": 50,
+        "slow": 200
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 3,
+      "slug": "price-versus-200-day-moving-average",
+      "name": "Price versus 200-day moving average",
+      "family": "Trend following",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Long when close exceeds its 200-session SMA; otherwise cash.",
+      "default_parameters": {
+        "period": 200
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 4,
+      "slug": "macd-trend-strategy",
+      "name": "MACD trend strategy",
+      "family": "Trend following",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Long when MACD exceeds its signal line; otherwise cash.",
+      "default_parameters": {
+        "fast": 12,
+        "slow": 26,
+        "signal": 9
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 5,
+      "slug": "adx-filtered-trend-following",
+      "name": "ADX-filtered trend following",
+      "family": "Trend following",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Long when completed close > SMA200 and ADX14 >=25; otherwise cash. Recursive pandas ewm initialization as defined in daily-strategies.md.",
+      "default_parameters": {
+        "adx_period": 14,
+        "adx_min": 25,
+        "sma_period": 200
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 6,
+      "slug": "donchian-channel-breakout",
+      "name": "Donchian channel breakout",
+      "family": "Breakouts",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter long after close exceeds prior channel high; exit below prior exit channel low.",
+      "default_parameters": {
+        "entry": 20,
+        "exit": 10
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 7,
+      "slug": "turtle-trading",
+      "name": "Turtle trading",
+      "family": "Breakouts",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Proposed long-only daily Turtle-style channel entry and exit; original Turtle position pyramiding and shorting are excluded.",
+      "default_parameters": {
+        "entry": 55,
+        "exit": 20
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 8,
+      "slug": "volatility-breakout",
+      "name": "Volatility breakout",
+      "family": "Breakouts",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter when completed close > prior close + 0.5 * prior ATR14; exit below prior close - 0.5 * prior ATR14; hold between thresholds.",
+      "default_parameters": {
+        "atr_period": 14,
+        "atr_multiple": 0.5
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 9,
+      "slug": "opening-range-breakout",
+      "name": "Opening-range breakout",
+      "family": "Breakouts",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped intraday trades and bid/ask quotes",
+        "exchange session and auction calendar"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter after price breaks the first intraday interval high; flatten by session end.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Saved daily bars cannot establish executable intraday paths, spreads or auction fills."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 10,
+      "slug": "previous-day-high-low-breakout",
+      "name": "Previous-day high/low breakout",
+      "family": "Breakouts",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter long when close exceeds previous high; exit when close falls below previous low.",
+      "default_parameters": {
+        "lookback": 1
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 11,
+      "slug": "rsi-2-mean-reversion",
+      "name": "RSI(2) mean reversion",
+      "family": "Daily mean reversion",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter when RSI2 <10; exit when RSI2 >50; hold between thresholds.",
+      "default_parameters": {
+        "period": 2,
+        "entry_below": 10,
+        "exit_above": 50
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 12,
+      "slug": "bollinger-band-mean-reversion",
+      "name": "Bollinger Band mean reversion",
+      "family": "Daily mean reversion",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter long below the lower band; exit at the rolling mean.",
+      "default_parameters": {
+        "period": 20,
+        "std_multiple": 2
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 13,
+      "slug": "price-z-score-reversion",
+      "name": "Price z-score reversion",
+      "family": "Daily mean reversion",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter when 20-session population price z-score <-1.5; exit when z-score >=0.",
+      "default_parameters": {
+        "period": 20,
+        "entry_below": -1.5,
+        "exit_at": 0
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 14,
+      "slug": "connors-rsi-strategy",
+      "name": "Connors RSI strategy",
+      "family": "Daily mean reversion",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter when mean(close RSI3, signed-streak RSI2, current-return percentile rank against prior100 returns) <10; exit >50. Strict rank and recursive seeds defined in daily-strategies.md.",
+      "default_parameters": {
+        "price_rsi": 3,
+        "streak_rsi": 2,
+        "rank_period": 100,
+        "entry_below": 10,
+        "exit_above": 50
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 15,
+      "slug": "short-term-return-reversal",
+      "name": "Short-term return reversal",
+      "family": "Daily mean reversion",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Enter after a negative short-lookback cumulative return; exit after return recovery.",
+      "default_parameters": {
+        "period": 5,
+        "entry_below": -0.03,
+        "exit_at": 0
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "nautilus_examples"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 16,
+      "slug": "vwap-mean-reversion",
+      "name": "VWAP mean reversion",
+      "family": "Intraday effects",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped intraday trades and bid/ask quotes",
+        "exchange session and auction calendar"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Buy sufficiently below session VWAP and exit at VWAP or session end.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Saved daily bars cannot establish executable intraday paths, spreads or auction fills."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 17,
+      "slug": "opening-gap-fade",
+      "name": "Opening-gap fade",
+      "family": "Intraday effects",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped intraday trades and bid/ask quotes",
+        "exchange session and auction calendar"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Fade an opening gap against previous close; flatten at target, stop or session end.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Saved daily bars cannot establish executable intraday paths, spreads or auction fills."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 18,
+      "slug": "intraday-momentum",
+      "name": "Intraday momentum",
+      "family": "Intraday effects",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped intraday trades and bid/ask quotes",
+        "exchange session and auction calendar"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Trade in the direction of early-session return and exit near close.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Saved daily bars cannot establish executable intraday paths, spreads or auction fills."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 19,
+      "slug": "overnight-return-strategy",
+      "name": "Overnight-return strategy",
+      "family": "Intraday effects",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "Daily SPY opening and closing prices (available in saved snapshot)"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Precommitted SPY close-to-next-open long exposure adaptation",
+      "default_parameters": {
+        "entry": "each_session_close",
+        "exit": "next_session_open",
+        "execution_schedule": "overnight",
+        "signal_warmup_sessions": 1
+      },
+      "blockers": [
+        "Local close-to-open adaptation requires separate suite audit; actual closing-auction fills and independent evaluation remain unverified."
+      ],
+      "next_acceptance": "Extend and audit a close-to-open execution schedule using the saved daily data; no intraday quote dataset is inherently required for a clearly labeled daily-price simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "overnight-strategy.md"
+    },
+    {
+      "id": 20,
+      "slug": "closing-auction-imbalance-strategy",
+      "name": "Closing-auction imbalance strategy",
+      "family": "Intraday effects",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped intraday trades and bid/ask quotes",
+        "exchange session and auction calendar",
+        "historical publication-time auction imbalance messages"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Trade against or with a predeclared closing-auction imbalance signal and flatten on declared schedule.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Saved daily bars cannot establish executable intraday paths, spreads or auction fills."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 21,
+      "slug": "time-series-momentum",
+      "name": "Time-series momentum",
+      "family": "Momentum",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "daily SPY raw OHLCV with ex-date dividends and warm-up history"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Long when trailing 252-session price return is positive; otherwise cash.",
+      "default_parameters": {
+        "lookback": 252
+      },
+      "blockers": [
+        "Candidate declaration is not execution evidence; inspect separate suite manifest and validation before treating as implemented."
+      ],
+      "next_acceptance": "Freeze exact local rule and next-open timing; causal and hand-check tests; run declared common-cost suite and independently reconcile ledger and annual/full-period metrics. No alpha or live readiness inferred.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction",
+      "signal_contract": "research/daily-strategies.md"
+    },
+    {
+      "id": 22,
+      "slug": "cross-sectional-momentum",
+      "name": "Cross-sectional momentum",
+      "family": "Momentum",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Rank a point-in-time universe by trailing return; buy winners and optionally short losers.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 23,
+      "slug": "dual-momentum",
+      "name": "Dual momentum",
+      "family": "Momentum",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Select relatively strongest assets only when their absolute momentum is positive.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 24,
+      "slug": "residual-momentum",
+      "name": "Residual momentum",
+      "family": "Momentum",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data",
+        "point-in-time factor exposures"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Rank stocks by returns unexplained by estimated factor exposures; hold positive residual momentum.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 25,
+      "slug": "industry-momentum",
+      "name": "Industry momentum",
+      "family": "Momentum",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Rank industries by trailing return; hold highest-ranked industries.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 26,
+      "slug": "sector-etf-rotation",
+      "name": "Sector ETF rotation",
+      "family": "ETF and cross-asset rotation",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Periodically buy highest-momentum sector ETFs using a declared point-in-time universe.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 27,
+      "slug": "stock-bond-relative-strength-rotation",
+      "name": "Stock/bond relative-strength rotation",
+      "family": "ETF and cross-asset rotation",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Rotate between stock and bond exposures using trailing relative strength.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 28,
+      "slug": "global-asset-momentum-rotation",
+      "name": "Global asset momentum rotation",
+      "family": "ETF and cross-asset rotation",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Rotate among global asset ETFs by trailing total-return rank with a cash gate.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 29,
+      "slug": "commodity-momentum-rotation",
+      "name": "Commodity momentum rotation",
+      "family": "ETF and cross-asset rotation",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Rank commodity futures by trailing returns; hold winners with declared rolls.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 30,
+      "slug": "currency-trend-following",
+      "name": "Currency trend following",
+      "family": "ETF and cross-asset rotation",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time multi-instrument universe and total-return histories",
+        "corporate actions, delistings and instrument-specific funding/roll data"
+      ],
+      "instrument_scope": [
+        "multi-asset universe"
+      ],
+      "proposed_rule": "Hold currency futures or forwards in the direction of trailing returns with declared funding.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Only SPY history is saved; rotation/ranking requires multiple eligible instruments and predeclared universe."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "aqr_momentum"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 31,
+      "slug": "volatility-targeted-equity-exposure",
+      "name": "Volatility-targeted equity exposure",
+      "family": "Exposure and risk overlays",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "saved daily SPY OHLC and dividends; lagged price-derived features may suffice for a local adaptation"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Volatility-targeted SPY allocation",
+      "default_parameters": {
+        "vol_period": 20,
+        "target_vol": 0.1,
+        "annual_sessions": 252,
+        "factor_cap": 1.0
+      },
+      "blockers": [
+        "Offline simulation and audit required; no out-of-sample or broker validation."
+      ],
+      "next_acceptance": "Run this documented local adaptation under the common portfolio model; audit and record evidence before any independent evaluation claim.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "Local precisely defined adaptation; family source is not an exact implementation claim.",
+      "signal_contract": "allocation-strategies.md"
+    },
+    {
+      "id": 32,
+      "slug": "trend-plus-volatility-targeting",
+      "name": "Trend plus volatility targeting",
+      "family": "Exposure and risk overlays",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "saved daily SPY OHLC and dividends; lagged price-derived features may suffice for a local adaptation"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "EMA trend plus volatility-targeted SPY allocation",
+      "default_parameters": {
+        "fast": 50,
+        "slow": 200,
+        "vol_period": 20,
+        "target_vol": 0.1,
+        "annual_sessions": 252,
+        "factor_cap": 1.0
+      },
+      "blockers": [
+        "Offline simulation and audit required; no out-of-sample or broker validation."
+      ],
+      "next_acceptance": "Run this documented local adaptation under the common portfolio model; audit and record evidence before any independent evaluation claim.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "Local precisely defined adaptation; family source is not an exact implementation claim.",
+      "signal_contract": "allocation-strategies.md"
+    },
+    {
+      "id": 33,
+      "slug": "drawdown-controlled-exposure",
+      "name": "Drawdown-controlled exposure",
+      "family": "Exposure and risk overlays",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "saved daily SPY OHLC and dividends; lagged price-derived features may suffice for a local adaptation"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "SPY-price drawdown-controlled allocation",
+      "default_parameters": {
+        "warmup_closes": 20,
+        "half_exposure_drawdown": -0.1,
+        "cash_drawdown_below": -0.2
+      },
+      "blockers": [
+        "Offline simulation and audit required; no out-of-sample or broker validation."
+      ],
+      "next_acceptance": "Run this documented local adaptation under the common portfolio model; audit and record evidence before any independent evaluation claim.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "Local precisely defined adaptation; family source is not an exact implementation claim.",
+      "signal_contract": "allocation-strategies.md"
+    },
+    {
+      "id": 34,
+      "slug": "constant-proportion-portfolio-insurance",
+      "name": "Constant-proportion portfolio insurance",
+      "family": "Exposure and risk overlays",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "saved daily SPY OHLC and dividends; lagged price-derived features may suffice for a local adaptation"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "CPPI fixed initial-capital floor allocation",
+      "default_parameters": {
+        "floor_fraction": 0.8,
+        "multiplier": 3.0
+      },
+      "blockers": [
+        "Offline simulation and audit required; no out-of-sample or broker validation."
+      ],
+      "next_acceptance": "Run this documented local adaptation under the common portfolio model; audit and record evidence before any independent evaluation claim.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "Local precisely defined adaptation; family source is not an exact implementation claim.",
+      "signal_contract": "allocation-strategies.md"
+    },
+    {
+      "id": 35,
+      "slug": "risk-parity-allocation",
+      "name": "Risk-parity allocation",
+      "family": "Exposure and risk overlays",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized multi-asset total-return histories",
+        "eligible-universe and cash/funding histories"
+      ],
+      "instrument_scope": [
+        "multi-asset portfolio"
+      ],
+      "proposed_rule": "Choose portfolio weights to equalize estimated risk contributions across assets.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Single SPY series cannot establish portfolio diversification or asset risk contributions; constraints and estimator remain undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 36,
+      "slug": "minimum-variance-allocation",
+      "name": "Minimum-variance allocation",
+      "family": "Portfolio construction",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized multi-asset total-return histories",
+        "eligible-universe and cash/funding histories"
+      ],
+      "instrument_scope": [
+        "multi-asset portfolio"
+      ],
+      "proposed_rule": "Estimate lagged covariance and minimize portfolio variance under declared weight constraints.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Single SPY series cannot establish portfolio diversification or asset risk contributions; constraints and estimator remain undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 37,
+      "slug": "maximum-diversification-allocation",
+      "name": "Maximum-diversification allocation",
+      "family": "Portfolio construction",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized multi-asset total-return histories",
+        "eligible-universe and cash/funding histories"
+      ],
+      "instrument_scope": [
+        "multi-asset portfolio"
+      ],
+      "proposed_rule": "Maximize weighted standalone volatility divided by portfolio volatility under constraints.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Single SPY series cannot establish portfolio diversification or asset risk contributions; constraints and estimator remain undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 38,
+      "slug": "equal-weight-periodic-rebalancing",
+      "name": "Equal-weight periodic rebalancing",
+      "family": "Portfolio construction",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized multi-asset total-return histories",
+        "eligible-universe and cash/funding histories"
+      ],
+      "instrument_scope": [
+        "multi-asset portfolio"
+      ],
+      "proposed_rule": "Reset equal weights across a fixed eligible universe on declared dates.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Single SPY series cannot establish portfolio diversification or asset risk contributions; constraints and estimator remain undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 39,
+      "slug": "hierarchical-risk-parity",
+      "name": "Hierarchical risk parity",
+      "family": "Portfolio construction",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized multi-asset total-return histories",
+        "eligible-universe and cash/funding histories"
+      ],
+      "instrument_scope": [
+        "multi-asset portfolio"
+      ],
+      "proposed_rule": "Cluster assets by lagged correlations and allocate recursively using cluster risks.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Single SPY series cannot establish portfolio diversification or asset risk contributions; constraints and estimator remain undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 40,
+      "slug": "trend-filtered-stock-bond-allocation",
+      "name": "Trend-filtered stock/bond allocation",
+      "family": "Portfolio construction",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized multi-asset total-return histories",
+        "eligible-universe and cash/funding histories"
+      ],
+      "instrument_scope": [
+        "multi-asset portfolio"
+      ],
+      "proposed_rule": "Apply declared trend gates to equity and bond sleeves before allocating between them.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Single SPY series cannot establish portfolio diversification or asset risk contributions; constraints and estimator remain undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 41,
+      "slug": "value",
+      "name": "Value",
+      "family": "Equity factors I",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank stocks on point-in-time value ratios and hold a declared cheap-stock basket.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 42,
+      "slug": "quality",
+      "name": "Quality",
+      "family": "Equity factors I",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank stocks on declared balance-sheet and earnings quality measures.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 43,
+      "slug": "low-volatility",
+      "name": "Low volatility",
+      "family": "Equity factors I",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Select low-volatility stocks using lagged return estimates and sector controls.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 44,
+      "slug": "small-cap-size",
+      "name": "Small-cap size",
+      "family": "Equity factors I",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Select small-cap stocks from a point-in-time investable universe with liquidity controls.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 45,
+      "slug": "profitability",
+      "name": "Profitability",
+      "family": "Equity factors I",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank stocks on point-in-time operating profitability and hold high-ranked names.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 46,
+      "slug": "conservative-investment",
+      "name": "Conservative investment",
+      "family": "Equity factors II",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank stocks by lagged asset growth and hold conservative-investment names.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 47,
+      "slug": "dividend-yield",
+      "name": "Dividend yield",
+      "family": "Equity factors II",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank eligible stocks by point-in-time dividend yield.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 48,
+      "slug": "shareholder-yield",
+      "name": "Shareholder yield",
+      "family": "Equity factors II",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank stocks by dividends plus net buybacks relative to market value.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 49,
+      "slug": "earnings-revision-momentum",
+      "name": "Earnings-revision momentum",
+      "family": "Equity factors II",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability",
+        "timestamped analyst earnings revisions"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Hold stocks with positive analyst earnings forecast revisions under publication lags.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 50,
+      "slug": "accrual-anomaly",
+      "name": "Accrual anomaly",
+      "family": "Equity factors II",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time stock universe with delisted securities",
+        "publication-lagged fundamentals and corporate actions",
+        "historical executable prices, liquidity and borrow availability"
+      ],
+      "instrument_scope": [
+        "equity universe"
+      ],
+      "proposed_rule": "Rank stocks by lagged accrual measures and favor low-accrual names.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY prices cannot reproduce stock selection; licensed point-in-time inputs and investability controls are absent."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "french_factors"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 51,
+      "slug": "distance-based-pairs-trading",
+      "name": "Distance-based pairs trading",
+      "family": "Statistical arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized prices for hedge instruments",
+        "point-in-time pair/universe selection history",
+        "borrow costs and executable spreads"
+      ],
+      "instrument_scope": [
+        "multi-instrument hedged portfolio"
+      ],
+      "proposed_rule": "Select pairs by normalized historical distance; trade spread deviations and exit on convergence.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY alone cannot construct a hedge spread; selection, stationarity tests and hedge/borrow model are undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 52,
+      "slug": "cointegration-pairs-trading",
+      "name": "Cointegration pairs trading",
+      "family": "Statistical arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized prices for hedge instruments",
+        "point-in-time pair/universe selection history",
+        "borrow costs and executable spreads"
+      ],
+      "instrument_scope": [
+        "multi-instrument hedged portfolio"
+      ],
+      "proposed_rule": "Fit cointegrating spread on training data; enter at extreme spread z-scores and exit at mean.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY alone cannot construct a hedge spread; selection, stationarity tests and hedge/borrow model are undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 53,
+      "slug": "kalman-filter-pairs-trading",
+      "name": "Kalman-filter pairs trading",
+      "family": "Statistical arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized prices for hedge instruments",
+        "point-in-time pair/universe selection history",
+        "borrow costs and executable spreads"
+      ],
+      "instrument_scope": [
+        "multi-instrument hedged portfolio"
+      ],
+      "proposed_rule": "Estimate time-varying hedge ratios with a causal Kalman filter; trade residual deviations.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY alone cannot construct a hedge spread; selection, stationarity tests and hedge/borrow model are undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 54,
+      "slug": "pca-residual-mean-reversion",
+      "name": "PCA residual mean reversion",
+      "family": "Statistical arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized prices for hedge instruments",
+        "point-in-time pair/universe selection history",
+        "borrow costs and executable spreads"
+      ],
+      "instrument_scope": [
+        "multi-instrument hedged portfolio"
+      ],
+      "proposed_rule": "Estimate PCA factors on past returns; trade extreme idiosyncratic residuals toward zero.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY alone cannot construct a hedge spread; selection, stationarity tests and hedge/borrow model are undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 55,
+      "slug": "etf-constituent-residual-trading",
+      "name": "ETF/constituent residual trading",
+      "family": "Statistical arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized prices for hedge instruments",
+        "point-in-time pair/universe selection history",
+        "borrow costs and executable spreads"
+      ],
+      "instrument_scope": [
+        "multi-instrument hedged portfolio"
+      ],
+      "proposed_rule": "Trade ETF versus a hedge basket when an executable residual exceeds costs.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY alone cannot construct a hedge spread; selection, stationarity tests and hedge/borrow model are undefined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 56,
+      "slug": "merger-arbitrage",
+      "name": "Merger arbitrage",
+      "family": "Event driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped point-in-time corporate event announcements and outcomes",
+        "affected-security prices with delistings/corporate actions",
+        "event-specific executable fills and borrow"
+      ],
+      "instrument_scope": [
+        "event-affected equities"
+      ],
+      "proposed_rule": "Buy announced merger targets against cash or acquirer hedge; resolve completion and break scenarios.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Event feed, publication lags and investable event universe are unavailable."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 57,
+      "slug": "post-earnings-announcement-drift",
+      "name": "Post-earnings-announcement drift",
+      "family": "Event driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped point-in-time corporate event announcements and outcomes",
+        "affected-security prices with delistings/corporate actions",
+        "event-specific executable fills and borrow"
+      ],
+      "instrument_scope": [
+        "event-affected equities"
+      ],
+      "proposed_rule": "Trade in the direction of earnings surprises after the actual release timestamp.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Event feed, publication lags and investable event universe are unavailable."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 58,
+      "slug": "index-rebalancing-trades",
+      "name": "Index-rebalancing trades",
+      "family": "Event driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped point-in-time corporate event announcements and outcomes",
+        "affected-security prices with delistings/corporate actions",
+        "event-specific executable fills and borrow"
+      ],
+      "instrument_scope": [
+        "event-affected equities"
+      ],
+      "proposed_rule": "Trade documented index additions/removals after public announcements with executable timing.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Event feed, publication lags and investable event universe are unavailable."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 59,
+      "slug": "spin-off-investing",
+      "name": "Spin-off investing",
+      "family": "Event driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped point-in-time corporate event announcements and outcomes",
+        "affected-security prices with delistings/corporate actions",
+        "event-specific executable fills and borrow"
+      ],
+      "instrument_scope": [
+        "event-affected equities"
+      ],
+      "proposed_rule": "Hold eligible newly spun-off shares under a predeclared event and exit policy.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Event feed, publication lags and investable event universe are unavailable."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 60,
+      "slug": "share-buyback-event-strategy",
+      "name": "Share-buyback event strategy",
+      "family": "Event driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "timestamped point-in-time corporate event announcements and outcomes",
+        "affected-security prices with delistings/corporate actions",
+        "event-specific executable fills and borrow"
+      ],
+      "instrument_scope": [
+        "event-affected equities"
+      ],
+      "proposed_rule": "Trade after publicly announced buybacks with a declared hold horizon and cancellation handling.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Event feed, publication lags and investable event universe are unavailable."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 61,
+      "slug": "fx-carry",
+      "name": "FX carry",
+      "family": "Carry and yield curves",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical instrument term structures and funding curves",
+        "individual contracts or bonds with executable prices",
+        "roll, settlement and collateral histories"
+      ],
+      "instrument_scope": [
+        "FX, commodity futures or bonds"
+      ],
+      "proposed_rule": "Buy higher-yielding currencies and fund with lower-yielding currencies using actual forward points.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY history contains neither funding curves nor maturity instruments; contract selection and hedge ratios must be defined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "cme_spreads"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 62,
+      "slug": "commodity-futures-carry",
+      "name": "Commodity futures carry",
+      "family": "Carry and yield curves",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical instrument term structures and funding curves",
+        "individual contracts or bonds with executable prices",
+        "roll, settlement and collateral histories"
+      ],
+      "instrument_scope": [
+        "FX, commodity futures or bonds"
+      ],
+      "proposed_rule": "Rank commodity futures by term-structure carry with explicit rolls and position weights.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY history contains neither funding curves nor maturity instruments; contract selection and hedge ratios must be defined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "cme_spreads"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 63,
+      "slug": "bond-roll-down",
+      "name": "Bond roll-down",
+      "family": "Carry and yield curves",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical instrument term structures and funding curves",
+        "individual contracts or bonds with executable prices",
+        "roll, settlement and collateral histories"
+      ],
+      "instrument_scope": [
+        "FX, commodity futures or bonds"
+      ],
+      "proposed_rule": "Hold bonds expected to benefit from rolling down the curve; hedge duration as specified.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY history contains neither funding curves nor maturity instruments; contract selection and hedge ratios must be defined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "cme_spreads"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 64,
+      "slug": "yield-curve-steepener-flattener",
+      "name": "Yield-curve steepener/flattener",
+      "family": "Carry and yield curves",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical instrument term structures and funding curves",
+        "individual contracts or bonds with executable prices",
+        "roll, settlement and collateral histories"
+      ],
+      "instrument_scope": [
+        "FX, commodity futures or bonds"
+      ],
+      "proposed_rule": "Trade duration-matched long and short curve tenors based on a declared steepness signal.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY history contains neither funding curves nor maturity instruments; contract selection and hedge ratios must be defined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "cme_spreads"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 65,
+      "slug": "yield-curve-butterfly",
+      "name": "Yield-curve butterfly",
+      "family": "Carry and yield curves",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical instrument term structures and funding curves",
+        "individual contracts or bonds with executable prices",
+        "roll, settlement and collateral histories"
+      ],
+      "instrument_scope": [
+        "FX, commodity futures or bonds"
+      ],
+      "proposed_rule": "Trade a duration-weighted belly against wings based on a declared curvature signal.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "SPY history contains neither funding curves nor maturity instruments; contract selection and hedge ratios must be defined."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "cme_spreads"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 66,
+      "slug": "cash-futures-basis-trading",
+      "name": "Cash/futures basis trading",
+      "family": "Relative value and arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized executable prices for every arbitrage leg",
+        "instrument cash flows, financing, borrow, taxes and corporate actions"
+      ],
+      "instrument_scope": [
+        "multi-instrument relative-value portfolio"
+      ],
+      "proposed_rule": "Trade cash index basket versus futures when executable basis exceeds financing and carry costs.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Required leg data and trading access are unverified; frictionless price differences cannot establish executable arbitrage."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "cme_spreads"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 67,
+      "slug": "etf-creation-redemption-arbitrage",
+      "name": "ETF creation/redemption arbitrage",
+      "family": "Relative value and arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized executable prices for every arbitrage leg",
+        "instrument cash flows, financing, borrow, taxes and corporate actions",
+        "point-in-time creation baskets and authorized-participant access model"
+      ],
+      "instrument_scope": [
+        "multi-instrument relative-value portfolio"
+      ],
+      "proposed_rule": "Trade ETF premium/discount versus executable creation basket through permitted creation channels.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Required leg data and trading access are unverified; frictionless price differences cannot establish executable arbitrage."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 68,
+      "slug": "closed-end-fund-discount-trading",
+      "name": "Closed-end-fund discount trading",
+      "family": "Relative value and arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized executable prices for every arbitrage leg",
+        "instrument cash flows, financing, borrow, taxes and corporate actions",
+        "publication-time NAV histories"
+      ],
+      "instrument_scope": [
+        "multi-instrument relative-value portfolio"
+      ],
+      "proposed_rule": "Trade closed-end funds at extreme NAV discounts and exit on normalization.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Required leg data and trading access are unverified; frictionless price differences cannot establish executable arbitrage."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 69,
+      "slug": "convertible-arbitrage",
+      "name": "Convertible arbitrage",
+      "family": "Relative value and arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized executable prices for every arbitrage leg",
+        "instrument cash flows, financing, borrow, taxes and corporate actions",
+        "convertible terms, credit curves and call schedules"
+      ],
+      "instrument_scope": [
+        "multi-instrument relative-value portfolio"
+      ],
+      "proposed_rule": "Buy convertible bonds with a calibrated equity hedge; model credit, borrow and optionality.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Required leg data and trading access are unverified; frictionless price differences cannot establish executable arbitrage."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 70,
+      "slug": "dividend-arbitrage",
+      "name": "Dividend arbitrage",
+      "family": "Relative value and arbitrage",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "synchronized executable prices for every arbitrage leg",
+        "instrument cash flows, financing, borrow, taxes and corporate actions"
+      ],
+      "instrument_scope": [
+        "multi-instrument relative-value portfolio"
+      ],
+      "proposed_rule": "Trade priced dividend discrepancies across eligible instruments with taxes and corporate actions modeled.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Required leg data and trading access are unverified; frictionless price differences cannot establish executable arbitrage."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 71,
+      "slug": "covered-calls",
+      "name": "Covered calls",
+      "family": "Options: income and protection",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Hold underlying shares and sell calls against covered units; specify expiry, strike and rolling policy.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 72,
+      "slug": "cash-secured-puts",
+      "name": "Cash-secured puts",
+      "family": "Options: income and protection",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Sell puts while reserving sufficient cash for assignment; specify expiry and strike selection.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 73,
+      "slug": "protective-puts",
+      "name": "Protective puts",
+      "family": "Options: income and protection",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Hold shares and buy puts with declared expiry, strikes and roll schedule.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 74,
+      "slug": "collars",
+      "name": "Collars",
+      "family": "Options: income and protection",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Hold shares, buy puts and sell covered calls using declared strikes and expiries.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 75,
+      "slug": "bull-call-spreads",
+      "name": "Bull call spreads",
+      "family": "Options: income and protection",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Buy lower-strike calls and sell equal-count higher-strike calls at the same expiry.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 76,
+      "slug": "bear-put-spreads",
+      "name": "Bear put spreads",
+      "family": "Options: direction and movement",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Buy higher-strike puts and sell equal-count lower-strike puts at the same expiry.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 77,
+      "slug": "bull-put-spreads",
+      "name": "Bull put spreads",
+      "family": "Options: direction and movement",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Sell higher-strike puts and buy lower-strike puts at the same expiry.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 78,
+      "slug": "bear-call-spreads",
+      "name": "Bear call spreads",
+      "family": "Options: direction and movement",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Sell lower-strike calls and buy higher-strike calls at the same expiry.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 79,
+      "slug": "long-straddles",
+      "name": "Long straddles",
+      "family": "Options: direction and movement",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Buy same-strike calls and puts at the same expiry under a declared volatility signal.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 80,
+      "slug": "long-strangles",
+      "name": "Long strangles",
+      "family": "Options: direction and movement",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Buy out-of-the-money calls and puts at the same expiry under a declared volatility signal.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 81,
+      "slug": "iron-condors",
+      "name": "Iron condors",
+      "family": "Options: spread structures",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Combine a short put spread with a short call spread at the same expiry; specify all four strikes.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 82,
+      "slug": "iron-butterflies",
+      "name": "Iron butterflies",
+      "family": "Options: spread structures",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Sell an at-the-money straddle and buy same-expiry outer wings; specify widths.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 83,
+      "slug": "calendar-spreads",
+      "name": "Calendar spreads",
+      "family": "Options: spread structures",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Trade options at different expiries with the same strike; specify long/short orientation.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 84,
+      "slug": "diagonal-spreads",
+      "name": "Diagonal spreads",
+      "family": "Options: spread structures",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Trade options at different expiries and strikes; specify long/short orientation.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 85,
+      "slug": "ratio-spreads",
+      "name": "Ratio spreads",
+      "family": "Options: spread structures",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Buy and sell unequal option quantities; specify legs, exposure cap and uncovered-tail stress.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 86,
+      "slug": "dispersion-trading",
+      "name": "Dispersion trading",
+      "family": "Volatility trading",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model",
+        "point-in-time index constituents and their option chains"
+      ],
+      "instrument_scope": [
+        "index and constituent options"
+      ],
+      "proposed_rule": "Trade index implied volatility against a weighted constituent-option basket with delta hedges.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 87,
+      "slug": "delta-hedged-volatility-arbitrage",
+      "name": "Delta-hedged volatility arbitrage",
+      "family": "Volatility trading",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Trade implied versus forecast realized volatility using delta-hedged options and hedge costs.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 88,
+      "slug": "variance-risk-premium-harvesting",
+      "name": "Variance-risk-premium harvesting",
+      "family": "Volatility trading",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Sell priced variance exposure against collateral under an explicit tail-risk policy.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 89,
+      "slug": "volatility-term-structure-trading",
+      "name": "Volatility term-structure trading",
+      "family": "Volatility trading",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model",
+        "volatility-futures term structure if futures are selected"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Trade relative volatility across expiries using options or volatility futures with rolls.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 90,
+      "slug": "volatility-skew-relative-value",
+      "name": "Volatility-skew relative value",
+      "family": "Volatility trading",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "historical option bid/ask chains, contract metadata and underlying prices",
+        "rates, dividends, exercise/assignment rules and contract multipliers",
+        "multi-leg execution, margin and expiration valuation model"
+      ],
+      "instrument_scope": [
+        "SPY options and underlying"
+      ],
+      "proposed_rule": "Trade relative implied volatilities across strikes with a declared Greek-neutralization policy.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily SPY bars do not value historical options; chain data, entry/roll rules and interim margin/assignment model are missing."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "oic_options"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 91,
+      "slug": "passive-market-making",
+      "name": "Passive market making",
+      "family": "Market microstructure",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "sequenced historical order-book events and trade prints",
+        "venue-specific fees, queue priority and measured latency",
+        "synchronized cross-venue/cross-instrument clock data"
+      ],
+      "instrument_scope": [
+        "venue/instrument order books"
+      ],
+      "proposed_rule": "Quote bid and ask around a fair value while controlling inventory and adverse selection.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily bars cannot establish queue fills, adverse selection or latency-sensitive profitability."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 92,
+      "slug": "order-book-imbalance-trading",
+      "name": "Order-book imbalance trading",
+      "family": "Market microstructure",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "sequenced historical order-book events and trade prints",
+        "venue-specific fees, queue priority and measured latency",
+        "synchronized cross-venue/cross-instrument clock data"
+      ],
+      "instrument_scope": [
+        "venue/instrument order books"
+      ],
+      "proposed_rule": "Trade on lagged depth imbalance using executable quotes and realistic latency.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily bars cannot establish queue fills, adverse selection or latency-sensitive profitability."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 93,
+      "slug": "queue-position-aware-market-making",
+      "name": "Queue-position-aware market making",
+      "family": "Market microstructure",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "sequenced historical order-book events and trade prints",
+        "venue-specific fees, queue priority and measured latency",
+        "synchronized cross-venue/cross-instrument clock data"
+      ],
+      "instrument_scope": [
+        "venue/instrument order books"
+      ],
+      "proposed_rule": "Adjust quotes based on simulated queue priority, inventory and adverse-selection estimates.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily bars cannot establish queue fills, adverse selection or latency-sensitive profitability."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 94,
+      "slug": "cross-venue-arbitrage",
+      "name": "Cross-venue arbitrage",
+      "family": "Market microstructure",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "sequenced historical order-book events and trade prints",
+        "venue-specific fees, queue priority and measured latency",
+        "synchronized cross-venue/cross-instrument clock data"
+      ],
+      "instrument_scope": [
+        "venue/instrument order books"
+      ],
+      "proposed_rule": "Trade simultaneous executable price differences across venues net of fees and latency.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily bars cannot establish queue fills, adverse selection or latency-sensitive profitability."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 95,
+      "slug": "cross-instrument-lead-lag-trading",
+      "name": "Cross-instrument lead/lag trading",
+      "family": "Market microstructure",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "sequenced historical order-book events and trade prints",
+        "venue-specific fees, queue priority and measured latency",
+        "synchronized cross-venue/cross-instrument clock data"
+      ],
+      "instrument_scope": [
+        "venue/instrument order books"
+      ],
+      "proposed_rule": "Trade lagging instruments after a timestamp-causal move in the leading instrument.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Daily bars cannot establish queue fills, adverse selection or latency-sensitive profitability."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [],
+      "source_review": "unreviewed_exact_rule",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 96,
+      "slug": "earnings-news-sentiment",
+      "name": "Earnings-news sentiment",
+      "family": "Data and model driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time features and publication timestamps",
+        "declared chronological training/validation/evaluation split",
+        "eligible instrument prices and executable costs",
+        "timestamped earnings text corpus"
+      ],
+      "instrument_scope": [
+        "earnings-event equities"
+      ],
+      "proposed_rule": "Trade using sentiment inferred only from earnings text available at the decision timestamp.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Feature dataset and frozen causal model/training policy are absent; model choice after viewing results risks leakage and selection bias."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "nber_ml"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 97,
+      "slug": "macroeconomic-surprise-trading",
+      "name": "Macroeconomic-surprise trading",
+      "family": "Data and model driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time features and publication timestamps",
+        "declared chronological training/validation/evaluation split",
+        "eligible instrument prices and executable costs",
+        "first-release macro values and pre-release consensus snapshots"
+      ],
+      "instrument_scope": [
+        "macro-sensitive instruments"
+      ],
+      "proposed_rule": "Trade published macro surprises relative to contemporaneous consensus under release-time execution.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Feature dataset and frozen causal model/training policy are absent; model choice after viewing results risks leakage and selection bias."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "nber_ml"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    },
+    {
+      "id": 98,
+      "slug": "supervised-return-forecast-trading",
+      "name": "Supervised return-forecast trading",
+      "family": "Data and model driven",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "saved daily SPY OHLC and dividends; lagged price-derived features may suffice for a local adaptation"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Rolling ridge next-session return forecast long/cash adaptation",
+      "default_parameters": {
+        "training_max": 504,
+        "training_min": 252,
+        "ridge": 10.0,
+        "refit": "monthly",
+        "features": [
+          "return1",
+          "return5",
+          "return20",
+          "volatility20",
+          "sma50_gap"
+        ]
+      },
+      "blockers": [
+        "Offline simulation and audit required; no out-of-sample or broker validation."
+      ],
+      "next_acceptance": "Run this documented local adaptation under the common portfolio model; audit and record evidence before any independent evaluation claim.",
+      "source_refs": [
+        "nber_ml"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "Local precisely defined adaptation; family source is not an exact implementation claim.",
+      "signal_contract": "model-strategies.md"
+    },
+    {
+      "id": 99,
+      "slug": "regime-switching-allocation",
+      "name": "Regime-switching allocation",
+      "family": "Data and model driven",
+      "status": "daily_spy_candidate",
+      "implementable_with_saved_spy": true,
+      "required_data": [
+        "saved daily SPY OHLC and dividends; lagged price-derived features may suffice for a local adaptation"
+      ],
+      "instrument_scope": [
+        "SPY"
+      ],
+      "proposed_rule": "Two-component Gaussian-mixture low-volatility regime long/cash adaptation",
+      "default_parameters": {
+        "training_sessions": 252,
+        "iterations": 40,
+        "variance_floor": 1e-08,
+        "refit": "monthly",
+        "posterior_threshold": 0.5
+      },
+      "blockers": [
+        "Offline simulation and audit required; no out-of-sample or broker validation."
+      ],
+      "next_acceptance": "Run this documented local adaptation under the common portfolio model; audit and record evidence before any independent evaluation claim.",
+      "source_refs": [
+        "nber_ml"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "Local precisely defined adaptation; family source is not an exact implementation claim.",
+      "signal_contract": "model-strategies.md"
+    },
+    {
+      "id": 100,
+      "slug": "machine-learning-cross-sectional-stock-ranking",
+      "name": "Machine-learning cross-sectional stock ranking",
+      "family": "Data and model driven",
+      "status": "blocked",
+      "implementable_with_saved_spy": false,
+      "required_data": [
+        "point-in-time features and publication timestamps",
+        "declared chronological training/validation/evaluation split",
+        "eligible instrument prices and executable costs",
+        "delisted securities and publication-lagged stock features"
+      ],
+      "instrument_scope": [
+        "point-in-time equity universe"
+      ],
+      "proposed_rule": "Fit a cross-sectional prediction model on point-in-time stock features and trade ranked forecasts.",
+      "default_parameters": {
+        "selection": "definition_required"
+      },
+      "blockers": [
+        "Feature dataset and frozen causal model/training policy are absent; model choice after viewing results risks leakage and selection bias."
+      ],
+      "next_acceptance": "Resolve listed inputs and freeze selection, timing, sizing and cost rules; verify data rights and causal fixtures; only then implement and independently reconcile a separate simulation.",
+      "source_refs": [
+        "nber_ml"
+      ],
+      "source_review": "family_reference_only",
+      "rule_provenance": "local proposed adaptation; not a published-result reproduction"
+    }
+  ]
+}

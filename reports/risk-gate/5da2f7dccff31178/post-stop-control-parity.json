@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "trade_exact": true,
+  "ledger_atol_usd": 1e-07,
+  "historical_columns": 14,
+  "current_columns": 15,
+  "derived_diagnostic_columns": [
+    "effective_target_leverage"
+  ]
+}

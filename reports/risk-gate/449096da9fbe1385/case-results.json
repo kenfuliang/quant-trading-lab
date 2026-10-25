@@ -1,0 +1,86 @@
+[
+  {
+    "id": "5_ablate_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1835,
+      "maximum_difference_usd": 1.3969838619232178e-09
+    },
+    "financial_metric_checks": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 567,
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2493,
+        "episodes": 277,
+        "tail_and_drawdown_checks": 6
+      }
+    }
+  },
+  {
+    "id": "5_ablate_ema",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 967,
+      "maximum_difference_usd": 6.984919309616089e-10
+    },
+    "financial_metric_checks": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 513,
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2295,
+        "episodes": 255,
+        "tail_and_drawdown_checks": 6
+      }
+    }
+  },
+  {
+    "id": "10_ablate_hold",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 1797,
+      "maximum_difference_usd": 9.313225746154785e-10
+    },
+    "financial_metric_checks": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 571,
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2475,
+        "episodes": 275,
+        "tail_and_drawdown_checks": 6
+      }
+    }
+  },
+  {
+    "id": "10_ablate_ema",
+    "audit": {
+      "passed": true,
+      "sessions": 5283,
+      "fills": 976,
+      "maximum_difference_usd": 4.656612873077393e-10
+    },
+    "financial_metric_checks": 88,
+    "temporal_audit": {
+      "passed": true,
+      "scalar_and_window_checks": 30933,
+      "longest_duration_sessions": 514,
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2268,
+        "episodes": 252,
+        "tail_and_drawdown_checks": 6
+      }
+    }
+  }
+]

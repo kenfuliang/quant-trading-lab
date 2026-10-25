@@ -1,0 +1,126 @@
+{
+  "status": "complete_skill_and_bounded_saved_data_test",
+  "created_utc": "2026-10-25T21:02:35.642343+00:00",
+  "skill": ".agents/skills/trade-feature-engineering/SKILL.md",
+  "skill_sha256": "820ab40b74de9056c0d85e9ab3dbe0b9746a334e0c0937ed1af4fb1292ac61ad",
+  "workflow_owner": "docs/feature-engineering.md",
+  "task": "docs/tasks/2026-10-25-feature-engineering-skill.md",
+  "plan": "research/plans/spy-feature-diagnostic-v1.design.json",
+  "plan_sha256": "dbe6ae6859e0ffc467981b0f23470ffaa766008b916e78046e535bfe9ed8f166",
+  "output": ".local/performance/features/20261025-v1",
+  "manifest_sha256": "6a7784a177a6b6eb81f09fc3047292eb6c71f25f8a3400bc7225f88dc0c1947a",
+  "artifacts_verified": 16,
+  "parent_run_artifacts_freshly_verified": 187,
+  "gate_artifacts_verified": 50,
+  "rows": 5283,
+  "feature_candidates": 3,
+  "reference_features": 2,
+  "proposal_rounds": 1,
+  "independent_scalar_checks": 15849,
+  "additional_saved_ema_gap_checks": 5283,
+  "causality": [
+    {
+      "boundary": "2005-03-14",
+      "prefix_and_future_perturbation_pass": true
+    },
+    {
+      "boundary": "2011-12-09",
+      "prefix_and_future_perturbation_pass": true
+    },
+    {
+      "boundary": "2025-08-11",
+      "prefix_and_future_perturbation_pass": true
+    }
+  ],
+  "calibration_only_bin_edges_independently_verified": true,
+  "code_hashes": {
+    "research/feature_engineering.py": "7206d7e4177830f5404963d002bce1427b1f1d044f92ced07ae6fdb7de5dfc44",
+    "scripts/feature_diagnostic.py": "536170fa829e9f191058cab2897dbd86ae81104d34885a7a76af19f251a5b72c",
+    "tests/test_feature_engineering.py": "01c5748255ee04d678651d28eb19171059238017eee72e15edd405e518566f9a",
+    ".agents/skills/trade-feature-engineering/SKILL.md": "820ab40b74de9056c0d85e9ab3dbe0b9746a334e0c0937ed1af4fb1292ac61ad"
+  },
+  "source_research": {
+    "qlib_commit": "54355232463878d2eebb91fe0ee5fa7fa1f5976c",
+    "rd_agent_commit": "484776c211e4fbbeef03e0ec00d6bbee7362a4f4",
+    "rd_agent_paper": "2505.15155v2",
+    "alpha_agent_paper": "2502.16789v2",
+    "formulaic_alphas_paper": "1601.00991v3",
+    "original_code_or_financial_results_reproduced": false
+  },
+  "LLM_use": {
+    "proposal_origin": "Current assistant; development-informed context and primary research",
+    "rounds": 1,
+    "proposals": 3,
+    "external_api_calls": 0,
+    "new_agents": 0,
+    "trained_weights": false,
+    "comparative_LLM_advantage_established": false
+  },
+  "feature_decisions": {
+    "vol_ratio20_60": "incremental predictive value inconclusive; retain research reference only",
+    "range20_pct": "strong redundancy caution; not adopted despite higher standalone risk association",
+    "ema_gap_pct": "unstable return relationship; no entry policy selected"
+  },
+  "skill_evaluation": {
+    "frontmatter_validation": "passed with systemPython existingPyYAML6.0.3; no install",
+    "initial_project_validator_attempt": "unavailable:projectvenvPyYAMLmissing; no package added",
+    "actual_workflow_exercised": true,
+    "regression_tests": 8,
+    "manual_contract_review": [
+      "Future/outcome information not permitted in features",
+      "Cross-sectional/fundamental inputs absent:design-only/blocked",
+      "Three-candidate bound and no automatic financial followup"
+    ],
+    "independent_agent_or_no_skill_control": false
+  },
+  "checks": {
+    "make_check": {
+      "exit": 0,
+      "tests": 216,
+      "docs_and_skills": 77,
+      "dependencies": "consistent",
+      "log": ".local/feature-engineering/make-check.log",
+      "sha256": "9d8d8842c34681a60557d71cae190c7c9d64b2178c582c0f3710aac09bba85b1"
+    },
+    "skill_validator": {
+      "exit": 0,
+      "runtime": "systemPython; existingPyYAML6.0.3",
+      "log": ".local/feature-engineering/skill-validation.log",
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
+    },
+    "git_diff_check": {
+      "exit": 0
+    },
+    "browser_readback": {
+      "url": "http://127.0.0.1:8765/features/20261025-v1/index.html",
+      "registry_quality_associations_bins_and_downloads_verified": true
+    }
+  },
+  "boundaries": {
+    "financial_simulations": 0,
+    "new_market_snapshots": 0,
+    "paid_apis": 0,
+    "external_LLM_calls": 0,
+    "package_installs": 0,
+    "strategy_or_broker_changes": 0,
+    "commits_or_publication": 0
+  },
+  "interpretation": [
+    "All observations are vieweddevelopment, not independent alpha",
+    "90association cells disclosed; no pvalues or calibrated classifier",
+    "Stride21reduces label overlap but does not establish independent observations",
+    "Gate-conditioned outcomes sparse and retain later policy decisions",
+    "No predictor or trading rule fitted/adopted; no financial improvement established"
+  ],
+  "completed_utc": "2026-10-25T21:04:04.940618+00:00",
+  "updated_documents": {
+    "README.md": "a4d67729deab146c530bf737364ae196e7235264519462409c790056fc3d353d",
+    "docs/README.md": "681c8f5488e6ce9209d2c53b815a66b018a23c67d5f96bf00f970903f7498b30",
+    "docs/skills.md": "a197fcfbcf68799391b294c8e41144e246dc8be153fab5334c5f48fa2c126db2",
+    "docs/feature-engineering.md": "2b0ccfa536174ed9f0bc203cb3ad4c1116d7469a8d14a990a4304c7fb0e57d6a",
+    "docs/research-development.md": "590ab4af290beab5d9e64c70fcacb27a4ba372fff75dff35aa9f907e0f53eecb",
+    ".agents/skills/trade-project/SKILL.md": "a95523e2a90e5f5cafb6e6a39f3a2e59785893a98b01e586d30cc3d5d8cde1c8",
+    "docs/tasks/2026-10-25-feature-engineering-skill.md": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a",
+    "docs/tasks/2026-10-25-parallel-research-checklist.md": "31b8df4a875338deac4f0991711b925b9cbe2bd0080baf4e8301037061c94d90"
+  }
+}

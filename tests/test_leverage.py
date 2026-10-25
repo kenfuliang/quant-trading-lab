@@ -91,3 +91,51 @@ class FinancingTests(unittest.TestCase):
     def test_invalid_config_and_prices_fail_closed(self):
         with self.assertRaises(ValueError): FinancingModel(annual_rate=-.1)
         with self.assertRaises(ValueError): simulate(data([(100,0,100)]),{},'trend',2,self.model)
+
+
+class AllocationPolicyTests(unittest.TestCase):
+    model=FinancingModel(capital=1000,cost_bps=0,commission=0,annual_rate=0)
+
+    def test_factor_can_reduce_exposure_to_cash(self):
+        frame=data([(100,100,100)]*3)
+        frame['allocation_factor']=[1,.5,0]
+        curve,trades=simulate(frame,{},'trend',2,self.model)
+        self.assertEqual(list(curve.shares),[19,9,0])
+        self.assertTrue(reconcile(frame,{},curve,trades,'trend',2,self.model)['passed'])
+
+    def test_cppi_uses_prior_equity_and_can_fail_after_gap(self):
+        frame=data([(100,100,100),(100,100,120),(1,1,1)])
+        frame['cppi_floor_fraction']=.8;frame['cppi_multiplier']=3
+        curve,trades=simulate(frame,{},'trend',2,self.model)
+        self.assertEqual(curve.iloc[0].shares,5)
+        self.assertEqual(curve.iloc[1].shares,5)
+        self.assertLess(curve.iloc[-1].equity_usd,800)
+        self.assertTrue(reconcile(frame,{},curve,trades,'trend',2,self.model)['passed'])
+
+    def test_invalid_factor_is_rejected(self):
+        frame=data([(100,100,100)]);frame['allocation_factor']=float('nan')
+        with self.assertRaises(ValueError):simulate(frame,{},'trend',1,self.model)
+
+
+class OvernightScheduleTests(unittest.TestCase):
+    def test_close_entry_open_exit_and_weekend_financing(self):
+        model=FinancingModel(capital=1000,cost_bps=0,commission=0)
+        frame=data([(100,10,100),(110,10,100)],['2020-01-03','2020-01-06'])
+        frame['execution_schedule']='overnight'
+        curve,trades=simulate(frame,{'2020-01-06':1},'trend',1.5,model)
+        self.assertEqual(trades.iloc[0].reason,'overnight_entry')
+        self.assertEqual(trades.iloc[1].reason,'overnight_exit')
+        self.assertEqual(trades.iloc[1].fill_price,110)
+        self.assertAlmostEqual(curve.iloc[1].financing_usd,.2)
+        self.assertAlmostEqual(curve.iloc[1].dividend_usd,14)
+        self.assertAlmostEqual(curve.iloc[1].equity_usd,1153.8)
+        self.assertEqual(curve.forced_liquidations.sum(),0)
+        self.assertTrue(reconcile(frame,{'2020-01-06':1},curve,trades,'trend',1.5,model)['passed'])
+
+    def test_open_gap_liquidates_before_scheduled_exit(self):
+        model=FinancingModel(capital=1000,cost_bps=0,commission=0)
+        frame=data([(100,100,100),(50,50,50)]);frame['execution_schedule']='overnight'
+        curve,trades=simulate(frame,{},'trend',2,model)
+        self.assertEqual(trades.iloc[-1].reason,'forced_open')
+        self.assertTrue(curve.iloc[-1].halted)
+        self.assertTrue(reconcile(frame,{},curve,trades,'trend',2,model)['passed'])

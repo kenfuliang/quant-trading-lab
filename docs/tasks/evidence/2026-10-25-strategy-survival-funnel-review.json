@@ -1,0 +1,145 @@
+{
+  "reviewed_commit": "e349fd25d0b03f58a1864ad918afab04b412bd89",
+  "rows": 9222,
+  "families": 47,
+  "configurations": 318,
+  "assets": 29,
+  "survivors": 67,
+  "spy_survivors": [
+    {
+      "config": "dual_momentum__lookback63",
+      "oos_sharpe": 0.6046971337869045,
+      "oos_max_dd": -0.19169257186658073,
+      "oos_trades": 55
+    },
+    {
+      "config": "rsi_revert__lookback3_low20_high80",
+      "oos_sharpe": 0.5232253931110331,
+      "oos_max_dd": -0.10368358843282133,
+      "oos_trades": 314
+    }
+  ],
+  "category_counts": [
+    {
+      "category": "composite",
+      "cases": 406,
+      "survivors": 0
+    },
+    {
+      "category": "meanrev",
+      "cases": 2842,
+      "survivors": 49
+    },
+    {
+      "category": "pattern",
+      "cases": 464,
+      "survivors": 1
+    },
+    {
+      "category": "trend",
+      "cases": 3799,
+      "survivors": 13
+    },
+    {
+      "category": "volatility",
+      "cases": 696,
+      "survivors": 1
+    },
+    {
+      "category": "volume",
+      "cases": 1015,
+      "survivors": 3
+    }
+  ],
+  "top5": [
+    {
+      "config": "stochastic__k_n7_low20_high80",
+      "asset": "MSFT",
+      "oos_sharpe": 1.043711182113451,
+      "oos_max_dd": -0.14974299097921806,
+      "oos_trades": 248
+    },
+    {
+      "config": "cmf__lookback10_thresh0.1",
+      "asset": "BTC-USD",
+      "oos_sharpe": 0.953808013218277,
+      "oos_max_dd": -0.3498608359123513,
+      "oos_trades": 265
+    },
+    {
+      "config": "rsi_revert__lookback2_low10_high90",
+      "asset": "META",
+      "oos_sharpe": 0.921170578788712,
+      "oos_max_dd": -0.14819063014970457,
+      "oos_trades": 263
+    },
+    {
+      "config": "higher_highs_lows__lookback40",
+      "asset": "NVDA",
+      "oos_sharpe": 0.8918962005471915,
+      "oos_max_dd": -0.32797185628101244,
+      "oos_trades": 33
+    },
+    {
+      "config": "vwap_revert__lookback20_pct5.0",
+      "asset": "XLK",
+      "oos_sharpe": 0.887922629611816,
+      "oos_max_dd": -0.06333089946098514,
+      "oos_trades": 60
+    }
+  ],
+  "bootstrap_verdicts": {
+    "solid": 12,
+    "fragile": 8
+  },
+  "robust_families": 18,
+  "checks": [
+    "CSV uniqueness and dimensions",
+    "Recomputed six-filter booleans for all rows",
+    "Sweep input metrics identical to filtered CSV",
+    "Category and family counts match published tables",
+    "Top20 ranking matches filtered CSV",
+    "All six funnel stages match published counts",
+    "Independent opening-loss arithmetic example"
+  ],
+  "scope": "Static source and published CSV review only; upstream code not executed, returns not reproduced",
+  "file_sha256": {
+    "config.py": "89539c43c34c7562bfb246c5b261d7f45040d341d04a74e9d3ba2e54fa90bdfc",
+    "requirements.txt": "e258e5064d29c060c7a1588a68715a167ac156ecc03becb0a9eadf97a1e574ad",
+    "charts.py": "a2150034730fc45f85775e1998431b19dd3b792c3a7cd64807640c42ad66e4d3",
+    "strategies.py": "d328e12c99529af5084283eb4725219ab705789f452c0c2f94ab28ea17b5ec06",
+    "cross_sectional.py": "a38f322103692f8351e96b656185f95d5ef5a7567531770f3e11483b74f4e6f8",
+    "indicators.py": "ad791e04a59a4f868a3b8718d56c797e5bb09689e0107ca1ca46954ccbd28bd7",
+    "README.md": "e3179526ae2ad286d6b93c7a73068696b497a468c288d234f3c1d019c9fa2837",
+    "robustness.py": "3939f120aace8ebf76fc0e78a9e85d3bdc49702cea0289cb06e22b6f8f05ff6c",
+    "run_all.py": "bf233f1ceebe2ca3e671841104b97fca15588e68088e46951ceffb40703ef6a5",
+    "backtest.py": "7775c1f2bff534cb6f47208d0415513a669d6886f0c66de437b4ac9eb25ecb77",
+    "funnel.py": "eaf9f0d2044bf84b1fb255b4c4dad77f8d434aa74c143a5e63c5b0cf832ea3bc",
+    "data.py": "2a6e249c6151cf14d680b30114cde5e5b89b4804ecc86385c6c9a89f3b81214d",
+    "results/top_survivors.csv": "e5fad2c6ddcde0d88f7caa9396be47609ee3845f3659dc5df955a7a38ee1dd40",
+    "results/sweep_filtered.csv": "b27d4095a95cc76e000c511a7dfe3216184a47d237f6d00e4d4e1071dc6369b9",
+    "results/survival_by_family.csv": "723363938dc69daaec5a4002269b6d8473305c8308019443d0cddbdc8b740bf5",
+    "results/survival_by_category.csv": "5735b032c348c1b1807e27ef9aabadd07783f8fde55d996b051ecb0e3ce55d73",
+    "results/cross_sectional.csv": "38735ea44fdf729cb3714dc120e8eadb9d2c9355556b2dbc547d5ad69dbbf234",
+    "results/bootstrap_stress.csv": "ab1672ecdc2bf255ab91439c99a278ee44e7e9b74dc5a34aca8f7c7e1702e321",
+    "results/funnel_counts.csv": "a4882ad88587f65feb99b876039e1766fdbe414baa8b31049d9cbe6899e874eb",
+    "results/parameter_sensitivity.csv": "9f1821d75c942310357cecf9c48aef20f48bdb3a4e1c5c420641bf31e7040375",
+    "results/sweep_results.csv": "fc9e14bf54c8547a2f2a28aa3fe370b15a4b236dded2c65dc98f901bc7209b75"
+  },
+  "drawdown_example": {
+    "returns": [
+      -0.1,
+      0.05
+    ],
+    "unanchored_drawdown": 0.0,
+    "initial_equity_anchored_drawdown": -0.09999999999999998
+  },
+  "funnel_counts": [
+    9222,
+    4629,
+    1422,
+    1080,
+    724,
+    67
+  ]
+}

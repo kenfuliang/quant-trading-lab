@@ -19,3 +19,7 @@ logs/
 reports/leverage/
 **/.idea/
 **/.vscode/
+
+reports/strategy-suite/
+
+reports/bounded-study/

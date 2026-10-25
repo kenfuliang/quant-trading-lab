@@ -1,0 +1,103 @@
+{
+  "status": "recovery_failed_no_further_launch",
+  "created_utc": "2026-10-25T18:42:40.170407+00:00",
+  "max_attempts": 16,
+  "initial_study_limit": 12,
+  "conditional_followup_limit": 4,
+  "attempts": [
+    {
+      "id": "5_hold",
+      "status": "failed",
+      "error": "Case 5_hold failed exit 1; preserved log."
+    },
+    {
+      "id": "5_ema",
+      "status": "failed",
+      "error": "5_ema failed exit 1"
+    },
+    {
+      "id": "5_gate_hold",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "5_gate_ema",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "5_half_hold",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "5_buy_hold_entry_only",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "10_hold",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "10_ema",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "10_gate_hold",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "10_gate_ema",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "10_half_hold",
+      "status": "not_started_due_stop"
+    },
+    {
+      "id": "10_buy_hold_entry_only",
+      "status": "not_started_due_stop"
+    }
+  ],
+  "initial_sha256": {
+    "research/leveraged_spy.py": "e1450d5801546fe6b41bd5b6c5728f7b3d6a9f2b32067c43e3474c588937caaa",
+    "research/leverage_audit.py": "dab6fb0d6c36f40d9f04436eb3317cdf19d5ec0d940284a5b3652046a3c02775",
+    "research/plans/spy-risk-gate-development-v1.design.json": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079"
+  },
+  "plan_sha256": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5",
+  "output": "reports/risk-gate/97e9d442a8b83201",
+  "started_utc": "2026-10-25T18:46:50.145287+00:00",
+  "actual_financial_attempts": 2,
+  "failed_attempts": 2,
+  "unstarted_cases": 11,
+  "followup_launched": false,
+  "stop_reason": "Legacy 14-column control vs current 15-column ledger triggered whole-frame schema assertion.",
+  "checkpoint": ".local/performance/risk-gate/20261025-checkpoint-v2",
+  "post_stop_code_hashes": {
+    "research/risk_gate.py": "33d3454f9865b03b256b6936e480bf584974c4d289684078e4722aa64b013365",
+    "research/risk_gate_study.py": "ed17c7ac37e36885781619721a61205ab9806333212a786764cbbc21b790c662",
+    "research/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "research/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/leverage-model.md": "d6224928351d6e50c5b1c33accf59e49928a690825076424cde60e7a727ad307",
+    "tests/test_risk_gate.py": "7a02f9423b80495cd06ca9ca6112f64a4ab0cdf231bbc35542f0971b461e4bc8",
+    "tests/test_risk_gate_analysis.py": "91633897265578ea3a1e415ab788a431ac90a1ed4ab6936cf8def9838ff5defd",
+    "tests/test_risk_gate_study.py": "7126705b2ca6bb1b9f7f513d3caae670dd5f1781c607c557c4524670fe4fa137",
+    "research/control_parity.py": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e",
+    "tests/test_control_parity.py": "fd19d5363926958e4b2f0dee0440652ec76e602b7f60de9cf5d5b20367910c4b",
+    "tests/test_temporal_flat_window.py": "9086c12108b4b35685393f27c70293a78b05380c35adb4541a67f01ee32b3a3e",
+    "scripts/build_risk_gate_checkpoint.py": "f3f3d91e1225d87b7d4604583ee0bff7907475a038111a7b165c5d8665d98126"
+  },
+  "code_identity_rejection": "Code changed after freeze.",
+  "reserved_initial_cases": 12,
+  "conditional_followup_cases": 0,
+  "recovery_plan": "research/plans/spy-risk-gate-development-v1.recovery.json",
+  "original_output": "reports/risk-gate/5da2f7dccff31178",
+  "recovery_started_utc": "2026-10-25T18:55:06.459035+00:00",
+  "deadline_utc": "2026-10-25T19:01:50.145287+00:00"
+}

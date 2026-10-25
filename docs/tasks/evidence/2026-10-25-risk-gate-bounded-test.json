@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "research_design_only",
+  "created_utc": "2026-10-25T18:32:51.428704+00:00",
+  "git_sha": "a5a73ec9a6fd65395d40fdace7994172d1dc42f8",
+  "design_path": "research/plans/spy-risk-gate-development-v1.design.json",
+  "design_sha256": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079",
+  "source_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+  "review_browser_artifacts_verified": 35,
+  "new_financial_attempts": 0,
+  "new_gate_implemented": false,
+  "proposed_financial_case_ceiling": 12,
+  "external_source_refresh": {
+    "nber": "403; no bypass attempted",
+    "critique_pdf": "https://www.lehigh.edu/~xuy219/research/COWY.pdf"
+  },
+  "prior_program_unchanged": true,
+  "planning_clarification": "Within initial unexecuted design, replaced halfEMAwithliteralentry-onlybuyhold; retaineddailyalwayslongcontrol to isolate gate effect. No financial outcomes inspected for any new rule.",
+  "protocol_sha256": "f4f37696ff5838ac9dc098d351e2a3fbc58540d481e2dbe82d497209f5e8a0b1",
+  "validation": {
+    "docs_command": "scripts/check_docs.py",
+    "docs_exit": 0,
+    "design_json_parsed": true,
+    "six_cases_times_two_costs": true,
+    "source_hash_verified": true,
+    "nonexecutable_design_rejected_by_runner": true
+  }
+}

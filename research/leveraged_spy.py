@@ -60,7 +60,23 @@ def simulate(frame, dividends, mode, exposure, model=FinancingModel()):
     data = frame[['open', 'low', 'close']].to_numpy(dtype=float)
     if not np.isfinite(data).all() or (data <= 0).any() or (frame.low > frame[['open','close']].min(axis=1)).any():
         raise ValueError('Invalid evaluation prices.')
+    if 'allocation_factor' in frame and (not np.isfinite(frame.allocation_factor).all() or not frame.allocation_factor.between(0,1).all()):
+        raise ValueError('Allocation factor must be finite and between zero and one.')
+    if ('cppi_floor_fraction' in frame) != ('cppi_multiplier' in frame):
+        raise ValueError('Both CPPI parameters are required.')
+    if 'cppi_floor_fraction' in frame and (not np.isfinite(frame[['cppi_floor_fraction','cppi_multiplier']]).all().all() or not frame.cppi_floor_fraction.between(0,1).all() or (frame.cppi_multiplier<=0).any()):
+        raise ValueError('Invalid CPPI policy.')
+    if 'execution_schedule' in frame and not frame.execution_schedule.isin(['open','overnight']).all():
+        raise ValueError('Unsupported execution schedule.')
+    if 'execution_schedule' in frame and (frame.execution_schedule=='overnight').any() and any(k in frame for k in ('allocation_factor','cppi_floor_fraction')):
+        raise ValueError('Combined overnight/sizing overlays are outside the defined contract.')
+    entry_only = 'rebalance_policy' in frame
+    if entry_only and (not frame.rebalance_policy.eq('entry_only').all() or mode != 'buy_hold'
+                       or exposure != 1 or any(k in frame for k in ('cppi_floor_fraction','execution_schedule'))
+                       or ('allocation_factor' in frame and not frame.allocation_factor.eq(1).all())):
+        raise ValueError('Entry-only policy requires unmodified nominal 1x buy/hold.')
     cash, held, halted = model.capital, 0, False
+    previous_equity = model.capital
     previous_date = pd.Timestamp(frame.index[0]) - pd.Timedelta(days=1)
     rows, trades = [], []
     for date, row in frame.iterrows():
@@ -95,28 +111,44 @@ def simulate(frame, dividends, mode, exposure, model=FinancingModel()):
             if held and (eq <= 0 or eq < model.maintenance * value):
                 trade(0, mark, 'forced_' + stage)
                 halted, forced = True, forced + 1
+        effective_exposure = exposure * float(getattr(row,'allocation_factor',1.))
+        if hasattr(row,'cppi_floor_fraction'):
+            cushion_exposure = row.cppi_multiplier * max(previous_equity - row.cppi_floor_fraction*model.capital,0) / previous_equity if previous_equity>0 else 0.
+            effective_exposure = min(effective_exposure,cushion_exposure)
+        overnight = getattr(row,'execution_schedule','open') == 'overnight'
         risk(row.open, 'open')
         if not halted:
-            desired = mode == 'buy_hold' or bool(row.want_long)
-            n = target_shares(cash, held, row.open, exposure, model) if desired else 0
+            desired = (mode == 'buy_hold' or bool(row.want_long)) and not overnight
+            n = target_shares(cash, held, row.open, effective_exposure, model) if desired else 0
+            if entry_only and date != frame.index[0]:
+                n = held
             delta = n - held
             cost = 0 if delta == 0 else delta * (fill_price(row.open, delta > 0, model) - row.open) + model.commission
             equity_after = cash + held * row.open - cost
             if delta > 0 and equity_after < model.initial_margin * n * row.open:
                 denied = 1
             else:
-                trade(n, row.open, 'rebalance')
+                trade(n, row.open, 'overnight_exit' if overnight else 'rebalance')
         risk(row.open, 'post_trade')
         risk(row.low, 'low')
+        if overnight and not halted and (mode == 'buy_hold' or bool(row.want_long)):
+            n = target_shares(cash,held,row.close,effective_exposure,model)
+            delta = n-held
+            cost = 0 if delta==0 else delta*(fill_price(row.close,delta>0,model)-row.close)+model.commission
+            if delta>0 and cash+held*row.close-cost < model.initial_margin*n*row.close:
+                denied += 1
+            else:
+                trade(n,row.close,'overnight_entry')
         risk(row.close, 'close')
         equity = cash + held * row.close
         rows.append({'date': str(now.date()), 'cash': cash, 'shares': held, 'close': row.close,
-                     'equity_usd': equity, 'financing_usd': interest, 'dividend_usd': dividend,
+                     'equity_usd': equity, 'effective_target_leverage': effective_exposure, 'financing_usd': interest, 'dividend_usd': dividend,
                      'commission_usd': day_fees, 'slippage_usd': day_slippage,
                      'max_checked_leverage': max_exposure, 'min_margin_buffer_pct': min_buffer,
                      'forced_liquidations': forced, 'initial_margin_rejections': denied,
                      'halted': halted, 'insolvent': equity <= 0})
         previous_date = now
+        previous_equity = equity
     return pd.DataFrame(rows).set_index('date'), pd.DataFrame(trades)
 
 
