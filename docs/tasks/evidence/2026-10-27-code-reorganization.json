@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "status": "offline-verified",
+  "baseline_commit": "033779f34e9944338ce474ead89aded352961791",
+  "scope": "published-main infrastructure only",
+  "canonical_research_modules": 23,
+  "current_commands": 9,
+  "protected_files": 327,
+  "financial_research_trials": 0,
+  "new_downloads": 0,
+  "broker_operations": 0,
+  "verified_utc": "2026-10-27T21:59:35.147871+00:00",
+  "validation": {
+    "make_check": {
+      "exit_code": 0,
+      "tests_passed": 380,
+      "docs_files_checked": 90,
+      "dependencies": "No broken requirements found",
+      "log_sha256": "e062b24782ac0b2978f9dab6cb5970a6249946e14224eda30e21c3f7ea8fee56"
+    },
+    "frozen_files": {
+      "checked": 327,
+      "changed": 0
+    },
+    "source_adaptation": {
+      "modules_checked": 32,
+      "passed": true,
+      "allowed_changes": [
+        "import/module/child-process paths",
+        "repository depth and catalogue resource path",
+        "source-hash paths including current tests",
+        "separate current gate and synthetic ETF plan/state/output paths"
+      ],
+      "canonical_sha256": {
+        "research/features/feature_engineering.py": "7206d7e4177830f5404963d002bce1427b1f1d044f92ced07ae6fdb7de5dfc44",
+        "research/policies/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+        "research/policies/allocation_overlays.py": "9f40cc004ea650c0feb40d7e7252a033633b87f7e6def33abe889638f415a3ff",
+        "research/policies/model_signals.py": "fc535a8823bbd159bea946cb8cf625e3d7ce798a6d16648f48e1e0ab465c474e",
+        "research/policies/overnight_signal.py": "14e90cc46d7caecb29a1d268c99223fc205c36208fc05db464c9ac32a2c2b648",
+        "research/policies/risk_gate.py": "aa82f20b798ddef6300d0c7e933246e3437a219fdc567e6c5696e0d6e1c233a5",
+        "research/evaluation/etf_input_audit.py": "7485622d6d36558feb7b75f4841ae7286276e15fdabebe6235fdf08d7b4b25c0",
+        "research/evaluation/etf_readiness_probe.py": "22dfae1cae601bd0a257ff020e86bb0efc66253bb61f87d4337bbd429640f8a3",
+        "research/evaluation/etf_readiness_rounding_probe.py": "e46e1bf5e01eea49afff85e966982b3d1e94cefd89fdf0ff6572cc61ffc2aa16",
+        "research/evaluation/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+        "research/evaluation/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+        "research/evaluation/control_parity.py": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e",
+        "research/evaluation/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+        "research/control/catalogue.py": "06a571495639533a32f1bf2249376195c4bf958b3be6424288003e5675aef08e",
+        "research/control/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+        "research/control/research_controller.py": "756d265da3ed242965f018ce568e354768cc375a12969bd0bdf9e23068227409",
+        "research/studies/spy/bounded_study.py": "494c95f98287c3830facf31c39cc22d5b482fbe6364ea65d63fc8bd99b1441fd",
+        "research/studies/spy/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+        "research/studies/spy/spy_report.py": "2d2a02bb1324c3a4dc4eed138253bd39e220edc714c33f408ed488c3b17926ec",
+        "research/studies/spy/risk_gate_study.py": "6d32b16086bcd7d6004841b8f68e5ee7e14a659ac3f6829981264167614b7af7",
+        "research/studies/spy/risk_gate_ablation.py": "3abc601fdbc0548816ab859bb3a82987e8eea63409aeed68b67fc989f50f894e",
+        "research/studies/spy/risk_gate_recovery.py": "12283e0592ed9dc1746f9ac3a44e882e8106918a2d54779392fe5cb874b137e9",
+        "research/studies/spy/risk_gate_recovery2.py": "d13c031accb7716f2d1e7ad4473a9273554f288015f1f1c8a463afba9acc353c",
+        "scripts/current/gate_decision_review.py": "63096d73bf1622894ecff35af54719a01b4e4b9cb98e0420ac63ef54231d0cfb",
+        "scripts/current/spy_backtest.py": "e305b41e5de5216e9a91f121bc6a626d7d4d3cc91b27eafa1b9c0476d001782f",
+        "scripts/current/strategy_suite.py": "b01dfb746c0471da297c440ac576d9cf4614b3a8b257ac04effa9d8c3bb714fb",
+        "scripts/current/bounded_study.py": "3e47461ac8c83a471d850d81cd2d7e0dc55fef061d29a4f34a6f06db7b6fdfff",
+        "scripts/current/leverage_comparison.py": "dcbba8a8f9071e6d607fa27f53623dd1c9775bdf3c98b78eee194d2bf4b309ac",
+        "scripts/current/feature_diagnostic.py": "cacc3c908ee393198c417c9f2002f91cc8aeade3b4e2e91435b4f47e3e21608c",
+        "scripts/current/build_risk_gate_epoch_review.py": "9e4116950668a27183906c88f80ac2ea2595e19366331ec26ff01ca743986ac4",
+        "scripts/current/build_recursive_review.py": "0d02604fe4a93439888ce66bee218f1ebd602399b3ab018eaddf9f17632a4d13",
+        "scripts/current/build_risk_gate_checkpoint.py": "a4c009bb89b722ef84ca4569f4a35553ba670bb3837cac33af091685dd3724cc"
+      }
+    },
+    "behavior": [
+      "legacy and current suites",
+      "synthetic signals, ledger, trades, annual returns and temporal metrics parity",
+      "legacy CLI and current CLI help from outside repository",
+      "legacy plan rejected by current source identity",
+      "output-free synthetic current preflight",
+      "separate gate and ETF state defaults"
+    ]
+  },
+  "limitations": [
+    "No historical financial reruns; pre-existing strict hash/data failures remain unchanged.",
+    "Canonical historical gate adapters need a newly authorized plan; none created.",
+    "Unpublished primary-checkout research is excluded.",
+    "Local validation uses the existing dependency environment; hosted CI validates a fresh install."
+  ],
+  "rollback": "Revert additive packages, current tests, manifest and Makefile/docs routing; historical artifacts need no migration."
+}

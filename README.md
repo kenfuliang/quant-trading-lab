@@ -4,6 +4,16 @@ Updated 2026-10-27 (America/Los_Angeles). This file owns current capability stat
 and project entrypoints. The active priority is infrastructure, using Python and
 NautilusTrader locally without QuantConnect.
 
+## Current package layout
+
+Research implementations now live in `research/features/`, `policies/`,
+`evaluation/`, `control/` and `studies/spy/`. Use `scripts/current/` for new research
+commands; existing flat source paths remain frozen for saved experiments.
+The [architecture and compatibility contract](docs/architecture.md#research-package-layout-and-frozen-compatibility)
+explain the mapping, preserved entrypoints and separate source identities.
+[Migration evidence](docs/tasks/2026-10-27-code-reorganization.md) records the offline
+checks. Historical command examples below retain their original reproduction role.
+
 ## Start here
 
 - [Documentation map and conventions](docs/README.md)

@@ -6,6 +6,8 @@ owner: project-maintainers
 
 # Bounded research development
 
+For new implementation work, follow the [current package layout](architecture.md#research-package-layout-and-frozen-compatibility). Flat research modules and original commands are frozen compatibility copies; do not edit them to implement a new candidate.
+
 This document owns the research-cycle handoffs and evidence contracts. The
 [mandate](goals.md) owns objectives/open risk decisions; [intake](research-intake.md)
 owns external claims/rights; [workflow](workflow.md) owns implementation; the
