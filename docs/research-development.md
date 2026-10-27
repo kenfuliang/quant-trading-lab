@@ -14,8 +14,8 @@ owns external claims/rights; [workflow](workflow.md) owns implementation; the
 [skill map](skills.md) owns discovery/readiness. This is an offline research
 procedure, not an autonomous scheduler, strategy optimizer or execution engine.
 An implemented, agent-coordinated offline control slice now supports this procedure:
-[scoring contract](research-scoring.md), `research/research_controller.py` and
-`research/bounded_study.py`. It records decisions and reserves bounded work; it does
+[scoring contract](research-scoring.md), `research/control/research_controller.py` and
+`research/studies/spy/bounded_study.py`. It records decisions and reserves bounded work; it does
 not independently verify caller evidence or run itself against a broker. See the
 [scoped pilot review](tasks/2026-10-25-recursive-research-review.md) for actual proof
 and remaining aggregate-budget/orchestration boundaries.
@@ -110,9 +110,9 @@ run a full suite and import MLflow; it is not a generic read-only verification c
 A verification-only task should read and check saved manifests, inputs/artifact
 hashes, completion/audit status and compatibility without starting a new study.
 
-For explicitly frozen supported saved-SPY plans, `scripts/bounded_study.py PLAN.json`
+For explicitly frozen supported saved-SPY plans, `scripts/current/bounded_study.py PLAN.json`
 defaults to preflight only; `--execute` invokes the bounded runner. Its exact schema
-and supported cases are in `research/bounded_study.py`. Before execution the
+and supported cases are in `research/studies/spy/bounded_study.py`. Before execution the
 coordinator reserves the aggregate financial attempts and checks the program's
 deadline; `max_cases` enforces only that plan's ceiling. Standalone CLI execution
 does not independently enforce a multi-study budget. The

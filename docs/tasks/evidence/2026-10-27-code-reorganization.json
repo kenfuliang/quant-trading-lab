@@ -73,7 +73,18 @@
       "legacy plan rejected by current source identity",
       "output-free synthetic current preflight",
       "separate gate and ETF state defaults"
-    ]
+    ],
+    "maintained_workflow_references": {
+      "updated": [
+        "docs/research-development.md",
+        "docs/research-scoring.md",
+        "docs/feature-engineering.md",
+        ".agents/skills/trade-experiment/SKILL.md",
+        ".agents/skills/trade-research-history/SKILL.md"
+      ],
+      "docs_check_exit_code": 0,
+      "historical_records": "unchanged"
+    }
   },
   "limitations": [
     "No historical financial reruns; pre-existing strict hash/data failures remain unchanged.",

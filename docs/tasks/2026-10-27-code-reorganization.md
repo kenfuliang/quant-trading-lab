@@ -31,6 +31,8 @@ The primary dirty checkout and its unpublished work remain outside this PR.
 ## Evidence and limits
 
 Verification is recorded in [receipt](evidence/2026-10-27-code-reorganization.json).
+Maintained scoring/feature procedures and experiment/history skill references now point
+to canonical implementations; historical records retain original paths.
 An initial synthetic suite found an incorrect repository-root depth after nesting;
 that path adaptation was corrected before final verification. Full financial
 historical reruns are deliberately excluded: old strict preflight checks retain
