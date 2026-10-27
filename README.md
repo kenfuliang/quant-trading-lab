@@ -19,6 +19,8 @@ see the [boundary contract](docs/architecture.md#enforced-python-dependency-boun
 
 ## Start here
 
+- [Generated research evidence index](docs/research-evidence-index.md) — plans, results, failures, lessons and explicit publication gaps
+
 - [Documentation map and conventions](docs/README.md)
 - [Project foundation and report formats](docs/tasks/2026-10-27-project-foundation-adoption.md)
 - [Golden research standard and cycle register](docs/research-standard.md)

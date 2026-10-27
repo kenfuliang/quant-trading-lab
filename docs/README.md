@@ -18,6 +18,7 @@ runtime timestamps use UTC.
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
 | What is the golden pipeline and rule for research evidence, disposition and papers? | [GRS-1.0](research-standard.md); [cycle register](research-cycles.md) |
+| Where are study plans, results, failures and lessons linked? | [Generated research evidence index](research-evidence-index.md); [index contract](architecture.md#research-evidence-index) |
 | How do bounded research iterations produce evidence? | [Research development procedure](research-development.md) |
 | How do we define, validate and diagnose features? | [Feature engineering](feature-engineering.md) |
 | How do we score strategies and choose research directions? | [Research scoring contract](research-scoring.md) |

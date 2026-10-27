@@ -86,6 +86,12 @@ and generated bulk data. This SOP does not automatically stage or publish files.
 
 ## Continuous integration
 
+`make check` includes `make evidence-index-check`: published plans need one study
+owner, references must resolve, and committed generated views must match their
+sources. Update the curated registry when adding a study, then run `make research-index`.
+The [index contract](architecture.md#research-evidence-index) owns availability
+labels and scope; original evidence remains authoritative.
+
 `make check` includes `make boundaries-check`, an offline static dependency and
 frozen-source gate. The [architecture contract](architecture.md#enforced-python-dependency-boundaries)
 owns its scope and exemptions; reverse imports, cycles and modified protected
