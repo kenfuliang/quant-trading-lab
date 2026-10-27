@@ -1,0 +1,98 @@
+{
+  "scope": "local two-view usage acceptance; no independent or baseline agent comparison",
+  "evaluated_at_utc": "2026-10-25T21:55:22.950651+00:00",
+  "inputs": {
+    ".agents/skills/trade-diagram/SKILL.md": "e1b66f9271553cfe1f5582c8e591a5817aadfc2d3ef866a82296b5c72ca55044",
+    "docs/diagram-style.md": "55f97d6cbb10f94d50d954ba39ff9969be3057471dad789ec75260a4397c3f1a",
+    "docs/skills.md": "8be800bc3359d941b2a90d0cf9f1396bb3bb2fdf0bab2e1da09c2201fcfe5793",
+    "docs/research-development.md": "82c3c9f378be37037faf56af6e2f30e6446f5e249776706d5afc412c2ddfece6",
+    "README.md": "e6cb9f3894df363a61f326d7c05c7ab4dfc6242d57481c085efe6fe3eded0de5",
+    "scripts/render_team_skills.py": "5d60fe2b235427835149cd8c8084a8081b92e604b83252bd097a2f1982e174f2"
+  },
+  "format_validation": "passed",
+  "existing_exports_unchanged_during_isolated_test": true,
+  "runs": [
+    {
+      "view": "team",
+      "exit_code": 0,
+      "output": ".local/diagram-skill-eval/20261025T215522950651Z/team/team-skills.png",
+      "sha256": "adce2813c1a46d656dc87b7c96b98d955ddec1eb51ed5f2b914d0eb16372c391",
+      "dimensions": [
+        2868,
+        1947
+      ],
+      "only_requested_view_written": true
+    },
+    {
+      "view": "research",
+      "exit_code": 0,
+      "output": ".local/diagram-skill-eval/20261025T215522950651Z/research/research-workflow.png",
+      "sha256": "a847b1e8e540d88e00e79fe7ca2e2981035ebf9d1664da071c70225b054d7bfb",
+      "dimensions": [
+        2868,
+        1947
+      ],
+      "only_requested_view_written": true
+    }
+  ],
+  "visual_inspection": {
+    "team": "revision_required: tight separation between final SOP line and readiness label",
+    "research": "passed"
+  },
+  "financial_simulations": 0,
+  "source_snapshot_directory": ".local/diagram-skill-eval/20261025T215522950651Z/source",
+  "revision": {
+    "reason": "Add vertical space to shared SOP card after visual inspection",
+    "evaluated_at_utc": "2026-10-25T21:56:32.354746+00:00",
+    "inputs": {
+      ".agents/skills/trade-diagram/SKILL.md": "e1b66f9271553cfe1f5582c8e591a5817aadfc2d3ef866a82296b5c72ca55044",
+      "docs/diagram-style.md": "55f97d6cbb10f94d50d954ba39ff9969be3057471dad789ec75260a4397c3f1a",
+      "docs/skills.md": "8be800bc3359d941b2a90d0cf9f1396bb3bb2fdf0bab2e1da09c2201fcfe5793",
+      "docs/research-development.md": "82c3c9f378be37037faf56af6e2f30e6446f5e249776706d5afc412c2ddfece6",
+      "README.md": "e6cb9f3894df363a61f326d7c05c7ab4dfc6242d57481c085efe6fe3eded0de5",
+      "scripts/render_team_skills.py": "341370ef3c5b9466f4a83df1a1144a0479d0001a624792b30da87ef900c97068"
+    },
+    "runs": [
+      {
+        "view": "team",
+        "output": ".local/diagram-skill-eval/20261025-final/team-skills.png",
+        "sha256": "c8e0e45080e55ea845af171fa8d70e00d8c65c7ce1d7b5ecb566b26f78883dfa",
+        "dimensions": [
+          2868,
+          1947
+        ],
+        "visual_inspection": "passed",
+        "presentation_export": "docs/diagrams/team-skills.png",
+        "matches_inspected_output": true
+      },
+      {
+        "view": "research",
+        "output": ".local/diagram-skill-eval/20261025-final/research-workflow.png",
+        "sha256": "a847b1e8e540d88e00e79fe7ca2e2981035ebf9d1664da071c70225b054d7bfb",
+        "dimensions": [
+          2868,
+          1947
+        ],
+        "visual_inspection": "passed",
+        "presentation_export": "docs/diagrams/research-workflow.png",
+        "matches_inspected_output": true
+      }
+    ],
+    "source_snapshot_directory": ".local/diagram-skill-eval/20261025-final/source"
+  },
+  "checks": {
+    "skill_format": "passed",
+    "catalog_parity": "passed",
+    "offline_tests": 223,
+    "new_diagram_tests": 2,
+    "positive_view_cases": 2,
+    "catalog_mismatch_case": "rejected before output",
+    "dependencies": "passed",
+    "font_family_selected": {
+      "heading": "Marker Felt",
+      "body": "Chalkboard"
+    },
+    "font_files_bundled": false
+  },
+  "conclusion": "Two local usage cases passed after one presentation correction; no comparative agent benefit or generic renderer capability established."
+}

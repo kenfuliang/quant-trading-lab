@@ -28,6 +28,7 @@ runtime timestamps use UTC.
 | What folder/content/report foundations have been adopted? | [Foundation adoption task and remaining checklist](tasks/2026-10-27-project-foundation-adoption.md); folder ownership remains in architecture |
 | What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
 | What is next and what proves completion? | [Roadmap](roadmap.md) |
+| How do we produce and inspect preferred-style PNG diagrams? | [Diagram style and QA SOP](diagram-style.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |
