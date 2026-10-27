@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -82,3 +82,10 @@ environment. Consult the pinned upstream version, not examples from a newer rele
 
 Stop/restart of a future execution worker must follow reconciliation in the
 [incident SOP](incidents.md). Current check commands do not manage external orders.
+
+## Closed research evidence copies
+
+The [evidence recovery SOP](evidence-recovery.md) supplies verified copy/restore
+commands for closed manifest-qualified file bundles. One completed and one failed
+historical bundle have a scoped same-machine drill. Database, MLflow and native
+runtime restore remain unverified; this does not complete M3.

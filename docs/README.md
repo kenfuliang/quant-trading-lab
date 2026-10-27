@@ -33,6 +33,7 @@ runtime timestamps use UTC.
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |
 | How do we check IBKR paper connectivity? | [Paper observation](operations/paper-connection.md) |
+| How do we restore closed research evidence bundles? | [Evidence recovery SOP](operations/evidence-recovery.md); [scoped real-bundle drill](tasks/2026-10-27-evidence-recovery.md) |
 | How do we handle uncertainty or failure? | [Incident and recovery SOP](operations/incidents.md) |
 | How do we record a task or incident? | [Templates](templates/) |
 | What evidence supports the capability review? | [Review receipt](tasks/2026-10-25-capability-review.md) |

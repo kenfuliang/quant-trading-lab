@@ -17,6 +17,10 @@ checks. Historical command examples below retain their original reproduction rol
 Current dependency directions are enforced by `make boundaries-check` and CI;
 see the [boundary contract](docs/architecture.md#enforced-python-dependency-boundaries).
 
+Closed file-bundle recovery is tested for one completed and one failed historical
+bundle; see the [SOP and limits](docs/operations/evidence-recovery.md). General
+database, tracking-store and disaster recovery remain unverified.
+
 ## Start here
 
 - [Generated research evidence index](docs/research-evidence-index.md) — plans, results, failures, lessons and explicit publication gaps

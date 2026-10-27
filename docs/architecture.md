@@ -429,3 +429,14 @@ output is atomically replaced. The two files are not a transactional database;
 CI detects partial/stale output if interrupted. Reference checking proves navigation
 and recorded bytes, not financial accuracy, source authenticity, schema validation
 of arbitrary receipts, complete claim-to-source alignment or backup/restore.
+
+### Closed evidence recovery
+
+[`research/control/evidence_recovery.py`](../research/control/evidence_recovery.py)
+owns manifest-qualified closed file-bundle copy/restore. The
+[recovery SOP](operations/evidence-recovery.md) owns operation and limitations.
+The current CLI records a separately pinned inventory hash; full inventories
+remain private. Source and restored bundles keep their original manifest bytes,
+terminal status and failures. Existing destinations are never merged/overwritten.
+No financial execution is imported or invoked. The [scoped drill](tasks/2026-10-27-evidence-recovery.md)
+is same-machine file recovery, not proof of complete project/store/disaster recovery.

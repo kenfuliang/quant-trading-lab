@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -45,5 +45,7 @@ Canceling orders and closing positions are distinct external actions. Authorizat
 for a diagnostic check does not authorize either. Future execution controls must
 record who requested an action and its observed outcome.
 
-No automated recovery controls exist yet. This SOP specifies operator behavior and
+No automated trading/execution recovery controls exist yet. Closed research file
+bundles have a separate [copy-only recovery SOP](evidence-recovery.md); this does
+not resume a failed experiment or recover external execution state. This SOP specifies operator behavior and
 requirements for later implementation; it does not establish recovery readiness.
