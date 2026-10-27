@@ -1,12 +1,14 @@
 # Local trading platform
 
-Updated 2026-10-25 (America/Los_Angeles). This file owns current capability status
+Updated 2026-10-27 (America/Los_Angeles). This file owns current capability status
 and project entrypoints. The active priority is infrastructure, using Python and
 NautilusTrader locally without QuantConnect.
 
 ## Start here
 
 - [Documentation map and conventions](docs/README.md)
+- [Project foundation and report formats](docs/tasks/2026-10-27-project-foundation-adoption.md)
+- [Golden research standard and cycle register](docs/research-standard.md)
 - [Teams, skills, routing and readiness](docs/skills.md)
 - [Goals and investment mandate](docs/goals.md)
 - [External research intake and source registry](docs/research-intake.md)
@@ -29,6 +31,7 @@ Define outcome → implement one slice → verify offline → record evidence
 | Capability | State and evidence |
 | --- | --- |
 | Development workflow and SOPs | Established in `docs/`; project skills in `.agents/skills/` |
+| Research documentation foundation | [GRS-1.0](docs/research-standard.md), cycle/decision/paper templates and [folder/content conventions](docs/tasks/2026-10-27-project-foundation-adoption.md); documentation availability does not imply automatic enforcement |
 | ML modeling and ML infrastructure advisers | Advisory availability is listed in the [catalog](docs/skills.md#available-advisory-skills); RSI handoff defined; [contracts](docs/advisory-team.md#ml-team-handoff-in-rsi). Consultation available; no generic training/orchestration or inference service implemented |
 | Bounded research skills | Available workflows are listed in the [catalog](docs/skills.md#available-research-workflows); [procedure](docs/research-development.md), [evaluation receipt](docs/tasks/2026-10-25-research-skills.md). Instructions support scoped offline work; no unattended optimizer or broker promotion implemented |
 | Research scoring and decision control | Versioned evidence gates, raw-unit Pareto comparisons, bounded action priority and hash-chained reserve/record journal implemented; three pilot decisions, eight audited new cases and fresh adversarial review. [Review package](docs/tasks/2026-10-25-recursive-research-review.md); caller evidence verification and coordinator-enforced aggregate financial limits remain necessary |
@@ -112,12 +115,18 @@ failure handling. Broker connection commands are intentionally separate.
 AGENTS.md            agent entrypoint and conditional instructions
 Makefile             local verification commands
 scripts/             command entrypoints and offline capability audit
-paper_trading/       current IBKR observation implementation
-research/            preserved historical fixture
+paper_trading/       broker observation and offline fixtures
+research/            research rules, data checks, plans and bounded control
+reporting/           shared metrics, saved-result adapters and renderers
 tests/              offline behavior checks
 docs/               design, roadmap, SOPs, decisions, templates, task evidence
 reports/             dated historical evidence
 ```
+
+[Architecture](docs/architecture.md#repository-structure) owns folder responsibilities;
+[documentation conventions](docs/README.md#content-structure) own content and
+report-template selection. Future package grouping is forward-only and requires
+its own compatibility checks.
 
 `data/`, `vendor/`, `.venv/`, and `.local/` are ignored local material. Preserve
 source snapshots and prior reports. The retired LEAN setup is in `archive/lean/`.

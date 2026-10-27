@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -95,6 +95,14 @@ locks and redacted audit receipts in Git. Generated environments, account secret
 MLflow's local SQLite/server state and generated local artifacts stay outside Git
 under the existing storage/ignore policies. A public repository is not permission
 to publish credentials or datasets with unverified redistribution rights.
+
+## Algorithm decision hierarchy
+
+[GRS-1.0](research-standard.md#minimal-pipeline) owns the minimal position-proposal
+and risk/sizing stages, one-change cycles, evidence and disposition rules.
+This architecture owns module wiring and state boundaries. Optional market,
+target or strategy-selection stages require their own qualified interfaces and
+bounded evidence; a folder or diagram does not make a router operational.
 
 ## Target flow
 
@@ -250,8 +258,9 @@ README.md                     current capabilities and entrypoints
 AGENTS.md                     instructions and conditional pointers
 .agents/skills/               repeatable project workflows
 docs/                         matrix, architecture, roadmap, SOPs and decisions
-paper_trading/                existing IB observation implementation
-research/                     preserved fixture and methodology
+paper_trading/                broker observation and offline fixtures
+research/                     research rules, data checks, plans and bounded control
+reporting/                    shared metrics, saved-result adapters and renderers
 scripts/                      entrypoints, local checks, offline audit
 tests/                        offline project behavior checks
 reports/                      dated historical evidence
@@ -261,3 +270,43 @@ vendor/nautilus_trader/        ignored pinned upstream source
 Add modules with their first concrete use. Keep native interfaces visible and
 introduce adapters where behavior varies, such as fake versus IB communication.
 No speculative database/migration package is needed for the native baseline.
+
+
+### Folder responsibilities and future grouping
+
+Keep the established top level. Shared research rules, data checks, evaluation
+and bounded-control logic belong in `research/`; shared metrics, saved-result
+adapters and rendering belong in `reporting/`; broker observation/adapters belong
+in `paper_trading/`. New `scripts/` commands should primarily handle arguments
+and orchestration rather than duplicate reusable accounting or scoring rules.
+
+`research/plans/` preserves versioned study definitions. `reports/` contains dated
+financial evidence; tracking/ignore rules differ by family. Ignored `data/` and
+`.local/` hold provider material, journals, private evidence, generated views and
+local service state. A receipt names each exact authoritative bundle and its
+hashes/access limits; a path alone does not establish qualification or backup.
+`research/README.md` retains the original SPY methodology rather than becoming a
+replacement package index.
+
+Potential packages for future work are proposed, not created by this change:
+
+```text
+research/
+├── studies/<study>/   study-specific preparation, run and audit adapters
+├── features/          shared causal transforms when extraction is justified
+├── policies/          position proposal and portfolio risk/sizing rules
+├── evaluation/        reusable accounting/timing/comparison checks
+└── control/           common contracts, coordination and version records
+```
+
+Create a package with its first concrete implementation. Keep metric and policy
+ownership in their existing modules until a separately tested extraction.
+Before moving code/tests, map imports, commands, frozen source hashes and parent
+manifests. Retain historical paths or an executable frozen source bundle and
+verified compatibility path; prove test discovery, rollback and representative
+report reproduction. Do not rename preserved plans, results or journals as
+cosmetic cleanup. Physical package migration remains a future task.
+
+[Content/report conventions](README.md#content-structure) own document structure;
+[foundation adoption](tasks/2026-10-27-project-foundation-adoption.md) records this
+slice and remaining gaps without changing M1–M5 priority or runtime readiness.

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -17,6 +17,7 @@ runtime timestamps use UTC.
 | What works now and how do I start? | [Root README](../README.md) |
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
+| What is the golden pipeline and rule for research evidence, disposition and papers? | [GRS-1.0](research-standard.md); [cycle register](research-cycles.md) |
 | How do bounded research iterations produce evidence? | [Research development procedure](research-development.md) |
 | How do we define, validate and diagnose features? | [Feature engineering](feature-engineering.md) |
 | How do we score strategies and choose research directions? | [Research scoring contract](research-scoring.md) |
@@ -24,6 +25,7 @@ runtime timestamps use UTC.
 | What contracts govern advisory collaboration? | [Advisory team and public-source review](advisory-team.md) |
 | Which teams and skills exist, and how do I select/invoke them? | [Teams and skills catalog](skills.md) |
 | What are we building and who owns state? | [Architecture](architecture.md) |
+| What folder/content/report foundations have been adopted? | [Foundation adoption task and remaining checklist](tasks/2026-10-27-project-foundation-adoption.md); folder ownership remains in architecture |
 | What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
 | What is next and what proves completion? | [Roadmap](roadmap.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
@@ -67,3 +69,41 @@ runtime timestamps use UTC.
 
 Project skills under `.agents/skills/` route to these owners. They do not carry
 independent copies of policy or imply permission for broker actions.
+
+## Content structure
+
+For new narrative documents use: purpose/outcome → scope and status → governing
+owner → inputs/contracts → method or steps → actual evidence and counterevidence
+→ decision/limitations → lesson and next action. Omit inapplicable sections.
+Frozen schemas and historical records keep their existing identities and layout.
+
+Keep these dimensions separate:
+
+| Dimension | Meaning |
+| --- | --- |
+| Document maintenance | Frontmatter status, update date and owner; `active` means maintained |
+| Work/cycle state | Actual planned, attempted, blocked, failed or completed work under its contract |
+| Evidence classification | GRS development technical report, independently validated research report or negative-results technical report; synthetic engineering explicit |
+| Capability/metric availability | Implemented/unverified/blocked/planned capabilities; metric value with units, or missing/undefined/not-applicable/incomparable with reason |
+
+Tasks pair a dated Markdown record with a compact JSON receipt in
+`docs/tasks/evidence/`. Plans and raw artifacts retain their named original
+locations. Use exact parent/cycle/run references, code/data/environment identity,
+UTC runtime times and artifact hashes. The cycle register is an index; browser
+pages and MLflow are views, not additional authoritative result stores.
+
+## Choose a report template
+
+| Work product | Template | Role |
+| --- | --- | --- |
+| Infrastructure change | [Task](templates/task.md) | Scope, acceptance, failure/recovery and actual verification |
+| External idea/source | [Research intake](templates/research-intake.md) | Mechanism, provenance, source/data rights and reproduction gaps |
+| Research study | [Cycle](templates/research-cycle.md) | Frozen question, controls/budget, every attempt and lesson |
+| Operational failure | [Incident](templates/incident.md) | Containment, evidence, reconciliation and recovery |
+| Short saved-result comparison | [Decision brief](templates/research-decision.md) | Derived summary of context, results, failures and disposition |
+| Substantial research lesson | [Experience paper](templates/research-paper.md) | Scientific narrative only when GRS report-readiness criteria are met |
+
+Templates provide presentation prompts; GRS, scientific procedure and scoring
+retain their existing authority. A populated template is not an independent audit
+or readiness decision. Link complete annual/temporal tables rather than omit
+unfavorable observations to fit a short brief.

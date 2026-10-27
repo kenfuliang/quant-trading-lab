@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -71,6 +71,21 @@ rules; historical test access must be logged and its independence reassessed whe
 results influence later choices. Model fitting, setting selection and evaluation
 are separate decisions. Purge/embargo lengths, when relevant, follow overlapping
 labels/holding periods rather than an arbitrary universal number of days.
+
+## Incremental-stage experiments and reports
+
+[GRS-1.0](research-standard.md) is the single owner for the minimal algorithm
+pipeline, one-change cycles, evidence, stage disposition and paper readiness.
+Use its [cycle register](research-cycles.md) and
+[cycle template](templates/research-cycle.md). The procedures here operate the
+actual supported tools and budgets; adopting the standard does not add an
+unattended optimizer or change an exhausted study's allowance.
+
+A [decision brief](templates/research-decision.md) presents a saved result with
+comparability, failed/missing evidence and sources. A substantial experience
+report uses the [paper template](templates/research-paper.md) only when GRS
+criteria are met. Both derive from original cycle artifacts and preserve viewed
+history, negative findings and operational-readiness limits.
 
 ## Data audit
 

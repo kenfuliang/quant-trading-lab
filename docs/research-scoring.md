@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -70,6 +70,14 @@ information make an arbitrary sum misleading. A nondominated alternative is not
 a selected investment. The approximately30% reassessment reference and +100% growth
 aspiration remain mandate context, not automatic score bonuses or passing gates.
 Descriptive frontier membership does not establish statistical superiority.
+
+## Stage-addition acceptance
+
+[GRS-1.0](research-standard.md#incremental-improvement-and-disposition) owns
+incremental stage disposition and report-readiness requirements. The unit-preserving
+vector, same-context Pareto comparison and claim-specific eligibility definitions
+above supply its score meanings. No score-policy implementation, retrospective
+ranking or broker authorization changes with this documentation adoption.
 
 ## Research actions use an auditable priority tuple
 
