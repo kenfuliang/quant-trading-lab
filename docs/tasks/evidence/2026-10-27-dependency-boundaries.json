@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "status": "offline-verified",
+  "parent_pr_head": "0e6749645cbca30b73bfaaa6122416b675233590",
+  "scope": "dependency boundaries, unchanged reviewer extraction and offline tests",
+  "score": {
+    "rubric": "Engineering judgment: 5 partial organization, 8 clear/tested, 10 consistently enforced/verified. Not financial quality or an independent audit.",
+    "dimensions": [
+      {
+        "dimension": "Responsibility and ownership",
+        "weight_pct": 15,
+        "before": 8,
+        "after": 8.5
+      },
+      {
+        "dimension": "Dependency boundaries",
+        "weight_pct": 15,
+        "before": 6,
+        "after": 8.5
+      },
+      {
+        "dimension": "Discoverability and onboarding",
+        "weight_pct": 10,
+        "before": 6.5,
+        "after": 6.5
+      },
+      {
+        "dimension": "Frozen evidence preservation",
+        "weight_pct": 15,
+        "before": 9,
+        "after": 9
+      },
+      {
+        "dimension": "Single source of truth",
+        "weight_pct": 10,
+        "before": 7.5,
+        "after": 8
+      },
+      {
+        "dimension": "Content and report structure",
+        "weight_pct": 10,
+        "before": 8,
+        "after": 8
+      },
+      {
+        "dimension": "Automated structural checks",
+        "weight_pct": 10,
+        "before": 6,
+        "after": 8
+      },
+      {
+        "dimension": "Growth across research families",
+        "weight_pct": 10,
+        "before": 6,
+        "after": 6
+      },
+      {
+        "dimension": "Evidence recovery and portability",
+        "weight_pct": 5,
+        "before": 5,
+        "after": 5
+      }
+    ],
+    "weighted_before": 7.1,
+    "weighted_after": 7.8
+  },
+  "financial_research_trials": 0,
+  "broker_operations": 0,
+  "downloads": 0,
+  "verified_utc": "2026-10-27T22:20:15.251416+00:00",
+  "validation": {
+    "make_check": {
+      "exit_code": 0,
+      "tests_passed": 400,
+      "docs_files_checked": 91,
+      "current_modules_checked": 55,
+      "dependency_validation": "No broken requirements found",
+      "log_sha256": "6c0214c3d2efc8363097f1c32a8d64a389ba6125e12115acfb74af12bc65f3cd"
+    },
+    "frozen_files": {
+      "checked": 327,
+      "changed": 0,
+      "protected_map_unchanged": true
+    },
+    "unchanged_extracted_functions": [
+      "digest",
+      "metrics",
+      "inspect",
+      "verify_artifacts"
+    ],
+    "negative_checks": [
+      "reverse layer imports",
+      "relative and member imports",
+      "current-to-frozen imports",
+      "aliased literal and nonliteral dynamic imports",
+      "recognized opaque loaders",
+      "static import cycles",
+      "invalid Python",
+      "unclassified new flat research modules",
+      "protected file mutation/deletion",
+      "injected violation exits nonzero through make boundaries-check"
+    ],
+    "saved_review": [
+      "legacy/current annual and overall output equality",
+      "input hash preservation",
+      "corrupt score/artifact rejection with failed inputs retained",
+      "existing receipt overwrite rejected",
+      "helper hash captured by current CLI"
+    ]
+  },
+  "limitations": [
+    "Static import enforcement is not a security sandbox or complete runtime dependency resolution.",
+    "Third-party side effects, subprocess command targets and arbitrary reflection are outside the checker guarantee.",
+    "No financial history reruns, downloads, services, broker operations, orders or dependency changes.",
+    "Unpublished primary research is excluded and preserved.",
+    "Evidence indexing, report completeness, general restore proof and contributor licensing remain unchanged."
+  ]
+}

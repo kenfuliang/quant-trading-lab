@@ -1,12 +1,15 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: help check docs-check test dependencies doctor
+.PHONY: help check docs-check boundaries-check test dependencies doctor
 
 help:
 	@echo "check: offline documentation, dependency, and behavior checks"
 	@echo "doctor: local engine and observer configuration check"
 
-check: docs-check dependencies test
+check: docs-check boundaries-check dependencies test
+
+boundaries-check:
+	$(PYTHON) scripts/check_boundaries.py
 
 docs-check:
 	$(PYTHON) scripts/check_docs.py

@@ -130,6 +130,11 @@
     "scripts/build_risk_gate_checkpoint.py": {
       "canonical_path": "scripts/current/build_risk_gate_checkpoint.py",
       "legacy_sha256": "f3f3d91e1225d87b7d4604583ee0bff7907475a038111a7b165c5d8665d98126"
+    },
+    "scripts/recursive_research_review.py": {
+      "canonical_path": "research/evaluation/saved_review.py",
+      "current_command_path": "scripts/current/recursive_research_review.py",
+      "legacy_sha256": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d"
     }
   },
   "protected_files": {

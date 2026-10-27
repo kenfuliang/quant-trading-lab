@@ -3,7 +3,6 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
-import importlib.util
 import json
 from pathlib import Path
 import sys
@@ -17,9 +16,7 @@ from reporting.temporal import analyze_temporal
 from reporting.recursive_research import render
 from research.studies.spy.spy_backtest import load_data
 
-spec = importlib.util.spec_from_file_location('review_metrics', ROOT / 'scripts/recursive_research_review.py')
-review = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(review)
+from research.evaluation import saved_review as review
 EVIDENCE = ROOT / 'docs/tasks/evidence'
 LOCAL = ROOT / '.local/recursive-research'
 
@@ -202,7 +199,7 @@ def main():
     receipt={'schema_version':1,'generated_at':bundle['generated_at'],'source_sha256':review.digest(source),
         'reviewer_code_sha256':review.digest(Path(__file__)),'temporal_method_sha256':review.digest(ROOT/'reporting/temporal.py'),
         'renderer_sha256':review.digest(ROOT/'reporting/recursive_research.py'),
-        'independent_metrics_code_sha256':review.digest(ROOT/'scripts/recursive_research_review.py'),
+        'independent_metrics_code_sha256':review.digest(ROOT/'research/evaluation/saved_review.py'),
         'input_evidence_hashes':evidence_inputs,
         'artifact_hashes':artifact_hashes,'cases':len(records),'annual_rows':len(annual),'new_financial_trials':0}
     (args.output/'manifest.json').write_text(json.dumps(receipt,indent=2)+'\n')

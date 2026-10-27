@@ -326,3 +326,57 @@ dependency upgrades or new financial results are part of this change.
 [Content/report conventions](README.md#content-structure) own document structure;
 [foundation adoption](tasks/2026-10-27-project-foundation-adoption.md) records this
 slice and remaining gaps without changing M1–M5 priority or runtime readiness.
+
+### Enforced Python dependency boundaries
+
+The executable layer policy lives in [`scripts/check_boundaries.py`](../scripts/check_boundaries.py).
+`make boundaries-check` runs it without importing application code; `make check`
+and the existing PR/push CI workflow include that gate. The
+[implementation review](tasks/2026-10-27-dependency-boundaries.md) records acceptance
+and the structural score; these are infrastructure findings, not strategy results.
+
+```mermaid
+flowchart TD
+    CMD[Current commands] --> STUDY[Studies]
+    STUDY --> POL[Policies]
+    STUDY --> EVAL[Evaluation and independent audits]
+    STUDY --> CTRL[Research control]
+    POL --> FEAT[Features]
+    EVAL --> REPORT[Shared reporting and metrics]
+    CMD --> PAPER[Paper observation tools]
+    CI[CI boundary gate] -.-> CMD
+    CI -.-> STUDY
+    LEGACY[Frozen legacy implementations: preserved, exempt from layering]
+```
+
+Reusable research/reporting/broker packages cannot import commands or tests.
+Features remain independent of higher layers; policies can use features, evaluation
+can use policies/features/reporting, and control remains separate from execution.
+Studies compose those pieces. Reporting and broker observation stay independent of
+research orchestration. The code policy owns the exact allowlist; all current
+project Python modules in these roots are checked, including future modules.
+Unknown flat research modules fail instead of inheriting a permissive exemption.
+Static dependency cycles also fail.
+
+[`research/evaluation/saved_review.py`](../research/evaluation/saved_review.py)
+owns the four unchanged independent saved-ledger review functions. Current callers
+import that library. Its metrics remain separate from the primary ledger and
+reporting calculations so extraction does not collapse independent checking.
+The current reviewer CLI records its own and the helper's hashes. Current study
+code lists and derived-review provenance reference the helper's new path.
+
+The compatibility manifest retains exactly the original protected-file hash map;
+its owner mapping additionally points the frozen reviewer to the new library and
+current command. Frozen legacy research/scripts/tests keep their original imports
+and bytes; current implementations cannot import them. Shared reporting and broker
+modules may be both hash-protected and current: they are checked for layering,
+not misclassified as obsolete just because their bytes are preserved.
+
+The checker resolves ordinary, relative, member, function-local and type-checking
+imports, recognizable literal dynamic imports and aliases. Nonliteral dynamic
+imports and recognized opaque Python loaders fail the checked contract. Tests
+exercise rejected imports/cycles, frozen tampering and the actual Make target's
+nonzero exit. This is static architecture enforcement, not a security sandbox,
+complete runtime dependency graph, third-party side-effect audit or validation of
+subprocess command targets. Arbitrary reflection and monkey-patching are outside
+its guarantee. Tests may deliberately use both graphs for compatibility checks.

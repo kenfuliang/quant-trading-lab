@@ -14,6 +14,9 @@ explain the mapping, preserved entrypoints and separate source identities.
 [Migration evidence](docs/tasks/2026-10-27-code-reorganization.md) records the offline
 checks. Historical command examples below retain their original reproduction role.
 
+Current dependency directions are enforced by `make boundaries-check` and CI;
+see the [boundary contract](docs/architecture.md#enforced-python-dependency-boundaries).
+
 ## Start here
 
 - [Documentation map and conventions](docs/README.md)
@@ -49,7 +52,7 @@ Define outcome → implement one slice → verify offline → record evidence
 | Decision logs and outcome labels | Saved SPY gate inputs reconstructed separately from execution and matured5/21/63-session outcomes; protection, missed-rebound and already-cash warning analysis. [Contract](docs/research-development.md#decision-logs-and-outcome-labels), [review](http://127.0.0.1:8765/gate-decisions/20261025-v2/index.html). Prospective/live capture remains planned |
 | Feature engineering | Project-local skill, versioned three-feature registry and causal saved-SPY diagnostic implemented; [contract](docs/feature-engineering.md), [first test](docs/tasks/2026-10-25-feature-engineering-skill.md). Descriptive associations only; no trained predictor or changed strategy |
 | Local environment | Python 3.12 `.venv`; NautilusTrader 1.231.0 pinned in requirements.txt; exact packages in requirements.lock.txt |
-| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Hosted push/PR checks verify locked dependency installation, documentation and the checked-out branch’s offline suite; no deployment or broker operation |
+| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Hosted push/PR checks verify locked dependencies, documentation, dependency layers, frozen file hashes and the checked-out branch’s offline suite; no deployment or broker operation |
 | Offline regression checks | `make check`; tests use fixtures and build observer configuration without connecting |
 | IBKR observation tools | Implemented in `paper_trading/`; `scripts/paper.py` exposes doctor, probe, observe; no execution client |
 | Broker verification | Blocked by paper-account access in the last observed session on 2026-10-24; no successful engine-to-broker connection recorded |

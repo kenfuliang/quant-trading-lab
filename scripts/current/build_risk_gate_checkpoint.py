@@ -14,7 +14,7 @@ from plotly.subplots import make_subplots
 from reporting.temporal import analyze_temporal
 from research.evaluation.risk_gate_analysis import independent_temporal
 from research.evaluation.control_parity import compare
-from scripts.recursive_research_review import inspect, verify_artifacts
+from research.evaluation.saved_review import inspect, verify_artifacts
 
 
 def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()

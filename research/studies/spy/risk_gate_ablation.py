@@ -7,7 +7,7 @@ import pandas as pd
 from research.studies.spy import risk_gate_study as study
 from research.policies.risk_gate import frames as base_frames,states
 from reporting.risk_gate_review import verify_temporal_details
-from scripts.recursive_research_review import verify_artifacts
+from research.evaluation.saved_review import verify_artifacts
 
 PLAN=Path('research/plans/current/spy-risk-gate-price-peak-ablation-v1.json')
 CODE=(*study.CODE,'research/studies/spy/risk_gate_ablation.py','tests/current/test_risk_gate_ablation.py','reporting/risk_gate_review.py','tests/test_risk_gate_review.py','tests/test_temporal_flat_window.py')

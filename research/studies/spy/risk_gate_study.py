@@ -18,7 +18,7 @@ from research.evaluation.leverage_audit import reconcile
 from reporting.temporal import analyze_temporal
 from research.evaluation.risk_gate_analysis import independent_temporal
 from research.evaluation.control_parity import compare as compare_controls
-from scripts.recursive_research_review import inspect
+from research.evaluation.saved_review import inspect
 
 ROOT=Path(__file__).resolve().parents[3]
 DESIGN=Path('research/plans/current/spy-risk-gate-development-v1.design.json')
@@ -27,7 +27,7 @@ STATE=Path('.local/current-risk-gate/state.json')
 CODE=('research/policies/risk_gate.py','research/studies/spy/risk_gate_study.py','research/evaluation/risk_gate_analysis.py',
       'research/evaluation/leveraged_spy.py','research/evaluation/leverage_audit.py','research/studies/spy/bounded_study.py',
       'research/policies/daily_signals.py','research/studies/spy/spy_backtest.py','reporting/temporal.py','reporting/annual.py',
-      'scripts/recursive_research_review.py','requirements.txt','requirements.lock.txt',
+      'research/evaluation/saved_review.py','requirements.txt','requirements.lock.txt',
       'research/leverage-model.md','tests/current/test_risk_gate.py','tests/current/test_risk_gate_analysis.py',
       'tests/current/test_risk_gate_study.py','research/evaluation/control_parity.py','tests/current/test_control_parity.py')
 

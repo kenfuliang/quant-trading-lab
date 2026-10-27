@@ -7,7 +7,7 @@ from research.studies.spy import risk_gate_recovery as previous
 from research.studies.spy import risk_gate_study as study
 from research.evaluation.control_parity import compare
 from research.evaluation.leverage_audit import reconcile
-from scripts.recursive_research_review import verify_artifacts,inspect
+from research.evaluation.saved_review import verify_artifacts,inspect
 
 PLAN=Path('research/plans/current/spy-risk-gate-development-v1.recovery2.json')
 CODE=(*study.CODE,'research/studies/spy/risk_gate_recovery2.py','tests/current/test_risk_gate_recovery2.py')

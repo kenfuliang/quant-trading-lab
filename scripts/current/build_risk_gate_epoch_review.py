@@ -15,7 +15,7 @@ from research.evaluation.control_parity import compare
 from research.evaluation.risk_gate_analysis import independent_temporal,events,blocks
 from reporting.temporal import analyze_temporal
 from reporting.risk_gate_review import verify_temporal_details,verify_events,paired_verdict
-from scripts.recursive_research_review import inspect,verify_artifacts
+from research.evaluation.saved_review import inspect,verify_artifacts
 
 LABELS={'hold':'Daily full target','ema':'EMA50/200','gate_hold':'Combined gate / daily long','gate_ema':'Combined gate / EMA',
         'half_hold':'Daily half target','buy_hold_entry_only':'Buy once, hold shares','ablate_hold':'EMA + volatility gate / daily long','ablate_ema':'EMA + volatility gate / EMA'}

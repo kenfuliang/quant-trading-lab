@@ -2,7 +2,7 @@
 import math
 import numpy as np
 import pandas as pd
-from scripts.recursive_research_review import metrics
+from research.evaluation.saved_review import metrics
 
 
 def independent_temporal(equity, summary, table):
