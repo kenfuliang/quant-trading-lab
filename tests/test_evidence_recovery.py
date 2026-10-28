@@ -1,6 +1,7 @@
 """Copy-only recovery fixtures; preserve failure state and all existing files."""
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -145,6 +146,20 @@ class EvidenceRecoveryTests(unittest.TestCase):
         self.assertEqual(recovery.file_hashes(self.backup), before)
         with self.assertRaises(FileExistsError):
             recovery.restore_recovery_copy(self.backup, self.destination, record['inventory_sha256'])
+
+    @unittest.skipUnless(hasattr(os, 'mkfifo'), 'FIFO fixture requires POSIX')
+    def test_fifo_inventory_is_rejected_before_any_content_read(self):
+        self.backup.mkdir()
+        (self.backup / 'files').mkdir()
+        os.mkfifo(self.backup / 'inventory.json')
+        command = ROOT / 'scripts/current/evidence_recovery.py'
+        result = subprocess.run([sys.executable, str(command), 'restore', str(self.backup),
+                                 str(self.destination), '--inventory-sha256', '0' * 64],
+                                cwd=self.root, capture_output=True, text=True, timeout=5)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('inventory identity mismatch', result.stderr)
+        self.assertFalse(self.destination.exists())
+        self.assertTrue((self.backup / 'inventory.json').exists())
 
     def test_cli_copy_restore_and_tamper_failure_exit(self):
         command = ROOT / 'scripts/current/evidence_recovery.py'

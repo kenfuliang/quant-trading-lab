@@ -100,7 +100,7 @@ def restore_recovery_copy(backup, destination, expected_inventory_sha256):
     if set(p.name for p in backup.iterdir()) != {'inventory.json', 'files'}:
         raise ValueError('Recovery copy layout changed')
     inventory = backup / 'inventory.json'
-    if inventory.is_symlink() or digest(inventory) != expected_inventory_sha256:
+    if inventory.is_symlink() or not inventory.is_file() or digest(inventory) != expected_inventory_sha256:
         raise ValueError('Recovery inventory identity mismatch')
     saved = json.loads(inventory.read_text())
     before = file_hashes(backup)

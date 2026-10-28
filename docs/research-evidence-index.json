@@ -9,7 +9,7 @@
     "studies": 13,
     "published_plans": 12,
     "unowned_plans": 0,
-    "supporting_records_unassigned": 63
+    "supporting_records_unassigned": 65
   },
   "studies": [
     {
@@ -668,6 +668,7 @@
     "docs/tasks/2026-10-27-code-reorganization.md",
     "docs/tasks/2026-10-27-dependency-boundaries.md",
     "docs/tasks/2026-10-27-evidence-recovery.md",
+    "docs/tasks/2026-10-27-pr6-final-review.md",
     "docs/tasks/2026-10-27-project-foundation-adoption.md",
     "docs/tasks/2026-10-27-research-evidence-index.md",
     "docs/tasks/evidence/2026-10-25-existing-risk-gates.json",
@@ -697,6 +698,7 @@
     "docs/tasks/evidence/2026-10-27-code-reorganization.json",
     "docs/tasks/evidence/2026-10-27-dependency-boundaries.json",
     "docs/tasks/evidence/2026-10-27-evidence-recovery.json",
+    "docs/tasks/evidence/2026-10-27-pr6-final-review.json",
     "docs/tasks/evidence/2026-10-27-project-foundation-adoption.json",
     "docs/tasks/evidence/2026-10-27-research-evidence-index.json"
   ]
