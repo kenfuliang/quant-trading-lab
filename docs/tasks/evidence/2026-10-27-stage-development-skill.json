@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "completed_offline_skill_exercise_hosted_ci_required",
+  "base": "1c71c6267c78b130d932b191266c19820709aa28",
+  "skill": "trade-stage-development",
+  "stage": "existing fixed SPY traffic-light risk/sizing",
+  "characterization_only": true,
+  "financial_launches": 0,
+  "model_fits": 0,
+  "data_downloads": 0,
+  "services_started": 0,
+  "broker_operations": 0,
+  "rsi_demos": 0,
+  "policy_changed": false,
+  "fixture_rows": 360,
+  "component_test_methods": 5,
+  "max_full_local_checks": 2,
+  "evaluation_scope": "self-authored single-stage worked exercise; no comparative/general usefulness claim",
+  "validation": {
+    "focused_component_tests": {
+      "exit": 0,
+      "tests": 5,
+      "log_sha256": "11dd2e6efeb175af7d9a8708c4ebfa6752c120a1aeda402b282ad74ea4e7839a"
+    },
+    "skill_validator": {
+      "exit": 0,
+      "runtime": "existing isolated MLflow Python (PyYAML available); core dependencies unchanged"
+    },
+    "catalog_png": {
+      "regenerated_with_existing_renderer": true,
+      "visually_inspected": true,
+      "new_skill_visible": true
+    },
+    "make_check": {
+      "exit": 0,
+      "tests": 516,
+      "documentation_files": 102,
+      "current_modules": 64,
+      "index_entries": 14,
+      "published_plans": 12,
+      "full_local_checks_used": 1,
+      "log_sha256": "7e76409b13ca530305dde5b39ce84c3b5a4b8852e281beb1a5601466854a9e63"
+    },
+    "preservation": {
+      "scoped_identity_files": 6,
+      "historical_identity_files": 405,
+      "frozen_files": 327,
+      "changed": 0
+    }
+  },
+  "failures": [
+    "Initial component timestamp assertion compared two equivalent date string formats; corrected to compare parsed timestamps, without changing policy code.",
+    "Bundled skill validator initially lacked PyYAML in the core engine environment; use an existing separate validator runtime without changing project dependencies."
+  ],
+  "source_before": {
+    "research/policies/risk_gate.py": "aa82f20b798ddef6300d0c7e933246e3437a219fdc567e6c5696e0d6e1c233a5",
+    "research/policies/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "docs/research-standard.md": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+    "research/compatibility.json": "002cf82f4aa3d994ac8a3340988093b88be67a84cdd210179629c52049e051a5",
+    "docs/tasks/evidence/2026-10-27-rsi-integration.json": "e23fff3ac2b07389f58c1a4650b95cab33408e679753eae5be4b82dccd0003c7",
+    "docs/tasks/evidence/2026-10-27-pr7-final-review.json": "5348660a18122c0d242627beccf946700201fd733053970b5b32dad0e11aabd1"
+  },
+  "review": {
+    "requirements_unresolved": 0,
+    "standards_unresolved": 0,
+    "each_reviewer_independently_passed_component_tests": 5
+  },
+  "skill_sha256": "f779f27b6512c4b945e33c1781eb7c8e7772334f5c76943a7a4bf9b667d79df5",
+  "component_test_sha256": "59fc7d08e63082da89fc46c1543047708332d32e92d1002627a7efdcf580e956"
+}

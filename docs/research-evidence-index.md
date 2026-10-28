@@ -387,6 +387,7 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/2026-10-27-pr7-final-review.md](../docs/tasks/2026-10-27-pr7-final-review.md)
 - [docs/tasks/2026-10-27-project-foundation-adoption.md](../docs/tasks/2026-10-27-project-foundation-adoption.md)
 - [docs/tasks/2026-10-27-research-evidence-index.md](../docs/tasks/2026-10-27-research-evidence-index.md)
+- [docs/tasks/2026-10-27-stage-development-skill.md](../docs/tasks/2026-10-27-stage-development-skill.md)
 - [docs/tasks/evidence/2026-10-25-existing-risk-gates.json](../docs/tasks/evidence/2026-10-25-existing-risk-gates.json)
 - [docs/tasks/evidence/2026-10-25-nautilus-capabilities.json](../docs/tasks/evidence/2026-10-25-nautilus-capabilities.json)
 - [docs/tasks/evidence/2026-10-25-performance-browser.json](../docs/tasks/evidence/2026-10-25-performance-browser.json)
@@ -418,3 +419,4 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/evidence/2026-10-27-pr7-final-review.json](../docs/tasks/evidence/2026-10-27-pr7-final-review.json)
 - [docs/tasks/evidence/2026-10-27-project-foundation-adoption.json](../docs/tasks/evidence/2026-10-27-project-foundation-adoption.json)
 - [docs/tasks/evidence/2026-10-27-research-evidence-index.json](../docs/tasks/evidence/2026-10-27-research-evidence-index.json)
+- [docs/tasks/evidence/2026-10-27-stage-development-skill.json](../docs/tasks/evidence/2026-10-27-stage-development-skill.json)

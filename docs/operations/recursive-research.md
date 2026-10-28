@@ -24,7 +24,7 @@ flowchart LR
 | Step | Existing skill route | Required handoff |
 | --- | --- | --- |
 | Retrieve | trade-project → trade-research-history | Exact parent, prior failures, access history and open question |
-| Freeze | trade-candidate-evolution → trade-research-design | One changed stage, falsifier, controls, timing and finite bounds |
+| Freeze | trade-stage-development for a component change; trade-candidate-evolution → trade-research-design | One changed stage, falsifier, controls, timing and finite bounds |
 | Preflight | trade-data-audit; feature workflow when relevant | Input hashes and known-lesson check; missing/failed evidence stops dependent work |
 | Execute | trade-experiment, only through a supported adapter | Frozen cases and shared program limits; actual reservation, exit and outputs |
 | Verify | trade-performance-diagnosis → trade-robust-evaluation | Accounts, comparability, uncertainty, adverse and failed evidence |
@@ -95,3 +95,14 @@ separate reviewed reconciliation, not a routine constructor retry. This is local
 fail-closed engineering, not offsite recovery or cryptographic authenticity.
 [PR #7 final review](../tasks/2026-10-27-pr7-final-review.md) records the fixes and
 actual regression checks; historical integration receipts retain their old identities.
+
+
+## Developing one stage
+
+Use trade-stage-development when a cycle specifies or changes a component boundary;
+[the stage procedure](../research-development.md#individual-stage-development) owns
+its worksheet, timing and verification details. It hands a frozen proposal to input
+preflight, implementation and scoped evaluation. Direct synthetic component checks
+are engineering verification, not financial execution through the RSI coordinator.
+The existing adapter restriction remains: only fixed synthetic and saved-read-only
+adapters are supported; adding a skill does not register a financial runner.

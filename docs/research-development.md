@@ -309,3 +309,42 @@ estimates or matched-capital avoided USD losses.
 ## ML modeling and infrastructure consultation
 
 [ML team contracts](advisory-team.md#ml-team-handoff-in-rsi) define the statistical and reproducibility handoff after feature engineering. Select the appropriate adviser using the [canonical catalog](skills.md#available-advisory-skills). They use the existing bounded workflows; no new training pipeline, model fit, scheduler or deployment is implied.
+
+
+## Individual stage development
+
+This section owns the component-development procedure within an existing RSI cycle;
+[GRS](research-standard.md) retains research/adoption rules and the
+[RSI SOP](operations/recursive-research.md) retains operational handoffs. The
+[catalog](skills.md) owns the callable trade-stage-development skill and specialist
+routes. A stage is a boundary with a contract, not a mandatory extra decision layer.
+
+```mermaid
+flowchart LR
+    H[Exact incumbent and prior lessons] --> C[One stage contract and frozen change]
+    C --> I[Implementation or unchanged characterization]
+    I --> T[Finite component and negative checks]
+    T --> E[Evidence and explicit disposition]
+    E -. Only a separately eligible study .-> F[Financial comparison]
+```
+
+Use the [stage worksheet](templates/stage-development.md) within the existing task
+or cycle rather than starting another results database. Identify the source function,
+exact parent/code/input identities and producer/consumer boundary. A stage's inputs
+and outputs must state meaning, units, availability time and missing/unknown behavior.
+Separate decision fields from later fill/accounting/outcome fields in mixed frames.
+State initialization, history/warmup, replay/state scope and reset/restart behavior;
+mark unsupported behavior explicitly. Execution-ready targets are not shifted twice.
+
+Freeze one change and unchanged controls before verification. Design-only requests
+end at the design handoff; implementation uses the existing development workflow.
+Engineering characterization may leave policy source unchanged and use synthetic
+fixtures, causal-prefix checks, invalid inputs and deliberately wrong adapters.
+These are component checks with zero financial runs; they do not establish portfolio
+returns or general skill usefulness. Record the actual tested context and failures.
+
+Reuse existing specialist skills instead of making one skill per named pipeline box.
+The worksheet complements RSI-CYCLE-1/GRS: it is not a second executable schema,
+promotion rule or financial execution adapter. Any financial comparison still needs
+qualified data, a frozen study and supported runner. Current RSI financial execution
+remains unsupported; a blocked handoff preserves evidence and the incumbent.

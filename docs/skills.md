@@ -64,6 +64,7 @@ Level 2: Task workflows — trade-project selects the applicable procedure
 ├── trade-research-intake            AVAILABLE
 ├── trade-local-ops                  AVAILABLE
 ├── Research development — AVAILABLE instructions; evaluation receipt below
+│   ├── trade-stage-development       develop one component boundary within a cycle
 │   ├── trade-research-design         study specification and trial budget
 │   ├── trade-data-audit              frozen-input fitness and provenance
 │   ├── trade-feature-engineering     causal features, redundancy and label diagnostics
@@ -121,6 +122,7 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 
 | Skill | Trigger and observable output |
 | --- | --- |
+| [trade-stage-development](../.agents/skills/trade-stage-development/SKILL.md) | Specify/implement/verify one stage → interface worksheet, finite checks and RSI evidence handoff; [procedure](research-development.md#individual-stage-development); [one-stage exercise and limits](tasks/2026-10-27-stage-development-skill.md); no financial execution |
 | [trade-research-design](../.agents/skills/trade-research-design/SKILL.md) | New/amended study → falsifiable control/treatment, metric/split/trial specification and open decisions |
 | [trade-data-audit](../.agents/skills/trade-data-audit/SKILL.md) | Saved input fitness → actual hashes/quality/availability checks and named-experiment eligibility |
 | [trade-feature-engineering](../.agents/skills/trade-feature-engineering/SKILL.md) | Define/test causal features or bounded LLM proposals → registry, leakage/quality/redundancy evidence and target-specific saved-data diagnosis; [contract](feature-engineering.md) |

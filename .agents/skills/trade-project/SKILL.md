@@ -15,6 +15,9 @@ and canonical procedure. Use the documented SOP directly when a planned skill is
 unavailable, and state that readiness limit. Each research stage requires its own
 scope; selecting one does not automatically launch the next.
 
+For developing one algorithm stage, select trade-stage-development for its component
+contract and route specialist work through the catalog.
+
 For a listing/planning request, explain the relevant catalog entries and readiness.
 For an action request, continue using the selected procedure within the requested
 scope. This router does not dispatch agents or authorize broker actions.
