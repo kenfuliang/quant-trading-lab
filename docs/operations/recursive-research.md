@@ -172,6 +172,11 @@ that original owner; it must not create a second leaderboard or copy source hist
 merely to satisfy a missing local link. This branch publishes the owning file alongside its management skills; original
 local-only financial records remain outside the published aggregate snapshot.
 
+The [scoring contract](../research-scoring.md#calmar-headline-display-score) owns
+Calmar as the headline display score. Each closure keeps evidence status, CAGR,
+drawdown and time underwater beside it, preserving undefined reasons and context.
+This changes no machine research priority or GRS acceptance gate.
+
 The leaderboard owns its table presentation. It begins with one table; explanation,
 context definitions and archive links follow. Its closure procedure is:
 

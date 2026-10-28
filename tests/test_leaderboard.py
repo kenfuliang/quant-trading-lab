@@ -11,7 +11,7 @@ class LeaderboardTests(unittest.TestCase):
     def rows(self):
         text = (ROOT / 'docs/leaderboard.md').read_text()
         lines = [line for line in text.splitlines() if line.startswith('|')]
-        headers = [value.strip() for value in lines[0].strip('|').split('|')]
+        headers = [value.strip().replace('Calmar (headline)', 'Calmar') for value in lines[0].strip('|').split('|')]
         return text, [dict(zip(headers, [v.strip() for v in line.strip('|').split('|')]))
                       for line in lines[2:]]
 
@@ -19,6 +19,12 @@ class LeaderboardTests(unittest.TestCase):
         text, rows = self.rows()
         self.assertTrue(text.split('# Research leaderboard\n\n', 1)[1].startswith('|'))
         self.assertEqual(len(re.findall(r'^\|\s*---', text, re.M)), 1)
+        columns = [v.strip() for v in next(l for l in text.splitlines() if l.startswith('|')).strip('|').split('|')]
+        self.assertEqual(columns[:6], ['Algorithm / variant', 'Calmar (headline)',
+                                      'Evidence status', 'CAGR', 'Max DD',
+                                      'Longest underwater sessions / days'])
+        scores = [float(row['Calmar'].replace('−', '-')) for row in rows if row['Calmar'] != '—']
+        self.assertEqual(scores, sorted(scores, reverse=True))
         snapshot = json.loads((ROOT / 'docs/tasks/evidence/2026-10-28-leaderboard-source-catalog.json').read_text())
         keys = ['Algorithm / variant', 'Context', 'Period', 'Outcome', 'CAGR',
                 'Max DD', 'Sharpe', 'Calmar', 'Longest underwater sessions / days', 'Lesson']
@@ -41,7 +47,7 @@ class LeaderboardTests(unittest.TestCase):
         self.assertEqual(losing['CAGR'], '-51.08%')
         self.assertEqual(losing['Outcome'], 'Negative baseline')
         for row in rows:
-            self.assertTrue(row['Tags'] and row['Outcome'] and row['Lesson'])
+            self.assertTrue(row['Tags'] and row['Outcome'] and row['Lesson'] and row['Evidence status'])
             links = re.findall(r'\]\(([^)]+)\)', row['Published evidence'])
             self.assertGreaterEqual(len(links), 2)
             for link in links:

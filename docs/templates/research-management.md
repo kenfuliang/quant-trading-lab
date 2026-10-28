@@ -47,7 +47,8 @@ complete as its declared inputs and is not execution authority.
 ### Leaderboard reconciliation
 
 Apply the [closure contract](../operations/recursive-research.md#leaderboard-closure-contract):
-canonical owner path; cycle/case/context IDs; tags; qualified or unranked status;
+canonical owner path; cycle/case/context IDs; Calmar headline with evidence status,
+CAGR, drawdown and time underwater per the scoring contract; tags; qualified or unranked status;
 source/receipt and lesson; retained failures; upsert or verified no-change;
 before/after hashes and validation; pending blocker if unavailable. Exactly one
 leaderboard table; no duplicate strategy for a retry or cached control. This field

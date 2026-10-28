@@ -46,3 +46,7 @@ trials. Earlier receipts remain authoritative for their own claims.
 - [Research management and leaderboard review](tasks/2026-10-28-research-management-pr.md)
   and [receipt](tasks/evidence/2026-10-28-research-management-pr.json): skills,
   read-only inventory and aggregate result navigation; no new financial cycle.
+
+- [Calmar headline display adoption](tasks/2026-10-28-calmar-headline.md) and
+  [receipt](tasks/evidence/2026-10-28-calmar-headline.json): presentation and
+  management closure only; no financial cycle or metric recalculation.

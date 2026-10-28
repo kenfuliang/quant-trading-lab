@@ -29,6 +29,9 @@ priority; original plans, journals and receipts own execution truth.
    trade-research-history and refresh existing navigation, retaining original files.
 6. Reconcile every completed cycle with the existing `docs/leaderboard.md` in its
    owning research checkout under the [leaderboard closure contract](../../../docs/operations/recursive-research.md#leaderboard-closure-contract).
+   Apply the [headline display contract](../../../docs/research-scoring.md#calmar-headline-display-score):
+   Calmar beside evidence status, CAGR, drawdown and time underwater. Preserve
+   source values, context and undefined reasons; never treat the score as adoption.
    Upsert tagged, evidence-linked outcomes and lessons in its one table; include
    failed/blocked/inconclusive and synthetic outcomes as appropriate unranked rows.
    Bind the change or verified no-change to the closure receipt; preserve original

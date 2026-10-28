@@ -15,6 +15,9 @@ unresolved decisions. Use trade-research-management for an authorized reconcilia
 or record update. A missing receipt is unknown evidence, not a successful task.
 
 For completed cycles, check the [leaderboard closure contract](../../../docs/operations/recursive-research.md#leaderboard-closure-contract).
+Report Calmar as the headline score beside evidence status, CAGR, drawdown and
+time underwater under the [scoring contract](../../../docs/research-scoring.md#calmar-headline-display-score).
+Separate display ranking from scientific acceptance; unassessed values stay missing.
 Report the canonical leaderboard path, cycle/case identity, tagged outcome,
 evidence and lesson links, and whether reconciliation is verified or pending.
 Scientific closure and pending administrative publication remain separate. On
