@@ -6,7 +6,7 @@ owner: project-maintainers
 
 # Bounded offline RSI integration
 
-Work status: offline integration demonstrated; final clean-head verification and hosted PR checks pending.
+Work status: bounded offline integration complete; exact final hosted checks required before ready handoff.
 Base: `4fc663164434e15b68324d8266ff421294af717b` (merged PR #6).
 This is the user's requested integration of the local offline RSI foundation,
 not new strategy research. [Architecture](../architecture.md#offline-rsi-foundation)
@@ -61,7 +61,7 @@ financial-runner integration and general process superiority remain open.
 - [x] Four minimal current libraries under `research/control/`, CLI under `scripts/current/`; dependency enforcement retained unchanged.
 - [x] Original local source/receipts and prior protected historical files preserved; current identities recorded separately.
 - [x] All 70 existing foundation tests ported, plus current CLI availability/integrity/attestation coverage; no financial test execution.
-- [ ] Full clean-checkout offline checks pass; hosted exact-head checks pass separately.
+- [x] Final clean-checkout offline checks pass (502 tests); exact-head hosted checks are verified separately on the PR.
 - [x] Real saved preflight checks the complete local closure; CI covers synthetic mechanics and explicit unavailability without silent skip.
 - [x] One bounded demo verifies exhaustion/restart/adopt/rollback; originals checked before/after.
 - [x] Existing capability, architecture, SOP/catalog navigation and generated evidence-index owners updated.
@@ -117,3 +117,22 @@ also retain their original bytes in the integration checkout. All 25 demo artifa
 are separately hash verified. The original 449-test receipt is not rewritten.
 Final clean-head and hosted CI evidence will be linked in the PR; these counts do
 not imply any financial result or native runtime proof.
+
+
+## Clean-checkout closure
+
+The second and final allowed full local check passed **502 tests**, dependency
+consistency, documentation checks for 98 files, boundary checks for 64 current
+modules and index checks for 14 entries/12 published plans. It ran in a newly cloned,
+clean checkout of source commit `34584a13e8da7f5da55055ce9bba4c0108052eaa`.
+All 19 published paths matched the reviewed files and all 405 protected historical
+files matched their pinned hashes. The existing pinned Python environment supplied
+packages; no application code was imported from the dirty primary checkout. Hosted
+CI independently installs locked dependencies into its own fresh environment.
+
+Real default preflight in that clean checkout exited 2/unavailable, as required,
+without private evidence or financial launches. The real 296-file historical check
+was separately observed using explicit read-only local inputs. No third full local
+check or second demo was run. This closure updates only documentation/receipt/index;
+all code/test bytes remain those verified in the clean source commit. Exact final
+PR/push CI status is linked in the PR; a pending check is not called a pass.

@@ -32,7 +32,7 @@ Coverage: 14 studies; 12 published plans; no unowned plans.
 | [Fixed-rule cost sensitivity](#recursive-cycle3) | recursive SPY development | historical development |
 | [Price-peak component-removal ablation](#risk-gate-ablation) | risk overlay ablation | development candidate retained |
 | [Green/yellow/red gate with preserved recoveries](#risk-gate-development) | risk overlay | completed bounded epoch with failures |
-| [Offline RSI foundation integration](#rsi-offline-integration) | research infrastructure | offline engineering demonstrated; final clean-head/hosted verification pending |
+| [Offline RSI foundation integration](#rsi-offline-integration) | research infrastructure | completed bounded offline integration; financial execution unsupported |
 | [SPY EMA and buy-and-hold fixture](#spy-fixture) | baseline | historical fixture |
 | [Daily SPY strategy catalogue suite](#strategy-suite) | strategy screening | partial coverage |
 

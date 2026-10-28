@@ -3,7 +3,7 @@
   "updated": "2026-10-27",
   "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials.",
   "authority": "Navigation only; present means file available, not independently verified or reproduced.",
-  "registry_sha256": "7eed627f0c08b008180cee86f3241e6b6df9bafc1a847f7a5e90ab0098dfd0b9",
+  "registry_sha256": "651900685ff0899e89274a3dc69ffe627e6cc8465ec134c8a07d0c3162eed78a",
   "generator_sha256": "41f09be4e25fa31198c9863046506695e0da06656df01181b95fadd73c17291e",
   "coverage": {
     "studies": 14,
@@ -546,7 +546,7 @@
       "id": "rsi-offline-integration",
       "title": "Offline RSI foundation integration",
       "family": "research infrastructure",
-      "reported_state": "offline engineering demonstrated; final clean-head/hosted verification pending",
+      "reported_state": "completed bounded offline integration; financial execution unsupported",
       "note": "Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.",
       "plans": [
         {
@@ -560,7 +560,7 @@
           "path": "docs/tasks/evidence/2026-10-27-rsi-integration.json",
           "kind": "receipt",
           "note": "Engineering validation receipt; raw local artifacts remain private.",
-          "sha256": "334829de02ed946ac5adc5f06448e9f0e6fd3bc1479d3e70a985b8a177a7112f"
+          "sha256": "e23fff3ac2b07389f58c1a4650b95cab33408e679753eae5be4b82dccd0003c7"
         }
       ],
       "failures": [
@@ -569,7 +569,7 @@
           "path": "docs/tasks/2026-10-27-rsi-integration.md#failures",
           "kind": "narrative",
           "note": "Retained focused-test failure and scope split; no financial trials.",
-          "sha256": "2a43590c1c12968f8b873a2562c96c87332a7e847ee9928dddcb11172ffa71ec"
+          "sha256": "4f1119aa58f255408aded781ee939fccad2b41330f3e8aceaf48038f72a2cca5"
         }
       ],
       "lessons": [
@@ -578,7 +578,7 @@
           "path": "docs/tasks/2026-10-27-rsi-integration.md#lesson",
           "kind": "narrative",
           "note": "Read-only dependencies and integration claims require their own proof.",
-          "sha256": "2a43590c1c12968f8b873a2562c96c87332a7e847ee9928dddcb11172ffa71ec"
+          "sha256": "4f1119aa58f255408aded781ee939fccad2b41330f3e8aceaf48038f72a2cca5"
         }
       ]
     },

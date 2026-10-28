@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "offline_demonstrated_final_clean_head_ci_pending",
+  "status": "completed_bounded_offline_integration",
   "base_sha": "4fc663164434e15b68324d8266ff421294af717b",
   "scope": "current offline foundation integration; historical runner explicitly excluded",
   "bounds": {
@@ -61,8 +61,26 @@
       "changed_files": 0,
       "demo_artifacts_verified": 25
     },
-    "final_clean_head_check": "pending; second and final allowed full local check",
-    "hosted_ci": "pending publication"
+    "final_clean_head_check": {
+      "exit": 0,
+      "tests": 502,
+      "head": "34584a13e8da7f5da55055ce9bba4c0108052eaa",
+      "clean_before": true,
+      "full_local_checks_used": 2,
+      "log_sha256": "179f56234115fa05684666cc7ca0b6c188ab8cd07e0b0879ed473a189c1643c6",
+      "documentation_files": 98,
+      "current_modules": 64,
+      "index_studies": 14,
+      "published_plans": 12,
+      "runtime": "existing pinned Python environment; project imports and source exclusively from fresh Git checkout"
+    },
+    "hosted_ci": "Exact final PR/push checks linked on PR; pending at this receipt snapshot, required before ready handoff",
+    "clean_real_preflight": {
+      "exit": 2,
+      "status": "unavailable",
+      "financial_launches": 0,
+      "reason": "private historical inputs deliberately absent; no silent skip"
+    }
   },
   "original_local_input_hashes": {
     "research/rsi_contracts.py": "a2826c5c089d8f63051996ddd27e1d8981c06a53a4b4d43a48c3210b544d674b",

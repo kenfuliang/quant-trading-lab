@@ -580,7 +580,7 @@
       "id": "rsi-offline-integration",
       "title": "Offline RSI foundation integration",
       "family": "research infrastructure",
-      "reported_state": "offline engineering demonstrated; final clean-head/hosted verification pending",
+      "reported_state": "completed bounded offline integration; financial execution unsupported",
       "note": "Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.",
       "plans": [
         {
