@@ -19,6 +19,7 @@ runtime timestamps use UTC.
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
 | What is the golden pipeline and rule for research evidence, disposition and papers? | [GRS-1.0](research-standard.md); [cycle register](research-cycles.md) |
 | Where are study plans, results, failures and lessons linked? | [Generated research evidence index](research-evidence-index.md); [index contract](architecture.md#research-evidence-index) |
+| How do offline RSI components hand off frozen work and recover? | [RSI SOP](operations/recursive-research.md); [integration evidence and remaining checklist](tasks/2026-10-27-rsi-integration.md) |
 | How do bounded research iterations produce evidence? | [Research development procedure](research-development.md) |
 | How do we define, validate and diagnose features? | [Feature engineering](feature-engineering.md) |
 | How do we score strategies and choose research directions? | [Research scoring contract](research-scoring.md) |

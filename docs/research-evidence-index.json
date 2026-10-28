@@ -3,13 +3,13 @@
   "updated": "2026-10-27",
   "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials.",
   "authority": "Navigation only; present means file available, not independently verified or reproduced.",
-  "registry_sha256": "8eafbe7f3c3e186b46c802b54b3c90047afe63fac738032aae30e5dc6cc14233",
+  "registry_sha256": "651900685ff0899e89274a3dc69ffe627e6cc8465ec134c8a07d0c3162eed78a",
   "generator_sha256": "41f09be4e25fa31198c9863046506695e0da06656df01181b95fadd73c17291e",
   "coverage": {
-    "studies": 13,
+    "studies": 14,
     "published_plans": 12,
     "unowned_plans": 0,
-    "supporting_records_unassigned": 65
+    "supporting_records_unassigned": 67
   },
   "studies": [
     {
@@ -543,6 +543,46 @@
       ]
     },
     {
+      "id": "rsi-offline-integration",
+      "title": "Offline RSI foundation integration",
+      "family": "research infrastructure",
+      "reported_state": "completed bounded offline integration; financial execution unsupported",
+      "note": "Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Bounded infrastructure acceptance and limits live in the integration task, not a financial JSON plan."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-27-rsi-integration.json",
+          "kind": "receipt",
+          "note": "Engineering validation receipt; raw local artifacts remain private.",
+          "sha256": "e23fff3ac2b07389f58c1a4650b95cab33408e679753eae5be4b82dccd0003c7"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#failures",
+          "kind": "narrative",
+          "note": "Retained focused-test failure and scope split; no financial trials.",
+          "sha256": "4f1119aa58f255408aded781ee939fccad2b41330f3e8aceaf48038f72a2cca5"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#lesson",
+          "kind": "narrative",
+          "note": "Read-only dependencies and integration claims require their own proof.",
+          "sha256": "4f1119aa58f255408aded781ee939fccad2b41330f3e8aceaf48038f72a2cca5"
+        }
+      ]
+    },
+    {
       "id": "spy-fixture",
       "title": "SPY EMA and buy-and-hold fixture",
       "family": "baseline",
@@ -669,6 +709,7 @@
     "docs/tasks/2026-10-27-dependency-boundaries.md",
     "docs/tasks/2026-10-27-evidence-recovery.md",
     "docs/tasks/2026-10-27-pr6-final-review.md",
+    "docs/tasks/2026-10-27-pr7-final-review.md",
     "docs/tasks/2026-10-27-project-foundation-adoption.md",
     "docs/tasks/2026-10-27-research-evidence-index.md",
     "docs/tasks/evidence/2026-10-25-existing-risk-gates.json",
@@ -699,6 +740,7 @@
     "docs/tasks/evidence/2026-10-27-dependency-boundaries.json",
     "docs/tasks/evidence/2026-10-27-evidence-recovery.json",
     "docs/tasks/evidence/2026-10-27-pr6-final-review.json",
+    "docs/tasks/evidence/2026-10-27-pr7-final-review.json",
     "docs/tasks/evidence/2026-10-27-project-foundation-adoption.json",
     "docs/tasks/evidence/2026-10-27-research-evidence-index.json"
   ]

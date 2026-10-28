@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "offline_passed_exact_head_ci_required",
+  "base": "4fc663164434e15b68324d8266ff421294af717b",
+  "reviewed_head": "7d7612252094bf32790afc0ef559a681ea48dbdc",
+  "requirements": {
+    "findings": 2,
+    "fixed": 2,
+    "unresolved": 0
+  },
+  "standards": {
+    "initial_findings": 2,
+    "fixed": 2,
+    "related_lock_fix_rechecked": true,
+    "unresolved": 0
+  },
+  "unique_defects": [
+    "Missing adoption authority silently reinitialized registry",
+    "FIFO authority could block reads",
+    "Missing or replaced lock could admit another writer"
+  ],
+  "focused_adoption_tests": 29,
+  "new_regression_methods": 9,
+  "historical_evidence_rewritten": false,
+  "demos": 0,
+  "financial_launches": 0,
+  "model_fits": 0,
+  "broker_operations": 0,
+  "validation": {
+    "make_check_exit": 0,
+    "tests": 511,
+    "documentation_files": 99,
+    "current_modules": 64,
+    "index_entries": 14,
+    "published_plans": 12,
+    "log_sha256": "5b168832e46bdb2f7a8361f6d9e26a320bd2a8ccccc41d714938fc1e69f8f9f9",
+    "preservation": {
+      "shared_main_historical_files": 405,
+      "primary_foundation_inputs": 13,
+      "primary_saved_history_files": 296,
+      "original_demo_artifacts": 25,
+      "changed": 0,
+      "original_449_receipt": "untouched",
+      "original_502_receipt": "untouched"
+    }
+  },
+  "current_fix_source_hashes": {
+    "research/control/rsi_adoption.py": "9bedf15ebc9ad81c3e20c767f3f887d05a67449bfc26b341927bfedeac7d2926",
+    "tests/test_rsi_adoption.py": "291615fe0597773b19d34531b586319e08d555681f50d258c8850d4b2283edc7"
+  }
+}
