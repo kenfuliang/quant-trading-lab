@@ -76,3 +76,22 @@ byte identities, not evaluator independence, data rights, causal truth or alpha.
 Financial passing evaluations remain provisional. These local lock/fsync journals
 are not an OS sandbox, broker state authority or signed tamper-proof archive.
 MLflow/browser views do not replace receipts or authorize execution.
+
+
+## Adoption registry authority and reconciliation
+
+New registries persist `initialized.json` before their first journal record. It
+binds configuration and the local lock file's device/inode identity. Journal,
+head, marker and lock must remain regular non-symlink files. Active writers seal
+authority bytes and verify the lock identity before new decisions; loss, replacement
+or an older valid state stops progress rather than resetting the incumbent.
+Missing locks in initialized directories cannot be silently recreated. A partially
+initialized registry also requires reconciliation.
+
+Unmarked prior registry evidence, including earlier demos, is preserved. This
+revision does not automatically migrate or reopen it. Keep the original files and
+receipts; a restored/copied registry or lock whose identity changed requires a
+separate reviewed reconciliation, not a routine constructor retry. This is local
+fail-closed engineering, not offsite recovery or cryptographic authenticity.
+[PR #7 final review](../tasks/2026-10-27-pr7-final-review.md) records the fixes and
+actual regression checks; historical integration receipts retain their old identities.

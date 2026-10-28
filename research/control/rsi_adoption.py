@@ -12,11 +12,13 @@ Only ``synthetic_engineering`` can adopt a research version. Financial research
 passes remain provisional; no financial/production promotion is implemented.
 Rollback appends a new decision and preserves every previous record.
 
-The single-writer JSONL journal and durable head receipt reject altered/replayed
+The single-writer JSONL journal, durable initialization marker and head reject altered/replayed
 events, tail truncation and incomplete appends. An interrupted append/head update
 fails closed and needs manual reconciliation. This local hash chain is not a
 signature or protection against rewriting both files; retain returned receipts
-outside this directory for a separate trust anchor. Use a local filesystem.
+outside this directory for a separate trust anchor. The marker binds the local lock
+file identity; missing/unmarked/moved authority needs manual reconciliation, never
+automatic migration. Use a local filesystem.
 """
 from __future__ import annotations
 
@@ -161,6 +163,30 @@ def _artifact_json(artifact, root):
             os.close(descriptor)
 
 
+def _regular_read(path):
+    """Read registry authority without following symlinks or blocking on a FIFO."""
+    descriptor = None
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+        if not stat.S_ISREG(os.fstat(descriptor).st_mode):
+            raise AdoptionError("Registry authority must be a regular file")
+        with os.fdopen(os.dup(descriptor), "rb") as stream:
+            return stream.read()
+    except OSError as exc:
+        raise AdoptionError("Registry authority missing or unsafe; reconcile before continuing") from exc
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+
+
+def _sync_directory(directory):
+    descriptor = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
 @dataclass(frozen=True)
 class IndependentEvaluation:
     """Typed artifact attestation; fields are rechecked, never trusted as a pass."""
@@ -186,11 +212,35 @@ class AdoptionRegistry:
                        "evaluator": _identity(evaluator, evaluator=True),
                        "scope": scope}
         self.directory = Path(directory)
+        if self.directory.is_symlink():
+            raise AdoptionError("Registry directory cannot be a symlink")
         self.directory.mkdir(parents=True, exist_ok=True)
         self.log_path = self.directory / "adoption.jsonl"
         self.head_path = self.directory / "head.json"
+        self.marker_path = self.directory / "initialized.json"
+        self._seal = None
         self._closed = False
-        self._lock = (self.directory / ".writer.lock").open("a+")
+        lock_path = self.directory / ".writer.lock"
+        if not lock_path.exists() and not lock_path.is_symlink() and any(
+                path.exists() or path.is_symlink() for path in (self.marker_path, self.log_path, self.head_path)):
+            raise AdoptionError("Initialized registry lock missing; manual reconciliation required")
+        try:
+            try:
+                lock_descriptor = os.open(self.directory / ".writer.lock",
+                                          os.O_RDWR | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW | os.O_NONBLOCK, 0o600)
+                new_lock = True
+            except FileExistsError:
+                lock_descriptor = os.open(self.directory / ".writer.lock",
+                                          os.O_RDWR | os.O_NOFOLLOW | os.O_NONBLOCK)
+                new_lock = False
+        except OSError as exc:
+            raise AdoptionError("Registry lock is missing or unsafe") from exc
+        if not stat.S_ISREG(os.fstat(lock_descriptor).st_mode):
+            os.close(lock_descriptor)
+            raise AdoptionError("Registry lock must be a regular file")
+        lock_stat = os.fstat(lock_descriptor)
+        self._lock_identity = {"device": lock_stat.st_dev, "inode": lock_stat.st_ino}
+        self._lock = os.fdopen(lock_descriptor, "r+")
         try:
             fcntl.flock(self._lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as exc:
@@ -198,11 +248,29 @@ class AdoptionRegistry:
             self._closed = True
             raise AdoptionError("Adoption registry already has a writer") from exc
         try:
-            self._load()
-            if not self._events:
+            self._marker_bytes = _encoded({"schema_version": "RSI-REGISTRY-AUTHORITY-1",
+                                           "config_sha256": canonical_hash(self.config),
+                                           "lock_identity": self._lock_identity})
+            # A durable marker is written before first journal initialization. A
+            # crash at either boundary stays incomplete rather than resetting state.
+            if not self.marker_path.exists() and not self.marker_path.is_symlink():
+                if not new_lock or self.log_path.exists() or self.head_path.exists() or self.log_path.is_symlink() or self.head_path.is_symlink():
+                    raise AdoptionError("Registry initialization marker missing; manual reconciliation required")
+                descriptor = os.open(self.marker_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+                with os.fdopen(descriptor, "wb") as stream:
+                    stream.write(self._marker_bytes)
+                    stream.flush()
+                    os.fsync(stream.fileno())
+                _sync_directory(self.directory)
+                self._events, self._state = [], {}
                 self._append("init", self.config)
+            else:
+                self._load()
+            if not self._events:
+                raise AdoptionError("Registry initialization incomplete; reconcile before continuing")
             elif self._state["config"] != self.config:
                 raise AdoptionError("Protected registry context changed")
+            self._seal_authority()
         except BaseException:
             self.close()
             raise
@@ -417,14 +485,14 @@ class AdoptionRegistry:
     def _load(self):
         if self._closed:
             raise AdoptionError("Adoption registry is closed")
-        if self.log_path.is_symlink() or self.head_path.is_symlink():
-            raise AdoptionError("Registry files cannot be symlinks")
+        self._verify_lock_identity()
+        marker = _regular_read(self.marker_path)
+        if marker != self._marker_bytes:
+            raise AdoptionError("Registry initialization identity changed")
+        raw, head_raw = _regular_read(self.log_path), _regular_read(self.head_path)
+        if self._seal is not None and (raw, head_raw, marker) != self._seal:
+            raise AdoptionError("Registry authority changed while writer is open")
         self._events, self._state = [], {}
-        if not self.log_path.exists() and not self.head_path.exists():
-            return
-        if not self.log_path.exists() or not self.head_path.exists():
-            raise AdoptionError("Incomplete registry/head; manual reconciliation required")
-        raw = self.log_path.read_bytes()
         if not raw or not raw.endswith(b"\n"):
             raise AdoptionError("Incomplete registry append")
         previous = _ZERO
@@ -438,12 +506,27 @@ class AdoptionRegistry:
             self._state = self._apply(record["event"], self._state)
             self._events.append(record)
             previous = record["event_hash"]
-        head = _json(self.head_path.read_bytes())
+        head = _json(head_raw)
         _object(head, "sequence event_hash", "head receipt")
         if type(head["sequence"]) is not int or head != {"sequence": len(self._events), "event_hash": previous}:
             raise AdoptionError("Registry differs from durable head; reconcile before continuing")
 
+    def _verify_lock_identity(self):
+        try:
+            info = os.stat(self.directory / ".writer.lock", follow_symlinks=False)
+        except OSError as exc:
+            raise AdoptionError("Registry lock authority missing; reconcile before continuing") from exc
+        if (not stat.S_ISREG(info.st_mode)
+                or {"device": info.st_dev, "inode": info.st_ino} != self._lock_identity):
+            raise AdoptionError("Registry lock authority changed; reconcile before continuing")
+
+    def _seal_authority(self):
+        self._verify_lock_identity()
+        self._seal = (_regular_read(self.log_path), _regular_read(self.head_path),
+                      _regular_read(self.marker_path))
+
     def _append(self, kind, payload):
+        self._verify_lock_identity()
         event = {"kind": kind, "created_utc": datetime.now(timezone.utc).isoformat(),
                  "payload": deepcopy(payload)}
         state = self._apply(event, self._state)
@@ -451,7 +534,14 @@ class AdoptionRegistry:
                 "previous_hash": self._events[-1]["event_hash"] if self._events else _ZERO,
                 "event": event}
         record = {**body, "event_hash": canonical_hash(body)}
-        with self.log_path.open("ab") as stream:
+        flags = os.O_WRONLY | os.O_APPEND | os.O_NOFOLLOW | os.O_NONBLOCK
+        if not self._events:
+            flags |= os.O_CREAT | os.O_EXCL
+        descriptor = os.open(self.log_path, flags, 0o600)
+        if not stat.S_ISREG(os.fstat(descriptor).st_mode):
+            os.close(descriptor)
+            raise AdoptionError("Registry journal must be a regular file")
+        with os.fdopen(descriptor, "ab") as stream:
             stream.write(_encoded(record) + b"\n")
             stream.flush()
             os.fsync(stream.fileno())
@@ -473,4 +563,5 @@ class AdoptionRegistry:
                 os.unlink(temporary)
         self._events.append(record)
         self._state = state
+        self._seal_authority()
         return deepcopy(record)

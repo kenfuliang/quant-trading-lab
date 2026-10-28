@@ -3,6 +3,9 @@ from copy import deepcopy
 from dataclasses import replace
 import hashlib
 import json
+import os
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
@@ -333,6 +336,140 @@ class AdoptionTests(unittest.TestCase):
         (self.root / "registry/head.json").unlink()
         with self.assertRaises(AdoptionError):
             self.open_registry()
+
+    def test_lost_authority_after_adoption_cannot_reinitialize_or_rollback(self):
+        plan = self.freeze()
+        result = self.evaluation(plan)
+        self.registry.evaluate_and_record(plan, result, decision_id="adopt", reason="Synthetic fixture")
+        self.assertEqual(self.registry.state["current"]["version"], "v2")
+        self.registry.close()
+        marker = self.root / "registry/initialized.json"
+        before = marker.read_bytes()
+        for name in ("adoption.jsonl", "head.json"):
+            (self.root / "registry" / name).unlink()
+        with self.assertRaises(AdoptionError):
+            self.open_registry()
+        self.assertEqual(marker.read_bytes(), before)
+        self.assertFalse((self.root / "registry/adoption.jsonl").exists())
+        self.assertFalse((self.root / "registry/head.json").exists())
+
+    def test_open_writer_detects_authority_loss_before_any_new_decision(self):
+        self.freeze()
+        for name in ("adoption.jsonl", "head.json"):
+            (self.root / "registry" / name).unlink()
+        with self.assertRaises(AdoptionError):
+            _ = self.registry.state
+        with self.assertRaises(AdoptionError):
+            self.registry.rollback("v1", decision_id="reset", reason="Must not reconstruct")
+        self.assertFalse((self.root / "registry/adoption.jsonl").exists())
+
+    def test_active_writer_rejects_even_hash_valid_old_authority(self):
+        paths = [self.root / "registry" / name for name in ("adoption.jsonl", "head.json")]
+        old = {path: path.read_bytes() for path in paths}
+        self.freeze()
+        for path, data in old.items():
+            path.write_bytes(data)
+        with self.assertRaisesRegex(AdoptionError, "changed while writer"):
+            _ = self.registry.state
+
+    def test_unmarked_existing_history_requires_reconciliation_without_migration(self):
+        self.registry.close()
+        marker = self.root / "registry/initialized.json"
+        marker.unlink()
+        old = {p: p.read_bytes() for p in (self.root / "registry").iterdir() if p.is_file()}
+        with self.assertRaisesRegex(AdoptionError, "marker missing"):
+            self.open_registry()
+        self.assertFalse(marker.exists())
+        self.assertEqual(old, {p: p.read_bytes() for p in old})
+
+    def test_marker_only_initialization_is_not_silently_repaired(self):
+        self.registry.close()
+        for name in ("adoption.jsonl", "head.json"):
+            (self.root / "registry" / name).unlink()
+        with self.assertRaises(AdoptionError):
+            self.open_registry()
+        self.assertFalse((self.root / "registry/adoption.jsonl").exists())
+        self.assertFalse((self.root / "registry/head.json").exists())
+
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "POSIX authority-file behavior")
+    def test_fifo_journal_head_marker_and_lock_reject_without_blocking(self):
+        self.registry.close()
+        directory = self.root / "registry"
+        originals = {p: p.read_bytes() for p in directory.iterdir() if p.is_file()}
+        code = """import sys
+from research.control.rsi_adoption import AdoptionRegistry, AdoptionError
+try:
+    AdoptionRegistry(sys.argv[1], artifact_root=sys.argv[2],
+                     incumbent={"version":"v1","sha256":"a"*64},
+                     evaluator={"id":"independent-checker","sha256":"e"*64})
+except AdoptionError:
+    print("rejected"); sys.exit(17)
+sys.exit(3)
+"""
+        for name in ("adoption.jsonl", "head.json", "initialized.json", ".writer.lock"):
+            path = directory / name
+            path.unlink()
+            os.mkfifo(path)
+            try:
+                result = subprocess.run([sys.executable, "-c", code, str(directory), str(self.root)],
+                                        cwd=Path(__file__).resolve().parents[1], capture_output=True,
+                                        text=True, timeout=3)
+                self.assertEqual(result.returncode, 17, result.stderr)
+                self.assertEqual(result.stdout.strip(), "rejected")
+                self.assertTrue(path.is_fifo())
+                self.assertTrue(all(p.read_bytes() == data for p, data in originals.items() if p != path))
+            finally:
+                path.unlink()
+                path.write_bytes(originals[path])
+
+    def test_missing_lock_with_live_writer_cannot_admit_a_second_writer_or_retry(self):
+        directory = self.root / "registry"
+        authority = {p: p.read_bytes() for p in directory.iterdir() if p.name != ".writer.lock"}
+        lock = directory / ".writer.lock"
+        lock.unlink()
+        for _ in range(2):
+            with self.assertRaisesRegex(AdoptionError, "lock missing"):
+                self.open_registry()
+            self.assertFalse(lock.exists())
+            with self.assertRaises(AdoptionError):
+                _ = self.registry.state
+        with self.assertRaises(AdoptionError):
+            self.freeze()
+        self.assertEqual(authority, {p: p.read_bytes() for p in authority})
+
+    def test_replaced_lock_with_live_writer_fails_persistent_and_active_identity(self):
+        directory = self.root / "registry"
+        authority = {p: p.read_bytes() for p in directory.iterdir() if p.name != ".writer.lock"}
+        lock = directory / ".writer.lock"
+        lock.unlink()
+        lock.write_bytes(b"replacement inode")
+        for _ in range(2):
+            with self.assertRaises(AdoptionError):
+                self.open_registry()
+        with self.assertRaisesRegex(AdoptionError, "lock authority changed"):
+            _ = self.registry.state
+        with self.assertRaises(AdoptionError):
+            self.freeze()
+        self.assertEqual(lock.read_bytes(), b"replacement inode")
+        self.assertEqual(authority, {p: p.read_bytes() for p in authority})
+
+    def test_symlink_lock_and_authority_do_not_modify_external_target(self):
+        self.registry.close()
+        external = self.root / "external"
+        external.write_bytes(b"untouched")
+        for name in ("adoption.jsonl", "head.json", "initialized.json", ".writer.lock"):
+            path = self.root / "registry" / name
+            saved = path.read_bytes()
+            path.unlink()
+            path.symlink_to(external)
+            try:
+                with self.assertRaises(AdoptionError):
+                    self.open_registry()
+                self.assertEqual(external.read_bytes(), b"untouched")
+                self.assertTrue(path.is_symlink())
+            finally:
+                path.unlink()
+                path.write_bytes(saved)
 
     def test_duplicate_json_keys_and_nonboolean_claims_are_rejected(self):
         plan_hash = self.freeze()
