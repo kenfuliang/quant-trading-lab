@@ -1,8 +1,25 @@
 {
-  "status": "review_pending",
+  "status": "initial_checks_passed_review_fixes_applied",
   "base": "fbef6fd79e41903bba00ef93464453ae41e9d00b",
   "financial_launches": 0,
   "scope": "management+leaderboard; no stage algorithm changes",
   "source_coverage": "published aggregate snapshot; original financial evidence local-only",
-  "setup_failure": "First record-writing script lacked json import; stopped before receipt/register writes. Corrected without changing candidate algorithms."
+  "setup_failure": "First record-writing script lacked json import; stopped before receipt/register writes. Corrected without changing candidate algorithms.",
+  "validation": {
+    "full_check_1": {
+      "exit_code": 0,
+      "elapsed_seconds": 19.202704041963443
+    },
+    "tests": 528,
+    "focused_tests": 12,
+    "skill_validators": 2,
+    "saved_wave_receipt": "docs/tasks/evidence/2026-10-28-management-wave1-exercise.json"
+  },
+  "review": {
+    "standards": "no actionable findings at25d37e4",
+    "spec": [
+      "saved-wave publication receipt gap: fixed",
+      "narrative mislabeled as evidence receipt: fixed"
+    ]
+  }
 }

@@ -1,6 +1,6 @@
 # Local trading platform
 
-Updated 2026-10-27 (America/Los_Angeles). This file owns current capability status
+Updated 2026-10-28 (America/Los_Angeles). This file owns current capability status
 and project entrypoints. The active priority is infrastructure, using Python and
 NautilusTrader locally without QuantConnect.
 

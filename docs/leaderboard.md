@@ -114,7 +114,7 @@ flowchart LR
 2020–2025; USD10,000 whole shares; native IB fees +25bp slippage; staged MOO,90% nominal targets;6% debit ACT/360, no credit interest. Monthly selection versus entry-only SPY; realized exposure and universe differ. Latest completed selection study replaces the earlier coverage-limited comparison for this view.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Stock momentum has the highest displayed Calmar in this cohort, but its longest underwater stretch exceeds SPY. Fixed selected universes and viewed history limit generalization. Annual and temporal detail: [selection browser](http://127.0.0.1:8765/selection-completion-v1/index.html).
 
@@ -123,7 +123,7 @@ Stock momentum has the highest displayed Calmar in this cohort, but its longest 
 Same2020–2025 fixture as A, but50bp slippage and one additional observed-session decision delay. These rows form their own paired stress context.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Stock momentum crosses30% drawdown under this stress. The stress was selected after observing its earlier result; this is disclosed development evidence.
 
@@ -132,7 +132,7 @@ Stock momentum crosses30% drawdown under this stress. The stress was selected af
 2020–2025; USD10,000; native IB margin/default fees +25bp slippage;90% base target; staged MOO;6% debit ACT/360; no credit interest. Embedded leveraged/inverse/volatility ETFs mean nominal allocation does not describe underlying economic leverage.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Gated T11 improves displayed Calmar and drawdown depth, but reduces CAGR and extends underwater time. None meets the approximate30% drawdown reference. All three finish below a prior peak. [Annual and temporal browser](http://127.0.0.1:8765/qc504-t11-gate-v1/index.html).
 
@@ -141,7 +141,7 @@ Gated T11 improves displayed Calmar and drawdown depth, but reduces CAGR and ext
 2020–2025; USD10,000;25bp slippage, native IB fees,90% base target, staged MOO and6% debit financing. Historical classification gaps were grouped as unknown. These results are historical diagnostics; the repaired sector-only comparison is D.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Do not treat the21.07% sector-only CAGR as the repaired sector strategy. D changes the classification treatment and adds a target-matched control. [Monthly selections, contribution and annual browser](http://127.0.0.1:8765/stock-risk-v1/index.html).
 
@@ -150,7 +150,7 @@ Do not treat the21.07% sector-only CAGR as the repaired sector strategy. D chang
 2020–2025; USD10,000;25bp slippage, native IB fees, staged MOO,90% base allocation and6% debit ACT/360. No market gate. Historical sector mappings are repaired under the study’s availability contract. Target-matched control matches intended allocation, not exact realized exposure.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Sector cap improves Calmar by0.0643 against its matched control, while trailing the original momentum policy in growth and Calmar. This is a scoped tradeoff, not universal dominance. [Annual/contribution browser](http://127.0.0.1:8765/sector-matched-v1/index.html).
 
@@ -159,7 +159,7 @@ Sector cap improves Calmar by0.0643 against its matched control, while trailing 
 2017-01-03–2025-12-31; USD300,000; USD1/order +5bp slippage;98% gross targets; no financing/interest model. Matched repaired buying-power setting2; observed closing cash remains positive and gross below99%.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Sector momentum has a much shorter worst underwater run than SPY, but lower CAGR and more total underwater closes. The gate leads Calmar with lower growth and a longer worst underwater episode. [Annual browser](http://127.0.0.1:8765/sector-momentum-v1/index.html).
 
@@ -168,7 +168,7 @@ Sector momentum has a much shorter worst underwater run than SPY, but lower CAGR
 2016–2025; USD300,000; fixed29-stock legacy pool, minute execution, unchanged source sizing and6% debit ACT/360. Native bid/ask fills remain; this is not frictionless.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 `on`/`off` means1% per-stock stop enabled/disabled; `s` is the matching SPY hold. Every CAPM variant loses to its matched SPY on CAGR, Calmar, drawdown and longest underwater period. Retain as negative baselines. [All90 annual rows and contrasts](http://127.0.0.1:8765/capm-ablation-v1/index.html).
 
@@ -177,7 +177,7 @@ Sector momentum has a much shorter worst underwater run than SPY, but lower CAGR
 2016–2025; USD300,000; fixed29-stock legacy pool, minute execution, unchanged source sizing and6% debit ACT/360. No added slippage.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 `on`/`off` means1% per-stock stop enabled/disabled; `s` is the matching SPY hold. Every CAPM variant loses to its matched SPY on CAGR, Calmar, drawdown and longest underwater period. Retain as negative baselines. [All90 annual rows and contrasts](http://127.0.0.1:8765/capm-ablation-v1/index.html).
 
@@ -186,7 +186,7 @@ Sector momentum has a much shorter worst underwater run than SPY, but lower CAGR
 2016–2025; USD300,000; fixed29-stock legacy pool, minute execution, unchanged source sizing and6% debit ACT/360. 25bp added slippage is a stress assumption, not measured execution.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 `on`/`off` means1% per-stock stop enabled/disabled; `s` is the matching SPY hold. Every CAPM variant loses to its matched SPY on CAGR, Calmar, drawdown and longest underwater period. Retain as negative baselines. [All90 annual rows and contrasts](http://127.0.0.1:8765/capm-ablation-v1/index.html).
 
@@ -195,7 +195,7 @@ Sector momentum has a much shorter worst underwater run than SPY, but lower CAGR
 2016–2025; USD300,000; 98% targets, native IB commissions +5bp slippage;6% debit ACT/360 and3% short borrow ACT/365; no credit interest. This minute-execution cohort is separate from CAPM and pairs, even where dates match.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Improvement screen failed versus SPY. Beating an intraday-long losing control did not establish a useful portfolio. [Annual and temporal browser](http://127.0.0.1:8765/dual-thrust-spy-v1/index.html).
 
@@ -204,7 +204,7 @@ Improvement screen failed versus SPY. Beating an intraday-long losing control di
 2016–2025; USD300,000; native IB commissions +5bp/fill,6% debit ACT/360 and3% short borrow ACT/365. RAW execution,250 strictly-prior-session fitting,9:32 next-session execution. The fixed surviving pair is selected ex post.
 
 
-[Result and lesson](tasks/2026-10-28-leaderboard-source-catalog.md) · [Evidence receipt](tasks/2026-10-28-leaderboard-source-catalog.md)
+[Aggregate study summary](tasks/2026-10-28-leaderboard-source-catalog.md) · [Aggregate source provenance](tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
 
 Pairs improvement screen failed. The high-growth pair-hold control has65.70% drawdown and hindsight selection; it is not a discovered robust strategy. [Result/annual and temporal browser](http://127.0.0.1:8765/stock-pairs-spy-v1/index.html).
 

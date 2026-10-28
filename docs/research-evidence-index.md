@@ -423,4 +423,6 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/evidence/2026-10-27-research-evidence-index.json](../docs/tasks/evidence/2026-10-27-research-evidence-index.json)
 - [docs/tasks/evidence/2026-10-27-stage-development-skill.json](../docs/tasks/evidence/2026-10-27-stage-development-skill.json)
 - [docs/tasks/evidence/2026-10-28-leaderboard-source-catalog.json](../docs/tasks/evidence/2026-10-28-leaderboard-source-catalog.json)
+- [docs/tasks/evidence/2026-10-28-management-wave1-exercise.json](../docs/tasks/evidence/2026-10-28-management-wave1-exercise.json)
+- [docs/tasks/evidence/2026-10-28-management-wave1-manifest.json](../docs/tasks/evidence/2026-10-28-management-wave1-manifest.json)
 - [docs/tasks/evidence/2026-10-28-research-management-pr.json](../docs/tasks/evidence/2026-10-28-research-management-pr.json)

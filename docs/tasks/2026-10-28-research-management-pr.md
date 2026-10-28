@@ -49,6 +49,32 @@ evidence, not a second ranked display.
   snapshot, one-table layout, missing-value handling, duplicate identities, valid
   local evidence targets and the ungated policy tag.
 
-Offline checks and review dispositions pending. The original saved-wave exercise
+First full offline check passed:528 tests,108 documentation files,67 current
+modules, dependency integrity and generated-index freshness; both skill validators
+passed. Standards reviewer found no actionable findings. Spec reviewer found two
+publication gaps, addressed below. The original saved-wave exercise
 had28 component methods and one parent rerun per lane, not56 independent cases.
-Read-only inventory checks43 aggregate reference rows but runs no financial code.
+The43 leaderboard rows are transcription references; they are separate from the
+actual read-only three-agent inventory exercise. Neither executes financial code.
+
+
+## Saved-wave exercise and review corrections
+
+The current inventory command was exercised against all three original saved
+submissions, without invoking their unit-test or financial commands. The
+[published projection manifest](evidence/2026-10-28-management-wave1-manifest.json)
+and [exercise output/receipt](evidence/2026-10-28-management-wave1-exercise.json)
+bind original identities, owners, output and per-actor consumed limits. Each lane
+has one agent check out ofthree and one parent check out ofone; all old deadlines
+are expired. All69 original closure artifacts retain their hashes, with zero drift.
+All three have16 verified declared references and two matching reservations/results.
+Shared files repeat across manifests;48 references are not48 independent artifacts.
+Missing/failed evidence in this declared inventory: none. Existing warnings,
+discovery errors and scientific limitations remain retained and named in the receipt.
+
+The saved-wave results do not establish qualified data, common UTC handoffs, runtime
+integration or financial value. Original financial and stage raw histories remain
+external and unavailable from a fresh clone; the manifest is only replayable with
+that saved root. Its published receipt is a review-time observation, not a substitute
+for originals or independent replication. Leaderboard context links now explicitly
+say aggregate summary/provenance, matching their actual targets.
