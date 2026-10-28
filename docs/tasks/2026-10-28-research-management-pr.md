@@ -78,3 +78,21 @@ external and unavailable from a fresh clone; the manifest is only replayable wit
 that saved root. Its published receipt is a review-time observation, not a substitute
 for originals or independent replication. Leaderboard context links now explicitly
 say aggregate summary/provenance, matching their actual targets.
+
+
+## Final offline verdict
+
+Both separate Standards and Spec reviews report zero unresolved findings at
+implementation head9e7ffc4 after correction of the two publication gaps. A clean
+Git archive of that head passed `make check`:528 tests,108 documentation files,
+67 current modules, dependency integrity and generated evidence-index freshness.
+Both skill validators passed; all327 frozen identities remain unchanged. The
+final record-only commit adds this result and hashed log metadata without changing
+reviewed implementation, leaderboard tuples or source snapshots. Hosted CI for
+that final PR head remains required and is reported separately by GitHub.
+
+This PR is reversible/additive. It changes research management instructions,
+read-only validation and derived presentation, not any stage trading policy,
+execution adapter, historical trial allowance or live/broker state. A single-table
+leaderboard requirement is enforced by regression checks; semantic per-cycle closure
+still requires the documented workflow, not a new unattended service.

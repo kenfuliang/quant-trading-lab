@@ -1,25 +1,44 @@
 {
-  "status": "initial_checks_passed_review_fixes_applied",
+  "status": "offline_checks_and_review_complete_hosted_ci_pending",
   "base": "fbef6fd79e41903bba00ef93464453ae41e9d00b",
   "financial_launches": 0,
   "scope": "management+leaderboard; no stage algorithm changes",
   "source_coverage": "published aggregate snapshot; original financial evidence local-only",
   "setup_failure": "First record-writing script lacked json import; stopped before receipt/register writes. Corrected without changing candidate algorithms.",
   "validation": {
-    "full_check_1": {
-      "exit_code": 0,
-      "elapsed_seconds": 19.202704041963443
-    },
-    "tests": 528,
-    "focused_tests": 12,
-    "skill_validators": 2,
-    "saved_wave_receipt": "docs/tasks/evidence/2026-10-28-management-wave1-exercise.json"
+    "focused_methods": 12,
+    "full_checks": [
+      {
+        "exit_code": 0,
+        "elapsed_seconds": 19.202704041963443
+      },
+      {
+        "exit_code": 0,
+        "elapsed_seconds": 16.540119374985807,
+        "head": "9e7ffc438d203ce92f3a488b5388a9b57226efcf",
+        "clean_archive": true
+      }
+    ],
+    "full_tests": 528,
+    "clean_archive_verified": true,
+    "skill_validators_passed": 2,
+    "wave_artifacts_unchanged": 69,
+    "frozen_files_unchanged": 327,
+    "financial_launches": 0
   },
   "review": {
-    "standards": "no actionable findings at25d37e4",
-    "spec": [
-      "saved-wave publication receipt gap: fixed",
-      "narrative mislabeled as evidence receipt: fixed"
-    ]
-  }
+    "base": "fbef6fd79e41903bba00ef93464453ae41e9d00b",
+    "reviewed_implementation_head": "9e7ffc4",
+    "standards_unresolved": 0,
+    "spec_unresolved": 0,
+    "initial_spec_findings": 2,
+    "both_fixed_and_rechecked": true
+  },
+  "log_sha256": {
+    ".local/full-2/stdout.txt": "fd6501746f0708f8854caa5513ef23a9d10dcb876e82bdf154796900d5d0815d",
+    ".local/full-1/stdout.txt": "0c32d396d2e3574c52cfd04f1e0004dd8e1a749cf88c50d4beee47ef5afd8d05",
+    ".local/full-2/stderr.txt": "77428768767a25e05a70b5e4eab9e21021b77df1853dd5a4f6adfe482b0a311a",
+    ".local/full-1/stderr.txt": "aeae811f61f828c3782057c7bbf548db739f45d200e8c913c52bf738e0f795e6"
+  },
+  "recorded_utc": "2026-10-28T07:52:07.446292+00:00"
 }
