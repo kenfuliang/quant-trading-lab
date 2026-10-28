@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-28
 owner: research-maintainers
 ---
 
@@ -23,13 +23,14 @@ flowchart LR
 
 | Step | Existing skill route | Required handoff |
 | --- | --- | --- |
+| Manage | ask-pm → trade-research-management when a program needs coordination | Declared work IDs/owners, original bounds, evidence status, dependencies and next proposed handoff |
 | Retrieve | trade-project → trade-research-history | Exact parent, prior failures, access history and open question |
 | Freeze | trade-stage-development for a component change; trade-candidate-evolution → trade-research-design | One changed stage, falsifier, controls, timing and finite bounds |
 | Preflight | trade-data-audit; feature workflow when relevant | Input hashes and known-lesson check; missing/failed evidence stops dependent work |
 | Execute | trade-experiment, only through a supported adapter | Frozen cases and shared program limits; actual reservation, exit and outputs |
 | Verify | trade-performance-diagnosis → trade-robust-evaluation | Accounts, comparability, uncertainty, adverse and failed evidence |
 | Disposition | trade-promotion-review | Exact incumbent/candidate identities and scoped retain/provisional/adopt decision |
-| Close | trade-research-history | All attempts, actual evidence, lesson and next eligible question |
+| Close | trade-research-history → trade-research-management; ask-pm checks completion | All attempts, evidence, lesson and next question; canonical leaderboard reconciliation per the closure contract below |
 
 These are handoffs, not an automatic dispatcher. Infrastructure repairs use
 trade-infra-change. Existing financial runners are not eligible through the new
@@ -106,3 +107,103 @@ preflight, implementation and scoped evaluation. Direct synthetic component chec
 are engineering verification, not financial execution through the RSI coordinator.
 The existing adapter restriction remains: only fixed synthetic and saved-read-only
 adapters are supported; adding a skill does not register a financial runner.
+
+## Research management
+
+This section owns management handoffs. The [catalog](../skills.md) owns skills
+and role readiness, [roadmap](../roadmap.md) owns priority, GRS owns scientific
+acceptance, and original plans/journals/receipts retain execution authority.
+Management records are dated derived reviews; they do not replace those owners.
+
+```mermaid
+flowchart LR
+    D[Director: scope and priorities] --> M[PM: work, owners, dependencies and limits]
+    M --> S[Scoped specialist submissions]
+    S --> V[Evidence inventory and scientific review]
+    V --> L[Disposition, failures and lessons]
+    L --> N[Next bounded proposal]
+    N -. Authorized new task only .-> M
+```
+
+1. Freeze the named review program, expected submissions, evidence root and hash
+   manifest, owner, finite verification bounds and zero/new financial allowance.
+   Retrieve historical failures before deriving status. Existing programs keep their
+   consumed attempts and deadlines; management review does not reopen them.
+2. Maintain a [scoped work register](../templates/research-management.md), linking
+   each owner/contract to reservations, results, partial outputs, lesson, blocker
+   and dependency. Use original records, including unsuccessful starts. Mark absent
+   evidence unknown and failed evidence failed. Duplicate or overlapping proposals
+   return to the existing owner before scheduling additional work.
+3. For fixed wave1-style JSONL reservation/JSON-result records, the read-only helper
+   `scripts/current/research_management.py --evidence-root ROOT --manifest FILE`
+   verifies declared hashes, check identities, consumed command count and zero
+   financial launch declarations. It prints JSON: exit0 verified declared evidence,
+   exit2 missing artifacts, exit1 failed/invalid evidence. It performs no commands
+   from submissions, writes or automatic discovery. Other receipt formats require
+   explicit manual reconciliation, not an inferred pass.
+4. The helper accepts schema_version1, program and1..16 items. Each item declares
+   id, owner, max_commands, artifacts(relative path:SHA256), reservations(JSONL path)
+   and checks(distinct JSON-result paths). Every check/reservation must be in
+   artifacts. Files are regular nonsymlinks beneath the supplied root, <=10MB each,
+   <=128 per item; CLI manifest <=1MB. The manifest is a caller-supplied projection,
+   not authenticated authority. Limits must be checked against original contracts;
+   omitted trials, forged mutually consistent records, data rights, actual resource
+   use and scientific truth cannot be established by hash matching.
+5. Reconcile interpretation with specialists. Administrative completion cannot
+   promote a strategy. Preserve adverse evidence and incomparable contexts; run
+   trade-promotion-review only for its scoped decision. Use trade-research-history
+   to record closure and refresh existing cycle/evidence navigation.
+6. Propose one next task with dependency, accountable role, finite limits and
+   acceptance/failure cases. Describe whether it is proposed, authorized or launched;
+   consultation alone ends at a proposal. Dispatch and execution need their own
+   user-authorized scope. This is a request-driven workflow, not an unattended PM
+   service, new result database, dashboard or financial runner.
+
+The [three-agent exercise](../tasks/2026-10-28-research-management-pr.md) records
+actual evidence, mutation controls and usefulness limits. Format validation and
+one saved-wave exercise do not establish general project-management effectiveness.
+
+## Leaderboard closure contract
+
+Every completed research cycle reconciles the **existing** `docs/leaderboard.md`
+in the owning research checkout, including negative, failed, blocked, abandoned,
+inconclusive and engineering-only closures. An isolated review checkout must resolve
+that original owner; it must not create a second leaderboard or copy source history
+merely to satisfy a missing local link. This branch publishes the owning file alongside its management skills; original
+local-only financial records remain outside the published aggregate snapshot.
+
+The leaderboard owns its table presentation. It begins with one table; explanation,
+context definitions and archive links follow. Its closure procedure is:
+
+1. Identify the cycle/plan, exact candidate/control case and context (dates, capital,
+   universe, costs, financing, execution, leverage and evaluation exposure). Use that
+   identity to upsert, not duplicate, its current entry. A replication links prior
+   evidence; cached results and retries are not new strategies or independent trials.
+2. Reconcile all attempts, integrity status and scientific disposition first. Add
+   meaningful tags for asset class, mechanism, overlay, test context and evidence
+   state. Infer tags from the actual rule, not substring matches (`ungated` is not
+   a risk gate). Keep distinct cost/input treatments identifiable in the same table.
+3. Attach the source study, receipt and lesson, including contradictory results,
+   warnings and failures. Show the result status and a short lesson in the table;
+   use source links for full attempt history and annual/temporal detail. Metric
+   eligibility follows GRS. A failed improvement screen can remain a valid measured
+   negative baseline; an invalid run cannot be ranked as qualified evidence.
+4. For missing, failed-integrity, blocked, inconclusive or engineering-only outcomes,
+   use an unranked status row; unavailable financial metrics are `—` with the reason
+   in status/lesson, never zero or invented values. Preserve valid prior rows and
+   identify which version/treatment was superseded, rather than erase history.
+5. Verify table uniqueness, source/metric identity, tags and evidence/lesson links;
+   preserve all original reports, receipts and raw failures. Record the leaderboard
+   path, before/after hashes, stable row identities, outcome and verification in
+   the cycle's closure receipt (corrections use linked amendments).
+6. Completion requires reconciled leaderboard evidence. If evidence is unchanged,
+   append a verification note and receipt reference under the existing explanation;
+   do not add a duplicate row. If the owning file or evidence is inaccessible, record
+   `research closed; leaderboard reconciliation pending` with the blocker. Do not
+   fabricate readiness or keep executing a scientifically closed program.
+
+For review-only questions `/ask-pm` reports reconciliation status and the missing
+handoff; it writes only when the user requests an update or as part of authorized
+cycle closure. This instruction-level requirement does not add an automatic runner,
+CI financial gate, scheduler or additional experiment allowance. GRS remains the
+scientific acceptance owner; a leaderboard update grants no operational promotion.

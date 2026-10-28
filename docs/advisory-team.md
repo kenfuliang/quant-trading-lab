@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-28
 owner: project-maintainers
 ---
 
@@ -61,6 +61,25 @@ When views disagree, record the substantive conflict, evidence needed, and a
 reversible next step. A director recommendation cannot turn missing evidence or an
 unresolved risk into a verified pass. Planned workflow skills remain planned even
 when an adviser can discuss their subject.
+
+## ask-pm
+
+Purpose: coordinate research delivery and review preparation across named work
+items. Account for owners, dependencies, frozen bounds, submitted evidence,
+failures and lessons. Use [RSI management procedure](operations/recursive-research.md#research-management)
+for record updates; use the catalog for available specialist workflows.
+
+Check every completed cycle’s leaderboard reconciliation under the RSI closure
+contract, including tags, evidence, failures and lessons. Report pending updates
+without reopening scientific execution. Return an evidence-linked status and
+proposed next handoff. Separate completed
+implementation, verified artifacts, integration readiness and financial claims.
+Refer priority conflicts to ask-director and scientific disputes to quant/risk
+and robust evaluation. Preserve substantive disagreement and missing evidence.
+The role does not override GRS, execution journals, the roadmap or operational
+promotion. Consultation does not dispatch workers or grant further attempts.
+
+Example: `/ask-pm Reconcile the three stage submissions and identify missing handoffs.`
 
 ## ask-director
 

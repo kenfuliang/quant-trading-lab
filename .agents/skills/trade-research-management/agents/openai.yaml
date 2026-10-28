@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Management"
+  short_description: "Reconcile research work, evidence and next steps"
+  default_prompt: "Use $trade-research-management to close research cycles into our single tagged leaderboard with evidence, failures and lessons."

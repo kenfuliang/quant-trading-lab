@@ -1,0 +1,8 @@
+{
+  "status": "review_pending",
+  "base": "fbef6fd79e41903bba00ef93464453ae41e9d00b",
+  "financial_launches": 0,
+  "scope": "management+leaderboard; no stage algorithm changes",
+  "source_coverage": "published aggregate snapshot; original financial evidence local-only",
+  "setup_failure": "First record-writing script lacked json import; stopped before receipt/register writes. Corrected without changing candidate algorithms."
+}

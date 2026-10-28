@@ -15,6 +15,9 @@ and canonical procedure. Use the documented SOP directly when a planned skill is
 unavailable, and state that readiness limit. Each research stage requires its own
 scope; selecting one does not automatically launch the next.
 
+For research progress, evidence reconciliation or multi-owner closure, select
+trade-research-management; `/ask-pm` selects its advisory contract in the catalog.
+
 For developing one algorithm stage, select trade-stage-development for its component
 contract and route specialist work through the catalog.
 

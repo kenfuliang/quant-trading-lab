@@ -42,3 +42,7 @@ trials. Earlier receipts remain authoritative for their own claims.
 - [Project foundation adoption](tasks/2026-10-27-project-foundation-adoption.md)
   and its [receipt](tasks/evidence/2026-10-27-project-foundation-adoption.json):
   documentation/templates only; no new financial cycle.
+
+- [Research management and leaderboard review](tasks/2026-10-28-research-management-pr.md)
+  and [receipt](tasks/evidence/2026-10-28-research-management-pr.json): skills,
+  read-only inventory and aggregate result navigation; no new financial cycle.

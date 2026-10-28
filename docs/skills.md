@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-28
 owner: project-maintainers
 ---
 
@@ -42,8 +42,8 @@ behavioral usefulness or automatically update session discovery.
 ![Team structure and shared workflow skills](diagrams/team-skills.png)
 
 Regenerate this presentation from the available-entry tables below with
-`.venv/bin/python scripts/render_team_skills.py`.
-The [renderer](../scripts/render_team_skills.py) reads this catalog; the PNG is a
+`.venv/bin/python scripts/current/render_team_skills.py`.
+The [renderer](../scripts/current/render_team_skills.py) reads this catalog; the PNG is a
 convenience export, not another roster owner. Update it when the catalog changes.
 
 ## Hierarchy
@@ -51,6 +51,7 @@ convenience export, not another roster owner. Update it when the catalog changes
 ```text
 Level 1: Advisory perspectives — available for consultation
 ask-director                         priorities and synthesis
+├── ask-pm                           research delivery and evidence reconciliation
 ├── ask-infra                        platform/data/operational design
 ├── ask-quant                        hypotheses and research evidence
 ├── ask-ml                           predictive modeling and calibration
@@ -64,6 +65,7 @@ Level 2: Task workflows — trade-project selects the applicable procedure
 ├── trade-research-intake            AVAILABLE
 ├── trade-local-ops                  AVAILABLE
 ├── Research development — AVAILABLE instructions; evaluation receipt below
+│   ├── trade-research-management     owners, dependencies, budgets and result closure
 │   ├── trade-stage-development       develop one component boundary within a cycle
 │   ├── trade-research-design         study specification and trial budget
 │   ├── trade-data-audit              frozen-input fitness and provenance
@@ -122,6 +124,7 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 
 | Skill | Trigger and observable output |
 | --- | --- |
+| [trade-research-management](../.agents/skills/trade-research-management/SKILL.md) | Research work review/closure → evidence-linked work register, budgets, blockers, lessons, mandatory single-leaderboard reconciliation and bounded next proposal; [RSI procedure](operations/recursive-research.md#research-management); [saved-wave exercise](tasks/2026-10-28-research-management-pr.md). Instructions and read-only inventory; no scheduler or financial execution |
 | [trade-stage-development](../.agents/skills/trade-stage-development/SKILL.md) | Specify/implement/verify one stage → interface worksheet, finite checks and RSI evidence handoff; [procedure](research-development.md#individual-stage-development); [one-stage exercise and limits](tasks/2026-10-27-stage-development-skill.md); no financial execution |
 | [trade-research-design](../.agents/skills/trade-research-design/SKILL.md) | New/amended study → falsifiable control/treatment, metric/split/trial specification and open decisions |
 | [trade-data-audit](../.agents/skills/trade-data-audit/SKILL.md) | Saved input fitness → actual hashes/quality/availability checks and named-experiment eligibility |
@@ -142,6 +145,7 @@ are implemented; financial execution remains unsupported. No new skill is instal
 
 | Chat prefix / local skill | Primary question | Detailed contract |
 | --- | --- | --- |
+| [/ask-pm](../.agents/skills/ask-pm/SKILL.md) | Where is research blocked, is completed-cycle leaderboard reconciliation verified, and who owns the next handoff? | [Role contract](advisory-team.md#ask-pm) |
 | [/ask-director](../.agents/skills/ask-director/SKILL.md) | What should we prioritize, and what evidence supports the decision? | [Role contract](advisory-team.md#ask-director) |
 | [/ask-infra](../.agents/skills/ask-infra/SKILL.md) | How should the system work reliably using native facilities? | [Role contract](advisory-team.md#ask-infra) |
 | [/ask-quant](../.agents/skills/ask-quant/SKILL.md) | Is the hypothesis or reported evidence credible? | [Role contract](advisory-team.md#ask-quant) |
