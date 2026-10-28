@@ -17,7 +17,7 @@ Unavailable failure evidence does not mean zero failed attempts. No trial budget
 
 [Machine-readable view](research-evidence-index.json) · [Index contract](architecture.md#research-evidence-index)
 
-Coverage: 13 studies; 12 published plans; no unowned plans.
+Coverage: 14 studies; 12 published plans; no unowned plans.
 
 | Study | Family | Reported state |
 | --- | --- | --- |
@@ -32,6 +32,7 @@ Coverage: 13 studies; 12 published plans; no unowned plans.
 | [Fixed-rule cost sensitivity](#recursive-cycle3) | recursive SPY development | historical development |
 | [Price-peak component-removal ablation](#risk-gate-ablation) | risk overlay ablation | development candidate retained |
 | [Green/yellow/red gate with preserved recoveries](#risk-gate-development) | risk overlay | completed bounded epoch with failures |
+| [Offline RSI foundation integration](#rsi-offline-integration) | research infrastructure | offline engineering demonstrated; final clean-head/hosted verification pending |
 | [SPY EMA and buy-and-hold fixture](#spy-fixture) | baseline | historical fixture |
 | [Daily SPY strategy catalogue suite](#strategy-suite) | strategy screening | partial coverage |
 
@@ -279,6 +280,27 @@ Coverage: 13 studies; 12 published plans; no unowned plans.
 ### Lessons
 
 - [docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review](../docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review) (narrative): Published source record; follow its scope and limitations.
+
+
+## rsi-offline-integration
+
+**Offline RSI foundation integration** — Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.
+
+### Plans
+
+- **not_recorded**: Bounded infrastructure acceptance and limits live in the integration task, not a financial JSON plan.
+
+### Results
+
+- [docs/tasks/evidence/2026-10-27-rsi-integration.json](../docs/tasks/evidence/2026-10-27-rsi-integration.json) (receipt): Engineering validation receipt; raw local artifacts remain private.
+
+### Failures
+
+- [docs/tasks/2026-10-27-rsi-integration.md#failures](../docs/tasks/2026-10-27-rsi-integration.md#failures) (narrative): Retained focused-test failure and scope split; no financial trials.
+
+### Lessons
+
+- [docs/tasks/2026-10-27-rsi-integration.md#lesson](../docs/tasks/2026-10-27-rsi-integration.md#lesson) (narrative): Read-only dependencies and integration claims require their own proof.
 
 
 ## spy-fixture

@@ -575,6 +575,43 @@
           "note": "No C001 lesson is reproduced or assessed by this index."
         }
       ]
+    },
+    {
+      "id": "rsi-offline-integration",
+      "title": "Offline RSI foundation integration",
+      "family": "research infrastructure",
+      "reported_state": "offline engineering demonstrated; final clean-head/hosted verification pending",
+      "note": "Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Bounded infrastructure acceptance and limits live in the integration task, not a financial JSON plan."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-27-rsi-integration.json",
+          "kind": "receipt",
+          "note": "Engineering validation receipt; raw local artifacts remain private."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#failures",
+          "kind": "narrative",
+          "note": "Retained focused-test failure and scope split; no financial trials."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#lesson",
+          "kind": "narrative",
+          "note": "Read-only dependencies and integration claims require their own proof."
+        }
+      ]
     }
   ]
 }

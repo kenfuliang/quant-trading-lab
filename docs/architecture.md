@@ -440,3 +440,35 @@ remain private. Source and restored bundles keep their original manifest bytes,
 terminal status and failures. Existing destinations are never merged/overwritten.
 No financial execution is imported or invoked. The [scoped drill](tasks/2026-10-27-evidence-recovery.md)
 is same-machine file recovery, not proof of complete project/store/disaster recovery.
+
+
+## Offline RSI foundation
+
+```mermaid
+flowchart LR
+    C[Cycle contract] --> P[Immutable bounded program]
+    P --> X[RSI coordinator]
+    X --> J[Existing current ResearchController journal]
+    X --> A[Fixed synthetic or saved-evidence checker]
+    A --> V[Artifact/context verification]
+    V --> R[Synthetic adoption or provisional financial disposition]
+```
+
+`research/control/rsi_contracts.py` owns RSI-CYCLE-1, contained artifact reads and
+the pinned saved-C001 lesson. The byte-matched installed
+`research/control/legacy_control_contract.py` verifies its narrow diagnostic
+transition; historical source bytes are checked but never executed.
+`research/control/rsi_coordinator.py` owns fixed commands, aggregate launch/time
+bounds, retained output and stopped ambiguous recovery under the existing current
+controller's single-writer lock. `research/control/rsi_adoption.py` owns exact
+context, numerical gates and append-only disposition/rollback records.
+`scripts/current/rsi_foundation.py` owns operator arguments and the bounded demo.
+[The SOP](operations/recursive-research.md) owns handoffs and command semantics;
+[the integration task](tasks/2026-10-27-rsi-integration.md) owns observed validation.
+
+No current module imports a frozen implementation or loads a historical runner.
+The fixed saved-preflight adapter requires authenticated inputs within its checkout
+before reservation; the standalone read-only CLI can check an explicit external
+history root without importing code from it. Missing private evidence is unavailable,
+not a synthetic pass. Financial execution is disabled. No NautilusTrader/MLflow
+source, dependency, broker state or financial incumbent changes.

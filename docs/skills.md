@@ -132,6 +132,10 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 | [trade-promotion-review](../.agents/skills/trade-promotion-review/SKILL.md) | Decide next stage → evidence-linked recommendation; operational readiness stated separately |
 | [trade-research-history](../.agents/skills/trade-research-history/SKILL.md) | Retrieve/record research learning → linked project history retaining failures and evaluation exposure |
 
+The [RSI SOP](operations/recursive-research.md) connects these existing workflows to
+the offline foundation. Only synthetic and fixed read-only saved-preflight adapters
+are implemented; financial execution remains unsupported. No new skill is installed.
+
 ## Available advisory skills
 
 | Chat prefix / local skill | Primary question | Detailed contract |

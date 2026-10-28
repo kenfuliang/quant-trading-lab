@@ -3,10 +3,10 @@
   "updated": "2026-10-27",
   "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials.",
   "authority": "Navigation only; present means file available, not independently verified or reproduced.",
-  "registry_sha256": "8eafbe7f3c3e186b46c802b54b3c90047afe63fac738032aae30e5dc6cc14233",
+  "registry_sha256": "7eed627f0c08b008180cee86f3241e6b6df9bafc1a847f7a5e90ab0098dfd0b9",
   "generator_sha256": "41f09be4e25fa31198c9863046506695e0da06656df01181b95fadd73c17291e",
   "coverage": {
-    "studies": 13,
+    "studies": 14,
     "published_plans": 12,
     "unowned_plans": 0,
     "supporting_records_unassigned": 65
@@ -539,6 +539,46 @@
           "kind": "narrative",
           "note": "Published source record; follow its scope and limitations.",
           "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ]
+    },
+    {
+      "id": "rsi-offline-integration",
+      "title": "Offline RSI foundation integration",
+      "family": "research infrastructure",
+      "reported_state": "offline engineering demonstrated; final clean-head/hosted verification pending",
+      "note": "Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Bounded infrastructure acceptance and limits live in the integration task, not a financial JSON plan."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-27-rsi-integration.json",
+          "kind": "receipt",
+          "note": "Engineering validation receipt; raw local artifacts remain private.",
+          "sha256": "334829de02ed946ac5adc5f06448e9f0e6fd3bc1479d3e70a985b8a177a7112f"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#failures",
+          "kind": "narrative",
+          "note": "Retained focused-test failure and scope split; no financial trials.",
+          "sha256": "2a43590c1c12968f8b873a2562c96c87332a7e847ee9928dddcb11172ffa71ec"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#lesson",
+          "kind": "narrative",
+          "note": "Read-only dependencies and integration claims require their own proof.",
+          "sha256": "2a43590c1c12968f8b873a2562c96c87332a7e847ee9928dddcb11172ffa71ec"
         }
       ]
     },
