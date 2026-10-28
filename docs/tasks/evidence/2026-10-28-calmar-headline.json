@@ -1,0 +1,37 @@
+{
+  "status": "completed_offline_headline_adoption",
+  "created_utc": "2026-10-28T07:59:36.623592+00:00",
+  "base_head": "ee5a9ceec83942accfb2f297c8fed7da29435876",
+  "financial_launches": 0,
+  "model_fits": 0,
+  "agents": 0,
+  "metric_recalculation": false,
+  "machine_score_policy_changed": false,
+  "focused_failure": "Initial score-order check rejected saved Unicode minus; parser normalized minus representation only.",
+  "source_snapshot_sha256": "6048c937c7b3f0c2637f9ac208a7f9791bc492e008686a6c53625019d63dd0d1",
+  "recorded_utc": "2026-10-28T08:01:07.290845+00:00",
+  "validation": {
+    "full_check": {
+      "exit_code": 0,
+      "elapsed_seconds": 18.61830829200335
+    },
+    "tests": 528,
+    "focused_methods": 12,
+    "skill_validators_passed": 2,
+    "preserved_financial_metric_rows": 39,
+    "unranked_outcomes": 4,
+    "single_table": true,
+    "required_adjacent_fields_verified": true
+  },
+  "unchanged_identities": {
+    "research/control/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "research/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "docs/research-standard.md": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+    "docs/tasks/evidence/2026-10-28-leaderboard-source-catalog.json": "6048c937c7b3f0c2637f9ac208a7f9791bc492e008686a6c53625019d63dd0d1"
+  },
+  "leaderboard_sha256": "9d8848c870de8d2a5f0de9b83f438c6889ad782780a79963ba09362c68ce4b11",
+  "log_sha256": {
+    "stdout.txt": "9b909f2bdb5ca699942a6621a47ee9dbed475621361a45c284d5b193ebc3ed11",
+    "stderr.txt": "a1510ac92c9b82b77e1acca955fe387bca20e9f8caedfc8e180f4e7008d17a71"
+  }
+}

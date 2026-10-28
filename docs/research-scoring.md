@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-28
 owner: project-maintainers
 ---
 
@@ -53,8 +53,10 @@ No scoring outcome enables a broker operation or establishes a hard loss guarant
 
 The initial Pareto objectives are net CAGR (maximize) and drawdown magnitude
 (minimize). Internally these are fractions; percent inputs must declare units and
-be normalized before comparison. Sharpe and Calmar remain diagnostics; undefined
-values remain null with reasons. Exposure, turnover, financing, worst episodes,
+be normalized before comparison. Calmar is the headline display score under the
+contract below; Sharpe remains a diagnostic. Neither substitutes for these
+Pareto objectives or GRS acceptance. Undefined values remain null with reasons.
+Exposure, turnover, financing, worst episodes,
 recovery and sample coverage are additional perspectives where artifacts support
 them. Missing inputs cannot be fabricated from headline ratios.
 
@@ -70,6 +72,49 @@ information make an arbitrary sum misleading. A nondominated alternative is not
 a selected investment. The approximately30% reassessment reference and +100% growth
 aspiration remain mandate context, not automatic score bonuses or passing gates.
 Descriptive frontier membership does not establish statistical superiority.
+
+## Calmar headline display score
+
+**Calmar is the project’s single headline score for displaying strategy performance.**
+The [canonical leaderboard](leaderboard.md) owns its one table. This section owns
+score meaning; GRS owns scientific acceptance and original receipts own measurements.
+
+`Calmar = CAGR after the study's modeled costs / abs(maximum drawdown)`
+
+Use the same continuous equity path and period for numerator and denominator,
+expressed in matching units (fractions or percentage points). Use full-period
+peak-to-trough drawdown, not a reset annual drawdown paired with multiyear CAGR.
+Costs/financing omissions remain disclosed; this formula cannot repair them.
+Existing published/saved values retain their original source definitions and
+precision. Do not reconstruct values from rounded leaderboard columns. Annual
+metrics keep their separately declared source convention and period.
+
+Every headline display retains these adjacent fields: **evidence status, CAGR,
+maximum drawdown and time underwater**, including session/calendar units and
+recovery/censoring where available. Headline and risk fields are not collapsed
+into an arbitrary weighted sum. Sharpe, context, tags, source links and lessons
+remain available for diagnosis.
+
+Higher Calmar means more modeled compounded growth per unit of observed maximum
+loss within a comparable context. A negative value remains negative; a failed
+improvement screen may still have valid negative measured results. Missing or
+invalid metrics and zero drawdown make this headline unavailable: store null with
+a reason and display `—`, never zero or infinity as an invented score. Synthetic-only
+and blocked outcomes remain unranked. A historical displayed value from inadequate
+evidence must remain marked unqualified; a large number cannot rescue it.
+
+Compare matching dates, capital, universe, exposure/leverage, costs/financing,
+execution and metric conventions, except declared controlled treatments. The
+single table may sort reported values for browsing, but mixed-context order is
+not scientific superiority. Recovery duration, absolute growth and evidence
+quality remain separate: Calmar alone cannot establish a useful or robust strategy.
+
+This adoption changes presentation and management handoffs only. It leaves
+`research-score-v0.2`, claim-specific evidence gates, the CAGR/drawdown Pareto
+comparison and GRS stage-adoption rules unchanged. It creates no universal passing
+threshold, automatic promotion, new financial budget or hard30% loss ceiling.
+The existing30% reassessment preference remains a visible concern, not a hidden
+bonus or implicit acceptance rule.
 
 ## Stage-addition acceptance
 

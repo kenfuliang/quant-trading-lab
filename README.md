@@ -1,6 +1,6 @@
 # Local trading platform
 
-Updated 2026-10-27 (America/Los_Angeles). This file owns current capability status
+Updated 2026-10-28 (America/Los_Angeles). This file owns current capability status
 and project entrypoints. The active priority is infrastructure, using Python and
 NautilusTrader locally without QuantConnect.
 
@@ -29,6 +29,7 @@ database, tracking-store and disaster recovery remain unverified.
 - [Project foundation and report formats](docs/tasks/2026-10-27-project-foundation-adoption.md)
 - [Golden research standard and cycle register](docs/research-standard.md)
 - [Teams, skills, routing and readiness](docs/skills.md)
+- [Canonical research leaderboard](docs/leaderboard.md) — one tagged table; context, provenance and limitations follow
 - [Goals and investment mandate](docs/goals.md)
 - [External research intake and source registry](docs/research-intake.md)
 - [NautilusTrader capability matrix](docs/capabilities.md)
@@ -54,6 +55,7 @@ Define outcome → implement one slice → verify offline → record evidence
 | ML modeling and ML infrastructure advisers | Advisory availability is listed in the [catalog](docs/skills.md#available-advisory-skills); RSI handoff defined; [contracts](docs/advisory-team.md#ml-team-handoff-in-rsi). Consultation available; no generic training/orchestration or inference service implemented |
 | Bounded research skills | Available workflows are listed in the [catalog](docs/skills.md#available-research-workflows); [procedure](docs/research-development.md), [evaluation receipt](docs/tasks/2026-10-25-research-skills.md). Instructions support scoped offline work; no unattended optimizer or broker promotion implemented |
 | Stage development workflow | Shared [skill/catalog](docs/skills.md), [stage procedure](docs/research-development.md#individual-stage-development) and RSI handoffs; [one unchanged risk/sizing exercise](docs/tasks/2026-10-27-stage-development-skill.md) with synthetic integration checks. No generic stage runner or financial improvement established |
+| Research management | Management workflow and `/ask-pm`, read-only declared-evidence inventory, mandatory leaderboard closure; [review](docs/tasks/2026-10-28-research-management-pr.md). No scheduler or financial adapter |
 | Offline RSI foundation | Strict cycle contracts, aggregate fixed-adapter coordinator and synthetic adoption/rollback under `research/control/`; [SOP](docs/operations/recursive-research.md), [integration evidence](docs/tasks/2026-10-27-rsi-integration.md). Saved C001 preflight requires private qualified history and reports unavailable when absent; financial adapters and automatic improvement remain unsupported |
 | Research scoring and decision control | Versioned evidence gates, raw-unit Pareto comparisons, bounded action priority and hash-chained reserve/record journal implemented; three pilot decisions, eight audited new cases and fresh adversarial review. [Review package](docs/tasks/2026-10-25-recursive-research-review.md); caller evidence verification and coordinator-enforced aggregate financial limits remain necessary |
 | Temporal performance diagnostics | Rolling observed-session returns/Sharpe, deepest versus longest drawdowns, recovery/censoring and historical daily ES95; [research review](docs/tasks/2026-10-25-recursive-research-review.md). Descriptive history, not current risk signals or loss bounds |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research PM Adviser"
+  short_description: "Review research progress, blockers and handoffs"
+  default_prompt: "Use $ask-pm to check research progress and verify completed-cycle leaderboard updates, evidence and lessons."

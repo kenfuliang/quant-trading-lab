@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "status": "completed_read_only_reconciliation",
+  "recorded_utc": "2026-10-28T07:50:36.559639+00:00",
+  "command": [
+    "python",
+    "scripts/current/research_management.py",
+    "--evidence-root",
+    "EXTERNAL_SAVED_WAVE",
+    "--manifest",
+    "docs/tasks/evidence/2026-10-28-management-wave1-manifest.json"
+  ],
+  "exit_code": 0,
+  "manifest_sha256": "d3cdb0324e53f596bef5fde5420a5f1c46550ff759e2fccf56227272cc862b37",
+  "stdout_sha256": "a529e190a3535b009701ba727e79e483afe33ba460b49a18a82285daab499f8c",
+  "inventory_output": {
+    "schema_version": 1,
+    "program": "stage-wave1-20261027",
+    "items": [
+      {
+        "id": "market_conditions",
+        "owner": "/root/wave1_market_conditions",
+        "evidence_status": "verified_declared_evidence",
+        "commands_reserved": 2,
+        "max_commands": 4,
+        "results_present": 2,
+        "artifacts_verified": 16,
+        "missing": [],
+        "failures": [],
+        "financial_performance": "not assessed",
+        "promotion": "not assessed"
+      },
+      {
+        "id": "target_selection",
+        "owner": "/root/wave1_target_selection",
+        "evidence_status": "verified_declared_evidence",
+        "commands_reserved": 2,
+        "max_commands": 4,
+        "results_present": 2,
+        "artifacts_verified": 16,
+        "missing": [],
+        "failures": [],
+        "financial_performance": "not assessed",
+        "promotion": "not assessed"
+      },
+      {
+        "id": "risk_sizing",
+        "owner": "/root/wave1_risk_sizing",
+        "evidence_status": "verified_declared_evidence",
+        "commands_reserved": 2,
+        "max_commands": 4,
+        "results_present": 2,
+        "artifacts_verified": 16,
+        "missing": [],
+        "failures": [],
+        "financial_performance": "not assessed",
+        "promotion": "not assessed"
+      }
+    ],
+    "execution_performed": false,
+    "scope": "declared byte/check identities only; completeness and scientific validity require review"
+  },
+  "original_wave_artifacts_checked": 69,
+  "artifact_drift": 0,
+  "closure_manifest_sha256": "253cdeb05993c1b80bc50d2855a7917972db4644019ee126fa433c2143b60cef",
+  "budgets": [
+    {
+      "work_id": "market_conditions",
+      "owner": "/root/wave1_market_conditions",
+      "agent_checks_used": 1,
+      "agent_checks_max": 3,
+      "parent_checks_used": 1,
+      "parent_checks_max": 1,
+      "deadline_utc": "2026-10-28T07:12:16.054618+00:00",
+      "state": "closed; expired deadline; unused nominal slots grant no new launch"
+    },
+    {
+      "work_id": "target_selection",
+      "owner": "/root/wave1_target_selection",
+      "agent_checks_used": 1,
+      "agent_checks_max": 3,
+      "parent_checks_used": 1,
+      "parent_checks_max": 1,
+      "deadline_utc": "2026-10-28T07:12:16.054618+00:00",
+      "state": "closed; expired deadline; unused nominal slots grant no new launch"
+    },
+    {
+      "work_id": "risk_sizing",
+      "owner": "/root/wave1_risk_sizing",
+      "agent_checks_used": 1,
+      "agent_checks_max": 3,
+      "parent_checks_used": 1,
+      "parent_checks_max": 1,
+      "deadline_utc": "2026-10-28T07:12:16.054618+00:00",
+      "state": "closed; expired deadline; unused nominal slots grant no new launch"
+    }
+  ],
+  "financial_launches": 0,
+  "lessons": [
+    "Market volatility contribution can soften bearish breadth.",
+    "Different target rankings establish no economic superiority.",
+    "Recovery limiter cuts immediately but may miss rebounds.",
+    "Administrative completion coexists with unresolved UTC, membership and integration gaps."
+  ],
+  "failures_retained": [
+    "Original target fixture pandas warning",
+    "Original discovery errors and closure-path assertion",
+    "Original successful and failed research history remains unchanged"
+  ],
+  "limitations": [
+    "External saved wave is not published in this PR; manifest requires that original root for replay.",
+    "Hashes prove byte identity relative to declared inputs, not authenticity or complete historical coverage.",
+    "No original financial or algorithm study was rerun; no old execution allowance reopened."
+  ]
+}

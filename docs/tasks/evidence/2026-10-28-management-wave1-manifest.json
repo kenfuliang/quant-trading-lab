@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "program": "stage-wave1-20261027",
+  "items": [
+    {
+      "id": "market_conditions",
+      "owner": "/root/wave1_market_conditions",
+      "max_commands": 4,
+      "reservations": "receipts/market_conditions/checks.jsonl",
+      "checks": [
+        "receipts/market_conditions/check-1-result.json",
+        "receipts/market_conditions/check-2-result.json"
+      ],
+      "artifacts": {
+        "market_conditions/research/policies/market_conditions_wave1.py": "eb1a55ece63f7f5f05a12d98c6e3b6cbac480d86e831c335e49760e5fe5dbdd2",
+        "market_conditions/tests/current/test_market_conditions_wave1.py": "ab04f92e054dd80c60ec082ca9d48d61fa8cc86f02bc346aa6bccfccada6bd51",
+        "market_conditions/docs/tasks/2026-10-27-wave1-market-conditions.md": "f277bfae3d63237eb41169ef8b54fcfdcfc7e1d655a130e1bd77750cf132f2d5",
+        "market_conditions/docs/tasks/evidence/2026-10-27-wave1-market-conditions.json": "f3cc81a960ae236324aec4009c487ffc578aebe3e8055969d34c43fb92e0858e",
+        "receipts/market_conditions/check-2-stderr.txt": "e437bea908177d2ccc36e83217867b4af43469be2d7c6149502372b789bf979f",
+        "receipts/market_conditions/check-2-result.json": "15ccbc94aaa174e1391dc1ccc6643a7c852e54319a1229a6491fde986697c64e",
+        "receipts/market_conditions/check-1-result.json": "4a0d9c1ac9ff56deaa377f1c622b9e6420bdf27c5b039080742ec77548aa3a41",
+        "receipts/market_conditions/checks.jsonl": "6ddd432d648e5afceab1f6525833442ea366d86f372cabb9d93e9b5f6d175551",
+        "receipts/market_conditions/check-1-stdout.txt": "bc177b1ea7b9c53e310544c8a59d3e1b2935bd5ce96b5fcc07e96ffb7833a577",
+        "receipts/market_conditions/checks.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/market_conditions/check-2-stdout.txt": "bc177b1ea7b9c53e310544c8a59d3e1b2935bd5ce96b5fcc07e96ffb7833a577",
+        "receipts/market_conditions/check-1-stderr.txt": "cb6aeb52990441ddfb18c4645f42d94a413c37db3f2786a2a91bf21d5f5afb15",
+        "contracts/market_conditions.json": "fc1df8f47dd347882a411f9a149a3556b3d572965892bda5e65a8eb1b609aa47",
+        "program.json": "f0a74b1ea51b39f05e6b254a52116903a65f1918b8445019709c5eb5610569f2",
+        "freeze-manifest.json": "0d28e77bb28d55a4e42b13ca950f5b8e631f97cf221398da12729136176d484f",
+        "run_lane_checks.py": "901bbcaae28d493c15a831fe58e87df267e27846f7295df64a69d6b273d40109"
+      }
+    },
+    {
+      "id": "target_selection",
+      "owner": "/root/wave1_target_selection",
+      "max_commands": 4,
+      "reservations": "receipts/target_selection/checks.jsonl",
+      "checks": [
+        "receipts/target_selection/check-1-result.json",
+        "receipts/target_selection/check-2-result.json"
+      ],
+      "artifacts": {
+        "target_selection/research/policies/target_selection_wave1.py": "6a369818b7e8fa312f9e53fd72dcde182ff296dee5edde58752a348755279de1",
+        "target_selection/tests/current/test_target_selection_wave1.py": "0dcdc5e6ef9073d8aa3af8c714a1d3031d99a1749249da3eb71aff003f1caff4",
+        "target_selection/docs/tasks/2026-10-27-wave1-target-selection.md": "efef8344dd0b453b16c1907210a2d4a780d033c05829d725c7576b8eb19d73db",
+        "target_selection/docs/tasks/evidence/2026-10-27-wave1-target-selection.json": "3c7178bfb549443063d7b24bf764121eca4e068bc6beb623e3357da98b1f63c1",
+        "receipts/target_selection/check-2-stderr.txt": "e412084941e2b7898b9fff0285d0319e705b467105ddc6e917ff567f127862da",
+        "receipts/target_selection/check-2-result.json": "7d3b3594d6ab026f3c7c458d5706ab44f5e0a019d9630d586d8c4afd7265bcea",
+        "receipts/target_selection/check-1-result.json": "9ae043b64c4727e606a1d682fde931975348adc3326014ca26efc0b694d943e7",
+        "receipts/target_selection/checks.jsonl": "0a97682a4807186553182f872582e3248c078484d898b9094a92738d7b589b54",
+        "receipts/target_selection/check-1-stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/target_selection/checks.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/target_selection/check-2-stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/target_selection/check-1-stderr.txt": "e95bc0427d7d6e1cd58e144f6e2bdf7caf5acd8a9e94c08c44881f94412ee40a",
+        "contracts/target_selection.json": "15858877a2ce4ef2aed674d3f674c3ade3c1f99cca76f7c5fb7394b6239d2b30",
+        "program.json": "f0a74b1ea51b39f05e6b254a52116903a65f1918b8445019709c5eb5610569f2",
+        "freeze-manifest.json": "0d28e77bb28d55a4e42b13ca950f5b8e631f97cf221398da12729136176d484f",
+        "run_lane_checks.py": "901bbcaae28d493c15a831fe58e87df267e27846f7295df64a69d6b273d40109"
+      }
+    },
+    {
+      "id": "risk_sizing",
+      "owner": "/root/wave1_risk_sizing",
+      "max_commands": 4,
+      "reservations": "receipts/risk_sizing/checks.jsonl",
+      "checks": [
+        "receipts/risk_sizing/check-1-result.json",
+        "receipts/risk_sizing/check-2-result.json"
+      ],
+      "artifacts": {
+        "risk_sizing/research/policies/risk_sizing_wave1.py": "beda4c389e2eadbf29d343962b5a94413fab672b180aafb7f99755862a14ad47",
+        "risk_sizing/tests/current/test_risk_sizing_wave1.py": "46264ca60bc8687ceb1faca3017a7cfe92a6b0b9e6b3148617c9bb72aaaa7469",
+        "risk_sizing/docs/tasks/2026-10-27-wave1-risk-sizing.md": "c28baf70fa85b882976441463db75ccd834552caa292de2cfab058fe3ae0155d",
+        "risk_sizing/docs/tasks/evidence/2026-10-27-wave1-risk-sizing.json": "fa61abfa59dc76f48dd13c000b3c99f307d704dd546d0b4d9fab56c7a07a4710",
+        "receipts/risk_sizing/check-2-stderr.txt": "1e4c29150e1f05db20936c304761541b2523d798a1fbfc1f947bafea065c536e",
+        "receipts/risk_sizing/check-2-result.json": "9faa39280f4069004d728155648722f2250943966660bab607d51eebfbaac8c1",
+        "receipts/risk_sizing/check-1-result.json": "51e5dfeb76550a48972511b4fa2a779cce6f53bd5ec971283d982c6dbf343dd6",
+        "receipts/risk_sizing/checks.jsonl": "7b13a04295b1c9c10cbd31ec51dede14f7c601bcbc2d23ecbee068b8ba818d9e",
+        "receipts/risk_sizing/check-1-stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/risk_sizing/checks.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/risk_sizing/check-2-stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "receipts/risk_sizing/check-1-stderr.txt": "fa254d0eecb3412862717c4bdd029f8ed018640065b59f097d48444a725c13fe",
+        "contracts/risk_sizing.json": "c06aa1439669cea2586fa166af3eaac58b598d301e92067f99c78cf95377badb",
+        "program.json": "f0a74b1ea51b39f05e6b254a52116903a65f1918b8445019709c5eb5610569f2",
+        "freeze-manifest.json": "0d28e77bb28d55a4e42b13ca950f5b8e631f97cf221398da12729136176d484f",
+        "run_lane_checks.py": "901bbcaae28d493c15a831fe58e87df267e27846f7295df64a69d6b273d40109"
+      }
+    }
+  ]
+}

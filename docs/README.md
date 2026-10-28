@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-28
 owner: project-maintainers
 ---
 
@@ -15,6 +15,7 @@ runtime timestamps use UTC.
 | Question | Owner |
 | --- | --- |
 | What works now and how do I start? | [Root README](../README.md) |
+| What is our single leaderboard and how is it maintained? | [Canonical leaderboard](leaderboard.md); [RSI closure procedure](operations/recursive-research.md#leaderboard-closure-contract) |
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
 | What is the golden pipeline and rule for research evidence, disposition and papers? | [GRS-1.0](research-standard.md); [cycle register](research-cycles.md) |
