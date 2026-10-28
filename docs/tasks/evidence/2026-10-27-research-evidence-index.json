@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "status": "offline-verified",
+  "parent_pr_head": "bb3477cdcfc33675415dff3c55d9095f5fd9925e",
+  "score": {
+    "rubric": "Same weighted engineering judgment; navigation checks are not scientific or recovery proof.",
+    "dimensions": [
+      {
+        "dimension": "Responsibility and ownership",
+        "weight_pct": 15,
+        "before": 8.5,
+        "after": 8.5
+      },
+      {
+        "dimension": "Dependency boundaries",
+        "weight_pct": 15,
+        "before": 8.5,
+        "after": 8.5
+      },
+      {
+        "dimension": "Discoverability and onboarding",
+        "weight_pct": 10,
+        "before": 6.5,
+        "after": 8
+      },
+      {
+        "dimension": "Frozen evidence preservation",
+        "weight_pct": 15,
+        "before": 9,
+        "after": 9
+      },
+      {
+        "dimension": "Single source of truth",
+        "weight_pct": 10,
+        "before": 8,
+        "after": 8
+      },
+      {
+        "dimension": "Content and report structure",
+        "weight_pct": 10,
+        "before": 8,
+        "after": 8.5
+      },
+      {
+        "dimension": "Automated structural checks",
+        "weight_pct": 10,
+        "before": 8,
+        "after": 8.5
+      },
+      {
+        "dimension": "Growth across research families",
+        "weight_pct": 10,
+        "before": 6,
+        "after": 6
+      },
+      {
+        "dimension": "Evidence recovery and portability",
+        "weight_pct": 5,
+        "before": 5,
+        "after": 5
+      }
+    ],
+    "weighted_before": 7.8,
+    "weighted_after": 8.05
+  },
+  "financial_research_trials": 0,
+  "broker_operations": 0,
+  "downloads": 0,
+  "verified_utc": "2026-10-27T22:54:13.367641+00:00",
+  "validation": {
+    "make_check": {
+      "exit_code": 0,
+      "tests_passed": 411,
+      "docs_checked": 93,
+      "boundary_modules_checked": 57,
+      "dependencies": "No broken requirements found",
+      "log_sha256": "b4c0c7d703a56acb24361d8707ee85e4ac99f4d70ed31f45323b5b006aa988b7"
+    },
+    "coverage": {
+      "studies": 13,
+      "published_plans": 12,
+      "unowned_plans": 0,
+      "supporting_records_unassigned": 61
+    },
+    "preservation": {
+      "existing_files_checked": 403,
+      "changed": 0,
+      "frozen_files_unchanged": 327,
+      "compatibility_manifest_unchanged": true
+    },
+    "negative_checks": [
+      "broken file/heading references",
+      "duplicate study IDs and plan owners",
+      "missing evidence roles/reasons",
+      "unowned new plans",
+      "modified sources and generated output",
+      "unsafe/private/external/traversal/symlink references",
+      "actual Make target rejects stale index",
+      "derived index cannot be cited as source evidence"
+    ],
+    "determinism": "Repeated generation identical; check mode read-only; local-only files not inspected"
+  },
+  "limitations": [
+    "Navigation/file availability and recorded hashes do not establish financial accuracy or independent reproduction.",
+    "Receipt schemas and semantic claim completeness are not generically validated.",
+    "Unassigned records remain explicit; later unpublished research and raw local bundles are not imported.",
+    "No financial research trials, downloads, services, broker operations, orders or dependency changes.",
+    "Restore proof, contributor licensing and complete attempt reconstruction remain separate."
+  ]
+}

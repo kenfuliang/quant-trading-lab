@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -85,6 +85,17 @@ and generated bulk data. This SOP does not automatically stage or publish files.
   skill only for a repeatable workflow that the existing skills do not cover.
 
 ## Continuous integration
+
+`make check` includes `make evidence-index-check`: published plans need one study
+owner, references must resolve, and committed generated views must match their
+sources. Update the curated registry when adding a study, then run `make research-index`.
+The [index contract](architecture.md#research-evidence-index) owns availability
+labels and scope; original evidence remains authoritative.
+
+`make check` includes `make boundaries-check`, an offline static dependency and
+frozen-source gate. The [architecture contract](architecture.md#enforced-python-dependency-boundaries)
+owns its scope and exemptions; reverse imports, cycles and modified protected
+files fail the PR/push checks.
 
 [GitHub Actions CI](../.github/workflows/ci.yml) runs `make check` for every pull
 request and branch/tag push. One Ubuntu 24.04 job uses Python 3.12, installs the

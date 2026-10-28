@@ -1,12 +1,15 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: help check docs-check test dependencies doctor
+.PHONY: help check docs-check boundaries-check evidence-index-check research-index test dependencies doctor
 
 help:
 	@echo "check: offline documentation, dependency, and behavior checks"
 	@echo "doctor: local engine and observer configuration check"
 
-check: docs-check dependencies test
+check: docs-check boundaries-check evidence-index-check dependencies test
+
+boundaries-check:
+	$(PYTHON) scripts/check_boundaries.py
 
 docs-check:
 	$(PYTHON) scripts/check_docs.py
@@ -29,8 +32,14 @@ performance-stop:
 
 .PHONY: leverage-comparison
 leverage-comparison: performance
-	$(PYTHON) scripts/leverage_comparison.py
+	$(PYTHON) scripts/current/leverage_comparison.py
 
 .PHONY: strategy-suite
 strategy-suite: performance
-	$(PYTHON) scripts/strategy_suite.py
+	$(PYTHON) scripts/current/strategy_suite.py
+
+evidence-index-check:
+	$(PYTHON) scripts/current/research_index.py --check
+
+research-index:
+	$(PYTHON) scripts/current/research_index.py --write

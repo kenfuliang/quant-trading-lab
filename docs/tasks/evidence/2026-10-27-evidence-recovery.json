@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "status": "real-drill-and-offline-suite-passed",
+  "parent_pr_head": "d36b3b134260cb14bd9a9f9a119d4b59caa05b58",
+  "drill_utc": "2026-10-27T23:01:31.394910+00:00",
+  "implementation_sha256": "6fb04c455226c6028ea39a1cca014b6f45f19800d662054bc570679a1dd53583",
+  "storage": "Private same-machine recovery copies and disposable restores outside the checkout; raw bundle files not published.",
+  "cases": [
+    {
+      "case": "successful",
+      "source": "reports/bounded-study/5486c6269969315d969edfef5cd9a65a729a2c1a7473fd2503666ff9384327e3",
+      "original_status": "completed",
+      "file_count": 23,
+      "artifact_count": 22,
+      "bytes": 4157526,
+      "source_manifest_sha256": "e72c1914892e97c75da77888a5a3108762a2350e87bff3a56bbee882c9e98429",
+      "inventory_sha256": "c6ffd5198c1833e75ed62ef88187eae54572ee33eb3310eac11462efe0f29a06",
+      "failure_json_sha256": null,
+      "original_unchanged": true,
+      "copy_unchanged": true,
+      "restore_matches_original": true
+    },
+    {
+      "case": "failed",
+      "source": "reports/risk-gate/97e9d442a8b83201",
+      "original_status": "recovery_failed_no_further_launch",
+      "file_count": 15,
+      "artifact_count": 14,
+      "bytes": 2992956,
+      "source_manifest_sha256": "c0ee72d865a2ab20a17a2989e6b2afe7fb4d60a3093580cda35739aa584097e2",
+      "inventory_sha256": "a92da044f0f3712ec51c770ef0012f94f3d4fa5ce70f7c9cf63186d05fe99955",
+      "failure_json_sha256": "00191f1181d9432abb4dda95023aa18c3fc81ffa713e9755d27b7b152608908b",
+      "original_unchanged": true,
+      "copy_unchanged": true,
+      "restore_matches_original": true
+    }
+  ],
+  "total_restored_files": 38,
+  "score": {
+    "rubric": "Same weighted engineering judgment. Recovery increase is limited to closed file bundles; general M3/disaster recovery remains unverified.",
+    "dimensions": [
+      {
+        "dimension": "Responsibility and ownership",
+        "weight_pct": 15,
+        "before": 8.5,
+        "after": 8.5
+      },
+      {
+        "dimension": "Dependency boundaries",
+        "weight_pct": 15,
+        "before": 8.5,
+        "after": 8.5
+      },
+      {
+        "dimension": "Discoverability and onboarding",
+        "weight_pct": 10,
+        "before": 8,
+        "after": 8
+      },
+      {
+        "dimension": "Frozen evidence preservation",
+        "weight_pct": 15,
+        "before": 9,
+        "after": 9
+      },
+      {
+        "dimension": "Single source of truth",
+        "weight_pct": 10,
+        "before": 8,
+        "after": 8
+      },
+      {
+        "dimension": "Content and report structure",
+        "weight_pct": 10,
+        "before": 8.5,
+        "after": 8.5
+      },
+      {
+        "dimension": "Automated structural checks",
+        "weight_pct": 10,
+        "before": 8.5,
+        "after": 8.5
+      },
+      {
+        "dimension": "Growth across research families",
+        "weight_pct": 10,
+        "before": 6,
+        "after": 6
+      },
+      {
+        "dimension": "Evidence recovery and portability",
+        "weight_pct": 5,
+        "before": 5,
+        "after": 7
+      }
+    ],
+    "weighted_before": 8.05,
+    "weighted_after": 8.15,
+    "display_before": 8.1,
+    "display_after": 8.2
+  },
+  "financial_research_trials": 0,
+  "broker_operations": 0,
+  "downloads": 0,
+  "limitations": [
+    "Same-machine regular-file bundle proof; not offsite or different-disk recovery.",
+    "No live database/MLflow/native-runtime consistency or complete external dependency-closure recovery.",
+    "No file permission/ownership/timestamp restoration or scientific claim authentication.",
+    "No automatic scheduling, retention, worker restart, financial retry or order submission."
+  ],
+  "verified_utc": "2026-10-27T23:04:15.887895+00:00",
+  "validation": {
+    "make_check": {
+      "exit_code": 0,
+      "tests_passed": 422,
+      "docs_checked": 95,
+      "current_boundary_modules": 59,
+      "log_sha256": "461e06d7b80fcf8a4ef9de7c452fac7e9c2f0512a15b0047a9a4b2082a7647eb"
+    },
+    "historical_restore": {
+      "successful_files": 23,
+      "failed_files": 15,
+      "saved_artifact_hashes_verified": 36,
+      "saved_manifest_hashes_verified": 2,
+      "originals_unchanged": true,
+      "recovery_copies_unchanged": true,
+      "restore_hashes_equal_originals": true,
+      "failed_status_and_failure_json_preserved": true
+    },
+    "baseline_preservation": {
+      "existing_files_checked": 405,
+      "changed": 0,
+      "frozen_files_unchanged": 327,
+      "compatibility_manifest_unchanged": true
+    },
+    "synthetic_failure_cases": [
+      "corrupt source/copy/inventory identity",
+      "unlisted/missing files",
+      "unsupported nonterminal status",
+      "symlinks and unsafe/overlapping paths",
+      "existing destination refuses overwrite",
+      "interrupted backup/restore retained and not reused",
+      "source mutation detected",
+      "actual CLI nonzero failure exit"
+    ]
+  }
+}

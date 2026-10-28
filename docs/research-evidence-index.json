@@ -1,0 +1,705 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-27",
+  "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials.",
+  "authority": "Navigation only; present means file available, not independently verified or reproduced.",
+  "registry_sha256": "8eafbe7f3c3e186b46c802b54b3c90047afe63fac738032aae30e5dc6cc14233",
+  "generator_sha256": "41f09be4e25fa31198c9863046506695e0da06656df01181b95fadd73c17291e",
+  "coverage": {
+    "studies": 13,
+    "published_plans": 12,
+    "unowned_plans": 0,
+    "supporting_records_unassigned": 65
+  },
+  "studies": [
+    {
+      "id": "continuous-cap-design",
+      "title": "Continuous volatility-cap proposal",
+      "family": "position sizing",
+      "reported_state": "proposed non-executable design",
+      "note": "A proposal, not an executed financial study or new budget.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-continuous-cap-development-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "bef826123183b0b0126e8a44cfafcb8199136717eb5b7f6c1d16bd978e7ab65a"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_applicable",
+          "note": "Design explicitly requests no execution and allocates zero financial attempts."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_applicable",
+          "note": "No attempt is authorized by this design."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_applicable",
+          "note": "No executed-study lesson; parent results remain in the frozen design references."
+        }
+      ]
+    },
+    {
+      "id": "etf-readiness",
+      "title": "ETF diversification data/accounting readiness",
+      "family": "multi-asset prerequisites",
+      "reported_state": "financial comparison blocked",
+      "note": "Readiness and synthetic accounting evidence are distinct from completed multi-asset financial performance.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/etf-diversification-readiness-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "e4a04b22bfb3981da52c36235953b19c43d5bbdc7846877539914fc67f4c152a"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/etf-diversification-readiness-v1.frozen.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "adace794f4fda55beb79bc15a8feeb17c1f98c61ede2e7b2145b7b8d736b75d0"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-etf-readiness-completion.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "9d2ec12c8fd3340743894fe8f1ab79cd71d4dfd75ce14e4190d85caf654074cf"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-etf-readiness.md#exact-remaining-prerequisites",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "5c42ab244d1cfcce5a0fe40402ed2fb0fd9fc4e78107e137c4f39974b84d32ec"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-etf-readiness.md#completed-readiness-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "5c42ab244d1cfcce5a0fe40402ed2fb0fd9fc4e78107e137c4f39974b84d32ec"
+        }
+      ]
+    },
+    {
+      "id": "feature-diagnostic",
+      "title": "Three causal features against saved outcomes",
+      "family": "feature analysis",
+      "reported_state": "descriptive diagnostic",
+      "note": "Limitations/counterevidence are indexed under failures; this does not assert a failed execution or trained predictor.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-feature-diagnostic-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "dbe6ae6859e0ffc467981b0f23470ffaa766008b916e78046e535bfe9ed8f166"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-feature-engineering-skill.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "98c9ad34676ed4a3317fda17b9283ac7115fcc8e8e783c817764a0e6670a4197"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-feature-engineering-skill.md#actual-findings",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a"
+        },
+        {
+          "state": "unpublished",
+          "note": "Full feature diagnostic tables remain local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-feature-engineering-skill.md#evaluation-and-decision",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-feature-engineering-skill.md#evaluation-and-decision",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a"
+        }
+      ]
+    },
+    {
+      "id": "gate-outcome-diagnosis",
+      "title": "Gate decisions and matured outcome labels",
+      "family": "attribution",
+      "reported_state": "saved-result diagnosis",
+      "note": "Failure references describe missed rebounds and unhelpful warnings, not new simulated attempts.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "No separate plan JSON indexed; fixed diagnostic definitions are in the task."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-gate-decision-labels.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "3b2438f1c88d6c328392f1bb8c188505bc6ee757ad34944ffb4cfd5151b9abb4"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-gate-decision-labels.md#completed-diagnosis",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "dabf39c806a3f12f5473624c8eb09d75d044e3eb71252716a72921f157ade6eb"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-gate-decision-labels.md#warning-usefulness-versus-warning-counts",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "dabf39c806a3f12f5473624c8eb09d75d044e3eb71252716a72921f157ade6eb"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-gate-decision-labels.md#matched21-session-reduction-episode-outcomes",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "dabf39c806a3f12f5473624c8eb09d75d044e3eb71252716a72921f157ade6eb"
+        }
+      ]
+    },
+    {
+      "id": "grs-c001",
+      "title": "GRS-C001 local cycle pointer",
+      "family": "post-standard research",
+      "reported_state": "local evidence outside publication",
+      "note": "Known only through docs/research-cycles.md; deliberately no financial conclusion.",
+      "plans": [
+        {
+          "state": "unpublished",
+          "note": "The cycle register names C001 but its plan is outside this publication."
+        }
+      ],
+      "results": [
+        {
+          "state": "unpublished",
+          "note": "No inspectable C001 result package is published in this branch."
+        }
+      ],
+      "failures": [
+        {
+          "state": "unpublished",
+          "note": "Attempt/failure evidence is not published; never interpret this as zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "unpublished",
+          "note": "No C001 lesson is reproduced or assessed by this index."
+        }
+      ]
+    },
+    {
+      "id": "leveraged-spy",
+      "title": "Leveraged SPY financing comparison",
+      "family": "sizing and financing",
+      "reported_state": "historical comparison",
+      "note": "Historical development evidence; original sources retain their qualifications.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Frozen assumptions live in research/leverage-model.md; no standalone plan JSON indexed."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-leverage-comparison.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "0969c6cad7fdfb24da85175c007843f19b9c492f4d2259a43702a8c2fac0d46c"
+        },
+        {
+          "state": "unpublished",
+          "note": "Full leverage result bundle is not published in this branch."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No standalone execution-failure record indexed; stress outcomes are not execution failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-leverage-comparison.md",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "aa4df1f812c03d6291777bc44ef22f9a75249eebeceae09d0e0937b0f09fb15e"
+        }
+      ]
+    },
+    {
+      "id": "recursive-cycle1",
+      "title": "Sizing tradeoff review",
+      "family": "recursive SPY development",
+      "reported_state": "historical development",
+      "note": "Failure/lesson links are narrative context, not a claim that every variant failed or every raw attempt is published.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/recursive-portfolio-v1.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "ea47b6046e0b9f03c7f96517078b3e9028ce65fedc38e6c27989c7eeb20d2ba9"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-recursive-cycle1.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "c32b959d95df04f2a33162b8861b06289a41fc238d8e208939de53dbfc059d40"
+        },
+        {
+          "state": "unpublished",
+          "note": "Underlying case bundle remains local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ]
+    },
+    {
+      "id": "recursive-cycle2",
+      "title": "Fixed mixture complementarity",
+      "family": "recursive SPY development",
+      "reported_state": "historical development",
+      "note": "Failure/lesson links are narrative context, not a claim that every variant failed or every raw attempt is published.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/recursive-portfolio-v2.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "fe39b9a648cde4da86605cf9aee5863f3c96d52b156629325517d80db6104d99"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "5dc2b364bcb780c1959cb771707d4b7d1392a3fd7fa09346a7e19283edeecd77"
+        },
+        {
+          "state": "unpublished",
+          "note": "Underlying case bundle remains local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ]
+    },
+    {
+      "id": "recursive-cycle3",
+      "title": "Fixed-rule cost sensitivity",
+      "family": "recursive SPY development",
+      "reported_state": "historical development",
+      "note": "Failure/lesson links are narrative context, not a claim that every variant failed or every raw attempt is published.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/recursive-cost-stress-v1.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "e75d4448a54f546ff2f7b6621485fc114439313b676ddb7da99bd4aea72762a8"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-recursive-cycle3.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "47496325c4b66b310332be21a8757bd0ed46d9c4517ab6dfb545c5edb2e2329e"
+        },
+        {
+          "state": "unpublished",
+          "note": "Underlying case bundle remains local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ]
+    },
+    {
+      "id": "risk-gate-ablation",
+      "title": "Price-peak component-removal ablation",
+      "family": "risk overlay ablation",
+      "reported_state": "development candidate retained",
+      "note": "The shared epoch record distinguishes prior failures, rejected joint-protection claims and the separate follow-up; it is not an untouched validation.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-price-peak-ablation-v1.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "449096da9fbe13855546c99e7c464fa6f570deacc83e680f78aca4e0372dfa05"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-completion.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "1e3b81c9fd2a4afd2761a5c029b7920509b65596f0fe91ebca70c8cc6e178c76"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ]
+    },
+    {
+      "id": "risk-gate-development",
+      "title": "Green/yellow/red gate with preserved recoveries",
+      "family": "risk overlay",
+      "reported_state": "completed bounded epoch with failures",
+      "note": "Historical development evidence; original sources retain their qualifications.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.executable.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.recovery.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.recovery2.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "b6b57fe7077dff3b01fce24f4e318bfce9347b16af9bb4954751fd9c427ccc43"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-completion.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "1e3b81c9fd2a4afd2761a5c029b7920509b65596f0fe91ebca70c8cc6e178c76"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        },
+        {
+          "state": "unpublished",
+          "note": "Raw ledgers and failed processes are not all published here."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#historical-checkpoint-stopped-performance-study-incomplete",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-checkpoint.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "7f1d32380b83525ed4212266ad031ed731ca7e28b8997c8504c577a2a9d7833a"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ]
+    },
+    {
+      "id": "spy-fixture",
+      "title": "SPY EMA and buy-and-hold fixture",
+      "family": "baseline",
+      "reported_state": "historical fixture",
+      "note": "Historical development evidence; original sources retain their qualifications.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "No standalone frozen plan indexed; methodology is in research/README.md."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "reports/spy/20261024-235746-728801/report.md",
+          "kind": "report",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "d9279117d32c095d5ebe05a08ea2fadad171affa19b6d86ebc703df47e8ddaba"
+        },
+        {
+          "state": "present",
+          "path": "reports/spy/20261024-235746-728801/manifest.json",
+          "kind": "artifact",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "e4f1f736e5e42834cbe03d8609e22270d727224e4076bd313c0a992b871c6ba8"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate failed-attempt artifact indexed; this is not proof of zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "research/README.md",
+          "kind": "narrative",
+          "note": "Original methodology and limitations; no standalone lesson paper indexed.",
+          "sha256": "a4c9362dfa5473889209e9427faae87e9e4c829b133ecfc2edbbe25f6d0e5c7b"
+        }
+      ]
+    },
+    {
+      "id": "strategy-suite",
+      "title": "Daily SPY strategy catalogue suite",
+      "family": "strategy screening",
+      "reported_state": "partial coverage",
+      "note": "The task reports supported cases and unsupported entries separately; indexing does not promote all 100 ideas to implemented strategies.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Batch protocol/code defines the cases; no standalone frozen plan JSON indexed."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-strategy-catalogue-suite.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "1cf9ccd595f8e220ba8442154511a76df50f26635f3749acb857dbcf9144819f"
+        },
+        {
+          "state": "unpublished",
+          "note": "Full suite bundle remains outside this publication."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-strategy-catalogue-suite.md",
+          "kind": "narrative",
+          "note": "Task discusses unsupported entries and verification failure cases; not a standalone failed-run artifact.",
+          "sha256": "42ab4b35001c327f64868904974e366b299066779513745530d44b5f862f3f08"
+        },
+        {
+          "state": "not_recorded",
+          "note": "No separate failed-attempt artifact is indexed; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-strategy-catalogue-suite.md",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "42ab4b35001c327f64868904974e366b299066779513745530d44b5f862f3f08"
+        }
+      ]
+    }
+  ],
+  "supporting_records_unassigned": [
+    "docs/tasks/2026-10-25-advisory-skills.md",
+    "docs/tasks/2026-10-25-annual-comparison.md",
+    "docs/tasks/2026-10-25-capability-review.md",
+    "docs/tasks/2026-10-25-local-performance-browser.md",
+    "docs/tasks/2026-10-25-ml-team-roles.md",
+    "docs/tasks/2026-10-25-offline-ci.md",
+    "docs/tasks/2026-10-25-parallel-research-checklist.md",
+    "docs/tasks/2026-10-25-pr-review.md",
+    "docs/tasks/2026-10-25-recursive-cost-stress.md",
+    "docs/tasks/2026-10-25-recursive-research-adversarial-review.md",
+    "docs/tasks/2026-10-25-recursive-research-inventory.md",
+    "docs/tasks/2026-10-25-recursive-research-pilot.md",
+    "docs/tasks/2026-10-25-recursive-research-policy-evaluation.md",
+    "docs/tasks/2026-10-25-recursive-research-priors.md",
+    "docs/tasks/2026-10-25-recursive-research-program.md",
+    "docs/tasks/2026-10-25-recursive-research-scoring-design.md",
+    "docs/tasks/2026-10-25-research-decision-layers.md",
+    "docs/tasks/2026-10-25-research-expansion-prerequisites.md",
+    "docs/tasks/2026-10-25-research-skills.md",
+    "docs/tasks/2026-10-25-research-strategy-survival-funnel.md",
+    "docs/tasks/2026-10-25-risk-gate-bounded-test.md",
+    "docs/tasks/2026-10-25-risk-gate-research.md",
+    "docs/tasks/2026-10-25-rsi-decision-layer-plan.md",
+    "docs/tasks/2026-10-25-rsi-diversification-ideas.md",
+    "docs/tasks/2026-10-25-rsi-frontier-and-selection.md",
+    "docs/tasks/2026-10-25-rsi-risk-mechanisms.md",
+    "docs/tasks/2026-10-25-score-ranking.md",
+    "docs/tasks/2026-10-25-teams-skills-catalog.md",
+    "docs/tasks/2026-10-25-working-foundation.md",
+    "docs/tasks/2026-10-27-code-reorganization.md",
+    "docs/tasks/2026-10-27-dependency-boundaries.md",
+    "docs/tasks/2026-10-27-evidence-recovery.md",
+    "docs/tasks/2026-10-27-pr6-final-review.md",
+    "docs/tasks/2026-10-27-project-foundation-adoption.md",
+    "docs/tasks/2026-10-27-research-evidence-index.md",
+    "docs/tasks/evidence/2026-10-25-existing-risk-gates.json",
+    "docs/tasks/evidence/2026-10-25-nautilus-capabilities.json",
+    "docs/tasks/evidence/2026-10-25-performance-browser.json",
+    "docs/tasks/evidence/2026-10-25-recursive-control-parity.json",
+    "docs/tasks/evidence/2026-10-25-recursive-cycle2-scores.json",
+    "docs/tasks/evidence/2026-10-25-recursive-cycle3-scores.json",
+    "docs/tasks/evidence/2026-10-25-recursive-plan-amendment.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-adversarial-review.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-completion.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-inventory.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-policy-evaluation.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-priors.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-scoring-design.json",
+    "docs/tasks/evidence/2026-10-25-research-expansion-prerequisites.json",
+    "docs/tasks/evidence/2026-10-25-research-skills-eval-protocol.json",
+    "docs/tasks/evidence/2026-10-25-research-skills-evaluation.json",
+    "docs/tasks/evidence/2026-10-25-risk-gate-bounded-test.json",
+    "docs/tasks/evidence/2026-10-25-risk-gate-research.json",
+    "docs/tasks/evidence/2026-10-25-rsi-diversification-ideas.json",
+    "docs/tasks/evidence/2026-10-25-rsi-etf-readiness-setup.json",
+    "docs/tasks/evidence/2026-10-25-score-ranking.json",
+    "docs/tasks/evidence/2026-10-25-strategy-survival-funnel-families.csv",
+    "docs/tasks/evidence/2026-10-25-strategy-survival-funnel-review.json",
+    "docs/tasks/evidence/2026-10-25-temporal-review.json",
+    "docs/tasks/evidence/2026-10-27-code-reorganization.json",
+    "docs/tasks/evidence/2026-10-27-dependency-boundaries.json",
+    "docs/tasks/evidence/2026-10-27-evidence-recovery.json",
+    "docs/tasks/evidence/2026-10-27-pr6-final-review.json",
+    "docs/tasks/evidence/2026-10-27-project-foundation-adoption.json",
+    "docs/tasks/evidence/2026-10-27-research-evidence-index.json"
+  ]
+}
