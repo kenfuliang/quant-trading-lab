@@ -1,0 +1,81 @@
+{
+  "id": "qc-detail-rights-v1",
+  "stats": {
+    "total_records": 622,
+    "licensed_tutorial_methods": 82,
+    "community_complete_source_pending": 540,
+    "github_files_inspected": 341,
+    "in_scope_github_files": 337,
+    "supplemental_folders_excluded_from_population": [
+      "118 Time Series Momentum Effect"
+    ],
+    "observed_code_blocks": 354,
+    "meaningful_code_blocks": 201,
+    "algorithm_class_candidate_records": 5,
+    "iframe_file_count": 85,
+    "fragment_identity_groups": 0,
+    "fragment_similarity_leads": 3,
+    "complete_packages_verified": 0,
+    "package_duplicates_verified": 0,
+    "source_packages_exported": 0,
+    "rights_dispositions": 622,
+    "manual_detail_cards": 8,
+    "financial_attempts": 0,
+    "observed_requirements": {
+      "historical_warmup": 29,
+      "monthly_schedule": 11,
+      "forex_prices_and_conventions": 2,
+      "daily_schedule": 2,
+      "custom_or_external_data": 18,
+      "equity_prices_and_actions": 6,
+      "point_in_time_fundamentals": 26,
+      "option_chains_quotes_expiry_assignment": 1,
+      "futures_chains_contracts_and_rolls": 1,
+      "leverage_declaration": 2
+    }
+  },
+  "artifacts": [
+    {
+      "path": "research/catalogs/qc-detail-rights-v1/review.json",
+      "sha256": "1e665561337419761b31548d846388d9f75f24781248ff6a84fd92a0a1ad3a95"
+    },
+    {
+      "path": "research/catalogs/qc-detail-rights-v1/inputs.json",
+      "sha256": "1f3bed321a51f6ddfa7831a2ff86f6b616acefe998d5563f72eec38ee7972756"
+    },
+    {
+      "path": ".local/performance/qc-detail-rights-v1/review.json",
+      "sha256": "1e665561337419761b31548d846388d9f75f24781248ff6a84fd92a0a1ad3a95"
+    },
+    {
+      "path": ".local/performance/qc-detail-rights-v1/index.html",
+      "sha256": "9a2f646dc2eb2902b62af2ebbd71cc3d880b7c9e55aeee0150cce783acff98c1"
+    },
+    {
+      "path": ".local/performance/qc-detail-rights-v1/browser-audit.json",
+      "sha256": "8d5fdda483cb64c5c56bbfb224f81133716ba1b22cff1052ee4d54037b444848"
+    },
+    {
+      "path": ".local/performance/qc-detail-rights-v1/review-preview.png",
+      "sha256": "abc0860fc9d2b30d14df2384b1da5dd98df87af288f7e14e47ddd79757599d66"
+    }
+  ],
+  "processing": [
+    {
+      "path": "research/qc_source_review.py",
+      "sha256": "dfa50213153e9f0cc47dc10530fe462ac447b6beef25b77aa8a3b1b44f53fbd3"
+    },
+    {
+      "path": "scripts/build_qc_source_review.py",
+      "sha256": "534dd8a45d88ef5997f573f5528bd1cecbb6cf425bb6cf8236e681ed1e3e28b4"
+    },
+    {
+      "path": "tests/test_qc_source_review.py",
+      "sha256": "4cfe30f9aebf00a65bdc1808628900c8ef9eb19a2fa6963a8eb88ad85806f6ad"
+    },
+    {
+      "path": "scripts/audit_qc_source_review.py",
+      "sha256": "11ed0b16264c25f235c78e1e402fd2e3ae7e69f4a3a5169739397b8f688c8383"
+    }
+  ]
+}

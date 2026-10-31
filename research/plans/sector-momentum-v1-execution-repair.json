@@ -1,0 +1,73 @@
+{
+  "study_id": "sector-momentum-v1-execution-repair",
+  "status": "frozen-before-repaired-runs",
+  "authorized_scope": "User requested bounded QuantConnect sector comparison; four fixed cases, no tuning",
+  "cases": [
+    "hold",
+    "equal",
+    "momentum",
+    "gate"
+  ],
+  "max_financial_attempts": 8,
+  "max_successful_cases": 4,
+  "technical_repairs_only": "Four matched reruns after pending-sale rejection; all earlier completed controls excluded from final comparison",
+  "active_execution_checkpoint_minutes": 45,
+  "capital_usd": 300000,
+  "evaluation": [
+    "2017-01-03",
+    "2025-12-31"
+  ],
+  "gate_warmup": [
+    "2004-01-02",
+    "2017-01-03"
+  ],
+  "sectors": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "universe_rationale": "Fixed ten-sector ETF set including XLRE, excluding later XLC. 2017 begins after full 252-return XLRE lookback; not exact tutorial code replication. Sector classification and fund constituents change historically.",
+  "momentum": "Monthly first session: top three by 252-session total-return close ratio, equal weights, deterministic ticker tie break; no skip, absolute momentum filter or gate overlay",
+  "equal": "Monthly first session: equal weight all ten sector ETFs",
+  "hold": "SPY entry once, cash dividends retained",
+  "gate": "Original combined GateCore on raw SPY, seeded from 2004, daily green1/yellow0.5/red0 target; unchanged recovery counters",
+  "execution": "All cases: raw daily QC subscriptions, prior close sized next MOO, whole shares, 98% target gross budget, no shorting. IB simulation margin-account plumbing with leverage2 credit limit (actual target gross98%, assert closing gross<=1) allows sale proceeds reuse; assert nonnegative closing cash and exposure<=1. No financing/interest/tax model.",
+  "costs": {
+    "usd_per_order": 1,
+    "constant_slippage_fraction": 0.0005
+  },
+  "signal_normalization": "Momentum history requests TOTAL_RETURN only; account uses RAW and native dividend/split handling. No market data exported.",
+  "primary_estimand": "Net CAGR difference: momentum minus SPY and equal-weight sectors",
+  "diagnostics": [
+    "full and annual return",
+    "closing-NAV maximum drawdown",
+    "daily zero-RF sample Sharpe sqrt252",
+    "full CAGR or annual return divided by absolute drawdown",
+    "underwater session fraction",
+    "longest underwater run sessions/calendar days",
+    "unrecovered flag",
+    "fees",
+    "rejects",
+    "cash",
+    "exposure",
+    "coverage"
+  ],
+  "evaluation_status": "Viewed historical development sample, not untouched holdout",
+  "stops": [
+    "budget/deadline",
+    "missing history or shared bars",
+    "nonfinite NAV",
+    "negative closing cash or gross leverage",
+    "rejected/unresolved orders",
+    "incomplete output or inconsistent calendar/annual compounding"
+  ],
+  "exports": "Summary statistics and provenance only; no raw prices, daily NAV, reconstructable series or obfuscation",
+  "amendment_reason": "Momentum MOO purchase rejected before pending sale released buying power. Change only simulated credit limit; rerun all four cases. No rule, cost, dates, target or ranking change. User-authorized comparison requires completed matched execution. Original six-attempt protocol preserved; amendment made before its exhaustion."
+}

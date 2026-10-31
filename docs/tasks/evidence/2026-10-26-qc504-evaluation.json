@@ -1,0 +1,83 @@
+{
+  "study_id": "qc504-evaluation-v1",
+  "status": "completed-with-missing-long-custom-evidence",
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "source_sha256": "0532b0cfb4914d98bc7fb02083d9d08344e006646b0d51313fb86565401204bf",
+  "attempts": [
+    {
+      "attempt": 1,
+      "case": "recent",
+      "status": "completed-summary-captured",
+      "source_sha256": "6612c73a6c36af935fe6c80b0197cfad4a72e29ba039b419c4842820b7ab37ed",
+      "backtest_id": "7f62da5ec252102361c53213c3c911b0"
+    },
+    {
+      "attempt": 2,
+      "case": "long",
+      "status": "excluded-stale-editor-build",
+      "source_sha256": "bab442bbe5142a60e3a47b0d063aceb985858b9fcb6c3c15e5a21131813ecb2c",
+      "reserved_utc": "2026-10-26T17:32:48.209656+00:00",
+      "backtest_id": "980e10e93d19475e67459a17e37e8745",
+      "actual_case": "recent",
+      "reason": "Editor save was not reflected in launched build; summary identity caught recent instead of long. Retained and excluded."
+    },
+    {
+      "attempt": 3,
+      "case": "long",
+      "status": "completed-native-summary-log-panel-blocked",
+      "source_sha256": "bab442bbe5142a60e3a47b0d063aceb985858b9fcb6c3c15e5a21131813ecb2c",
+      "reserved_utc": "2026-10-26T17:35:10.944407+00:00",
+      "backtest_id": "18f7e694305224b414843577826e5e24",
+      "native_cagr_pct": 100.305,
+      "native_dd_pct": 70.2,
+      "native_end_usd": 676247852.71,
+      "reporting_issue": "Log pane empty/not loaded and UI control unavailable; custom summaries not captured yet."
+    },
+    {
+      "attempt": 4,
+      "case": "cost25",
+      "status": "completed-summary-captured",
+      "source_sha256": "1e051678623351b49be678b6ced879f2d5e51cfc52c8398a91f423332c7ed102",
+      "reserved_utc": "2026-10-26T17:42:20.574205+00:00",
+      "backtest_id": "84a2d882e72d595e6f60edb27dd8fd42"
+    },
+    {
+      "attempt": 5,
+      "case": "long",
+      "status": "completed-native-only-custom-log-unavailable",
+      "source_sha256": "230bc8c166c7a91500eb2e2211dd0c2d294cab523940e0cc377ec139196885e5",
+      "reserved_utc": "2026-10-26T17:44:47.870280+00:00",
+      "reason": "Last technical slot: compact long-window annual summaries and mirror to Debug; no financial changes.",
+      "backtest_id": "0b9edbb0efa3837565f153c7dcff95c6",
+      "native_cagr_pct": 100.305,
+      "native_dd_pct": 70.2,
+      "native_end_usd": 676247852.71
+    }
+  ],
+  "engine_observed": "LEAN2.5.0.0.18209; differs from prior sector run18205",
+  "checks": [
+    "annual/full NAV compounding",
+    "recent/cost Sharpe from annual daily return moments; long custom summaries unavailable",
+    "Calmar formula",
+    "recent/cost global underwater totals",
+    "recent/cost calendar hash"
+  ],
+  "limits": [
+    "own hosted rerun, not independent engine/data implementation",
+    "different window and10k capital from normalized leaderboard",
+    "rejected orders affect realized paths; no silent repairs",
+    "sleeve counts are intended target days, not sleeve P&L",
+    "fund market-value exposure omits embedded leverage",
+    "no market impact/capacity validation or financing qualification",
+    "historical development sample; not clean OOS"
+  ],
+  "hashes": {
+    "published-main.py": "0532b0cfb4914d98bc7fb02083d9d08344e006646b0d51313fb86565401204bf",
+    "recent-source.py": "6612c73a6c36af935fe6c80b0197cfad4a72e29ba039b419c4842820b7ab37ed",
+    "long-source.py": "230bc8c166c7a91500eb2e2211dd0c2d294cab523940e0cc377ec139196885e5",
+    "cost25-source.py": "1e051678623351b49be678b6ced879f2d5e51cfc52c8398a91f423332c7ed102",
+    "recent-summary-cells.json": "d902bd75a6e3dc3d3244b980d2642c1798dbe428a6527acd33f0e6e28110b873",
+    "long-summary-cells.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "cost25-summary-cells.json": "e48a2c1a2acd3a6b68262d3fd1a28736af04d6af7f6cdd5030276f705c319990"
+  }
+}

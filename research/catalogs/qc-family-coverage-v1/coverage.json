@@ -1,0 +1,262 @@
+{
+  "schema": "qc-family-coverage-v1",
+  "date": "2026-10-28",
+  "scope": "Family-level representative screening/disposition across two waves; not complete622source verification",
+  "source_catalog_sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01",
+  "rows": [
+    {
+      "family": "allocation_rotation",
+      "catalog_memberships": 203,
+      "candidate_pipeline_roles": "Target eligibility / allocation / risk sizing",
+      "review_disposition": "Screened representative methods; runtime unqualified",
+      "screened_catalog_ids": [
+        "QC-C-158",
+        "QC-C-504",
+        "QC-T-15308",
+        "QC-T-15310",
+        "QC-T-15338",
+        "QC-T-15339",
+        "QC-T-15369"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-target-components.md",
+      "blocker": "Separate eligible-set renormalization and budget rules",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "carry_term_structure",
+      "catalog_memberships": 32,
+      "candidate_pipeline_roles": "Currency or contract ranking / proposal / funding-aware sizing",
+      "review_disposition": "Screened representative methods; held for data/source contracts",
+      "screened_catalog_ids": [
+        "QC-T-15264",
+        "QC-T-15372",
+        "QC-T-15382"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-carry-components.md",
+      "blocker": "Retired rate feed, roll/maturity ambiguities, individual contract chains and financing",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "earnings_event",
+      "catalog_memberships": 25,
+      "candidate_pipeline_roles": "As-of event feature / target score / proposal",
+      "review_disposition": "Screened method and fragment; data blocked",
+      "screened_catalog_ids": [
+        "QC-T-15369"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-event-components.md",
+      "blocker": "Quarter identity, public/vendor release times, revisions and PIT eligibility",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "ensemble",
+      "catalog_memberships": 18,
+      "candidate_pipeline_roles": "Multiple proposals / fixed sleeve allocation",
+      "review_disposition": "Prior scoped mechanism evidence; adaptive selector unverified",
+      "screened_catalog_ids": [
+        "QC-C-504"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-policy-components.md",
+      "blocker": "Exact shared-capital source/accounting; fixed combination is not policy selection",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "liquidity_microstructure",
+      "catalog_memberships": 25,
+      "candidate_pipeline_roles": "Turnover feature / target ranking / proposal",
+      "review_disposition": "Screened representative method; execution interpretation corrected",
+      "screened_catalog_ids": [
+        "QC-T-15352"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-relative-components.md",
+      "blocker": "Turnover units, PIT shares/universe and market impact; not an order-book execution model",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "machine_learning",
+      "catalog_memberships": 28,
+      "candidate_pipeline_roles": "Features / forecast-to-proposal; optional context only with explicit target",
+      "review_disposition": "Screened representative methods; model/runtime unqualified",
+      "screened_catalog_ids": [
+        "QC-C-86",
+        "QC-T-15263",
+        "QC-T-15270"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-market-components.md",
+      "blocker": "Return predictor differs from risk-state classifier; mature labels and chronological fitting",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "macro_sentiment",
+      "catalog_memberships": 125,
+      "candidate_pipeline_roles": "Optional market context / conditional allocation",
+      "review_disposition": "Screened representative methods; data blocked",
+      "screened_catalog_ids": [
+        "QC-C-86",
+        "QC-T-15264",
+        "QC-T-15310"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-market-components.md",
+      "blocker": "Discontinued proxy or sentiment-series identity and publication timing",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "mean_reversion",
+      "catalog_memberships": 121,
+      "candidate_pipeline_roles": "Target ranking / signed position proposal",
+      "review_disposition": "Screened representative method; not runtime qualified",
+      "screened_catalog_ids": [
+        "QC-T-15311"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-relative-components.md",
+      "blocker": "Historical universe, short availability, turnover and costs",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "momentum",
+      "catalog_memberships": 231,
+      "candidate_pipeline_roles": "Target ranking / position proposal",
+      "review_disposition": "Screened representative methods; runtime unqualified",
+      "screened_catalog_ids": [
+        "QC-T-15308",
+        "QC-T-15338",
+        "QC-T-15357",
+        "QC-T-15364"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-target-components.md",
+      "blocker": "Original history/universe and MOM versus MOMP definitions unresolved",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "monitoring_framework",
+      "catalog_memberships": 10,
+      "candidate_pipeline_roles": "Observability across stages; no alpha score",
+      "review_disposition": "Blocked: community representative title only",
+      "screened_catalog_ids": [
+        "QC-C-157"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-carry-components.md",
+      "blocker": "Exact source/rights inaccessible; generic logging docs do not verify listing157",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "options",
+      "catalog_memberships": 19,
+      "candidate_pipeline_roles": "Signed-leg proposal / Greeks and margin / lifecycle accounting",
+      "review_disposition": "Held: method and displayed snippet contradict",
+      "screened_catalog_ids": [
+        "QC-T-15295",
+        "QC-T-15382"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-carry-components.md",
+      "blocker": "Option-leg directions and expiry policy unresolved; chains and assignment accounting unqualified",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "passive_accumulation",
+      "catalog_memberships": 5,
+      "candidate_pipeline_roles": "Baseline allocation / external cash-flow accounting",
+      "review_disposition": "Blocked: community representative title only",
+      "screened_catalog_ids": [
+        "QC-C-158"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-event-components.md",
+      "blocker": "Exact holdings/rebalance unknown; contributions separated using unitized/time-weighted returns",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "relative_value",
+      "catalog_memberships": 30,
+      "candidate_pipeline_roles": "Pair formation / spread proposal / multi-leg risk",
+      "review_disposition": "Screened representative methods; identity ambiguity",
+      "screened_catalog_ids": [
+        "QC-T-15298",
+        "QC-T-15300"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-relative-components.md",
+      "blocker": "Formation timing, pair identity, borrow and legs; similarity is not cointegration",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "seasonality",
+      "catalog_memberships": 24,
+      "candidate_pipeline_roles": "Calendar position proposal / explicit execution schedule",
+      "review_disposition": "Screened methods; timing unqualified",
+      "screened_catalog_ids": [
+        "QC-T-15295",
+        "QC-T-15377"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-event-components.md",
+      "blocker": "Callbacks differ from sessions; 09:31 fills require appropriate data; expiry-week example trades OEF shares",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "trend",
+      "catalog_memberships": 159,
+      "candidate_pipeline_roles": "Position proposal / exposure eligibility",
+      "review_disposition": "Screened representative methods; runtime unqualified",
+      "screened_catalog_ids": [
+        "QC-T-15258",
+        "QC-T-15339",
+        "QC-T-15351"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-policy-components.md",
+      "blocker": "Trend filter is not broad-market forecast; leveraged path/accounting required",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "value_quality",
+      "catalog_memberships": 85,
+      "candidate_pipeline_roles": "Point-in-time score / target selection / proposal",
+      "review_disposition": "Screened representative methods; data blocked",
+      "screened_catalog_ids": [
+        "QC-T-15310",
+        "QC-T-15370"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-target-components.md",
+      "blocker": "Historical fundamentals, revisions, universe and factor definition",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    },
+    {
+      "family": "volatility",
+      "catalog_memberships": 125,
+      "candidate_pipeline_roles": "Volatility feature / risk sizing or option-premium proposal; scope-specific",
+      "review_disposition": "Held representative: contradictory option method; HMM identity remains separate",
+      "screened_catalog_ids": [
+        "QC-T-15382"
+      ],
+      "report": "docs/tasks/2026-10-28-qc-wave2-carry-components.md",
+      "blocker": "Variance state is not crash probability; exact option policy/source unresolved",
+      "all_family_sources_verified": false,
+      "new_financial_runs": 0
+    }
+  ],
+  "counts": {
+    "families": 17,
+    "waves": 2,
+    "representative_groups": 24,
+    "distinct_screened_primary_ids": 25,
+    "remaining_without_primary_representative_screen": 597,
+    "title_only_families": [
+      "monitoring_framework",
+      "passive_accumulation"
+    ]
+  },
+  "policy": "GRS owns stages; roles are candidate interpretations, not adopted modules. Original family tags and provisional stage map remain unchanged."
+}

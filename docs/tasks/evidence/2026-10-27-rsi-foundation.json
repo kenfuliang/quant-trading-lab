@@ -1,0 +1,192 @@
+{
+  "schema_version": "RSI-FOUNDATION-1",
+  "status": "completed_scoped_offline_foundation",
+  "local_date": "2026-10-27",
+  "closed_utc": "2026-10-27T08:17:53.803225+00:00",
+  "standard": "GRS-1.0",
+  "scope": "offline RSI engineering foundation; synthetic and saved evidence only",
+  "git": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty_worktree": true,
+    "head_alone_identifies_code": false
+  },
+  "financial_launches_authorized": 0,
+  "financial_launches_actual": 0,
+  "model_fits": 0,
+  "new_data_acquisitions": 0,
+  "services_started": 0,
+  "broker_operations": 0,
+  "historical_cycles_reopened": [],
+  "requirements": {
+    "R01": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R02": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R03": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R04": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R05": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R06": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R07": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R08": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R09": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed",
+    "R10": "scoped_engineering_acceptance_demonstrated; full production/scientific requirement not claimed"
+  },
+  "skills": "Existing catalog workflows reused; structured calling SOP added; no new skill folder",
+  "known_lesson": {
+    "check_id": "c001-ema-diagnostic-4e46856828fff51fc36920815f1c275567099adee39ccdcca06a0806e0b2e91d",
+    "passed": true,
+    "diagnostic_mismatch_sessions": 1019,
+    "signal_diagnostic": "effective0or1-to-nominal1-allocation_factor",
+    "original_financial_attempts": 1,
+    "frozen_gate_overridden": false,
+    "incumbent_changed": false
+  },
+  "demonstration": {
+    "bounds": {
+      "max_launches": 2,
+      "max_financial_slots": 0,
+      "wall_seconds": 120
+    },
+    "actual_allowed_process_launches": 2,
+    "verified_restart_cache": true,
+    "aggregate_exhaustion_checked": true,
+    "synthetic_adoption_and_rollback_checked": true,
+    "financial_adoption": false,
+    "artifact_count": 24
+  },
+  "process_comparison": {
+    "scenarios": [
+      "shared-integrity",
+      "inconclusive-integrity",
+      "equal-actions"
+    ],
+    "exposure": "known development fictional fixtures; not withheld",
+    "summary": {
+      "breadth_first": {
+        "critical_errors_observed": 0,
+        "elapsed_seconds": 0.010959542822092772,
+        "fixture_resource_units": 6.0,
+        "independently_checked_resolutions": 6,
+        "logical_attempts": 6,
+        "redundant_selected_observations": 0,
+        "resolved_questions": 6
+      },
+      "priority": {
+        "critical_errors_observed": 0,
+        "elapsed_seconds": 0.01115162402857095,
+        "fixture_resource_units": 6.0,
+        "independently_checked_resolutions": 6,
+        "logical_attempts": 6,
+        "redundant_selected_observations": 0,
+        "resolved_questions": 6
+      }
+    },
+    "result": "one priority win, one loss, one tie; aggregate six vs six; no overall policy advantage",
+    "independent_financial_replication": false
+  },
+  "validation": {
+    "make_check": {
+      "exit_code": 0,
+      "tests_passed": 449,
+      "new_foundation_tests": 70,
+      "dependency_check": "passed",
+      "docs_check": "passed"
+    },
+    "final_docs_check": {
+      "exit_code": 0,
+      "files": 132
+    },
+    "git_diff_check": {
+      "exit_code": 0
+    },
+    "integrity": {
+      "status": "passed",
+      "checked_utc": "2026-10-27T08:15:49.556953+00:00",
+      "historical_files_unchanged": 143,
+      "demo_artifacts_verified": 24,
+      "frozen_source_paths_verified": 162,
+      "source_snapshots": 167,
+      "financial_launches": 0
+    }
+  },
+  "engineering_findings_retained": [
+    "Initial focused coordinator check exposed ControllerError/RSIError mismatch; corrected before demo.",
+    "Review rejected missing contract artifact/budget enforcement.",
+    "Review rejected mutable frozen spec and unchecked journal mutation while writer remained open.",
+    "Review rejected launch after late deadline and child cleanup outside post-Popen journal guard.",
+    "Review rejected crash gap between terminal integrity failure and durable stop; now atomic with terminal state."
+  ],
+  "implementation_artifacts": [
+    {
+      "path": "research/rsi_contracts.py",
+      "sha256": "a2826c5c089d8f63051996ddd27e1d8981c06a53a4b4d43a48c3210b544d674b"
+    },
+    {
+      "path": "research/rsi_coordinator.py",
+      "sha256": "f89705796b6fba5826dbfb53686b9d70eeff88831fafc307b70f109324112ac3"
+    },
+    {
+      "path": "research/rsi_adoption.py",
+      "sha256": "2eef642971efdd9ca9daba81f5f48b51ce4b23f2296bca8851e3407d6b34af10"
+    },
+    {
+      "path": "scripts/rsi_foundation.py",
+      "sha256": "6ed9d5897b0b368ff88e9da53c463dbf6c1975b2511424f5793f826891b93967"
+    },
+    {
+      "path": "tests/test_rsi_contracts.py",
+      "sha256": "f485e5b5d4568320c3a08fe7f5a39dd17dbed112b08c4d6e3e2b0dcd68371a08"
+    },
+    {
+      "path": "tests/test_rsi_coordinator.py",
+      "sha256": "7402915e663c59fef5d6f49b71658d4e79f8abeb2ea63683bc71fa1b808af4c0"
+    },
+    {
+      "path": "tests/test_rsi_adoption.py",
+      "sha256": "712ab3dc99b1b1b53bd154af804bc560fea5d69979e75d2a609c5385d8a3eba9"
+    },
+    {
+      "path": "tests/test_rsi_foundation.py",
+      "sha256": "2201ba4d5f0859f3e6b49dd534150e185edba76385aa789655d767ec4ac2df8b"
+    }
+  ],
+  "evidence_artifacts": [
+    {
+      "path": ".local/rsi-foundation-20261027/make-check.txt",
+      "sha256": "30b096da5fac35f3507b5e120850758ee0b6f0c31a00df65166194293645e930"
+    },
+    {
+      "path": ".local/rsi-foundation-20261027/final-docs-check.txt",
+      "sha256": "caf87a86c9fbc5cca7de80f62a01c1774d9a2ad15fde51f1ae71828d2548a4bc"
+    },
+    {
+      "path": ".local/rsi-foundation-20261027/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".local/rsi-foundation-20261027/integrity-check.json",
+      "sha256": "c8a60fcc77738049763e0077028f976d2ef5fbe4c291e5ba9467b36bb27f2441"
+    },
+    {
+      "path": ".local/rsi-foundation-20261027/before-manifest.json",
+      "sha256": "ad01c1147d36d6b929947b7dd17e8c5d55cb939785fff3e12d37e8b1281cdce6"
+    },
+    {
+      "path": ".local/rsi-foundation-20261027/demo/manifest.json",
+      "sha256": "663a7001e3b85925930bdef6036573c57694c63049ded9258a7797c56b3541f8"
+    },
+    {
+      "path": ".local/rsi-foundation-20261027/demo/summary.json",
+      "sha256": "98b63a417db9e1117c9a2eb4906e51f960551055e8c47becc2e83e0fc013cda6"
+    }
+  ],
+  "adoption_scope": "synthetic engineering fixtures only; financial gate passes remain provisional",
+  "alpha_established": false,
+  "research_policy_generalization_established": false,
+  "remaining": [
+    "trusted actual financial evaluator/adapter and independent accounting/timing/cost qualification",
+    "authenticated cross-program data access history and broader known-lesson corpus",
+    "withheld process policy evaluation",
+    "independent financial validation before candidate adoption",
+    "automatic scientific proposer/scheduler not implemented"
+  ]
+}

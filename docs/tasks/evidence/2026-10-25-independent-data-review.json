@@ -1,0 +1,287 @@
+{
+  "schema": "independent-data-screening-v1",
+  "review_date_local": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "status": "screened_not_adopted",
+  "scope": "Documentation/provider and collector screening only; no market-data acquisition, installs, backtests, credentials, broker operations or blocked-goal budget changes",
+  "branch_at_start": "codex/rsi-gate-robustness",
+  "head_at_start": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "sources": [
+    {
+      "id": "alpaca-plans",
+      "url": "https://docs.alpaca.markets/us/docs/about-market-data-api",
+      "finding": "Basic US stocks/ETF history since 2016, 200 historical requests/minute; free live IEX",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "alpaca-faq",
+      "url": "https://docs.alpaca.markets/us/docs/market-data-faq",
+      "finding": "Historical SIP end at least 15 minutes old may be queried without subscription; actual entitlement untested",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "twelve-pricing",
+      "url": "https://twelvedata.com/pricing",
+      "finding": "Basic free with 8 API credits/minute and 800/day; equities, ETFs, forex advertised",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "twelve-history",
+      "url": "https://support.twelvedata.com/en/articles/5214728-getting-historical-data",
+      "finding": "5000 data points/request; earliest dates and free plan eligibility untested",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "alpha-limits",
+      "url": "https://www.alphavantage.co/support/",
+      "finding": "25 requests/day standard; verified open source/educational exception not assumed",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "alpha-endpoints",
+      "url": "https://www.alphavantage.co/documentation/",
+      "finding": "Daily equity compact100; full daily and adjusted premium; FX daily documented",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "massive-history",
+      "url": "https://massive.com/knowledge-base/article/how-much-historical-stock-data-does-massive-have",
+      "finding": "Stocks Basic rolling two-year bars, REST only",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "dukascopy-export",
+      "url": "https://www.dukascopy.com/swiss/english/marketwatch/historical/",
+      "finding": "Official free historical export advertised; instrument-specific history",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "dukascopy-bulk",
+      "url": "https://www.dukascopy.com/wiki/en/development/data-export/",
+      "finding": "Wiki bulk route AWS Requester Pays, excluded from zero-cost plan",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "histdata-faq",
+      "url": "https://www.histdata.com/f-a-q/",
+      "finding": "Free tick/M1, fixed EST without DST, bid bars and ASCII tick ask, absent volume",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "stooq",
+      "url": "https://stooq.com/db/h/",
+      "finding": "Browser verification page observed; no data/rights qualification",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "yahoo-terms",
+      "url": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+      "finding": "HTTP999 in current web fetch; prior local restriction evidence preserved",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "databento",
+      "url": "https://databento.com/pricing",
+      "finding": "125USD introductory credit, not recurring free archive",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "cme-fees",
+      "url": "https://www.cmegroup.com/articles/faqs/access-to-cme-group-settlement-data-faq.html",
+      "finding": "Legacy FTP migrated; DataMine retrieval fees",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "cme-api",
+      "url": "https://www.cmegroup.com/datamine/datamine-api.html",
+      "finding": "Access purchased historical data",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "ecb",
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+      "finding": "Reference rates not execution data",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    },
+    {
+      "id": "datareader-stooq",
+      "url": "https://pydata.github.io/pandas-datareader/devel/readers/stooq.html",
+      "finding": "Reader interface documentation only",
+      "evidence_type": "primary_documentation_not_authenticated_data_test"
+    }
+  ],
+  "collectors": [
+    {
+      "repo": "alpacahq/alpaca-py",
+      "sha": "66f2ffd797d3cb0e5202daf36d178b67aff89915",
+      "default_branch": "master",
+      "license": "Apache-2.0",
+      "archived": false,
+      "inspection_paths": [
+        "LICENSE",
+        "README.md",
+        "alpaca/data/historical/stock.py"
+      ],
+      "files": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/alpacahq/alpaca-py/66f2ffd797d3cb0e5202daf36d178b67aff89915/LICENSE",
+          "sha256": "bc84da682744c6dd008cf9ad3306caf18444d613a80c1bcc3de0dd46094787ef"
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/alpacahq/alpaca-py/66f2ffd797d3cb0e5202daf36d178b67aff89915/README.md",
+          "sha256": "3c59a91311c55e4dccbbdc68f6e38e9456bd710802c09156b7e2baa7393f3eba"
+        },
+        {
+          "path": "alpaca/data/historical/stock.py",
+          "url": "https://raw.githubusercontent.com/alpacahq/alpaca-py/66f2ffd797d3cb0e5202daf36d178b67aff89915/alpaca/data/historical/stock.py",
+          "sha256": "abceca87e5bc6df15885e97a28682edb2444a4f1a51aeb4706aa29ef52950c79"
+        }
+      ]
+    },
+    {
+      "repo": "twelvedata/twelvedata-python",
+      "sha": "3d53d271a450c50b2199722b5d2db7b92e213d3b",
+      "default_branch": "master",
+      "license": "MIT",
+      "archived": false,
+      "inspection_paths": [
+        "LICENSE.txt",
+        "README.md"
+      ],
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/twelvedata/twelvedata-python/3d53d271a450c50b2199722b5d2db7b92e213d3b/LICENSE.txt",
+          "sha256": "25579f8888c66425e060b9a28f96666280a61ae3b4608d3be092b2c6cc0d3b56"
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/twelvedata/twelvedata-python/3d53d271a450c50b2199722b5d2db7b92e213d3b/README.md",
+          "sha256": "7f5fd650b591992658a5f5bf884e201f80cf60eb205bd76e7e73bc002f33c132"
+        }
+      ]
+    },
+    {
+      "repo": "Leo4815162342/dukascopy-node",
+      "sha": "33a6c6e3de97fab9904afc80a3a2fac8b46d8bfb",
+      "default_branch": "master",
+      "license": "MIT",
+      "archived": false,
+      "inspection_paths": [
+        "LICENSE",
+        "README.md"
+      ],
+      "files": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/Leo4815162342/dukascopy-node/33a6c6e3de97fab9904afc80a3a2fac8b46d8bfb/LICENSE",
+          "sha256": "c6e56f98a073095e3fa8303b8ffefcdf2588d07f37ffa28062fa1f93f23a3515"
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/Leo4815162342/dukascopy-node/33a6c6e3de97fab9904afc80a3a2fac8b46d8bfb/README.md",
+          "sha256": "59163ff348e732272f84fde193806f50313a0c0f02319f3b4bdc807293c14b52"
+        }
+      ]
+    },
+    {
+      "repo": "pydata/pandas-datareader",
+      "sha": "9a3e2fe8c4e202bf9be6b4543fd1a06c3cdce7de",
+      "default_branch": "main",
+      "license": "NOASSERTION",
+      "archived": false,
+      "inspection_paths": [
+        "LICENSE.md",
+        "README.md"
+      ],
+      "files": [
+        {
+          "path": "LICENSE.md",
+          "url": "https://raw.githubusercontent.com/pydata/pandas-datareader/9a3e2fe8c4e202bf9be6b4543fd1a06c3cdce7de/LICENSE.md",
+          "sha256": "1114ad27e18866954fd63f8a9c0bc4bf0ef77f17376de066b797d202fd107213"
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/pydata/pandas-datareader/9a3e2fe8c4e202bf9be6b4543fd1a06c3cdce7de/README.md",
+          "sha256": "663af3b381e03b2ae58b76cfd4bb6da2218a713729f598516d74c86be5cbf7be"
+        }
+      ],
+      "manual_license_observation": "Main LICENSE.md declares BSD-3-Clause; includes other notices; full compatibility review pending"
+    },
+    {
+      "repo": "microsoft/qlib",
+      "sha": "54355232463878d2eebb91fe0ee5fa7fa1f5976c",
+      "default_branch": "main",
+      "license": "MIT",
+      "archived": false,
+      "inspection_paths": [
+        "LICENSE",
+        "README.md",
+        "scripts/data_collector/README.md"
+      ],
+      "files": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/microsoft/qlib/54355232463878d2eebb91fe0ee5fa7fa1f5976c/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/microsoft/qlib/54355232463878d2eebb91fe0ee5fa7fa1f5976c/README.md",
+          "sha256": "e9f7cc8eeb60e3fe3784ec496e350ecb584157c3240cda0651c20acb26fd9037"
+        },
+        {
+          "path": "scripts/data_collector/README.md",
+          "url": "https://raw.githubusercontent.com/microsoft/qlib/54355232463878d2eebb91fe0ee5fa7fa1f5976c/scripts/data_collector/README.md",
+          "sha256": "41acb599102acdaa7dae20f6364cab4ff96d8a03042f9363b4fa2e21ad5c1877"
+        }
+      ]
+    },
+    {
+      "repo": "ranaroussi/yfinance",
+      "sha": "2081dca0b224512ff768f9c5e6bd9c658a3b8339",
+      "default_branch": "main",
+      "license": "Apache-2.0",
+      "archived": false,
+      "inspection_paths": [
+        "LICENSE.txt",
+        "README.md"
+      ],
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/ranaroussi/yfinance/2081dca0b224512ff768f9c5e6bd9c658a3b8339/LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/ranaroussi/yfinance/2081dca0b224512ff768f9c5e6bd9c658a3b8339/README.md",
+          "sha256": "8909d505039b5bfb7667d05031ec82baa8b938eb0ec98073ead04c96e2cdf864"
+        }
+      ]
+    }
+  ],
+  "market_data_requests": 0,
+  "collector_installs": 0,
+  "financial_runs": 0,
+  "broker_operations": 0,
+  "previous_blocked_goal_changed": false,
+  "validation": {
+    "status": "passed",
+    "make_check": {
+      "exit_code": 0,
+      "offline_tests": 248,
+      "log_path": ".local/data-provider-review-20261025/make-check.log",
+      "log_sha256": "836d9e87f67ee7fd0653535af1f7cc3baa15f658e369edc0ae21e9be8bfd6307"
+    },
+    "git_diff_check": {
+      "exit_code": 0
+    },
+    "hosted_ci": "not_run",
+    "runtime_provider_tests": "not_run",
+    "catalog_integration": "planned_not_implemented"
+  },
+  "completed_utc": "2026-10-26T03:54:51.310233+00:00"
+}

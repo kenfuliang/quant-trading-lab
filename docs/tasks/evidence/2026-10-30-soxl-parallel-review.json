@@ -1,0 +1,66 @@
+{
+  "schema": "research-design-review/v1",
+  "review_id": "SOXL-REVIEW-20261030-01",
+  "status": "completed_design_review_financial_execution_blocked",
+  "created_utc": "2026-10-30T18:43:54.575710+00:00",
+  "agents": [
+    "soxl_signals",
+    "soxl_timing",
+    "soxl_sizing"
+  ],
+  "bounds": {
+    "agents": 3,
+    "minutes_per_agent": 15,
+    "coordinator_elapsed_minutes_limit": 30,
+    "financial_cases_allowed": 0,
+    "financial_cases_used": 0,
+    "downloads": 0,
+    "broker_connections": 0,
+    "orders": 0
+  },
+  "selected_next_question": "Does realized SOXL exposure materially exceed the unchanged target before losses? No attribution or challenger selected without daily evidence.",
+  "blockers": [
+    "Official daily exports missing for all eight cloud cases",
+    "Original source did not persist daily decisions and fill/account ledgers",
+    "Independent accounting and comparable recovery-inclusive temporal paths missing",
+    "Qualified full-period semiconductor features and exposure-control calibration not established"
+  ],
+  "validation": {
+    "documentation_check": "passed: 185 files; local targets, metadata and catalog parity",
+    "initial_check_exit": 1,
+    "initial_failure": "Receipt target did not exist yet; create receipt then rerun documentation validation.",
+    "financial_or_synthetic_tests_run": false,
+    "documentation_check_exit": 0
+  },
+  "artifacts": [
+    {
+      "path": "docs/tasks/2026-10-30-soxl-parallel-review.md",
+      "sha256": "25de8afc730869c532c302d184b521527aad7f0c27b1002624288db241eae819"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-soxl-signals-review.md",
+      "sha256": "00f0bd4dff4700657f4ee104dc852e94f2195e06b86a8186e448cee9f764f461"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-soxl-timing-review.md",
+      "sha256": "187edd4b0b790306f903da9cdf3a76a575bbe411c39991391776431b9b13b924"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-soxl-sizing-review.md",
+      "sha256": "2212bec9b97c6863535f59ec6ce6324ae198c663998eb8b01a7e7a288d55a5bd"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-t11-soxl-cloud-results.json",
+      "sha256": "7fe83a036334d9c3ed15b9f4874ac3c673f934824f75bf059d945469613a18ac"
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/analysis.json",
+      "sha256": "1d3981ba260aeda56dcee67303efcd4d93dab16e6eb63dcb5cb5036b832cf466"
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/journal.json",
+      "sha256": "ac98db24b4c564bc2a616a406f636c886219f0f41df472d5fe2e6c4435401e60"
+    }
+  ],
+  "disposition": "No strategy change, new financial budget, leaderboard promotion or paper readiness. Agent future budgets are alternatives, not authorized additive allowances."
+}

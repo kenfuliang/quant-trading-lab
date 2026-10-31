@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: project-maintainers
 ---
 
@@ -96,7 +96,159 @@ MLflow's local SQLite/server state and generated local artifacts stay outside Gi
 under the existing storage/ignore policies. A public repository is not permission
 to publish credentials or datasets with unverified redistribution rights.
 
+## Algorithm decision hierarchy
+
+[GRS-1.0](research-standard.md#minimal-pipeline) owns the minimal two-decision
+pipeline, optional stage versions and adoption rules. This section owns the
+expanded component wiring only; it does not maintain another version sequence.
+The [cycle register](research-cycles.md) points to actual experiment records.
+Data qualification, accounting and baseline protections stay present throughout.
+
+### Reference: expanded component view
+
+The map below preserves the optional full hierarchy. Its numbers identify
+functional blocks, not mandatory development stages or V0–V3 versions. **I** means
+an existing component within a named research scope, **P** means proposed
+integration/model, and **U** means an unverified claim. Root [README](../README.md)
+owns current availability. The map is not evidence of an autonomous running system.
+
+Green boxes are existing scoped components (**I**). Amber dashed boxes are
+proposed components or common interfaces (**P**). An existing algorithm may need
+an adapter to expose its intermediate state or targets; source presence alone
+does not prove that connection. Alternative models and sizing methods are choices
+to compare, not instructions to average or stack every output.
+
+```mermaid
+flowchart TD
+    subgraph L1["1 · Inputs and features"]
+        DATA["I · Historical data<br/>Prices, actions, universe and provenance"]
+        CHECK{"I · Declared input checks pass?"}
+        FEAT["I · Causal features<br/>Returns, EMA, RSI, ADX, ATR, volatility"]
+        STOP["I · Block dependent experiment<br/>Keep failure evidence"]
+        DATA --> CHECK
+        CHECK -->|Pass| FEAT
+        CHECK -->|Fail or unknown| STOP
+    end
+
+    subgraph L2["2 · Market understanding"]
+        RULE["I · Rule baseline<br/>EMA / volatility traffic light"]
+        GMM["I · Gaussian mixture<br/>Current return-distribution membership"]
+        HMM["P · HMM alternative<br/>State persistence and transitions"]
+        RETURN["I · Ridge baseline<br/>Next-session intraday return estimate"]
+        STATE["P · Common state interface<br/>State estimates, uncertainty, as-of time"]
+        RULE --> STATE
+        GMM --> STATE
+        HMM --> STATE
+    end
+    FEAT --> RULE
+    FEAT --> GMM
+    FEAT -.-> HMM
+    FEAT --> RETURN
+
+    subgraph L3["3 · Strategy and target selection"]
+        ASSET["I · Existing ranking policies<br/>Sector / ETF / stock momentum; low volatility"]
+        ELIG["P · Common eligibility / ranking interface<br/>Instrument IDs, ranks, availability"]
+        ROUTER["P · Strategy router<br/>Specialist budgets or cash; fixed rules first"]
+        ASSET --> ELIG --> ROUTER
+    end
+    FEAT --> ASSET
+    STATE --> ROUTER
+    RETURN -->|Separate return estimate; no assumed profit score| ROUTER
+
+    subgraph L4["4 · Proposed positions"]
+        TREND["I · Trend / breakout policies<br/>EMA, MACD, Donchian, Turtle adaptation"]
+        REVERT["I · Reversion policies<br/>RSI, Bollinger, z-score"]
+        STATS["I · Statistical policies<br/>Ridge long/cash; pairs adaptation"]
+        COMPOSITE["I · Composite policies<br/>T11; existing ensemble alternative"]
+        COMBINE["P · Common target interface and combiner<br/>Instrument weights; overlap and cash accounting"]
+        TREND --> COMBINE
+        REVERT --> COMBINE
+        STATS --> COMBINE
+        COMPOSITE --> COMBINE
+    end
+    ROUTER --> TREND
+    ROUTER --> REVERT
+    ROUTER --> STATS
+    ROUTER --> COMPOSITE
+    ELIG -.->|Universe restrictions where compatible| COMBINE
+
+    subgraph L5["5 · Portfolio size and risk"]
+        SIZE["I · Choose one declared sizing policy<br/>Fixed exposure, volatility target, traffic light or CPPI"]
+        LIMIT["I · Scoped portfolio checks<br/>Sector limits, cash reserve and buying power"]
+        SIZE --> LIMIT
+    end
+    COMBINE --> SIZE
+    RULE -.->|Optional explicit gate treatment| SIZE
+
+    subgraph L6["6 · Historical simulation and accounting"]
+        EXEC["I · Study-specific execution model<br/>Timing, fills, rejected orders and costs"]
+        BOOK["I · Account and reconciliation<br/>Positions, cash, dividends and financing"]
+        EXEC --> BOOK
+    end
+    LIMIT --> EXEC
+
+    subgraph L7["7 · Evaluation and research review"]
+        METRIC["I · Separate outcome / risk / evidence views<br/>Return, DD, Sharpe, Calmar, underwater, contribution"]
+        REVIEW["I · Bounded research decision<br/>Retain, reject, tradeoff or investigate"]
+        NEXT["I · Freeze the next approved experiment<br/>Rules, controls, data, costs and trial budget"]
+        METRIC --> REVIEW --> NEXT
+    end
+    BOOK --> METRIC
+    NEXT -.->|Research iteration; no live policy change| ROUTER
+
+    classDef existing fill:#e4efdf,stroke:#55754b,color:#203020;
+    classDef proposed fill:#fff0cf,stroke:#b58a35,stroke-dasharray:6 4,color:#493917;
+    class DATA,CHECK,FEAT,STOP,RULE,GMM,RETURN,ASSET,TREND,REVERT,STATS,COMPOSITE,SIZE,LIMIT,EXEC,BOOK,METRIC,REVIEW,NEXT existing;
+    class HMM,STATE,ELIG,ROUTER,COMBINE proposed;
+```
+
+### Handoffs and evidence boundaries
+
+| Boundary | Required output / interpretation |
+| --- | --- |
+| 1 → 2 / 3 | Validated as-of features, instrument identity, source and adjustment policy, missing/warmup status. Each study qualifies its own data. |
+| 2 → 3 | Distinguish regime membership, risk forecasts and return forecasts; include horizon, model version and availability time. A mixture posterior is not a calibrated crash probability. |
+| 3 → 4 | Eligible specialists/instruments, nonnegative capital budgets including cash, selection reason and effective time. Proposed until the router and compatibility adapters are tested. |
+| 4 → 5 | Instrument-level proposed weights with provenance for each specialist; prevent duplicated capital and unintended cancellation of hedges. Per-policy universe rules remain intact. |
+| 5 → 6 | Permitted targets, selected sizing policy, effective time and check outcomes. Predictive red signals and failed operational requirements have different meanings; neither implies a guaranteed drawdown ceiling. |
+| 6 → 7 | Modeled fills/rejections, account path, fees/actions/financing, source identity and reconciliation. Local synthetic ledgers and hosted LEAN paths retain separate execution contracts. |
+| 7 → next experiment | Matured outcomes, comparable controls, all trials, falsifiers and a frozen next plan. Full-sample winner labels cannot become earlier trading inputs. |
+
+No generic router, state exporter, common position combiner or automatic model
+retraining is implemented by these diagrams. **U:** unseen selection advantage,
+a calibrated future-stress forecast, native parity across all local policies,
+the combined hierarchy at USD300,000, and paper/live operation of this hierarchy.
+A failed input check blocks this research path; it does not specify automatic
+cancellation or liquidation of an external broker account.
+
+The state examples are defined in [statistical models](../research/model-strategies.md);
+other policy owners are [daily signals](../research/daily-strategies.md),
+[allocation methods](../research/allocation-strategies.md),
+[feature engineering](feature-engineering.md) and
+[research scoring](research-scoring.md). The [suite protocol](../research/strategy-suite.md)
+and dated [T11](tasks/2026-10-26-qc504-t11-gate.md),
+[stock-selection](tasks/2026-10-26-selection-completion.md) and
+[sector-control](tasks/2026-10-26-sector-matched.md) receipts retain their own
+results, rights, data and execution limits. Negative results remain evidence,
+not recommendations to allocate capital.
+
 ## Target flow
+
+The [bounded Alpaca paper slice](operations/alpaca-paper.md) extends the pinned
+native live-client interfaces in project code because no Alpaca adapter is
+installed. It uses a flat-start, one-share, single-session policy and independently
+checks broker state; it is not a second general OMS or a supported full adapter.
+Required general report/restart methods reject explicitly. The IBKR observer and
+target flow below are preserved; offline replay and paper observations have
+separate MLflow evidence labels.
+
+The [proposed local data library](data-library.md) specifies source snapshots,
+instrument/action contracts, qualification and phased independent-provider
+coverage. The [Alpaca pilot](tasks/2026-10-25-alpaca-us-stock-pilot.md) verifies a
+bounded fixed-route data downloader and native catalog bar/instrument round-trip;
+general ingestion remains planned. The dated
+[provider screening](tasks/2026-10-25-independent-data-review.md) is separate from
+this subsequent runtime proof and does not itself establish authenticated access.
 
 ```mermaid
 flowchart TD
@@ -245,18 +397,57 @@ owns meanings. `reporting/temporal.py` owns descriptive path calculations.
 The research ledger remains the existing Python simulator; neither this slice nor
 its tests establish Nautilus execution parity or new instrument support.
 
+### Offline RSI foundation
+
+The [foundation checklist](tasks/2026-10-27-rsi-foundation-implementation.md)
+tracks the newer bounded engineering slice. Its
+[operating SOP](operations/recursive-research.md) owns handoffs; GRS remains the
+research/adoption rule owner. It wraps the existing controller without rewriting
+frozen financial runners, NautilusTrader or MLflow.
+
+```mermaid
+flowchart LR
+    C[Cycle contract and pinned prior lesson] --> P[Immutable program spec]
+    P --> X[RSIProgram: single writer and aggregate bounds]
+    X --> J[ResearchController: logical journal]
+    X --> L[Execution log: actual allowed launches and recovery]
+    L --> A[Synthetic or read-only adapter output]
+    A --> V[Artifact/context verification]
+    V --> R[Version registry: explicit scoped disposition]
+```
+
+`research/rsi_contracts.py` owns RSI-CYCLE-1 validation and the narrow saved-C001
+lesson check. `research/rsi_coordinator.py` owns fixed registered commands,
+launch reservations, output preservation and safe stopped recovery under the
+controller's writer lock. `research/rsi_adoption.py` owns frozen evaluation
+context, numerical gate consistency and append-only version/rollback records.
+`scripts/rsi_foundation.py` joins these for the scoped demonstration and known
+synthetic process comparison. Module existence is distinguished from its actual
+test/demo evidence in the checklist.
+
+Only synthetic and read-only process adapters exist. An output hash or declared
+check does not authenticate evaluator provenance or establish financial truth.
+Financial registry passes remain provisional; synthetic engineering adoption
+does not change a financial incumbent. Persistent source hashes detect changed
+inputs; local journals are not an OS sandbox or tamper-proof signed archive.
+
 ```text
 README.md                     current capabilities and entrypoints
 AGENTS.md                     instructions and conditional pointers
 .agents/skills/               repeatable project workflows
 docs/                         matrix, architecture, roadmap, SOPs and decisions
-paper_trading/                existing IB observation implementation
-research/                     preserved fixture and methodology
+paper_trading/                paper adapters, observation tools and fixtures
+research/                     research rules, data checks, plans and bounded control
+reporting/                    shared metrics, saved-result adapters and renderers
 scripts/                      entrypoints, local checks, offline audit
 tests/                        offline project behavior checks
 reports/                      dated historical evidence
 vendor/nautilus_trader/        ignored pinned upstream source
 ```
+
+The supporting [foundation proposal](tasks/2026-10-27-project-foundation-proposal.md)
+describes the content/report structure and forward-only package grouping. No code
+move is adopted by that proposal; this document remains the module/state owner.
 
 Add modules with their first concrete use. Keep native interfaces visible and
 introduce adapters where behavior varies, such as fake versus IB communication.

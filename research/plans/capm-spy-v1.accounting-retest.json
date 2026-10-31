@@ -1,0 +1,18 @@
+{
+  "study_id": "capm-spy-v1-accounting-retest",
+  "parent": "capm-spy-v1",
+  "created_utc": "2026-10-27T04:13:24.156641+00:00",
+  "deadline_utc": "2026-10-27T04:33:24.156641+00:00",
+  "authorization": "User explicit reply: Allow one verified CAPM rerun",
+  "cases": [
+    "capm"
+  ],
+  "max_total_attempts": 1,
+  "max_technical_retries": 0,
+  "source_sha256": "f69732f6fa7c2b2ff8e6277002a339373867a4bcba01a63801249449e6c3827c",
+  "verified_saved_build": "00abe7-ba07f2",
+  "verified_saved_case": "capm",
+  "parent_budget_status": "closed",
+  "changes": "None to existing prepared CAPM source. Corrected accounting only; unchanged rules/dates/capital/costs/funding.",
+  "required": "Actual CAPM identity; aggregate accounting/calendar/fee audits; replicate attempt3 full/annual performance to rounding; preserve failure and stop after one launch."
+}

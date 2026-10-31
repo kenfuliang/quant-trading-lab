@@ -1,0 +1,295 @@
+{
+  "study_id": "qc-breadth-v1",
+  "status": "complete",
+  "interpretation_status": "provisional development comparison with short-history cash periods; not exact source reproduction",
+  "missing": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "case": "access",
+      "status": "completed-access-verified",
+      "reserved_utc": "2026-10-26T20:51:04.905731+00:00",
+      "source_sha256": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270",
+      "backtest_id": "2160a89284772b0867e0b61bfcbc3a88"
+    },
+    {
+      "attempt": 2,
+      "case": "asset",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T20:52:22.842126+00:00",
+      "source_sha256": "9935737f172e55e71129644cb31ab37ac9f1fc93ef8150e390a900488acbcac3",
+      "backtest_id": "0d954ae659d63b32e6ed007acecd3888"
+    },
+    {
+      "attempt": 3,
+      "case": "momentum",
+      "status": "superseded-initializer-contract",
+      "reserved_utc": "2026-10-26T20:54:28.744325+00:00",
+      "source_sha256": "15d155f9537ef9cfb21ef2d7970d8453f53deb81e8b5b13dd1943247e6a196ab",
+      "backtest_id": "c2ebce3e57942d19f5c67af2824db3e7",
+      "reason": "Replacing dynamic brokerage initializer; excluded from rankings, preserved unchanged"
+    },
+    {
+      "attempt": 4,
+      "case": "momentum",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T20:57:06.669986+00:00",
+      "source_sha256": "bf91deb5ea7ec5ed6c71f047b3f5ebb73cbde7ecb6ed7c520aa05f835f499212",
+      "backtest_id": "6d4391d139a5a44e078dbf70dc43657f"
+    },
+    {
+      "attempt": 5,
+      "case": "lowvol",
+      "status": "failed-target-price-unavailable",
+      "reserved_utc": "2026-10-26T21:00:32.436569+00:00",
+      "source_sha256": "3b1dfb5217cf0d09576355e4ced5bc5e5fdf4e40fcd3a60ebfe381e7fb71c958",
+      "backtest_id": "9d5a8844b72242a2deca696203834eea",
+      "failure_session": "2021-06-02",
+      "reason": "Runtime missing target price; retain monthly execution target subscriptions"
+    },
+    {
+      "attempt": 6,
+      "case": "lowvol",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T21:03:34.845611+00:00",
+      "source_sha256": "f08ef07315806828b4be3a230143d845c01bc9e450b81ecce82b24f063f74103",
+      "backtest_id": "d5b790f1a02494b9a04118c7ac3beefb"
+    },
+    {
+      "attempt": 7,
+      "case": "spy",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T21:08:00.607055+00:00",
+      "source_sha256": "8d6e92b1c4c878cb572c3820fe3b738b6e5c41bed27a4b5dba1ec21c5f1be096",
+      "backtest_id": "569ab875b2f5351a4e39fc1c4adcf697"
+    },
+    {
+      "attempt": 8,
+      "case": "t11",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T21:09:30.148771+00:00",
+      "source_sha256": "b0ad75adac330c88ff8845526325dfc7640a2e179d16861b2b804fee03b0ce6d",
+      "backtest_id": "c9f76271f7eb6919406093c228ff574e"
+    }
+  ],
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "engine_evidence": {
+    "asset": [
+      "2020-01-01 00:00:00 Launching analysis for 0d954ae659d63b32e6ed007acecd3888 with LEAN Engine v2.5.0.0.18209",
+      "2025-12-31 16:00:00 Algorithm Id:(0d954ae659d63b32e6ed007acecd3888) completed in 9.10 seconds at 12k data points per second. Processing total of 109,066 data points."
+    ],
+    "momentum": [
+      "2020-01-01 00:00:00 Launching analysis for 6d4391d139a5a44e078dbf70dc43657f with LEAN Engine v2.5.0.0.18209",
+      "2026-01-01 00:00:00 Algorithm Id:(6d4391d139a5a44e078dbf70dc43657f) completed in 119.16 seconds at 129k data points per second. Processing total of 15,369,149 data points."
+    ],
+    "lowvol": [
+      "2020-01-01 00:00:00 Launching analysis for d5b790f1a02494b9a04118c7ac3beefb with LEAN Engine v2.5.0.0.18209",
+      "2026-01-01 00:00:00 Algorithm Id:(d5b790f1a02494b9a04118c7ac3beefb) completed in 159.78 seconds at 96k data points per second. Processing total of 15,369,347 data points."
+    ],
+    "spy": [
+      "2020-01-01 00:00:00 Launching analysis for 569ab875b2f5351a4e39fc1c4adcf697 with LEAN Engine v2.5.0.0.18209",
+      "2025-12-31 16:00:00 Algorithm Id:(569ab875b2f5351a4e39fc1c4adcf697) completed in 0.89 seconds at 14k data points per second. Processing total of 12,060 data points."
+    ],
+    "t11": [
+      "2019-02-26 00:00:00 Launching analysis for c9f76271f7eb6919406093c228ff574e with LEAN Engine v2.5.0.0.18209",
+      "2025-12-31 16:00:00 Algorithm Id:(c9f76271f7eb6919406093c228ff574e) completed in 7.95 seconds at 14k data points per second. Processing total of 107,485 data points."
+    ]
+  },
+  "access_probe": {
+    "kind": "free-access",
+    "universe_calls": 1,
+    "valid_fundamentals": 3400,
+    "selected": 50,
+    "etf_full_history": 5,
+    "stock_full_history": 50,
+    "current_history": 55,
+    "orders": 0
+  },
+  "t11_control_parity": {
+    "end": 0.0,
+    "cagr": 0.0,
+    "dd": 0.0,
+    "sharpe": 0.0,
+    "calmar": 0.0,
+    "longest_uw": 0,
+    "fills": 0,
+    "rejects": 0,
+    "financing_usd": 0.0
+  },
+  "closed_utc": "2026-10-26T21:10:57.435729+00:00",
+  "unused_repair_slots": 0,
+  "validation": {
+    "offline_check": "make check exit0;304 tests and docs/dependencies passed",
+    "source_restoration": {
+      "exact": true,
+      "restored": ".local/qc504-funded-v1/ensemble-source.py",
+      "extra_backtests_after_restore": 0
+    },
+    "browser_check": [
+      {
+        "metric": "ret",
+        "rows": 7,
+        "noInvalidValues": true
+      },
+      {
+        "metric": "dd",
+        "rows": 7,
+        "noInvalidValues": true
+      },
+      {
+        "metric": "sharpe",
+        "rows": 7,
+        "noInvalidValues": true
+      },
+      {
+        "metric": "annual_calmar",
+        "rows": 7,
+        "noInvalidValues": true
+      },
+      {
+        "metric": "longest_uw",
+        "rows": 7,
+        "noInvalidValues": true
+      },
+      {
+        "metric": "global_uw",
+        "rows": 7,
+        "noInvalidValues": true
+      }
+    ]
+  },
+  "access_plan_observation": "Account project page displayed FREE; successful order-free historical probe and completed allocation runs",
+  "intake": {
+    "repository": "QuantConnect/Tutorials",
+    "commit": "4a341890296f7e79e095508f06170c72ccaa629c",
+    "sources": {
+      "asset": {
+        "02 Method.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/13%20Asset%20Class%20Momentum/02%20Method.html",
+          "sha256": "3f27f360cd6723f5b95a2d3513095b2c4eace91819d08fbd64a7a8352340a79e"
+        },
+        "03 Algorithm.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/13%20Asset%20Class%20Momentum/03%20Algorithm.html",
+          "sha256": "905ce578eaaeb73af19a341940d274a5befbc7df13fdff9d99c997b3a2f9d3d0"
+        },
+        "04 Source.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/13%20Asset%20Class%20Momentum/04%20Source.html",
+          "sha256": "99e9bcf18f2849c7b4bb98a0f26597a0135bf240c0d6f87a8cd4e2a7d03c1ac8"
+        }
+      },
+      "momentum": {
+        "02 Method.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/21%20Momentum%20Effect%20in%20Stocks/02%20Method.html",
+          "sha256": "36c8d4d79ee3edbcc3c58de8865f68f7b66e3152364a165046647fcb3b6e7a00"
+        },
+        "03 Algorithm.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/21%20Momentum%20Effect%20in%20Stocks/03%20Algorithm.html",
+          "sha256": "26f1906961017f618192a4ddea491b1214d57480bbc0bd7b05b7b0b79aa39778"
+        },
+        "04 Source.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/21%20Momentum%20Effect%20in%20Stocks/04%20Source.html",
+          "sha256": "1ff537e4c379e50916b6122eef574f63888b7390906702b34374247a5e2ecfe1"
+        }
+      },
+      "lowvol": {
+        "02 Method.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/18%20Volatility%20Effect%20in%20Stocks/02%20Method.html",
+          "sha256": "c78727604ac7ec14c4f9ccaeaee40e6c586b6e68a15500a05b6e0ee1f0b7ac07"
+        },
+        "03 Algorithm.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/18%20Volatility%20Effect%20in%20Stocks/03%20Algorithm.html",
+          "sha256": "982469c42f884a4fef806b8a6cd830c4d8de5ebc623ff14415a08e61a89c2176"
+        },
+        "04 Source.html": {
+          "url": "https://raw.githubusercontent.com/QuantConnect/Tutorials/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/18%20Volatility%20Effect%20in%20Stocks/04%20Source.html",
+          "sha256": "22fbf579b2b9427aa3bfdf68598efe219be7cf454a5cd0174828c8c8ea818ea3"
+        }
+      }
+    },
+    "snapshot_sha256": {
+      "lowvol-published.py": "ccf87d49e69505c4a86017751ab35d52d59179c6886b8bd4269c3b17c7520ac0",
+      "lowvol-04-Source.html": "22fbf579b2b9427aa3bfdf68598efe219be7cf454a5cd0174828c8c8ea818ea3",
+      "momentum-embedded.html": "2120ab2ffb590e93c6ec35359ccc2105691fa3accb7a4995d457233ae55b4bc7",
+      "asset-02-Method.html": "3f27f360cd6723f5b95a2d3513095b2c4eace91819d08fbd64a7a8352340a79e",
+      "asset-03-Algorithm.html": "905ce578eaaeb73af19a341940d274a5befbc7df13fdff9d99c997b3a2f9d3d0",
+      "lowvol-03-Algorithm.html": "982469c42f884a4fef806b8a6cd830c4d8de5ebc623ff14415a08e61a89c2176",
+      "momentum-02-Method.html": "36c8d4d79ee3edbcc3c58de8865f68f7b66e3152364a165046647fcb3b6e7a00",
+      "asset-embedded.html": "1d4425645f37df2f3667f05d5ade6558f6fa6dd2095bf826f172088f480e385c",
+      "lowvol-embedded.html": "82b92521f4ed001bca7d17d4bfadcffd9a113358969ad7f73f14dd8188e4e1e9",
+      "momentum-04-Source.html": "1ff537e4c379e50916b6122eef574f63888b7390906702b34374247a5e2ecfe1",
+      "momentum-03-Algorithm.html": "26f1906961017f618192a4ddea491b1214d57480bbc0bd7b05b7b0b79aa39778",
+      "lowvol-02-Method.html": "c78727604ac7ec14c4f9ccaeaee40e6c586b6e68a15500a05b6e0ee1f0b7ac07",
+      "asset-04-Source.html": "99e9bcf18f2849c7b4bb98a0f26597a0135bf240c0d6f87a8cd4e2a7d03c1ac8",
+      "momentum-published.py": "0afaae196f787868f618a7986b891ed6f14c0d047b678e7805f7ddda1c757749",
+      "asset-published.py": "76c36633967fb3e957711255345d1180960b61860e5a35c08c2d6be0b7899af8"
+    }
+  },
+  "failed_acceptance": [],
+  "source_hashes": {
+    "asset": "9935737f172e55e71129644cb31ab37ac9f1fc93ef8150e390a900488acbcac3",
+    "momentum": "bf91deb5ea7ec5ed6c71f047b3f5ebb73cbde7ecb6ed7c520aa05f835f499212",
+    "lowvol": "f08ef07315806828b4be3a230143d845c01bc9e450b81ecce82b24f063f74103",
+    "spy": "8d6e92b1c4c878cb572c3820fe3b738b6e5c41bed27a4b5dba1ec21c5f1be096",
+    "t11": "b0ad75adac330c88ff8845526325dfc7640a2e179d16861b2b804fee03b0ce6d",
+    "access": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270"
+  },
+  "code_sha256": {
+    "scripts/prepare_qc_breadth.py": "1a0d32748ac5b7f56169df3ab97b1ed2a9d6a9a5bb9505f685331400aa701590",
+    "scripts/qc_breadth_budget.py": "b2ae90ce4161e62abe4e6bd7982e33dabdee5d9e8aaea92e054f2b109c05f511",
+    "scripts/parse_qc_breadth_fragments.py": "97221f5bf83698630df1dc1baa054278018b0b5f3f93a88d987c0e50df3692cf",
+    "scripts/build_qc_breadth.py": "1f07551bd2c2b7cec079441b41a221ca3d6b39e231da51b80dd1ab9b0ce6f330",
+    "scripts/build_qc504_ablation.py": "65f13aaaf8033e9331fbb22a02b5871284e3357a63427fc0b4d788f12fc5ade4",
+    "research/quantconnect/selection_candidates.py": "f12f0978dbf2946a0133394cb8c9fa794945bc9c12b539777f9c8fb31f23a6d9",
+    "research/quantconnect/selection_access_probe.py": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270",
+    "research/quantconnect/qc504_funded_policy.py": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/plans/qc-breadth-v1.json": "b8543550f6740dd2a03adae4b81f750ab8049a072889d6cc6ab5cec7091a3c2c",
+    "tests/test_qc_selection.py": "2c3e8289f0a2b38fcfe63633b45cc01a9e165183ea12cea1d25439777befb043"
+  },
+  "artifacts": {
+    "spy-summary-cells.json": "981d755ca1f6a20add0b2ef267274d7b176a6001bad2b58aaab3fd30a79ff427",
+    "t11-summary-cells.json": "783c0dbe454b892e5e56a2919e16044a97b25bb8df8a8ea054559daffdb8b822",
+    "lowvol-summary-cells.json": "3e317d24c962f51eae621922a8159fee5f6c1f540bae92f64476803eaf187bf2",
+    "momentum-summary-cells.json": "9238240d7a3f98e3a6930bddae73228fa7b6ba9e7200b7f5c9e3f32f8d7e9071",
+    "asset-summary-cells.json": "faf01c54a653578d6d6b23b4fb0ee3ab6050cd244a11778306ad90b9ac24ca8e",
+    "momentum-initializer-superseded-terminal-fragments.json": "e5574e326fb83ebf6e59e5f502073ee87232267da54c43be5d522d84974570d4",
+    "momentum-terminal-fragments.json": "e5574e326fb83ebf6e59e5f502073ee87232267da54c43be5d522d84974570d4",
+    "t11-terminal-fragments.json": "01c30be4186de44d4b2303aaa81e61772d9a7608f777238cb68230abb2cd2e79",
+    "lowvol-terminal-fragments.json": "e1a1bac280863486bc448f3accbfbd0bc79a3ed43180541cd8623a1a1c220780",
+    "spy-terminal-fragments.json": "e7ae16f9050e5bb409c79d1db26ea78ad7d28963e0f0b162012f9dcac852dbb5",
+    "asset-terminal-fragments.json": "00ff2be48e952d30901f72c4bbbd611b11340ce10b46d02b69df61aff44dbd73",
+    "access-engine-evidence.json": "2930dd9b2648b6d53f07b5c94b181e25e54aa4adbaa50017b4a1c91761404d95",
+    "momentum-engine-evidence.json": "01af9bf48e524028ad2437f5c7946d551b15d9cba64d176ae71bdf8d5976d446",
+    "momentum-initializer-superseded-engine-evidence.json": "62a63d6e40b5f03b4cc9e1e0b49e7f02db2573e4264cab58730dbc1ba06397b4",
+    "spy-engine-evidence.json": "7df75225d61ea230b3a0d4b97fc4929c3b440fe0547e0a5b95adf371c8678dc5",
+    "t11-engine-evidence.json": "94f00ed65afb001ce32b0b0e494f8919a6c3fc05ab1895433cb4a2f1d22f05a2",
+    "asset-engine-evidence.json": "5fd9ff71fd454e6804c8c7141d7446b370582b9b91a540e3af2da4a911333e1e",
+    "lowvol-engine-evidence.json": "522ebd7292c013d73f22f9d000718a491c859a2069701419b7f866367903a925",
+    "lowvol-subscription-failed-terminal.json": "fd5171bad0f28dac7f61c2daf25fff07d390eb537762ab16bd59a7a6542bc3a6",
+    "access-result.json": "25001d5b3cb9080d292e42f54507c42a0146472cb3b6d6e90a0b4b21e52105c2",
+    "attempts.json": "68afb4c554f779867d789d1c5c8062ac6476cd765534dc2691e48dc55cf5576e",
+    "source-restoration.json": "6d8343feddd5a75f2f7d31c24bf9f937a446d7a435d521570c3e82fedcf494c4",
+    "final-check.log": "471db3fae48a77561bf9e2a1cbacc1a64259121800485a46f00a6614d0599605",
+    "browser-check.json": "85765de8b440d7d2a5f87e476328ab1175b916109ab6272459e973ac12e3fc44"
+  },
+  "checks": [
+    "Complete checksummed summaries",
+    "Matching1508session calendar",
+    "Annual/full NAV compounding, Sharpe moments, Calmar and underwater totals",
+    "Common funding model and same-step debit reconciliation",
+    "T11 reproduces prior financial metrics",
+    "Actual historical fundamentals and feature readiness observed"
+  ],
+  "limits": [
+    "Source-informed adaptations, not exact legacy-code reproduction",
+    "Previously viewed development years; no untouched OOS alpha",
+    "Whole-share USD10000 model; USD300000 capacity not tested",
+    "Native PnL summary is not an independent fill/cash reconstruction",
+    "Adjusted/split/dividend handling supplied by hosted engine; raw input snapshots not independently frozen",
+    "Universe choices differ between methods; no same-universe attribution control",
+    "All three new methods report minimum ready count zero; incomplete-window selections stayed cash; exact dates/reasons need separate diagnosis",
+    "Funded staging delays and90pct budget alter original implementation",
+    "6pct flat debit ACT/360,zero credit interest; embedded ETF leverage remains in prices",
+    "Reported drawdown is daily closing equity, not intraday loss bound"
+  ]
+}

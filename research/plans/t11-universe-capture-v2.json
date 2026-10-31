@@ -1,0 +1,22 @@
+{
+  "schema": "t11-universe-capture-amendment/v1",
+  "created_utc": "2026-10-31T04:07:17.219831+00:00",
+  "parent": "research/plans/t11-universe-capture-v1.json",
+  "source_plan": ".local/t11-universe-cloud-v10/frozen-plan.json",
+  "used": 6,
+  "max_attempts": 10,
+  "remaining": [
+    "full25",
+    "equal25",
+    "rs150",
+    "full50"
+  ],
+  "reason": "Save refused zlib import; replace entire reporter with readable JSON section lines, no encoding/compression. Preserve rejected slot and original deadline. Strategy unchanged.",
+  "omitted": [
+    "restricted25",
+    "restricted50",
+    "half25",
+    "half50",
+    "equal50"
+  ]
+}

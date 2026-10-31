@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-30
 owner: project-maintainers
 ---
 
@@ -51,6 +51,7 @@ convenience export, not another roster owner. Update it when the catalog changes
 ```text
 Level 1: Advisory perspectives — available for consultation
 ask-director                         priorities and synthesis
+├── ask-pm                           research coordination and evidence closure
 ├── ask-infra                        platform/data/operational design
 ├── ask-quant                        hypotheses and research evidence
 ├── ask-ml                           predictive modeling and calibration
@@ -61,9 +62,12 @@ ask-director                         priorities and synthesis
 Level 2: Task workflows — trade-project selects the applicable procedure
 ├── trade-capability-review          AVAILABLE
 ├── trade-infra-change               AVAILABLE
+├── trade-data-acquisition           AVAILABLE instructions; fixed collectors only
 ├── trade-research-intake            AVAILABLE
 ├── trade-local-ops                  AVAILABLE
 ├── Research development — AVAILABLE instructions; evaluation receipt below
+│   ├── trade-research-management     cycle closure and leaderboard disposition
+│   ├── trade-stage-development       one-stage implementation and conformance
 │   ├── trade-research-design         study specification and trial budget
 │   ├── trade-data-audit              frozen-input fitness and provenance
 │   ├── trade-feature-engineering     causal features, redundancy and label diagnostics
@@ -106,6 +110,7 @@ new skills can be read by path if the current session has not refreshed discover
 | [trade-project](../.agents/skills/trade-project/SKILL.md) | Which workflow/skill should handle this project request? | Selected workflow, relevant owners, scope and next concrete action; route only or continue according to the request | This map, root README and roadmap |
 | [trade-capability-review](../.agents/skills/trade-capability-review/SKILL.md) | Does the pinned engine already provide this feature? Upgrade/runtime compatibility review | Evidence-backed reuse/configure/extend/defer finding; verification level and impact recorded | Capability matrix and offline audit script |
 | [trade-infra-change](../.agents/skills/trade-infra-change/SKILL.md) | Implement a data/run/monitoring/recovery infrastructure slice | Scoped acceptance met, behavior checks and canonical docs updated, limitations explicit | Development workflow, architecture and matrix; native interfaces first |
+| [trade-data-acquisition](../.agents/skills/trade-data-acquisition/SKILL.md) | Requested bounded historical-data download using existing supported collectors | Immutable source/normalized/catalog paths, resource receipt, coverage and limitations; no automatic financial eligibility | [Acquisition procedure](data-library.md#bounded-acquisition-procedure), fixed pilot/current-holdings collectors |
 | [trade-research-intake](../.agents/skills/trade-research-intake/SKILL.md) | Find/screen an online repo, paper or reported strategy result | Source/goal-fit/rights/data/claim record and justified next action; unknowns explicit | Research intake SOP, mandate and intake template |
 | [trade-local-ops](../.agents/skills/trade-local-ops/SKILL.md) | Environment check, failed-run diagnosis, requested paper observation | Actual command outcomes, redacted evidence, unresolved uncertainty and next action | Local/paper/incident SOPs, make checks and paper CLI |
 
@@ -117,10 +122,12 @@ path; they do not establish a generic optimizer, native catalog validation,
 automatic research-history database or broker execution. A caller can request one
 stage without launching a full cycle. Use the
 [construction/evaluation receipt](tasks/2026-10-25-research-skills.md) for actual
-behavioral evidence and limitations; the later [feature-engineering receipt](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-feature-engineering-skill.md) covers its added workflow. Format validation alone is not usefulness proof.
+behavioral evidence and limitations; the later [feature-engineering receipt](https://github.com/kenfuliang/quant-trading-lab/blob/4586095846c63abf2e0b90dc547654256c3fc45e/docs/tasks/2026-10-25-feature-engineering-skill.md) covers its added workflow. Format validation alone is not usefulness proof. The [skills/SOP repair](tasks/2026-10-30-skills-sop-repair.md) records recovered management/stage instructions and their offline evaluation.
 
 | Skill | Trigger and observable output |
 | --- | --- |
+| [trade-research-management](../.agents/skills/trade-research-management/SKILL.md) | Close a requested cycle → attempt/evidence reconciliation, lesson, single-leaderboard disposition and next prerequisite; [procedure](operations/recursive-research.md#research-management) |
+| [trade-stage-development](../.agents/skills/trade-stage-development/SKILL.md) | Implement one frozen stage → input/output/timing contract, offline conformance and evidence; financial execution separately scoped; [procedure](research-development.md#individual-stage-development) |
 | [trade-research-design](../.agents/skills/trade-research-design/SKILL.md) | New/amended study → falsifiable control/treatment, metric/split/trial specification and open decisions |
 | [trade-data-audit](../.agents/skills/trade-data-audit/SKILL.md) | Saved input fitness → actual hashes/quality/availability checks and named-experiment eligibility |
 | [trade-feature-engineering](../.agents/skills/trade-feature-engineering/SKILL.md) | Define/test causal features or bounded LLM proposals → registry, leakage/quality/redundancy evidence and target-specific saved-data diagnosis; [contract](feature-engineering.md) |
@@ -134,10 +141,18 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 
 ## Available advisory skills
 
+For a complete bounded RSI cycle, use the
+[calling sequence and handoff checklist](operations/recursive-research.md).
+It connects the existing research workflows above to frozen plans, preflight,
+bounded execution, verification, disposition and lessons. No additional skill
+folder or automatic team dispatcher is required. Runtime availability and remaining
+limits are recorded in the [foundation checklist](tasks/2026-10-27-rsi-foundation-implementation.md).
+
 | Chat prefix / local skill | Primary question | Detailed contract |
 | --- | --- | --- |
 | [/ask-director](../.agents/skills/ask-director/SKILL.md) | What should we prioritize, and what evidence supports the decision? | [Role contract](advisory-team.md#ask-director) |
-| [/ask-infra](../.agents/skills/ask-infra/SKILL.md) | How should the system work reliably using native facilities? | [Role contract](advisory-team.md#ask-infra) |
+| [/ask-pm](../.agents/skills/ask-pm/SKILL.md) | What is complete, blocked or missing before this research cycle closes? | [Role contract](advisory-team.md#ask-pm) |
+| [/ask-infra](../.agents/skills/ask-infra/SKILL.md) | What infrastructure does this research/trading activity need, and what is ready? | [Role contract](advisory-team.md#ask-infra) |
 | [/ask-quant](../.agents/skills/ask-quant/SKILL.md) | Is the hypothesis or reported evidence credible? | [Role contract](advisory-team.md#ask-quant) |
 | [/ask-algo](../.agents/skills/ask-algo/SKILL.md) | How should specified trading behavior be implemented and verified? | [Role contract](advisory-team.md#ask-algo) |
 | [/ask-risk](../.agents/skills/ask-risk/SKILL.md) | What could cause unacceptable loss or invalidate the assumptions? | [Role contract](advisory-team.md#ask-risk) |
@@ -157,6 +172,59 @@ Skills are invoked by name (for example,
 `$trade-performance-diagnosis`) or read by path if session discovery has not refreshed.
 The `/ask-*` chat-prefix convention remains specific to advisory roles. Numerical
 tools and operational workflows retain their own capability/readiness status.
+
+## Infrastructure calling map
+
+`ask-infra` assesses business coverage using its [role contract](advisory-team.md#ask-infra)
+and selects the smallest applicable workflow below. These are skill handoffs in the
+current conversation, not spawned teams, a scheduler or automatic orchestration.
+Read a called SKILL.md before acting. Advice may finish with a plan; an authorized
+implementation request continues through its selected workflow's acceptance.
+
+```mermaid
+flowchart TD
+    A[ask-infra: named activity and readiness gaps] --> B[Select narrowest applicable skill]
+    B --> C[Capability review or source intake]
+    B --> D[Data acquisition: bounded new snapshot]
+    D --> E[Data audit: fitness for named study]
+    B --> F[Infrastructure change: offline implementation]
+    B --> G[Local operations: check or incident diagnosis]
+    B --> H[Specialist consultation: quant, risk, algo or ML infra]
+    C --> R[Evidence, limitations and next bounded action]
+    E --> R
+    F --> R
+    G --> R
+    H --> R
+    R --> I[Request-scoped completion; no automatic next stage]
+```
+
+| Need / callable skill | Handoff inputs | Required return / readiness limit |
+| --- | --- | --- |
+| Native support → `trade-capability-review` | Requirement, pinned runtime/interface, existing evidence | Reuse/configure/extend/defer finding; installed versus verified evidence |
+| Provider/collector discovery → `trade-research-intake` | Coverage, free/local constraint, intended use, external source | Source/rights/compatibility record; no implicit download |
+| Historical download → `trade-data-acquisition` | Supported collector, frozen universe/window/feed, credentials path only, aggregate budget/output ID | Raw/normalized/catalog manifest, resource use, coverage and failures; instructions available, fixed collector evidence only |
+| Dataset eligibility → `trade-data-audit` | Frozen paths/hashes, named study/window/timing/actions requirements | Eligible/conditional/blocked receipt; no implicit refresh or repair |
+| Data/runtime/accounting/CI/monitoring implementation → `trade-infra-change` | Gap, native seam, scope, acceptance and failure case | Changed interface, actual offline checks, docs and unresolved operational evidence |
+| Local health or incident → `trade-local-ops` | Mode, observed symptom, relevant run/service paths and requested check | Redacted observed outcome, uncertainty and next step; follows provider-specific SOP |
+| Research timing/accounting validity → `ask-quant` | Study and data/ledger assumptions, unresolved issue | Evidence requirements; actual research execution uses its scoped research workflow |
+| Limits and failure policy → `ask-risk` | Activity, exposure assumptions and failure/unknown state | Challenge of limits and failure actions; no trading authorization |
+| Strategy-to-order semantics → `ask-algo` | Specified rule, timing, sizing and native interface | State/invariants and verification cases; no financial retuning by default |
+| ML pipelines/tracking → `ask-ml-infra` | Dataset/feature/model lineage, run/artifact contract and resource bound | ML-specific reproducibility/gap assessment; implementation via infra-change |
+| Priority conflict → `ask-director` | Competing gaps, dependency evidence and effort/benefit | Bounded recommendation; portfolio priority changes remain owned by roadmap |
+
+The [environment helpers](#reuse-skills-already-available-in-codex) cover requested
+code review, interface design and roadmap edits. Planned recovery-verification,
+paper-execution and live-readiness skills below remain unavailable: read the
+applicable existing SOP directly and disclose its tested scope. For example,
+Alpaca's bounded integration uses [its own SOP](operations/alpaca-paper.md);
+IBKR observation uses [paper observation](operations/paper-connection.md).
+Neither path establishes generic broker recovery or live readiness.
+
+Pass the selected workflow only the relevant input contract, evidence and scope.
+An unsuccessful receipt returns to assessment; it does not authorize repeated
+requests, a new budget, a new provider, strategy tuning or a broker action.
+The [scope-expansion receipt](tasks/2026-10-25-infrastructure-skills.md) records
+instruction validation separately from end-to-end execution evidence.
 
 ## Candidate skills and readiness gates
 

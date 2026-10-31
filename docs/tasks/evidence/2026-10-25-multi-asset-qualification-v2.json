@@ -1,0 +1,2360 @@
+{
+  "status": "active_goal_waiting_for_permission_qualified_price_input",
+  "observed_utc": "2026-10-26T00:21:15.154669+00:00",
+  "deadline_utc": "2026-10-26T01:27:51+00:00",
+  "artifact_requests": [
+    {
+      "url": "https://www.ssga.com/us/en/institutional/resources/documents/etf-dividend-distributions",
+      "path": ".local/multi-asset-qualification-v2/sources/01-ssga-distributions-page.bin",
+      "status": "received",
+      "started_utc": "2026-10-25T23:58:00.939385+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.ssga.com/us/en/institutional/resources/documents/etf-dividend-distributions",
+      "bytes": 80063,
+      "sha256": "824edc50d13b4df361f3e2ac025f6389acc0125989b035ac5f6ccddf36956227"
+    },
+    {
+      "url": "https://www.ishares.com/us/products/239456/ishares-7-10-year-treasury-bond-etf",
+      "path": ".local/multi-asset-qualification-v2/sources/02-ishares-ief-page.bin",
+      "status": "received",
+      "started_utc": "2026-10-25T23:58:30.373928+00:00",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "final_url": "https://www.ishares.com/us/products/239456/ishares-7-10-year-treasury-bond-etf",
+      "bytes": 1972378,
+      "sha256": "4e661ab1a3645444a6451c1fd0abeee465311ae1ddf0f011f9c958d2e832ee91"
+    },
+    {
+      "url": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-etf-historical-distributions.xlsx",
+      "path": ".local/multi-asset-qualification-v2/sources/03-ssga-historical-distributions.bin",
+      "status": "received",
+      "started_utc": "2026-10-25T23:58:57.538957+00:00",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "final_url": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-etf-historical-distributions.xlsx",
+      "bytes": 581216,
+      "sha256": "6b65cbf956b5d25705d08470006a0e97e6a7d2a0d5cfd08b63f6f79783b06320"
+    },
+    {
+      "url": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appType=PRODUCT_PAGE&appSubType=ISHARES&targetSite=us-ishares&locale=en_US&portfolioId=239456&component=fundDownload&userType=individual",
+      "path": ".local/multi-asset-qualification-v2/sources/04-ishares-ief-workbook.bin",
+      "status": "received",
+      "started_utc": "2026-10-25T23:59:40.288693+00:00",
+      "http_status": 200,
+      "content_type": "application/vnd.ms-excel",
+      "final_url": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appType=PRODUCT_PAGE&appSubType=ISHARES&targetSite=us-ishares&locale=en_US&portfolioId=239456&component=fundDownload&userType=individual",
+      "bytes": 2484747,
+      "sha256": "7099f3e15a5086f7e493e488003ec3a880b57b21cf43642ded8a72ff5ed53429"
+    },
+    {
+      "url": "https://legal.yahoo.com/us/en/yahoo/terms/product-atos/finance/index.html",
+      "path": ".local/multi-asset-qualification-v2/sources/05-yahoo-finance-terms.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:00:12.148378+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://legal.yahoo.com/us/en/yahoo/terms/product-atos/finance/index.html",
+      "bytes": 45776,
+      "sha256": "189c5b83145a7afbcc4dab999f894ebdcaddcabf14f8c1a76475548223c4957f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/tests/resources/xnys.csv",
+      "path": ".local/multi-asset-qualification-v2/sources/06-xnys-calendar-fixture.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:00:49.432314+00:00",
+      "http_status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/tests/resources/xnys.csv",
+      "bytes": 541094,
+      "sha256": "5f91ec537dd8672130d41f2796a194f5b2c1733dfe79191af8593d80600fb3cc"
+    },
+    {
+      "url": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+      "path": ".local/multi-asset-qualification-v2/sources/07-yahoo-general-terms.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:00:49.947060+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+      "bytes": 167945,
+      "sha256": "4bcdd5402dcb56638165e1566de0c6a980b31a42eb3ab7ff092e1f9dacb2a257"
+    },
+    {
+      "url": "https://stooq.com/db/h/",
+      "path": ".local/multi-asset-qualification-v2/sources/08-stooq-download-page.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:01:45.019825+00:00",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://stooq.com/db/h/",
+      "bytes": 796,
+      "sha256": "e7c9665ec181c9943b4a98a64adb0742f03f9e98c8a9ec84fc7a620ccedeb744"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/exchange_calendars/exchange_calendar_xnys.py",
+      "path": ".local/multi-asset-qualification-v2/sources/09-xnys-calendar-rules.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:02:31.690833+00:00",
+      "http_status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/exchange_calendars/exchange_calendar_xnys.py",
+      "bytes": 9403,
+      "sha256": "baa39f07163abafcf2800b69edc5d920c3db0a64f8bbb30dc7d522883d0b5bd7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/LICENSE",
+      "path": ".local/multi-asset-qualification-v2/sources/10-exchange-calendars-license.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:02:31.941192+00:00",
+      "http_status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/LICENSE",
+      "bytes": 11347,
+      "sha256": "e35c4578f7db4498e62e278978f6c42e0fce6f21f9993a060b08a33549cd3044"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/exchange_calendars/us_holidays.py",
+      "path": ".local/multi-asset-qualification-v2/sources/11-us-holiday-rules.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:04:51.124394+00:00",
+      "http_status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "final_url": "https://raw.githubusercontent.com/gerrymanoim/exchange_calendars/master/exchange_calendars/us_holidays.py",
+      "bytes": 10190,
+      "sha256": "a2444bd7aef3ff651faff3f9117c47a0d41e9e7c312f38ecf42403e4d996830e"
+    },
+    {
+      "url": "https://www.ssga.com/us/en/individual/etfs/spdr-gold-shares-gld",
+      "path": ".local/multi-asset-qualification-v2/sources/12-gld-official-identity.bin",
+      "status": "received",
+      "started_utc": "2026-10-26T00:16:11.724702+00:00",
+      "http_status": 200,
+      "content_type": "text/html;charset=utf-8",
+      "final_url": "https://www.ssga.com/us/en/individual/etfs/spdr-gold-shares-gld",
+      "bytes": 181531,
+      "sha256": "aeb4513275fd15a278d59082a3b96f66c13ad33824865ebdbcc0151e8aa12bdc"
+    }
+  ],
+  "request_count": 12,
+  "artifact_cap": 32,
+  "native_probes": [
+    {
+      "case": "rotation",
+      "status": "completed",
+      "output": ".local/multi-asset-qualification-v2/accounting-rotation",
+      "started_utc": "2026-10-26T00:09:11.534049+00:00",
+      "code_hashes": {
+        "research/native_multi_asset.py": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc",
+        "research/multi_asset_cash_audit.py": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d",
+        "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+        "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+        "research/multi_asset_accounting_probe.py": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b",
+        "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc"
+      }
+    },
+    {
+      "case": "terminal",
+      "status": "completed",
+      "output": ".local/multi-asset-qualification-v2/accounting-terminal",
+      "started_utc": "2026-10-26T00:09:21.209617+00:00",
+      "code_hashes": {
+        "research/native_multi_asset.py": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc",
+        "research/multi_asset_cash_audit.py": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d",
+        "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+        "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+        "research/multi_asset_accounting_probe.py": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b",
+        "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc"
+      }
+    }
+  ],
+  "native_probe_cap": 4,
+  "historical_financial_attempts": 0,
+  "historical_case_cap": 10,
+  "qualified_input_bundle_exists": false,
+  "executable_financial_plan_exists": false,
+  "manifest_verification": {
+    "accounting-rotation": {
+      "manifest_sha256": "2dce3676049299b43eac250d2bb17b858ab55a518bd523944290b9340b8e0a55",
+      "artifact_count": 10
+    },
+    "accounting-terminal": {
+      "manifest_sha256": "1eaa932009a12af7fa8ce65f7b8327548e639f50a0e167a1161cef25624d3215",
+      "artifact_count": 10
+    },
+    "source-checkpoint": {
+      "manifest_sha256": "340915baf106b84abec7625287bc7c70dfdea6478f5ba4703ac69088f0a22d22",
+      "artifact_count": 2
+    }
+  },
+  "native_proofs": [
+    {
+      "synthetic_only": true,
+      "historical_financial_attempts": 0,
+      "case": "rotation",
+      "audit": {
+        "passed": true,
+        "sessions": 3,
+        "fills": 6,
+        "maximum_difference_usd": 0.0,
+        "terminal_receivable_usd": "0",
+        "native_cash_and_inventory_verified": true,
+        "target_policy_implementation": "Independent descending affordability check; no project planner called"
+      }
+    },
+    {
+      "synthetic_only": true,
+      "historical_financial_attempts": 0,
+      "case": "terminal",
+      "audit": {
+        "passed": true,
+        "sessions": 3,
+        "fills": 1,
+        "maximum_difference_usd": 0.0,
+        "terminal_receivable_usd": "1.111104",
+        "native_cash_and_inventory_verified": true,
+        "target_policy_implementation": "Independent descending affordability check; no project planner called"
+      }
+    }
+  ],
+  "source_reconciliation": {
+    "status": "data_and_accounting_progress_price_permission_pending",
+    "historical_financial_attempts": 0,
+    "source_requests": 12,
+    "provider_domains": [
+      "legal.yahoo.com",
+      "raw.githubusercontent.com",
+      "stooq.com",
+      "www.blackrock.com",
+      "www.ishares.com",
+      "www.ssga.com"
+    ],
+    "issuer_distribution_actions": 339,
+    "input_joins": [
+      {
+        "symbol": "SPY",
+        "issuer_action_count": 85,
+        "provider_action_count": 85,
+        "action_dates_match": true,
+        "calendar_sessions": 5305,
+        "calendar_dates_match": true,
+        "reported_splits": 0,
+        "price_use_permission": "not established",
+        "precision_and_value_differences": [
+          {
+            "ex_date": "2004-12-17",
+            "issuer_amount": "0.567890",
+            "provider_amount": 0.568,
+            "delta_per_share": -0.00010999999999994348
+          },
+          {
+            "ex_date": "2005-03-18",
+            "issuer_amount": "0.467090",
+            "provider_amount": 0.467,
+            "delta_per_share": 8.999999999997899e-05
+          },
+          {
+            "ex_date": "2005-06-17",
+            "issuer_amount": "0.487620",
+            "provider_amount": 0.488,
+            "delta_per_share": -0.00037999999999999146
+          },
+          {
+            "ex_date": "2005-09-16",
+            "issuer_amount": "0.521690",
+            "provider_amount": 0.522,
+            "delta_per_share": -0.00031000000000003247
+          },
+          {
+            "ex_date": "2005-12-16",
+            "issuer_amount": "0.671670",
+            "provider_amount": 0.672,
+            "delta_per_share": -0.0003300000000000525
+          },
+          {
+            "ex_date": "2006-03-17",
+            "issuer_amount": "0.519470",
+            "provider_amount": 0.519,
+            "delta_per_share": 0.00046999999999997044
+          },
+          {
+            "ex_date": "2006-06-16",
+            "issuer_amount": "0.555470",
+            "provider_amount": 0.555,
+            "delta_per_share": 0.00046999999999997044
+          },
+          {
+            "ex_date": "2006-09-15",
+            "issuer_amount": "0.579340",
+            "provider_amount": 0.579,
+            "delta_per_share": 0.00034000000000000696
+          },
+          {
+            "ex_date": "2006-12-15",
+            "issuer_amount": "0.792650",
+            "provider_amount": 0.793,
+            "delta_per_share": -0.0003500000000000725
+          },
+          {
+            "ex_date": "2007-03-16",
+            "issuer_amount": "0.551270",
+            "provider_amount": 0.551,
+            "delta_per_share": 0.00026999999999999247
+          },
+          {
+            "ex_date": "2007-06-15",
+            "issuer_amount": "0.655600",
+            "provider_amount": 0.656,
+            "delta_per_share": -0.00040000000000006697
+          },
+          {
+            "ex_date": "2007-09-21",
+            "issuer_amount": "0.718720",
+            "provider_amount": 0.719,
+            "delta_per_share": -0.00027999999999994696
+          },
+          {
+            "ex_date": "2007-12-21",
+            "issuer_amount": "0.775410",
+            "provider_amount": 0.775,
+            "delta_per_share": 0.00041000000000002146
+          },
+          {
+            "ex_date": "2008-03-20",
+            "issuer_amount": "0.641950",
+            "provider_amount": 0.642,
+            "delta_per_share": -4.999999999999449e-05
+          },
+          {
+            "ex_date": "2008-06-20",
+            "issuer_amount": "0.669220",
+            "provider_amount": 0.669,
+            "delta_per_share": 0.00021999999999999797
+          },
+          {
+            "ex_date": "2008-09-19",
+            "issuer_amount": "0.690920",
+            "provider_amount": 0.691,
+            "delta_per_share": -7.999999999996898e-05
+          },
+          {
+            "ex_date": "2008-12-19",
+            "issuer_amount": "0.719340",
+            "provider_amount": 0.719,
+            "delta_per_share": 0.00034000000000000696
+          },
+          {
+            "ex_date": "2009-03-20",
+            "issuer_amount": "0.561430",
+            "provider_amount": 0.561,
+            "delta_per_share": 0.00042999999999993044
+          },
+          {
+            "ex_date": "2009-06-19",
+            "issuer_amount": "0.518190",
+            "provider_amount": 0.518,
+            "delta_per_share": 0.00019000000000002348
+          },
+          {
+            "ex_date": "2009-09-18",
+            "issuer_amount": "0.508330",
+            "provider_amount": 0.508,
+            "delta_per_share": 0.00032999999999994145
+          },
+          {
+            "ex_date": "2009-12-18",
+            "issuer_amount": "0.590190",
+            "provider_amount": 0.59,
+            "delta_per_share": 0.00019000000000002348
+          },
+          {
+            "ex_date": "2010-03-19",
+            "issuer_amount": "0.480380",
+            "provider_amount": 0.48,
+            "delta_per_share": 0.00037999999999999146
+          },
+          {
+            "ex_date": "2010-06-18",
+            "issuer_amount": "0.531280",
+            "provider_amount": 0.531,
+            "delta_per_share": 0.00027999999999994696
+          },
+          {
+            "ex_date": "2010-09-17",
+            "issuer_amount": "0.602130",
+            "provider_amount": 0.602,
+            "delta_per_share": 0.0001300000000000745
+          },
+          {
+            "ex_date": "2010-12-17",
+            "issuer_amount": "0.652760",
+            "provider_amount": 0.653,
+            "delta_per_share": -0.00024000000000001798
+          },
+          {
+            "ex_date": "2011-03-18",
+            "issuer_amount": "0.553320",
+            "provider_amount": 0.553,
+            "delta_per_share": 0.00031999999999998696
+          },
+          {
+            "ex_date": "2011-06-17",
+            "issuer_amount": "0.627620",
+            "provider_amount": 0.628,
+            "delta_per_share": -0.00038000000000004697
+          },
+          {
+            "ex_date": "2011-09-16",
+            "issuer_amount": "0.624954",
+            "provider_amount": 0.625,
+            "delta_per_share": -4.599999999999049e-05
+          },
+          {
+            "ex_date": "2011-12-16",
+            "issuer_amount": "0.770130",
+            "provider_amount": 0.77,
+            "delta_per_share": 0.00012999999999996348
+          },
+          {
+            "ex_date": "2012-03-16",
+            "issuer_amount": "0.613890",
+            "provider_amount": 0.614,
+            "delta_per_share": -0.00010999999999994348
+          },
+          {
+            "ex_date": "2012-06-15",
+            "issuer_amount": "0.688260",
+            "provider_amount": 0.688,
+            "delta_per_share": 0.000260000000000038
+          },
+          {
+            "ex_date": "2012-09-21",
+            "issuer_amount": "0.779450",
+            "provider_amount": 0.779,
+            "delta_per_share": 0.00044999999999995044
+          },
+          {
+            "ex_date": "2012-12-21",
+            "issuer_amount": "1.021830",
+            "provider_amount": 1.022,
+            "delta_per_share": -0.00017000000000000348
+          },
+          {
+            "ex_date": "2013-03-15",
+            "issuer_amount": "0.693720",
+            "provider_amount": 0.694,
+            "delta_per_share": -0.00027999999999994696
+          },
+          {
+            "ex_date": "2013-06-21",
+            "issuer_amount": "0.839120",
+            "provider_amount": 0.839,
+            "delta_per_share": 0.00012000000000000899
+          },
+          {
+            "ex_date": "2013-09-20",
+            "issuer_amount": "0.837950",
+            "provider_amount": 0.838,
+            "delta_per_share": -4.999999999999449e-05
+          },
+          {
+            "ex_date": "2013-12-20",
+            "issuer_amount": "0.980250",
+            "provider_amount": 0.98,
+            "delta_per_share": 0.00024999999999997247
+          },
+          {
+            "ex_date": "2014-03-21",
+            "issuer_amount": "0.824610",
+            "provider_amount": 0.825,
+            "delta_per_share": -0.00039000000000000146
+          },
+          {
+            "ex_date": "2014-06-20",
+            "issuer_amount": "0.936690",
+            "provider_amount": 0.937,
+            "delta_per_share": -0.00031000000000003247
+          },
+          {
+            "ex_date": "2014-09-19",
+            "issuer_amount": "0.939190",
+            "provider_amount": 0.939,
+            "delta_per_share": 0.00019000000000002348
+          },
+          {
+            "ex_date": "2014-12-19",
+            "issuer_amount": "1.134920",
+            "provider_amount": 1.135,
+            "delta_per_share": -8.000000000008001e-05
+          },
+          {
+            "ex_date": "2015-03-20",
+            "issuer_amount": "0.930810",
+            "provider_amount": 0.931,
+            "delta_per_share": -0.00019000000000002348
+          },
+          {
+            "ex_date": "2015-06-19",
+            "issuer_amount": "1.030070",
+            "provider_amount": 1.03,
+            "delta_per_share": 7.00000000000145e-05
+          },
+          {
+            "ex_date": "2015-09-18",
+            "issuer_amount": "1.033430",
+            "provider_amount": 1.033,
+            "delta_per_share": 0.0004300000000001525
+          },
+          {
+            "ex_date": "2015-12-18",
+            "issuer_amount": "1.211550",
+            "provider_amount": 1.212,
+            "delta_per_share": -0.00045000000000006146
+          },
+          {
+            "ex_date": "2016-03-18",
+            "issuer_amount": "1.049604",
+            "provider_amount": 1.05,
+            "delta_per_share": -0.00039600000000006297
+          },
+          {
+            "ex_date": "2016-06-17",
+            "issuer_amount": "1.078442",
+            "provider_amount": 1.078,
+            "delta_per_share": 0.0004419999999998314
+          },
+          {
+            "ex_date": "2016-09-16",
+            "issuer_amount": "1.082068",
+            "provider_amount": 1.082,
+            "delta_per_share": 6.799999999995698e-05
+          },
+          {
+            "ex_date": "2016-12-16",
+            "issuer_amount": "1.328930",
+            "provider_amount": 1.329,
+            "delta_per_share": -7.00000000000145e-05
+          },
+          {
+            "ex_date": "2017-03-17",
+            "issuer_amount": "1.033118",
+            "provider_amount": 1.033,
+            "delta_per_share": 0.0001180000000000625
+          },
+          {
+            "ex_date": "2017-06-16",
+            "issuer_amount": "1.183108",
+            "provider_amount": 1.183,
+            "delta_per_share": 0.00010799999999999699
+          },
+          {
+            "ex_date": "2017-09-15",
+            "issuer_amount": "1.234574",
+            "provider_amount": 1.235,
+            "delta_per_share": -0.00042600000000003746
+          },
+          {
+            "ex_date": "2017-12-15",
+            "issuer_amount": "1.351333",
+            "provider_amount": 1.351,
+            "delta_per_share": 0.0003329999999999167
+          },
+          {
+            "ex_date": "2018-03-16",
+            "issuer_amount": "1.096775",
+            "provider_amount": 1.097,
+            "delta_per_share": -0.0002249999999999197
+          },
+          {
+            "ex_date": "2018-06-15",
+            "issuer_amount": "1.245568",
+            "provider_amount": 1.246,
+            "delta_per_share": -0.00043199999999998795
+          },
+          {
+            "ex_date": "2018-09-21",
+            "issuer_amount": "1.322611",
+            "provider_amount": 1.323,
+            "delta_per_share": -0.0003889999999999727
+          },
+          {
+            "ex_date": "2018-12-21",
+            "issuer_amount": "1.435429",
+            "provider_amount": 1.435,
+            "delta_per_share": 0.0004290000000000127
+          },
+          {
+            "ex_date": "2019-03-15",
+            "issuer_amount": "1.233119",
+            "provider_amount": 1.233,
+            "delta_per_share": 0.00011899999999998023
+          },
+          {
+            "ex_date": "2019-06-21",
+            "issuer_amount": "1.431640",
+            "provider_amount": 1.432,
+            "delta_per_share": -0.00035999999999991594
+          },
+          {
+            "ex_date": "2019-09-20",
+            "issuer_amount": "1.383619",
+            "provider_amount": 1.384,
+            "delta_per_share": -0.0003809999999999647
+          },
+          {
+            "ex_date": "2019-12-20",
+            "issuer_amount": "1.569992",
+            "provider_amount": 1.57,
+            "delta_per_share": -8.000000000008e-06
+          },
+          {
+            "ex_date": "2020-03-20",
+            "issuer_amount": "1.405559",
+            "provider_amount": 1.406,
+            "delta_per_share": -0.0004409999999999137
+          },
+          {
+            "ex_date": "2020-06-19",
+            "issuer_amount": "1.366242",
+            "provider_amount": 1.366,
+            "delta_per_share": 0.00024199999999985344
+          },
+          {
+            "ex_date": "2020-09-18",
+            "issuer_amount": "1.339224",
+            "provider_amount": 1.339,
+            "delta_per_share": 0.00022400000000000198
+          },
+          {
+            "ex_date": "2021-03-19",
+            "issuer_amount": "1.277788",
+            "provider_amount": 1.278,
+            "delta_per_share": -0.000212000000000101
+          },
+          {
+            "ex_date": "2021-06-18",
+            "issuer_amount": "1.375875",
+            "provider_amount": 1.376,
+            "delta_per_share": -0.00012499999999993072
+          },
+          {
+            "ex_date": "2021-09-17",
+            "issuer_amount": "1.428117",
+            "provider_amount": 1.428,
+            "delta_per_share": 0.00011700000000014477
+          },
+          {
+            "ex_date": "2021-12-17",
+            "issuer_amount": "1.636431",
+            "provider_amount": 1.633,
+            "delta_per_share": 0.003430999999999962
+          },
+          {
+            "ex_date": "2022-03-18",
+            "issuer_amount": "1.366009",
+            "provider_amount": 1.366,
+            "delta_per_share": 8.999999999925734e-06
+          },
+          {
+            "ex_date": "2022-06-17",
+            "issuer_amount": "1.576871",
+            "provider_amount": 1.577,
+            "delta_per_share": -0.00012900000000004574
+          },
+          {
+            "ex_date": "2022-09-16",
+            "issuer_amount": "1.596398",
+            "provider_amount": 1.596,
+            "delta_per_share": 0.00039799999999989844
+          },
+          {
+            "ex_date": "2022-12-16",
+            "issuer_amount": "1.781400",
+            "provider_amount": 1.781,
+            "delta_per_share": 0.000400000000000178
+          },
+          {
+            "ex_date": "2023-03-17",
+            "issuer_amount": "1.506204",
+            "provider_amount": 1.506,
+            "delta_per_share": 0.000204000000000093
+          },
+          {
+            "ex_date": "2023-06-16",
+            "issuer_amount": "1.638367",
+            "provider_amount": 1.638,
+            "delta_per_share": 0.0003670000000000062
+          },
+          {
+            "ex_date": "2023-09-15",
+            "issuer_amount": "1.583169",
+            "provider_amount": 1.583,
+            "delta_per_share": 0.00016900000000008575
+          },
+          {
+            "ex_date": "2023-12-15",
+            "issuer_amount": "1.906073",
+            "provider_amount": 1.906,
+            "delta_per_share": 7.299999999998974e-05
+          },
+          {
+            "ex_date": "2024-03-15",
+            "issuer_amount": "1.594937",
+            "provider_amount": 1.595,
+            "delta_per_share": -6.299999999992423e-05
+          },
+          {
+            "ex_date": "2024-06-21",
+            "issuer_amount": "1.759024",
+            "provider_amount": 1.759,
+            "delta_per_share": 2.4000000000024002e-05
+          },
+          {
+            "ex_date": "2024-09-20",
+            "issuer_amount": "1.745531",
+            "provider_amount": 1.746,
+            "delta_per_share": -0.0004690000000000527
+          },
+          {
+            "ex_date": "2024-12-20",
+            "issuer_amount": "1.965548",
+            "provider_amount": 1.966,
+            "delta_per_share": -0.00045199999999989693
+          },
+          {
+            "ex_date": "2025-03-21",
+            "issuer_amount": "1.695528",
+            "provider_amount": 1.696,
+            "delta_per_share": -0.00047200000000002795
+          },
+          {
+            "ex_date": "2025-06-20",
+            "issuer_amount": "1.761117",
+            "provider_amount": 1.761,
+            "delta_per_share": 0.00011700000000014477
+          },
+          {
+            "ex_date": "2025-09-19",
+            "issuer_amount": "1.831114",
+            "provider_amount": 1.831,
+            "delta_per_share": 0.00011399999999994748
+          },
+          {
+            "ex_date": "2025-12-19",
+            "issuer_amount": "1.993368",
+            "provider_amount": 1.993,
+            "delta_per_share": 0.00036799999999992394
+          }
+        ]
+      },
+      {
+        "symbol": "IEF",
+        "issuer_action_count": 254,
+        "provider_action_count": 254,
+        "action_dates_match": true,
+        "calendar_sessions": 5305,
+        "calendar_dates_match": true,
+        "reported_splits": 0,
+        "price_use_permission": "not established",
+        "precision_and_value_differences": [
+          {
+            "ex_date": "2004-12-01",
+            "issuer_amount": "0.262392",
+            "provider_amount": 0.262,
+            "delta_per_share": 0.00039200000000000346
+          },
+          {
+            "ex_date": "2004-12-31",
+            "issuer_amount": "0.271451",
+            "provider_amount": 0.271,
+            "delta_per_share": 0.0004509999999999792
+          },
+          {
+            "ex_date": "2005-02-01",
+            "issuer_amount": "0.261271",
+            "provider_amount": 0.261,
+            "delta_per_share": 0.0002709999999999657
+          },
+          {
+            "ex_date": "2005-03-01",
+            "issuer_amount": "0.230853",
+            "provider_amount": 0.231,
+            "delta_per_share": -0.00014700000000000824
+          },
+          {
+            "ex_date": "2005-04-01",
+            "issuer_amount": "0.279119",
+            "provider_amount": 0.279,
+            "delta_per_share": 0.00011899999999998023
+          },
+          {
+            "ex_date": "2005-05-02",
+            "issuer_amount": "0.267478",
+            "provider_amount": 0.267,
+            "delta_per_share": 0.00047799999999997844
+          },
+          {
+            "ex_date": "2005-06-01",
+            "issuer_amount": "0.263566",
+            "provider_amount": 0.264,
+            "delta_per_share": -0.00043399999999998995
+          },
+          {
+            "ex_date": "2005-07-01",
+            "issuer_amount": "0.263511",
+            "provider_amount": 0.264,
+            "delta_per_share": -0.0004890000000000172
+          },
+          {
+            "ex_date": "2005-08-01",
+            "issuer_amount": "0.270574",
+            "provider_amount": 0.271,
+            "delta_per_share": -0.00042600000000003746
+          },
+          {
+            "ex_date": "2005-09-01",
+            "issuer_amount": "0.274393",
+            "provider_amount": 0.274,
+            "delta_per_share": 0.0003929999999999767
+          },
+          {
+            "ex_date": "2005-10-03",
+            "issuer_amount": "0.277188",
+            "provider_amount": 0.277,
+            "delta_per_share": 0.00018799999999996597
+          },
+          {
+            "ex_date": "2005-11-01",
+            "issuer_amount": "0.287716",
+            "provider_amount": 0.288,
+            "delta_per_share": -0.00028399999999995096
+          },
+          {
+            "ex_date": "2005-12-01",
+            "issuer_amount": "0.28348",
+            "provider_amount": 0.283,
+            "delta_per_share": 0.00048000000000003595
+          },
+          {
+            "ex_date": "2005-12-28",
+            "issuer_amount": "0.291872",
+            "provider_amount": 0.292,
+            "delta_per_share": -0.00012799999999996148
+          },
+          {
+            "ex_date": "2006-02-01",
+            "issuer_amount": "0.26352",
+            "provider_amount": 0.264,
+            "delta_per_share": -0.00048000000000003595
+          },
+          {
+            "ex_date": "2006-03-01",
+            "issuer_amount": "0.267073",
+            "provider_amount": 0.267,
+            "delta_per_share": 7.299999999998974e-05
+          },
+          {
+            "ex_date": "2006-04-03",
+            "issuer_amount": "0.260258",
+            "provider_amount": 0.26,
+            "delta_per_share": 0.00025799999999998047
+          },
+          {
+            "ex_date": "2006-05-01",
+            "issuer_amount": "0.293988",
+            "provider_amount": 0.294,
+            "delta_per_share": -1.199999999995649e-05
+          },
+          {
+            "ex_date": "2006-06-01",
+            "issuer_amount": "0.294288",
+            "provider_amount": 0.294,
+            "delta_per_share": 0.00028800000000001047
+          },
+          {
+            "ex_date": "2006-07-03",
+            "issuer_amount": "0.312173",
+            "provider_amount": 0.312,
+            "delta_per_share": 0.00017299999999997873
+          },
+          {
+            "ex_date": "2006-08-01",
+            "issuer_amount": "0.319344",
+            "provider_amount": 0.319,
+            "delta_per_share": 0.00034400000000001096
+          },
+          {
+            "ex_date": "2006-09-01",
+            "issuer_amount": "0.311585",
+            "provider_amount": 0.312,
+            "delta_per_share": -0.0004149999999999987
+          },
+          {
+            "ex_date": "2006-10-02",
+            "issuer_amount": "0.315666",
+            "provider_amount": 0.316,
+            "delta_per_share": -0.00033400000000000096
+          },
+          {
+            "ex_date": "2006-11-01",
+            "issuer_amount": "0.308354",
+            "provider_amount": 0.308,
+            "delta_per_share": 0.00035400000000002096
+          },
+          {
+            "ex_date": "2006-12-01",
+            "issuer_amount": "0.304142",
+            "provider_amount": 0.304,
+            "delta_per_share": 0.000142000000000031
+          },
+          {
+            "ex_date": "2006-12-27",
+            "issuer_amount": "0.239297",
+            "provider_amount": 0.239,
+            "delta_per_share": 0.00029700000000001947
+          },
+          {
+            "ex_date": "2007-02-01",
+            "issuer_amount": "0.311091",
+            "provider_amount": 0.311,
+            "delta_per_share": 9.100000000000774e-05
+          },
+          {
+            "ex_date": "2007-03-01",
+            "issuer_amount": "0.274746",
+            "provider_amount": 0.275,
+            "delta_per_share": -0.000254000000000032
+          },
+          {
+            "ex_date": "2007-04-02",
+            "issuer_amount": "0.321919",
+            "provider_amount": 0.322,
+            "delta_per_share": -8.099999999999774e-05
+          },
+          {
+            "ex_date": "2007-05-01",
+            "issuer_amount": "0.314451",
+            "provider_amount": 0.314,
+            "delta_per_share": 0.0004509999999999792
+          },
+          {
+            "ex_date": "2007-06-01",
+            "issuer_amount": "0.329226",
+            "provider_amount": 0.329,
+            "delta_per_share": 0.00022600000000000398
+          },
+          {
+            "ex_date": "2007-07-02",
+            "issuer_amount": "0.313321",
+            "provider_amount": 0.313,
+            "delta_per_share": 0.0003210000000000157
+          },
+          {
+            "ex_date": "2007-08-01",
+            "issuer_amount": "0.322098",
+            "provider_amount": 0.322,
+            "delta_per_share": 9.799999999998699e-05
+          },
+          {
+            "ex_date": "2007-09-04",
+            "issuer_amount": "0.333602",
+            "provider_amount": 0.334,
+            "delta_per_share": -0.00039800000000000946
+          },
+          {
+            "ex_date": "2007-10-01",
+            "issuer_amount": "0.31013",
+            "provider_amount": 0.31,
+            "delta_per_share": 0.000130000000000019
+          },
+          {
+            "ex_date": "2007-11-01",
+            "issuer_amount": "0.296534",
+            "provider_amount": 0.297,
+            "delta_per_share": -0.00046599999999996644
+          },
+          {
+            "ex_date": "2007-12-03",
+            "issuer_amount": "0.295346",
+            "provider_amount": 0.295,
+            "delta_per_share": 0.00034600000000001296
+          },
+          {
+            "ex_date": "2007-12-27",
+            "issuer_amount": "0.313169",
+            "provider_amount": 0.313,
+            "delta_per_share": 0.00016899999999997473
+          },
+          {
+            "ex_date": "2008-02-01",
+            "issuer_amount": "0.280643",
+            "provider_amount": 0.281,
+            "delta_per_share": -0.0003570000000000517
+          },
+          {
+            "ex_date": "2008-03-03",
+            "issuer_amount": "0.280063",
+            "provider_amount": 0.28,
+            "delta_per_share": 6.299999999997974e-05
+          },
+          {
+            "ex_date": "2008-04-01",
+            "issuer_amount": "0.310872",
+            "provider_amount": 0.311,
+            "delta_per_share": -0.000128000000000017
+          },
+          {
+            "ex_date": "2008-05-01",
+            "issuer_amount": "0.279997",
+            "provider_amount": 0.28,
+            "delta_per_share": -3.000000000030756e-06
+          },
+          {
+            "ex_date": "2008-06-02",
+            "issuer_amount": "0.307167",
+            "provider_amount": 0.307,
+            "delta_per_share": 0.00016700000000002824
+          },
+          {
+            "ex_date": "2008-07-01",
+            "issuer_amount": "0.291827",
+            "provider_amount": 0.292,
+            "delta_per_share": -0.00017299999999997873
+          },
+          {
+            "ex_date": "2008-08-01",
+            "issuer_amount": "0.304371",
+            "provider_amount": 0.304,
+            "delta_per_share": 0.0003710000000000102
+          },
+          {
+            "ex_date": "2008-09-02",
+            "issuer_amount": "0.295404",
+            "provider_amount": 0.295,
+            "delta_per_share": 0.00040400000000001546
+          },
+          {
+            "ex_date": "2008-12-01",
+            "issuer_amount": "0.3125",
+            "provider_amount": 0.313,
+            "delta_per_share": -0.0005000000000000004
+          },
+          {
+            "ex_date": "2008-12-29",
+            "issuer_amount": "0.369008",
+            "provider_amount": 0.369,
+            "delta_per_share": 8.000000000008e-06
+          },
+          {
+            "ex_date": "2009-02-02",
+            "issuer_amount": "0.26625",
+            "provider_amount": 0.266,
+            "delta_per_share": 0.00024999999999997247
+          },
+          {
+            "ex_date": "2009-03-02",
+            "issuer_amount": "0.2475",
+            "provider_amount": 0.248,
+            "delta_per_share": -0.0005000000000000004
+          },
+          {
+            "ex_date": "2009-04-01",
+            "issuer_amount": "0.276244",
+            "provider_amount": 0.276,
+            "delta_per_share": 0.00024399999999996647
+          },
+          {
+            "ex_date": "2009-05-01",
+            "issuer_amount": "0.28034",
+            "provider_amount": 0.28,
+            "delta_per_share": 0.00033999999999995145
+          },
+          {
+            "ex_date": "2009-06-01",
+            "issuer_amount": "0.27219",
+            "provider_amount": 0.272,
+            "delta_per_share": 0.00018999999999996797
+          },
+          {
+            "ex_date": "2009-07-01",
+            "issuer_amount": "0.251586",
+            "provider_amount": 0.252,
+            "delta_per_share": -0.00041400000000002546
+          },
+          {
+            "ex_date": "2009-08-03",
+            "issuer_amount": "0.263877",
+            "provider_amount": 0.264,
+            "delta_per_share": -0.00012300000000003974
+          },
+          {
+            "ex_date": "2009-09-01",
+            "issuer_amount": "0.257498",
+            "provider_amount": 0.257,
+            "delta_per_share": 0.0004979999999999984
+          },
+          {
+            "ex_date": "2009-10-01",
+            "issuer_amount": "0.253367",
+            "provider_amount": 0.253,
+            "delta_per_share": 0.0003670000000000062
+          },
+          {
+            "ex_date": "2009-11-02",
+            "issuer_amount": "0.769909",
+            "provider_amount": 0.77,
+            "delta_per_share": -9.100000000006325e-05
+          },
+          {
+            "ex_date": "2009-12-01",
+            "issuer_amount": "0.20784",
+            "provider_amount": 0.208,
+            "delta_per_share": -0.00015999999999999348
+          },
+          {
+            "ex_date": "2009-12-29",
+            "issuer_amount": "0.164229",
+            "provider_amount": 0.164,
+            "delta_per_share": 0.00022900000000000698
+          },
+          {
+            "ex_date": "2010-02-01",
+            "issuer_amount": "0.2995",
+            "provider_amount": 0.3,
+            "delta_per_share": -0.0005000000000000004
+          },
+          {
+            "ex_date": "2010-03-01",
+            "issuer_amount": "0.24354",
+            "provider_amount": 0.244,
+            "delta_per_share": -0.0004599999999999882
+          },
+          {
+            "ex_date": "2010-04-01",
+            "issuer_amount": "0.254951",
+            "provider_amount": 0.255,
+            "delta_per_share": -4.900000000002125e-05
+          },
+          {
+            "ex_date": "2010-05-03",
+            "issuer_amount": "0.273317",
+            "provider_amount": 0.273,
+            "delta_per_share": 0.0003169999999999562
+          },
+          {
+            "ex_date": "2010-06-01",
+            "issuer_amount": "0.259842",
+            "provider_amount": 0.26,
+            "delta_per_share": -0.00015799999999999148
+          },
+          {
+            "ex_date": "2010-07-01",
+            "issuer_amount": "0.24823",
+            "provider_amount": 0.248,
+            "delta_per_share": 0.00023000000000000798
+          },
+          {
+            "ex_date": "2010-08-02",
+            "issuer_amount": "0.253285",
+            "provider_amount": 0.253,
+            "delta_per_share": 0.0002849999999999797
+          },
+          {
+            "ex_date": "2010-09-01",
+            "issuer_amount": "0.247179",
+            "provider_amount": 0.247,
+            "delta_per_share": 0.00017900000000001248
+          },
+          {
+            "ex_date": "2010-10-01",
+            "issuer_amount": "0.233354",
+            "provider_amount": 0.233,
+            "delta_per_share": 0.0003539999999999932
+          },
+          {
+            "ex_date": "2010-11-01",
+            "issuer_amount": "0.234653",
+            "provider_amount": 0.235,
+            "delta_per_share": -0.0003469999999999862
+          },
+          {
+            "ex_date": "2010-12-01",
+            "issuer_amount": "0.239392",
+            "provider_amount": 0.239,
+            "delta_per_share": 0.00039200000000000346
+          },
+          {
+            "ex_date": "2010-12-28",
+            "issuer_amount": "0.248376",
+            "provider_amount": 0.248,
+            "delta_per_share": 0.0003760000000000152
+          },
+          {
+            "ex_date": "2011-02-01",
+            "issuer_amount": "0.235353",
+            "provider_amount": 0.235,
+            "delta_per_share": 0.00035300000000001996
+          },
+          {
+            "ex_date": "2011-03-01",
+            "issuer_amount": "0.216469",
+            "provider_amount": 0.216,
+            "delta_per_share": 0.0004689999999999972
+          },
+          {
+            "ex_date": "2011-04-01",
+            "issuer_amount": "0.248253",
+            "provider_amount": 0.248,
+            "delta_per_share": 0.0002530000000000032
+          },
+          {
+            "ex_date": "2011-05-02",
+            "issuer_amount": "0.2414",
+            "provider_amount": 0.241,
+            "delta_per_share": 0.00040000000000001146
+          },
+          {
+            "ex_date": "2011-06-01",
+            "issuer_amount": "0.244437",
+            "provider_amount": 0.244,
+            "delta_per_share": 0.00043699999999999295
+          },
+          {
+            "ex_date": "2011-07-01",
+            "issuer_amount": "0.23064",
+            "provider_amount": 0.231,
+            "delta_per_share": -0.0003599999999999992
+          },
+          {
+            "ex_date": "2011-08-01",
+            "issuer_amount": "0.238186",
+            "provider_amount": 0.238,
+            "delta_per_share": 0.00018600000000001948
+          },
+          {
+            "ex_date": "2011-09-01",
+            "issuer_amount": "0.229073",
+            "provider_amount": 0.229,
+            "delta_per_share": 7.299999999998974e-05
+          },
+          {
+            "ex_date": "2011-10-03",
+            "issuer_amount": "0.211388",
+            "provider_amount": 0.211,
+            "delta_per_share": 0.00038799999999999946
+          },
+          {
+            "ex_date": "2011-11-01",
+            "issuer_amount": "0.209291",
+            "provider_amount": 0.209,
+            "delta_per_share": 0.00029100000000001347
+          },
+          {
+            "ex_date": "2011-12-01",
+            "issuer_amount": "0.200255",
+            "provider_amount": 0.2,
+            "delta_per_share": 0.00025499999999997747
+          },
+          {
+            "ex_date": "2011-12-27",
+            "issuer_amount": "0.189303",
+            "provider_amount": 0.189,
+            "delta_per_share": 0.0003029999999999977
+          },
+          {
+            "ex_date": "2012-02-01",
+            "issuer_amount": "0.19082",
+            "provider_amount": 0.191,
+            "delta_per_share": -0.00018000000000001348
+          },
+          {
+            "ex_date": "2012-03-01",
+            "issuer_amount": "0.169604",
+            "provider_amount": 0.17,
+            "delta_per_share": -0.00039600000000000746
+          },
+          {
+            "ex_date": "2012-04-02",
+            "issuer_amount": "0.177317",
+            "provider_amount": 0.177,
+            "delta_per_share": 0.0003170000000000117
+          },
+          {
+            "ex_date": "2012-05-01",
+            "issuer_amount": "0.168253",
+            "provider_amount": 0.168,
+            "delta_per_share": 0.0002530000000000032
+          },
+          {
+            "ex_date": "2012-06-01",
+            "issuer_amount": "0.170729",
+            "provider_amount": 0.171,
+            "delta_per_share": -0.0002710000000000212
+          },
+          {
+            "ex_date": "2012-07-02",
+            "issuer_amount": "0.160121",
+            "provider_amount": 0.16,
+            "delta_per_share": 0.00012100000000000999
+          },
+          {
+            "ex_date": "2012-08-01",
+            "issuer_amount": "0.162208",
+            "provider_amount": 0.162,
+            "delta_per_share": 0.00020799999999998597
+          },
+          {
+            "ex_date": "2012-09-04",
+            "issuer_amount": "0.150782",
+            "provider_amount": 0.151,
+            "delta_per_share": -0.00021799999999999597
+          },
+          {
+            "ex_date": "2012-10-01",
+            "issuer_amount": "0.141279",
+            "provider_amount": 0.141,
+            "delta_per_share": 0.00027900000000000147
+          },
+          {
+            "ex_date": "2012-11-01",
+            "issuer_amount": "0.145278",
+            "provider_amount": 0.145,
+            "delta_per_share": 0.00027800000000000047
+          },
+          {
+            "ex_date": "2012-12-03",
+            "issuer_amount": "0.136792",
+            "provider_amount": 0.137,
+            "delta_per_share": -0.00020800000000001373
+          },
+          {
+            "ex_date": "2012-12-26",
+            "issuer_amount": "0.150589",
+            "provider_amount": 0.151,
+            "delta_per_share": -0.0004109999999999947
+          },
+          {
+            "ex_date": "2013-02-01",
+            "issuer_amount": "0.140073",
+            "provider_amount": 0.14,
+            "delta_per_share": 7.299999999998974e-05
+          },
+          {
+            "ex_date": "2013-03-01",
+            "issuer_amount": "0.126749",
+            "provider_amount": 0.127,
+            "delta_per_share": -0.0002510000000000012
+          },
+          {
+            "ex_date": "2013-04-01",
+            "issuer_amount": "0.144612",
+            "provider_amount": 0.145,
+            "delta_per_share": -0.00038799999999999946
+          },
+          {
+            "ex_date": "2013-05-01",
+            "issuer_amount": "0.134933",
+            "provider_amount": 0.135,
+            "delta_per_share": -6.70000000000115e-05
+          },
+          {
+            "ex_date": "2013-06-03",
+            "issuer_amount": "0.141562",
+            "provider_amount": 0.142,
+            "delta_per_share": -0.00043799999999999395
+          },
+          {
+            "ex_date": "2013-07-01",
+            "issuer_amount": "0.13928",
+            "provider_amount": 0.139,
+            "delta_per_share": 0.0002799999999999747
+          },
+          {
+            "ex_date": "2013-08-01",
+            "issuer_amount": "0.140747",
+            "provider_amount": 0.141,
+            "delta_per_share": -0.00025299999999997547
+          },
+          {
+            "ex_date": "2013-09-03",
+            "issuer_amount": "0.15088",
+            "provider_amount": 0.151,
+            "delta_per_share": -0.00012000000000000899
+          },
+          {
+            "ex_date": "2013-10-01",
+            "issuer_amount": "0.153328",
+            "provider_amount": 0.153,
+            "delta_per_share": 0.00032799999999999496
+          },
+          {
+            "ex_date": "2013-11-01",
+            "issuer_amount": "0.161459",
+            "provider_amount": 0.161,
+            "delta_per_share": 0.0004589999999999872
+          },
+          {
+            "ex_date": "2013-12-02",
+            "issuer_amount": "0.164077",
+            "provider_amount": 0.164,
+            "delta_per_share": 7.699999999999374e-05
+          },
+          {
+            "ex_date": "2013-12-26",
+            "issuer_amount": "0.163803",
+            "provider_amount": 0.164,
+            "delta_per_share": -0.00019700000000000273
+          },
+          {
+            "ex_date": "2014-02-03",
+            "issuer_amount": "0.175249",
+            "provider_amount": 0.175,
+            "delta_per_share": 0.0002489999999999992
+          },
+          {
+            "ex_date": "2014-03-03",
+            "issuer_amount": "0.165796",
+            "provider_amount": 0.166,
+            "delta_per_share": -0.00020400000000000973
+          },
+          {
+            "ex_date": "2014-04-01",
+            "issuer_amount": "0.189607",
+            "provider_amount": 0.19,
+            "delta_per_share": -0.00039300000000000446
+          },
+          {
+            "ex_date": "2014-05-01",
+            "issuer_amount": "0.194078",
+            "provider_amount": 0.194,
+            "delta_per_share": 7.799999999999474e-05
+          },
+          {
+            "ex_date": "2014-06-02",
+            "issuer_amount": "0.175425",
+            "provider_amount": 0.175,
+            "delta_per_share": 0.0004250000000000087
+          },
+          {
+            "ex_date": "2014-07-01",
+            "issuer_amount": "0.192136",
+            "provider_amount": 0.192,
+            "delta_per_share": 0.00013599999999999723
+          },
+          {
+            "ex_date": "2014-08-01",
+            "issuer_amount": "0.195573",
+            "provider_amount": 0.196,
+            "delta_per_share": -0.0004270000000000107
+          },
+          {
+            "ex_date": "2014-09-02",
+            "issuer_amount": "0.180951",
+            "provider_amount": 0.181,
+            "delta_per_share": -4.899999999999349e-05
+          },
+          {
+            "ex_date": "2014-10-01",
+            "issuer_amount": "0.188931",
+            "provider_amount": 0.189,
+            "delta_per_share": -6.90000000000135e-05
+          },
+          {
+            "ex_date": "2014-11-03",
+            "issuer_amount": "0.18052",
+            "provider_amount": 0.181,
+            "delta_per_share": -0.00047999999999998044
+          },
+          {
+            "ex_date": "2014-12-01",
+            "issuer_amount": "0.179983",
+            "provider_amount": 0.18,
+            "delta_per_share": -1.6999999999989246e-05
+          },
+          {
+            "ex_date": "2014-12-24",
+            "issuer_amount": "0.155544",
+            "provider_amount": 0.156,
+            "delta_per_share": -0.00045600000000001195
+          },
+          {
+            "ex_date": "2015-02-02",
+            "issuer_amount": "0.181933",
+            "provider_amount": 0.182,
+            "delta_per_share": -6.699999999998374e-05
+          },
+          {
+            "ex_date": "2015-03-02",
+            "issuer_amount": "0.170064",
+            "provider_amount": 0.17,
+            "delta_per_share": 6.399999999998074e-05
+          },
+          {
+            "ex_date": "2015-04-01",
+            "issuer_amount": "0.174827",
+            "provider_amount": 0.175,
+            "delta_per_share": -0.00017299999999997873
+          },
+          {
+            "ex_date": "2015-05-01",
+            "issuer_amount": "0.163235",
+            "provider_amount": 0.163,
+            "delta_per_share": 0.00023499999999998522
+          },
+          {
+            "ex_date": "2015-06-01",
+            "issuer_amount": "0.169088",
+            "provider_amount": 0.169,
+            "delta_per_share": 8.799999999997699e-05
+          },
+          {
+            "ex_date": "2015-07-01",
+            "issuer_amount": "0.162466",
+            "provider_amount": 0.162,
+            "delta_per_share": 0.0004659999999999942
+          },
+          {
+            "ex_date": "2015-08-03",
+            "issuer_amount": "0.164209",
+            "provider_amount": 0.164,
+            "delta_per_share": 0.00020899999999998697
+          },
+          {
+            "ex_date": "2015-09-01",
+            "issuer_amount": "0.167105",
+            "provider_amount": 0.167,
+            "delta_per_share": 0.00010499999999999399
+          },
+          {
+            "ex_date": "2015-10-01",
+            "issuer_amount": "0.1643",
+            "provider_amount": 0.164,
+            "delta_per_share": 0.0002999999999999947
+          },
+          {
+            "ex_date": "2015-11-02",
+            "issuer_amount": "0.163008",
+            "provider_amount": 0.163,
+            "delta_per_share": 7.999999999980245e-06
+          },
+          {
+            "ex_date": "2015-12-01",
+            "issuer_amount": "0.16502",
+            "provider_amount": 0.165,
+            "delta_per_share": 1.9999999999992246e-05
+          },
+          {
+            "ex_date": "2015-12-24",
+            "issuer_amount": "0.163574",
+            "provider_amount": 0.164,
+            "delta_per_share": -0.0004260000000000097
+          },
+          {
+            "ex_date": "2016-02-01",
+            "issuer_amount": "0.159166",
+            "provider_amount": 0.159,
+            "delta_per_share": 0.00016599999999999948
+          },
+          {
+            "ex_date": "2016-03-01",
+            "issuer_amount": "0.157368",
+            "provider_amount": 0.157,
+            "delta_per_share": 0.0003680000000000072
+          },
+          {
+            "ex_date": "2016-04-01",
+            "issuer_amount": "0.168336",
+            "provider_amount": 0.168,
+            "delta_per_share": 0.00033600000000000296
+          },
+          {
+            "ex_date": "2016-05-02",
+            "issuer_amount": "0.16117",
+            "provider_amount": 0.161,
+            "delta_per_share": 0.00017000000000000348
+          },
+          {
+            "ex_date": "2016-06-01",
+            "issuer_amount": "0.163443",
+            "provider_amount": 0.163,
+            "delta_per_share": 0.00044299999999999895
+          },
+          {
+            "ex_date": "2016-07-01",
+            "issuer_amount": "0.157509",
+            "provider_amount": 0.158,
+            "delta_per_share": -0.0004909999999999914
+          },
+          {
+            "ex_date": "2016-08-01",
+            "issuer_amount": "0.158313",
+            "provider_amount": 0.158,
+            "delta_per_share": 0.0003130000000000077
+          },
+          {
+            "ex_date": "2016-09-01",
+            "issuer_amount": "0.155452",
+            "provider_amount": 0.155,
+            "delta_per_share": 0.00045200000000000795
+          },
+          {
+            "ex_date": "2016-10-03",
+            "issuer_amount": "0.149905",
+            "provider_amount": 0.15,
+            "delta_per_share": -9.499999999998399e-05
+          },
+          {
+            "ex_date": "2016-11-01",
+            "issuer_amount": "0.153709",
+            "provider_amount": 0.154,
+            "delta_per_share": -0.0002909999999999857
+          },
+          {
+            "ex_date": "2016-12-01",
+            "issuer_amount": "0.149408",
+            "provider_amount": 0.149,
+            "delta_per_share": 0.00040800000000001946
+          },
+          {
+            "ex_date": "2016-12-22",
+            "issuer_amount": "0.164725",
+            "provider_amount": 0.165,
+            "delta_per_share": -0.00027499999999999747
+          },
+          {
+            "ex_date": "2017-02-01",
+            "issuer_amount": "0.159282",
+            "provider_amount": 0.159,
+            "delta_per_share": 0.00028200000000000447
+          },
+          {
+            "ex_date": "2017-03-01",
+            "issuer_amount": "0.144834",
+            "provider_amount": 0.145,
+            "delta_per_share": -0.00016599999999999948
+          },
+          {
+            "ex_date": "2017-04-03",
+            "issuer_amount": "0.158696",
+            "provider_amount": 0.159,
+            "delta_per_share": -0.0003039999999999987
+          },
+          {
+            "ex_date": "2017-05-01",
+            "issuer_amount": "0.160289",
+            "provider_amount": 0.16,
+            "delta_per_share": 0.0002889999999999837
+          },
+          {
+            "ex_date": "2017-06-01",
+            "issuer_amount": "0.163645",
+            "provider_amount": 0.164,
+            "delta_per_share": -0.0003549999999999942
+          },
+          {
+            "ex_date": "2017-07-03",
+            "issuer_amount": "0.159282",
+            "provider_amount": 0.159,
+            "delta_per_share": 0.00028200000000000447
+          },
+          {
+            "ex_date": "2017-08-01",
+            "issuer_amount": "0.165256",
+            "provider_amount": 0.165,
+            "delta_per_share": 0.00025599999999997847
+          },
+          {
+            "ex_date": "2017-09-01",
+            "issuer_amount": "0.162455",
+            "provider_amount": 0.162,
+            "delta_per_share": 0.0004549999999999832
+          },
+          {
+            "ex_date": "2017-10-02",
+            "issuer_amount": "0.158852",
+            "provider_amount": 0.159,
+            "delta_per_share": -0.00014800000000000924
+          },
+          {
+            "ex_date": "2017-11-01",
+            "issuer_amount": "0.164305",
+            "provider_amount": 0.164,
+            "delta_per_share": 0.0003049999999999997
+          },
+          {
+            "ex_date": "2017-12-01",
+            "issuer_amount": "0.159691",
+            "provider_amount": 0.16,
+            "delta_per_share": -0.0003090000000000037
+          },
+          {
+            "ex_date": "2017-12-21",
+            "issuer_amount": "0.164141",
+            "provider_amount": 0.164,
+            "delta_per_share": 0.00014100000000000223
+          },
+          {
+            "ex_date": "2018-02-01",
+            "issuer_amount": "0.167741",
+            "provider_amount": 0.168,
+            "delta_per_share": -0.0002590000000000092
+          },
+          {
+            "ex_date": "2018-03-01",
+            "issuer_amount": "0.159318",
+            "provider_amount": 0.159,
+            "delta_per_share": 0.00031799999999998496
+          },
+          {
+            "ex_date": "2018-04-02",
+            "issuer_amount": "0.175035",
+            "provider_amount": 0.175,
+            "delta_per_share": 3.500000000000725e-05
+          },
+          {
+            "ex_date": "2018-05-01",
+            "issuer_amount": "0.191181",
+            "provider_amount": 0.191,
+            "delta_per_share": 0.00018099999999998673
+          },
+          {
+            "ex_date": "2018-06-01",
+            "issuer_amount": "0.2023",
+            "provider_amount": 0.202,
+            "delta_per_share": 0.0002999999999999947
+          },
+          {
+            "ex_date": "2018-07-02",
+            "issuer_amount": "0.189658",
+            "provider_amount": 0.19,
+            "delta_per_share": -0.00034200000000000896
+          },
+          {
+            "ex_date": "2018-08-01",
+            "issuer_amount": "0.199905",
+            "provider_amount": 0.2,
+            "delta_per_share": -9.500000000001174e-05
+          },
+          {
+            "ex_date": "2018-09-04",
+            "issuer_amount": "0.205728",
+            "provider_amount": 0.206,
+            "delta_per_share": -0.00027199999999999447
+          },
+          {
+            "ex_date": "2018-10-01",
+            "issuer_amount": "0.204227",
+            "provider_amount": 0.204,
+            "delta_per_share": 0.00022700000000000498
+          },
+          {
+            "ex_date": "2018-11-01",
+            "issuer_amount": "0.216136",
+            "provider_amount": 0.216,
+            "delta_per_share": 0.00013599999999999723
+          },
+          {
+            "ex_date": "2018-12-03",
+            "issuer_amount": "0.212309",
+            "provider_amount": 0.212,
+            "delta_per_share": 0.0003090000000000037
+          },
+          {
+            "ex_date": "2018-12-18",
+            "issuer_amount": "0.212602",
+            "provider_amount": 0.213,
+            "delta_per_share": -0.0003979999999999817
+          },
+          {
+            "ex_date": "2019-02-01",
+            "issuer_amount": "0.220083",
+            "provider_amount": 0.22,
+            "delta_per_share": 8.299999999999974e-05
+          },
+          {
+            "ex_date": "2019-03-01",
+            "issuer_amount": "0.199053",
+            "provider_amount": 0.199,
+            "delta_per_share": 5.2999999999997494e-05
+          },
+          {
+            "ex_date": "2019-04-01",
+            "issuer_amount": "0.217854",
+            "provider_amount": 0.218,
+            "delta_per_share": -0.00014600000000000724
+          },
+          {
+            "ex_date": "2019-05-01",
+            "issuer_amount": "0.211512",
+            "provider_amount": 0.212,
+            "delta_per_share": -0.00048799999999998844
+          },
+          {
+            "ex_date": "2019-06-03",
+            "issuer_amount": "0.212517",
+            "provider_amount": 0.213,
+            "delta_per_share": -0.00048299999999998344
+          },
+          {
+            "ex_date": "2019-07-01",
+            "issuer_amount": "0.192288",
+            "provider_amount": 0.192,
+            "delta_per_share": 0.0002879999999999827
+          },
+          {
+            "ex_date": "2019-08-01",
+            "issuer_amount": "0.193542",
+            "provider_amount": 0.194,
+            "delta_per_share": -0.00045800000000001395
+          },
+          {
+            "ex_date": "2019-09-03",
+            "issuer_amount": "0.190273",
+            "provider_amount": 0.19,
+            "delta_per_share": 0.00027299999999999547
+          },
+          {
+            "ex_date": "2019-10-01",
+            "issuer_amount": "0.170727",
+            "provider_amount": 0.171,
+            "delta_per_share": -0.0002730000000000232
+          },
+          {
+            "ex_date": "2019-11-01",
+            "issuer_amount": "0.168071",
+            "provider_amount": 0.168,
+            "delta_per_share": 7.099999999998774e-05
+          },
+          {
+            "ex_date": "2019-12-02",
+            "issuer_amount": "0.160157",
+            "provider_amount": 0.16,
+            "delta_per_share": 0.00015699999999999048
+          },
+          {
+            "ex_date": "2019-12-19",
+            "issuer_amount": "0.156406",
+            "provider_amount": 0.156,
+            "delta_per_share": 0.0004059999999999897
+          },
+          {
+            "ex_date": "2020-02-03",
+            "issuer_amount": "0.153292",
+            "provider_amount": 0.153,
+            "delta_per_share": 0.00029200000000001447
+          },
+          {
+            "ex_date": "2020-03-02",
+            "issuer_amount": "0.140289",
+            "provider_amount": 0.14,
+            "delta_per_share": 0.0002889999999999837
+          },
+          {
+            "ex_date": "2020-04-01",
+            "issuer_amount": "0.144016",
+            "provider_amount": 0.144,
+            "delta_per_share": 1.6000000000016e-05
+          },
+          {
+            "ex_date": "2020-05-01",
+            "issuer_amount": "0.127983",
+            "provider_amount": 0.128,
+            "delta_per_share": -1.6999999999989246e-05
+          },
+          {
+            "ex_date": "2020-06-01",
+            "issuer_amount": "0.122219",
+            "provider_amount": 0.122,
+            "delta_per_share": 0.00021899999999999697
+          },
+          {
+            "ex_date": "2020-07-01",
+            "issuer_amount": "0.110052",
+            "provider_amount": 0.11,
+            "delta_per_share": 5.1999999999996493e-05
+          },
+          {
+            "ex_date": "2020-08-03",
+            "issuer_amount": "0.099876",
+            "provider_amount": 0.1,
+            "delta_per_share": -0.0001239999999999991
+          },
+          {
+            "ex_date": "2020-09-01",
+            "issuer_amount": "0.088008",
+            "provider_amount": 0.088,
+            "delta_per_share": 8.000000000008e-06
+          },
+          {
+            "ex_date": "2020-10-01",
+            "issuer_amount": "0.079256",
+            "provider_amount": 0.079,
+            "delta_per_share": 0.00025599999999999234
+          },
+          {
+            "ex_date": "2020-11-02",
+            "issuer_amount": "0.075943",
+            "provider_amount": 0.076,
+            "delta_per_share": -5.7000000000001494e-05
+          },
+          {
+            "ex_date": "2020-12-01",
+            "issuer_amount": "0.079751",
+            "provider_amount": 0.08,
+            "delta_per_share": -0.0002489999999999992
+          },
+          {
+            "ex_date": "2020-12-17",
+            "issuer_amount": "0.072535",
+            "provider_amount": 0.073,
+            "delta_per_share": -0.0004649999999999932
+          },
+          {
+            "ex_date": "2021-02-01",
+            "issuer_amount": "0.077553",
+            "provider_amount": 0.078,
+            "delta_per_share": -0.00044700000000000295
+          },
+          {
+            "ex_date": "2021-03-01",
+            "issuer_amount": "0.069871",
+            "provider_amount": 0.07,
+            "delta_per_share": -0.0001290000000000041
+          },
+          {
+            "ex_date": "2021-04-01",
+            "issuer_amount": "0.069712",
+            "provider_amount": 0.07,
+            "delta_per_share": -0.00028800000000001047
+          },
+          {
+            "ex_date": "2021-05-03",
+            "issuer_amount": "0.074471",
+            "provider_amount": 0.074,
+            "delta_per_share": 0.0004709999999999992
+          },
+          {
+            "ex_date": "2021-06-01",
+            "issuer_amount": "0.078615",
+            "provider_amount": 0.079,
+            "delta_per_share": -0.00038499999999999646
+          },
+          {
+            "ex_date": "2021-07-01",
+            "issuer_amount": "0.076732",
+            "provider_amount": 0.077,
+            "delta_per_share": -0.00026800000000000435
+          },
+          {
+            "ex_date": "2021-08-02",
+            "issuer_amount": "0.076119",
+            "provider_amount": 0.076,
+            "delta_per_share": 0.00011900000000000799
+          },
+          {
+            "ex_date": "2021-09-01",
+            "issuer_amount": "0.080411",
+            "provider_amount": 0.08,
+            "delta_per_share": 0.0004109999999999947
+          },
+          {
+            "ex_date": "2021-10-01",
+            "issuer_amount": "0.080198",
+            "provider_amount": 0.08,
+            "delta_per_share": 0.00019800000000000373
+          },
+          {
+            "ex_date": "2021-11-01",
+            "issuer_amount": "0.081436",
+            "provider_amount": 0.081,
+            "delta_per_share": 0.00043599999999999195
+          },
+          {
+            "ex_date": "2021-12-01",
+            "issuer_amount": "0.087705",
+            "provider_amount": 0.088,
+            "delta_per_share": -0.0002949999999999897
+          },
+          {
+            "ex_date": "2021-12-16",
+            "issuer_amount": "0.105857",
+            "provider_amount": 0.106,
+            "delta_per_share": -0.00014299999999999036
+          },
+          {
+            "ex_date": "2022-02-01",
+            "issuer_amount": "0.108126",
+            "provider_amount": 0.108,
+            "delta_per_share": 0.0001260000000000011
+          },
+          {
+            "ex_date": "2022-03-01",
+            "issuer_amount": "0.100999",
+            "provider_amount": 0.101,
+            "delta_per_share": -1.000000000001e-06
+          },
+          {
+            "ex_date": "2022-04-01",
+            "issuer_amount": "0.121442",
+            "provider_amount": 0.121,
+            "delta_per_share": 0.00044199999999999795
+          },
+          {
+            "ex_date": "2022-05-02",
+            "issuer_amount": "0.125114",
+            "provider_amount": 0.125,
+            "delta_per_share": 0.00011400000000000299
+          },
+          {
+            "ex_date": "2022-06-01",
+            "issuer_amount": "0.129264",
+            "provider_amount": 0.129,
+            "delta_per_share": 0.00026399999999998647
+          },
+          {
+            "ex_date": "2022-07-01",
+            "issuer_amount": "0.155368",
+            "provider_amount": 0.155,
+            "delta_per_share": 0.0003680000000000072
+          },
+          {
+            "ex_date": "2022-08-01",
+            "issuer_amount": "0.184051",
+            "provider_amount": 0.184,
+            "delta_per_share": 5.099999999999549e-05
+          },
+          {
+            "ex_date": "2022-09-01",
+            "issuer_amount": "0.179026",
+            "provider_amount": 0.179,
+            "delta_per_share": 2.5999999999998247e-05
+          },
+          {
+            "ex_date": "2022-10-03",
+            "issuer_amount": "0.186566",
+            "provider_amount": 0.187,
+            "delta_per_share": -0.00043399999999998995
+          },
+          {
+            "ex_date": "2022-11-01",
+            "issuer_amount": "0.202775",
+            "provider_amount": 0.203,
+            "delta_per_share": -0.00022500000000000298
+          },
+          {
+            "ex_date": "2022-12-01",
+            "issuer_amount": "0.194028",
+            "provider_amount": 0.194,
+            "delta_per_share": 2.8000000000000247e-05
+          },
+          {
+            "ex_date": "2022-12-15",
+            "issuer_amount": "0.191817",
+            "provider_amount": 0.192,
+            "delta_per_share": -0.00018300000000001648
+          },
+          {
+            "ex_date": "2023-02-01",
+            "issuer_amount": "0.212178",
+            "provider_amount": 0.212,
+            "delta_per_share": 0.00017800000000001148
+          },
+          {
+            "ex_date": "2023-03-01",
+            "issuer_amount": "0.196207",
+            "provider_amount": 0.196,
+            "delta_per_share": 0.00020699999999998497
+          },
+          {
+            "ex_date": "2023-04-03",
+            "issuer_amount": "0.195983",
+            "provider_amount": 0.196,
+            "delta_per_share": -1.7000000000017e-05
+          },
+          {
+            "ex_date": "2023-05-01",
+            "issuer_amount": "0.238589",
+            "provider_amount": 0.239,
+            "delta_per_share": -0.0004109999999999947
+          },
+          {
+            "ex_date": "2023-06-01",
+            "issuer_amount": "0.231595",
+            "provider_amount": 0.232,
+            "delta_per_share": -0.00040500000000001646
+          },
+          {
+            "ex_date": "2023-07-03",
+            "issuer_amount": "0.231854",
+            "provider_amount": 0.232,
+            "delta_per_share": -0.00014600000000000724
+          },
+          {
+            "ex_date": "2023-08-01",
+            "issuer_amount": "0.24154",
+            "provider_amount": 0.242,
+            "delta_per_share": -0.0004599999999999882
+          },
+          {
+            "ex_date": "2023-09-01",
+            "issuer_amount": "0.241752",
+            "provider_amount": 0.242,
+            "delta_per_share": -0.0002479999999999982
+          },
+          {
+            "ex_date": "2023-10-02",
+            "issuer_amount": "0.238922",
+            "provider_amount": 0.239,
+            "delta_per_share": -7.799999999999474e-05
+          },
+          {
+            "ex_date": "2023-11-01",
+            "issuer_amount": "0.248776",
+            "provider_amount": 0.249,
+            "delta_per_share": -0.00022400000000000198
+          },
+          {
+            "ex_date": "2023-12-01",
+            "issuer_amount": "0.248948",
+            "provider_amount": 0.249,
+            "delta_per_share": -5.1999999999996493e-05
+          },
+          {
+            "ex_date": "2023-12-14",
+            "issuer_amount": "0.281606",
+            "provider_amount": 0.282,
+            "delta_per_share": -0.00039399999999994995
+          },
+          {
+            "ex_date": "2024-02-01",
+            "issuer_amount": "0.235883",
+            "provider_amount": 0.236,
+            "delta_per_share": -0.00011699999999997823
+          },
+          {
+            "ex_date": "2024-03-01",
+            "issuer_amount": "0.249254",
+            "provider_amount": 0.249,
+            "delta_per_share": 0.0002540000000000042
+          },
+          {
+            "ex_date": "2024-04-01",
+            "issuer_amount": "0.275844",
+            "provider_amount": 0.276,
+            "delta_per_share": -0.000156000000000045
+          },
+          {
+            "ex_date": "2024-05-01",
+            "issuer_amount": "0.27086",
+            "provider_amount": 0.271,
+            "delta_per_share": -0.000140000000000029
+          },
+          {
+            "ex_date": "2024-06-03",
+            "issuer_amount": "0.276435",
+            "provider_amount": 0.276,
+            "delta_per_share": 0.0004349999999999632
+          },
+          {
+            "ex_date": "2024-07-01",
+            "issuer_amount": "0.285078",
+            "provider_amount": 0.285,
+            "delta_per_share": 7.80000000000225e-05
+          },
+          {
+            "ex_date": "2024-08-01",
+            "issuer_amount": "0.289105",
+            "provider_amount": 0.289,
+            "delta_per_share": 0.00010500000000002174
+          },
+          {
+            "ex_date": "2024-09-03",
+            "issuer_amount": "0.288194",
+            "provider_amount": 0.288,
+            "delta_per_share": 0.00019400000000002748
+          },
+          {
+            "ex_date": "2024-10-01",
+            "issuer_amount": "0.285919",
+            "provider_amount": 0.286,
+            "delta_per_share": -8.099999999999774e-05
+          },
+          {
+            "ex_date": "2024-11-01",
+            "issuer_amount": "0.291583",
+            "provider_amount": 0.292,
+            "delta_per_share": -0.0004170000000000007
+          },
+          {
+            "ex_date": "2024-12-02",
+            "issuer_amount": "0.292013",
+            "provider_amount": 0.292,
+            "delta_per_share": 1.3000000000040757e-05
+          },
+          {
+            "ex_date": "2024-12-18",
+            "issuer_amount": "0.307517",
+            "provider_amount": 0.308,
+            "delta_per_share": -0.0004830000000000112
+          },
+          {
+            "ex_date": "2025-02-03",
+            "issuer_amount": "0.296357",
+            "provider_amount": 0.296,
+            "delta_per_share": 0.0003569999999999962
+          },
+          {
+            "ex_date": "2025-03-03",
+            "issuer_amount": "0.275368",
+            "provider_amount": 0.275,
+            "delta_per_share": 0.00036799999999997945
+          },
+          {
+            "ex_date": "2025-04-01",
+            "issuer_amount": "0.303674",
+            "provider_amount": 0.304,
+            "delta_per_share": -0.00032599999999999296
+          },
+          {
+            "ex_date": "2025-05-01",
+            "issuer_amount": "0.313378",
+            "provider_amount": 0.313,
+            "delta_per_share": 0.00037799999999998946
+          },
+          {
+            "ex_date": "2025-06-02",
+            "issuer_amount": "0.310131",
+            "provider_amount": 0.31,
+            "delta_per_share": 0.00013099999999999223
+          },
+          {
+            "ex_date": "2025-07-01",
+            "issuer_amount": "0.30321",
+            "provider_amount": 0.303,
+            "delta_per_share": 0.00020999999999998797
+          },
+          {
+            "ex_date": "2025-08-01",
+            "issuer_amount": "0.308775",
+            "provider_amount": 0.309,
+            "delta_per_share": -0.00022499999999997522
+          },
+          {
+            "ex_date": "2025-09-02",
+            "issuer_amount": "0.314136",
+            "provider_amount": 0.314,
+            "delta_per_share": 0.000136000000000025
+          },
+          {
+            "ex_date": "2025-10-01",
+            "issuer_amount": "0.294485",
+            "provider_amount": 0.294,
+            "delta_per_share": 0.0004850000000000132
+          },
+          {
+            "ex_date": "2025-11-03",
+            "issuer_amount": "0.303792",
+            "provider_amount": 0.304,
+            "delta_per_share": -0.00020799999999998597
+          },
+          {
+            "ex_date": "2025-12-01",
+            "issuer_amount": "0.288439",
+            "provider_amount": 0.288,
+            "delta_per_share": 0.0004390000000000227
+          },
+          {
+            "ex_date": "2025-12-19",
+            "issuer_amount": "0.312713",
+            "provider_amount": 0.313,
+            "delta_per_share": -0.0002869999999999817
+          }
+        ]
+      },
+      {
+        "symbol": "GLD",
+        "issuer_action_count": 0,
+        "provider_action_count": 0,
+        "action_dates_match": true,
+        "calendar_sessions": 5305,
+        "calendar_dates_match": true,
+        "reported_splits": 0,
+        "price_use_permission": "not established",
+        "precision_and_value_differences": []
+      }
+    ],
+    "calendar": {
+      "independent_fixture_sessions": 4792,
+      "independent_open_close_clock_matches": 4792,
+      "rule_scope": "2004\u20132025; fixture through2023-01-13 plus source-rule extension; not venue certification",
+      "license": "Apache-2.0 source snapshot retained",
+      "dataset_vintage": "Retrieved2026; not original historical publication vintages"
+    },
+    "native_checks": {
+      "accounting-rotation": {
+        "manifest_sha256": "2dce3676049299b43eac250d2bb17b858ab55a518bd523944290b9340b8e0a55",
+        "artifact_count": 10
+      },
+      "accounting-terminal": {
+        "manifest_sha256": "1eaa932009a12af7fa8ce65f7b8327548e639f50a0e167a1161cef25624d3215",
+        "artifact_count": 10
+      }
+    },
+    "source_limitations": {
+      "yahoo_general_terms": "Saved terms restrict automated collection without prior permission; authorization for anonymous price snapshots is not established",
+      "finance_specific_page": "Retrieved page is Finance Community terms; not a historical-price license",
+      "stooq": "JavaScript browser verification page; not market data; no challenge executed",
+      "action_values": "New issuer-primary source; historical provider disagreements preserved; no old input overwritten"
+    },
+    "remaining_for_financial_launch": [
+      "Permission-qualified raw ETF price input and reviewed source/adjustment/no-split qualification",
+      "Assemble reviewed normalized bundle and freeze executable code/inputs/criterion",
+      "Reserve and run the ten financial paths; independently audit all results"
+    ]
+  },
+  "prior_uncommitted_files": {
+    "README.md": "Prior complete bytes snapshotted; current canonical document contains additive checkpoint links",
+    "docs/goals.md": "Prior complete bytes snapshotted; current canonical document contains additive checkpoint links",
+    "docs/research-development.md": "Prior complete bytes snapshotted; current canonical document contains additive checkpoint links",
+    "docs/tasks/2026-10-25-multi-asset-unlock-review.md": "unchanged",
+    "docs/tasks/2026-10-25-multi-asset-unlock.md": "unchanged",
+    "docs/tasks/2026-10-25-rsi-gate-robustness-review.md": "unchanged",
+    "docs/tasks/2026-10-25-rsi-gate-robustness.md": "unchanged",
+    "docs/tasks/evidence/2026-10-25-multi-asset-unlock.json": "unchanged",
+    "docs/tasks/evidence/2026-10-25-rsi-gate-robustness.json": "unchanged",
+    "research/gate_robustness.py": "unchanged",
+    "research/multi_asset.py": "unchanged",
+    "research/multi_asset_audit.py": "unchanged",
+    "research/multi_asset_native_probe.py": "unchanged",
+    "research/multi_asset_plan.py": "unchanged",
+    "research/plans/multi-asset-unlock-v1.design.json": "unchanged",
+    "research/plans/spy-gate-robustness-v1.json": "unchanged",
+    "scripts/build_gate_robustness_review.py": "unchanged",
+    "tests/test_gate_robustness.py": "unchanged",
+    "tests/test_multi_asset.py": "unchanged"
+  },
+  "code_hashes": {
+    "research/multi_asset_cash_audit.py": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d",
+    "research/qualify_issuer_sources.py": "d6d454085c9561f3bdb072ae824f3a78fc2aa3c87f0f1d1e4c4652b6a4acd7e2",
+    "research/multi_asset_comparison.py": "50e0493a5c7053ea3d1d3c9eca96d9b807f3567565e2802fd5ae42cc6a2f9260",
+    "research/issuer_actions.py": "1f8be02e2d021cb4408fa89c58ddbfff44d410297b1dfde439c07b23355091de",
+    "research/free_source_fetch.py": "8ae2b2c19cdd654366ffcfd56ec23422de6d274de67951d8d743e6e8104fb0a6",
+    "research/multi_asset_accounting_probe.py": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b",
+    "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+    "research/native_multi_asset.py": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc",
+    "tests/test_multi_asset_qualification.py": "20b467b62e2891ab1a434c57026d0217f0a7c45be6a7b53842ebe01b1c2aa484"
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 248,
+    "log": ".local/multi-asset-qualification-v2/make-check.log",
+    "log_sha256": "2566d26cc68f0bdbcbea5309c1a57681912bc1820b7a9acd2df251186fc81ff5",
+    "expected_missing_bundle_preflight_exit": 1,
+    "expected_preflight_log": ".local/multi-asset-qualification-v2/comparison-preflight.log",
+    "source_join_and_calendar_verification_exit": 0,
+    "hosted_ci": "not run; local uncommitted work"
+  },
+  "missing_input_question": "Existing authorized SPY/IEF/GLD price export source/scope and local folder path; no credentials requested",
+  "goal_completion_claim": false,
+  "publication": "none"
+}

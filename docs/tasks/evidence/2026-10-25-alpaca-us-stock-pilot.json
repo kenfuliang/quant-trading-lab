@@ -1,0 +1,82 @@
+{
+  "schema": "alpaca-us-stock-pilot-evidence-v1",
+  "review_date": "2026-10-25",
+  "completed_utc": "2026-10-26T04:13:22.957505+00:00",
+  "status": "complete_structural_price_pilot",
+  "symbols": [
+    "AAPL",
+    "JPM",
+    "MSFT",
+    "SPY"
+  ],
+  "windows": [
+    [
+      "2016-01-01",
+      "2016-01-31"
+    ],
+    [
+      "2025-12-01",
+      "2025-12-31"
+    ]
+  ],
+  "acquisition": {
+    "attempts": 2,
+    "bytes": 18384,
+    "elapsed_seconds": 1.6914244589861482
+  },
+  "rows": 164,
+  "counts": {
+    "AAPL": 41,
+    "JPM": 41,
+    "MSFT": 41,
+    "SPY": 41
+  },
+  "catalog_path": "data/catalog/alpaca-us-stock-pilot-v1",
+  "manifest_path": "data/manifests/alpaca-us-stock-pilot-v1.json",
+  "manifest_sha256": "eec1f7ff3fbae7f8d83aa356dcf300821930f01a6d571268952fa38079627e6a",
+  "quality_path": "data/quality/alpaca-us-stock-pilot-v1.json",
+  "quality_sha256": "221149b0df5b8c075a51d73ccd2f34f54200277ede28477566eb2e02cd8ced22",
+  "implementation_path": "research/alpaca_pilot.py",
+  "implementation_sha256": "4d9d6ddb9c6fb61044675a1c81120151f1148ae663175ff3e98ef80127be78d2",
+  "tests_sha256": "1586474d423e04f626ea0a3c5ea960528a5fac1ead534d74eeb38ea6aeec44a7",
+  "calendar_sha256": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+  "checks": {
+    "exact_calendar_coverage": "passed",
+    "raw_reparse": "passed",
+    "raw_normalized_catalog_hashes": "passed",
+    "native_bar_and_instrument_round_trip": "passed",
+    "identical_import": "passed",
+    "changed_input_preservation": "passed_offline",
+    "restore": "passed_synthetic_only"
+  },
+  "spy_cross_check": {
+    "fields_compared": 164,
+    "opens_approximately_one_cent_different": 2,
+    "dates": [
+      "2016-01-25",
+      "2016-01-29"
+    ],
+    "cause": "unverified",
+    "evidence_preserved": true
+  },
+  "eligibility": "conditional_private_price_diagnostics_only",
+  "financial_comparison_eligible": false,
+  "corporate_actions": "not_acquired",
+  "full_source_use_qualification": "pending",
+  "redistribution": "not_qualified",
+  "broker_calls": 0,
+  "orders": 0,
+  "strategy_runs": 0,
+  "installs": 0,
+  "validation": {
+    "status": "passed",
+    "make_check_exit": 0,
+    "offline_tests": 257,
+    "new_pilot_tests": 9,
+    "log_path": ".local/alpaca-pilot/make-check.log",
+    "log_sha256": "d780c2db1d94a6dce9111a5e55efbaa0d81961d6f917f23ed1138e6fb4bec67e",
+    "diff_check_exit": 0,
+    "credentials_and_catalog_git_ignored": true,
+    "hosted_ci": "not_run"
+  }
+}

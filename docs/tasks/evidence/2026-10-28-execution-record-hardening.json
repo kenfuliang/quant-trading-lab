@@ -1,0 +1,275 @@
+{
+  "schema_version": "execution-record-hardening-v1",
+  "status": "completed_synthetic_infrastructure_only",
+  "updated": "2026-10-28",
+  "created_utc": "2026-10-28T17:45:03.445620+00:00",
+  "checkout": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028",
+  "branch": "codex/rsi-calmar-epoch",
+  "base_sha": "7ce3b53d1c79e54cbe81669ee81cef4d2f192d6b",
+  "bounds": {
+    "wall_minutes": 45,
+    "max_logged_check_commands": 10,
+    "logged_check_commands_used": 6,
+    "financial_runs": 0,
+    "network_calls": 0,
+    "broker_operations": 0,
+    "new_financial_adapters": 0
+  },
+  "implementation": [
+    {
+      "path": ".local/rsi-calmar-20261028/research/control/attempt_records.py",
+      "sha256": "f0fdece844b7ec20d984eda8d4e86985f37e2f4d37b4ef7faa6ddd2c75e87fc8"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/tests/test_attempt_records.py",
+      "sha256": "03f1582b85ba6ffc33941e7439792651f212552c937de2a4984f1c6a17fc79db"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/scripts/current/check_attempt_records.py",
+      "sha256": "3ddf2d10a4addfa6090d217671a2a56feb87c1b356e32e9b42fb801cba1de296"
+    }
+  ],
+  "reused_unchanged": [
+    {
+      "path": ".local/rsi-calmar-20261028/research/studies/spy/calmar_epoch.py",
+      "sha256": "28f534756b1c6e8711410a4ff228a528f1d75d34e0fe3f410d52a6810fb2f892"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/research/plans/rsi-calmar-20261028-c01.json",
+      "sha256": "31e5602a9439580eff2554710bde9ab966bad5ea6a41d7020120e309fa63b3fb"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/research/plans/rsi-calmar-20261028.epoch.json",
+      "sha256": "8ea6e6ada088794c4be6c4d30eb0da64850c0600dace504263447d2575ede09e"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/research/control/rsi_coordinator.py",
+      "sha256": "dca3bd51e8d75f3b01794caad6e0cc000bbfc046b77666086664215abf0c76bd"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/research/control/research_controller.py",
+      "sha256": "756d265da3ed242965f018ce568e354768cc375a12969bd0bdf9e23068227409"
+    }
+  ],
+  "implemented": [
+    "Read-only strict UTC/epoch chronology and lifecycle hashchain audit",
+    "Frozen program/case/argv/adapter/source/interpreter binding checks",
+    "Reserved attempt and deadline enforcement; failures consume budget",
+    "Unresolved/ambiguous restart assessment with no retry or writer mutation",
+    "Normalized lifecycle summary/export with reservation,observedstart,capture,result UTC"
+  ],
+  "reused_existing": [
+    "RSIProgram durableexecution journal,fsync/atomic snapshot,writerlock",
+    "ResearchController logicalreservation accounting and writerownership",
+    "RSIProgram fixed syntheticchildadapter and failclosedrestart reconciliation"
+  ],
+  "checks": [
+    {
+      "command": [
+        "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_attempt_records.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-28T17:41:29.156343+00:00",
+      "finished_utc": "2026-10-28T17:41:29.733287+00:00",
+      "exit_code": 0,
+      "financial_runs": 0,
+      "record_path": ".local/execution-record-hardening-20261028/check-01.json",
+      "stdout_path": ".local/execution-record-hardening-20261028/check-01.stdout.txt",
+      "stderr_path": ".local/execution-record-hardening-20261028/check-01.stderr.txt"
+    },
+    {
+      "command": [
+        "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+        "scripts/current/check_attempt_records.py",
+        "--output",
+        "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/execution-record-hardening-20261028/fixture-v1"
+      ],
+      "started_utc": "2026-10-28T17:42:12.220405+00:00",
+      "finished_utc": "2026-10-28T17:42:12.471495+00:00",
+      "exit_code": 0,
+      "financial_runs": 0,
+      "record_path": ".local/execution-record-hardening-20261028/check-02.json",
+      "stdout_path": ".local/execution-record-hardening-20261028/check-02.stdout.txt",
+      "stderr_path": ".local/execution-record-hardening-20261028/check-02.stderr.txt"
+    },
+    {
+      "command": [
+        "make",
+        "check",
+        "PYTHON=/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python"
+      ],
+      "started_utc": "2026-10-28T17:42:12.471966+00:00",
+      "finished_utc": "2026-10-28T17:42:34.530008+00:00",
+      "exit_code": 0,
+      "financial_runs": 0,
+      "record_path": ".local/execution-record-hardening-20261028/check-03.json",
+      "stdout_path": ".local/execution-record-hardening-20261028/check-03.stdout.txt",
+      "stderr_path": ".local/execution-record-hardening-20261028/check-03.stderr.txt"
+    },
+    {
+      "command": [
+        "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_attempt_records.py",
+        "-v"
+      ],
+      "started_utc": "2026-10-28T17:42:57.214726+00:00",
+      "finished_utc": "2026-10-28T17:42:57.887613+00:00",
+      "exit_code": 0,
+      "financial_runs": 0,
+      "record_path": ".local/execution-record-hardening-20261028/check-04.json",
+      "stdout_path": ".local/execution-record-hardening-20261028/check-04.stdout.txt",
+      "stderr_path": ".local/execution-record-hardening-20261028/check-04.stderr.txt"
+    },
+    {
+      "command": [
+        "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+        "scripts/current/check_attempt_records.py",
+        "--output",
+        "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/execution-record-hardening-20261028/fixture-v2"
+      ],
+      "started_utc": "2026-10-28T17:43:18.926793+00:00",
+      "finished_utc": "2026-10-28T17:43:19.298385+00:00",
+      "exit_code": 0,
+      "financial_runs": 0,
+      "record_path": ".local/execution-record-hardening-20261028/check-05.json",
+      "stdout_path": ".local/execution-record-hardening-20261028/check-05.stdout.txt",
+      "stderr_path": ".local/execution-record-hardening-20261028/check-05.stderr.txt"
+    },
+    {
+      "command": [
+        "make",
+        "check",
+        "PYTHON=/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python"
+      ],
+      "started_utc": "2026-10-28T17:43:19.298905+00:00",
+      "finished_utc": "2026-10-28T17:43:38.981527+00:00",
+      "exit_code": 0,
+      "financial_runs": 0,
+      "record_path": ".local/execution-record-hardening-20261028/check-06.json",
+      "stdout_path": ".local/execution-record-hardening-20261028/check-06.stdout.txt",
+      "stderr_path": ".local/execution-record-hardening-20261028/check-06.stderr.txt"
+    }
+  ],
+  "focused_tests": 8,
+  "full_offline_suite_tests": 546,
+  "full_offline_suite_exit": 0,
+  "check_failures": [],
+  "persistent_fixture_result": {
+    "passed": true,
+    "financial_runs": 0,
+    "synthetic_child_processes": 3,
+    "scenarios": [
+      "success",
+      "failure",
+      "cached_restart",
+      "aggregate_budget",
+      "incomplete_launch_intent",
+      "ambiguous_restart",
+      "observed_process_missing_result"
+    ],
+    "capture_verified_for_future_direct_runners": false
+  },
+  "artifact_manifest": {
+    ".local/execution-record-hardening-20261028/check-01.json": "deed112860055b988c88ae848aded512bca85c1a2e7bc5e6a7b6dd8f0eccec69",
+    ".local/execution-record-hardening-20261028/check-01.stderr.txt": "fcae0b3a04da7a366145d3e2ca2a99ca2612e53516eb192e104a208b9dce8aec",
+    ".local/execution-record-hardening-20261028/check-01.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/check-02.json": "60c39bf17ea08c708fc82562c8918494a7de72c7496fba5bea4cf8515be31057",
+    ".local/execution-record-hardening-20261028/check-02.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/check-02.stdout.txt": "5c1ff2ee40cf7a5febef3fb92aa87a707402dffe619fdee64f48d84ebee94718",
+    ".local/execution-record-hardening-20261028/check-03.json": "c0a14e3285ab822d8bf170a4d667f2260db062d803053c65ab9bf5f3646cba34",
+    ".local/execution-record-hardening-20261028/check-03.stderr.txt": "ba18913ef3d6561151ac0aadb67652caf86aee1e5fcec9a985d3ed8884130710",
+    ".local/execution-record-hardening-20261028/check-03.stdout.txt": "b254a3ae5b091b2cc9590ee7a3b5bdc08457bd76d7308e5931fd3155b24ce6f7",
+    ".local/execution-record-hardening-20261028/check-04.json": "ef8cdd65c0cdb99e01d359baa26723c720d9f1991701a33f29ab52a3037d4b5d",
+    ".local/execution-record-hardening-20261028/check-04.stderr.txt": "18f52695d4229cd8ab35ed5a8706c5e2f5cc7bab0b01205a0c5bd311d4369187",
+    ".local/execution-record-hardening-20261028/check-04.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/check-05.json": "19fb5b85a7083a5988d6aa95c3b129771729d6e1d892ce0baa0e530c9b2e71b5",
+    ".local/execution-record-hardening-20261028/check-05.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/check-05.stdout.txt": "e637830a52a771fdfe37281180fe16c593cb3e2016b913dec660c983c1457f67",
+    ".local/execution-record-hardening-20261028/check-06.json": "7e969e3909bbde1efe367e4b3aff4588bfa3c35fcdc1fed454d51a25adfdb136",
+    ".local/execution-record-hardening-20261028/check-06.stderr.txt": "0d5c4849f7d7fce329a9867864a766b98c5808104fa59b7d7dfa6fa4b822aa79",
+    ".local/execution-record-hardening-20261028/check-06.stdout.txt": "3a27d28fc17e251fb4c48b5f2bd15fc9e3d8b2dffd7233f3db1ac0d608d76264",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous/controller/.writer.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous/controller/events.jsonl": "b2195281fd7cc179a2bcbe90c988a227ddc612bcb779e438fc3d3f73d7cf8caa",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous/controller/snapshot.json": "a57da51fa4d08c3565fd290b731f7a43a72b41e1f963937cc1a3efb78de9f659",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous/execution-state.json": "13a13989b419492f27a04ceacd6cc2248036f30534a08182a4d3130bafcdd5cb",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous/execution.jsonl": "0f2c30def8178c66217fc962f265c8d5a5f44dee75562c0375724674d7bb72fc",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous-audit.json": "6e140674f8711c264d889204c1591d915836b8c4e4a450fa477edefa30dcdc9e",
+    ".local/execution-record-hardening-20261028/fixture-v1/ambiguous-plan.json": "e23012276256518f629ef060e96f40e2ac2df72d8576a0bc22adcd5a99767113",
+    ".local/execution-record-hardening-20261028/fixture-v1/incomplete-audit.json": "08a38d6570bc8cfa0ed0fd5487cab4be35e844227e20c035352f9d7cd70103cf",
+    ".local/execution-record-hardening-20261028/fixture-v1/result.json": "e4b77da4ea2bad1ab0d2cbe09be4812517d8e671c23ba4d5a8828a8cff746c94",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/failure/artifacts/partial.txt": "b702461db98b5a5cf1107999907bbb47db8436a8548497f10af96ebf6f121285",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/failure/stderr.txt": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/failure/stdout.txt": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/success/artifacts/partial.txt": "b702461db98b5a5cf1107999907bbb47db8436a8548497f10af96ebf6f121285",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/success/artifacts/result.json": "0953089b90724f9a616dcd8d5d9a75df12bed9f1bea4d97d986a588415a2136a",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/success/stderr.txt": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/cases/fixture/success/stdout.txt": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/controller/.writer.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/controller/events.jsonl": "d915cecbf9a344589113d49c8a47ef173f38bac5f44c9a115e8d6cf498598e15",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/controller/snapshot.json": "394d09b84632eeb8bc30746fa18cf6429e91e526ec69c8b35b809a3eb1e2b443",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/execution-state.json": "774c1b812bdfb8c478ff9c6706efed0ac8b51f454f648db119b8b4386d5b2c00",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure/execution.jsonl": "78a62cb398fcb3ddc59710749848c9b5fa66fd90fe2afa7ccba9e1e22da5a24e",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure-audit.json": "e0031701cf41ff95ed89b2c16535dbc084b767ecf1b24e037a3c7d1d0c9166f0",
+    ".local/execution-record-hardening-20261028/fixture-v1/success-failure-plan.json": "e82945b6392d83a48d5b7b2c94d2d0eabcd406081775a05224dfb52e7cdd3ced",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous/controller/.writer.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous/controller/events.jsonl": "747419764567b8605cbe346670598698b9b4dac7020a8cdfa1c32d37068446a2",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous/controller/snapshot.json": "149f705b1d5630698cca56bc461d9332f0a86c6fb08a4adebcb6448b87fcb470",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous/execution-state.json": "eee765acc0e05cc5de17a6c588808bcc14b62543fa7e6d1876171238f48dad69",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous/execution.jsonl": "99aca8f803ba36826896b054296399e2594f2c96c0d59157bd8af0cf9bd0af18",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous-audit.json": "a87c683e63836d9c41f0e78efdd3ca4a608087188415e5d4171db5aeda718d36",
+    ".local/execution-record-hardening-20261028/fixture-v2/ambiguous-plan.json": "b1a7454cbf442eef1c89433ffc506f05f79a34d634314a59b715ec15802b6063",
+    ".local/execution-record-hardening-20261028/fixture-v2/incomplete-audit.json": "dfb8b7f4108c5e035b1c259ff8100d7479f3ca6aea3cacf7383138aa2cbb371d",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/cases/fixture/unsealed/artifacts/partial.txt": "b702461db98b5a5cf1107999907bbb47db8436a8548497f10af96ebf6f121285",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/cases/fixture/unsealed/artifacts/result.json": "0953089b90724f9a616dcd8d5d9a75df12bed9f1bea4d97d986a588415a2136a",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/cases/fixture/unsealed/stderr.txt": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/cases/fixture/unsealed/stdout.txt": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/controller/.writer.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/controller/events.jsonl": "6d1cd0c88eb1bb61933fc0772262397ad9c556a7d899d38e66d25c269ae894e3",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/controller/snapshot.json": "bcf52c2d75655887f5b6faf7384442ef6286ff40179c55bfde04cfd760d2ae5f",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/execution-state.json": "bf1847bcc2c9fedf14d9227b7ffb077512c42770be32efe17701a186add1aedf",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete/execution.jsonl": "dacfe94840c01a822dd482eb52acd52d2f5ed011b7f14841d12fc90d16474634",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete-audit.json": "6f46b3265922c07f231e5dec270d34542c547890c48ad4a8cf8c20394f440beb",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete-plan.json": "e9758813f0898f25fd112d86f563f5984eeed0654d1622e176e9cd5cac390299",
+    ".local/execution-record-hardening-20261028/fixture-v2/observed-incomplete-restart-audit.json": "ba82606deee4fd17f41a762a2f1a65ae7df99a3bcdac1dde377381ed61aa3e9d",
+    ".local/execution-record-hardening-20261028/fixture-v2/result.json": "37f66ece942c21b029617f7235c7161f91c3d900faa4c16f408080ef5ca391de",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/failure/artifacts/partial.txt": "b702461db98b5a5cf1107999907bbb47db8436a8548497f10af96ebf6f121285",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/failure/stderr.txt": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/failure/stdout.txt": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/success/artifacts/partial.txt": "b702461db98b5a5cf1107999907bbb47db8436a8548497f10af96ebf6f121285",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/success/artifacts/result.json": "0953089b90724f9a616dcd8d5d9a75df12bed9f1bea4d97d986a588415a2136a",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/success/stderr.txt": "09867ef64544e1337986481d1cd1359998999beaf1bb3c23fb91ac8abfc3dffe",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/cases/fixture/success/stdout.txt": "74e366b714516751de5bf7d288540550888ccc9f94b82c4a035b72d5998df7ec",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/controller/.writer.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/controller/events.jsonl": "f592ee31754e2151ea46fc1077e3f0a0923a86f42236d12334969a70bc4fc60b",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/controller/snapshot.json": "30281c11ec0f59429a2a309a2ded439384a56760d0ce14ec23965833e890bfdb",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/execution-state.json": "0fc4c2f567b7ec4578b5b60bdb1fc9d073e7ae9ef9d94d85728c979bd202b2d8",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure/execution.jsonl": "f1a0a24c31d3807e9227fa349b40063e6809859c376c7fe2f38b2a8611e78d7f",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure-audit.json": "c823b9aeeb0a2e11640d51f15b3a8de349e9f7e5d1ef32f727570719090d55a9",
+    ".local/execution-record-hardening-20261028/fixture-v2/success-failure-plan.json": "061c47c9fe552ec2008aea7c7ed7cbe4036a097f2131c8459e506550c1b142ea"
+  },
+  "limitations": [
+    "Not integrated into futuredirectfinancialrunner; financialexecution unsupported",
+    "FrozenCalmaradapter/plan/results unchanged; missinghistoricalattempttimes not invented",
+    "Read-onlyaudit requiresquiescentwriter and doesnotlock orreconcile",
+    "Auditcoverschronology/identity,not independent artifactcontents/logicaloutcome/financialaccounting",
+    "Hashchainnot adversarialproofagainst coordinatedrewriting of log andidentities",
+    "ObservedstartedUTC is coordinator observedprocesscreation event,not exchangeexecutiontime",
+    "UTC/epoch tolerance1second; eachsequence independentlynondecreasing",
+    "Intermediatefixture-v1 retained; sourceidentities reflect its earlier implementation,not finalversion"
+  ],
+  "next_action": "Parentdocuments canonicalstatus; futuredirectrunnerneeds prospectively frozen supportedcaptureintegration before newfinancialcycle",
+  "report_path": "docs/tasks/2026-10-28-execution-record-hardening.md"
+}

@@ -1,0 +1,325 @@
+{
+  "schema_version": "qc-component-intake-v1",
+  "review_id": "2026-10-28-qc-wave2-carry-components",
+  "updated": "2026-10-28",
+  "created_utc": "2026-10-28T17:18:04.883403+00:00",
+  "scope": "Wave2research-only representative screening; fouroverlappingfamilies,not exhaustive implementations",
+  "bounds": {
+    "max_minutes": 25,
+    "max_representatives": 4,
+    "max_web_tool_calls": 10,
+    "actual_web_tool_calls": 4,
+    "financial_runs": 0,
+    "dataset_downloads": 0,
+    "source_exports": 0,
+    "package_installs": 0,
+    "services_started": 0,
+    "broker_operations": 0,
+    "subagents": 0
+  },
+  "inputs": [
+    {
+      "path": "research/catalogs/qc-inventory-v1/catalog.json",
+      "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+    },
+    {
+      "path": "research/catalogs/qc-stage-fit-v1/mapping.csv",
+      "sha256": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa"
+    },
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": "docs/tasks/2026-10-28-qc-market-components.md",
+      "sha256": "168350caf9d0438eb077edfa830ef906af219c01d03607e9b766c5f6181923d7"
+    }
+  ],
+  "verified_local_method_fragments": [
+    {
+      "id": "QC-T-15264",
+      "repository": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "upstream_path": "04 Strategy Library/20 Forex Carry Trade/02 Method.html",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/20%20Forex%20Carry%20Trade/02%20Method.html",
+      "local_path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/673aa83709022c9017f7ae92edc9731d450231d6.html",
+      "sha256": "454518e77dc09af6b894d9e3edbbdf3c89c52ae9b4b077e0f4a7ed00fb06160b",
+      "hash_verified": true,
+      "license": "Apache-2.0 fragment; not full attached strategy permission",
+      "complete_source_package_qualified": false
+    },
+    {
+      "id": "QC-T-15382",
+      "repository": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "upstream_path": "04 Strategy Library/25 Volatility Risk Premium Effect/02 Method.html",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/25%20Volatility%20Risk%20Premium%20Effect/02%20Method.html",
+      "local_path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3bc10d3ca7758cdb760b92b4a42b8cd6fda977c3.html",
+      "sha256": "b60b2c3e7e1fb900c8267df3e5f124be42db746f67dcdb5954b4343580130af1",
+      "hash_verified": true,
+      "license": "Apache-2.0 fragment; not full attached strategy permission",
+      "complete_source_package_qualified": false
+    },
+    {
+      "id": "QC-T-15372",
+      "repository": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "upstream_path": "04 Strategy Library/29 Term Structure Effect in Commodities/02 Method.html",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/29%20Term%20Structure%20Effect%20in%20Commodities/02%20Method.html",
+      "local_path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/616312cae4fce8dacdf5d8a22d221d1c9fbcd690.html",
+      "sha256": "460cc5ab5aacb18be73749c7adf2e1cea12c17a642fa4e7ec301f6cf372ad680",
+      "hash_verified": true,
+      "license": "Apache-2.0 fragment; not full attached strategy permission",
+      "complete_source_package_qualified": false
+    }
+  ],
+  "family_coverage": [
+    {
+      "family": "carry_term_structure",
+      "frozen_inventory_records": 32,
+      "representative_ids": [
+        "QC-T-15264",
+        "QC-T-15372",
+        "QC-T-15382"
+      ],
+      "status": "representative_method_reviewed_not_family_complete",
+      "evidence_basis": "official public methods and licensed pinned fragments"
+    },
+    {
+      "family": "options",
+      "frozen_inventory_records": 19,
+      "representative_ids": [
+        "QC-T-15382"
+      ],
+      "status": "method_contradicts_snippet_hold",
+      "evidence_basis": "official public methods and licensed pinned fragments"
+    },
+    {
+      "family": "monitoring_framework",
+      "frozen_inventory_records": 10,
+      "representative_ids": [
+        "QC-C-157"
+      ],
+      "status": "title_only_source_not_verified",
+      "evidence_basis": "frozen inventory title and inaccessiblelisting; generic capability docs separate"
+    },
+    {
+      "family": "volatility",
+      "frozen_inventory_records": 125,
+      "representative_ids": [
+        "QC-T-15382"
+      ],
+      "status": "method_contradicts_snippet_hold",
+      "evidence_basis": "Current official15382method versus displayedorderdirections; pinnedlicensedmethod supportsintendedshortvolatilityprose,not runtimeidentity"
+    }
+  ],
+  "components": [
+    {
+      "id": "QC-T-15264",
+      "title": "Forex Carry Trade",
+      "families": [
+        "carry_term_structure",
+        "macro_sentiment"
+      ],
+      "evidence_basis": "current official method and hash-verified licensed legacy method fragment",
+      "source_url": "https://www.quantconnect.com/research/15264/forex-carry-trade/",
+      "stage_fit": [
+        "target_selection_optional",
+        "position_proposal"
+      ],
+      "mechanism": "Monthly currency ranking by central bank rates; exact spot financing implementation unverified.",
+      "contract": {
+        "inputs": [
+          "currency-pair orientation",
+          "rate value and publication/available_at timestamp",
+          "executable spot bid/ask",
+          "funding and deposit rates or actual forward quotes",
+          "currency conversion and settlement calendars"
+        ],
+        "as_of": "All inputs available before monthly decision; no backdating a later rate release",
+        "horizon": "monthly selection; actual settlement/roll conventions must be frozen",
+        "output": [
+          "ranked_currency_exposures",
+          "base_quote_side",
+          "rate_differential",
+          "signal_available_at",
+          "funding_model_id",
+          "missing_or_stale"
+        ]
+      },
+      "blockers": [
+        "Article explicitly says original Nasdaq Data Link interest-rate dataset discontinued2016",
+        "Policy-rate sorting does not prove simulated carry accrual",
+        "Spot only misses cash interest/funding; forward implementation needs dated forward prices/points and no duplicate interest accrual",
+        "InverseUSD-pair directions must preserve long-high-rate/short-low-rate currency exposure",
+        "Local required input coverage, data rights and runtime unqualified"
+      ],
+      "controls": [
+        "Same positions using spot-only returns as diagnostic, explicitly not complete carry",
+        "Fixed currency basket with same gross exposure and financing",
+        "Signal-independent exposure control"
+      ],
+      "duplicate_status": "Name matches in other repositories not identity proof; no code-equivalent duplicate verified",
+      "disposition": "hold_original_feed_discontinued_and_accounting_unqualified"
+    },
+    {
+      "id": "QC-T-15372",
+      "title": "Term Structure Effect in Commodities",
+      "families": [
+        "carry_term_structure"
+      ],
+      "evidence_basis": "current official method and hash-verified licensed legacy method fragment",
+      "source_url": "https://www.quantconnect.com/research/15372/term-structure-effect-in-commodities/",
+      "stage_fit": [
+        "target_selection_optional",
+        "position_proposal"
+      ],
+      "mechanism": "Cross-commodity ranking by annualized log curve slope, followed by monthly long/short positions.",
+      "contract": {
+        "inputs": [
+          "same-time raw individual-contract quotes",
+          "expiry and tradability metadata",
+          "contract multipliers/currencies",
+          "chain membership with available_at",
+          "margin and settlement metadata"
+        ],
+        "as_of": "Co-observed near/far quotes available before decision; stale/zero/nonpositive inputs handled explicitly",
+        "horizon": "one-month intended holding, with prospective roll and delivery avoidance policy",
+        "output": [
+          "root",
+          "near_contract_id",
+          "far_contract_id",
+          "tradable_contract_id",
+          "annualized_curve_slope",
+          "rank",
+          "proposed_side",
+          "available_at",
+          "roll_rule_id",
+          "invalid_reason"
+        ]
+      },
+      "blockers": [
+        "Prose says firsttwo maturities but code selects first and last; code trades second maturity",
+        "Whole chains/raw quotes, contract identities, actions and roll accounting not locally qualified",
+        "Continuous adjusted price is not a simultaneous maturity curve or a tradable contract",
+        "Log signal undefined for nonpositive prices; no invented clamps",
+        "Model tick/point value, variation margin, changing margin, roll spread and delivery deadlines"
+      ],
+      "controls": [
+        "Fixed tradable commodity basket under identical roll/contract choices",
+        "No slope-ranking control with same long/short gross and turnover schedule"
+      ],
+      "duplicate_status": "Carry/momentum combination is a related hypothesis, not verified duplicate; no source equivalence established",
+      "disposition": "hold_contract_selection_ambiguity_and_chain_accounting"
+    },
+    {
+      "id": "QC-T-15382",
+      "title": "Volatility Risk Premium Effect",
+      "families": [
+        "carry_term_structure",
+        "volatility",
+        "options"
+      ],
+      "evidence_basis": "current official method and hash-verified licensed legacy method fragment; conflicting order direction",
+      "source_url": "https://www.quantconnect.com/research/15382/volatility-risk-premium-effect/",
+      "stage_fit": [
+        "position_proposal",
+        "risk_and_sizing_contract_required"
+      ],
+      "mechanism": "Stated intent: shortATMstraddle plus long15percentOTMput; current snippet shows opposite directions.",
+      "contract": {
+        "inputs": [
+          "complete historical option chain and bid/ask timestamps",
+          "underlying raw price/actions",
+          "strike/right/expiry/style/multiplier",
+          "IV/Greeks with model and availability time",
+          "dividend/rate inputs",
+          "exercise/assignment and margin model"
+        ],
+        "as_of": "Exact available quote and Greeks times before trade; universeGreeks previous-day versus data-event model distinguished",
+        "horizon": "intended near30day expiry/monthly rebalance; current and pinned expiry rules differ",
+        "output": [
+          "leg_contract_ids",
+          "signed_leg_quantities",
+          "quote_times",
+          "expected_debit_or_credit",
+          "portfolio_delta_gamma_vega_theta",
+          "margin_required",
+          "expiry_actions",
+          "missing_or_stale"
+        ]
+      },
+      "blockers": [
+        "Prose says sellstraddle/buyOTMput; current displayedsnippet buysstraddle/sellsOTMput",
+        "Current0to31day/nearestexpiry differs from pinned25to35day/closest30",
+        "No complete historical quotes/chains or lifecycle/margin qualification locally",
+        "Payoff formulas alone cannot model intraday marks, spreads, partial legs, early assignment or resulting stock financing",
+        "Stated protectiveput limits far-downside tail after its strike but leaves shortcall upside unbounded; it is not globally defined-risk",
+        "Full source package unqualified; do not silently repair author code and call reproduction"
+      ],
+      "controls": [
+        "Underlying hold/reference and cash",
+        "Same intendedshortstraddle with/withoutOTMput in later explicitly authorized risk study",
+        "Identical dates/capital/executable costs for any eventual alternative"
+      ],
+      "duplicate_status": "Overlapping options,volatility,carry tags preserved; strategy family not unique implementation",
+      "disposition": "hold_material_direction_and_expiry_conflicts"
+    },
+    {
+      "id": "QC-C-157",
+      "title": "Futures Price Monitoring and Reporting Framework",
+      "families": [
+        "monitoring_framework"
+      ],
+      "evidence_basis": "frozen inventory title only; official157URL inaccessible in currentwebtool; generic official docs are capability reference only",
+      "source_url": "https://www.quantconnect.com/strategies/157/",
+      "supporting_source_url": "https://www.quantconnect.com/docs/v2/writing-algorithms/logging",
+      "stage_fit": [
+        "observability_not_alpha"
+      ],
+      "mechanism": "Unknown exact implementation; title suggests futures monitoring/reporting.",
+      "contract": {
+        "inputs": [
+          "permitted event metadata",
+          "instrument/contract identity",
+          "event_time",
+          "available_at",
+          "processing_time",
+          "strategy/run IDs",
+          "decision_reason and validation status"
+        ],
+        "as_of": "Append event receipt with separate source and ingestion timestamps",
+        "horizon": "event-driven observability; no investment horizon inferred",
+        "output": [
+          "bounded structured diagnostics",
+          "freshness/missing alerts",
+          "event counters",
+          "artifact references",
+          "failure notices"
+        ]
+      },
+      "blockers": [
+        "Exact source,rights,data/runtime unknown",
+        "Official logging docs do not prove listing157 implementation",
+        "Do not exportrestrictedmarketdata into cloudlogs/charts/order tags; respect rights and quotas",
+        "No implied expectedreturn or Calmar claim"
+      ],
+      "controls": [
+        "Completeness,ordering,boundedvolume,stale-event and missing-event fixtures; zero financial budget"
+      ],
+      "duplicate_status": "May overlap existing localdecisionlogs; code identity unverified",
+      "disposition": "title_only_hold_source_identity_reuse_generic_observability_requirements"
+    }
+  ],
+  "official_capability_sources": [
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/universes/futures",
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/trading-and-orders/option-strategies/short-straddle",
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/reality-modeling/options-models/pricing",
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/logging",
+    "https://www.quantconnect.com/docs/v2/cloud-platform/security-and-ip"
+  ],
+  "live_revision": "Mutable pages observed2026-10-28; exactlivecommitsunknown",
+  "performance": "not reproduced; no new financial result or Calmar improvement established",
+  "next_bounded_question": "Zero-financial contract/metadata observability gap analysis using existingdecisionlogs; resolve optionsdirection and expiry conflicts before any model implementation. Financial carry/option evaluation remainsheldpendingqualifiedinputs/accounting.",
+  "report_path": "docs/tasks/2026-10-28-qc-wave2-carry-components.md"
+}

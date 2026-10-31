@@ -1,0 +1,104 @@
+{
+  "schema": "sector-acquisition-completion-v1",
+  "utc": "2026-10-28T21:45:18.936826+00:00",
+  "status": "download_completed_financial_qualification_blocked",
+  "dataset_id": "alpaca-sector-etfs-2016-2025-v1",
+  "manifest": {
+    "path": "data/manifests/alpaca-sector-etfs-2016-2025-v1.json",
+    "sha256": "d10b7a87bd930afb151e6946e7b6dfda33f50897c6196abc1711e923aaceedc5"
+  },
+  "quality": {
+    "path": "data/quality/alpaca-sector-etfs-2016-2025-v1.json",
+    "sha256": "8fce7ffac2347eac29da91a5f05ba91068f2babc0d57d95ef502b25aac109fcb"
+  },
+  "frozen_plan": {
+    "path": ".local/sector-acquisition-20261028/plan.json",
+    "sha256": "cd7f06678a34b5b67c4fecc4726cd04f6f2cea8b91e74c057666eca1dabd3918"
+  },
+  "audit_method": {
+    "path": ".local/sector-acquisition-20261028/audit.py",
+    "sha256": "0819170ee6f6edb14ad136a34ce0e89b3801a366bb4fe70e8b9faf313bf8d035"
+  },
+  "symbols": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY",
+    "SPY"
+  ],
+  "start_session": "2016-01-04",
+  "last_session": "2025-12-31",
+  "raw_daily_bars": 27654,
+  "bars_per_symbol": 2514,
+  "cash_dividends_reported": 436,
+  "forward_splits_reported": 5,
+  "cash_dividends_missing_payment_date": 160,
+  "SPY_missing_issuer_dividend_dates": [
+    "2016-03-18",
+    "2018-06-15"
+  ],
+  "SPY_amount_disagreements": 1,
+  "collector_http_attempts": 8,
+  "collector_response_bytes": 5176145,
+  "collector_elapsed_seconds": 5.539767208043486,
+  "limits": {
+    "requests": 16,
+    "bytes": 50000000,
+    "seconds": 600,
+    "workers": 1,
+    "retries": 0
+  },
+  "native_catalog": "data/catalog/alpaca-sector-etfs-2016-2025-v1",
+  "catalog_verification": {
+    "status": "written_and_verified",
+    "bars": 27654,
+    "instruments": 11
+  },
+  "duplicate_import": {
+    "status": "identical_read_only",
+    "bars": 27654,
+    "instruments": 11
+  },
+  "data_hashes_verified": 33,
+  "source_evidence": {
+    "basic": "https://docs.alpaca.markets/us/docs/about-market-data-api",
+    "bars": "https://docs.alpaca.markets/us/reference/stockbars",
+    "actions": "https://docs.alpaca.markets/us/reference/corporateactions-1",
+    "terms": "https://files.alpaca.markets/disclosures/alpaca_terms_and_conditions.pdf"
+  },
+  "financial_comparison_eligible": false,
+  "financial_runs": 0,
+  "broker_operations": 0,
+  "original_goal": "remains blocked; prices now acquired but action/accounting qualification outstanding; no deadline reset or financial resume",
+  "checks": {
+    "focused_offline_tests": {
+      "exit": 0,
+      "tests": 10
+    },
+    "full_make_check_before_network": {
+      "exit": 0,
+      "tests": 459
+    },
+    "final_docs": {
+      "exit": 0,
+      "files": 160
+    },
+    "scoped_whitespace": {
+      "exit": 0
+    },
+    "public_credential_scan": {
+      "files": 7,
+      "matches": 0
+    },
+    "private_paths_git_ignored": {
+      "paths": 5,
+      "passed": true
+    }
+  }
+}

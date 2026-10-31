@@ -1,0 +1,86 @@
+{
+  "study_id": "qc-breadth-v1",
+  "status": "frozen-before-access-probe",
+  "created_utc": "2026-10-26T20:50:54.003005+00:00",
+  "deadline_utc": "2026-10-26T21:50:54.003005+00:00",
+  "cases": [
+    "access",
+    "asset",
+    "momentum",
+    "lowvol",
+    "spy",
+    "t11"
+  ],
+  "max_financial_attempts": 8,
+  "max_unique_cases": 6,
+  "technical_repair_slots": 2,
+  "source_hashes": {
+    "asset": "9935737f172e55e71129644cb31ab37ac9f1fc93ef8150e390a900488acbcac3",
+    "momentum": "bf91deb5ea7ec5ed6c71f047b3f5ebb73cbde7ecb6ed7c520aa05f835f499212",
+    "lowvol": "f08ef07315806828b4be3a230143d845c01bc9e450b81ecce82b24f063f74103",
+    "spy": "8d6e92b1c4c878cb572c3820fe3b738b6e5c41bed27a4b5dba1ec21c5f1be096",
+    "t11": "b0ad75adac330c88ff8845526325dfc7640a2e179d16861b2b804fee03b0ce6d",
+    "access": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270"
+  },
+  "input_hashes": {
+    "ensemble": "98d520f339c31cba04540589e9c091451d051ed3ed6684aa81f2487da079d8cb",
+    "t10": "8300463efc7c91206d03993d8544798e5f2e8e76cb67aca7df35376ea2e40d31",
+    "t11": "e1edf203b0784d57866c90350c5597d7716caf1ff15f221ad69d4cf97874872e",
+    "s2": "ae29e95904b1079ecd39e3ac99366f53e8a6f9f7ba78dd82d271ce641012913f",
+    "s3": "95487b6b49757ceba5fab4cea70661b8cdcb79f28a00519c1048b710e50a72f4"
+  },
+  "start": "2020-01-01",
+  "end": "2025-12-31",
+  "capital_usd": 10000,
+  "slippage": 0.0025,
+  "allocation_target": 0.9,
+  "fee_model": "Original IB margin/default fees retained;2USD +.01USD/share reservation for fees in sizing, actual native fees unchanged",
+  "financing": "6% fixed annual debit ACT/360 on previous closing USD cash for elapsed calendar days; charge at current close before order sizing. Zero credit interest, disable native per-security margin interest; no terminal accrual beyond final close.",
+  "execution": "Per-sleeve signal-change intent preserved. MOO reductions first; after confirmed sales, re-evaluate current causal signals at next close and buy no earlier than subsequent open. At most one reduction batch per unchanged intent. No spending unfilled proceeds. Buy cash cap leaves10% NAV reserve,25bp slippage and fee reservation, sequential native initial-margin preflight, halve only until affordable. No daily target maintenance after intent completion. Pending order guard; every skipped/clipped/deferral counted.",
+  "hypothesis": "Inspect and test three declared source-informed adaptations against SPY and unchanged funded T11; no performance threshold tuning.",
+  "metrics": "Full/annual return, closingDD,zeroRFsampledailySharpe,Calmar,underwaterfraction/longest sessions/calendar days/censoring;execution/funding/access counts",
+  "baseline": "Five fresh financial cases plus one order-free access probe. T11 must reproduce funded-v1; same2020\u20132025 dates and cash/cost/funding model.",
+  "sample": "Viewed development sample, not untouched OOS.",
+  "stops": [
+    "Eight total attempts including access probe and technical failures,60-minute deadline",
+    "Access must pass before allocation runs; no paid upgrade",
+    "At most2 technical-only retries, no signal/threshold changes after results",
+    "Nonfinite/nonpositiveNAV, missing source/calendar or future data fail closed; preserve failed artifacts"
+  ],
+  "exports": "Aggregate metrics/counts/hashes only; raw price/fundamental data remain hosted. Legacy strategy copies private; no broker, paid data or publication.",
+  "selection": {
+    "asset": "SPY/EFA/BND/VNQ/GSG;252-session percentage momentum;top3 equal monthly",
+    "momentum": "Monthly point-in-time fundamentals:price>5,hasfundamentals,top100 dollarvolume,positive finite marketcap top50;252-session pctmomentum top5",
+    "lowvol": "Daily same fundamental screen;monthly top5 lowest sample stdev of252 daily returns",
+    "normalization": "Monthly253-close typed SCALED_RAW history, completed current session only; rebuild feature window in one basis",
+    "timing": "First observed SPY session close each month, then common staged MOO executor. Monthly rebalance intent resets even if names unchanged. Same fixed90% base budget.",
+    "short_history": "Only253-close current-session histories eligible; missing slots stay cash; counts reported",
+    "deviations": "Modern intended-rule adaptations, not exact legacy examples: percentage rather than dollar momentum, return rather than price-level volatility, true market_cap rather than PE*EPS*shares proxy; ETF equal targets fix added-holdings sizing; uniform staged next-open execution.",
+    "spy": "One initial90% funded SPY target; no monthly target reset; same pending/staged controller."
+  },
+  "pre_run_technical_amendment": {
+    "reason": "Prevent duplicate aliases for statically subscribed ETFs; SPY benchmark entry-only sizing, no monthly allocation resets. No financial results inspected.",
+    "previous_source_hashes": {
+      "asset": "1bc9aa0adc1a46ba1578d62af7c81577031fc10e1da49ac8de853cd2c49f1318",
+      "momentum": "795ee624ddbd5b7be85d59fb859bf1e2e12cfa359b6574dbfba7e93d8b9247e4",
+      "lowvol": "d74afc598249bbdfae2a16c50eec74f7ac08039e5dcd552c51b16b671b7d46bf",
+      "spy": "b1a3df22ff6d690c19eb906b2da86ad6e1ba583addc4ca803b4fa5feb005e3f6",
+      "t11": "b0ad75adac330c88ff8845526325dfc7640a2e179d16861b2b804fee03b0ce6d",
+      "access": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270"
+    }
+  },
+  "initializer_repair": {
+    "reason": "Extend, do not replace, brokerage initializer for dynamic securities. Assert native IB fee model. Preserve first stock run as superseded; no performance metrics inspected to choose correction.",
+    "previous_hashes": {
+      "momentum": "15d155f9537ef9cfb21ef2d7970d8453f53deb81e8b5b13dd1943247e6a196ab",
+      "lowvol": "2e54160ca74447ca3209a0220018435fe013e580651cdd56e16c5d8f2d812242",
+      "spy": "cb60acbc2948354647275ccab3ae53c540035a6761fe370532bb576c7a53dfef"
+    },
+    "reference": "https://www.quantconnect.com/docs/v2/writing-algorithms/initialization"
+  },
+  "subscription_repair": {
+    "reason": "Retain monthly weight-target subscriptions while daily top50 feature-selection universe changes; failed target-price lookup in2021-06-02. Ranking/cadence/cost/funding unchanged.",
+    "prior_hash": "3b1dfb5217cf0d09576355e4ced5bc5e5fdf4e40fcd3a60ebfe381e7fb71c958",
+    "remaining_technical_slots": 0
+  }
+}

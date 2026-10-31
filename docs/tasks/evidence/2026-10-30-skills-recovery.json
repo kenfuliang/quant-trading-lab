@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "updated": "2026-10-30",
+  "status": "recovered_instructions_and_saved_evidence_walkthroughs_verified",
+  "active_checkout_head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "recovery_search": {
+    "git_all_path_history": "no commits returned for three requested skill paths",
+    "registered_worktrees": [
+      "primary checkout",
+      "/Users/kenfuliang/.codex/worktrees/project-foundations/is-there-any-repo-that-we"
+    ],
+    "registered_worktrees_skill_matches": 0,
+    "isolated_sources_found": [
+      ".local/pr-research-management-20261028",
+      ".local/research-management-20261028",
+      ".local/rsi-calmar-20261028"
+    ],
+    "search_scope": "registered worktrees plus hidden files in existing .local only; no remote fetch"
+  },
+  "recovered_skills": [
+    {
+      "name": "ask-pm",
+      "source_path": ".local/pr-research-management-20261028/.agents/skills/ask-pm/SKILL.md",
+      "source_sha256": "dd1e28ddea6245bd595e0fb4af45c5e7e80e2db0757726b2bc7800380f8b54a0",
+      "installed_path": ".agents/skills/ask-pm/SKILL.md",
+      "installed_sha256": "ac0f2c6138f7a83069c54ba95501b46f646e0cffec21469d731bd3f867543f2f",
+      "disposition": "recovered_with_availability_adaptations"
+    },
+    {
+      "name": "trade-research-management",
+      "source_path": ".local/pr-research-management-20261028/.agents/skills/trade-research-management/SKILL.md",
+      "source_sha256": "3594c13712385c6553d118ce023e715f8e7ce2bc8b4a8f3fa3cd845071886678",
+      "installed_path": ".agents/skills/trade-research-management/SKILL.md",
+      "installed_sha256": "ccb841de1fe9b1393550e51034f7382e1e8024de24d83ef1ef4e20361fe9378a",
+      "disposition": "recovered_with_availability_adaptations"
+    },
+    {
+      "name": "trade-stage-development",
+      "source_path": ".local/pr-research-management-20261028/.agents/skills/trade-stage-development/SKILL.md",
+      "source_sha256": "f779f27b6512c4b945e33c1781eb7c8e7772334f5c76943a7a4bf9b667d79df5",
+      "installed_path": ".agents/skills/trade-stage-development/SKILL.md",
+      "installed_sha256": "8055602baaf1efa0c80408697db04060347a1064f5e9915e25b4d8d576f762da",
+      "disposition": "recovered_with_availability_adaptations"
+    }
+  ],
+  "adaptations": [
+    "Retained original workflow intent and scientific/operational boundaries.",
+    "Removed missing primary-checkout template/helper dependencies; route to existing task records and supported offline checks.",
+    "Link shared canonical sections being integrated by coordinator; do not copy independent policy.",
+    "Distinguish isolated helper availability from active-checkout runtime capability.",
+    "Follow canonical closure: workflow-only/blocked/invalid work without measurements uses no metric-row change plus below-table closure link, never synthetic or zero-return rows."
+  ],
+  "walkthroughs": [
+    {
+      "skill": "ask-pm",
+      "evidence": "docs/tasks/evidence/2026-10-28-rsi-epoch2-final.json",
+      "evidence_sha256": "1397cd306986fe9caf3aa6cf53cb729d347ecb46471c4a95278df7e085eb622a",
+      "method": "manual_skill_guided_saved_evidence_walkthrough",
+      "conclusion": "Closed program consumed twelve financial reservations; no qualifying improvement or authorization to continue. Parent driver failure after sealing remains visible; read-only recovery launched zero additional financial cases.",
+      "new_financial_runs": 0,
+      "broker_operations": 0
+    },
+    {
+      "skill": "trade-research-management",
+      "evidence": "docs/tasks/evidence/2026-10-29-t11-export-validation.json",
+      "evidence_sha256": "e34720780f6000fa80c6b73761d503f8bdddf4a3478490ea960d866d1c4b8861",
+      "method": "manual_skill_guided_saved_evidence_walkthrough",
+      "conclusion": "Both official exports are aggregate-compatible, daily parity/full reproduction/account reconciliation unverified. Preserve strict failure and do not promote to paper readiness; receipt requires compatibility review rather than rewritten historical fields.",
+      "new_financial_runs": 0,
+      "broker_operations": 0
+    },
+    {
+      "skill": "trade-stage-development",
+      "evidence": "docs/tasks/evidence/2026-10-28-t11-paper-preparation.json",
+      "evidence_sha256": "e63875a1f816f0b9dbd1ba060a31b993007391cea6d15f2f4bebd4bee6febc3b",
+      "method": "manual_skill_guided_saved_evidence_walkthrough",
+      "conclusion": "Existing component can be characterized offline, but native bridge, qualified signal producer and order-bearing CLI remain false. No dependent paper session is ready from these component checks.",
+      "new_financial_runs": 0,
+      "broker_operations": 0
+    }
+  ],
+  "validation": {
+    "regression_file": "tests/test_repair_skill_workflows.py",
+    "execution_status": "passed",
+    "limitations": "Catalog and evidence conformance tests are not independent LLM behavioral evaluation or financial validation.",
+    "focused_tests": 9,
+    "focused_tests_passed": 9,
+    "skill_creator_quick_validate": {
+      "exit": 1,
+      "reason": "ModuleNotFoundError: yaml (PyYAML absent in existing .venv)",
+      "dependency_installations": 0,
+      "fallback": "Project check_skill_catalog plus recovered local file and anchor resolution tests"
+    },
+    "preserved_preintegration_failure": "First focused run: single missing individual-stage-development anchor, 2026-10-30; no financial activity.",
+    "focused_tests_exit": 0,
+    "docs_check_exit": 0,
+    "docs_files_checked": 175,
+    "diff_check_exit": 0
+  },
+  "scope_counts": {
+    "financial_runs": 0,
+    "downloads": 0,
+    "broker_operations": 0,
+    "deployments": 0,
+    "subagents": 0
+  }
+}

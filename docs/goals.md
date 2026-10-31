@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-28
 owner: project-maintainers
 ---
 
@@ -18,6 +18,7 @@ evidence handling. A mandate is not evidence that a return or loss target is ach
 | Annual growth aspiration | +100% per year; year-one scenario USD 300,000 to USD 600,000 |
 | Permitted research scope | Margin, options, and other forms of leverage are allowed for consideration |
 | Research data budget | Free/local data only; no paid datasets or subscriptions (confirmed 2026-10-25) |
+| Initial data-library focus | US stocks only, daily history; SPY benchmark retained. Other markets deferred for this workstream (confirmed 2026-10-25); see [library plan](data-library.md) |
 | Planned starting capital | USD 300,000 |
 | Investment horizon | One year |
 | Drawdown tolerance | About 30% peak-to-trough is a point to stop and reassess |
@@ -132,7 +133,7 @@ free/local constraint and open investment-risk decisions above remain unchanged.
 Recursive instruction/state updates are not evidence of trained RL, improved
 future returns, or authority to operate a broker.
 
-## Current bounded improvement goal
+## Completed bounded improvement goal: first risk gate
 
 On 2026-10-25 the user authorized goal-backed recursive self-improvement. The
 [first risk-gate epoch](tasks/2026-10-25-rsi-risk-gate-epoch.md) defines the measurable
@@ -154,3 +155,80 @@ Its current historical financial budget is zero; the fixed six-case study remain
 a non-executable proposal. The audit completed with a not-ready decision: data/action
 qualification and native corporate-action/allocator gaps remain. It does not amend the investment mandate,
 reopen the completed epoch or establish asset/weight selection for deployment.
+
+## Latest completed bounded goal: execution robustness
+
+The user authorized continued goal-backed RSI development. The new
+[frozen protocol](tasks/2026-10-25-rsi-gate-robustness.md) tests the previously
+selected EMA/volatility-only gate against EMA and entry-only holding under three
+execution contexts. Its [completion review](tasks/2026-10-25-rsi-gate-robustness-review.md)
+records nine attempts, accounting/metric audits and the fixed decision. The candidate
+survived this historical challenge and remains a candidate for independent validation.
+All nine slots are consumed; no automatic parameter search or next financial epoch.
+This advances evidence quality without changing the investment mandate or establishing
+unviewed performance, annual doubling or deployment readiness.
+
+## Completed bounded goal: multi-asset enablement and readiness
+
+The user next authorized unlocking multi-asset trend and relative strength using
+free/local data, then comparing with SPY/the frozen risk gate. The
+[bounded protocol](tasks/2026-10-25-multi-asset-unlock.md) defined implementation,
+qualification and a conditional ten-case comparison. The
+[review](tasks/2026-10-25-multi-asset-unlock-review.md) records implemented signal/
+allocator seams and the **not-ready** historical result. No financial case ran;
+unused conditional slots do not carry into another epoch automatically. Full
+historical comparison remains outstanding until its explicit data/model prerequisites
+are verified. This readiness completion does not mean multi-asset trading is unlocked.
+
+## Blocked bounded goal: source qualification and native comparison
+
+The user authorized resolving the remaining data/accounting blockers and then
+running the comparison. The [90-minute protocol](tasks/2026-10-25-multi-asset-qualification-v2.md)
+defines32source artifacts across six domains, four synthetic native probes and
+at most ten new financial attempts. Its
+[active checkpoint](tasks/2026-10-25-multi-asset-qualification-v2-checkpoint.md)
+records issuer/payment/calendar progress and tested native accounting. After three
+consecutive goal turns with the same missing price input, the objective is blocked:
+permission-qualified price data is pending and the historical comparison has not
+run. The older completed readiness goals do not supply automatic
+budget carry-over or evidence of profitable results.
+
+## Completed bounded research goal:2026-10-28
+
+[RSI Calmar epoch2](tasks/2026-10-28-rsi-epoch2.md) seeks audited same-context Calmar improvement under unchanged growth,drawdown and recovery guards. Its immutable contract owns finite execution bounds; GRS owns research disposition. This bounded evidence goal does not replace the investment aspiration or guarantee improvement. Status:completed bounded research; both cycles rejected after twelve audited cases. No qualifying improvement or remaining slots; incumbent retained.
+
+## Blocked bounded goal: sector target selection
+
+The [sector-selection RSI study](tasks/2026-10-28-sector-selection-rsi.md) tests a
+different opportunity mechanism: volatility-adjusted ranking across fixed sector
+ETFs, not another SPY participation change. Its first phase is free/local input
+qualification with zero currently executable financial slots. Only qualified
+inputs plus an immutable execution freeze enable the conditional eight-case
+comparison. Missing inputs close as a blocked-readiness finding; strict Calmar,
+growth, drawdown and recovery criteria stay prospective. This does not change
+the mandate, reopen exhausted epochs or imply deployment readiness.
+
+The [third-turn audit](tasks/evidence/2026-10-28-sector-selection-blocked.json)
+records the goal tool's blocked disposition: no required local sector inputs or
+qualified bundle arrived. Zero financial attempts; comparison remains incomplete.
+Resume needs the actual authorized local input and valid original bounds.
+
+## Completed fresh bounded goal: issuer-qualified sector comparison
+
+[Issuer-v2 comparison](tasks/2026-10-28-sector-comparison-issuer-v2.md) follows
+[issuer/accounting qualification](tasks/2026-10-28-sector-issuer-qualification.md).
+It owns new eight-attempt bounds, February2017common start, strict Calmar/growth/
+drawdown/recovery criteria and remaining runner/capture gates. The prior explicit
+failed-readiness stop branch is closed separately, not counted as a completed
+financial comparison. No new outcome, strategy adoption or deployment is implied.
+
+Issuer-v2 comparison outcome: eight audited cases complete; the strict joint
+target fails only the10bp drawdown guard despite18%Calmar gains.
+[Report](tasks/2026-10-28-sector-selection-experience-report.md) preserves the
+research lead, negative criterion and unchanged incumbent. No slots remain; the bounded comparison is complete with a rejected financial
+target. Terminal evidence and preservation checks own closure.
+
+Issuer-v2 terminal verification passed: eight captured/audited cases, zero retries,
+no financial failures, no unused slots; leaderboard and report updated,489offline
+tests passed. This completes the bounded research objective with a rejected joint
+financial target, not a claim of adopted alpha. No further cycle starts automatically.

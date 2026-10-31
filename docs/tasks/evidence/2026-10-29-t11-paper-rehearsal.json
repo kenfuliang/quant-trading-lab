@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-10-30T03:34:51.815452+00:00",
+  "status": "preview_complete_unqualified_not_for_orders",
+  "broker_submissions": 0,
+  "new_financial_runs": 0,
+  "scheduled_session": false,
+  "pilot_cap_usd": 10000,
+  "order_bearing_ready": false,
+  "requests": 3,
+  "response_bytes": 1695077,
+  "asof_session": "2026-10-29",
+  "feature_sessions": 414,
+  "gate_state": "green",
+  "gate_cap": 1.0,
+  "targets": {
+    "TECL": 0.3333333333333333,
+    "SOXL": 0.3333333333333333,
+    "TQQQ": 0.3333333333333333
+  },
+  "gate_seed_sessions": 2722,
+  "last60_states_match_half_seed": true,
+  "original2004_seed_parity": false,
+  "raw_private_manifest": ".local/t11-paper-preview/20261030T033342Z/manifest.json",
+  "private_manifest_sha256": "7dfdc97def434a311deed229400fc49db66debb51e56a4a09b6ce7f60ed33065",
+  "missing": [
+    "Qualified operational feature/normalization contract",
+    "Native multi-ETF execution and aggregate budget",
+    "Account and restart reconciliation proof"
+  ],
+  "source_sha256": {
+    "paper_trading/t11_preview.py": "b3f54ddf0df6b602d2407edfeb27771482f82fdd41b4ae2e5add46e1e27f6055",
+    "scripts/t11_paper_preview.py": "c777c724166711acb42e0f69e5565c56a902d883add1687f409a3e4dca9c5c94",
+    "tests/test_t11_preview.py": "74229965725ed2b70200ef29ed4a7d33d579ccb4586becaf5f09720e3f843ec0",
+    "paper_trading/t11_pilot.py": "ff15d040428b7a0e65cba870d98b34e6a15864b40d9be8ee09bf48ce6571ccab"
+  },
+  "validation": {
+    "focused_tests": 3,
+    "offline_tests": 531,
+    "make_check_exit": 0,
+    "note": "Full suite before documentation-only receipt updates; docs rechecked separately"
+  }
+}

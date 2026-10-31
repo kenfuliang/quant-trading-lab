@@ -1,0 +1,115 @@
+{
+  "schema": "qc-component-review-dispatch-v1",
+  "status": "completed-screening-with-blockers",
+  "started_utc": "2026-10-28T16:34:39.863712+00:00",
+  "scope": "First family-representative wave, not all622 source reviews",
+  "agents": [
+    {
+      "name": "qc_market_review",
+      "stage": "market conditions",
+      "max_representatives": 4,
+      "task": "docs/tasks/2026-10-28-qc-market-components.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-qc-market-components.json"
+    },
+    {
+      "name": "qc_target_review",
+      "stage": "target selection",
+      "max_representatives": 4,
+      "task": "docs/tasks/2026-10-28-qc-target-components.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-qc-target-components.json"
+    },
+    {
+      "name": "qc_policy_review",
+      "stage": "proposal,risk/sizing,strategy selection",
+      "max_representatives": 4,
+      "task": "docs/tasks/2026-10-28-qc-policy-components.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-qc-policy-components.json"
+    }
+  ],
+  "per_agent_bounds": {
+    "wall_minutes": 25,
+    "web_calls": 8,
+    "subagents": 0,
+    "financial_runs": 0,
+    "dataset_downloads": 0,
+    "package_installs": 0,
+    "source_exports": 0,
+    "broker_operations": 0
+  },
+  "inputs": {
+    "research/catalogs/qc-inventory-v1/catalog.json": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01",
+    "research/catalogs/qc-stage-fit-v1/mapping.json": "278c605d255e96cef086e07669e529189cfe977d60a3c20a25ecbddcbcd08f32",
+    "research/catalogs/qc-tutorial-packages-v1/review.json": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543",
+    "docs/research-standard.md": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+    "docs/research-intake.md": "cd3185be831a501b73ccb8f12b356421b1c747c5e5475ed5a37b3a3d389229c7"
+  },
+  "rules": [
+    "Agent writes disjoint owned outputs only",
+    "Primary official descriptions and licensed sources first; no restricted bulk extraction",
+    "Distinguish provisional mapping, source inspection, data readiness and financial evidence",
+    "No old budget reopened; recommendations do not authorize experiments"
+  ],
+  "completed_utc": "2026-10-28T16:40:27.208520+00:00",
+  "output_hashes": {
+    "docs/tasks/2026-10-28-qc-market-components.md": "168350caf9d0438eb077edfa830ef906af219c01d03607e9b766c5f6181923d7",
+    "docs/tasks/evidence/2026-10-28-qc-market-components.json": "058c007c8f398139e5e99b9c913c1d60269ff3f907850a949517e3bf97e6fdac",
+    "docs/tasks/2026-10-28-qc-target-components.md": "5c3d7c2bbd60a1b0f390db10a7b0e3bf30172502cb7561db688486bb1d75190d",
+    "docs/tasks/evidence/2026-10-28-qc-target-components.json": "55fb805e97eb5c7f89a72179df94da9102496ad852940f7dcb38ed803ef6956b",
+    "docs/tasks/2026-10-28-qc-policy-components.md": "a4c00ca7f40d0d9db693fcf3d893dbb6fa35b06bd10804a65acdc91acc4416e1",
+    "docs/tasks/evidence/2026-10-28-qc-policy-components.json": "62cfc63b2c297f2746600964ced69f70a98d64900027dd8933572a58f93e90cb"
+  },
+  "review_coverage": {
+    "representative_groups": 12,
+    "distinct_primary_catalog_ids": 13,
+    "ids": [
+      "QC-T-15357",
+      "QC-C-86",
+      "QC-T-15310",
+      "QC-T-15270",
+      "QC-T-15308",
+      "QC-T-15338",
+      "QC-T-15339",
+      "QC-T-15364",
+      "QC-T-15370",
+      "QC-T-15258",
+      "QC-T-15351",
+      "QC-C-504",
+      "QC-T-15263"
+    ],
+    "not_all_622_source_reviews": true
+  },
+  "actual_web_calls": {
+    "market": 3,
+    "target": 3,
+    "policy": 2
+  },
+  "financial_runs": 0,
+  "source_exports": 0,
+  "packages_installed": 0,
+  "broker_operations": 0,
+  "source_catalogs_preserved": true,
+  "reconciliation": {
+    "agreement": "Typed causal interfaces and saved-evidence diagnostics before additional financial experiments; no adaptive selector established.",
+    "different_priorities": "Market/policy recommend gate overlap and transition attribution; target lane recommends as-of selection reconstruction. These address different stage blockers and can proceed independently in a separately bounded zero-run wave.",
+    "not_adopted": "No new policy, risk score, model or source package promoted. No financial budget reopened.",
+    "source_issues": [
+      "Wilshire/FRED input discontinued",
+      "Legacy dollar MOM vs current percentage MOMP changes ranking definition",
+      "Equity vs total put-call input discrepancy",
+      "Fixed QC504 sleeves not adaptive selection",
+      "HMM smoothed historical states not causal tradable labels by default"
+    ]
+  },
+  "verification": [
+    "All dispatch input hashes unchanged",
+    "Six report/receipt outputs present and JSON parses",
+    "13 primary IDs checked against frozen622-record catalog",
+    "No source package or performance row added"
+  ],
+  "validation": {
+    "documentation_check": "passed:144 files",
+    "scoped_diff_whitespace": "passed",
+    "original_inputs_and_six_outputs_rehashed": "passed",
+    "financial_runs": 0
+  }
+}

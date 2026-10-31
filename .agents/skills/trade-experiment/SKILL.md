@@ -55,3 +55,8 @@ a dashboard rendering or process exit alone is insufficient. Preserve failures
 and partial results, then stop or retry only within the plan's declared bounds.
 Successful ledger reconciliation proves modeled accounting, not native execution
 parity, untouched holdout status, predictive edge or paper/live readiness.
+
+For new cycles, capture result names, exact run/build identities and exports as
+results arrive, then validate the [GRS receipt](../../../docs/research-standard.md#experiment-receipt-contract)
+before handing off to closure. Record failures and validator findings; historical
+receipts keep their original protocol and receive separate compatibility findings.

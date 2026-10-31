@@ -1,0 +1,19 @@
+{
+  "checked_utc": "2026-10-26T21:16:24.614725+00:00",
+  "status": "baseline-manifests-verified",
+  "new_hosted_attempts": 0,
+  "prior_epoch_closed": true,
+  "prior_attempts": 8,
+  "baseline": {
+    "qc-breadth-v1": {
+      "manifest_sha256": "23fa96bf35e4cbd9934acfffac2e49cf9993a195863a279fad49517f4dac14cf",
+      "comparison_sha256": "1f6efa77997bf0f11e66fc5d3541f1280d0f76dd4df8b26ac23f7fbaaf00f8dd",
+      "verified_artifacts": 4
+    },
+    "qc504-funded-v1": {
+      "manifest_sha256": "6e09228a78df714d5e8335254c8fd9384c162dc410b41aedeb37355ddc0aceb3",
+      "comparison_sha256": "722164fe46be91e08ef1104f5fe0287258a06a179f671b2e2aed545b4105e7d3",
+      "verified_artifacts": 4
+    }
+  }
+}

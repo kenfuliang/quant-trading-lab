@@ -1,0 +1,289 @@
+{
+  "schema": "dual-thrust-spy-receipt/v1",
+  "status": "completed-scoped-audit-qualified-negative-improvement",
+  "updated_local_date": "2026-10-26",
+  "recorded_utc": "2026-10-27T05:54:27.760106+00:00",
+  "study": "dual-thrust-spy-v1",
+  "comparison_eligible": true,
+  "decision": {
+    "passed": false,
+    "checks": {
+      "cagr_beats_spy": false,
+      "calmar_at_least_spy": false,
+      "longest_uw_no_worse_than_spy": false,
+      "cagr_beats_intraday": true
+    },
+    "drawdown_reassessment": true,
+    "cagr_excess_spy": -0.1845332653,
+    "cagr_excess_intraday": 0.15994668298,
+    "status": "does-not-pass-frozen-improvement-screen"
+  },
+  "protocol": {
+    "path": "research/plans/dual-thrust-spy-v1.json",
+    "sha256": "54f36dea13ae8daa40906bd71e6cd802b29af8cc0dc8f679e8b20a07505d7177"
+  },
+  "parent_budget": {
+    "study": "gscore-spy-v1",
+    "status": "closed",
+    "attempts": [
+      {
+        "id": 1,
+        "case": "probe",
+        "status": "failed-retired-quarterly-roa",
+        "source_sha256": "7f5609d9ee771eeda527c2a0aba2beebc5333b1466ca1e42b3f9ee44354a0f25",
+        "reserved_utc": "2026-10-27T05:31:44.147809+00:00",
+        "backtest_id": "107aec083d70ba3a0ab88a8401d64c9d",
+        "recorded_utc": "2026-10-27T05:33:48.155480+00:00"
+      }
+    ],
+    "closed_utc": "2026-10-27T05:36:22.134195+00:00"
+  },
+  "budget": {
+    "study": "dual-thrust-spy-v1",
+    "status": "closed",
+    "attempts": [
+      {
+        "id": 1,
+        "case": "spy",
+        "status": "completed",
+        "source_sha256": "fa91b49453e213317257eea51903152383734fc0b7d108371ad8fefff1f8ea7e",
+        "reserved_utc": "2026-10-27T05:40:19.102200+00:00",
+        "backtest_id": "e42a20b742605d85a8f5a90d78efe96b",
+        "recorded_utc": "2026-10-27T05:42:40.663812+00:00"
+      },
+      {
+        "id": 2,
+        "case": "intraday",
+        "status": "completed-fee-model-observation-missing",
+        "source_sha256": "72c80b83b693da84e43acdd8b9da530de5ba58850780cfd1614ffa5a9a1a000a",
+        "reserved_utc": "2026-10-27T05:43:30.979291+00:00",
+        "backtest_id": "10bcc0780720034b5df4519a12f648e0",
+        "recorded_utc": "2026-10-27T05:46:44.528606+00:00"
+      },
+      {
+        "id": 3,
+        "case": "intraday",
+        "status": "completed",
+        "source_sha256": "8be2617b2c20b1fe00f64e9ca5a91aeabe3eff400576b2288ca7eaffe2145e7a",
+        "reserved_utc": "2026-10-27T05:48:16.570454+00:00",
+        "backtest_id": "2d9e5154f957b1b6e2ee1d8aa7ef7e34",
+        "recorded_utc": "2026-10-27T05:50:33.030115+00:00"
+      },
+      {
+        "id": 4,
+        "case": "dual",
+        "status": "completed",
+        "source_sha256": "6bb5601d131812ec574f129f4ee3b109fb1081c153dc33f8f1beb0fd39850fbc",
+        "reserved_utc": "2026-10-27T05:51:00.704138+00:00",
+        "backtest_id": "c73dbffc7631d87bd9c6a04c13268757",
+        "recorded_utc": "2026-10-27T05:52:51.205168+00:00"
+      }
+    ],
+    "closed_utc": "2026-10-27T05:52:51.292710+00:00"
+  },
+  "aggregate_attempts": 5,
+  "financial_cases": 3,
+  "annual_records": 30,
+  "cases": {
+    "spy": {
+      "study": "dual-thrust-spy-v1",
+      "case": "spy",
+      "kind": "full",
+      "metrics": {
+        "n": 2514,
+        "end": 1177497.3439466674,
+        "ret": 2.924991146489,
+        "cagr": 0.146504437661,
+        "dd": -0.331589477682,
+        "sharpe": 0.863264272325,
+        "calmar": 0.441824748736,
+        "annual_calmar": 8.821121728391,
+        "uw": 2117,
+        "uw_fraction": 0.842084327765,
+        "longest_uw": 488,
+        "longest_uw_days": 708,
+        "censored": true,
+        "return_sum": 1.524402383954,
+        "return_square_sum": 0.313369781836
+      },
+      "audit": {
+        "source_token": "65469f80dc755a4f",
+        "range_hash": "a5b3d1e1347b0eccea99d0d792de187b1d790185782c27324bc7e7f12d0683f1",
+        "ready_days": 2514,
+        "borrow_usd": 0.0,
+        "minute_observations": 976680,
+        "minute_mean_gross": 0.9832583095,
+        "minute_max_gross": 0.9925062455,
+        "minute_dd": -0.346049093862,
+        "long_minutes": 976679,
+        "short_minutes": 0,
+        "first": "2016-01-04",
+        "last": "2025-12-31",
+        "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+        "fills": 1,
+        "rejects": 0,
+        "fees": 8.635,
+        "interest": 0.0,
+        "min_cash": 8947.667334,
+        "max_gross": 0.99249353,
+        "fee_models": [
+          "InteractiveBrokersFeeModel"
+        ],
+        "native_fee_residual": 0.0,
+        "active_only_residual": 137.089357,
+        "fill_notional_usd": 291043.7,
+        "spy_fills": 1,
+        "traded_symbols": 1,
+        "native_book_residual": 0.0,
+        "last_mark_residual": 0.0,
+        "pending": 0
+      }
+    },
+    "intraday": {
+      "study": "dual-thrust-spy-v1",
+      "case": "intraday",
+      "kind": "full",
+      "metrics": {
+        "n": 2514,
+        "end": 33026.791829195834,
+        "ret": -0.889910693903,
+        "cagr": -0.197975510619,
+        "dd": -0.889936087061,
+        "sharpe": -1.700477205086,
+        "calmar": -0.222460369342,
+        "annual_calmar": -0.999971466312,
+        "uw": 2513,
+        "uw_fraction": 0.999602227526,
+        "longest_uw": 2513,
+        "longest_uw_days": 3649,
+        "censored": true,
+        "return_sum": -2.127161635249,
+        "return_square_sum": 0.158591102641
+      },
+      "audit": {
+        "source_token": "dc2e45d94395f142",
+        "range_hash": "a5b3d1e1347b0eccea99d0d792de187b1d790185782c27324bc7e7f12d0683f1",
+        "ready_days": 2514,
+        "borrow_usd": 0.0,
+        "minute_observations": 976680,
+        "minute_mean_gross": 0.9505208887,
+        "minute_max_gross": 0.9725449157,
+        "minute_dd": -0.890587737013,
+        "long_minutes": 959082,
+        "short_minutes": 0,
+        "first": "2016-01-04",
+        "last": "2025-12-31",
+        "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+        "fills": 5028,
+        "rejects": 0,
+        "fees": 13157.24,
+        "interest": 0.0,
+        "min_cash": 33026.791829,
+        "max_gross": 0.0,
+        "fee_models": [
+          "InteractiveBrokersFeeModel"
+        ],
+        "native_fee_residual": 0.0,
+        "active_only_residual": 0.0,
+        "fill_notional_usd": 602855083.85,
+        "spy_fills": 5028,
+        "traded_symbols": 1,
+        "native_book_residual": 0.0,
+        "last_mark_residual": 0.0,
+        "pending": 0
+      }
+    },
+    "dual": {
+      "study": "dual-thrust-spy-v1",
+      "case": "dual",
+      "kind": "full",
+      "metrics": {
+        "n": 2514,
+        "end": 203572.34574901772,
+        "ret": -0.32142551417,
+        "cagr": -0.038028827639,
+        "dd": -0.340552509303,
+        "sharpe": -1.033029018167,
+        "calmar": -0.111668029452,
+        "annual_calmar": -0.943835400972,
+        "uw": 2493,
+        "uw_fraction": 0.991646778043,
+        "longest_uw": 2493,
+        "longest_uw_days": 3620,
+        "censored": true,
+        "return_sum": -0.380891882861,
+        "return_square_sum": 0.013679708268
+      },
+      "audit": {
+        "source_token": "a6dca5c202a4440c",
+        "range_hash": "a5b3d1e1347b0eccea99d0d792de187b1d790185782c27324bc7e7f12d0683f1",
+        "ready_days": 2514,
+        "borrow_usd": 729.933005,
+        "minute_observations": 976680,
+        "minute_mean_gross": 0.0824795905,
+        "minute_max_gross": 1.0167824353,
+        "minute_dd": -0.347591745429,
+        "long_minutes": 27763,
+        "short_minutes": 55302,
+        "first": "2016-01-04",
+        "last": "2025-12-31",
+        "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+        "fills": 929,
+        "rejects": 0,
+        "fees": 3714.65,
+        "interest": 0.0,
+        "min_cash": 200080.705904,
+        "max_gross": 0.0,
+        "fee_models": [
+          "InteractiveBrokersFeeModel"
+        ],
+        "native_fee_residual": 0.0,
+        "active_only_residual": -0.0,
+        "fill_notional_usd": 217621082.01,
+        "spy_fills": 929,
+        "traded_symbols": 1,
+        "native_book_residual": -0.0,
+        "last_mark_residual": 0.0,
+        "pending": 0
+      }
+    }
+  },
+  "accounting_only_retest_reproduced": true,
+  "calendar_range_minute_parity": true,
+  "negative_baseline_preserved": {
+    "study": "capm-ablation-v1",
+    "manifest_path": ".local/performance/capm-ablation-v1/manifest.json",
+    "manifest_sha256": "01cc2398e30ddfa1f5ac30f186c868856fe8a94644c1e882ff8216d116c00111",
+    "disposition": "Preserve as negative baseline; no changes or reruns. Different new execution/cost context prevents combining old CAPM results in one leaderboard."
+  },
+  "browser_url": "http://127.0.0.1:8765/dual-thrust-spy-v1/index.html",
+  "manifest": {
+    "path": ".local/performance/dual-thrust-spy-v1/manifest.json",
+    "sha256": "9eae4b7e5c675a982cef8f7dc88f8aaefc5368cf0ddf4c54ba7c6334a0f4e0ec",
+    "files": 43
+  },
+  "validation": {
+    "offline_tests": 364,
+    "offline_tests_passed": true,
+    "dependency_check_passed": true,
+    "browser_all_table_cells_verified": true,
+    "browser_metrics": 7,
+    "browser_points_each": 30,
+    "artifact_audit_passed": true,
+    "capm_77_file_audit_unchanged": true,
+    "final_docs_check": "passed:120 files",
+    "final_make_check_log": {
+      "path": ".local/dual-thrust-final-check.log",
+      "sha256": "bc0f5bc81dc1b94659cd08c52d10eb349f8c3ec2b16081d6db3eff3bda843de4",
+      "exit_code": 0
+    }
+  },
+  "limitations": [
+    "Viewed history; no untouched OOS or independent alpha",
+    "Declared causal SPY adaptation, not original FX reproduction",
+    "Fixed assumed IB fees/5bp slippage/6% debit/3% borrow; historical shortability unverified",
+    "Native-book consistency is not independent cash/action replay",
+    "Failed attempts preserved; no further runs or deployment"
+  ],
+  "data_boundary": "Free hosted data; own aggregate metrics/counts/hashes only; raw prices/dense NAV stay hosted. No paid resources, broker operations, credentials, commits or publication."
+}

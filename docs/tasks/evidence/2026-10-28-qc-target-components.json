@@ -1,0 +1,176 @@
+{
+  "id": "qc-target-components-20261028",
+  "reviewed_date": "2026-10-28",
+  "captured_utc": "2026-10-28T16:38:48.769926+00:00",
+  "status": "screened_component_contracts_not_runtime_qualified",
+  "lane": "target_selection_optional",
+  "bounds": {
+    "minutes": 25,
+    "web_tool_calls_max": 8,
+    "web_tool_calls_used": 3,
+    "financial_runs": 0,
+    "downloads": 0,
+    "exports": 0,
+    "broker_operations": 0,
+    "package_or_service_changes": 0
+  },
+  "scope": {
+    "inventory_records": 622,
+    "representative_families": 4,
+    "official_method_pages": 5,
+    "licensed_method_files_verified": 6,
+    "not_exhaustive": true
+  },
+  "sources": [
+    {
+      "id": "QC-T-15308",
+      "related_community_id": "QC-C-19",
+      "url": "https://www.quantconnect.com/research/15308/sector-momentum/",
+      "component": "sector_relative_rank"
+    },
+    {
+      "id": "QC-T-15338",
+      "related_community_id": "QC-C-18",
+      "url": "https://www.quantconnect.com/research/15338/asset-class-momentum/",
+      "component": "asset_relative_rank"
+    },
+    {
+      "id": "QC-T-15339",
+      "related_community_id": "QC-C-17",
+      "url": "https://www.quantconnect.com/research/15339/asset-class-trend-following/",
+      "component": "asset_absolute_eligibility"
+    },
+    {
+      "id": "QC-T-15364",
+      "url": "https://www.quantconnect.com/research/15364/momentum-effect-in-stocks/",
+      "component": "historical_stock_relative_rank"
+    },
+    {
+      "id": "QC-T-15370",
+      "related_community_id": "QC-C-15",
+      "url": "https://www.quantconnect.com/research/15370/stock-selection-strategy-based-on-fundamental-factors/",
+      "component": "fundamental_composite_rank"
+    }
+  ],
+  "source_evidence": "Current official descriptions plus six pinned licensed methods; no complete current source identity or exact reproduction established.",
+  "rights": {
+    "licensed_reference_repo": "QuantConnect/Tutorials",
+    "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+    "license": "Apache-2.0 applicable to saved reference methods; not inferred for external embedded/current source",
+    "complete_packages_qualified_here": 0,
+    "code_duplicates_verified": 0
+  },
+  "licensed_method_files": [
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/09 Stock Selection Strategy Based on Fundamental Factors/02 Factor Selection.html",
+      "git_blob_sha": "663d5e1623365d1ddf40615210bcbfdc77569fbc",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/09 Stock Selection Strategy Based on Fundamental Factors/02 Factor Selection.html",
+      "sha256": "abc5ee65e34811af79acb805effc9dbdac033ddd5e517e74069992aa92da1a11"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/09 Stock Selection Strategy Based on Fundamental Factors/03 Stock Selection.html",
+      "git_blob_sha": "62400c97d61dc3f9846fc7eb2f5108357c9aa56b",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/09 Stock Selection Strategy Based on Fundamental Factors/03 Stock Selection.html",
+      "sha256": "6cd258b1bb7f0af0b189a8a4586be0c39605c863bbd6e0f2c7331eb4837bda2a"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/12 Asset Class Trend Following/02 Method.html",
+      "git_blob_sha": "cf3215f1fbc853aae6dda2b4fbbddc64980c8cb7",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/12 Asset Class Trend Following/02 Method.html",
+      "sha256": "8056b9b2bf253c86fc63cff4346315a705e40ea16767751e4d37cd4e0bf9a0e4"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/13 Asset Class Momentum/02 Method.html",
+      "git_blob_sha": "0869d5c68cf0f96aeac8cd79c9760fbb931640d8",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/13 Asset Class Momentum/02 Method.html",
+      "sha256": "3f27f360cd6723f5b95a2d3513095b2c4eace91819d08fbd64a7a8352340a79e"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/14 Sector Momentum/02 Method.html",
+      "git_blob_sha": "74709a42006d8e83e4146cbbde56cbecddefe281",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/14 Sector Momentum/02 Method.html",
+      "sha256": "f811699884a61a59535b460056c330c1aff1c7ed2440acccdf7ea0baaba99b60"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/21 Momentum Effect in Stocks/02 Method.html",
+      "git_blob_sha": "2dc76cf62764ba4cde882425a63fb5e35a775a7d",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/21 Momentum Effect in Stocks/02 Method.html",
+      "sha256": "36c8d4d79ee3edbcc3c58de8865f68f7b66e3152364a165046647fcb3b6e7a00"
+    }
+  ],
+  "input_artifacts": [
+    {
+      "path": "research/catalogs/qc-inventory-v1/catalog.json",
+      "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+    },
+    {
+      "path": "research/catalogs/qc-stage-fit-v1/mapping.csv",
+      "sha256": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa"
+    },
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-qc-selection-comparison.md",
+      "sha256": "da06a670804070bf448b3d5af535206709c4b181cea0a09f7ed766398606a8a1"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-sector-matched.md",
+      "sha256": "0f9867415bb53114b05f192c46834a2e0d0f08602ab29cbfc75e0460e4642612"
+    },
+    {
+      "path": "docs/tasks/2026-10-25-sector-momentum-comparison.md",
+      "sha256": "00fcf99b83a3bb3fce6e8d4c4567bfc8e982e9828eba0cd6994f0adf591dcef1"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-gscore-spy-comparison.md",
+      "sha256": "42cedc01148aea7bda245162667ee918b5a284e02342854493fc61da81d1a5ce"
+    }
+  ],
+  "findings": [
+    "Relative ranking and absolute trend eligibility require separate stage contracts.",
+    "Pinned MOM/dollar changes differ from current MOMP/percentage descriptions.",
+    "Fundamental method four-factor versus six-factor instructions are inconsistent; causal fitting and filing-time inputs remain prerequisites.",
+    "Hosted free sample access is not local historical-data qualification.",
+    "Stock momentum prior gains include longer underwater time; sector caps do not improve original Calmar.",
+    "Title overlap is not verified code duplication."
+  ],
+  "proposed_output_fields": [
+    "decision_at",
+    "input_cutoff",
+    "universe_version",
+    "permanent_instrument_id",
+    "score",
+    "rank",
+    "eligibility",
+    "rejection_reason",
+    "next_review_time"
+  ],
+  "data_readiness": "blocked/unverified for exact local multi-asset actions, historical stock membership and point-in-time fundamental contracts; existing current-member bars insufficient",
+  "recommendation": {
+    "question": "Can saved stock-momentum decision evidence fully reconstruct as-of eligible fifty, selected five, ranks, missingness and source identities?",
+    "financial_runs": 0,
+    "stop_condition": "Any necessary historical field absent or inconsistent; log missing evidence and preserve incumbent.",
+    "not_authorized": "No financial budget or source export created."
+  },
+  "validation": {
+    "json_parse": true,
+    "six_licensed_sha256_match_prior_receipts": true,
+    "tests_run": false,
+    "financial_runs": 0
+  },
+  "task": "docs/tasks/2026-10-28-qc-target-components.md"
+}

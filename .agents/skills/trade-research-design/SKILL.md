@@ -10,6 +10,11 @@ and the [mandate](../../../docs/goals.md). For external findings, use the source
 record under [research intake](../../../docs/research-intake.md); for an extension
 of a saved run, inspect its protocol and manifest rather than inferring its rules
 from a strategy name.
+Use [selection and stopping](../../../docs/research-development.md#selection-and-stopping-review)
+and, for a stage change, [individual stage development](../../../docs/research-development.md#individual-stage-development).
+Freeze finite aggregate bounds; expired or exhausted budgets cannot be reset by
+a new child cycle. Apply [Calmar comparability](../../../docs/research-development.md#calmar-comparison-eligibility)
+before defining a ranking claim and name any unmatched accounting or exposure.
 
 Establish the available inputs: proposed mechanism, exact trading rule, instrument
 universe, data availability at decision time, baseline, evaluation history and

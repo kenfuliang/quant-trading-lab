@@ -1,0 +1,104 @@
+{
+  "id": "qc-tutorial-packages-v1",
+  "captured_utc": "2026-10-27T03:39:28.636442+00:00",
+  "status": "bounded_source_discovery_and_four_permitted_exports_complete_other_tutorial_packages_unresolved",
+  "workspace": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we",
+  "branch": "codex/rsi-gate-robustness",
+  "base_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "working_tree": "preexisting dirty work preserved; base_sha does not identify all implementation bytes",
+  "stats": {
+    "tutorial_records": 82,
+    "github_title_search_receipts": 82,
+    "github_title_search_errors": 0,
+    "private_candidate_files_inspected": 140,
+    "explicit_file_grants_in_otherwise_unlicensed_repos": 1,
+    "tutorials_with_name_matched_candidate_leads": 69,
+    "permitted_source_bundles_exported": 4,
+    "remaining_without_qualified_licensed_source_bundle": 78,
+    "exact_current_tutorial_source_identities_verified": 0,
+    "runtime_qualified_packages": 0,
+    "exact_free_local_data_qualified_tutorials": 0,
+    "financial_attempts": 0
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 345,
+    "new_regression_tests": 6,
+    "documentation_files_checked": 116,
+    "dependencies": "pip check passed; strategy dependency names statically inspected, full versions/runtime not verified",
+    "source_package_audit": {
+      "id": "qc-tutorial-packages-v1",
+      "passed": true,
+      "records_verified": 82,
+      "source_bundles_verified": 4,
+      "input_hashes_verified": 614,
+      "artifact_processing_hashes_verified": 15,
+      "unchanged_strategy_source_bytes": true,
+      "no_market_data_in_archives": true,
+      "financial_attempts": 0
+    },
+    "prior_rights_audit": "passed unchanged",
+    "prior_inventory_audit": "passed unchanged",
+    "local_download_routes": "5 HTTP200 responses with exact expected ZIP hashes",
+    "browser": "82/4/78/1/0 filters, manifest disclosure and visible download links passed",
+    "git_diff_check_exit": 0
+  },
+  "permitted_zip": ".local/performance/qc-tutorial-packages-v1/permitted-sources.zip",
+  "payload_limits": [
+    "unchanged source/example files plus license and clearly separate metadata",
+    "no market data, state, credentials, third-party results or runtime binaries",
+    "no exact current hosted-source identity established",
+    "no runtime or exact free/local data reproduction qualified"
+  ],
+  "remaining": {
+    "no_qualified_licensed_bundle_in_search": 78,
+    "O03": "partial",
+    "O04": "candidate-specific clearance only",
+    "O05": "partial,4source/example bundles",
+    "O06_O07": "source contracts, runtime and exact free input qualification open"
+  },
+  "actions": {
+    "downloaded_strategy_executions": 0,
+    "financial_attempts": 0,
+    "market_data_downloads": 0,
+    "paid_usd": 0,
+    "new_services": 0,
+    "agents": 0,
+    "broker_actions": 0,
+    "commits_publication": 0
+  },
+  "failure_evidence": [
+    ".local/qc-tutorial-packages-v1/build-failure.json",
+    ".local/qc-tutorial-packages-v1/superseded/attempt1/receipt.json"
+  ],
+  "files": [
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/manifest.json",
+      "sha256": "840e9a0aa6e118b4037736f74581a80f7722e4820c741fcd108f4d29bfc0e32e"
+    },
+    {
+      "path": ".local/qc-tutorial-packages-v1/audit.json",
+      "sha256": "af5c353b33b276b7840e11aa1faa3869c3b761759a149a62678ba944d1c7b1f0"
+    },
+    {
+      "path": ".local/qc-tutorial-packages-v1/offline-checks.txt",
+      "sha256": "d6aa7692ab517a5061a2ece1898b5c0f533d3ccaf92bc444ca1b781d0bd89588"
+    },
+    {
+      "path": ".local/qc-tutorial-packages-v1/download-route-audit.json",
+      "sha256": "bcb5442e3a56166bb5b84cd50f4d81ad5e51d6784b66fb32bda08a79a8d44337"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/browser-audit.json",
+      "sha256": "376f4f286a2ab4136c840000cabd8279f8af5441c5718510d25b40d7b94e7860"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/review-preview.png",
+      "sha256": "4eb945035eb070b4b10c9056506d734c10079a8e8aa4a9fc661901b6ceb3dc15"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/permitted-sources.zip",
+      "sha256": "cb74784ad0893aad05a51101df82922642ef25e95e9175f68ecbf14baebb62f0"
+    }
+  ]
+}

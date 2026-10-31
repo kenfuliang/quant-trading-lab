@@ -1,0 +1,13 @@
+{
+  "schema": "t11-universe-capture-amendment/v1",
+  "parent": "research/plans/t11-universe-capture-v2.json",
+  "source_plan": ".local/t11-universe-cloud-v11/frozen-plan.json",
+  "used": 7,
+  "max_attempts": 10,
+  "remaining": [
+    "equal25",
+    "rs150",
+    "full50"
+  ],
+  "reason": "v10 completed but UI truncates long lines; v11 emits plain readable100-character JSON fragments. No encoding/compression or economic/execution change. Previous evidence preserved; no extra allowance."
+}

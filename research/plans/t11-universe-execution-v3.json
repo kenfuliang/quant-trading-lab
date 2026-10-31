@@ -1,0 +1,25 @@
+{
+  "schema": "t11-universe-execution-amendment/v3",
+  "created_utc": "2026-10-31T04:00:40.343089+00:00",
+  "parent": "research/plans/t11-universe-execution-v2.json",
+  "source_plan": ".local/t11-universe-cloud-v7/frozen-plan.json",
+  "aggregate_limit": 10,
+  "used_before_amendment": 4,
+  "deadline_utc": "2026-10-31T06:48:18.856919+00:00",
+  "planned_remaining": [
+    "rs125",
+    "full25",
+    "equal25",
+    "rs150",
+    "full50",
+    "equal50"
+  ],
+  "omitted": [
+    "restricted25",
+    "restricted50",
+    "half25",
+    "half50"
+  ],
+  "reason": "Reporting-only channel correction log->debug;10caseASTcomparisonsidenticalafter emitter-name normalization. Priorcompletedcasepreserved; reruncounts.",
+  "financial_inference": "Nooriginalboth-controljointpassclaim;restrictedcontrols omitted. Provisionalnative-engineperformance comparisononly;noneofmissingdaily/accountingevidence inferred."
+}

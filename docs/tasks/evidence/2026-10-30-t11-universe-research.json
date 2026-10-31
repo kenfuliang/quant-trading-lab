@@ -1,0 +1,91 @@
+{
+  "schema": "strategy-source-design-review/v1",
+  "review_id": "T11-LONG-UNIVERSE-20261030-02",
+  "created_utc": "2026-10-31T03:41:53.765913+00:00",
+  "status": "completed_source_review_proposed_selector_financial_readiness_blocked",
+  "user_direction": "Research and choose a pipeline improvement for the requested six ETFs plus cash",
+  "candidate": "GATE-RS1; one proposed position-selection configuration",
+  "sources": [
+    {
+      "url": "https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.aqr.com/insights/research/journal-article/a-century-of-evidence-on-trend-following-investing",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.nber.org/papers/w22208",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.lehigh.edu/~xuy219/research/COWY.pdf",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.sec.gov/files/investor/pubs/leveragedetfs-alert.htm",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.proshares.com/our-etfs/leveraged-and-inverse/tqqq",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.direxion.com/product/daily-semiconductor-bull-bear-3x-etfs",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.ishares.com/us/literature/fact-sheet/soxx-ishares-semiconductor-etf-fund-fact-sheet-en-us.pdf",
+      "access_date": "2026-10-30"
+    },
+    {
+      "url": "https://www.direxion.com/uploads/Direxion-Changes-Index-for-Semiconductor-ETFs.pdf",
+      "access_date": "2026-10-30"
+    }
+  ],
+  "source_access_failures": [
+    "NBER direct open403; search abstract only, not detailed method",
+    "ScienceDirect direct open403; author-hosted COWY paper substituted for reading, not data"
+  ],
+  "budgets": {
+    "proposed_configurations": 1,
+    "financial_cases_authorized": 0,
+    "financial_cases_used": 0,
+    "future_financial_case_proposal": 10,
+    "training_runs": 0,
+    "market_data_downloads": 0,
+    "orders": 0,
+    "deployments": 0
+  },
+  "limitations": [
+    "Published trend results do not establish six-ETF alpha",
+    "Actual ETF ranking confounds selection and embedded leverage; declared families are not independent",
+    "Complete free qualified inputs, gate state, daily capture/accounting and runner remain missing",
+    "All proposed2020-2025evaluation history viewed; no untouched holdout",
+    "No performance measured or incumbent changed"
+  ],
+  "validation": {
+    "design_contract": "passed: exact six symbols, unique family membership, unit-sum control,10case proposal arithmetic, execution disabled",
+    "documentation": "passed:188 files; local targets, metadata and catalog parity",
+    "documentation_exit": 0,
+    "artifact_hashes": "passed:4artifacts"
+  },
+  "artifacts": [
+    {
+      "path": "research/plans/t11-long-equity-universe-v2.design.json",
+      "sha256": "9a72dc455af22aa4b0050195bfd74801f4189a875d9c604515c401f688a79e9c"
+    },
+    {
+      "path": "research/plans/t11-long-equity-universe-v1.design.json",
+      "sha256": "85905a7df130329ae05850a1ede28f958bfc282de78333a282c9795a1ef6eedd"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-t11-universe-research.md",
+      "sha256": "f985f1279e0cdc6d837a32871ace7a6af5d57b98b2c434fab7baa893cbaa08a1"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-t11-long-equity-universe.md",
+      "sha256": "b7eb914f99bafca9b816e0291c0137c797d5e356c5083279062550ffe44eb7cf"
+    }
+  ]
+}

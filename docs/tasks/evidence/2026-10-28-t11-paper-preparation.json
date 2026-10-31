@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-10-29T06:58:52.058723+00:00",
+  "status": "offline_preparation_verified_full_runner_blocked",
+  "paper_orders": 0,
+  "financial_runs": 0,
+  "tests": 520,
+  "focused_tests": 5,
+  "docs_checked": 167,
+  "make_check_exit": 0,
+  "diff_check_exit": 0,
+  "native_bridge_verified": false,
+  "qualified_live_signal_producer": false,
+  "order_bearing_cli": false,
+  "pilot_cap_usd": 10000,
+  "supervised_sessions_authorized": 1,
+  "preflight_receipt": ".local/alpaca-paper/runs/20261029T064715124141Z-preflight/summary.json",
+  "source_sha256": {
+    "paper_trading/t11_pilot.py": "ff15d040428b7a0e65cba870d98b34e6a15864b40d9be8ee09bf48ce6571ccab",
+    "tests/test_t11_pilot.py": "997fa541d217d64aedb321af9a7bf7c0aa9bfa402279e2c2d9acf380b887a3a2",
+    "docs/operations/alpaca-paper.md": "bc44768348ba6847a8b4d084545e7f51934852b1af54cc8059d79d55495b08aa",
+    "docs/tasks/2026-10-28-t11-paper-runner.md": "3344bd9a8a3c6c080e781c21a06638fdeb871e4bb86320cdb2208902bb4149cc"
+  }
+}

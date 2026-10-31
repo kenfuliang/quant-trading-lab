@@ -11,6 +11,12 @@ Identify the exact candidate, current stage, intended next stage, experiment
 specification, run/data identities, trial history and evaluation evidence. Review
 the relevant [paper SOP](../../../docs/operations/paper-connection.md) only for an
 operational transition; a review is not permission to invoke it.
+For Alpaca use its [research-to-paper handoff](../../../docs/operations/alpaca-paper.md#research-to-paper-handoff).
+Report [evidence transitions](../../../docs/research-development.md#evidence-transitions-are-separate)
+separately: aggregate compatibility, daily decision/account reproduction and paper
+readiness. None implies the next. Apply the canonical
+[comparison review](../../../docs/research-development.md#calmar-comparison-eligibility)
+before interpreting a Calmar rank; missing evidence remains unknown.
 
 ## Decide from evidence
 

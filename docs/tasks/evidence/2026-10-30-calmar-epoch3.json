@@ -1,0 +1,693 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "CALMAR-EPOCH3-20261030",
+  "status": "success",
+  "outcome_reason": "Bounded research programme completed at the actual twelve-case cap; both fixed challengers rejected. Execution/audit success is not financial improvement.",
+  "missing_evidence": {},
+  "cases": [
+    {
+      "case_id": "c1.gate-5",
+      "name": "gate-5 c1",
+      "run_id": "attempt-0001",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c1.frozen.json sha256:edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "gate",
+        "cost_bps": 5,
+        "cagr_pct": 12.88709423400256,
+        "max_drawdown_pct": 12.474834306860805,
+        "calmar": 1.0330473268823317,
+        "sharpe": 1.002947647564863,
+        "terminal_equity": 883925.72,
+        "sessions": 2242,
+        "uw_sessions": 300,
+        "uw_days": 436,
+        "underwater_fraction": 0.8826940231935771,
+        "right_censored": 0,
+        "fees_usd": 430,
+        "slippage_usd": 15040.91,
+        "trades": 430,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.86090873163818,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 33821,
+      "started_utc": "2026-10-30T07:32:05.503111+00:00",
+      "exited_utc": "2026-10-30T07:32:10.346292+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c1.equal-5",
+      "name": "equal-5 c1",
+      "run_id": "attempt-0002",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c1.frozen.json sha256:edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "equal",
+        "cost_bps": 5,
+        "cagr_pct": 9.945792168130275,
+        "max_drawdown_pct": 14.132887264515526,
+        "calmar": 0.7037339208883313,
+        "sharpe": 0.8796952090503178,
+        "terminal_equity": 698563.06,
+        "sessions": 2242,
+        "uw_sessions": 489,
+        "uw_days": 709,
+        "underwater_fraction": 0.8835860838537021,
+        "right_censored": 0,
+        "fees_usd": 1192,
+        "slippage_usd": 2815.9098,
+        "trades": 1192,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8601721643239222,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 33887,
+      "started_utc": "2026-10-30T07:32:10.352867+00:00",
+      "exited_utc": "2026-10-30T07:32:14.642331+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c1.corr-5",
+      "name": "corr-5 c1",
+      "run_id": "attempt-0003",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c1.frozen.json sha256:edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "corr",
+        "cost_bps": 5,
+        "cagr_pct": 9.585012889064593,
+        "max_drawdown_pct": 16.494603036798427,
+        "calmar": 0.5810999432772664,
+        "sharpe": 0.8022597114845136,
+        "terminal_equity": 678391.97,
+        "sessions": 2242,
+        "uw_sessions": 402,
+        "uw_days": 585,
+        "underwater_fraction": 0.9058876003568243,
+        "right_censored": 0,
+        "fees_usd": 468,
+        "slippage_usd": 17807.99,
+        "trades": 468,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8611794673138732,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 33931,
+      "started_utc": "2026-10-30T07:32:14.647006+00:00",
+      "exited_utc": "2026-10-30T07:32:19.116312+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c1.gate-10",
+      "name": "gate-10 c1",
+      "run_id": "attempt-0004",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c1.frozen.json sha256:edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "gate",
+        "cost_bps": 10,
+        "cagr_pct": 12.566465747294187,
+        "max_drawdown_pct": 12.519588112730762,
+        "calmar": 1.0037443431957442,
+        "sharpe": 0.9809008857983627,
+        "terminal_equity": 861795.23,
+        "sessions": 2242,
+        "uw_sessions": 300,
+        "uw_days": 436,
+        "underwater_fraction": 0.8844781445138269,
+        "right_censored": 0,
+        "fees_usd": 429,
+        "slippage_usd": 29480.145,
+        "trades": 429,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8610869475645722,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 33970,
+      "started_utc": "2026-10-30T07:32:19.122785+00:00",
+      "exited_utc": "2026-10-30T07:32:23.453302+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c1.equal-10",
+      "name": "equal-10 c1",
+      "run_id": "attempt-0005",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c1.frozen.json sha256:edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "equal",
+        "cost_bps": 10,
+        "cagr_pct": 9.870477804312383,
+        "max_drawdown_pct": 14.199875636285208,
+        "calmar": 0.6951101585066116,
+        "sharpe": 0.8737249651451445,
+        "terminal_equity": 694308.82,
+        "sessions": 2242,
+        "uw_sessions": 489,
+        "uw_days": 709,
+        "underwater_fraction": 0.8840321141837645,
+        "right_censored": 0,
+        "fees_usd": 1188,
+        "slippage_usd": 5620.1348,
+        "trades": 1188,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8601771840660516,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 33991,
+      "started_utc": "2026-10-30T07:32:23.457725+00:00",
+      "exited_utc": "2026-10-30T07:32:27.614791+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c1.corr-10",
+      "name": "corr-10 c1",
+      "run_id": "attempt-0006",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c1.frozen.json sha256:edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "corr",
+        "cost_bps": 10,
+        "cagr_pct": 9.127067019472657,
+        "max_drawdown_pct": 16.78393549149485,
+        "calmar": 0.5437977895051931,
+        "sharpe": 0.7685584424687233,
+        "terminal_equity": 653533.99,
+        "sessions": 2242,
+        "uw_sessions": 403,
+        "uw_days": 586,
+        "underwater_fraction": 0.9094558429973238,
+        "right_censored": 0,
+        "fees_usd": 469,
+        "slippage_usd": 34645.81,
+        "trades": 469,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8614618497996196,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 33998,
+      "started_utc": "2026-10-30T07:32:27.620245+00:00",
+      "exited_utc": "2026-10-30T07:32:32.545512+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c2.gate-5",
+      "name": "gate-5 c2",
+      "run_id": "attempt-0007",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "gate",
+        "cost_bps": 5,
+        "cagr_pct": 12.88709423400256,
+        "max_drawdown_pct": 12.474834306860805,
+        "calmar": 1.0330473268823317,
+        "sharpe": 1.002947647564863,
+        "terminal_equity": 883925.72,
+        "sessions": 2242,
+        "uw_sessions": 300,
+        "uw_days": 436,
+        "underwater_fraction": 0.8826940231935771,
+        "right_censored": 0,
+        "fees_usd": 430,
+        "slippage_usd": 15040.91,
+        "trades": 430,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.86090873163818,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35048,
+      "started_utc": "2026-10-30T07:35:12.927319+00:00",
+      "exited_utc": "2026-10-30T07:35:16.938344+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c2.vol-5",
+      "name": "vol-5 c2",
+      "run_id": "attempt-0008",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "vol",
+        "cost_bps": 5,
+        "cagr_pct": 14.612826483354802,
+        "max_drawdown_pct": 29.668899418906125,
+        "calmar": 0.49253011636970145,
+        "sharpe": 0.8632179585462817,
+        "terminal_equity": 1011934.48,
+        "sessions": 2242,
+        "uw_sessions": 170,
+        "uw_days": 248,
+        "underwater_fraction": 0.8661909009812667,
+        "right_censored": 0,
+        "fees_usd": 389,
+        "slippage_usd": 15323.0,
+        "trades": 389,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.9794878864760583,
+        "rebalance_decisions": 107,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35056,
+      "started_utc": "2026-10-30T07:35:16.943851+00:00",
+      "exited_utc": "2026-10-30T07:35:21.282016+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c2.breadth-5",
+      "name": "breadth-5 c2",
+      "run_id": "attempt-0009",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "breadth",
+        "cost_bps": 5,
+        "cagr_pct": 7.877843994452638,
+        "max_drawdown_pct": 16.86145475625591,
+        "calmar": 0.46721022049000915,
+        "sharpe": 0.7179584997707671,
+        "terminal_equity": 589785.33,
+        "sessions": 2242,
+        "uw_sessions": 527,
+        "uw_days": 768,
+        "underwater_fraction": 0.9179304192685103,
+        "right_censored": 0,
+        "fees_usd": 487,
+        "slippage_usd": 15359.77,
+        "trades": 487,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.7668302319560953,
+        "rebalance_decisions": 158,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35066,
+      "started_utc": "2026-10-30T07:35:21.287390+00:00",
+      "exited_utc": "2026-10-30T07:35:26.945854+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c2.gate-10",
+      "name": "gate-10 c2",
+      "run_id": "attempt-0010",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "gate",
+        "cost_bps": 10,
+        "cagr_pct": 12.566465747294187,
+        "max_drawdown_pct": 12.519588112730762,
+        "calmar": 1.0037443431957442,
+        "sharpe": 0.9809008857983627,
+        "terminal_equity": 861795.23,
+        "sessions": 2242,
+        "uw_sessions": 300,
+        "uw_days": 436,
+        "underwater_fraction": 0.8844781445138269,
+        "right_censored": 0,
+        "fees_usd": 429,
+        "slippage_usd": 29480.145,
+        "trades": 429,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8610869475645722,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35074,
+      "started_utc": "2026-10-30T07:35:26.950372+00:00",
+      "exited_utc": "2026-10-30T07:35:30.860772+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c2.vol-10",
+      "name": "vol-10 c2",
+      "run_id": "attempt-0011",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "vol",
+        "cost_bps": 10,
+        "cagr_pct": 14.309902291142507,
+        "max_drawdown_pct": 29.674498124317804,
+        "calmar": 0.48222895737588756,
+        "sharpe": 0.8481282695806013,
+        "terminal_equity": 988340.08,
+        "sessions": 2242,
+        "uw_sessions": 170,
+        "uw_days": 248,
+        "underwater_fraction": 0.8670829616413916,
+        "right_censored": 0,
+        "fees_usd": 387,
+        "slippage_usd": 29855.63,
+        "trades": 387,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.9797016493867649,
+        "rebalance_decisions": 107,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35078,
+      "started_utc": "2026-10-30T07:35:30.865063+00:00",
+      "exited_utc": "2026-10-30T07:35:34.785396+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "c2.breadth-10",
+      "name": "breadth-10 c2",
+      "run_id": "attempt-0012",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "breadth",
+        "cost_bps": 10,
+        "cagr_pct": 7.492097276927212,
+        "max_drawdown_pct": 17.296288348041,
+        "calmar": 0.43316214011752274,
+        "sharpe": 0.6866568586954586,
+        "terminal_equity": 571249.16,
+        "sessions": 2242,
+        "uw_sessions": 567,
+        "uw_days": 829,
+        "underwater_fraction": 0.9206066012488849,
+        "right_censored": 0,
+        "fees_usd": 485,
+        "slippage_usd": 30052.415,
+        "trades": 485,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.7670061604147093,
+        "rebalance_decisions": 158,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35100,
+      "started_utc": "2026-10-30T07:35:34.790285+00:00",
+      "exited_utc": "2026-10-30T07:35:40.766291+00:00",
+      "exit_code": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "research/plans/calmar-epoch3.program.json",
+      "sha256": "2ed448d3118acc47b78fa076eaa73b1a1565b159401cfa42011ceb699fb51810",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "research/plans/calmar-epoch3-c1.frozen.json",
+      "sha256": "edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "research/plans/calmar-epoch3-c2.frozen.json",
+      "sha256": "e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-calmar-epoch3.md",
+      "sha256": "7837cb25790eb583129aa53f7fd922a62503d9192edfaaec7bc58d706fa6bf48",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-calmar-epoch3-experience-report.md",
+      "sha256": "e9249645aabca8131e535b5cfe787f15886e739a2dc6e6a1f3ab04973fc11d42",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3-c1.json",
+      "sha256": "82bab4ac50371e435c0ec1db8164c13b1b05f85c7fc7adc275ffac8ab9080da2",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3-c2.json",
+      "sha256": "5bd468df820cb5c41bfe3454861280b3307ab5cd19fa48adab8287f067ddd869",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3-terminal.json",
+      "sha256": "281fee4ef44db88597b271d5e4363bd763a2d16c11026783952e4c1c6e27b581",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": ".local/calmar-epoch3/review/manifest.json",
+      "sha256": "ae0fae5851454ee1a7bd569a310e735d2b221989d5e35baa8e63b8d1e6eab7d1",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": ".local/calmar-epoch3/c1-review/decision-diagnosis.json",
+      "sha256": "c7b2987c1fa37eff0013ca43f85bbe8c97ea4f1bdbc4cb89374d17acce453eac",
+      "role": "programme evidence, result, diagnostic or lesson"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2-review/decision-diagnosis.json",
+      "sha256": "10f0111eddf05b92ad0583ba89df5ea809604934c4eaac2bf090973dabbfb5db",
+      "role": "programme evidence, result, diagnostic or lesson"
+    }
+  ],
+  "comparison_groups": [
+    [
+      "c1.gate-5",
+      "c1.equal-5",
+      "c1.corr-5"
+    ],
+    [
+      "c1.gate-10",
+      "c1.equal-10",
+      "c1.corr-10"
+    ],
+    [
+      "c2.gate-5",
+      "c2.vol-5",
+      "c2.breadth-5"
+    ],
+    [
+      "c2.gate-10",
+      "c2.vol-10",
+      "c2.breadth-10"
+    ]
+  ],
+  "financial_cases": 12,
+  "remaining_financial_slots": 0,
+  "financial_failures": 0,
+  "automatic_retries": 0,
+  "incumbent_changed": false,
+  "independent_alpha_established": false,
+  "stop_reason": "actual shared case cap reached",
+  "goal_time_limit_hours": 4,
+  "final_checks": {
+    "make_check_exit": 0,
+    "tests_passed": 580,
+    "test_seconds": 15.7,
+    "documentation_files": 178,
+    "dependencies": "no broken requirements",
+    "parent_and_child_receipt_validation": "passed",
+    "whitespace_check": "passed",
+    "leaderboard": "all original rows retained, one table, twelve new measured context-tagged rows",
+    "chart": "visually inspected; labels, curves and 2017 partial-year note legible",
+    "private_log_sha256": "fb867736841dcce60006a5dcd556b1be64fa533f815510c30aca69292e385999"
+  },
+  "preserved_failures": [
+    "Intentional synthetic child failure and timeout retained; not financial cases.",
+    "One reporting import-path error before outputs, corrected with explicit PYTHONPATH; no financial relaunch.",
+    "Font-cache warning retained; rendering completed and PNG visually checked."
+  ],
+  "resource_scope": {
+    "paid_resources": 0,
+    "new_market_data_downloads": 0,
+    "broker_connections": 0,
+    "orders": 0,
+    "services": 0,
+    "deployments": 0,
+    "commits": 0,
+    "publication": 0
+  },
+  "lessons": [
+    "Lower measured correlation did not improve this net portfolio.",
+    "More red/cash states did not improve growth, drawdown or recovery.",
+    "Scoped arithmetic verification and an active research loop are not proof of alpha or operational readiness."
+  ],
+  "completed_utc": "2026-10-30T07:41:40.027473+00:00"
+}

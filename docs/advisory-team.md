@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-30
 owner: project-maintainers
 ---
 
@@ -76,18 +76,51 @@ Director means synthesis, not trading authorization or an invented risk override
 
 Example: `/ask-director What should we do next after the capability review?`
 
+## ask-pm
+
+Purpose: coordinate research scope, ownership, dependencies and evidence closure.
+Read the catalog, requested cycle and its saved attempts. Identify missing receipts,
+failed/partial cases, conflicting ownership, remaining bounds and the next bounded
+handoff. The [research management procedure](operations/recursive-research.md#research-management)
+owns durable closure and the leaderboard handoff.
+
+Output: a concise checklist of verified completion, blockers, accountable workflow
+and next acceptance evidence. Distinguish historical completion from current
+checkout availability. Consultation does not launch agents, change priorities,
+reset budgets, adopt a strategy or invoke broker operations. Requested durable
+updates route to `trade-research-management` within their authorized scope.
+
+Example: `/ask-pm What evidence is missing before we close this cycle?`
+
 ## ask-infra
 
-Purpose: make the data/runtime/storage/monitoring system reproducible and recoverable.
-Own questions about native reuse, runtime compatibility, configuration, catalog,
-persistence, observability, backups, dependencies and deployment.
+Purpose: make the minimum infrastructure for a named research or trading activity
+reproducible, financially interpretable and recoverable. Own platform readiness
+assessment and interfaces across these business capabilities:
 
-Output: native capability versus actual gap, proposed configuration/interface,
-failure/recovery behavior and a concrete verification plan. Use capability-review
-for unknown native support; infra-change for requested code changes; local-ops for
-requested existing checks. Keep data engineering and process reliability in scope.
+| Coverage | Infrastructure responsibility / specialist boundary |
+| --- | --- |
+| Source and universe | Free/provider constraints, source-use evidence, acquisition budgets, security, membership/identifier histories and coverage; ask-quant judges whether selection supports the study |
+| Data qualification | Raw preservation, schemas, sessions/timezones, availability, corporate actions, revisions and native catalog lineage; qualification is distinct from download completion |
+| Accounting and comparability | Data-to-ledger interfaces for cash, dividends, splits, costs, financing and matched benchmarks; ask-quant/ask-risk review financial assumptions, ask-algo owns strategy/order semantics |
+| Reproducible research | Pinned dependencies, immutable inputs, run identities, MLflow/report provenance and CI; ask-ml-infra owns ML-specific feature/model/fold lineage |
+| Runtime and integration | Native reuse, mode isolation, broker seams, scheduling/backpressure and idempotency; actual broker work follows its scoped SOP |
+| Operations and stewardship | Freshness/health, logs, storage growth, credentials, backup/restore, failure capture, incident response and deployment/rollback evidence |
 
-Example: `/ask-infra Which persistence path works with our current Python node?`
+Output: activity-specific readiness and dependency map, demonstrated native
+capability versus gap, owner, failure/recovery behavior and the smallest bounded
+verification task. Use implemented, conditional, unverified, blocked and planned
+labels with evidence. Report infrastructure readiness separately from investment
+quality and paper/live readiness. Do not require a complete institutional platform
+before every offline study or change portfolio priorities during consultation.
+
+Use the [catalog calling map](skills.md#infrastructure-calling-map) for exact skill
+selection, inputs and returned evidence. Read the selected skill before executing;
+a planned skill is not callable. Consultation does not initiate downloads, services,
+financial simulations, agent delegation or broker operations.
+
+Examples: `/ask-infra What blocks a reliable 500-stock comparison?` and
+`/ask-infra Which persistence path works with our current Python node?`
 
 ## ask-quant
 

@@ -1,0 +1,57 @@
+{
+  "schema": "sector-selection-rsi-setup-v1",
+  "created_utc": "2026-10-28T21:30:13.951359+00:00",
+  "status": "goal_created_input_qualification_pending",
+  "financial_runs": 0,
+  "current_executable_financial_allowance": 0,
+  "conditional_attempt_cap": 8,
+  "qualification_deadline_utc": "2026-10-28T22:30:00Z",
+  "absolute_deadline_utc": "2026-10-29T00:30:00Z",
+  "parallel_consultations": [
+    "calmar_quant_advice",
+    "calmar_risk_advice",
+    "calmar_infra_advice"
+  ],
+  "decision": "volatility_adjusted_sector_ranking_only",
+  "disagreement": {
+    "risk": "absolute_momentum_cash_veto_deferred_to_avoid_two_changes",
+    "infra": "three_asset_universe_nearer_implementation_but_also_permission_blocked"
+  },
+  "observed_blockers": [
+    "no_qualified_local_sector_panel_found_in_reviewed_catalogs",
+    "current_stock_cache_financially_ineligible",
+    "three_asset_price_permission_bundle_absent",
+    "frozen_c06_parent_receipt_path_defect_requires_new_adapter_qualification"
+  ],
+  "inputs": {
+    "docs/tasks/2026-10-28-rsi-epoch2.md": "e4b2f31a5052bb9110c1e7f224eab2e38d6513837869a841d7bef711af92ef20",
+    "docs/tasks/evidence/2026-10-28-rsi-epoch2-final.json": "1397cd306986fe9caf3aa6cf53cb729d347ecb46471c4a95278df7e085eb622a",
+    "docs/tasks/2026-10-25-sector-momentum-comparison.md": "00fcf99b83a3bb3fce6e8d4c4567bfc8e982e9828eba0cd6994f0adf591dcef1",
+    "docs/tasks/2026-10-25-multi-asset-qualification-v2-checkpoint.md": "8ba258dcea3700cdd010fefd405547da648d741321f11ba8d01a6e4fc8d86161",
+    "data/manifests/alpaca-us-stock-pilot-v1.json": "eec1f7ff3fbae7f8d83aa356dcf300821930f01a6d571268952fa38079627e6a",
+    "data/manifests/spy-equities-2016-2025-v1.json": "95602e7332a5cb9ac34e6334f1e9c624cfbd62d8f8b66d40e309034a685e6adf"
+  },
+  "required_three_asset_bundle_exists": false,
+  "scope": {
+    "downloads": 0,
+    "credential_reads": 0,
+    "broker_operations": 0,
+    "services": 0,
+    "financial_results_claimed": false
+  },
+  "checks": {
+    "documentation": {
+      "exit": 0,
+      "files": 159
+    },
+    "scoped_whitespace": {
+      "exit": 0
+    },
+    "referenced_source_hashes": {
+      "verified": 6,
+      "changed": 0
+    },
+    "financial_execution": "not_performed_docs_only_setup"
+  },
+  "task_sha256": "5fd6781965231412b353705ce412d8a913a21da6765664c87aefc98e26fca7d1"
+}

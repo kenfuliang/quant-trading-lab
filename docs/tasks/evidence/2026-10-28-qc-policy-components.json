@@ -1,0 +1,227 @@
+{
+  "review_id": "qc-policy-components-20261028",
+  "status": "screened_components_with_blockers_no_financial_execution",
+  "created_utc": "2026-10-28T16:36:23.289661+00:00",
+  "scope": {
+    "catalog_records": 622,
+    "representatives_reviewed": 4,
+    "max_representatives": 4,
+    "financial_runs": 0,
+    "dataset_downloads": 0,
+    "source_exports": 0,
+    "packages_installed": 0,
+    "services_started": 0,
+    "broker_operations": 0,
+    "subagents_launched": 0,
+    "web_tool_calls": 2,
+    "max_web_tool_calls": 8,
+    "max_minutes": 25
+  },
+  "inputs": [
+    {
+      "path": "research/catalogs/qc-inventory-v1/catalog.json",
+      "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+    },
+    {
+      "path": "research/catalogs/qc-stage-fit-v1/mapping.csv",
+      "sha256": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa"
+    },
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": "research/quantconnect/sources/dual_thrust_fx_original.py",
+      "sha256": "58971b1adc9416803338f973a9064b8cfc813f7b8929c2eb9a27a927c2657555"
+    },
+    {
+      "path": "research/quantconnect/sources/LICENSE-JeSuisTM.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-dual-thrust-spy-comparison.md",
+      "sha256": "49a8815bc818dbec749766d7afd878b3fb30540e2ad4aa0148a07b835e6e96da"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-qc504-evaluation.md",
+      "sha256": "f61dad9adfb141b6bc54fe38eba8351f7ffb69cfb54843b93520da9c1853313b"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-qc504-sleeve-ablation.md",
+      "sha256": "4a7ae7e5e604311a960f16d7d67e5b2f0eb65fdc8d4fb67bfdf6dabb3ecdc8d2"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-qc504-t11-gate.md",
+      "sha256": "48fe37155893600480e26d9103f789a7b6cf7acbea71b95c854016e57d68d896"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/docs/tasks/2026-10-28-calmar-rsi-epoch.md",
+      "sha256": "43e51d124e86c92cd4480c4e0a2c069141236e202841f3deeac6fbe33d9e2962"
+    }
+  ],
+  "cards": [
+    {
+      "id": "QC-T-15258",
+      "related_catalog_ids": [
+        "QC-C-12"
+      ],
+      "title": "Dual Thrust Trading Algorithm",
+      "stage_fit": [
+        "position_proposal"
+      ],
+      "mechanism_status": "public method verified; licensed alternative inspected; exact tutorial source identity unverified",
+      "source_url": "https://www.quantconnect.com/research/15258/dual-thrust-trading-algorithm/",
+      "source_revision": null,
+      "licensed_alternative": {
+        "url": "https://github.com/je-suis-tm/quant-trading/blob/611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5/Dual%20Thrust%20backtest.py",
+        "revision": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+        "license": "Apache-2.0",
+        "sha256": "58971b1adc9416803338f973a9064b8cfc813f7b8929c2eb9a27a927c2657555"
+      },
+      "causal_input_contract": "Completed prior-session OHLC, current observed opening reference and completed intraday bars; timezone/calendar and availability times explicit.",
+      "output_contract": "Signed target/direction plus bands, source as-of time, decision time, next eligible fill time and exit policy; portfolio sizing stays separate.",
+      "blockers": [
+        "Original alternative incorporates current-session eventual range at open; preserve causal adaptation repair.",
+        "FX versus SPY, five-day versus tutorial four-day and session differences preclude equivalence.",
+        "Exact intraday local input/free access and short locate/accounting not newly qualified."
+      ],
+      "duplicate_status": "Same-title community/tutorial link and licensed citation lead, not proven byte/code duplicate.",
+      "prior_evidence": "Existing causal SPY adaptation failed frozen growth/Calmar/recovery screen; retain negative baseline.",
+      "simpler_controls": [
+        "SPY hold",
+        "Intraday long with matching opening/closing times"
+      ],
+      "next_question": "Attribution of saved breakout losses before any new financial hypothesis; do not rerun unchanged failed rule."
+    },
+    {
+      "id": "QC-T-15351",
+      "title": "Leveraged ETFs with Systematic Risk Management",
+      "stage_fit": [
+        "position_proposal",
+        "risk_and_sizing"
+      ],
+      "mechanism_status": "public method description verified; runtime/source package unqualified",
+      "source_url": "https://www.quantconnect.com/research/15351/leveraged-etfs-with-systematic-risk-management/",
+      "source_revision": null,
+      "causal_input_contract": "Completed SSO closes and 200 completed-session SMA; tradable SSO/SHY price/action/calendar identities.",
+      "output_contract": "SSO versus SHY eligibility/intended target, timestamp and reason; portfolio risk budget supplied separately.",
+      "blockers": [
+        "No verified complete licensed implementation in existing package review; name-matched source grant unestablished.",
+        "SSO/SHY local history/actions not qualified here.",
+        "Embedded daily-reset leverage, ETF expenses, cash/debit funding and fill timing need explicit modeling."
+      ],
+      "duplicate_status": "Shares trend/defensive-rotation mechanism with project gates; not an established independent signal or code duplicate.",
+      "prior_evidence": "No local reproduction of this tutorial. Separate closed SPY continuous-cap epoch failed its Calmar guards; not evidence this tutorial failed.",
+      "simpler_controls": [
+        "Unchanged SPY policy",
+        "Fixed SSO/SHY allocation",
+        "Unleveraged matched trend rule"
+      ],
+      "next_question": "Qualify SSO/SHY action/timing inputs and specify whether trend eligibility alone adds value versus fixed exposure; zero financial work first."
+    },
+    {
+      "id": "QC-C-504",
+      "related_catalog_ids": [
+        "QC-C-529",
+        "QC-C-755"
+      ],
+      "title": "Multi-Model Tactical ETF Rotation",
+      "stage_fit": [
+        "multi_sleeve_position_proposal",
+        "fixed_sleeve_allocation"
+      ],
+      "not_established": "Adaptive strategy selector",
+      "mechanism_status": "prior private source evaluation and saved sleeve studies; current public detail retrieval failed",
+      "source_url": "https://www.quantconnect.com/strategies/504/Multi-Model-Tactical-ETF-Rotation",
+      "source_revision": "V1.1.0 observed in prior study; immutable upstream commit unknown",
+      "private_source_policy": "No full source read/export/redistribution in this review; rights remain unverified.",
+      "causal_input_contract": "Each sleeve emits targets using its own causally available inputs; aggregate target decisions require aligned as-of times and preserved shared-capital policy.",
+      "output_contract": "sleeve_id, target weights, decision as-of time, eligibility, allocation budget and reason; preserve contributions separately from standalone results.",
+      "blockers": [
+        "T10/T11/S2/S3 fixed quarter budgets are not learned sleeve switching.",
+        "Standalone full-budget ablation is not inside-ensemble causal attribution.",
+        "Qualified local multi-ETF inputs, native accounting parity and source reuse rights still missing.",
+        "Embedded inverse/volatility-product roles cannot be assumed protective."
+      ],
+      "duplicate_status": "529/755 variants hinted by titles; no code equivalence audit. All six catalog strategy-selection hints are title-based, not verified adaptive selectors.",
+      "prior_evidence": "Financed T11 cap reduced drawdown but lowered growth and lengthened underwater duration; tradeoff, not promotion.",
+      "simpler_controls": [
+        "Ungated T11",
+        "Blanket-cap T11",
+        "Signal-independent fixed exposure",
+        "Fixed ensemble weights"
+      ],
+      "next_question": "Audit saved decision-level hedge suppression/overlap attribution and define ex-ante instrument roles before testing role-aware sizing."
+    },
+    {
+      "id": "QC-T-15263",
+      "title": "Forecasting Stock Prices using a Temporal CNN Model",
+      "stage_fit": [
+        "features",
+        "prediction_for_position_proposal"
+      ],
+      "not_established": "Whole-market risk classifier or strategy selector",
+      "mechanism_status": "public method description verified; complete licensed runtime package absent",
+      "source_url": "https://www.quantconnect.com/research/15263/forecasting-stock-prices-using-a-temporal-cnn-model/",
+      "source_revision": null,
+      "causal_input_contract": "Fifteen available OHLCV steps; training labels require five future timestamps to mature. Fit preprocessing only on training history.",
+      "output_contract": "Up/down/stationary probabilities with horizon, model revision, fit cutoff, last input availability, label maturity and calibration status; separate policy converts forecasts into target weights.",
+      "blockers": [
+        "No verified complete licensed implementation or locked TensorFlow/Keras/scikit-learn runtime.",
+        "Label alignment and training/inference cutoff need audit; description alone does not prove no leakage.",
+        "Direction labels do not encode drawdown, recovery or best policy; new targets require separate preregistration."
+      ],
+      "duplicate_status": "ML family membership only; no equivalence with naive Bayes/boosting or learned risk regimes established.",
+      "prior_evidence": "No local trained-model or financial reproduction claimed.",
+      "simpler_controls": [
+        "Constant/majority forecast",
+        "Linear model on same frozen inputs",
+        "Fixed EMA policy after matching costs"
+      ],
+      "next_question": "Offline causal label/scaler alignment and baseline prediction audit, then separately test incremental portfolio value if qualified."
+    }
+  ],
+  "web_checks": [
+    {
+      "url": "https://www.quantconnect.com/research/15258/dual-thrust-trading-algorithm/",
+      "status": "public method reviewed"
+    },
+    {
+      "url": "https://www.quantconnect.com/research/15351/leveraged-etfs-with-systematic-risk-management/",
+      "status": "public method reviewed"
+    },
+    {
+      "url": "https://www.quantconnect.com/strategies/504/Multi-Model-Tactical-ETF-Rotation",
+      "status": "tool internal error; no current detail verified"
+    },
+    {
+      "url": "https://www.quantconnect.com/research/15263/forecasting-stock-prices-using-a-temporal-cnn-model/",
+      "status": "public method reviewed"
+    },
+    {
+      "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/algorithm-framework/overview",
+      "status": "official framework reference reviewed"
+    },
+    {
+      "url": "https://github.com/je-suis-tm/quant-trading/blob/611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5/Dual%20Thrust%20backtest.py",
+      "status": "pinned public source inspected"
+    }
+  ],
+  "best_next_bounded_question": {
+    "stage": "risk_and_sizing",
+    "question": "Using only existing saved SPY decisions and outcomes, where did the continuous sizing candidate cut exposure or restore it at disadvantageous times relative to the discrete incumbent?",
+    "financial_attempts": 0,
+    "prerequisites": [
+      "Preserve closed epoch and exact source/decision hashes.",
+      "Repair missing per-attempt UTC journal before any future financial runner version.",
+      "Use prior outcome labels for analysis only; never expose them to decision inputs."
+    ],
+    "later_t11_question": "Role-aware gate only after local data/accounting/source qualification."
+  },
+  "limitations": [
+    "No new component implemented or performance reproduced.",
+    "Public rolling metrics omitted as evidence of our results.",
+    "Six title-based selector hints remain unverified.",
+    "Shared catalog/master checklist intentionally untouched."
+  ]
+}

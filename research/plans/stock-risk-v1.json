@@ -1,0 +1,74 @@
+{
+  "study_id": "stock-risk-v1",
+  "status": "frozen",
+  "created_utc": "2026-10-26T22:32:57.046403+00:00",
+  "deadline_utc": "2026-10-27T00:02:57.046403+00:00",
+  "cases": {
+    "original": [
+      false,
+      false
+    ],
+    "gate": [
+      true,
+      false
+    ],
+    "sector": [
+      false,
+      true
+    ],
+    "combined": [
+      true,
+      true
+    ],
+    "spy": [
+      false,
+      false
+    ]
+  },
+  "max_total_attempts": 7,
+  "technical_retry_slots": 2,
+  "source_hashes": {
+    "original": "132cb7f97c35c291331f59eac61b53d125df76428d007e28be7d84cdd2f7f02d",
+    "gate": "b6b8bbb93bfb3b614e332f3448b6d9a69020deb6f2ef04ef30fb136f78d6b24c",
+    "sector": "2ce6e1339934f6dad7e4c74edeb21b9e98e3f69ced5a1c3dc3eb5c48fbc9da2b",
+    "combined": "0db2baf93a9a360832e961ce8e8fbda61c8731f91a89e943d62b017ad4bf6d56",
+    "spy": "eacaf1ec26c6b0f1ef4fd0922a554a685282fdf286f94deb5254e8ab200f15e6"
+  },
+  "dates": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "capital_usd": 10000,
+  "costs": "25bp constant slippage; native IB margin/fees; flat6% debit ACT/360; zero credit interest",
+  "timing": "Monthly unchanged top-five ranking; sector scaling at monthly decisions; daily gate changes target intent; staged MOO reductions before buys; whole shares",
+  "sector": "Historical Morningstar sector from monthly fundamental selection; pro-rata scale original top five to36% NAV target per sector before gate; no replacement/redistribution; unknown classification gets zero sector-treatment target. Drift and execution can exceed target.",
+  "gate": "Retained SPY RAW EMA50/200 and20-return sample vol; red40%, yellow nonpositive trend or25%; recovery5closes below35% then5positive closes below20%; caps1/.5/0; drawdown component disabled",
+  "hypothesis": "Describe separate/combined changes in loss depth, recovery duration, CAGR and terminal wealth; no hidden retention threshold and no tuning. A lower drawdown with lower return is a tradeoff.",
+  "metrics": "Full/annual returns, DD, Sharpe0RF252sample, Calmar, UW sessions/calendar/fraction and censoring; average exposure, peak sector exposure, complete monthly chosen IDs/rank/sector/deterministically reconstructed base/sector/gated targets/pretrade held weights, all-stock native accounting PnL and fees",
+  "controls": "Fresh original/SPY must reproduce selection-completion-v1 financial metrics and calendars; all stock cases match eligible-universe/feature hashes and monthly original selections; gate hashes match all five",
+  "evidence": "1508session calendar; zero rejects/nonMOO/open orders/future/invalid/unordered; native stock PnL+financing residual <=10c; checksummed complete derived packet; no raw vendor export",
+  "limits": [
+    "Viewed development history, not independent OOS",
+    "No exposure-matched timing-alpha attribution",
+    "USD10000 fixture, not300000 qualification",
+    "Sector target cap is not hard continuous exposure cap",
+    "Native PnL check is not independent transaction ledger",
+    "No broker/account/orders/services/imports/paid data/agents/commits/publication"
+  ],
+  "stopping": "Five fixed cases, at most two technical-only retries, seven launches or90minutes; preserve failures; no parameter/strategy repair after viewing results",
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "input_hashes": {
+    ".local/selection-completion-v1/stock-source.py": "228d624f23284b8456bd8599df6b3b93ed055fe26a62a5cbca62d43196afd632",
+    ".local/selection-completion-v1/spy-source.py": "ad52a112ac020990b182205f7fb56250a781be5ef22e2ed12f94bef20feea4aa",
+    "research/quantconnect/sector_comparison.py": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4",
+    "research/quantconnect/t11_gate_policy.py": "e14efca421ecb9cee54b2e00be2ac8859b1b8d3e3f9a8e9da17f755a8c2e5b1c",
+    "research/quantconnect/stock_risk_policy.py": "48af0c8741ba12a2c73a4f745c707e42624ce398dab3cc12c62312f14f3d55ef",
+    "scripts/prepare_stock_risk.py": "4f83c12716da09144ee7fb2a44271530de5683ddbe4024992a3e6b6b3ee1f7f7"
+  },
+  "amendments": [
+    {
+      "reason": "QC editor rejected zlib before save and before any native backtest; switch export to plain JSON, no compression or encoding, no financial changes",
+      "details": "Monthly dates/color/ready-count/selected-IDs with dictionary sector observations; weights deterministically reconstructed from frozen rule, no pretrade holdings; full per-security PnL/fees in cents; rounded summary floats. No raw data. Log quota checked on message bytes. Original blocked source preserved."
+    }
+  ]
+}

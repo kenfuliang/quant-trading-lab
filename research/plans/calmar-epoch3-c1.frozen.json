@@ -1,0 +1,115 @@
+{
+  "schema": "sector-rsi-epoch3-execution/v1",
+  "mode": "financial",
+  "program_id": "calmar-epoch3-c1",
+  "python": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+  "python_sha256": "1ce7aea77992ab97bb6225339a1d72a79925d5641e461cdfc2584916119a7edb",
+  "epoch_program_sha256": "2ed448d3118acc47b78fa076eaa73b1a1565b159401cfa42011ceb699fb51810",
+  "sources": {
+    "research/__init__.py": "176ab0098e5c017d087170fbfb79fdb88415495f8aa0b3b599cb88180daaaa73",
+    "research/studies/__init__.py": "292300887303234af050aa07fe879c14ef2f86b29e8b05e5c433ba9391bc881f",
+    "research/studies/sector_selection/__init__.py": "b41655044a115617faac7900738ffdcb60a1c7c34df70c5ecff14efffa1d408b",
+    "research/studies/sector_selection/model.py": "63f74ec6b714e6dab2f731506a6bcda82242c79f3cdfd580ad0612f2673dc49f",
+    "research/studies/sector_selection/audit.py": "a794bfbc7192649c5b0b4e0f2df5969d89d5a1b1d10ecb251dc0df484e373fdc",
+    "research/studies/sector_selection/capture.py": "15ce52ae23dee5f1461c717d1c4ede10823e840447ae141023fb36a8b7a35393",
+    "research/studies/sector_selection/review.py": "2e912bac7df56ab3d79abc9d0e525fa1c63aef239c86491d187f6a7aa38fa2c4",
+    "research/sector_corporate_actions.py": "a6a159a57d1a93569ffbc332b809eee545020cd53add77f58b479e5f196c8c9e",
+    "research/research_controller.py": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d",
+    "research/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+    "reporting/__init__.py": "268d25cc8bd406f95fbb20aae7671eb58b73fcc1e4c66c3cb0ed71f51bf75f7c",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "tests/test_sector_corporate_actions.py": "aaf4e06f3eeb3349b6a0a3855570dba038bae7af71f561b2856c65292345bc40",
+    "tests/test_sector_selection_model.py": "e9ef24a180d94720305e4d6a46f011389eb935e3c3d6fe627d26655527f53964",
+    "tests/test_sector_selection_capture.py": "36466a76059635eac3d5f8294a42ee8ae592f3f8b7bec8afe37f16eaed27c0ae",
+    "tests/test_sector_selection_review.py": "480fda4fdf177d3c9e02c4f3f4a86718e85e81263741f097176b4a2d2d13452e",
+    "research/studies/sector_gate/signals.py": "c36dedb1b9ed8a568d018e868afdf2b4d1da002e60cc7f1f2ec58022c58f6127",
+    "research/studies/sector_gate/audit.py": "5bbdac7410afb3bd2dd05c9e9fe8525f85ffabe9f64cc6b3abd67e8859e976fe",
+    "research/studies/sector_gate/__init__.py": "c2704b4fc0c7d61eff96360d3715d49edfb8740114558937665d0f653e978f74",
+    "research/studies/sector_gate/review.py": "2760a2b3c0541d716db66cf25e5666921c543945f9abdc2babd458994a73ab24",
+    "research/studies/sector_gate/model.py": "25eb858db2625087e8a970f25ebae2c42ad9eec262bf115dd8e7669dbc3b6d67",
+    "research/studies/sector_gate/capture.py": "ee5cb8ff662a2af035baa08171c90d678a5f3e87a2e38dba08b7e48e39d07939",
+    "tests/test_sector_gate.py": "9d7c376fe34ff9e29ce3380fd04f43b3235398f73debf7f7df93178cdb8b288e",
+    "tests/test_sector_gate_capture.py": "381f66b6a2c84b0ba9d5a58169be1d44c4ab8cd885260a1bea25b8259503d5fd",
+    "research/risk_gate.py": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+    "research/risk_gate_ablation.py": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb",
+    "research/studies/sector_rsi/__init__.py": "7aa91c8064cc2da6ecfaa5c9670f212e041a974b67859ac15a9dc518fc715074",
+    "research/studies/sector_rsi/model.py": "bd2fbf8adf2e606e2f101e2551d22363a836f0a2b8329f78b2ccc4965b48d5ab",
+    "research/studies/sector_rsi/signals.py": "9ca57e8389855b2329bcbd9feec9377b566a24077c569c4ee0a7ef9d5460e477",
+    "research/studies/sector_rsi/audit.py": "79096de77386d93c26265cb494bbba411de199870559967d00b46fd5855f30d2",
+    "research/studies/sector_rsi/capture.py": "9b4b114c29ac53da08aef0c0902a93a54827445dbf0846f117757faecc9f4c27",
+    "research/studies/sector_rsi/review.py": "7b0aa31f547288c0735b97fa1255f09948510e1827937d4655686af5b922a587",
+    "tests/test_sector_rsi.py": "d9a22b04d41f84c4bb4dca0e12f52d7622301968c4c6ca10e5fcb5012812d405",
+    "tests/test_sector_rsi_capture.py": "40993ecebcea40a2087058635b62346bdbb3ae6c1414a26a010ad99266df9324",
+    "scripts/freeze_calmar_epoch3.py": "bf29e2ab049d59446f50a6e0dcd7b7da9664c47fa656643dfa1f59491791285a"
+  },
+  "shared_context": {
+    "score_version": "calmar-epoch3-v1",
+    "epoch_program_sha256": "2ed448d3118acc47b78fa076eaa73b1a1565b159401cfa42011ceb699fb51810"
+  },
+  "output_root": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/calmar-epoch3/c1/financial",
+  "journal_root": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/calmar-epoch3/financial-journal",
+  "cases": [
+    "gate-5",
+    "equal-5",
+    "corr-5",
+    "gate-10",
+    "equal-10",
+    "corr-10"
+  ],
+  "attempt_cap": 12,
+  "case_seconds": 300,
+  "aggregate_seconds": 1800,
+  "deadline": "2026-10-30T11:24:38+00:00",
+  "workers": 1,
+  "automatic_retries": 0,
+  "start": "2017-02-01",
+  "end": "2025-12-31",
+  "bundle": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+  "input_source_manifest": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+  "qualification": ".local/calmar-epoch3/qualification/qualified.json",
+  "input_files": {
+    "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json": {
+      "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+      "sha256": "7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623"
+    },
+    "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json": {
+      "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+      "sha256": "cd226c05e4c2e111bdef9a4ccde9d330961b53f34100968364bfda96786bc20a"
+    },
+    ".local/calmar-epoch3/qualification/qualified.json": {
+      "path": ".local/calmar-epoch3/qualification/qualified.json",
+      "sha256": "bfc0069d8f50184eac3ccd4331cb855ec723c92b3dcbd035b6ef7e43e0b37056"
+    },
+    ".local/calmar-epoch3/c1/protocol-before.md": {
+      "path": ".local/calmar-epoch3/c1/protocol-before.md",
+      "sha256": "ea4770aa354c193eb4687fafd8881941c81c52d6cd34e4f39b48756e7fd610db"
+    },
+    ".local/calmar-epoch3/c1/leaderboard-before.md": {
+      "path": ".local/calmar-epoch3/c1/leaderboard-before.md",
+      "sha256": "bf9f0b93ffd831aba294f8159305b0485a722bad9282df64b8756cfd368f7507"
+    }
+  },
+  "baseline_references": {
+    "5": {
+      "ledger.csv": "4323a89cd862791e0e28e59bffbe52a0a1a363bdbf81d0c911b5583fe1a0fda1",
+      "trades.csv": "6f1359af88ddebd50e3d84ba4d8f887045f95ef7008a51e7f4d250dc29f5a763",
+      "summary.json": "fdf6eb7665161be42bc300021c92afc629a64dd1963b01a3faace2c7c96ebd14",
+      "selections.json": "0ed501cb83860cde06635c6feed9bec2a105408c086634d6303adeae31f2c3ee",
+      "contributions.csv": "38d2e81521a1b68deab7b7cff41e1fd3d183ea4540bb9d63b26836942257d6b2"
+    },
+    "10": {
+      "ledger.csv": "1bdb6308e0cb287fc0e17923316f2b7ea6338c1450f795b185a0ae75709c3597",
+      "trades.csv": "d48297ba4b68df7db3d0928a233f2d1a0352b0060c403d5e9dec4089328d2aed",
+      "summary.json": "ad006d449f13acee389c433a17cf970d5450b4d60a77b972b58a88dcdc80ea49",
+      "selections.json": "6f571b75c2aa8a156c5f1a65f2a4e85a59fa8b47d69762218a79027b3ff07115",
+      "contributions.csv": "e9baf6a1acf225061e766a0c2a4b4fd3c951191f7944905af61c713d7c9037a1"
+    }
+  },
+  "frozen_utc": "2026-10-30T07:31:54.135855+00:00",
+  "scientific_criteria": "10pct Calmar lift at both costs; no worse growth, drawdown or UW; no simpler-control domination; viewed development only",
+  "stage_change": "correlation-aware target selection"
+}

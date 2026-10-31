@@ -1,0 +1,90 @@
+"""Aggregate-only Dual Thrust report and artifact audit; never launches backtests."""
+from pathlib import Path
+from datetime import datetime, timezone
+import argparse
+import hashlib
+import json
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from research.dual_thrust_study import CASES, audit_records, decode_fragments
+ROOT=Path('.local/dual-thrust-spy-v1')
+OUT=Path('.local/performance/dual-thrust-spy-v1')
+
+
+def build():
+    OUT.mkdir(parents=True,exist_ok=True)
+    plan=json.loads(Path('research/plans/dual-thrust-spy-v1.json').read_text());budget=json.loads((ROOT/'budget.json').read_text());results={};audits={}
+    for c in CASES:
+        p=ROOT/(c+'-summary.json')
+        if not p.exists():continue
+        rows=json.loads(p.read_text());results[c]=rows
+        try:audits[c]=audit_records(rows,c)
+        except ValueError as error:audits[c]=dict(passed=False,error=str(error))
+    hashes=lambda k:{a[k] for a in audits.values() if a.get('passed')}
+    complete=set(results)==set(CASES)
+    minute_parity=complete and len({next(x for x in rows if x['kind']=='full')['audit']['minute_observations'] for rows in results.values()})==1
+    eligible=complete and minute_parity and all(a.get('passed') for a in audits.values()) and len(hashes('range_hash'))==1 and len({a['calendar_hash'] for a in audits.values() if 'calendar_hash' in a})==1
+    reproduced=False
+    prior=ROOT/'superseded/attempt2/intraday-summary.json'
+    if 'intraday' in results and prior.exists():
+        old=json.loads(prior.read_text());new=results['intraday']
+        reproduced=len(old)==len(new) and all(a['metrics']==b['metrics'] for a,b in zip(old,new))
+    eligible=eligible and reproduced
+    decision=None
+    if eligible:
+        full=lambda c:next(x['metrics'] for x in results[c] if x['kind']=='full')
+        a,b,e=full('dual'),full('spy'),full('intraday')
+        checks=dict(cagr_beats_spy=a['cagr']>b['cagr'],calmar_at_least_spy=a['calmar']>=b['calmar'],longest_uw_no_worse_than_spy=a['longest_uw']<=b['longest_uw'],cagr_beats_intraday=a['cagr']>e['cagr'])
+        minute_dd=next(x['audit']['minute_dd'] for x in results['dual'] if x['kind']=='full')
+        decision=dict(passed=all(checks.values()),checks=checks,drawdown_reassessment=max(abs(a['dd']),abs(minute_dd))>.3,cagr_excess_spy=a['cagr']-b['cagr'],cagr_excess_intraday=a['cagr']-e['cagr'],status='retain-for-independent-validation-only' if all(checks.values()) else 'does-not-pass-frozen-improvement-screen')
+    report=dict(study=plan['study'],generated_utc=datetime.now(timezone.utc).isoformat(),eligible=eligible,complete=complete,accounting_only_retest_reproduced=reproduced,results=results,audits=audits,decision=decision,plan=plan,budget=budget)
+    (OUT/'review.json').write_text(json.dumps(report,indent=2)+'\n')
+    (OUT/'index.html').write_text(PAGE.replace('__DATA__',json.dumps(report,separators=(',',':')).replace('<','\\u003c')))
+    files=[Path('research/plans/dual-thrust-spy-v1.json'),Path('scripts/build_dual_thrust_review.py'),Path('tests/test_dual_thrust_study.py')]+[Path(f) for f in plan['input_hashes']]+[p for p in ROOT.rglob('*') if p.is_file()]+[OUT/'review.json',OUT/'index.html']
+    files +=[p for p in [OUT/'browser-audit.json',OUT/'review-preview.png'] if p.exists()]
+    manifest=dict(study=plan['study'],eligible=eligible,files=[dict(path=str(p),bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(set(files))])
+    (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    print(json.dumps(dict(eligible=eligible,cases=list(results),decision=decision,manifest_files=len(manifest['files']))))
+
+
+def audit():
+    m=json.loads((OUT/'manifest.json').read_text());r=json.loads((OUT/'review.json').read_text());p=r['plan'];b=r['budget']
+    for f in m['files']:
+        data=Path(f['path']).read_bytes()
+        if len(data)!=f['bytes'] or hashlib.sha256(data).hexdigest()!=f['sha256']:raise ValueError('Manifest drift:'+f['path'])
+    if b['status']!='closed' or len(b['attempts'])>5 or any(a['status']=='reserved' for a in b['attempts']):raise ValueError('Open/excessive budget')
+    if sum(max(0,sum(a['case']==c for a in b['attempts'])-1) for c in CASES)>2:raise ValueError('Retry limit')
+    for f,digest in p['input_hashes'].items():
+        if hashlib.sha256(Path(f).read_bytes()).hexdigest()!=digest:raise ValueError('Frozen input drift')
+    old=p['negative_baseline']
+    if hashlib.sha256(Path(old['manifest_path']).read_bytes()).hexdigest()!=old['manifest_sha256']:raise ValueError('CAPM negative baseline changed')
+    for a in b['attempts']:
+        if not datetime.fromisoformat(p['created_utc'])<=datetime.fromisoformat(a['reserved_utc'])<=datetime.fromisoformat(p['deadline_utc']):raise ValueError('Reservation outside budget')
+    parent=json.loads(Path(p['parent_budget_path']).read_text())
+    if len(parent['attempts'])+len(b['attempts'])>6 or parent['status']!='closed' or hashlib.sha256(Path(p['parent_budget_path']).read_bytes()).hexdigest()!=p['parent_budget_sha256']:raise ValueError('Aggregate parent budget drift')
+    if not r['eligible'] or not r['accounting_only_retest_reproduced']:raise ValueError('Financial comparison/retest incomplete or ineligible')
+    browser=json.loads((OUT/'browser-audit.json').read_text())
+    if not browser['passed'] or not browser['all_table_cells_verified'] or browser['full_rows']!=3 or browser['annual_rows']!=30 or len(browser['charts'])!=7 or any(not x['passed'] or x['points']!=30 for x in browser['charts']) or browser['decision']!=r['decision']:raise ValueError('Browser verification incomplete or stale')
+    if len({next(x for x in rows if x['kind']=='full')['audit']['minute_observations'] for rows in r['results'].values()})!=1:raise ValueError('Minute-clock parity failed')
+    for c in CASES:
+        attempts=[a for a in b['attempts'] if a['case']==c and a['status']=='completed']
+        if len(attempts)!=1 or attempts[0]['source_sha256']!=p['source_hashes'][c]:raise ValueError('Actual source/attempt failed')
+        rows=decode_fragments(json.loads((ROOT/(c+'-fragments.json')).read_text()),c);audit_records(rows,c)
+        if rows!=r['results'][c]:raise ValueError('Packet/report mismatch')
+        status=(ROOT/(c+'-visible-status.txt')).read_text();proof=json.loads((ROOT/(c+'-editor-verification.json')).read_text())
+        if not proof['saved_and_reloaded_equal'] or proof['source_sha256']!=p['source_hashes'][c] or 'v2.5.0.0.18209' not in status or 'DTH_START|'+c+'|' not in status or 'Algorithm Id:('+attempts[0]['backtest_id']+') completed' not in status or 'Runtime Error' in status:raise ValueError('Hosted identity/completion failed')
+    print(json.dumps(dict(passed=True,cases=3,financial_cases=3,annual_rows=30,attempts=len(b['attempts']),aggregate_attempts=len(b['attempts'])+len(parent['attempts']),manifest_files=len(m['files']))))
+
+
+PAGE='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dual Thrust · causal candidate comparison</title><style>
+:root{color-scheme:light;--ink:#203730;--line:#d4dbd0;--muted:#596c63}*{box-sizing:border-box}body{margin:0;background:#f3f1eb;color:var(--ink);font:15px/1.5 system-ui}main{max-width:1370px;margin:32px auto;padding:0 24px}h1{font-size:36px;line-height:1.15;max-width:900px;letter-spacing:-1px;margin:10px 0 20px}h2{font-size:23px;margin:30px 0 12px}.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase}.note,footer{color:var(--muted)}.badge{background:#dfebdc;padding:6px 12px;border-radius:20px;display:inline-block}.warn{background:#f1ddca}.flow{background:#e4ebe1;border-left:3px solid #1b7062;padding:14px;margin:20px 0}.card,details{background:#fffdf7;padding:18px;border:1px solid var(--line);border-radius:10px;margin:12px 0}summary{cursor:pointer;font-weight:600}.scroll{overflow:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0}table{background:#fffdf7;width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{background:#e4eade}select{padding:8px;font:inherit;background:#fffdf7;border:1px solid var(--line);border-radius:6px}label{margin:8px 8px 8px 0;display:inline-block}.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px}.legend span:before{content:'● ';color:var(--c)}svg{width:100%;height:300px}a{color:#196b61}footer{font-size:12px;margin:30px 0}@media(max-width:700px){h1{font-size:29px}main{padding:0 16px}}
+</style><main><div class="eyebrow">Quant Trading Lab · causal Dual Thrust adaptation · 2016–2025</div><h1>Does a causal intraday breakout improve on holding SPY?</h1><div id="status" class="badge"></div><p class="note">$300,000 simulated capital · 98% allocation targets · native IB fees + 5bp slippage · same financing · 3% modeled short borrow. Three fixed financial cases. CAPM stays archived as a negative baseline; G-Score stopped before financial testing.</p><div class="flow">Licensed example → repair forward-looking range → SPY control → breakout / intraday hold → accounting + temporal audits</div><h2>Full-period results</h2><div class="scroll"><table id="full"></table></div><div id="decision" class="card"></div><h2>Year by year</h2><label for="metric">Chart metric</label><select id="metric"><option value="ret">Annual return</option><option value="dd">Annual max drawdown</option><option value="sharpe">Annual Sharpe</option><option value="annual_calmar">Annual Calmar</option><option value="uw_fraction">Time underwater</option><option value="longest_uw">Longest underwater, sessions</option><option value="longest_uw_days">Longest underwater, calendar days</option></select><div class="legend"><span style="--c:#196b61">Dual Thrust</span><span style="--c:#697eab">SPY intraday</span><span style="--c:#bd673b">SPY hold</span></div><div id="chart" class="card"></div><div class="scroll"><table id="annual"></table></div><h2>Execution and exposure</h2><div class="scroll"><table id="execution"></table></div><h2>Data readiness and range integrity</h2><p class="note">Every threshold uses five fully completed prior SPY sessions. All three cases must have identical range/calendar hashes. Original FX source uses the same-day eventual range and is never executed.</p><div class="scroll"><table id="cohorts"></table></div><details open><summary>Qualification and trial history</summary><div id="audit"></div><p><a href="review.json">Aggregate evidence</a> · <a href="manifest.json">Artifact manifest</a> · <a href="https://www.quantconnect.com/project/38513705">Hosted project</a></p></details><details><summary>Source, causal repairs and definitions</summary><p>The pinned je-suis-tm/quant-trading example is Apache-2.0. Its original GBPUSD signal/plot code includes the current day in the rolling range, then reads that range at the open. This adaptation repairs that forward dependency: previous5completed SPY regular sessions only,0.5multiplier, known first-minute open; completed-minute close decisions execute on the next minute.</p><p>Dual Thrust targets+98%above the upper band and−98%below the lower, retaining direction inside the band. It exits five minutes before the actual close, including early closes. Intraday holding buys98%after the same opening delay and exits at the same cutoff. SPY buys once and holds. Native IB fees plus5bp slippage are assumptions, not measured fills or capacity. Funding is6%ACT/360 on prior closing negative cash, zero credit. Short borrow is modeled at3%ACT/365 on previous-minute notional; historical locates/availability are assumed. No overnight intraday positions are allowed.</p><p>Sharpe uses sample daily returns, zero risk-free return and√252. Full Calmar uses calendar-day CAGR divided by absolute closing DD; annual Calmar uses annual total return divided by annual DD. Annual peaks reset; full peaks carry. Underwater calendar duration ends at the last underwater close. Open at end describes the latest decline, not necessarily the longest. Minute-mark DD and minute gross exposure are additional diagnostics: zero closing gross does not mean zero intraday risk.</p><p>Native lifetime-book and fee/borrow checks are not independent vendor/action replay, historical borrow validation or unseen alpha. Raw paths remain hosted. The original FX session, source default data and tick-like signals are not reproduced. No threshold tuning, trained RL advantage, broker operation or deployment follows.</p><p><a href="https://github.com/je-suis-tm/quant-trading/blob/611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5/Dual%20Thrust%20backtest.py">Pinned licensed example</a> · <a href="https://www.quantconnect.com/forum/discussion/21449">Why G-Score data qualification stopped</a></p></details><footer>Development evidence only. CAPM's earlier costs/execution differ and are not combined into this leaderboard. Failed attempts remain preserved.</footer></main><script>
+const D=__DATA__,cs=['dual','intraday','spy'],names={dual:'Causal Dual Thrust',intraday:'SPY intraday hold',spy:'SPY hold'},colors={dual:'#196b61',intraday:'#697eab',spy:'#bd673b'},el=id=>document.getElementById(id),pct=v=>v==null?'—':(100*v).toFixed(2)+'%',num=v=>v==null?'—':Number(v).toFixed(2),full=c=>D.results[c]?.find(r=>r.kind==='full'),annual=c=>D.results[c]?.filter(r=>r.kind==='annual').sort((a,b)=>a.year-b.year)||[];
+function table(id,headers,rows){el(id).innerHTML='<thead><tr>'+headers.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(v=>`<td>${v}</td>`).join('')+'</tr>').join('')+'</tbody>'}
+const done=cs.filter(c=>full(c));el('status').textContent=D.eligible?'Completed · all cases qualified':'Partial / qualification incomplete';if(!D.eligible)el('status').classList.add('warn');table('full',['Case','CAGR','Total return','Max DD','Sharpe','Calmar','Underwater','Longest sessions','Calendar days','Open at end'],done.map(c=>{let m=full(c).metrics;return [names[c],pct(m.cagr),pct(m.ret),pct(m.dd),num(m.sharpe),num(m.calmar),pct(m.uw_fraction),m.longest_uw,m.longest_uw_days,m.censored?'Yes':'No']}));table('annual',['Year / case','Return','Max DD','Sharpe','Calmar','Underwater','Longest sessions','Calendar days','Open at end'],Array.from({length:10},(_,i)=>2016+i).flatMap(y=>done.map(c=>{let m=annual(c).find(r=>r.year===y)?.metrics;if(!m)return [];return [y+' · '+names[c],pct(m.ret),pct(m.dd),num(m.sharpe),num(m.annual_calmar),pct(m.uw_fraction),m.longest_uw,m.longest_uw_days,m.censored?'Yes':'No']})));table('execution',['Case','Fills','Fees USD','Debit USD','Notional USD','Mean minute gross','Max minute gross','Minute max DD','Borrow USD','Rejected','Book residual'],done.map(c=>{let a=full(c).audit;return [names[c],a.fills,num(a.fees),num(a.interest),num(a.fill_notional_usd),num(a.minute_mean_gross)+'x',num(a.minute_max_gross)+'x',pct(a.minute_dd),num(a.borrow_usd),a.rejects,num(a.native_book_residual)]}));table('cohorts',['Case','Ready prior-five-session days','Minute observations','Long minutes','Short minutes','Range hash'],done.map(c=>{let a=full(c).audit;return [names[c],a.ready_days,a.minute_observations,a.long_minutes,a.short_minutes,a.range_hash]}));
+function chart(){let key=el('metric').value,vals=done.flatMap(c=>annual(c).map(r=>r.metrics[key]).filter(v=>v!=null));if(!vals.length){el('chart').textContent='Waiting for qualified financial outputs';return}let lo=Math.min(0,...vals),hi=Math.max(0,...vals),pad=Math.max((hi-lo)*.08,.01);lo-=pad;hi+=pad;let y=v=>255-(v-lo)/(hi-lo)*220,body=`<line x1="55" x2="1150" y1="${y(0)}" y2="${y(0)}" stroke="#a5aea2"/>`;for(let j=0;j<5;j++){let v=lo+(hi-lo)*j/4;body+=`<text x="48" y="${y(v)+4}" text-anchor="end" font-size="11">${['ret','dd','uw_fraction'].includes(key)?pct(v):num(v)}</text>`}done.forEach(c=>{let rows=annual(c);body+=`<polyline points="${rows.map((r,i)=>`${75+i*117},${y(r.metrics[key]??0)}`).join(' ')}" fill="none" stroke="${colors[c]}" stroke-width="2"/>`;rows.forEach((r,i)=>{let v=r.metrics[key];if(v!=null)body+=`<circle cx="${75+i*117}" cy="${y(v)}" r="4" fill="${colors[c]}"><title>${r.year} ${names[c]}: ${v}</title></circle>`})});for(let i=0;i<10;i++)body+=`<text x="${75+i*117}" y="290" text-anchor="middle" font-size="12">${2016+i}</text>`;el('chart').innerHTML=`<svg viewBox="0 0 1160 300" role="img" aria-label="Annual metric comparison">${body}</svg>`}el('metric').addEventListener('change',chart);chart();let dec=D.decision;if(dec){el('decision').innerHTML=`<p><strong>${dec.passed?'Passes the frozen development screen; independent validation still required.':'Does not pass the frozen improvement screen.'}</strong> Net CAGR excess: ${num(dec.cagr_excess_spy*100)}pp versus SPY and ${num(dec.cagr_excess_intraday*100)}pp versus the intraday control.</p><p>${Object.entries(dec.checks).map(([k,v])=>k.replaceAll('_',' ')+': '+(v?'pass':'fail')).join(' · ')}</p><p>30% drawdown reassessment reference: ${dec.drawdown_reassessment?'exceeded':'not exceeded in this viewed history'}. No hard loss bound or live promotion is established.</p>`}else el('decision').textContent='Final interpretation waits for qualified outputs.';el('audit').innerHTML=`<p>${Object.keys(D.results).length}/3 financial cases exported. Aggregate task ${D.budget.attempts.length+1}/6 attempts (includes the failed G-Score probe); ${D.budget.status}. ${Object.entries(D.audits).map(([c,a])=>c+': '+(a.passed?'passed':a.error)).join(' · ')}</p><p>Raw prices and dense NAV remain hosted. Five-session range and calendar hashes are compared across all three cases. G-Score has no financial result.</p><div class="scroll"><table><thead><tr><th>Attempt</th><th>Case</th><th>Status</th></tr></thead><tbody>${D.budget.attempts.map(a=>`<tr><td>${a.id}</td><td>${a.case}</td><td>${a.status}</td></tr>`).join('')}</tbody></table></div>`;
+</script></html>'''
+
+if __name__=='__main__':
+    ap=argparse.ArgumentParser();ap.add_argument('--audit',action='store_true');args=ap.parse_args()
+    audit() if args.audit else build()

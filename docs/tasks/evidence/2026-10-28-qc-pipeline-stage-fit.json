@@ -1,0 +1,62 @@
+{
+  "status": "completed_provisional_snapshot_mapping",
+  "date": "2026-10-28",
+  "scope": "Frozen622-record snapshot; not a fresh enumeration or complete code review of QuantConnect.",
+  "stats": {
+    "records": 622,
+    "community": 540,
+    "tutorials": 82,
+    "unique_ids": 622,
+    "stage_memberships_overlap": true,
+    "stage_memberships": {
+      "position_proposal": 286,
+      "unassessed": 203,
+      "target_selection_optional": 199,
+      "risk_and_sizing": 167,
+      "execution_candidate_unverified": 10,
+      "strategy_selector_candidate_unverified": 6,
+      "market_conditions_optional": 1
+    },
+    "description_refinements": 4,
+    "new_code_reviews": 0,
+    "new_financial_runs": 0,
+    "new_source_exports": 0
+  },
+  "input": {
+    "path": "research/catalogs/qc-inventory-v1/catalog.json",
+    "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+  },
+  "artifact_hashes": {
+    "research/catalogs/qc-stage-fit-v1/mapping.csv": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa",
+    "research/catalogs/qc-stage-fit-v1/mapping.json": "278c605d255e96cef086e07669e529189cfe977d60a3c20a25ecbddcbcd08f32"
+  },
+  "verification": [
+    "622 IDs unique and exact set match to frozen inventory",
+    "Original inventory bytes unchanged",
+    "Original family/layer hints retained alongside new stage-fit candidates",
+    "Four explicitly identified method-description refinements; remaining mappings provisional"
+  ],
+  "web_sources": [
+    {
+      "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/algorithm-framework/overview",
+      "finding": "Framework separates universe selection,alpha,portfolio construction,risk and execution."
+    },
+    {
+      "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/strategy-library",
+      "finding": "Public index supports selecting component ideas; displayed listings are not performance reproduction."
+    },
+    {
+      "url": "https://www.quantconnect.com/research/15357/momentum-and-state-of-market-filters/",
+      "finding": "Market-state gating example; original Wilshire dataset discontinued."
+    }
+  ],
+  "financial_runs": 0,
+  "new_source_exports": 0,
+  "limits": [
+    "540 community records not newly source-reviewed",
+    "Public unauthenticated community listing did not expose a fresh enumerable catalog; use prior snapshot only",
+    "82 tutorial title mappings are not82 complete licensed implementations",
+    "Static ensemble or return prediction is not validated regime-based strategy selection",
+    "Full O03/O04 completion unchanged"
+  ]
+}

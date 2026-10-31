@@ -6,7 +6,9 @@ owner: project-maintainers
 
 # IBKR paper observation SOP
 
-This file owns broker connection procedure. [Root README](../../README.md)
+This file owns the IBKR broker observation procedure. The separate
+[Alpaca paper SOP](alpaca-paper.md) owns its bounded native integration.
+[Root README](../../README.md)
 owns current verification status. Run commands from the repository root.
 Use this SOP when paper access is enabled and broker observation is requested.
 The installed tools contain no execution client. Adding execution is M5 work,

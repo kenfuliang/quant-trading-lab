@@ -1,0 +1,81 @@
+{
+  "status": "passed-scoped-metadata-audit",
+  "community_ids": 540,
+  "tutorial_index_entries": 82,
+  "observed_tutorial_articles": 81,
+  "soft404": 1,
+  "community_observations": 1620,
+  "listing_pages_captured": 324,
+  "family_classified_records": 622,
+  "code_family_inspections": 3,
+  "study_groups": 19,
+  "selected_saved_case_rows": 158,
+  "preexisting_file_counts": {
+    "task": 62,
+    "evidence": 55,
+    "saved_research_artifact": 410,
+    "plan_or_input": 27
+  },
+  "prior_source_refs_reconciled": 16,
+  "financial_attempts": 0,
+  "O03_remaining": "Detailed instrument/frequency/data contracts and source code equivalence unverified",
+  "artifact_count": 6,
+  "snapshot": "qc-inventory-v1",
+  "objective_status": {
+    "O00": "complete-scoped-index",
+    "O01": "complete-discovery-contract",
+    "O02": "complete-observed-listing-and-index-coverage; one blocked tutorial",
+    "O03": "partial; initial family labels complete; detailed contracts and code equivalence open"
+  },
+  "offline_tests": 331,
+  "browser": {
+    "ordered_ids_verified": 622,
+    "pages": 25,
+    "sources": [
+      {
+        "source": "community",
+        "count": 540
+      },
+      {
+        "source": "tutorial",
+        "count": 82
+      },
+      {
+        "source": "all",
+        "count": 622
+      }
+    ],
+    "family_filters": 17,
+    "evidence_filters": 4,
+    "blocked_article_count": 1,
+    "search": "Da Ma",
+    "search_matches": 1,
+    "study_groups": 19
+  },
+  "artifacts": {
+    "browser-audit.json": "237b4025f32b9fa51d042c5221743d03a65e5db91bd65a9d42740afd3a0e7b06",
+    "strategies.csv": "2fa013747836d0598039a3dd3c69ec12afdf42e2c137fe49bbde5f26c02987bf",
+    "index.html": "232144a6fd8bb6e1d3478e524f2e18e855b6398780a140f3a9b246192ad6472d",
+    "research-history.json": "c22c97ce7f2405c4d3bedcd9d51b45408bc02dce76d290e9083f267ded503fab",
+    "catalog.json": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01",
+    "inventory-preview.png": "97d8a8c7603c8e2cc33b2c5ea1924525dc44986641f8b867b7ee733ce507be9a"
+  },
+  "processing_sources": [
+    {
+      "path": "research/qc_inventory.py",
+      "sha256": "8a8532a8b1fcdf932035946e6d68f9579e4f2748c946c7d4e319ed88414c68c1"
+    },
+    {
+      "path": "scripts/build_qc_inventory.py",
+      "sha256": "4f71d718bd49c2b995ca8a2f82a9a4d0dbf952742eeda7ebe0b6321ffd5050d4"
+    },
+    {
+      "path": "scripts/audit_qc_inventory.py",
+      "sha256": "5b64c4d700884bd865e2b599c8be381075704ebabfc575828b9220fd7022fc4d"
+    },
+    {
+      "path": "tests/test_qc_inventory.py",
+      "sha256": "5e70dbebd7501a54504c03f975a552a050bbe673b3f21d9cd0ebc585323a8b23"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "study_id": "sector-momentum-v1",
+  "status": "completed-summary-audited-development-diagnostic",
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "completed_utc": "2026-10-26T07:00:51.353819+00:00",
+  "cloud_engine_observed": "LEAN 2.5.0.0.18205; Foundation Default; exact cloud dependency inventory unexported",
+  "attempts": [
+    {
+      "attempt": 1,
+      "mode": "hold",
+      "reserved_utc": "2026-10-26T06:47:24.926212+00:00",
+      "status": "completed-duplicate-launch",
+      "source_sha256": "3f9813c0561628fdaba79b99252bf1825e5758a12a34f445e08ec2e7cd5b5908",
+      "backtest_id": "9f5bb41cff66d8726920b32053cf3adb",
+      "reason": "Standalone editor launch completed before project UI reflected results; duplicate retained, no extra research variant",
+      "selected_for_final_comparison": false
+    },
+    {
+      "attempt": 2,
+      "mode": "hold",
+      "status": "completed-summary-captured",
+      "backtest_id": "5e49aced35a1f3426b58632fea9c996c",
+      "source_sha256": "3f9813c0561628fdaba79b99252bf1825e5758a12a34f445e08ec2e7cd5b5908",
+      "reason": "Project-editor launch; selected control output",
+      "selected_for_final_comparison": false
+    },
+    {
+      "attempt": 3,
+      "mode": "equal",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T06:50:44.189530+00:00",
+      "source_sha256": "e1c18e2c6e0a0b3480fc8c33492ca54a74fcb36df185b587100f9006312a7910",
+      "backtest_id": "03ce32f86470fb59567f97c1593974cd",
+      "selected_for_final_comparison": false
+    },
+    {
+      "attempt": 4,
+      "mode": "momentum",
+      "status": "failed-buying-power",
+      "reserved_utc": "2026-10-26T06:52:06.541517+00:00",
+      "source_sha256": "13bc7bcb5eee786e4a4a1a337bd5c50027fdb79c402926b517cd370f615d945f",
+      "backtest_id": "a24c3aa701afef2ca7073d9731dead31",
+      "error": "2017-02-01: XLF buy rejected before pending sale released buying power; stopped, partial path excluded"
+    },
+    {
+      "attempt": 5,
+      "mode": "hold",
+      "status": "completed-summary-captured",
+      "source_sha256": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4",
+      "reserved_utc": "2026-10-26T06:54:54.386339+00:00",
+      "backtest_id": "6c8508992e895c1f2d74135fc85ee4a3",
+      "selected_for_final_comparison": true
+    },
+    {
+      "attempt": 6,
+      "mode": "equal",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T06:57:01.680314+00:00",
+      "source_sha256": "b955b9a886d88a4279195119524d0e64798f94de54f61fddac0d89d937eb8d4c",
+      "backtest_id": "864ed9405e79219525ce1681ec2f18b7",
+      "selected_for_final_comparison": true
+    },
+    {
+      "attempt": 7,
+      "mode": "momentum",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T06:58:15.002180+00:00",
+      "source_sha256": "c30cc62e20306779ac797a58c1fb1610c0c5df25fe329e106e55eb7d7ab6fd52",
+      "backtest_id": "50edaf711c54af28182baf346fdbbb2c",
+      "selected_for_final_comparison": true
+    },
+    {
+      "attempt": 8,
+      "mode": "gate",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T06:59:19.968621+00:00",
+      "source_sha256": "241398a2560ceadb8b00315f74a062c9ec6ca1a711a8cf73d7148283f3944195",
+      "backtest_id": "5101f436af85b1d043661c07153305a9",
+      "selected_for_final_comparison": true
+    }
+  ],
+  "protocol_amendment": {
+    "utc": "2026-10-26T06:54:54.386160+00:00",
+    "plan": "research/plans/sector-momentum-v1-execution-repair.json",
+    "reason": "Momentum MOO purchase rejected before pending sale released buying power. Change only simulated credit limit; rerun all four cases. No rule, cost, dates, target or ranking change. User-authorized comparison requires completed matched execution. Original six-attempt protocol preserved; amendment made before its exhaustion.",
+    "new_source_sha256": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4"
+  },
+  "source_hashes": {
+    ".local/sector-momentum-v1/final-hold-summary-cells.json": "ddf221789c16e3b2a692d9eea2be54335eeaf116249f11eb0bd43445ad96ad2e",
+    ".local/sector-momentum-v1/final-equal-summary-cells.json": "7889f2fa0ad376e035c97556910ecafc08352541895fdd828e681340ac81b9c5",
+    ".local/sector-momentum-v1/final-momentum-summary-cells.json": "0c6ecb35f9e850edae7fd4af233079f60e7ef55ceb7c9f685e953f9d8f0f0e0c",
+    ".local/sector-momentum-v1/final-gate-summary-cells.json": "8ce3ad2dbea39bcdc4fd92fa4b6a6ca8f53e59bbc2e6c4772aa9862265fe48b0",
+    "research/quantconnect/sector_comparison.py": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4",
+    "research/plans/sector-momentum-v1-execution-repair.json": "233fa5bd2d6c405f16f012a8ef544b622144ca8dba08f613b14835a6e5c52231",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc"
+  },
+  "checks": [
+    "4 cases, 9 annual years each",
+    "matching session-calendar hashes and annual counts",
+    "annual/end NAV compounding within USD0.01",
+    "Sharpe aggregated from annual return moments",
+    "Calmar formulas",
+    "carried-high-water underwater count summation",
+    "zero rejects, positive closing cash and gross<=1",
+    "selected sources differ only by MODE",
+    "8 attempt cap respected"
+  ],
+  "limitations": [
+    "In-cloud daily NAV metrics; no raw data or daily NAV exported",
+    "No independent daily ledger, fills, corporate action or slippage audit",
+    "Calendar matched across cases, not independently qualified against exchange calendar",
+    "Historical development sample, not alpha or untouched holdout",
+    "Daily-close no-borrow checks do not measure intraday financing",
+    "Ten-sector static ETF universe excludes XLC and 2008; sector definitions change",
+    "Native vendor Sharpe differs from our explicit zero-RF daily metric"
+  ]
+}

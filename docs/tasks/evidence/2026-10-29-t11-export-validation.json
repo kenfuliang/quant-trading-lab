@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "status": "official_exports_verified_candidate_paths_aggregate_compatible",
+  "observed_utc": "2026-10-29T20:35:26.264308+00:00",
+  "new_financial_runs": 0,
+  "broker_orders": 0,
+  "original_daily_decision_trace": false,
+  "cash_position_ledger_reconciled": false,
+  "paper_ready": false,
+  "reference_engine": "2.5.0.0.18215",
+  "private_manifest": ".local/t11-reference-v2/export-review-v2/manifest.json",
+  "private_manifest_sha256": "6c9bba4d04400cec7bef8884e6201d9cb9058ee57da64b45043d76d921b9ffc2",
+  "preserved_strict_failure": ".local/t11-reference-v2/export-review-v1/manifest.json",
+  "cases": {
+    "t11": {
+      "identity": {
+        "name": "Calm Fluorescent Yellow Manatee",
+        "backtest_id": "ae7d527233c8cec348ee4da07c9fe0eb"
+      },
+      "export_sha256": "68b0d5e9ebb218cc6b49df4849f0e26dc0ce591217262c8f183ff318feb2b97d",
+      "sessions": 1508,
+      "order_count": 1062,
+      "legacy_aggregate_comparison": {
+        "status": "aggregate_compatibility_match",
+        "checks": {
+          "n": true,
+          "end": true,
+          "ret": true,
+          "cagr": true,
+          "dd": true,
+          "calmar": true,
+          "sharpe": true,
+          "uw": true,
+          "uw_fraction": true,
+          "longest_uw": true,
+          "longest_uw_days": true,
+          "censored": true,
+          "return_sum": true,
+          "return_square_sum": true,
+          "calendar_hash": true
+        },
+        "aggregate_match": true,
+        "daily_parity": false,
+        "full_reproduction_eligible": false,
+        "account_audit_reported": false,
+        "policy_audit_reported": false,
+        "limitation": "Aggregate compatibility does not identify the original daily path. Exact daily NAV/order/decision reference comparison remains separate.",
+        "financial_runs": 0
+      },
+      "annual_quantization_compatible": true,
+      "metrics": {
+        "n": 1508,
+        "end": 1124734.5941,
+        "ret": 111.47345941,
+        "cagr": 1.1966643441416505,
+        "dd": -0.5125637522452132,
+        "calmar": 2.334664398135512,
+        "sharpe": 1.6901171643830069,
+        "uw": 1272,
+        "uw_fraction": 0.843501326259947,
+        "longest_uw": 146,
+        "longest_uw_days": 214,
+        "censored": true,
+        "return_sum": 5.675729559684032,
+        "return_square_sum": 1.9046679322781987,
+        "calendar_hash": "87c22e187bc043abfe58b4830af314e8e8db663c4ce0daf9b0cf26de381fb059"
+      }
+    },
+    "gated_t11": {
+      "identity": {
+        "name": "Hipster Blue Owlet",
+        "backtest_id": "96cee07260398f6cdb20c92b08bc50e5"
+      },
+      "export_sha256": "b50ff407ed006522d8392f0110118ddc3608742c28d33ace75a0c58037550232",
+      "sessions": 1508,
+      "order_count": 998,
+      "legacy_aggregate_comparison": {
+        "status": "aggregate_compatibility_match",
+        "checks": {
+          "n": true,
+          "end": true,
+          "ret": true,
+          "cagr": true,
+          "dd": true,
+          "calmar": true,
+          "sharpe": true,
+          "uw": true,
+          "uw_fraction": true,
+          "longest_uw": true,
+          "longest_uw_days": true,
+          "censored": true,
+          "return_sum": true,
+          "return_square_sum": true,
+          "calendar_hash": true
+        },
+        "aggregate_match": true,
+        "daily_parity": false,
+        "full_reproduction_eligible": false,
+        "account_audit_reported": false,
+        "policy_audit_reported": false,
+        "limitation": "Aggregate compatibility does not identify the original daily path. Exact daily NAV/order/decision reference comparison remains separate.",
+        "financial_runs": 0
+      },
+      "annual_quantization_compatible": true,
+      "metrics": {
+        "n": 1508,
+        "end": 501845.8225,
+        "ret": 49.18458225,
+        "cagr": 0.920276357569169,
+        "dd": -0.3689778580696712,
+        "calmar": 2.4941235292102553,
+        "sharpe": 1.640011149285339,
+        "uw": 1277,
+        "uw_fraction": 0.846816976127321,
+        "longest_uw": 199,
+        "longest_uw_days": 292,
+        "censored": true,
+        "return_sum": 4.566675281742522,
+        "return_square_sum": 1.3086742246321232,
+        "calendar_hash": "87c22e187bc043abfe58b4830af314e8e8db663c4ce0daf9b0cf26de381fb059"
+      }
+    }
+  },
+  "validation": {
+    "offline_tests": 528,
+    "focused_parser_precision_tests": 8,
+    "make_check_exit": 0,
+    "docs_check_files": 169,
+    "docs_check_exit": 0,
+    "diff_check_exit": 0,
+    "manifest_artifact_and_code_hashes_verified": true,
+    "observed_equity_decimal_places": {
+      "t11": 4,
+      "gated_t11": 4
+    },
+    "log": ".local/t11-reference-v2/export-review-make-check.log",
+    "precision_tests_sha256": "fbcccff72330b2ddcfa334d3705fef989fb0bedaa819fbcd609be8db735a28af"
+  }
+}

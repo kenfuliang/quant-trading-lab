@@ -1,0 +1,48 @@
+{
+  "status": "completed_saved_result_documentation",
+  "created_utc": "2026-10-28T07:31:32.542111+00:00",
+  "financial_launches": 0,
+  "cohorts": 11,
+  "comparison_rows": 39,
+  "metric_recalculation": false,
+  "ranking": "reported Calmar descending within context; displayed ties",
+  "source_identifiers": {
+    "created_utc": "2026-10-28T07:28:28.134915+00:00",
+    "source_hashes": {
+      "docs/tasks/2026-10-26-qc504-t11-gate.md": "48fe37155893600480e26d9103f789a7b6cf7acbea71b95c854016e57d68d896",
+      "docs/tasks/2026-10-26-selection-completion.md": "833798c820e288a2afe023c136e8ebd5ce4633c34e9e52291dc9fc98908f4301",
+      "docs/tasks/2026-10-26-stock-risk-ablation.md": "0dda7cb3a0bfe86a57edf8ceed10d9ed188b6de46a8bfa0be1c602c96048325a",
+      "docs/tasks/2026-10-26-sector-matched.md": "0f9867415bb53114b05f192c46834a2e0d0f08602ab29cbfc75e0460e4642612",
+      "docs/tasks/2026-10-26-capm-cost-stop-ablation.md": "0065d3b0738995bf54026be276822949f3881a145dff2c652223974473e5b599",
+      "docs/tasks/2026-10-26-dual-thrust-spy-comparison.md": "49a8815bc818dbec749766d7afd878b3fb30540e2ad4aa0148a07b835e6e96da",
+      "docs/tasks/2026-10-26-stock-pairs-spy-comparison.md": "d3ab954e6b5516e4261c6eae0b04b8ff46442429a4c4c9d781b80b8c028ed793",
+      "docs/tasks/2026-10-26-gscore-spy-comparison.md": "42cedc01148aea7bda245162667ee918b5a284e02342854493fc61da81d1a5ce",
+      "docs/tasks/2026-10-25-sector-momentum-comparison.md": "00fcf99b83a3bb3fce6e8d4c4567bfc8e982e9828eba0cd6994f0adf591dcef1",
+      "docs/tasks/evidence/2026-10-26-qc504-t11-gate.json": "e5b0aa04282c109c4be32dbe815f3fb15e135d2246ae5f1536ad1cb77d296545",
+      "docs/tasks/evidence/2026-10-26-selection-completion.json": "1a43c3fcb9f91704eb6e851be6fe11ff7975b02606b78953956e781e28b50041",
+      "docs/tasks/evidence/2026-10-26-stock-risk-ablation.json": "b83d4b06e79d60a25760d355acba5c7d1fd196539a8a14cc9577f8d5eb9a1f7f",
+      "docs/tasks/evidence/2026-10-26-sector-matched.json": "4a147562765de3ed95148c922dbfdce400938bc305fc344fa4868654e7408d31",
+      "docs/tasks/evidence/2026-10-26-capm-cost-stop-ablation.json": "21dc2cf0b7d7e2a06d0ff2be6077b4a4da2675b04cc6f72d8b958b26adf53ca6",
+      "docs/tasks/evidence/2026-10-26-dual-thrust-spy-comparison.json": "481843a6667c5d4f5ae884d145f6dab54f08494511e14c9d7718e0d55ffa8cac",
+      "docs/tasks/evidence/2026-10-26-stock-pairs-spy-comparison.json": "1acee981bca865c0ab6e3d61f9449194c1f508a73c46c5f91af6f796b15cba28",
+      "docs/tasks/evidence/2026-10-26-gscore-spy-comparison.json": "8d37ae7441b5887a6a9660e3a06377d5b1b7d56dddd460d01d80af0f84801626",
+      "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json": "1c7cb51040e1fba9146d9d7b0cc60fc1a928ffa052aa47f8f7482c10047c15f4"
+    },
+    "financial_launches": 0,
+    "scope": "saved-result documentation only; no runs, metric recalculation, services or imports"
+  },
+  "validation": {
+    "status": "passed",
+    "comparison_rows_verified_against_sources": 39,
+    "cohorts_rank_verified": 11,
+    "source_files_unchanged": 18,
+    "local_links_checked": true,
+    "documentation_check": {
+      "exit_code": 0,
+      "files": 137
+    },
+    "financial_launches": 0
+  },
+  "leaderboard_sha256": "134e161696a3dfb1c1101ff7af5e4222a6821c31636edb38abc6c1f4d6bb7988",
+  "closed_utc": "2026-10-28T07:31:55.631771+00:00"
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "hierarchical-headroom-diagnosis/v1",
+  "status": "descriptive_achievable_bound_unknown",
+  "financial_runs": 0,
+  "source_diagnosis": "docs/tasks/evidence/2026-10-30-t11-plateau-diagnosis.json",
+  "fixed_cagr": 0.9202763575577162,
+  "sensitivity": [
+    {
+      "drawdown": 0.36897785801034133,
+      "calmar": 2.4941235295802593,
+      "status": "observed"
+    },
+    {
+      "drawdown": 0.35,
+      "calmar": 2.629361021593475,
+      "status": "conditional_arithmetic_not_forecast"
+    },
+    {
+      "drawdown": 0.32,
+      "calmar": 2.875863617367863,
+      "status": "conditional_arithmetic_not_forecast"
+    },
+    {
+      "drawdown": 0.3,
+      "calmar": 3.067587858525721,
+      "status": "conditional_arithmetic_not_forecast"
+    },
+    {
+      "drawdown": 0.25,
+      "calmar": 3.681105430230865,
+      "status": "conditional_arithmetic_not_forecast"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/tasks/2026-10-31-t11-hierarchy-headroom.md",
+      "sha256": "afddee2748f8a332a40c569df732387b22f938d23114666c16b54cc62ba2f662"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-t11-plateau-diagnosis.json",
+      "sha256": "fd11b3896c20f4daccf670ab28a7ef59f6344ecaaf71f6464b8ce2bc5ca200c5"
+    }
+  ]
+}

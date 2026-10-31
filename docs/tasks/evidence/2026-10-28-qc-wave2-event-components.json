@@ -1,0 +1,189 @@
+{
+  "id": "qc-wave2-event-components-20261028",
+  "updated": "2026-10-28",
+  "captured_utc": "2026-10-28T17:18:18.878343+00:00",
+  "status": "screened_with_passive_mechanism_unverified",
+  "bounds": {
+    "minutes_max": 25,
+    "representative_groups_max": 4,
+    "web_tool_calls_max": 10,
+    "web_tool_calls_used": 4,
+    "financial_runs": 0,
+    "downloads": 0,
+    "source_exports": 0,
+    "packages_or_services": 0,
+    "broker_operations": 0,
+    "agents_spawned": 0
+  },
+  "family_coverage": {
+    "earnings_event": {
+      "status": "method_and_fragment_reviewed_not_qualified",
+      "groups": 1,
+      "ids": [
+        "QC-T-15369"
+      ],
+      "basis": "official current description + pinned licensed fragment"
+    },
+    "seasonality": {
+      "status": "two_methods_and_fragments_reviewed_not_qualified",
+      "groups": 2,
+      "ids": [
+        "QC-T-15377",
+        "QC-T-15295"
+      ],
+      "basis": "official current descriptions + pinned licensed fragments"
+    },
+    "passive_accumulation": {
+      "status": "title_only_unverified",
+      "groups": 1,
+      "ids": [
+        "QC-C-158"
+      ],
+      "basis": "frozen title; current public request inaccessible; generic DCA docs are independent reference only"
+    }
+  },
+  "representatives": [
+    {
+      "id": "QC-T-15369",
+      "family": "earnings_event",
+      "url": "https://www.quantconnect.com/research/15369/standardized-unexpected-earnings/",
+      "evidence_basis": [
+        "current_official_method",
+        "pinned_licensed_method_fragment"
+      ],
+      "component": "earnings_score_target_selection",
+      "horizon": "monthly rebalance; quarterly EPS semantics",
+      "data_readiness": "unverified_PIT_EPS_revision_release_time_universe_and_field_compatibility",
+      "runtime_qualified": false
+    },
+    {
+      "id": "QC-T-15377",
+      "family": "seasonality",
+      "url": "https://www.quantconnect.com/research/15377/turn-of-the-month-in-equity-indexes/",
+      "evidence_basis": [
+        "current_official_method",
+        "pinned_licensed_method_fragment"
+      ],
+      "component": "calendar_position_proposal",
+      "horizon": "month_end_and_explicit_exit_sessions_needed",
+      "blocker": "OnData callbacks are not session counts; intraday fills require matching resolution",
+      "runtime_qualified": false
+    },
+    {
+      "id": "QC-T-15295",
+      "family": "seasonality",
+      "url": "https://www.quantconnect.com/research/15295/option-expiration-week-effect/",
+      "evidence_basis": [
+        "current_official_method",
+        "pinned_licensed_method_fragment"
+      ],
+      "component": "expiry_calendar_equity_proposal",
+      "instrument": "OEF equity; option subscription/calendar for timing",
+      "blocker": "Historical expiry convention and exact entry/exit timing unqualified",
+      "runtime_qualified": false
+    },
+    {
+      "id": "QC-C-158",
+      "family": "passive_accumulation",
+      "url": "https://www.quantconnect.com/strategies/158/",
+      "evidence_basis": [
+        "frozen_catalog_title_only",
+        "current_url_inaccessible"
+      ],
+      "component": "allocation_candidate_unverified",
+      "mechanism_verified": false,
+      "rights": "unknown",
+      "data_readiness": "unknown",
+      "runtime_qualified": false
+    }
+  ],
+  "licensed_reference_revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+  "licensed_methods_verified": [
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/102 Option Expiration Week Effect/02 Method.html",
+      "git_blob_sha": "e89806be273171872115af1d6534403b28486044",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/102 Option Expiration Week Effect/02 Method.html",
+      "sha256": "5d87dd902af06952c89f13028c3a44403dc716e08fc95911981653e87f1fb174"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/35 Turn of the Month in Equity Indexes/02 Method.html",
+      "git_blob_sha": "2f57e97bad4195bbda9547cbc4b30f295539c308",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/35 Turn of the Month in Equity Indexes/02 Method.html",
+      "sha256": "5e54ca1eda88c87af557f952631ff2b0d7a1653641e4fec5bc029b7c81ef8cc1"
+    },
+    {
+      "repo": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "path": "04 Strategy Library/355 Standardized Unexpected Earnings/03 Method.html",
+      "git_blob_sha": "a1b3ba6c7c9828631ddfe2b6ce06854613c01063",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04 Strategy Library/355 Standardized Unexpected Earnings/03 Method.html",
+      "sha256": "844e05575a4811bd8c346e290407e7317eb3254a2155cd1b2a7a3b90b75f5edf"
+    }
+  ],
+  "input_artifacts": [
+    {
+      "path": "research/catalogs/qc-inventory-v1/catalog.json",
+      "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+    },
+    {
+      "path": "research/catalogs/qc-stage-fit-v1/mapping.csv",
+      "sha256": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa"
+    },
+    {
+      "path": "docs/tasks/2026-10-28-qc-target-components.md",
+      "sha256": "5c3d7c2bbd60a1b0f390db10a7b0e3bf30172502cb7561db688486bb1d75190d"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-gscore-spy-comparison.md",
+      "sha256": "42cedc01148aea7bda245162667ee918b5a284e02342854493fc61da81d1a5ce"
+    }
+  ],
+  "supporting_current_sources": [
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/scheduled-events",
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/portfolio/cashbook",
+    "https://www.quantconnect.com/docs/v2/writing-algorithms/universes/equity/morningstar-migration"
+  ],
+  "failed_public_probes": [
+    {
+      "url": "https://www.quantconnect.com/strategies/158/",
+      "result": "inaccessible_via_webtool",
+      "consequence": "retain_title_only_unknowns"
+    },
+    {
+      "url": "https://www.quantconnect.com/forum/discussion/21449/fundamental-data-provider-change/",
+      "result": "inaccessible_via_webtool",
+      "consequence": "used_linked_official_migration_docs_instead_no_forum_claim"
+    }
+  ],
+  "rights": {
+    "reference_methods": "prior verified Apache-2.0 file grants; hashes rechecked",
+    "complete_current_packages_qualified": 0,
+    "community_rights": "unknown",
+    "code_duplicates_verified": 0
+  },
+  "findings": [
+    "Quarterly identity and release/vendor availability must be separate from monthly snapshots.",
+    "Turn-of-month callback counting is resolution-dependent.",
+    "Expiry-week equity timing does not establish option positions or expiry-close fills.",
+    "External contributions require time-weighted/unitized equity before CAGR, Calmar and drawdown.",
+    "Passive title remains unverified despite independent cashbook DCA documentation."
+  ],
+  "next_question": {
+    "scope": "zero-financial month-turn timing-contract verification using saved calendar metadata and synthetic traces",
+    "performed": false,
+    "financial_budget_created": false
+  },
+  "validation": {
+    "json_parse": true,
+    "three_licensed_hashes_match": true,
+    "input_hashes_checked": true,
+    "local_links_checked": true,
+    "whitespace_checked": true,
+    "full_test_suite_run": false
+  },
+  "report": "docs/tasks/2026-10-28-qc-wave2-event-components.md"
+}

@@ -1,0 +1,37 @@
+{
+  "status": "blocked",
+  "observed_utc": "2026-10-26T00:26:32.236659+00:00",
+  "goal_complete": false,
+  "condition": {
+    "condition": "Permission-qualified price input absent; financial launch requires that evidence",
+    "consecutive_goal_turns_observed": 3,
+    "last_revalidated_utc": "2026-10-26T00:26:32.236659+00:00",
+    "native_work_remaining": false,
+    "historical_paths_launched": 0,
+    "waiting_on_user_question": true,
+    "decision": "blocked_threshold_met",
+    "previous_turn_classification": "progress: two remaining synthetic native cases completed; financial input blocker persisted",
+    "current_turn_classification": "no progress: same missing required price-input evidence revalidated; no eligible financial launch or remaining native probe work",
+    "external_change_needed": "User supplies actual authorized price-export source/scope/path, or explicitly authorizes a fresh source/domain investigation scope"
+  },
+  "historical_financial_attempts": 0,
+  "qualified_input_bundle_present": false,
+  "executable_plan_present": false,
+  "native_probes_completed": 4,
+  "native_probe_limit": 4,
+  "artifact_requests": 12,
+  "artifact_limit": 32,
+  "provider_domains_used": 6,
+  "provider_domain_limit": 6,
+  "current_preflight": {
+    "expected_exit": 1,
+    "log": ".local/multi-asset-qualification-v2/comparison-preflight-blocked-audit.log",
+    "sha256": "698caeb24284c533b995f7f56e47b32160105104784791a8a1bb84ebbe6f1f8e"
+  },
+  "preserved_evidence": [
+    "docs/tasks/evidence/2026-10-25-multi-asset-qualification-v2.json",
+    "docs/tasks/evidence/2026-10-25-multi-asset-accounting-stress.json"
+  ],
+  "unrun_comparison": "All five fixed rules at5/25bp: no historical financial path launched; no annual/temporal strategy comparison or winner established",
+  "resume_rule": "Resume after required source evidence or explicit revised source scope. Reassess expired deadline/budget; no automatic reset or carryover."
+}

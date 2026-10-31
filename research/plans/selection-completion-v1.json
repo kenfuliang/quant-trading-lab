@@ -1,0 +1,1125 @@
+{
+  "study_id": "selection-completion-v1",
+  "status": "frozen-before-financial-results",
+  "created_utc": "2026-10-26T21:16:24.614725+00:00",
+  "goal": "docs/tasks/2026-10-26-selection-research-goal.md",
+  "scope": [
+    "asset-class momentum",
+    "stock momentum",
+    "low-volatility stocks"
+  ],
+  "max_total_hosted_launches": 14,
+  "diagnostic_launches": 2,
+  "planned_financial_launches": 9,
+  "technical_retries": 3,
+  "execution_window_minutes": 120,
+  "deadline_policy": "Freeze absolute UTC deadline before first new hosted launch. Reserve every attempt before dispatch, including probes and failures; no reopening prior budgets.",
+  "cases": [
+    "asset_momentum_repaired",
+    "stock_momentum_repaired",
+    "lowvol_repaired",
+    "spy_control",
+    "asset_equal_weight",
+    "stock_momentum_universe_equal_weight",
+    "lowvol_universe_equal_weight",
+    "stock_momentum_cost_delay_stress",
+    "stock_equal_weight_cost_delay_stress"
+  ],
+  "cached_controls": [
+    "qc-breadth-v1:t11"
+  ],
+  "base_assumptions": {
+    "start": "2020-01-01",
+    "end": "2025-12-31",
+    "capital_usd": 10000,
+    "target_budget": 0.9,
+    "slippage_bps": 25,
+    "fee_model": "Same native IB margin/default fees",
+    "debit_rate": 0.06,
+    "debit_basis": "ACT/360 previous closing negative USD cash",
+    "credit_rate": 0,
+    "execution": "Preserve funded staged MOO controller; causal selection and explicit history readiness"
+  },
+  "stress": {
+    "slippage_bps": 50,
+    "extra_decision_delay_sessions": 1,
+    "comparison": "Two separately labelled matched stress cases; do not attribute combined effect to cost or delay alone"
+  },
+  "acceptance": {
+    "asset_momentum": "Positive net CAGR difference versus same-five-ETF equal weight; report DD and temporal opportunity cost",
+    "stock_momentum": "Positive net CAGR difference versus same historical eligible universe equal weight; separately report matched stress difference",
+    "lowvol": "Smaller full-period closing DD than same historical eligible universe equal weight, with nonnegative full-period CAGR; report displaced growth and duration",
+    "evidence_gate": "Diagnosed missing-history events; causal/finite/ready inputs; matched controls/costs/calendars; complete summaries and reconciliation; failed gates mean inconclusive, not a financial win",
+    "decision": "Retain for independent validation only if evidence gate and declared mechanism test pass; stop this fixed variant if mechanism test fails; inconclusive for conflicting/insufficient evidence. No live promotion."
+  },
+  "baseline": {
+    "qc-breadth-v1": {
+      "manifest_sha256": "23fa96bf35e4cbd9934acfffac2e49cf9993a195863a279fad49517f4dac14cf",
+      "comparison_sha256": "1f6efa77997bf0f11e66fc5d3541f1280d0f76dd4df8b26ac23f7fbaaf00f8dd",
+      "verified_artifacts": 4
+    },
+    "qc504-funded-v1": {
+      "manifest_sha256": "6e09228a78df714d5e8335254c8fd9384c162dc410b41aedeb37355ddc0aceb3",
+      "comparison_sha256": "722164fe46be91e08ef1104f5fe0287258a06a179f671b2e2aed545b4105e7d3",
+      "verified_artifacts": 4
+    }
+  },
+  "execution_gate": "Order-free readiness diagnosis first, then freeze versioned executable sources, hashes and exact timing/eligibility rules before financial launch. This design itself cannot authorize arbitrary financial variants.",
+  "stops": [
+    "14 launches or frozen2hour deadline",
+    "No further repairs after3technical retries",
+    "No free data/access or unresolved causal/history integrity: stop dependent runs and preserve evidence",
+    "No after-result signal/threshold/universe optimization"
+  ],
+  "limits": [
+    "Viewed development history, not independent OOS",
+    "Retain/stop decisions apply to these exact adaptations, not entire literature",
+    "USD300000 capacity/deployment qualification remains outside this epoch",
+    "Remaining seven shortlist candidates are queued, not in scope"
+  ],
+  "source_hashes": {
+    "asset": "9fad478685de5b65528e782b2242465641dc0d047ba96b097fba92055513ca35",
+    "stock": "228d624f23284b8456bd8599df6b3b93ed055fe26a62a5cbca62d43196afd632",
+    "lowvol": "dd229dff8e7f4323680c9504e7adce1350e00a6e11759011eaa0e3d5f050059f",
+    "spy": "ad52a112ac020990b182205f7fb56250a781be5ef22e2ed12f94bef20feea4aa",
+    "ew_asset": "1df5668df17c18c5925133ad91c3f0e5ad83ad5e4fa0939d8dd0aa1e7ddb61b4",
+    "ew_stock": "03da01c357a5feb8c6374424dc7b4987c930962c0ab8ab6e90b83459e17d2ad2",
+    "ew_low": "ebf46f4e007aa20256d8447be6f5657a110d5ce236262b91d42f9eeefa9e3d8d",
+    "stress": "199beaab0b4639957da1cf8efedf64e9c42e60763e78c7bf4dab1b0c9dfa7068",
+    "ew_stress": "b1297a9068e400f0661f2b7114a52c241e7cef10481100815daa7db67d8d7c33"
+  },
+  "deadline_utc": "2026-10-26T23:18:40.740191+00:00",
+  "case_mapping": {
+    "asset": [
+      "asset",
+      false,
+      false
+    ],
+    "stock": [
+      "momentum",
+      false,
+      false
+    ],
+    "lowvol": [
+      "lowvol",
+      false,
+      false
+    ],
+    "spy": [
+      "spy",
+      false,
+      false
+    ],
+    "ew_asset": [
+      "asset",
+      true,
+      false
+    ],
+    "ew_stock": [
+      "momentum",
+      true,
+      false
+    ],
+    "ew_low": [
+      "lowvol",
+      true,
+      false
+    ],
+    "stress": [
+      "momentum",
+      false,
+      true
+    ],
+    "ew_stress": [
+      "momentum",
+      true,
+      true
+    ]
+  },
+  "history": "Explicit600calendar-day SCALED_RAW request ending at currentcompleted close; require last253positivefinite ordered unique bars and current slice timestamp. Missing slots cash.",
+  "timing": "First observed SPY close of month; shared staged MOO. Stress holds old targets one extra observed SPY session before releasing new intent.",
+  "diagnosis": {
+    "status": "verified-order-free",
+    "asset": {
+      "study": "selection-completion-v1",
+      "case": "asset_probe",
+      "kind": "readiness",
+      "windows": 72,
+      "first": {
+        "now": "2020-01-02 16:00:00",
+        "spy_start": "2020-01-02 09:30:00",
+        "spy_end": "2020-01-02 16:00:00",
+        "selected": 5,
+        "counts": [
+          253,
+          253,
+          253,
+          253,
+          253
+        ],
+        "ready": 5
+      },
+      "counts": [
+        [
+          "2020-01-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-02-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-03-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-04-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-05-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-06-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-07-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-08-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-09-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-10-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-11-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2020-12-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-01-04",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-02-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-03-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-04-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-05-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-06-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-07-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-08-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-09-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-10-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-11-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2021-12-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-01-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-02-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-03-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-04-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-05-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-06-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-07-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-08-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-09-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-10-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-11-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2022-12-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-01-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-02-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-03-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-04-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-05-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-06-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-07-03",
+          5,
+          0,
+          210
+        ],
+        [
+          "2023-08-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-09-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-10-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-11-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2023-12-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-01-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-02-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-03-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-04-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-05-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-06-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-07-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-08-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-09-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-10-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-11-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2024-12-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-01-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-02-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-03-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-04-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-05-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-06-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-07-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-08-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-09-02",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-10-01",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-11-03",
+          5,
+          5,
+          253
+        ],
+        [
+          "2025-12-01",
+          5,
+          5,
+          253
+        ]
+      ],
+      "anomalies": [
+        {
+          "session": "2023-07-03",
+          "now": "2023-07-03 13:00:00",
+          "symbol": "SPY",
+          "old": 210,
+          "repeat": 210,
+          "single": 210,
+          "first": "2022-08-31 09:30:00",
+          "last": "2023-07-03 13:00:00",
+          "in_slice": true,
+          "bar_end": "2023-07-03 13:00:00",
+          "spy_end": "2023-07-03 13:00:00",
+          "fill_forward": false,
+          "has_data": true,
+          "count": 5
+        }
+      ],
+      "future": 0,
+      "invalid": 0,
+      "unordered": 0,
+      "orders": 0
+    },
+    "stock": {
+      "study": "selection-completion-v1",
+      "case": "stock_probe",
+      "kind": "readiness",
+      "windows": 72,
+      "counts": [
+        [
+          "2020-01-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-02-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-03-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-04-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-05-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-06-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-07-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-08-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-09-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-10-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-11-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2020-12-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-01-04",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-02-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-03-01",
+          50,
+          49,
+          49
+        ],
+        [
+          "2021-04-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-05-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-06-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-07-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-08-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-09-01",
+          50,
+          49,
+          49
+        ],
+        [
+          "2021-10-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-11-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2021-12-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-01-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-02-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-03-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-04-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-05-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-06-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-07-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-08-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-09-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-10-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-11-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2022-12-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-01-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-02-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-03-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-04-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-05-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-06-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-07-03",
+          50,
+          0,
+          50
+        ],
+        [
+          "2023-08-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-09-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-10-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-11-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2023-12-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-01-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-02-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-03-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-04-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-05-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-06-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-07-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-08-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-09-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-10-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-11-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2024-12-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-01-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-02-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-03-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-04-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-05-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-06-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-07-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-08-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-09-02",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-10-01",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-11-03",
+          50,
+          50,
+          50
+        ],
+        [
+          "2025-12-01",
+          50,
+          50,
+          50
+        ]
+      ],
+      "remaining_ineligible": [
+        [
+          "2021-03-01",
+          "ABNB",
+          54,
+          "2020-12-10 09:30:00",
+          "2021-03-01 16:00:00",
+          true
+        ],
+        [
+          "2021-09-01",
+          "SNOW",
+          243,
+          "2020-09-16 09:30:00",
+          "2021-09-01 16:00:00",
+          true
+        ]
+      ],
+      "early_close_etfs": {
+        "session": "2023-07-03",
+        "selected": 5,
+        "wide_ready": 5
+      },
+      "future": 0,
+      "invalid": 0,
+      "unordered": 0,
+      "orders": 0
+    },
+    "diagnosis": "2023-07-03 early-close bar-count request returned210closes for5ETFs and stock readiness zero;600calendar-day request restored full253eligible closes. Remaining low-vol windows have genuine post-listing insufficiency:ABNB54closes2021-03-01;SNOW243closes2021-09-01. No future,invalid,unordered bars or orders.",
+    "root_cause_limit": "Observed hosted request behavior, not a proven upstream LEAN defect or claimed fix to LEAN internals. Momentum cohort validated again in financial cases using the same shared history correction.",
+    "ipo_sources": [
+      "https://www.sec.gov/Archives/edgar/data/1559720/000155972021000010/airbnb-10k.htm",
+      "https://www.snowflake.com/en/news/press-releases/snowflake-announces-pricing-of-initial-public-offering/"
+    ],
+    "summary_sha256": {
+      "asset_probe": "aedcad7dc540790cd7359b864db835ee194b5d783fdd1aacbe169cc6f27fb41f",
+      "stock_probe": "317cf6f06900f42e3d66d7b5ac96ab2bacb1e49a26cc15eac940c2a5f42080e5"
+    }
+  },
+  "technical_amendments": [
+    {
+      "reason": "Preserved broad-universe control stopped2020-03-03 with target price unavailable; retain current and pending delayed weights in subscriptions, without admitting them to feature selection. Stock base completed without this failure and remains unchanged; paired membership/eligible-feature hashes must match.",
+      "cases": [
+        "ew_stock",
+        "stress",
+        "ew_stress"
+      ],
+      "prior_source_hashes": {
+        "ew_stock": "c4a4fdf503acde50599d27626cc32b44c93fd2b67792127d100dc01809303faa",
+        "stress": "e3f35a44fa05c757b31936bbe116a683ca11da259d0b8df5454e26415de62748",
+        "ew_stress": "38dad99d744b07c4d202c5cfa311d0340e04d7fbf694a57bbabfb443ac2f8ccd"
+      },
+      "changed_source_hashes": {
+        "ew_stock": "03da01c357a5feb8c6374424dc7b4987c930962c0ab8ab6e90b83459e17d2ad2",
+        "stress": "199beaab0b4639957da1cf8efedf64e9c42e60763e78c7bf4dab1b0c9dfa7068",
+        "ew_stress": "b1297a9068e400f0661f2b7114a52c241e7cef10481100815daa7db67d8d7c33"
+      },
+      "rule_changes": "None; universe callback selection, ranking, signal delay, target weights, funded-controller AST and costs unchanged",
+      "failure": "6047dd04f6b571de39b09a1a2337400d"
+    }
+  ],
+  "post_financial_diagnostic_addendum": {
+    "status": "verified",
+    "reason": "Additional order-free technical retry resolved missing monthly-momentum cohort coverage; SNOW243closes2021-09-01, no other wide-history insufficiency. No financial source/rule changed.",
+    "readiness_sha256": "b4ef672d65683c79b05da2d4e55d91f165545f4806413556940968744258f92b",
+    "financial_source_changes": false
+  }
+}

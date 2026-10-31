@@ -1,0 +1,324 @@
+{
+  "schema": "sector-comparison-issuer-v2-completion",
+  "status": "complete_bounded_comparison_financial_target_rejected",
+  "utc": "2026-10-28T22:30:37.614781+00:00",
+  "plan": {
+    "path": "research/plans/sector-comparison-issuer-v2.frozen.json",
+    "sha256": "afb7403ebc7d5062bcb71939efab934bd3730499ef522176ee5d998c877baa4b"
+  },
+  "financial_manifest": {
+    "path": ".local/sector-comparison-issuer-v2/financial/manifest.json",
+    "sha256": "3820bbf517aefb0afbdd4e508fc691e658e3c83ed74f7b5e9fd0e1d87798907c"
+  },
+  "initial_terminal_audit": {
+    "path": ".local/sector-comparison-issuer-v2/terminal-audit-initial.json",
+    "sha256": "08b72612bd401bf5c16c87bc7ed16b2a06413cd535efc93a28daedf88fa092d1"
+  },
+  "exposure_and_guard_audit": {
+    "path": ".local/sector-comparison-issuer-v2/exposure-and-guards.json",
+    "sha256": "363f6ca24fa05844fbcd242a213fc68e89afb2d1541d563c09ac2c6291513d88"
+  },
+  "cached_restart": {
+    "path": ".local/sector-comparison-issuer-v2/financial-cache-verification.log",
+    "sha256": "afa70706f0debfe6e7c83ddbed2a7d249af4704ae1edeccf0b66ff427dfce516",
+    "new_launches": 0
+  },
+  "summaries": [
+    {
+      "policy": "vol",
+      "cost_bps": 5,
+      "cagr_pct": 14.612826483354802,
+      "max_drawdown_pct": 29.668899418906125,
+      "calmar": 0.49253011636970145,
+      "sharpe": 0.8632179585462817,
+      "terminal_equity": 1011934.48,
+      "sessions": 2242,
+      "uw_sessions": 170,
+      "uw_days": 248,
+      "underwater_fraction": 0.8661909009812667,
+      "right_censored": 0,
+      "fees_usd": 389,
+      "slippage_usd": 15323.0,
+      "trades": 389,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9794878864760583,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "raw",
+      "cost_bps": 5,
+      "cagr_pct": 12.382311210285968,
+      "max_drawdown_pct": 29.671971370707727,
+      "calmar": 0.4173066580439555,
+      "sharpe": 0.7312843296168735,
+      "terminal_equity": 849308.13,
+      "sessions": 2242,
+      "uw_sessions": 301,
+      "uw_days": 439,
+      "underwater_fraction": 0.8898305084745762,
+      "right_censored": 0,
+      "fees_usd": 384,
+      "slippage_usd": 12408.9267,
+      "trades": 384,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.979694313130833,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "equal",
+      "cost_bps": 5,
+      "cagr_pct": 11.560269361449249,
+      "max_drawdown_pct": 36.18137146844125,
+      "calmar": 0.31950887686865465,
+      "sharpe": 0.732523334840697,
+      "terminal_equity": 795504.11,
+      "sessions": 2242,
+      "uw_sessions": 314,
+      "uw_days": 457,
+      "underwater_fraction": 0.8639607493309545,
+      "right_censored": 0,
+      "fees_usd": 1047,
+      "slippage_usd": 827.8398,
+      "trades": 1047,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9785612455374784,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "hold",
+      "cost_bps": 5,
+      "cagr_pct": 13.884781568546622,
+      "max_drawdown_pct": 31.9386584503368,
+      "calmar": 0.43473277345499167,
+      "sharpe": 0.8517463743922783,
+      "terminal_equity": 956051.771456,
+      "sessions": 2242,
+      "uw_sessions": 489,
+      "uw_days": 709,
+      "underwater_fraction": 0.8438893844781445,
+      "right_censored": 0,
+      "fees_usd": 1,
+      "slippage_usd": 148.58,
+      "trades": 1,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9379497120634783,
+      "rebalance_decisions": 1,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "vol",
+      "cost_bps": 10,
+      "cagr_pct": 14.309902291142507,
+      "max_drawdown_pct": 29.674498124317804,
+      "calmar": 0.48222895737588756,
+      "sharpe": 0.8481282695806013,
+      "terminal_equity": 988340.08,
+      "sessions": 2242,
+      "uw_sessions": 170,
+      "uw_days": 248,
+      "underwater_fraction": 0.8670829616413916,
+      "right_censored": 0,
+      "fees_usd": 387,
+      "slippage_usd": 29855.63,
+      "trades": 387,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9797016493867649,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "raw",
+      "cost_bps": 10,
+      "cagr_pct": 12.107210777393785,
+      "max_drawdown_pct": 29.670876742234586,
+      "calmar": 0.40805032094518284,
+      "sharpe": 0.7178158927965741,
+      "terminal_equity": 830953.35,
+      "sessions": 2242,
+      "uw_sessions": 307,
+      "uw_days": 448,
+      "underwater_fraction": 0.8911685994647636,
+      "right_censored": 0,
+      "fees_usd": 384,
+      "slippage_usd": 24141.2766,
+      "trades": 384,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9798749320082571,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "equal",
+      "cost_bps": 10,
+      "cagr_pct": 11.539532763235961,
+      "max_drawdown_pct": 36.17655814868432,
+      "calmar": 0.3189781823856461,
+      "sharpe": 0.731448440389098,
+      "terminal_equity": 794186.93,
+      "sessions": 2242,
+      "uw_sessions": 315,
+      "uw_days": 460,
+      "underwater_fraction": 0.8639607493309545,
+      "right_censored": 0,
+      "fees_usd": 1045,
+      "slippage_usd": 1628.7448,
+      "trades": 1045,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9785938844259084,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    {
+      "policy": "hold",
+      "cost_bps": 10,
+      "cagr_pct": 13.882882354253145,
+      "max_drawdown_pct": 31.948484128871513,
+      "calmar": 0.43453962630130955,
+      "sharpe": 0.851436230378733,
+      "terminal_equity": 955909.651456,
+      "sessions": 2242,
+      "uw_sessions": 489,
+      "uw_days": 709,
+      "underwater_fraction": 0.8438893844781445,
+      "right_censored": 0,
+      "fees_usd": 1,
+      "slippage_usd": 290.7,
+      "trades": 1,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9382199612524856,
+      "rebalance_decisions": 1,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    }
+  ],
+  "decision": {
+    "decision": "reject_fixed_target",
+    "both_costs": {
+      "5": {
+        "relative_calmar_lift": 0.18025942523500915,
+        "guards": {
+          "calmar_lift_at_least_10pct": 1,
+          "cagr_not_lower": 1,
+          "drawdown_not_deeper": 1,
+          "underwater_sessions_not_longer": 1,
+          "underwater_days_not_longer": 1,
+          "not_simpler_control_dominated": 1
+        },
+        "passed": 1
+      },
+      "10": {
+        "relative_calmar_lift": 0.18178796247208395,
+        "guards": {
+          "calmar_lift_at_least_10pct": 1,
+          "cagr_not_lower": 1,
+          "drawdown_not_deeper": 0,
+          "underwater_sessions_not_longer": 1,
+          "underwater_days_not_longer": 1,
+          "not_simpler_control_dominated": 1
+        },
+        "passed": 0
+      }
+    },
+    "independent_alpha_established": 0,
+    "study_context": "issuer-v2 sector ledger,2017-02\u20132025,viewed development"
+  },
+  "financial_attempts": 8,
+  "financial_children": 8,
+  "financial_failures": 0,
+  "retries": 0,
+  "financial_child_seconds": 28.976448374101892,
+  "unused_financial_slots": 0,
+  "max_concurrency": 1,
+  "audits": {
+    "sessions": 17936,
+    "fills_verified": 3638,
+    "events_verified": 6400,
+    "selections_verified": 644,
+    "daily_asset_contributions_verified": 197296,
+    "annual_metric_checks": 720,
+    "full_metric_checks": 112,
+    "rolling_metric_checks": 72
+  },
+  "annual_rows": 72,
+  "all_case_audits_passed": true,
+  "prior_artifacts_verified": 549,
+  "leaderboard": {
+    "old_rows": 79,
+    "added_rows": 8,
+    "new_rows": 87,
+    "old_rows_preserved": true,
+    "old_snapshot_sha256": "1312a5d2202e8ff8431ab728e9ee72a0d252d7fd14a601126875d72723851497",
+    "sha256": "2d2f070f8b2220846c081308d0a2ee0003c00f49ee7c1ee63d467b1aa6a1c7f8"
+  },
+  "result_limits": [
+    "viewed restated development",
+    "no native/broker parity",
+    "no independent alpha",
+    "constant slippage and zero cash interest",
+    "historical publication vintages unknown"
+  ],
+  "report": {
+    "path": "reports/bounded-study/sector-issuer-v2-20261028/index.html",
+    "sha256": "c391692324ea536aad45f97fa68ec7492a44fb4bfea7197d32b4e5c3a360b103"
+  },
+  "checks": {
+    "offline_suite_before_finance": {
+      "exit": 0,
+      "tests": 489
+    },
+    "final_offline_suite": {
+      "exit": 0,
+      "tests": 489,
+      "log_path": ".local/sector-comparison-issuer-v2/final-make-check.log",
+      "log_sha256": "533c7d9f775967753dec0830be62f68db6ddb1005d3eac551881453f987188bc"
+    },
+    "final_docs": {
+      "exit": 0,
+      "files": 163
+    },
+    "final_whitespace": {
+      "exit": 0
+    },
+    "completion_requirements": "passed; financial target failure preserved, not relabeled passed",
+    "original_download_artifacts_verified": 31,
+    "postclosure_runtime_source_identity": "verified_against_frozen_plan"
+  },
+  "repository_state": {
+    "cwd": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we",
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty_status_entries": 322,
+    "source_identity": "uncommitted frozen source snapshots/hashes; HEAD alone does not identify study code"
+  },
+  "completed_utc": "2026-10-28T22:36:38.732353+00:00",
+  "completion_requirements": {
+    "path": ".local/sector-comparison-issuer-v2/completion-requirements.json",
+    "sha256": "f0cfcf004f900b111cd41c3d224c3c9f2879ab14defade472c725b8d02c6fc5c"
+  }
+}

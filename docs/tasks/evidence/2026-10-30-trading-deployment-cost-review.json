@@ -1,0 +1,193 @@
+{
+  "schema": "deployment-cost-source-review/v1",
+  "review_id": "DEPLOY-COST-20261030-01",
+  "status": "completed_source_review_account_quote_and_readiness_unverified",
+  "created_utc": "2026-10-30T23:14:21.816026+00:00",
+  "access_date": "2026-10-30",
+  "git": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty_workspace_preserved": true
+  },
+  "sources": [
+    {
+      "title": "IBKR data pricing",
+      "url": "https://www.interactivebrokers.com/en/pricing/market-data-pricing.php",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "IBKR API data limits",
+      "url": "https://www.interactivebrokers.com/docs/tws-api/doc/md/market-data-limitations",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "IBKR third-party requirements",
+      "url": "https://www.interactivebrokers.com/docs/third-party-integrations/general-third-party-frequently-asked-questions",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "IBKR paper guide",
+      "url": "https://www.ibkrguides.com/clientportal/aboutpapertradingaccounts.htm",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "IBKR commissions",
+      "url": "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "IBKR restart",
+      "url": "https://www.ibkrguides.com/traderworkstation/auto-restart-considerations.htm",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "Alpaca data plans",
+      "url": "https://docs.alpaca.markets/us/docs/about-market-data-api",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "Alpaca paper",
+      "url": "https://docs.alpaca.markets/us/docs/paper-trading",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "Alpaca commissions",
+      "url": "https://alpaca.markets/support/commission-clearing-fees",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "QC quote",
+      "url": "https://www.quantconnect.com/pricing",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "QC US equities",
+      "url": "https://www.quantconnect.com/docs/v2/cloud-platform/datasets/quantconnect/us-equities",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "QC tier features",
+      "url": "https://www.quantconnect.com/docs/v2/cloud-platform/organizations/tier-features",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "QC paper",
+      "url": "https://www.quantconnect.com/docs/v2/cloud-platform/live-trading/brokerages/quantconnect-paper-trading",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "QC IBKR",
+      "url": "https://www.quantconnect.com/docs/v2/cloud-platform/live-trading/brokerages/interactive-brokers",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "QC Alpaca",
+      "url": "https://www.quantconnect.com/docs/v2/cloud-platform/live-trading/brokerages/alpaca",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "Nautilus live",
+      "url": "https://nautechsystems.github.io/nautilus_docs/latest/concepts/live/",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "Nautilus IBKR",
+      "url": "https://nautechsystems.github.io/nautilus_docs/latest/integrations/interactive_brokers/",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "DigitalOcean compute",
+      "url": "https://www.digitalocean.com/pricing/droplets",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "DigitalOcean backups",
+      "url": "https://www.digitalocean.com/pricing/backups",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    },
+    {
+      "title": "AWS compute",
+      "url": "https://aws.amazon.com/lightsail/pricing/",
+      "access": "official public web page; QC quote additionally observed in browser UI"
+    }
+  ],
+  "observations": {
+    "qc_monthly_usd": {
+      "researcher_seat": 10,
+      "l_micro_live_node": 24,
+      "total": 34,
+      "quantity_each": 1,
+      "billing": "monthly",
+      "capture": "manual transcription from read-only CUA accessibility snapshot of existing pricing tab",
+      "checkout_clicked": false,
+      "annual_contract_verified": false
+    },
+    "digitalocean_monthly_usd": {
+      "2GiB": 12,
+      "4GiB": 24,
+      "weekly_backup_fraction": 0.2
+    },
+    "ibkr_data_monthly_usd": {
+      "network_A_nonprofessional": 1.5,
+      "network_B_nonprofessional": 1.5,
+      "network_C_nonprofessional": 1.5,
+      "account_entitlement_verified": false
+    },
+    "alpaca_data_monthly_usd": {
+      "basic": 0,
+      "algo_trader_plus": 99
+    }
+  },
+  "budget_assumptions": [
+    "One active algorithm",
+    "No paid research data or purchases authorized",
+    "Server capacity not benchmarked",
+    "Tax, variable trade/financing fees, engineering, paid alerts and extras excluded",
+    "QC data entitlement applies to provider in cloud, not unrestricted local redistribution"
+  ],
+  "limits": {
+    "financial_runs": 0,
+    "market_data_downloads": 0,
+    "broker_connections": 0,
+    "orders": 0,
+    "deployments": 0,
+    "billing_changes": 0
+  },
+  "missing_evidence": [
+    "User legal entity/residency/professional status",
+    "Actual API/data entitlement and exact instruments",
+    "Runtime memory/capacity",
+    "Order-type and execution qualification",
+    "Actual trading frequency and debit balances",
+    "Paper and live readiness"
+  ],
+  "artifacts": [
+    {
+      "path": "docs/tasks/2026-10-30-trading-deployment-cost-review.md",
+      "sha256": "7555b5ad869ce880693552b055f95cf9c85838cae018d4d75a9441566b3df5d1"
+    },
+    {
+      "path": "docs/operations/alpaca-paper.md",
+      "sha256": "6b8bcb1cf4f2fc8a071a162eab51ae956aa679f9e601b62e78a422275bbf7931"
+    },
+    {
+      "path": "docs/operations/paper-connection.md",
+      "sha256": "ac5c6394fb7dc4d94c564660a220584654c8a94a14e8652bae7f04617b038805"
+    },
+    {
+      "path": "docs/capabilities.md",
+      "sha256": "803d2087851684de2786df7970fe5afffdf25106f23fa541b76ac6b2119e9878"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c"
+    }
+  ],
+  "validation": {
+    "documentation_check": "passed: 186 files; local targets, metadata and catalog parity",
+    "financial_or_operational_tests": "not run; source/prose review only",
+    "documentation_exit": 0,
+    "artifact_hash_check": "passed: 5 local artifacts",
+    "budget_arithmetic": "passed: self-host bounds and observed QC total"
+  }
+}

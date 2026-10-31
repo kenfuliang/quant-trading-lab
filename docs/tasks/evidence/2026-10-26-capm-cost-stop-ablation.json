@@ -1,0 +1,769 @@
+{
+  "schema": "capm-cost-stop-ablation-receipt/v1",
+  "status": "completed-qualified",
+  "updated_local_date": "2026-10-26",
+  "recorded_utc": "2026-10-27T05:05:47.196731+00:00",
+  "study": "capm-ablation-v1",
+  "comparison_eligible": true,
+  "protocol": {
+    "path": "research/plans/capm-ablation-v1.json",
+    "sha256": "599017d9c502ecd725d21693928487e44e74752085bba09e31a3538d66a8f272"
+  },
+  "budget": {
+    "study": "capm-ablation-v1",
+    "status": "closed",
+    "attempts": [
+      {
+        "id": 1,
+        "case": "c25_on",
+        "status": "failed-before-first-close",
+        "source_sha256": "b2e3b2b574cc60e89aebd4a830ce9c5a4160d4c61c395c64852b2ee72c78eb14",
+        "reserved_utc": "2026-10-27T04:34:27.994638+00:00",
+        "backtest_id": "98de9638087b30cd68f8bd6283952fef",
+        "recorded_utc": "2026-10-27T04:36:46.925166+00:00"
+      },
+      {
+        "id": 2,
+        "case": "c25_on",
+        "status": "completed",
+        "source_sha256": "0c64f789f100dc6f4431cbef59d78a39566f897eb1cf9e05cc084dc707d04584",
+        "reserved_utc": "2026-10-27T04:37:14.768350+00:00",
+        "backtest_id": "277975133e4aa464f440c448e884c3bd",
+        "recorded_utc": "2026-10-27T04:40:10.420012+00:00"
+      },
+      {
+        "id": 3,
+        "case": "c0_on",
+        "status": "completed",
+        "source_sha256": "e52b2dd3c6feb3d2c1394b4ca64132c2fcfa782b29db9d6ba9d78bda356af476",
+        "reserved_utc": "2026-10-27T04:40:29.919821+00:00",
+        "backtest_id": "6dd5dcf8d4c91cdc46f7cb9b29324197",
+        "recorded_utc": "2026-10-27T04:43:44.320510+00:00"
+      },
+      {
+        "id": 4,
+        "case": "c0_off",
+        "status": "completed",
+        "source_sha256": "c4cd5a2f2d99a1e4aed8e27d9db798056d7d2d080de78fe90b2134759cb17e45",
+        "reserved_utc": "2026-10-27T04:43:59.256326+00:00",
+        "backtest_id": "b15dee615e669485e497f326781a0472",
+        "recorded_utc": "2026-10-27T04:46:33.543532+00:00"
+      },
+      {
+        "id": 5,
+        "case": "cf_on",
+        "status": "completed",
+        "source_sha256": "d7c21541b4718cb95950965f28cced9e784dcc7f530d023745ed31b62bce8e6a",
+        "reserved_utc": "2026-10-27T04:46:43.988477+00:00",
+        "backtest_id": "9bb82036de1af8a739c0e04a34a49481",
+        "recorded_utc": "2026-10-27T04:50:09.070027+00:00"
+      },
+      {
+        "id": 6,
+        "case": "cf_off",
+        "status": "completed",
+        "source_sha256": "5ab8938ea815ea241f7d569eb116949a43ef6a59c160a15cd42945f896356462",
+        "reserved_utc": "2026-10-27T04:50:19.048555+00:00",
+        "backtest_id": "fedd7f9d2c1a7ecd91a15040acac51c1",
+        "recorded_utc": "2026-10-27T04:53:37.248077+00:00"
+      },
+      {
+        "id": 7,
+        "case": "c25_off",
+        "status": "completed",
+        "source_sha256": "8a2ecbc2dc4c221472d04f24875b5b4c1041f8dd3acdde7951ec930310f593f8",
+        "reserved_utc": "2026-10-27T04:53:48.237140+00:00",
+        "backtest_id": "5ba5c3dd52f4b0dd105d499cfd8ce210",
+        "recorded_utc": "2026-10-27T04:57:09.014391+00:00"
+      },
+      {
+        "id": 8,
+        "case": "s0",
+        "status": "completed",
+        "source_sha256": "fee930c16ea42871699a52e9c69f06a188ffb13f8ec22b0c78394cae453ee39a",
+        "reserved_utc": "2026-10-27T04:57:24.562876+00:00",
+        "backtest_id": "2d49fa717e52bf2e9fa452fe50d85bab",
+        "recorded_utc": "2026-10-27T04:59:02.506428+00:00"
+      },
+      {
+        "id": 9,
+        "case": "sf",
+        "status": "completed",
+        "source_sha256": "724a660ba50c4f14d6cae9fe3d68dc11ecb868df154bc9fcb13fab7d4c4af95d",
+        "reserved_utc": "2026-10-27T04:59:11.127283+00:00",
+        "backtest_id": "13eb49fd5af7b9137901534270d87368",
+        "recorded_utc": "2026-10-27T05:00:53.662251+00:00"
+      },
+      {
+        "id": 10,
+        "case": "s25",
+        "status": "completed",
+        "source_sha256": "524a19e193b7467483ef76fd24f35aa9226f385b80646ae7155357b55dff284d",
+        "reserved_utc": "2026-10-27T05:01:04.940939+00:00",
+        "backtest_id": "4939e23dc633a46a9f607e438fc4f80e",
+        "recorded_utc": "2026-10-27T05:02:38.122496+00:00"
+      }
+    ],
+    "closed_utc": "2026-10-27T05:02:38.162602+00:00"
+  },
+  "controls": {
+    "c25_on": true,
+    "s25": true
+  },
+  "calendar_parity": true,
+  "selection_parity": true,
+  "cases": {
+    "c25_on": {
+      "factors": {
+        "strategy": "capm",
+        "cost_mode": "stress",
+        "stop_enabled": true
+      },
+      "source_sha256": "0c64f789f100dc6f4431cbef59d78a39566f897eb1cf9e05cc084dc707d04584",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "c25_on",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 235.323618074103,
+          "ret": -0.99921558794,
+          "cagr": -0.510788191079,
+          "dd": -0.99921558794,
+          "sharpe": -3.470049901164,
+          "calmar": -0.511189174032,
+          "annual_calmar": -1.0,
+          "uw": 2514,
+          "uw_fraction": 1.0,
+          "longest_uw": 2514,
+          "longest_uw_days": 3653,
+          "censored": true,
+          "return_sum": -6.938425809154,
+          "return_square_sum": 0.419751304281
+        },
+        "audit": {
+          "case_id": "c25_on",
+          "cost_mode": "stress",
+          "stop_enabled": true,
+          "source_token": "c27c3a955b801686",
+          "selection_hash": "81d9cb91170c14e5c169e2fdf33e35edce98ea82d7c793f7b9ab8d9f16107351",
+          "selection_count": 120,
+          "mean_gross": 0.8435603436,
+          "cash_only_days": 257,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 7995,
+          "rejects": 0,
+          "fees": 15015.985,
+          "interest": 0.0,
+          "min_cash": 11.438784,
+          "max_gross": 0.99489194,
+          "fee_models": [
+            "InteractiveBrokersFeeModel"
+          ],
+          "native_fee_residual": -0.0,
+          "active_only_residual": -200710.780956,
+          "fill_notional_usd": 140260517.82,
+          "spy_fills": 2331,
+          "traded_symbols": 30,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/c25_on-summary.json",
+      "summary_sha256": "8527d26a7baf4287584b59e73e9828202737d3f22e88dd238aff6c975e87ed89"
+    },
+    "c0_on": {
+      "factors": {
+        "strategy": "capm",
+        "cost_mode": "zero",
+        "stop_enabled": true
+      },
+      "source_sha256": "e52b2dd3c6feb3d2c1394b4ca64132c2fcfa782b29db9d6ba9d78bda356af476",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "c0_on",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 632389.4141962837,
+          "ret": 1.107964713988,
+          "cagr": 0.077412229515,
+          "dd": -0.365427048518,
+          "sharpe": 0.483833393915,
+          "calmar": 0.211840447579,
+          "annual_calmar": 3.031972368988,
+          "uw": 2343,
+          "uw_fraction": 0.931980906921,
+          "longest_uw": 730,
+          "longest_uw_days": 1063,
+          "censored": true,
+          "return_sum": 0.931157524097,
+          "return_square_sum": 0.371467246536
+        },
+        "audit": {
+          "case_id": "c0_on",
+          "cost_mode": "zero",
+          "stop_enabled": true,
+          "source_token": "a71fe94ba0c61647",
+          "selection_hash": "81d9cb91170c14e5c169e2fdf33e35edce98ea82d7c793f7b9ab8d9f16107351",
+          "selection_count": 120,
+          "mean_gross": 0.958477901,
+          "cash_only_days": 78,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 7510,
+          "rejects": 0,
+          "fees": 0.0,
+          "interest": 0.0,
+          "min_cash": 2159.964289,
+          "max_gross": 0.99327281,
+          "fee_models": [
+            "ConstantFeeModel"
+          ],
+          "native_fee_residual": 0.0,
+          "active_only_residual": 218267.839823,
+          "fill_notional_usd": 763636495.26,
+          "spy_fills": 2274,
+          "traded_symbols": 30,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/c0_on-summary.json",
+      "summary_sha256": "6be96fbc1d6eb11c8084a2007630e8dc4ace5831511d3f7d01e46443faefec80"
+    },
+    "c0_off": {
+      "factors": {
+        "strategy": "capm",
+        "cost_mode": "zero",
+        "stop_enabled": false
+      },
+      "source_sha256": "c4cd5a2f2d99a1e4aed8e27d9db798056d7d2d080de78fe90b2134759cb17e45",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "c0_off",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 841716.6239342584,
+          "ret": 1.805722079781,
+          "cagr": 0.108659882026,
+          "dd": -0.421033834827,
+          "sharpe": 0.582955468761,
+          "calmar": 0.258078741036,
+          "annual_calmar": 4.28878140048,
+          "uw": 2308,
+          "uw_fraction": 0.918058870326,
+          "longest_uw": 716,
+          "longest_uw_days": 1043,
+          "censored": true,
+          "return_sum": 1.269217851457,
+          "return_square_sum": 0.475608464142
+        },
+        "audit": {
+          "case_id": "c0_off",
+          "cost_mode": "zero",
+          "stop_enabled": false,
+          "source_token": "e5d7d2b947243fac",
+          "selection_hash": "81d9cb91170c14e5c169e2fdf33e35edce98ea82d7c793f7b9ab8d9f16107351",
+          "selection_count": 120,
+          "mean_gross": 0.9897356512,
+          "cash_only_days": 0,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 3788,
+          "rejects": 0,
+          "fees": 0.0,
+          "interest": 0.0,
+          "min_cash": 1979.230414,
+          "max_gross": 0.99358755,
+          "fee_models": [
+            "ConstantFeeModel"
+          ],
+          "native_fee_residual": 0.0,
+          "active_only_residual": 332077.756729,
+          "fill_notional_usd": 91082124.03,
+          "spy_fills": 903,
+          "traded_symbols": 30,
+          "native_book_residual": -0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/c0_off-summary.json",
+      "summary_sha256": "72d051f14d83ac4bc8cbb6d51b0b18d79f6f6449add968deb499caf4b26ff5b6"
+    },
+    "cf_on": {
+      "factors": {
+        "strategy": "capm",
+        "cost_mode": "fees",
+        "stop_enabled": true
+      },
+      "source_sha256": "d7c21541b4718cb95950965f28cced9e784dcc7f530d023745ed31b62bce8e6a",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "cf_on",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 539025.5741256919,
+          "ret": 0.796751913752,
+          "cagr": 0.060340447781,
+          "dd": -0.371663382732,
+          "sharpe": 0.400449951423,
+          "calmar": 0.162352415075,
+          "annual_calmar": 2.143746063698,
+          "uw": 2370,
+          "uw_fraction": 0.942720763723,
+          "longest_uw": 945,
+          "longest_uw_days": 1378,
+          "censored": true,
+          "return_sum": 0.772077860368,
+          "return_square_sum": 0.372704447655
+        },
+        "audit": {
+          "case_id": "cf_on",
+          "cost_mode": "fees",
+          "stop_enabled": true,
+          "source_token": "5040051da0752634",
+          "selection_hash": "81d9cb91170c14e5c169e2fdf33e35edce98ea82d7c793f7b9ab8d9f16107351",
+          "selection_count": 120,
+          "mean_gross": 0.9576659061,
+          "cash_only_days": 80,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 7541,
+          "rejects": 0,
+          "fees": 42872.905,
+          "interest": 0.0,
+          "min_cash": 2471.300308,
+          "max_gross": 0.99329264,
+          "fee_models": [
+            "InteractiveBrokersFeeModel"
+          ],
+          "native_fee_residual": -0.0,
+          "active_only_residual": 136014.947311,
+          "fill_notional_usd": 708182785.06,
+          "spy_fills": 2279,
+          "traded_symbols": 30,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/cf_on-summary.json",
+      "summary_sha256": "6b88a26cad1e27e36e337c3261b61e464147388b16b29790b9473afcff663411"
+    },
+    "cf_off": {
+      "factors": {
+        "strategy": "capm",
+        "cost_mode": "fees",
+        "stop_enabled": false
+      },
+      "source_sha256": "5ab8938ea815ea241f7d569eb116949a43ef6a59c160a15cd42945f896356462",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "cf_off",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 826424.424199229,
+          "ret": 1.754748080664,
+          "cagr": 0.106629301501,
+          "dd": -0.42126421395,
+          "sharpe": 0.574546010769,
+          "calmar": 0.253117397515,
+          "annual_calmar": 4.165433527363,
+          "uw": 2310,
+          "uw_fraction": 0.918854415274,
+          "longest_uw": 716,
+          "longest_uw_days": 1043,
+          "censored": true,
+          "return_sum": 1.25086051825,
+          "return_square_sum": 0.475553492631
+        },
+        "audit": {
+          "case_id": "cf_off",
+          "cost_mode": "fees",
+          "stop_enabled": false,
+          "source_token": "722b54dfad194f87",
+          "selection_hash": "81d9cb91170c14e5c169e2fdf33e35edce98ea82d7c793f7b9ab8d9f16107351",
+          "selection_count": 120,
+          "mean_gross": 0.9896509738,
+          "cash_only_days": 0,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 3824,
+          "rejects": 0,
+          "fees": 9357.005,
+          "interest": 0.0,
+          "min_cash": 2109.64912,
+          "max_gross": 0.99342124,
+          "fee_models": [
+            "InteractiveBrokersFeeModel"
+          ],
+          "native_fee_residual": 0.0,
+          "active_only_residual": 322286.051988,
+          "fill_notional_usd": 90156386.1,
+          "spy_fills": 926,
+          "traded_symbols": 30,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/cf_off-summary.json",
+      "summary_sha256": "6a74d87af9b582ff8d53e36e89bb93f2d14362b9e61917541c1e619704ded105"
+    },
+    "c25_off": {
+      "factors": {
+        "strategy": "capm",
+        "cost_mode": "stress",
+        "stop_enabled": false
+      },
+      "source_sha256": "8a2ecbc2dc4c221472d04f24875b5b4c1041f8dd3acdde7951ec930310f593f8",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "c25_off",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 546473.0060259819,
+          "ret": 0.821576686753,
+          "cagr": 0.061796235101,
+          "dd": -0.427637857624,
+          "sharpe": 0.384347791502,
+          "calmar": 0.144505997304,
+          "annual_calmar": 1.921197275,
+          "uw": 2374,
+          "uw_fraction": 0.94431185362,
+          "longest_uw": 1121,
+          "longest_uw_days": 1630,
+          "censored": true,
+          "return_sum": 0.837616334785,
+          "return_square_sum": 0.476166228817
+        },
+        "audit": {
+          "case_id": "c25_off",
+          "cost_mode": "stress",
+          "stop_enabled": false,
+          "source_token": "3de67b4284e83876",
+          "selection_hash": "81d9cb91170c14e5c169e2fdf33e35edce98ea82d7c793f7b9ab8d9f16107351",
+          "selection_count": 120,
+          "mean_gross": 0.9897756703,
+          "cash_only_days": 0,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 3862,
+          "rejects": 0,
+          "fees": 8321.875,
+          "interest": 0.0,
+          "min_cash": 1697.29592,
+          "max_gross": 0.99520354,
+          "fee_models": [
+            "InteractiveBrokersFeeModel"
+          ],
+          "native_fee_residual": -0.0,
+          "active_only_residual": 120592.681683,
+          "fill_notional_usd": 72245422.78,
+          "spy_fills": 925,
+          "traded_symbols": 30,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/c25_off-summary.json",
+      "summary_sha256": "314a940a7b2bd18369dd63d55c49a68034f383f9133db3976b6933dc47b301cd"
+    },
+    "s0": {
+      "factors": {
+        "strategy": "spy",
+        "cost_mode": "zero",
+        "stop_enabled": false
+      },
+      "source_sha256": "fee930c16ea42871699a52e9c69f06a188ffb13f8ec22b0c78394cae453ee39a",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "s0",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 1195304.874755298,
+          "ret": 2.984349582518,
+          "cagr": 0.148226395605,
+          "dd": -0.335273206652,
+          "sharpe": 0.863921415558,
+          "calmar": 0.44210629619,
+          "annual_calmar": 8.901246873615,
+          "uw": 2117,
+          "uw_fraction": 0.842084327765,
+          "longest_uw": 488,
+          "longest_uw_days": 708,
+          "censored": true,
+          "return_sum": 1.543039098908,
+          "return_square_sum": 0.320592046798
+        },
+        "audit": {
+          "case_id": "s0",
+          "cost_mode": "zero",
+          "stop_enabled": false,
+          "source_token": "9d7334cd85675172",
+          "selection_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "selection_count": 0,
+          "mean_gross": 0.9942947865,
+          "cash_only_days": 0,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 1,
+          "rejects": 0,
+          "fees": 0.0,
+          "interest": 0.0,
+          "min_cash": 3072.952235,
+          "max_gross": 0.99746057,
+          "fee_models": [
+            "ConstantFeeModel"
+          ],
+          "native_fee_residual": 0.0,
+          "active_only_residual": 139.867659,
+          "fill_notional_usd": 296927.05,
+          "spy_fills": 1,
+          "traded_symbols": 1,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/s0-summary.json",
+      "summary_sha256": "19ca4adc212b1ff20df879035115ae7f4927f77d08f6920346389a845403890d"
+    },
+    "sf": {
+      "factors": {
+        "strategy": "spy",
+        "cost_mode": "fees",
+        "stop_enabled": false
+      },
+      "source_sha256": "724a660ba50c4f14d6cae9fe3d68dc11ecb868df154bc9fcb13fab7d4c4af95d",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "sf",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 1195296.064755298,
+          "ret": 2.984320215851,
+          "cagr": 0.148225549417,
+          "dd": -0.335278625153,
+          "sharpe": 0.863906013744,
+          "calmar": 0.442096627393,
+          "annual_calmar": 8.901015430055,
+          "uw": 2117,
+          "uw_fraction": 0.842084327765,
+          "longest_uw": 488,
+          "longest_uw_days": 708,
+          "censored": true,
+          "return_sum": 1.543037018332,
+          "return_square_sum": 0.320602579654
+        },
+        "audit": {
+          "case_id": "sf",
+          "cost_mode": "fees",
+          "stop_enabled": false,
+          "source_token": "5b2547ac88aaacb2",
+          "selection_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "selection_count": 0,
+          "mean_gross": 0.9943110368,
+          "cash_only_days": 0,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 1,
+          "rejects": 0,
+          "fees": 8.81,
+          "interest": 0.0,
+          "min_cash": 3064.142235,
+          "max_gross": 0.99746783,
+          "fee_models": [
+            "InteractiveBrokersFeeModel"
+          ],
+          "native_fee_residual": 0.0,
+          "active_only_residual": 139.867659,
+          "fill_notional_usd": 296927.05,
+          "spy_fills": 1,
+          "traded_symbols": 1,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/sf-summary.json",
+      "summary_sha256": "0be8fee8935f545bcd08e85d8f42624a505f4f352a9db8339fe45d6ae471dc73"
+    },
+    "s25": {
+      "factors": {
+        "strategy": "spy",
+        "cost_mode": "stress",
+        "stop_enabled": false
+      },
+      "source_sha256": "524a19e193b7467483ef76fd24f35aa9226f385b80646ae7155357b55dff284d",
+      "full": {
+        "study": "capm-ablation-v1",
+        "case": "s25",
+        "kind": "full",
+        "metrics": {
+          "n": 2514,
+          "end": 1194553.747135886,
+          "ret": 2.981845823786,
+          "cagr": 0.148154230713,
+          "dd": -0.335735809978,
+          "sharpe": 0.862601950763,
+          "calmar": 0.441282181734,
+          "annual_calmar": 8.881524505788,
+          "uw": 2117,
+          "uw_fraction": 0.842084327765,
+          "longest_uw": 488,
+          "longest_uw_days": 708,
+          "censored": true,
+          "return_sum": 1.542865676294,
+          "return_square_sum": 0.321498395167
+        },
+        "audit": {
+          "case_id": "s25",
+          "cost_mode": "stress",
+          "stop_enabled": false,
+          "source_token": "fe31cbf364570b7f",
+          "selection_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "selection_count": 0,
+          "mean_gross": 0.9956824485,
+          "cash_only_days": 0,
+          "first": "2016-01-04",
+          "last": "2025-12-31",
+          "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+          "fills": 1,
+          "rejects": 0,
+          "fees": 8.81,
+          "interest": 0.0,
+          "min_cash": 2321.824616,
+          "max_gross": 0.9980801,
+          "fee_models": [
+            "InteractiveBrokersFeeModel"
+          ],
+          "native_fee_residual": 0.0,
+          "active_only_residual": 139.867659,
+          "fill_notional_usd": 297669.37,
+          "spy_fills": 1,
+          "traded_symbols": 1,
+          "native_book_residual": 0.0,
+          "last_mark_residual": 0.0,
+          "pending": 0
+        }
+      },
+      "annual_records": 10,
+      "summary_path": ".local/capm-ablation-v1/s25-summary.json",
+      "summary_sha256": "b04ba2cd3abdf75032bdf65f4eca63350689ebf1ea1a1c2ce7ce323fc9947c26"
+    }
+  },
+  "annual_records": 90,
+  "full_cagr_contrasts": [
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "stop_on_minus_off",
+      "cost": "zero",
+      "value": -0.031247652510999993
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "stop_on_minus_off",
+      "cost": "fees",
+      "value": -0.04628885372
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "stop_on_minus_off",
+      "cost": "stress",
+      "value": -0.5725844261799999
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "fees_minus_zero",
+      "stop": true,
+      "value": -0.017071781734
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "stress_minus_fees",
+      "stop": true,
+      "value": -0.57112863886
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "fees_minus_zero",
+      "stop": false,
+      "value": -0.002030580524999992
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "stress_minus_fees",
+      "stop": false,
+      "value": -0.0448330664
+    },
+    {
+      "kind": "full",
+      "year": null,
+      "metric": "cagr",
+      "effect": "total_cost_stop_interaction",
+      "value": -0.5413367736689999
+    }
+  ],
+  "browser_url": "http://127.0.0.1:8765/capm-ablation-v1/index.html",
+  "manifest": {
+    "path": ".local/performance/capm-ablation-v1/manifest.json",
+    "sha256": "01cc2398e30ddfa1f5ac30f186c868856fe8a94644c1e882ff8216d116c00111",
+    "files": 77
+  },
+  "validation": {
+    "offline_tests": 355,
+    "offline_tests_passed": true,
+    "dependency_check_passed": true,
+    "browser_filters": 4,
+    "browser_chart_metrics": 7,
+    "browser_contrast_periods": 11,
+    "browser_cells_verified": true,
+    "closed_budget_artifact_audit_passed": true,
+    "final_docs_check": "passed:118 files"
+  },
+  "interpretation": "All six fixed CAPM variants underperform matching SPY on full CAGR, Sharpe, Calmar, closing DD and longest underwater. Cost\u00d7stop interaction is material; keep negative baseline. No untouched OOS/alpha, independent cash/action replay, live execution or 30% loss bound established.",
+  "data_boundary": "Free hosted data; own aggregate metrics/counts/hashes only. No raw bars, dense NAV or corporate-action rows exported; no paid resources, broker operations, real orders, commits or publication."
+}

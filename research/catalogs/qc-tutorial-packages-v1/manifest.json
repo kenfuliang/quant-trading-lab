@@ -1,0 +1,81 @@
+{
+  "id": "qc-tutorial-packages-v1",
+  "stats": {
+    "tutorial_records": 82,
+    "github_title_search_receipts": 82,
+    "github_title_search_errors": 0,
+    "private_candidate_files_inspected": 140,
+    "explicit_file_grants_in_otherwise_unlicensed_repos": 1,
+    "tutorials_with_name_matched_candidate_leads": 69,
+    "permitted_source_bundles_exported": 4,
+    "remaining_without_qualified_licensed_source_bundle": 78,
+    "exact_current_tutorial_source_identities_verified": 0,
+    "runtime_qualified_packages": 0,
+    "exact_free_local_data_qualified_tutorials": 0,
+    "financial_attempts": 0
+  },
+  "artifacts": [
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/input-manifest.json",
+      "sha256": "64342a525df3454c0841683307a18938a2c97aa1657ed2046e5d64a22d9f0183"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/index.html",
+      "sha256": "abd8148250299b276225f2dca01b09aeaa9c39aa39031da1eb909f9e3d8c4d81"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/permitted-sources.zip",
+      "sha256": "cb74784ad0893aad05a51101df82922642ef25e95e9175f68ecbf14baebb62f0"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/packages/capm-framework.zip",
+      "sha256": "e9975fe10a55058a1f02bca06c01fdb8a5bd6e18f15be3b2bb739f9a7cfa8fdd"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/packages/dual-thrust-fx.zip",
+      "sha256": "5b11ac6e58271fd3207ba1f0868e44128a741fa917597a08ad6b945f6ff0d8dc"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/packages/g-score-legacy.zip",
+      "sha256": "59af9d2cf33dc10dabe91aa4c1690a0a9021bbf7b2fb60e9cfd0f9a2cb570496"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/packages/stock-pairs.zip",
+      "sha256": "52862fb04d2e765957ff7bf0b45c065e38e27cadc9a988dc9a98741ff9b4705c"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/browser-audit.json",
+      "sha256": "376f4f286a2ab4136c840000cabd8279f8af5441c5718510d25b40d7b94e7860"
+    },
+    {
+      "path": ".local/performance/qc-tutorial-packages-v1/review-preview.png",
+      "sha256": "4eb945035eb070b4b10c9056506d734c10079a8e8aa4a9fc661901b6ceb3dc15"
+    }
+  ],
+  "processing": [
+    {
+      "path": "research/qc_tutorial_packages.py",
+      "sha256": "b0f838af94443098f209a1b2821b7b70fdc09ce1819fd8594374683cb7ca6455"
+    },
+    {
+      "path": "scripts/build_qc_tutorial_packages.py",
+      "sha256": "3ad1783c33797366a781452a9918fd152b2c7513c0b2869f1327e52adb1a6ffc"
+    },
+    {
+      "path": "scripts/audit_qc_tutorial_packages.py",
+      "sha256": "21293bd7e5093a02bed471143a23572fe2c48783b32a335a845cd973e7aeac44"
+    },
+    {
+      "path": "tests/test_qc_tutorial_packages.py",
+      "sha256": "7fad49db25ddc3438f31814ff13a7e484c1a6fb544210363c44100c6578da5df"
+    }
+  ]
+}

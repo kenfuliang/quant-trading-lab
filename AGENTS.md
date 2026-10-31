@@ -5,6 +5,9 @@ infrastructure reliability and observability. Use existing research as a fixture
 strategy tuning belongs to an explicitly requested research task.
 
 - Start with [README](README.md) for implemented capabilities and blockers.
+- For every research cycle, follow the single [golden research standard](docs/research-standard.md).
+  Freeze one change and finite bounds, log all attempts/evidence and close with a lesson.
+  Use its cycle register and paper-report criteria; do not duplicate adoption rules.
 - Before documentation edits, read [documentation conventions](docs/README.md).
 - For implementation, review [architecture](docs/architecture.md), then follow
   [development workflow](docs/workflow.md). Select work from [roadmap](docs/roadmap.md).

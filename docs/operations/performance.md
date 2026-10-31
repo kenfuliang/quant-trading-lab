@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-26
 owner: project-maintainers
 ---
 
@@ -180,6 +180,17 @@ local dashboard rather than assuming a fixed financial-run hash. Repeat import
 reuses FINISHED cases; FAILED cases remain visible and retries use new attempts.
 Concurrent suite starts/imports are unsupported. Full backup/restore remains pending.
 
+## Alpaca operational evidence
+
+The [bounded Alpaca SOP](alpaca-paper.md) logs to a separate **Alpaca paper
+integration — operational evidence** experiment. Synthetic/saved-SPY signal replay
+uses a fake broker, while `preflight`/`session` contacts only the paper account.
+Tags distinguish these sources; a closed-market FINISHED run means the check
+completed, not that an order filled. No CAGR, Sharpe or Calmar is inferred from
+these short operational runs. The importer uploads only redacted summaries, never
+private account responses or keys. Local result folders contain `mlflow.json`
+with the exact run URL; the existing tracking service/environment are reused.
+
 ## Stop and storage
 
 ```sh
@@ -290,3 +301,238 @@ not contemporaneously recorded. [Lifecycle contract](../research-development.md#
 owns meaning and [task receipt](../tasks/2026-10-25-gate-decision-labels.md) owns
 validation/results. Existing/public history and modeled dividend/execution
 limitations remain unchanged.
+
+
+## Hosted sector comparison summaries
+
+Open the [sector comparison](http://127.0.0.1:8765/sector-momentum-v1/index.html)
+for four matched2017–2025accounts. Its selector switches annual return, drawdown,
+Sharpe, Calmar, carried-peak underwater percentage and year-reset longest underwater
+sessions. The full annual table and CSV include all measures. Definitions, final
+run identities, technical failures and limitations belong to the
+[dated experiment record](../tasks/2026-10-25-sector-momentum-comparison.md).
+
+`scripts/build_sector_comparison.py` validates saved summary records in
+`.local/sector-momentum-v1/` and rebuilds the report; it does not backtest,
+import MLflow or start services. Preserve those source summaries and attempt/source
+snapshots for rebuilding. The original market data and daily NAV stay inside QC;
+this aggregate report cannot supply a local daily ledger or reconstruct the hosted
+inputs. As with other saved views, the existing performance server serves its
+`index.html` when running. No new service is required.
+
+
+## Copied-source #504 evaluation
+
+Open the [saved #504 comparison](http://127.0.0.1:8765/qc504-v1/index.html).
+The [dated receipt](../tasks/2026-10-26-qc504-evaluation.md) owns its frozen scope,
+attempt history and interpretation. Recent/cost annual summaries are complete;
+long custom annual/temporal output is unavailable and shown as missing.
+`scripts/build_qc504_review.py` rebuilds only saved aggregate results; it cannot
+launch a backtest. The original third-party source remains ignored/private and
+redistribution rights are unverified.
+
+
+## Full-budget #504 sleeve ablation
+
+Open the [saved sleeve comparison](http://127.0.0.1:8765/qc504-ablation-v1/index.html).
+The [dated study](../tasks/2026-10-26-qc504-sleeve-ablation.md) owns its bounds,
+reporting amendment and interpretation. Five complete cases,30 annual rows and
+all rejected-order counts are preserved. Sort full metrics or switch the annual
+metric selector; standalone rows are conditional, regardless of sorting order.
+`scripts/build_qc504_ablation.py` validates/rebuilds saved aggregate output only.
+It cannot launch financial runs. The source strategy and generated adapters remain
+private/ignored; no raw prices or daily NAV were exported.
+
+
+## #504 staged execution and financing
+
+Open the [saved old/new comparison](http://127.0.0.1:8765/qc504-funded-v1/index.html).
+The [dated study](../tasks/2026-10-26-qc504-funded-execution.md) owns the frozen
+90%-budget staged MOO/6% debit scenario and its limits. Five complete new cases
+have zero observed rejects;30 new annual rows are compared with30 preserved
+controls. The annual Policy selector switches prior/new data; the financing metric
+exists only for new policy. Six ensemble orders remain pending at the terminal
+boundary and no future fills are inferred. `scripts/build_qc504_funded.py` only
+validates/renders saved summaries; it does not run financial trials or import
+MLflow. Original source and full generated adapters remain private/ignored.
+
+
+## T11 traffic-light transfer
+
+Open the [three-case gate comparison](http://127.0.0.1:8765/qc504-t11-gate-v1/index.html).
+The [dated study](../tasks/2026-10-26-qc504-t11-gate.md) owns the frozen rules,
+results and limitations. Sort the full-period table by Calmar, Sharpe, drawdown
+or underwater duration; use the annual metric selector for return, reset DD,
+Sharpe, annual Calmar and underwater comparisons. Full-period peaks carry across
+years; annual reset DD cannot substitute for full-period drawdown.
+`scripts/build_qc504_gate.py` only validates/renders saved aggregate summaries;
+it does not launch simulations. It fails closed on source identity, missing
+engine evidence, control drift or mismatched session/gate-input hashes.
+
+
+## QuantConnect selection comparison
+
+Open the [five-case selection report](http://127.0.0.1:8765/qc-breadth-v1/index.html).
+The [dated record](../tasks/2026-10-26-qc-selection-comparison.md) owns source
+inspection, free-access proof, rules, preserved failures and conclusions.
+Use the annual metric selector for return, reset drawdown, Sharpe, annual Calmar,
+longest underwater or carried-peak underwater fraction. Inspect readiness and
+funding tables before interpreting rankings. SPY uses an initial90% nominal
+budget; T11 has embedded leveraged ETFs, so equal cash is not equal economic risk.
+`scripts/build_qc_breadth.py` validates and renders saved summaries only; it does
+not launch backtests. Raw vendor data stay hosted, and strategy source snapshots
+remain private. Native PnL summary reconciliation is not an independent ledger.
+
+
+## Completed selection review and matched controls
+
+Open the [ten-row review](http://127.0.0.1:8765/selection-completion-v1/index.html):
+nine fresh financial cases plus explicitly cached T11. Rank by Calmar, Sharpe or
+CAGR; the year selector shows all six years, with annual return used when ranking
+annual rows by the CAGR choice. Base and cost/delay stress contexts stay separate.
+Inspect exposure, fees, input-readiness and contribution tables before interpreting
+rank differences. [The final review](../tasks/2026-10-26-selection-completion.md)
+owns decisions and limitations. `scripts/build_selection_completion.py` verifies
+and renders saved summaries only; it does not launch a backtest. The epoch is
+closed at14launches; rerendering is not authority for another experiment.
+
+## Stock momentum: gate and sector controls
+
+Open the [five-case risk-control review](http://127.0.0.1:8765/stock-risk-v1/index.html).
+It compares original momentum, gate only, sector limit only, both and modeled SPY
+holding under the matching2020–2025 USD10000fixture. Full and yearly returns,
+drawdown, Sharpe, Calmar and temporal metrics appear above the monthly selection
+and complete per-security contribution tables. Choose a case and month; search
+security identifiers to inspect contributions. CSV downloads contain30annual rows,
+1512monthly chosen-security rows and221full-period accounting contribution rows.
+
+The [study review](../tasks/2026-10-26-stock-risk-ablation.md) owns its frozen rules,
+closed launch ledger and limitations. `scripts/build_stock_risk.py` audits private
+saved derived packets and renders reports; it does not launch simulations or
+import MLflow. `scripts/audit_stock_risk.py` verifies final evidence and hashes.
+These entrypoints require the preserved local inputs, which are intentionally
+absent from a fresh public checkout. The sector limit is a decision-time target
+cap, includes missing-classification cash exclusions, and is not a hard intraday
+exposure limit. Permanent identifiers can retain old ticker prefixes; a dated
+display-ticker mapping and monthly stock PnL were not exported.
+
+## Sector-only versus target-matched control
+
+Open the [three-case sector review](http://127.0.0.1:8765/sector-matched-v1/index.html).
+Compare full-period metrics, select each year, then choose a case and month for the
+same top-five identities and reconstructed intended allocations. Search individual
+security contributions below. The report contains 18 annual rows, 1,080 monthly
+security rows and 171 native contribution rows. The six-row classification registry
+links historical business evidence through the downloadable evidence JSON.
+
+The [study receipt](../tasks/2026-10-26-sector-matched.md) owns the conditional
+classification contract, closed budget, results and limits. `scripts/build_sector_matched.py`
+audits and renders preserved private summaries without running a simulation.
+`scripts/audit_sector_matched.py` checks the closed budget, source/input/packet
+hashes, restored cloud source receipt, browser views and artifact manifest.
+The original retains its prior financial results; new classifications change its
+sector-exposure measurement. Matching monthly targets does not match realized
+exposure, and the four inferred issuer labels are not verified historical vendor
+classifications. No traffic-light overlay is applied in these cases.
+
+## QuantConnect catalog and existing-research inventory
+
+Open the [metadata inventory](http://127.0.0.1:8765/qc-inventory-v1/index.html).
+Filter 622 source records by community/tutorial source, family, evidence basis,
+search text or blocked article access. Use Previous/Next to browse all records;
+the CSV contains every row. Multi-label family counts overlap and do not measure
+independent alpha. Title labels, description labels and three displayed-code family
+inspections remain distinct; no source-return leaderboard is implied.
+
+The [O00–O03 receipt](../tasks/2026-10-26-quantconnect-inventory.md) owns counts,
+pagination reconciliation, the soft404 and limitations. Catalog/history metadata
+is preserved in `research/catalogs/qc-inventory-v1/`; raw page evidence remains
+ignored locally. `scripts/build_qc_inventory.py` reads those saved inputs and
+renders without network access or simulations. `scripts/audit_qc_inventory.py`
+verifies coverage, hashes, source separation and history references. A fresh public
+checkout without the private raw captures cannot regenerate the snapshot; the
+preserved derived catalog remains readable. This is a scoped inventory/report,
+not a generic automated ingestion or trading service.
+
+## Source detail and reuse-rights review
+
+Open the [licensed-source review](http://127.0.0.1:8765/qc-detail-rights-v1/index.html)
+to filter 622 frozen IDs, inspect pinned tutorial source links and read eight
+manual detail/data cards. This metadata browser does not rank financial performance.
+The [receipt](../tasks/2026-10-26-quantconnect-source-rights.md) distinguishes 82
+static method reviews from 540 pending complete community-source reviews. Expand
+each record for unresolved contracts and independent code/data/result rights.
+The earlier inventory remains unchanged. Rebuild/audit commands and limitations
+are owned by the receipt; no new service or financial simulation is required.
+
+## Tutorial-source packages
+
+The [tutorial package browser](http://127.0.0.1:8765/qc-tutorial-packages-v1/index.html)
+shows all 82 tutorial-source dispositions, four permitted ZIP bundles and dependency/
+data blockers. The [receipt](../tasks/2026-10-26-quantconnect-tutorial-packages.md)
+owns the static-review scope and rebuild/audit instructions. These downloads contain
+source code and attribution, not market data or reproduced performance. Do not treat
+an exported example as runtime-qualified or automatically execute downloaded scripts.
+
+## CAPM alternative comparison
+
+Open the [CAPM/SPY report](http://127.0.0.1:8765/capm-spy-v1/index.html) for the
+2016–2025 full/annual table and selectable return, drawdown, Sharpe, Calmar and
+underwater charts. Read the case-specific audit labels before comparing numbers.
+The [receipt](../tasks/2026-10-26-capm-spy-comparison.md) owns attempts, failures,
+source differences and next gate. `scripts/build_capm_review.py` reads saved
+aggregate outputs only; rebuilding it neither starts a service nor runs a new
+simulation. Raw price paths remain hosted.
+
+## CAPM costs and stock-stop comparison
+
+Open the [nine-case ablation](http://127.0.0.1:8765/capm-ablation-v1/index.html).
+Choose a cost setting to see CAPM with/without its source 1% stock stop beside
+matching SPY. The full-period table and 90 annual rows include return, drawdown,
+Sharpe, Calmar, underwater fraction, longest sessions/calendar days and terminal
+censoring. The chart selects seven annual metrics. The contrast-period selector
+shows full/annual stop effects, commission effects, added-slippage effects and
+their interaction; percentage differences are points, not additive P&L attribution.
+
+The [receipt](../tasks/2026-10-26-capm-cost-stop-ablation.md) owns the closed budget,
+factors, failures, findings and limits. `scripts/build_capm_ablation.py` rebuilds
+saved aggregates only; `scripts/audit_capm_ablation.py` performs a read-only manifest,
+packet, control, accounting, source and budget check. Neither launches a simulation
+or a service. The browser verification checks all rendered table values, seven
+chart metrics and 11 contrast periods. Raw bars and dense NAV remain hosted.
+
+
+## Causal Dual Thrust and intraday control
+
+Open the [three-case comparison](http://127.0.0.1:8765/dual-thrust-spy-v1/index.html)
+for SPY hold, daily intraday long holding and the causal long/short breakout.
+The full table and 30 annual rows show return, closing drawdown, Sharpe, Calmar,
+underwater fraction, longest sessions/calendar days and terminal censoring.
+Choose any of seven chart metrics. Execution diagnostics include minute-mark
+drawdown, actual mean/max minute exposure, fills, commissions and modeled borrow;
+closing-flat does not mean risk-free.
+
+The [receipt](../tasks/2026-10-26-dual-thrust-spy-comparison.md) owns causal changes,
+failed observation/reproduction, the closed aggregate budget and the negative
+improvement decision. `scripts/build_dual_thrust_review.py` rebuilds saved
+aggregates only; its `--audit` option checks the manifest, source/packet identity,
+calendar/range/minute parity, accounting, closed budget and browser receipt.
+Neither operation launches simulations or services. CAPM stays in its separate
+prior report because the execution/cost context differs.
+
+
+## Causal NVDA/AMD pairs
+
+Open the [three-case pairs report](http://127.0.0.1:8765/stock-pairs-spy-v1/index.html)
+for the causal pair, buy-and-hold stock control and SPY. Thirty annual rows and
+seven selectors show returns, closingDD, Sharpe, Calmar and underwater measures.
+Annual peaks reset; the full path retains earlier losses. Undefined annual ratios
+appear as dashes and chart gaps. Execution tables include actual minute exposure,
+minuteDD, native dividends, borrow/funding, fees and daily native book residual.
+
+The [receipt](../tasks/2026-10-26-stock-pairs-spy-comparison.md) owns adaptations,
+free input gate, failures, assumptions and the closed negative decision.
+`scripts/build_pairs_review.py` rebuilds saved aggregates; `--audit` checks the
+manifest, source/packet/build identity, closed budget, input/calendar/action parity,
+accounting and browser checks. Neither launches simulations or services. The
+hindsight-selected stock-hold control does not establish a stock-selection edge.

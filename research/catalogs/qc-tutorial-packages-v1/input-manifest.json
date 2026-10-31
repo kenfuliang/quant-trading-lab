@@ -1,0 +1,2598 @@
+[
+  {
+    "path": ".local/qc-detail-rights-v1/tutorial-folder-map.json",
+    "sha256": "dd84ad27e341497179f2a0b80cbff97c39772161cfdc10e98aae72fb5fe7f9a8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-file-receipts.json",
+    "sha256": "4519cdc2905c0ec16c8bede375ef41ad105fa8cc271b7d2a240e09e224fb3079"
+  },
+  {
+    "path": "research/catalogs/qc-detail-rights-v1/review.json",
+    "sha256": "1e665561337419761b31548d846388d9f75f24781248ff6a84fd92a0a1ad3a95"
+  },
+  {
+    "path": "research/catalogs/qc-tutorial-packages-v1/package-plan.json",
+    "sha256": "eabb0979ade57855a7d23e05b62874de48a7391f7188ffe1667830c9f9b302ba"
+  },
+  {
+    "path": "research/catalogs/qc-tutorial-packages-v1/data-provider-review.json",
+    "sha256": "3f277beefc76f0e78b4ca24c6691f08790be113b856aeb9afaa334c4897ece83"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/scope.json",
+    "sha256": "08fbeb1b26952afb9f960ea36f2a93955d1f68203980bf5ed1798f91646a3726"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Blueshift-metadata.json",
+    "sha256": "cb33c168c860c4ddbad9f9d0766b61d69123e91341cdfcbfe66268134611e539"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Blueshift-revision.txt",
+    "sha256": "bdeac89a678f47745648a460eaa2117645c884a96f645d031c16d2ccce8ae4b8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Blueshift-tree.json",
+    "sha256": "603279e49cbb963af07b1c8ebcf230153cb9cd198c63f621e9843fd7cb7f5322"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/CoursIA-metadata.json",
+    "sha256": "2e14d77856efa362463c2c9cfdbee10491a1ba348a87775100a6db1967c833bf"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/CoursIA-revision.txt",
+    "sha256": "cd9059df427ae377d8b9d1cef920995dfb7bb96cefb481439fe7bee249f8a996"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/CoursIA-tree.json",
+    "sha256": "8414cea12b0f678f84a0dc670173a713d04eb6b9bf889f187c6734f1037058ef"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/HBR-metadata.json",
+    "sha256": "b624b10efdd90a16172ff127818b83527f32d1c57c1f74bbbab3c1da8280b01c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/HBR-revision.txt",
+    "sha256": "f7f4c21a4bb81c75e7e5fd03c819d51d4d5f8739e9d60a31e89a053dd82d1d8e"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/HBR-tree.json",
+    "sha256": "a103de616cd7e2d2cf284a8f11783ebd3488d70276bd7eaa92b4b46e7aba2112"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-metadata.json",
+    "sha256": "e03aa335b254c9bf87715125e50ebcca2cf480d56a2bf310838300564ce6e491"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-receipts.json",
+    "sha256": "518ef585f69184faf7305b8719404029c5612ef14202c521a16cd4f6bc500640"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-revision.txt",
+    "sha256": "1cb4e254b26b108525444e3ca71b7b1887fc64d80e6728525bba53e24266f982"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-tree.json",
+    "sha256": "263f762d00998a2a156f2837f550fa731d269d9ec4622455be7c2749d338e987"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/PWB-metadata.json",
+    "sha256": "da0be6a04966351248f1b82660c49c9243617dfede19988fd2cbc22e5e9bf2c0"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/PWB-revision.txt",
+    "sha256": "30c90bb5c2ef7885146a011e18cffbe7cce76d2ddbb8a320611931122038d8a7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/PWB-tree.json",
+    "sha256": "215a661b0450747f4be5aea7654652e3334cf71c7f531f6b16eed2019ceea49a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/QuantTrader-metadata.json",
+    "sha256": "2c3c23a08181c7b719d0bf9d0a0ce9422784ebca10f36c0b4af9500ee71cc8a2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/QuantTrader-revision.txt",
+    "sha256": "7137e431710f4fcdf5e8481ecdda7b8c44dc682bd8f8ac340393d72053a9a6f5"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/QuantTrader-tree.json",
+    "sha256": "5de73955dc9d365e6788f7e8023723c9957bc998bcbd247d2a7869599b1deb86"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/QuantWiki-metadata.json",
+    "sha256": "1bb5bc0e9e6575b2a6e5096b24649ad98c00b7f364ea1e7648386fffae6203fa"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/QuantWiki-revision.txt",
+    "sha256": "d85401f09c8ef3928a388e5b9dd16aa306cf2467a5ea6c5a9622025a8d9d476c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/QuantWiki-tree.json",
+    "sha256": "c26833e09fc4098db24c4e72adb74d0238382abf0315efd120fdeca00fa78889"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Quantwork-metadata.json",
+    "sha256": "05e02d295278c93e9e8cf66813306a88b11e151dca66ca477228d106378a0d10"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Quantwork-revision.txt",
+    "sha256": "ac80eec5f823d7fc617ffd287c1aee01a17ff5c12a049a10bdedcfaf7bf27142"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Quantwork-tree.json",
+    "sha256": "588cb19e26b7f36192c3544c5202fda63bfae4da86d09fbfe4df37586934237d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Research-metadata.json",
+    "sha256": "d8c0eafcf497865f2a5725707d34a0fa4cbf73017587aec4991507e62c8b1f26"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Research-revision.txt",
+    "sha256": "b62e2f4f898a44c940d57d95098dd9a66c8a9371fab6762f3f6e85f14f964930"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Research-tree.json",
+    "sha256": "60122ff706ae3f54cb47d50baaa0d5d6c981f45fdc764020c25a7e28279d045b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/SLQC-metadata.json",
+    "sha256": "a1b5776162cab8967eba6046e8b12400e4d641d7523d28466fd7152a55b8b01b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/SLQC-revision.txt",
+    "sha256": "7baba8f00cc1f58daefb1f9937c179f42dafa92dd4cb090d0ec6302540c9b199"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/SLQC-tree.json",
+    "sha256": "8f1357024f734fba25e5b414b907eeb64518f01a20d79f114cb74070ee3405e7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Wizard-metadata.json",
+    "sha256": "e42d5dbec2876ce6c6045ad734b778c6428d1b20488cdb46b84e3772e4823605"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Wizard-revision.txt",
+    "sha256": "66a7359eeab6f91c8f8d12b5780d458e3f04ae779779ac450e84e9e5cf1e3ac8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Wizard-tree.json",
+    "sha256": "5c26f0cea7fdeeee1d0350dca3ca6e36707401f0f557e040bef1798ab9037948"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Wizardry-metadata.json",
+    "sha256": "7733045c1c8be7374211d77e554f3fa6a23a29500673cdfd02654ae2cd324d59"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Wizardry-revision.txt",
+    "sha256": "d211d2162feac52d3d6c256d38bdaaffe9d5df52708165593fe53c7d2927b7db"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/Wizardry-tree.json",
+    "sha256": "d42cd7af6e443bf79fe4d453bae9f6a32e35bfcf925073be834f1fedc573b492"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/licensed-candidate-receipts.json",
+    "sha256": "513c81f9d76406744c18c563cd2608ed0be080b17438dc477d3723541665d34e"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/linked-source-leads.json",
+    "sha256": "1e0225343ce1ef6cbb6a63c63d3de61bac7c723742a28ce08abd23e2800973f9"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-file-receipts.json",
+    "sha256": "dc481f7f0631d764b38760e6f7ff42cec44d64469eaf89ea8108660c26b74231"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/licensed-candidates/Common/AlgorithmImports.py",
+    "sha256": "2dca131d98dec2894be51e870abc66422e81e24b01cb5369f2a9877e9772b371"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/12-month-cycle-in-cross-section-of-stocks-returns.py",
+    "sha256": "ebc157f7cadaace9ee27b5f63c623bc343af7fc89a4dcad959434573d05b5657",
+    "git_blob_sha": "f2d23c41a42beda5e534fe071f9703e5ef6b0f1a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/52-weeks-high-effect-in-stocks.py",
+    "sha256": "7b37bf55cd0e0ec17013302356ff69c8b2c80182b2e4d43687fa14858b865b76",
+    "git_blob_sha": "56838a6ad7ca1638f769348fad26d2028c9d97ab"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/accrual-anomaly.py",
+    "sha256": "ff855ea54058448db5e3932b6cd31efd8e9c05579a50b73b9ef31885ac53ae71",
+    "git_blob_sha": "ad2151c51930f7fba98ee27d5ba0ed5592416e17"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/asset-class-momentum-rotational-system.py",
+    "sha256": "a1f43198e90a81ebc85a7070841e56175dbbb58e58f13d04192e93e39e253c03",
+    "git_blob_sha": "5303a7ea9ea42e8b76785c0902271cffed3460fd"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/asset-class-trend-following.py",
+    "sha256": "1de88c5b7a8b3c0a6b26c7fd91b55b86d486c3493d0e9185df05d610ab3b88f2",
+    "git_blob_sha": "713467a53137d49084d4fd4b5569b31299072d3f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/asset-growth-effect.py",
+    "sha256": "ae804dbc4751ebf5e6b2ce59d0ca8c1bea8f69de9abfe2f7e248f170187e8924",
+    "git_blob_sha": "b1e0736c1debbe302005f95e62bc6d6e292cf1be"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/betting-against-beta-factor-in-country-equity-indexes.py",
+    "sha256": "6a6ab46ff41a80a7c24e1abaefbeca649002790487cdd6b1848274840cbb2409",
+    "git_blob_sha": "b38b9cb04ffaa1263e3e6c5b7087c61b9f28375f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/betting-against-beta-factor-in-stocks.py",
+    "sha256": "b771e99edae61da1327d84815d3f644ba17732b9372b498d925113a8ad67fd13",
+    "git_blob_sha": "511dc559e338c59046828d7acf8b9392fb6f7120"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/combining-fundamental-fscore-and-equity-short-term-reversals.py",
+    "sha256": "6b8ce2ed81624e2198149c08e6807f0ca0cd86d3e02d28f4cbb58e13af175219",
+    "git_blob_sha": "e2a2329346baf0de1a31817e28c684dcd69ff649"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/combining-smart-factors-momentum-and-market-portfolio.py",
+    "sha256": "8b68a01f2419a1441f278fe293530658efbf0b0e307614cf59ee66e81ec69d35",
+    "git_blob_sha": "21bfe3bcf5d03eabdd90b1d447b38bf333e8005e"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/consistent-momentum-strategy.py",
+    "sha256": "e4c67491d89844a8b351d69825abc415997fbd45af1c483fb08813f29fc0ba25",
+    "git_blob_sha": "043b680b47fdc7f78b503cf39fbedde514ef48ea"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/crude-oil-predicts-equity-returns.py",
+    "sha256": "6b9e759a2a92dbbec0be1834bb2ab84f91ce39527a3b7d2df7cd84874ebf3791",
+    "git_blob_sha": "4edf99eb33d7cb5672895a9d63122e637ad4f711"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/currency-momentum-factor.py",
+    "sha256": "d4a61717fd30ea39989efb921fc209000749b42eaea3fa49fe148587882d7821",
+    "git_blob_sha": "3186f8cc3ba23cd664d6d9867c208172e7512b16"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/currency-value-factor-ppp-strategy.py",
+    "sha256": "8a4fa4f0be4a6fb1b06b9f9cab68ae3f90845179dfc4d9ee81cd9f212a1974a1",
+    "git_blob_sha": "31a8966f506625164f94fcc0b03d34d06e1b27da"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/dispersion-trading.py",
+    "sha256": "4479889abd03d4b8a1a27a86e6443af7c1ed12b570e3f45c30e4ace976def599",
+    "git_blob_sha": "d0a6597ec11a5bc749d0c3c93ea5ad7e24871f81"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/dollar-carry-trade.py",
+    "sha256": "88310f5490449316393530c576072a64edf26ab7246bf614cadac8f8e5eff663",
+    "git_blob_sha": "c4975b5002bbd7d8819fb9614c024c159aef2295"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/earnings-announcement-premium.py",
+    "sha256": "78db1ed4401ca9ef119ecc1cdf339b9bbba2a766d930b12a6db532bafd03b7d2",
+    "git_blob_sha": "d52bc71a870b7bef109dbbb8754f707bb2e7b40b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/earnings-announcements-combined-with-stock-repurchases.py",
+    "sha256": "5d6bbf4e02d173f926808d75810b5f2b67747add0083261960367976107da9b4",
+    "git_blob_sha": "e579032edb483ffa3c70531f82b233425287a693"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/earnings-quality-factor.py",
+    "sha256": "59ccfec82b5eb45ec52973cb596d73af23c9b4eec6f4653931143d3168f6dc0c",
+    "git_blob_sha": "03786a5c516fcd1168267a0e40df1fbb1b009844"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/esg-factor-momentum-strategy.py",
+    "sha256": "6d0ebe6ae22b6cd56db2120afcbced02b4f68e68a981cc134d8c7469ed45f15f",
+    "git_blob_sha": "89d7c22a034c7afc20d9751f8ff08f22075dca1e"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/fed-model.py",
+    "sha256": "166d03dcef81b96365f2103da065cad1e9da62fb208f053cd1e35b395f1410cc",
+    "git_blob_sha": "add4c8c78f5bf7c014e996c66bdc84f9731424c5"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/fx-carry-trade.py",
+    "sha256": "336feaacacadec9b772273c47c95f9bed9f89cd95170e21335596f269f4408c3",
+    "git_blob_sha": "f5752afba0acaf6caa203e38e640cc71cbd036f9"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/how-to-use-lexical-density-of-company-filings.py",
+    "sha256": "a709c20aab4903cdaf6f34ea85289bf66ffe55edd909ce7039c5a62f643a42d9",
+    "git_blob_sha": "5b1a89826ba813f6e35dc10776708e72db1186f3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/intraday-seasonality-in-bitcoin.py",
+    "sha256": "c7830a0bd0baf05ea9fb7c81b2e7f56b58f1dd4525c2e499ee8e3a3f637d4a31",
+    "git_blob_sha": "a9739ad7618c5576da10211a4faeefdb0186136c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/january-barometer.py",
+    "sha256": "ebe513ab4a770da979c9af17aaef68e231851a4700413537b4a00c5620f8bdde",
+    "git_blob_sha": "7762a9a35d30d1a6246c32f944cccd9e730e8bc6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/low-volatility-factor-effect-in-stocks.py",
+    "sha256": "c296b2afe451c947acd0479a0301c006ff77c0391d4103fb04022320a87b9b07",
+    "git_blob_sha": "b3fc633ad9ea35804a51d177c5f880b0e5fa90b6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/market-sentiment-and-an-overnight-anomaly.py",
+    "sha256": "7a213c0ef2631d73ab797dc036ab5cae42fecf4735803ab24f9234ccf209cbd6",
+    "git_blob_sha": "3d26c83d302752762d0a03930ff61742e3a08431"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/momentum-and-reversal-combined-with-volatility-effect-in-stocks.py",
+    "sha256": "11f7a55f502d3e63b72736aac8fd6f23842777f1c9976f4d0aa70e3ad143de48",
+    "git_blob_sha": "75120f9f9b1bb545c81cc32b5278218ddfb0a6ea"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/momentum-effect-in-commodities.py",
+    "sha256": "ecf7ffd92dcf5fe119c5d3ff55c88ec80dceca80546194dd10e272075c689b37",
+    "git_blob_sha": "65919141c55f8a41949271b109c6665ac2f52b2c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/momentum-factor-and-style-rotation-effect.py",
+    "sha256": "59309bbefe44649884ba06cab3911ecd7bb1ab29d3ab2dd021bd9b3f73f5ef13",
+    "git_blob_sha": "818ba439c369a4914208a17e23748d8e7e26622b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/momentum-factor-combined-with-asset-growth-effect.py",
+    "sha256": "97b167e50d91ef7663462713878d5840005e3472910f41687fb2679dc4e8a2d2",
+    "git_blob_sha": "44ef9824efa7b6614f4fbcc5eba5e1328f0978f2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/momentum-factor-effect-in-stocks.py",
+    "sha256": "5f02bfc4b213c339ed5cef0e29a9e78e26356d49d6223e6a768521d73fe099da",
+    "git_blob_sha": "072952d0dd2e37bc0675afc30fe0675f0599b068"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/momentum-in-mutual-fund-returns.py",
+    "sha256": "56139309757d05d0698eafd483f73e8f90ad0c55d0c8b300082a32be45fb6fb5",
+    "git_blob_sha": "92b8d88724e3487e5b40683b32df2970c027896c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/option-expiration-week-effect.py",
+    "sha256": "7b71926e9a7c8351b89bc794d45a9bff67b29342b9d7683735384150e068f09d",
+    "git_blob_sha": "edf6c32bd5059ce52242b6bc91e5103acc314d1a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/paired-switching.py",
+    "sha256": "3d2424e49790099cf12d8f28de54fee126c30f86346b90565cd685f341e3ed0a",
+    "git_blob_sha": "baa7cff96e9eb13ee0fddca556d079b80893d17c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/pairs-trading-with-country-etfs.py",
+    "sha256": "7bcaaa30f3a1031516060c94d009f4d59d41f0c49dd6b11c93a6883550683764",
+    "git_blob_sha": "98f94201408f7162e748243b430ad9bfb8f07358"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/payday-anomaly.py",
+    "sha256": "db5ac6933c969098641ce2e855e745d1266f0724c39d40208aed4e3346815b33",
+    "git_blob_sha": "c1770db86bbf18de089197c529bdddbff973fe75"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/rd-expenditures-and-stock-returns.py",
+    "sha256": "a5bc2582bba2cc4a3564ee37c5bd92cb487ca0fdacb188cf01c2b24ed5b3860a",
+    "git_blob_sha": "05b3741ad3b4b44c491a7daa9c7ada34fe01fdfd"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/rebalancing-premium-in-cryptocurrencies.py",
+    "sha256": "66c6ceae729b7ff892edcde4ea6190617eb3639a307323fe9d30026d8c3253ca",
+    "git_blob_sha": "80a6eed6be35e9c4b6083c6ad9a287ff94b39ea6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/residual-momentum-factor.py",
+    "sha256": "888404e3bbfec2deee9992661c440490f6f2b05e5885349531c4e0c1ba95ff1d",
+    "git_blob_sha": "ce65ff21e7566823a8b2cf1599d1301695d1b32f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/return-asymmetry-effect-in-commodity-futures.py",
+    "sha256": "cc6995166f22f16c874091fed832c75df1283eb3b503d41bf202411288142a25",
+    "git_blob_sha": "0db16ee42948b2f0ce9485cbbded08c2006e90e3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/reversal-during-earnings-announcements.py",
+    "sha256": "0fba798f00099ccdaeccb051ce847a58dd099d76ac67390d469a9c6968cc32ea",
+    "git_blob_sha": "14c261e03609cf7ae01ed3797701bba97931a166"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/roa-effect-within-stocks.py",
+    "sha256": "34643fd2825d01e021289bf6fd53d1849abb868d81c44a80dc6ee4c10186e15e",
+    "git_blob_sha": "98a726c1d8a6b106ca6f3644207658adc9c98b1b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/sector-momentum-rotational-system.py",
+    "sha256": "cc52ee8c5e6f10a40f7817fd0fbff1e4090006dea964084acebb53f68c731413",
+    "git_blob_sha": "c63d421bfe2906be110c8d5cd050e653a8ed6583"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/short-interest-effect-long-short-version.py",
+    "sha256": "d16df4404af631ef1dfde7bb5385d79a37641e991edc2d1649d59c4d340b3890",
+    "git_blob_sha": "d102ad8f08dc00741f3eff246092769c41deda61"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/short-term-reversal-in-stocks.py",
+    "sha256": "adad36000b1b22f21a3ac3f504a949f117e8e3cafc5ab110d7e26c3b480740ee",
+    "git_blob_sha": "62a3d0ab119ad3a1a51673dd6bcd4a6090656897"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/short-term-reversal-with-futures.py",
+    "sha256": "bbf445f90d58940aaeb32480d23826cb7f5c836e44a6c3794208c2d067b5635f",
+    "git_blob_sha": "129bc653c80530794f4ffc23384ecbada455b277"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/skewness-effect-in-commodities.py",
+    "sha256": "7bec901517e9abe7fca755e8368ca77d4a5ea4241a1a846c8383af020f95a14c",
+    "git_blob_sha": "4899d47b9b9829cacc81a775461edb7d4cb0e972"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/small-capitalization-stocks-premium-anomaly.py",
+    "sha256": "4620309bd51a51781b7c244e354bd0529bba9212cdec645b6407b32db8af8b63",
+    "git_blob_sha": "dd388802a8158d696d39cf5accdeba9e67f11f35"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/soccer-clubs-stocks-arbitrage.py",
+    "sha256": "838804668d62581509cf31f872d03c5cb4931b978f58b16756f4d1b85421f2cc",
+    "git_blob_sha": "a1823ddd6009de7589821e8eaee6442d3caea533"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/synthetic-lending-rates-predict-subsequent-market-return.py",
+    "sha256": "3becab2a13ef31072a4dd8f05236bb3005af29de1f7d2ecac1678c0439ac793f",
+    "git_blob_sha": "a06330697a23b228799d65cd191ad1041a06ee1d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/term-structure-effect-in-commodities.py",
+    "sha256": "2d3d327a24a2035e8cdd2fce1b2835bd41257c0075995b8b7b44f28671bcb033",
+    "git_blob_sha": "3e2e08526c395df3c66dc39dc9394df76d14d80d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/time-series-momentum-effect.py",
+    "sha256": "2a68cef316ba49475ad095db97b652d306ebd812b68de89a0e6b37e8fe765656",
+    "git_blob_sha": "981d6d51c541ca716ada8598360b2a2bde55e8b3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/trading-wti-brent-spread.py",
+    "sha256": "456940ead5cc6ff24b52b5181e93803f2066820bf8a5cac12670065b6de50d97",
+    "git_blob_sha": "e6b91888df2fcde5fd1dbef4f047ec3a87215163"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/trend-following-effect-in-stocks.py",
+    "sha256": "00625caf22a13a51b3dbed49c86ffe65e1872cd9f6f0b349dc1184a0c92966c2",
+    "git_blob_sha": "5cd79b82b75ea1716d2ed2143b195bfdb9307cb6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/turn-of-the-month-in-equity-indexes.py",
+    "sha256": "09253b93f030cc627a7ab498b9b2744f965dd8215c37c127425090ea635d496d",
+    "git_blob_sha": "9c128fbe783702d3335f2c737b8abf3d1458cbbe"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/value-and-momentum-factors-across-asset-classes.py",
+    "sha256": "5e1b3c2912b5fa2f22878ca412c997aa56b46ef1ebe0ba501b34395123608984",
+    "git_blob_sha": "ded2667e72ce4d6ffcfb2210375b3fc9500e3966"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/value-book-to-market-factor.py",
+    "sha256": "c6d018b6138f8bf3754cc71a8a7e3c3f8249850c25faa280b466b6433618e12a",
+    "git_blob_sha": "de006b7e74df99fac0eb856dd79df17d4ca444b1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/value-factor-effect-within-countries.py",
+    "sha256": "4fc6e69d0425d85284ba437e2f0d4e27e402a9ab7b52fced23b9d6dc332fc69f",
+    "git_blob_sha": "b8701f758beb3727ff9f8550d883635281b07db5"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/PWB/static/strategies/volatility-risk-premium-effect.py",
+    "sha256": "2fab733fe9090d82eaa12cc1af9554653ec5d6f2d2ed00df16b54c78cf545314",
+    "git_blob_sha": "ef94979ad266172618eb95210ee76f7d78748283"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/12 Month Cycle in Cross Section of Stocks Returns.py",
+    "sha256": "72c43f9386b8f816f66f2e7dce42d5efa311c41723f152f9ca2433c91c3473d5",
+    "git_blob_sha": "b3746ba9a94b6713a14f78e9a8cd06e62aaf0542"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Accrual Anomaly.py",
+    "sha256": "6750ef0c5ad1a1bdc2a7a41800ef495a3751942e3f4aa9cc196f4ffb2b764333",
+    "git_blob_sha": "b226605470d9060b7e675d2222c78023469478be"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Asset Class Momentum.py",
+    "sha256": "ebcfed6660c937434d381a21463f44fac97b5bdd1afd0f5d84840aba290d4b10",
+    "git_blob_sha": "1ea9f85b15e3cc8c2fa4f610a2d46eb8d4166729"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Asset Class Trend Following.py",
+    "sha256": "c3e61403c442a2be71446d85e0beee837aa08b25c9cfeb08796d382238519eab",
+    "git_blob_sha": "797bf3f3e8b8938bfafa82feeea37c1bdc41a856"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Asset Growth Effect.py",
+    "sha256": "ca1b32d83f3167801a9059fb0333c6fad680bc8b08e8cd837f32f58aa2229c88",
+    "git_blob_sha": "3d55ece3a1b31354837e0b8959819f18edfba2ee"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Benzinga News Algorithm.py",
+    "sha256": "5c1c46829368568b86bd02244f018a6001aec4d5abfa5a60163da70ad6e88d9e",
+    "git_blob_sha": "b0e000aeb1491bf6f78a079819b5e076f7600ab3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Beta Factors in Stocks.py",
+    "sha256": "3e20fbf2c4f4e5e95732dbd8ee25732ace29c7437a14707a63afb628edf6837d",
+    "git_blob_sha": "008a3fa701edad3a71a7a0e4b0dbe44eef3cf371"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Book-to-Market Value Anomaly.py",
+    "sha256": "73aef5a223219bf09801f6da4027c578ef45dcc6589f031e97b25879e14ce90a",
+    "git_blob_sha": "8717558d3eb7b18a915d5a598854a88f0486e33b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/CAPM Alpha Ranking Strategy on Dow 30 Companies.py",
+    "sha256": "27f5e284204adf297036f538bc65e286f8d29477713813e8fa715eca578a5340",
+    "git_blob_sha": "c2cfe43fca4e4bc09efcf87b97d8bc61f8144cbf"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Cached Alternative Data Algorithm.py",
+    "sha256": "fddb375a183cf63bacf683d9044e6599dcdef5a56b9819cda00e905d9c174876",
+    "git_blob_sha": "81028cf5401ccc6cac74c6a36230c4e6af628e6b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Combining Mean Reversion and Momentum in Forex Market.py",
+    "sha256": "73a300b4272e01e3c3f7166ec1cc8860df1a761d49dec70520ce53766a671778",
+    "git_blob_sha": "47092fa5339344009bc4366115c52f1474d056f2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Combining Momentum Effect with Volume.py",
+    "sha256": "16b53020cce2e6662fcf802b7ee93b8fbb1a3192788f835639f38b6a070ddb4f",
+    "git_blob_sha": "6967cf94fcf939b66e983aa9f9def40794ce4a33"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Commodities Futures Trend Following.py",
+    "sha256": "885c4ce8d5a3e4dbe2fda13d36654e46aed3c68d89944023ab05b1b1b7a147ad",
+    "git_blob_sha": "2cdd319fa101f33526ed34fd298ae528d865c53f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Dual Thrust.py",
+    "sha256": "bc6467192bb7a138e33b8bd76533f4028283948c2e8a17aab5d57f5c8ea7b55c",
+    "git_blob_sha": "bb35719f6d19a488fac4b03b8218e93114b446f9"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Dynamic Breakout II.py",
+    "sha256": "f39a42c5618fcecb36d2aa9910e4fc4f7525dc32ddee2907131b54b858af9eb1",
+    "git_blob_sha": "26e9dd8d660687156ec19eb767ca147bb7632140"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Earnings Quality Factor.py",
+    "sha256": "fc938413af9d4baf607fdd1d955ef931b45faf439aac3b8f1b063e797713b4ef",
+    "git_blob_sha": "b11c9d5b107c8f4ff5cb71bed33919898b162542"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Expected Idiosyncratic Skewness.py",
+    "sha256": "ae81ef40d44bb30fa36787ae890d6970df084b758f95878ebbc1d7c96df2e940",
+    "git_blob_sha": "9fa8008728948ba5589c279e655dc90453e6cb95"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Exploiting Term Structure of VIX Futures.py",
+    "sha256": "b60be6b9185165535a48e1acfa6bc51656bef1ab81249a20870dcf6ae9da3c9c",
+    "git_blob_sha": "e55a46d1b19b7edf4bb83cdc45403bba42be3940"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Fama French Five Factors.py",
+    "sha256": "60b03de0b2b225733ed3ca035087155a3941be050b1811c04fb63e905dc083fd",
+    "git_blob_sha": "2b2ffe4437cf2127a254772e15dc4748555bf86f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Forex Carry Trade.py",
+    "sha256": "35d23b6f4b70deec1ff774a14f0a7ce0253462df0b7a1a67e9ef6c66e8872aac",
+    "git_blob_sha": "f859b8eebf0d7eac19c6ce44ac544d7bd6ddfe41"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Forex Momentum.py",
+    "sha256": "fa85952623443ebfbc3096afd5827e3630382395802bc1055d60e5a8353afcf1",
+    "git_blob_sha": "dfa6643634c092261240fac6acef18c8bd6c0c1a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Fundamental Factor Long Short Strategy.py",
+    "sha256": "b208b509b1afd875edcb1d668b0cf110ae859671421b659987a567a353b7fa7a",
+    "git_blob_sha": "71c8128b9444936945b3e745ddb79e16e78fd134"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/G-Score Investing.py",
+    "sha256": "a3958ecc57127d1b50ee9e97257d7c79381195bde3e64912f601fdc53be32d1c",
+    "git_blob_sha": "6adfd8e734b7379e92d990484ffe4ed24ac730be"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Gold Market Timing.py",
+    "sha256": "e9ad3a1b7994d123311fc29eec0ab4219747ab7dc63a2582e3fed47e5d4f8b37",
+    "git_blob_sha": "2a2a0646a8a54f5ccbe0906e3d107bcdcef1060a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Improved Momentum Strategy on Commodities Futures.py",
+    "sha256": "6bb75c678983e6ba9715dc60e58198be430e7a07ae4a837cb4a0a234a290bb2b",
+    "git_blob_sha": "aa5748e64f271d71d770f6628b21dde1dd14a4df"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Intraday Dynamic Pairs Trading using Correlation and Cointegration Approach.py",
+    "sha256": "1379b6e3f4cde89a7730d6b1f91367a3ad711bec081bc12e2f588f2d969b799b",
+    "git_blob_sha": "bf51fe7726420e8309017ef87c22dcb58424f17c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/January Barometer.py",
+    "sha256": "1196340849dc33550f02b3d16e5ed6428c48cac6914d9e0ce4ce33f272e0391a",
+    "git_blob_sha": "95e9255f0739a7b5aca52e2021d6c1ca0a3b95d7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/January Effect in Stocks.py",
+    "sha256": "99edc4af3fd7adb62ed12cd240c92a79db22c5ecdc48d4572f3a0af55ddb776c",
+    "git_blob_sha": "98803e90b9ff05cceb6b38df35d852036deeea1d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/LeveragedETFsWithSystematicRiskManagement.py",
+    "sha256": "20b48487faab10234bd86137a7617b85f6194af15dd8828114d5ec557cc86b9e",
+    "git_blob_sha": "e9b8837f57b386ff0f44f40b8c138b1395f5db2d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Liquidity Effect in Stocks.py",
+    "sha256": "e8f8b253d4c422ebba913023ce95fb7d1d00691b19af7ebac048bd0fe5d9646d",
+    "git_blob_sha": "9363df79ade812e15d3019fddbc2b0f598dd2318"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Lunar Cycle in Equity Market.py",
+    "sha256": "ed196fd74c86a99aa50c5571830ea4d6db16f8128705aabc27bbe7499a62da14",
+    "git_blob_sha": "d095e877d8c406beb6b5b33f6aa6613148c58d9d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Mean Reversion Effect in Country Equity Indexes.py",
+    "sha256": "83a7eb0989ebb38ac78f463a93d51105b0339b1cfe9f3351156702a1e47116dc",
+    "git_blob_sha": "b84c46cc08ebc4be416f0e4dfdc709aa11b04013"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Mean-Reversion Statistical Arbitrage Strategy in Stocks.py",
+    "sha256": "2e27b3e3fe045c6126a3b217a568c3cb4a1d173a006ed3edde2b6e283efbe79a",
+    "git_blob_sha": "501b168f2a9a75eb23d2bbdaa8c04ec7eb98b42d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum Effect in Commodities Futures.py",
+    "sha256": "9fb444f84252a81fe44dfc0d7915d4c35ee0529cfc3b3fc845da87e9df3e7416",
+    "git_blob_sha": "b4ac7636c9cecf1619bffb35224a3254a7584d5b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum Effect in Country Equity Indexes.py",
+    "sha256": "2f04be8899d565c682f84bbd4cd1719aea99b420062ea2ce9849a62416457878",
+    "git_blob_sha": "b5c9d3c05cfeeaea1145aa292d86e3e2f6da9504"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum Effect in REITs.py",
+    "sha256": "d7f9f4c8aef1bb51705a73b677441b2d8fcf30cd545c2d54983199015d25a391",
+    "git_blob_sha": "fe4f934fdc915ad8e7eb4b188a29d0e5bc71dd71"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum Effect in Stocks in Small Portfolios.py",
+    "sha256": "226c3135839084f1289dbbeaad4262594646895f2ffad7230e97da185b4057bf",
+    "git_blob_sha": "c6595cb6f69ea8fc6dbd989b385067473cd07248"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum Effects in Stocks.py",
+    "sha256": "a5e160eba232316e6c940be49b9b223f547a7bd19bd733ff85d17f265a6a07cc",
+    "git_blob_sha": "6cb95a8daea0b53b815c7d0c340e08bd555d00c9"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum Strategy Based on the Low Frequency Component of Forex Market.py",
+    "sha256": "1211ff8302fe69af5d39b4f0f81eb4c9ff0fe6682dd7bb295a793ebe646542b2",
+    "git_blob_sha": "9186b931fbd73c4d202709cbd25ce8eeeb584fb2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum and Reversal Combined with Volatility Effect in Stock.py",
+    "sha256": "cac210ff04ef4fba27ba9458b1ff7989d6e1b1075b799f87ccd8197ff4910e4c",
+    "git_blob_sha": "c696cdffee914bf4057717d3d7d4ba4113807183"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum and State of Market Filters.py",
+    "sha256": "1b186d22679dc7edc57aaccabc17bf27598e8917f9ffa450655ae714eb65e9cc",
+    "git_blob_sha": "7a8d99c4449c4aba34c1fdefceec65b9ccd07ffa"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum and Style Rotation Effect.py",
+    "sha256": "048ed2b686fcba003ebda339c7707241341d876aa6fafb02449e2c0e86fd2e5a",
+    "git_blob_sha": "87ea9cff29e937c963be4f4124e1f92c8df97ee7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Momentum-Short Term Reversal Strategy.py",
+    "sha256": "4dbc668a2eb0b494819b2dec7c515f153c9a7caa050105dbf27c8c5e4d2ba65c",
+    "git_blob_sha": "8d2b899bdf5e78525f9ac0c1c381c02abb74ef5a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Option Expiration Week Effect.py",
+    "sha256": "7d8fd15c321fe4ce4eb66078bf34c0937a7edc0b7eb0055359851d3d4e6022c8",
+    "git_blob_sha": "498c0cbdab6e39537e970c3466a3fec8fa1d0ae1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Overnight Anomaly.py",
+    "sha256": "6bc4f3abad2b700824b6a427cea7ca000fd5821b385c6dc78705c10c44bc570a",
+    "git_blob_sha": "c58ee5cd060e3a1ec72b687c75d75b3cc48bd5d8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Paired Switching.py",
+    "sha256": "6504108057926a0efac281ece7033454cd66705f5e8727b3786758aa973fb32b",
+    "git_blob_sha": "88238da38c82387f3b73f89472725d379fb7ba93"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Pairs Trading Cointegration Method.py",
+    "sha256": "b1685b4f8a1458df491de87774838d29bbbd2d55432208637bfb0081d19ab307",
+    "git_blob_sha": "9319fabba38c0e4b6d8270b5de10e8e71e0c96a3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Pairs Trading Copula Method.py",
+    "sha256": "51baaad9aa60d0bff2f2d514633ee6fb8f516bfb367d73664199197b27f543e6",
+    "git_blob_sha": "59779792019fbde4490b692b4220f77e28dede02"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Pairs Trading with Country ETFs.py",
+    "sha256": "2e2b9150f4f5b21825fe1654b8ef88f3fbce826c7730d93f610a36af1599f71e",
+    "git_blob_sha": "10afdc90941608c50039f772c5ef20f338d0fe30"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Pairs Trading with Stocks.py",
+    "sha256": "27679c4847c348a0bc7916ae6f3177d7f52aa6fa2ac4bd30f2460d11c6bb2b4e",
+    "git_blob_sha": "a1421adb82cbd08f8ba1a8cd311e792388052c93"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/PairsTrading.py",
+    "sha256": "784419eeecf5d0dfbece6441f5c7a68422b2b86840ddaccc87a9e976442ccfa0",
+    "git_blob_sha": "5f37c8c66e66885b7682ea9739b4715c24a51ecd"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Pre-Holiday Effect.py",
+    "sha256": "2363f11a950fecfe460db93c0659e3325746cd71e5a3b2ec92fcf453a1c41da5",
+    "git_blob_sha": "64bb6f0d033d00d3df506686c7919052247d113f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Price Earnings Anomaly.py",
+    "sha256": "429ebae00f592a042986846b45f6d5e4d33467341dad2c1316d223c160c7ca90",
+    "git_blob_sha": "d780a3dae403bd571727c5c96cb3b7e58f29316b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Quiver Wall Street Bets Data Algorithm.py",
+    "sha256": "adee481d27c480bd2030f0c1bf7b40afffcff8322a1de648f591eff23184e923",
+    "git_blob_sha": "38716b16290de7a524263481737799a2f348719f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/ROA Effect within Stocks.py",
+    "sha256": "6ba10443d3be0355d5d1711d0ce99f0bd0bfe6c22a993773f90c7bb152ef189d",
+    "git_blob_sha": "bdecdb1ee22cc9ba5dd71e84a83418c66124322b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Risk Premia in Forex Markets.py",
+    "sha256": "1670b12e849726600f1b273c978f37d400cf56d168ae322dd57c7d5d167f2cc2",
+    "git_blob_sha": "3468d15d32b26894ab1f0ad353cbc7a1f896b7e0"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/SEC Report 8K Algorithm.py",
+    "sha256": "3694a3ef7b25cb73ce32502974e7e62b534574f8bac3ea8599fd046d88e72ceb",
+    "git_blob_sha": "0ae2030aba24f25382d1f548ae0124b4f1ad512d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Seasonality Effect based on Same-Calendar Month Returns.py",
+    "sha256": "05e9cefc040ada88c33cd197c73c217b8cb8f16de98e32a67c38e5b15d2e8b44",
+    "git_blob_sha": "467dbb8c9c0febaca07b0ad595ad0d4329dd8c3c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Sector Momentum.py",
+    "sha256": "98a5499435a400ec1e4843dd53a2a61dc9a87b36b8cb919154cabb301fe304f2",
+    "git_blob_sha": "7a9e86f93e345104f8f34538e31485871ac66af2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Sentiment analysis.py",
+    "sha256": "9e48735c5bf64058a4e396185e6d37b95acf7a9ab62b529fce14c0b1ced161a2",
+    "git_blob_sha": "b1089d03e340c5046679aec77750342bd3d2bd51"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Sentiment and Style Rotation Effect in Stocks.py",
+    "sha256": "11db6de6d7d10515557d96cc07c7b798c3824d0912862ca2af065541a11713c2",
+    "git_blob_sha": "c8018061edabf082218077191693fc19f10b7ee7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Short Term Reversal with Futures.py",
+    "sha256": "e8ef3394244e48b21745afeb0896f6c160ba720b176e2f39679bf6547ed13872",
+    "git_blob_sha": "f8dda2f777c57ddc9f185541b8717e55fd5f9348"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Short Term Reversal.py",
+    "sha256": "0deeca27dc20b11e6a50032ca1c20bc28087ca28082f1e25c379377b70bd24a0",
+    "git_blob_sha": "cabb83d954b5dd15e7cbc9a118aaf766f2454604"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Short-Term Reversal Strategy in Stocks.py",
+    "sha256": "e27bce5dd5bd13a925bd6ead18321b3e32a78273208728b7d160b2e36a3c358d",
+    "git_blob_sha": "815930230633eaeda6897d4c1d2abf057e3c10c7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Simple RSI Strategy.py",
+    "sha256": "5a925004a7bc48ece43852b706a0b8a94575848a63633c520a912476a7143638",
+    "git_blob_sha": "c9bd0e0823c417242e9f8f7ce27a09b7d815d5a4"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Small Capitalization Stocks Premium Anomaly.py",
+    "sha256": "b194c2378376b28adb155e29cf47b2d79efc5e58e1689e6774399d51185cb276",
+    "git_blob_sha": "28c3f9aaed04fc34e9cc53c80c098e6ae0931cee"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Smart Insider Transaction Algorithm.py",
+    "sha256": "7d30fddd1306663db91f716e2f5b1b981efb03d328a1da69f7e2c11c2fd5eb10",
+    "git_blob_sha": "0f9d65840cd3f4a1ec333706913c42fd574c866c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Standardized Unexpected Earnings.py",
+    "sha256": "7df260f8f58220da1d1f54fd9c01cf445f04af1cb097d59400f0464bd374ee71",
+    "git_blob_sha": "eee7bc4841e42a8d8f3c395e5f2ecf2a28dd40c2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Stock Selection Strategy Based on Fundamental Factors.py",
+    "sha256": "97193853737f9676f0cc86846cdf455af670d6b2b876fe01ffca78825bfe0593",
+    "git_blob_sha": "062b94734950618a1ac6f979d13a346c129517de"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Term Structure Effect in Commodities.py",
+    "sha256": "d8db1766216513e4be73ec15d5da79e30913174f915940c690c7ed4692611189",
+    "git_blob_sha": "6a296a74470917fbd9f0e19a5493a31b982a57ab"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Tiingo News Algorithm.py",
+    "sha256": "61bb0e01e895938f565111cf13aa4e61b9f1617dee1ada31f701ddc4cfb9ad54",
+    "git_blob_sha": "b44a1eb2eaf39c8e978b3acc48b418edb2c867be"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Trading Economics Algorithm.py",
+    "sha256": "5675648efe1910f65c63aa6754c4494820567fcc62a0dcc61ac12dd001e9d7e1",
+    "git_blob_sha": "064ccf8798297c88e21d13ad48debca4030939fa"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Trading with WTI BRENT Spread.py",
+    "sha256": "aac9522512830c126af57a93eb2b1d0314127f0ed00644c2df5b198e9978ac99",
+    "git_blob_sha": "a17952553c79fb99d056ebf794ab4aef1cdbfc6f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Turn of the Month in Equity Indexes.py",
+    "sha256": "bd07221a3a504fa475e46a7e8afdae7ff0efc91904b8696e4feee8e9f11c2686",
+    "git_blob_sha": "0f589e7fa6ec13ffb894fcaf941918caf087d7cf"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/US Treasury Yield Curve Rate Algorithm.py",
+    "sha256": "75ad6a3b3da901c824408393e9242d224a2592f3129701f11a35eec960ebad32",
+    "git_blob_sha": "67c22101f218a80638fc02499c5b0d8062c2112d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Use Crude Oil to Predict Equity Returns.py",
+    "sha256": "d8e0d295fabf0624022a3210bff9080eb3c3f2140db0e43cbf5df6664eb535e5",
+    "git_blob_sha": "4198f4a0207b4cb9c9e1c07a50287263a07bf8c2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/VIX Predicts Stock Index Returns.py",
+    "sha256": "c862ecb19bdb6178d1d94c2a3d948b040c7a952363ebbaebf2a04b17d452530c",
+    "git_blob_sha": "83316c235748e4a66232076d50d5738725d0e0d0"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Value Effect within Countries.py",
+    "sha256": "373b3ee6a2cd8b7f8afa625286209b1bb4daaf1ec01473b81f9e8a998a1f9c21",
+    "git_blob_sha": "e867e5e5e999bfc8b3f873a063ff7187ac14574b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Volatility Effect in Stocks.py",
+    "sha256": "95b4ab5bfc081f9b34ba9700b41a36749086c8c3cfabeca35d2b79cb01d1975b",
+    "git_blob_sha": "e71859706c26d8709820be29373d63b97bc369b7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/Volatility Risk Premium Effect.py",
+    "sha256": "3fef8362b9ec1cb525ef3b43476c3bece85b58c5ad03c600e0f9cbcc2cf9c9ed",
+    "git_blob_sha": "a04d2ff0e09c855613ddea0c5bbad5a7845c7cb7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/licensed-candidates/Algorithm.Python/CapmAlphaRankingFrameworkAlgorithm.py",
+    "sha256": "4caaa23a312db6ae764a2177c403ec887e981bffab7735afcd7638be36e6ed52"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/licensed-candidates/LICENSE",
+    "sha256": "522cf0a716ce03f67d46f8fceb5bf78c5b84400ec5cd8d14bf9f02cddc1cb6ba"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-candidates/Dual Thrust backtest.py",
+    "sha256": "58971b1adc9416803338f973a9064b8cfc813f7b8929c2eb9a27a927c2657555"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-candidates/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-candidates/Pair trading backtest.py",
+    "sha256": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/JSTM-candidates/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/G-Score Investing.py",
+    "sha256": "a3958ecc57127d1b50ee9e97257d7c79381195bde3e64912f601fdc53be32d1c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/licensed-candidates/LICENSE",
+    "sha256": "522cf0a716ce03f67d46f8fceb5bf78c5b84400ec5cd8d14bf9f02cddc1cb6ba"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/da9e6ff3c351a0dc5f13979b94a1fe754472f154.html",
+    "sha256": "4668156c6be190d82905d086f509f359900e2008b0af67539dbf573fd415cdd6"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/289437207f72a460eba7a0ef51fc85eb464ec10f.html",
+    "sha256": "17329621bfe3bd354de47dfebddfe0a6f80c065a9dc242ca7b15bdf454f4d510"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ffff064ddeb6449788890dbe573ff7e74b1ce87a.html",
+    "sha256": "f12b39c05a26815b76d3b58088cc4e199d4e2f207103a3871b01d75df33cd80f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/645e3da984f3f97dc5bc9b239b753c545fade28a.html",
+    "sha256": "30d91fff620b541016e1f92caa6c3307df18fccc171b8a255ec774a4b87ab10f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15345.json",
+    "sha256": "b26dbff96ae76b6150c76b7c5698e4d694d6135db20223d943354cd792741d1b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/4a19969c4441de307a7b8d2eb1f908bdc4dceadd.html",
+    "sha256": "8d1ca7eef97ce2991049de1aad0215cda0fccaf1b9ccbe9d1924917a561e3d4d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/78508912a3f9b414ab1cf7659f314c1d24a81b3f.html",
+    "sha256": "77a0605559774ffae7c7865cc419c75e0a2fc5894c2f44f028a9bc14f4258189"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/97171469941761d5d620fc962aa854b42d31a932.html",
+    "sha256": "a75df59b5153b70e5b204f24234553c700e6daad144afce45d459f0295b71939"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e74071f7c98dd795975885e3d48e4c3ea22c9d3a.html",
+    "sha256": "84c7140a3521b7920fbe3c1ee5dee9be49002ab9abfb47d53dd021456e360e67"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15255.json",
+    "sha256": "83fe1b88631310a44060bc49099a89abdba62ce723b165b21eeda35bc088dcbe"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d95036a0941951d3dd96d69ef9be3bf04989f954.html",
+    "sha256": "ee647868a7909e2b9e891d9eb9b6b3793aa4af2502becf44d09603fdd4a619e6"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a16ea55e9fc7db1418aecc34606370b1b444761e.html",
+    "sha256": "36b32051021aebe977323b2bdf12d8e00c2879b9e3738dc22ce4ab12bdc75e7c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/27a28d6a3768adc3081c8ce7bdbaff48a5f00ac4.html",
+    "sha256": "821b2bd5954db2c8443e700fcd71169ccdbd87c6ac193615a8efddadacc06263"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d36c895c03423d80161f64125e422882091b3a89.html",
+    "sha256": "0f9fd467dbd7fe36f1044c4bdc59e6d6c15d247009f163f6313de72505c135ce"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/228f289209c37441fb5ea1cd92e2a2761738cbdd.html",
+    "sha256": "864bb2e885d9d2f76409b88191273ef6ef4f3e71f08c771aeea672e9e8232986"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15298.json",
+    "sha256": "3df321024ba190747ead26a6af2ed84c554be9ed69c9ff66ffedf674168c06f4"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/516dc8f8e41ed60a6ad49c4c7e845be0740623f5.html",
+    "sha256": "d643254cba014ec6e1ff123e902a4185c06534ed25827d7301d57fdc59d5d730"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/9c029fb26d6fd295d2593447a7054d91ab070ddb.html",
+    "sha256": "c0f6166ec424185bcbe1ffc33f393cae2f94b7ac1ac28fbe0dba4cafae7cf84b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3358861c5f2a8ee3701798da1da832291ef49417.html",
+    "sha256": "a1e05e52be65c104df5683baddd17dbcf8140e9ea289956736682e2f13f49e96"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15373.json",
+    "sha256": "c55a8484871f403f28aee97f5e0bf8b4acf8689ca4e189a7f5bd4b1d9e22cd07"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/70f3f5bc1df96ebcd0c4c7a27639667482581d1e.html",
+    "sha256": "eb1dbd4c20c5f73f48e615a792fc093d48a4869bf87c3594f7646229e2cbdbcb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/53cb527b75dfccc5ff8b4dd529ee6c494303ac22.html",
+    "sha256": "d2fe7b5879cc0ef6d1eebf1cb469add0f89b15e76e0ae4f59888218bd3049255"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/bd1b2696990a9ac46ce4a46e1de5931025667903.html",
+    "sha256": "b1e36a64e4d16bab201a62ba73870085e027d5284c3fce1d16a5dbe176ffc70b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15258.json",
+    "sha256": "b0d244d1ce25f9f4cd0b2b6369415b406ea1a848d8e63f59e46c70f6a3491927"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/368ea3b18c45de6a9e358b87b6a89c8fad0ca929.html",
+    "sha256": "89580aef8e9b71eb5af2b512c6b219a8f07d2050b764a11f3a2195339b29656a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1a715eda6ee9ff139f6275e8c3f0176860347d06.html",
+    "sha256": "dda04320ca6510903c6edb2ab607f9f49fefbbeb77579f7aac5d49921b6497d8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/46a77470177cd1b6a1c14e0c13f4ad0ab815a9e0.html",
+    "sha256": "a082212de6e20d000e7a240c522019908888a8b0560d11d1480e250fd8016f8c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0115518eed10b1c68643d66c87c2c96bb62d8b81.html",
+    "sha256": "6c007f28bb116fac518314bffcdb82ef75257520d932e20db3584f81da127e24"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15344.json",
+    "sha256": "16a058d867a614c844d1b02230a3d49ef4704e58ee14065791885d2f3d66d8e4"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/83bdc3cdaf25b95c7f247c0d0d7bda9926716bb0.html",
+    "sha256": "4159b7a6ea77b501a3bbde1cba1dbdc67e62c3ca785faa7dcedd332137dbd96b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0b619ee7248d6fd138fc5f08219e0eea9b6e7d69.html",
+    "sha256": "83b2218df0d91eb47448af622bfd2883683857d403649c67ff97db7a354e25aa"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/85d9f93a1d2a2e440aaa196238cbd8c9b8a6bd54.html",
+    "sha256": "fb85f5c42aab7df562b6fc8365045f3fd2919b9e205e7374b5e3bac84e2d5363"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3d55776e50fd293fb9599a81707ae51daddab9c0.html",
+    "sha256": "b5a4b24468aac6f0eaf07d7a695fe4e4c11e5e1065156aaa555265b748d11c3f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15347.json",
+    "sha256": "7cbe5bf5b16501caa7661f929d5297b4b0a7e780a6f137f294bd9ea76652601f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e664e2fd5fd43ae17909d94c01fcdbcb60e2d9b4.html",
+    "sha256": "2c930f1bf6b41835082374ddd4c8af79855e762961dd10e4c48ba2cb52a7406c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0ff3a93a55760e89c5defe6e1f0d3bc3ac1e3289.html",
+    "sha256": "7c69cdc4988c62f1b2fe8a3d0216df23cba25eec56f88bf79d35db9016542265"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d23890ad9b4e8fec09e5703c29e41a70f46bf945.html",
+    "sha256": "4c99f14175a718e368058050c22a4026f028dbc4ce21c79e30977afc88bbf03b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f9505bd9b67b008df1307a3d151f2fb3ca76b27e.html",
+    "sha256": "0ffdcce22d925e9e5b07b1864f6d4db00201c7a3f7676b3237760270b0aed6d9"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15374.json",
+    "sha256": "26fdef670581a9431393349e679181ece12a3dc54fb4ef7940572d1f902fc541"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/371a2b4332a90f6dc49844e5dd3ec1c662f4a000.html",
+    "sha256": "9e68afed80c9b7256f4b544e84b90564f4b94a187f852b3855ee58c93392cfd8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/663d5e1623365d1ddf40615210bcbfdc77569fbc.html",
+    "sha256": "abc5ee65e34811af79acb805effc9dbdac033ddd5e517e74069992aa92da1a11"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/62400c97d61dc3f9846fc7eb2f5108357c9aa56b.html",
+    "sha256": "6cd258b1bb7f0af0b189a8a4586be0c39605c863bbd6e0f2c7331eb4837bda2a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8586edb596146825f820c366c1714643745d54b8.html",
+    "sha256": "a4d5451c9671467cb537b54861d026e1527b3626ff9da716f8eabd676d184262"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15370.json",
+    "sha256": "879d652aab2699795317993d569329b36ddbd13357192d84db0e7e7a09de7bc7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e1419ee7a9a4847c00fc4cdb0025ea486b0264e5.html",
+    "sha256": "f6c8edec3cf725af97dacf20334a900eea83190ae21dec7bb4d8e3dfe9ee8816"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8b9f0211ca166d031592071b5618703bee83a60f.html",
+    "sha256": "fb88ff31fcc1fb777b84d10ee00220fdf729700e3ff7bf32910b8b4bb1521086"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c2e37d5b514272719e32e950fda38059ede5e1c2.html",
+    "sha256": "0a7abef068d6b43645542b043bf3d0f13d04eee79f02d29d3f7c5bc2d3648f3d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3d18c34bc77925ca7cb10138831384369d3a62ab.html",
+    "sha256": "974ad813bf3ba4180fe6b87ac01f369fe372d2979f5097139e24a34688734655"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1c0cad5feb163515c655220a2090ad236e045dfc.html",
+    "sha256": "735434b14d04b23a90abbe7660274bd3721423c26f01d3e33cbc1f4954beb164"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15311.json",
+    "sha256": "35fc7c3bc04854120587c30758b217dd2709f6d00170b507e8096ec77af09876"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f3424daf7d7ad832a91994000397c0a0bc28ca34.html",
+    "sha256": "7858372869bcf69cd6910b513facaf45cf3e0f2694b1e219f81f103663c71265"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/834dad1b2a11f25e38c651485bf8589f4bcfb215.html",
+    "sha256": "abee14fd13cfe5459471fae96c9989973bcb9c83ed71d60f94a78917f180f150"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b8d9c7d7e315aa7b8471f4c5959a88aad292adfa.html",
+    "sha256": "ea180f011b8107e686da57b0d6aa20de92c50a3009484345b8f2afed499c50d1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15266.json",
+    "sha256": "064a0e286534f5b6e6610e9d04a4c9b6e2294e3f571844714f04c5fcc8017a10"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/df8b8b88aa2e0f29b022e6c9d38e99de95712320.html",
+    "sha256": "b562a78e85f53602726d1a6f2141da9a8676e337f7caf100329c1131267cdd6e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cf3215f1fbc853aae6dda2b4fbbddc64980c8cb7.html",
+    "sha256": "8056b9b2bf253c86fc63cff4346315a705e40ea16767751e4d37cd4e0bf9a0e4"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/77b7892626bb27bbdd8b9630277d0ebea36cf9e9.html",
+    "sha256": "76fdfd23d3491046ace3afa3a55d289ddac060a29832b69aae98fc2c24f29327"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1c941c046f7c2f6f9531ea0bf2dc29d39f5ed68f.html",
+    "sha256": "dd2c663f05daf8cbcb56f07552204b691b231e3b8c1f5b16a4a828b625b915b5"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15339.json",
+    "sha256": "de708465f73137ad1939abfb7507b5750cc3a01bd8cf76d65ca3415189d3a3cd"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0869d5c68cf0f96aeac8cd79c9760fbb931640d8.html",
+    "sha256": "3f27f360cd6723f5b95a2d3513095b2c4eace91819d08fbd64a7a8352340a79e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/15ad28152982ed38b2fa5a55a77c0ce9fd015470.html",
+    "sha256": "b566e423940cee8421af8efcf877aa63eb3a3d458e5b02ffb1bac2556e151069"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d001aad60d071244d38ae2a9b2ef95ee7f9bf590.html",
+    "sha256": "905ce578eaaeb73af19a341940d274a5befbc7df13fdff9d99c997b3a2f9d3d0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ef94c608b033caeb610581c86c584c4051a6a1b8.html",
+    "sha256": "99e9bcf18f2849c7b4bb98a0f26597a0135bf240c0d6f87a8cd4e2a7d03c1ac8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15338.json",
+    "sha256": "61e06b8fefc21d804fee102d984869f40775e9c3caa233ac3abac210ab48e0d9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/57d67e175d2a5362b298cc692c8eea2ec66ffe45.html",
+    "sha256": "ea80369a68b53e6b56149379d2d58ecdfa2a47a25f197b6961baf191dcf32b25"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7ed4ada788c48ad5d1540cdaac234eb3f362f428.html",
+    "sha256": "69b2b035473a92e71d0dfa7125681df6287a0c9a8263bc847e3633c5117522da"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a9892546d6ea5d997365a8acd82c3274fbcf4c8a.html",
+    "sha256": "42cc53f146ab272e593838be469885688db0555f2db3366c66d2e91ef79ff2ba"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15304.json",
+    "sha256": "dfb1fa99cc05ad5ce978ba2c351a50ad8d5b1070aa74721ae0faa8090b779618"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8de7af5944ac590d090bce7eb1167c51f482d89f.html",
+    "sha256": "25a6fd16fe6f30ea438cf403335b2c0d8e9a37b391d48405d3ef5b697be49572"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/74709a42006d8e83e4146cbbde56cbecddefe281.html",
+    "sha256": "f811699884a61a59535b460056c330c1aff1c7ed2440acccdf7ea0baaba99b60"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/80765bc8cb178bf35d7408f02cc6f087e2baa277.html",
+    "sha256": "c681ceef84cc0cda92eb32347d25ab84cdcb4334d6e258b16bb6f39990c4b0bc"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7023847dff46e4ac1a0b31620920ec84702ca355.html",
+    "sha256": "5ba6475fb92028a25f086b44c9fcf015a64cb29056adcb8a77a2a761d56d2ec1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15308.json",
+    "sha256": "9dca48f533b993265b314d1a70960ced3eec43ec60de22a151ae4d7c1dd4dac8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d188ba7ba27e861d6114c41938b73db4bab43792.html",
+    "sha256": "8ee82dc5ab877695f1c9ba254ef86e3368645f6b9621320504938f995dfd6f13"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6a5e21a9953fb8c24544f4a2a25a2e77452b5eb3.html",
+    "sha256": "53251b1a0fcc3ee256434dc8d2306d0f949d37671bc94b4ab4cbbdcd6a581f0a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cb7b3a952d2f01dad794f28dc2b9896840aa675c.html",
+    "sha256": "db95a4e04ad71fc516b22a1b3038662ce6987311f8aba520a657fa866cad73d9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d9a91da66db182eeae82ddd4ae69d86cd0bbc429.html",
+    "sha256": "d71ff7f1eb229d154b2964a7b74544abf6f93b9436dbe2f6515d5e7907f291a9"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15296.json",
+    "sha256": "ee0dbeddece62f595327516811745429fa3bd354111dc8ba8ec76d75ec2a66d9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b0ab324c2fb089be9544b9fc9b7192ed509efcf3.html",
+    "sha256": "2a8a96c91aa413eee3a821ec5ca401830593b32c64d6e9b0638fe2a118106d85"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/673aa83709022c9017f7ae92edc9731d450231d6.html",
+    "sha256": "454518e77dc09af6b894d9e3edbbdf3c89c52ae9b4b077e0f4a7ed00fb06160b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d433b1377bf0cc520167e9ffe619b749fbc94555.html",
+    "sha256": "5d5a9b759f09c73dd17231d1815001cc371e1eeedaab16baf58eeb0b49c2ca53"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/18f54dd294e0d2da04fab9e3f456b88b048ac7e1.html",
+    "sha256": "dadea53babee071ce7bd92332612b8a0ecbffd252f92e886163d27ea929bcd16"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15264.json",
+    "sha256": "1544d343873b52b3d6a4a652116d6e29883fffd2a489381519946f9c31a7358b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/20edd7298ef5deb2a71bb54292fa5321875da556.html",
+    "sha256": "c200564fa9ceb71cc3c34da1192a9cff41d7d968508389a7a1a88993c3d24115"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8f3cdc86b2ba543ebfd76ca8f15b015e7c33077a.html",
+    "sha256": "c78727604ac7ec14c4f9ccaeaee40e6c586b6e68a15500a05b6e0ee1f0b7ac07"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/97890a916874c6c2cd529a341c7e7779fab2ee01.html",
+    "sha256": "982469c42f884a4fef806b8a6cd830c4d8de5ebc623ff14415a08e61a89c2176"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e9be339810c178e0d776a9b6b00c4cbd33f02d2f.html",
+    "sha256": "22fbf579b2b9427aa3bfdf68598efe219be7cf454a5cd0174828c8c8ea818ea3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15381.json",
+    "sha256": "96be7dcf21b68de7de662df601bc81d0d0d7de275d740ea0f8207287e1dd6c57"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6347296dc10a3dbd3f6f302d012751b3e35fe402.html",
+    "sha256": "c6923a608d1d879dac016a1e3abff8b56c375938a8455c6f3874962a08dff772"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/418c3bf6fa0e3aeddab3337aecd2920a04762ecd.html",
+    "sha256": "31622da840f706bcd61d92684efa50f09d4b70ef5c5491cad5a35e1b69851505"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f8b0c4d92a8be4ea5bb68b8d93b99bb4ec8c8ab5.html",
+    "sha256": "3a0cecee3561b43c9513a8af851d83d5be05a7196114d1ac9744ecec4dd85c3a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1b4d99a454e28c326ed092b603db5359c2493157.html",
+    "sha256": "b2f6421bd3239cfda6f499c65d07e6feaae40a14ecc3342c80c8450ce730760d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15265.json",
+    "sha256": "64be29dcf65d85ac0f20d0ca7ceecae322781e80cc8a57aecd1aca914c8faae1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d22f3100a532b927e62c3ce454606b3a492a0ca7.html",
+    "sha256": "8e81eb513a47ca10aaddd07aa2056b43e5d4027b039a6ff2842a100842d9edc5"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/4b088a315103dc249a64559dc9f03adc61699905.html",
+    "sha256": "a5e218111917cb21c51e4d891e60f553420a8402a7f7c8c6f88ec8b5bca3c702"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e8be1669d330a31c7413e67ca3df9a740245ff35.html",
+    "sha256": "de411b4156e23b380bd6532d0ce75d0caee3415c6dca7d381197468f712a896d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0a9dd7378ac10f4755b90560d9b07f6f5b285fca.html",
+    "sha256": "8ee3a6ece4927c0d502ebaf92f701b95307ddf5ac9ca7d7ce7bbae0ca33b0ec4"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15300.json",
+    "sha256": "d5e64a136223f8f4fd9c9a7d9976509be9deb2ade8e31d212faf10ba5f006854"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ebad4585cf7a9a979c9a8f4a82a996aabcfd0dc8.html",
+    "sha256": "2aa1de07fe3f78147cd7a6d9e69deb4e1b17811f966931de59060c51d3cc2c8b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1970b93766d3bfe08c494c1a8a04bd8986fee109.html",
+    "sha256": "028e5755c829cbaa23173ae14f89e80185ace558ecae132b697e3348bb9fed04"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2393a780433cf46de109920927b008d74045b4b6.html",
+    "sha256": "e4a6f88ba8fe906b64f9d1c2aa648fd0bbce236b1ebdbc2ed0b984581592ace3"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/df7d5792b784e6832c4dd9a23147da0e48afbf25.html",
+    "sha256": "6f761504c563144ef266ff6d02e6ebc7ef238b6805e3aa1019686f9946baf48f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15367.json",
+    "sha256": "7e566f60fdb812066ca06e0b6efa123521036e9525da441828c72ee85f2499b0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6baa7a8763cdefc6a5412b80d1f464f75095f116.html",
+    "sha256": "3b5bd5f119f82289253cd4336b705002268384ab6e7b38b2c8089ffe0b888fc3"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2dc76cf62764ba4cde882425a63fb5e35a775a7d.html",
+    "sha256": "36c8d4d79ee3edbcc3c58de8865f68f7b66e3152364a165046647fcb3b6e7a00"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f50729f69da1d8e3d97510db9b7c32dbd7eb05b0.html",
+    "sha256": "1ff537e4c379e50916b6122eef574f63888b7390906702b34374247a5e2ecfe1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b92aa3fab5310da7850182e2012d1b83149bd358.html",
+    "sha256": "26f1906961017f618192a4ddea491b1214d57480bbc0bd7b05b7b0b79aa39778"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15364.json",
+    "sha256": "ca79a46013e272a8fd1706abe1f9c4d29323e1da473b52f77e914435eb9f9959"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/37a614e5c21ab87796664caa1f4a6469df80c7e3.html",
+    "sha256": "a7e8257db5628aefd3c9706a55427cb66c151de50f8f590de97bd15767dfbf48"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6b6f900cccb08791d2b16143fee1cb6069a0e096.html",
+    "sha256": "08921362fb1b6888f18e2c3421e33c154aab502d5e795e718b0212c65bf01c97"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2334ff45f69e459941d81afc5adf063d8f7255a7.html",
+    "sha256": "d76a6d9494525361e56112096d04ba6687e150dacb31a6ca0ff0d79f88eaa0bf"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1f5050c228ac9771a4b994dcf0ae1b1f28ed42da.html",
+    "sha256": "705b986ff8f87d301b4c68094811ddcc1e2b20b9091d2f0ff46b5ff38df68c89"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15361.json",
+    "sha256": "b3c9a72a9fcf41e550c46110545bfcf23be3a37da5cc54dfc9b058dbf5de2c69"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b5578d71a8dac53d35b8b92de5d1f218aafde915.html",
+    "sha256": "eef477e091b2f8a96dd8822b150a4d5df096f552128c9b6200dd9d348aaf8e5f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1d69fc6174be36a530ef56ff481e638f7820386c.html",
+    "sha256": "7560b573781bf711b5d74cfefb4a5690ee6a64d308dee42f513bcc23ab2602fa"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2b216a715438f0c02eb2a3092035fb239ef9b79f.html",
+    "sha256": "34c2e508439d1b886712b68ace5ffb2f9487fd0dd8b860ac24d9c54e67a3e17f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c4c7a89b6b8cc1d7d25f336c4fb9e9e3e14416d3.html",
+    "sha256": "14c0fc5c245f6eceb4a421d832ac0082510d419b028c1d8780daac55b4397d31"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15354.json",
+    "sha256": "f7e57e8099f32415a83f32518ac30224b1bf646074f31c801f5090c90aa3a3cb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/abeb5958068739cd523c7e691cef7d0731407d02.html",
+    "sha256": "3d058a3705113b54ee0638de8c9cfae3c206a049d856f51d0c6c2b86235fcf8e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6fd287805145df1073e62a1262fbdda35532b0a4.html",
+    "sha256": "11c15775d72fbac0ee84373ceac0f9c48a8e2d5281ee66175ef26b7b7c87349d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/15edb8370c0ce5ff68a3e1f01791d8c9ca52b6c0.html",
+    "sha256": "56b5a6c06978a7ab52b839d58d9636ba6202b8e5f934511d919d49ca039d0302"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e09165f5e024e48f63c9920845b781fbcae75737.html",
+    "sha256": "33c952cd6af14e654f4c10b907da07206bd687158814cf8bee8d9db82be6fe8b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15352.json",
+    "sha256": "7578bfb5bc4ff5c32b9da02731bc8499af21d2e7711c358d632930071412db92"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c517ab86e47223fdafa14ea35cf40608f24dad39.html",
+    "sha256": "69e70b9bcfe35b61e55134553d0ce093ca15aee086102899e7cfb0f08e267b7e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/887095daae5fc458be03d1d7d2b2e6c73fa55cde.html",
+    "sha256": "e8be5622706a2c23b3a2aaf71e58862c6c7c31086ff5bc75482a342cf959890d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0733d81f66f56485d124d405d4eada22552bb72c.html",
+    "sha256": "7539f6c5dc958e8ead035abfcbdf806675bc6df583d19cea0df51bb0de46801b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3bc10d3ca7758cdb760b92b4a42b8cd6fda977c3.html",
+    "sha256": "b60b2c3e7e1fb900c8267df3e5f124be42db746f67dcdb5954b4343580130af1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15382.json",
+    "sha256": "7229df511846c4ae9ecddb5b522ef3bb9583568613ab2e82581803f7886747d3"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/21044a4e06d1e6c85e746e2b27abf0a01834ea82.html",
+    "sha256": "fd60d186fbe3d1503c4993c5f647ae3ebba91f7fb197ce0ccd017e0d2563e83c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/98705871a3727299e301ad35068ffe001f845ba8.html",
+    "sha256": "dc04a7fceab947f305cb732215d300d9dc916316d40577e1cbd83b3fe27da6b3"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ad5e9f84700d16873d74316dc23dc85d2aa4cd7b.html",
+    "sha256": "da78e6138834d609abff182fef4dee5bd0c66b1549910f1f830f64eabfccb0d1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7b964a78f508739a1277b2bbbd43c57da4c9faf4.html",
+    "sha256": "ff016857480e05fe68ac59f624bb65d794c5177e14d250911f248ddd34b1b23a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15360.json",
+    "sha256": "f7f1f53fe0f0a942fb181649cddd4f770fe498dd2a32b58f6d4926b2aba12aef"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/98c85777b975ac43f02869670f0a98b9c7447929.html",
+    "sha256": "8b23ea1fab6d75503f00ec4fc2ea460dfd852d0f98302275bf1326720910db88"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1e56e9b5094fe6957d1a87eca91cd5e94eff99be.html",
+    "sha256": "1c7c36f050cc383c1d684d0c93c88fec49ff02e043236814a4c9d0b0967a8e17"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b50f912d0aa2145a97fdb5dd5b7d396eb0a643a1.html",
+    "sha256": "1af205359762d92bd9c1f354ca663a59c5f38b7f79eb708308271d71e15b25af"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b33e5d209d2b1e1f3edc41cf724634a301128c5f.html",
+    "sha256": "3ae3f7ebd4cf9590dcf6a6ef2a15d726e30c9ab329b30fe7340752006e00f8ed"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15368.json",
+    "sha256": "4d2545ab47c9a815bdddbeeaa31a6f6957dd0636c3e27ed357c7f0777987f9f6"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/16a1ec20ef82e8386f1aeac8608d834104587313.html",
+    "sha256": "b09284ce24eda62f50f63f419de3fa56d1c44b642167e7e30b313ec34e1376b9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2175d7b7a144f2f7077883841590de7c4a7a92f1.html",
+    "sha256": "a77f4145534fed5dfbece1160590c7c5dfe6e8a1dccc81f1965a8867c2476a30"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/61d91f6e2249dba20480ca62861fedb57ccfb92b.html",
+    "sha256": "305c96b71bf7a8197864951c7df7e9dea327329933734bdb547c6854e977ebf2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/759542acdd8acc3a056779497812b4ccbfd504e4.html",
+    "sha256": "c29de6c053aed97f2eff0daaf18f4e37feeef5835f6830cb2f2258a2bbcb78b2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15297.json",
+    "sha256": "c2605b20b0919531fc6a42056c2d5cf5adcbf755d066d3752dbdf0d3aa943052"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/aa441da636855ee728bda6c07fa1d4fb22107ca9.html",
+    "sha256": "56b7b243ff3bff889dab3c7ac00043a74eef6d9a082bbfa8d946befc62b039fe"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/616312cae4fce8dacdf5d8a22d221d1c9fbcd690.html",
+    "sha256": "460cc5ab5aacb18be73749c7adf2e1cea12c17a642fa4e7ec301f6cf372ad680"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f2704880c3c9f0cb042ee04ce14029a0af391877.html",
+    "sha256": "77a877dd4df5dfced2fff0f171d957e3f6d237679cce43d036790982828c1dfc"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f820ca977ad5e7630cacbbbab65662e5f34fb737.html",
+    "sha256": "cc6a70f78b13802f913eb157e801bafa46a9ffbe3c5889f75d5a54984e8733ab"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15372.json",
+    "sha256": "b1c847df487e014966cebc933a8fc455844d76a3a60bbff6b4a270fdb5af2365"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8af2089c1a1664a6ca260dc8eaf1341b02f7b164.html",
+    "sha256": "ad03f0cb6a900e904cd24f0006f905afb36e77056c3e741aab552ad3f0e07995"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b78122833e4210ce44756df618f7baa46b79b3ef.html",
+    "sha256": "347d9bc140b8151bd50f18787a4cf694314124b50079e1ddb338e3c9a85dfd60"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/59d56bb79aa9099b0b894a3107bc575628d0a5d1.html",
+    "sha256": "c59a9992c1e9abb2ffb4e66712d72cda89d7b25538b28bd217041fb05bc556b9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/be5436f289189231e0454cff003146d864785a41.html",
+    "sha256": "8f590141fa5ce754336b7224579e7e95b2e103e0d945191cf499818747ab4505"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15359.json",
+    "sha256": "8e5eb4aba7700bd233978409a09998ba896f768fb5394b7cacf3023dfeec023f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/bad6aeb39c3b92278c6bf8323f997f227491fbeb.html",
+    "sha256": "e5190f6a2f843a2dee5713d0e510f0fde31d1c4f301849e7b81c0808d7f7dd8b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2af5ef58e3ea196f0fc61e3efe80511646c4d3b8.html",
+    "sha256": "91c80963af653703f1953180bf470e22c1912bf0a6e005490662afd0dade8991"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cd8d0face3391dd9c3d322f862e2b75a8d1b7fe2.html",
+    "sha256": "56604e6c6ff73233db4f4b710211183aae97ca832853fdc7cf7200ce07275afe"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/9029e2cd5440778f4f1ce099222e4581f76897eb.html",
+    "sha256": "88067489fe09df630dd63c32b989eeac000e167b079cf7c246e1cb886b86749c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15343.json",
+    "sha256": "a406ccb1bc29fa10be7f52e0db7b9888cf3e2ac30bad2be10fa2e2444dc70b3b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/af1149d00fcdd08d9a8c8450c5571f2954d8ebaf.html",
+    "sha256": "fab1c94b27dc8eebaabb8ae3e185465e80fe40aac91ebe9b07a721325f52618d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c74f50c0f8388ce19046e5a2ccac9a5c41b5a33f.html",
+    "sha256": "eb1f1eaf1e2e955980b86e4f93f70a813c3c2ae3208cf7cf6ad7030d1d1da31c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/bcb7163b0cce5d4ad33df049441b6cd3f8241442.html",
+    "sha256": "7aeb5c99768ec3a2ab218093c9bc9e69e83269e71d742260c30c3d5f406e2dd5"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7aaeaaf8eb51917877e1bd548d329bbfceeeb75d.html",
+    "sha256": "41a61a7c33def348a15310a072776832275ccc992dfa5fe7aa5c90e6e7e28f82"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15269.json",
+    "sha256": "0c4ebf93bd3243193d177169be1c820fffe8231c866cedb417ce658182ae23c9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/acf9adb4422c9c2b167775c23b5a24990163d698.html",
+    "sha256": "15a6374d5d94e0c72142ee418170ba647b562f4cd4a00ffba72e64b061a21f95"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3d56eebdffc76ad862fb93f2e03ad5fd3cea5db7.html",
+    "sha256": "92ba3aa292aedfe555743d96082a866f530b7f01f1c09d15274daeb797e19b85"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ddaf1fbcd671f66a66bbeec58d7c5c657ea1693e.html",
+    "sha256": "2d141bf9170fe05470a7a21a666d2fbec3b24aa9111233d0a9cba4185bc2c213"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2f57e97bad4195bbda9547cbc4b30f295539c308.html",
+    "sha256": "5e54ca1eda88c87af557f952631ff2b0d7a1653641e4fec5bc029b7c81ef8cc1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15377.json",
+    "sha256": "30a8c66e32262c2c299b003a77443624b6e7437ceb1bf5319e844a57544579fd"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/522b29b8dc6ed5473453acc23a23369aba735dd9.html",
+    "sha256": "2adc6f64efa2058dd9cd44dcfcfbbfdd0b9bc1ea714573003d2545164740e03a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/fcda95b8a62cb51933c12617d1883dceffb3479b.html",
+    "sha256": "3004f053f0a165f9d71b84eb87cef053abff2777dedf22b73d112c1fe0120890"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0b1779c5b0f194b47bbf54d0edaa8b34a5e584d6.html",
+    "sha256": "dfb36bec692f179dc664226c180ccc217cdb8ccb16294fe94c4a3b5f21b2f7d5"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b3b0694ada7b6675fed3332cc1bf85ff8af8651b.html",
+    "sha256": "ff94436224f5cc4981a2b1567eef7f5e7c37862e5128f3077d0a7dd20962a2b5"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15293.json",
+    "sha256": "9b68ced31871bda2d30baecfbf5ba599b3043613571105a79459af17f7445acb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8a84d141e0988ab26fb190440000cc52d9430beb.html",
+    "sha256": "784539f8897c56268152a13222c7d88838353d8062d3b91da1afdf1297bbece7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f9bd0fd9b9a55c95b7766f6ac8e265a119510546.html",
+    "sha256": "54bbd42cb19077e3a3d257e3c9befc111091c2a7b5717cb0e194cbdd1d50eccf"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/36343edc516f9210adb654a8479bfede24263b34.html",
+    "sha256": "f9dd9f3aa6e09b645519484df42d1167e6eba7ab24bf441e62cdf189bf35c0e2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e9da60215c6b07fd3d1654dd530c3a34c625c088.html",
+    "sha256": "1a759d0c5a2a4ac8cace8a29f5b9433543a8ba71353a2d85828576ff77dbccb1"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15299.json",
+    "sha256": "a9b07f007c958c791ec882b5ff10500c945f257270695e006349f886b9836c0b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a29b63853ae6a39f3d48f7e9535dc53439b9731b.html",
+    "sha256": "adc23714da6c1afe7126321332616f9e256cffec35a727c9d6cdabbcd5d76c99"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cff2414020780c0c36fc2a75758c9d9ec62ad840.html",
+    "sha256": "bd63785b039a77eb94e35d98e53ac6db07c2bcd6051e7d6f27b61fa62151dd97"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/654173f463294f338f0f252477b9671ee3106c18.html",
+    "sha256": "5ec13e0f8b738f9aebc0e0ab5080a48d037491b359818dab1794526474d3e85b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d965226f5e3c07b59cde450776394f1a087dcd95.html",
+    "sha256": "6e9ca2a8797cea9bb029404b044a77e9563eb6cf9438325935c183a29574c659"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15310.json",
+    "sha256": "77941d31cbfa3565c2feed14785971690e924b2be71a6d97365470ad03ddebe7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0335c636e45caafa66825a20f60f63d3b03a52ca.html",
+    "sha256": "5105e00f9afaada16f17b0932a46eac08623a9650445cb50c0edee6d91f4d630"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/04cf1c1d596e80b6efde48095b9a608f17cfdc36.html",
+    "sha256": "7415643da63376d9ddc7008cf999fa8cbc21a632f5ab9bd145fa72e25222898a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f9177b2eabc057ac80d80d7c6cdece5f802f63d9.html",
+    "sha256": "0ce70d4da950e3999c1042376732376ae5da6bb54d53c93f757bf35a31e8ce59"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a9d5834c59401bc1623f40fece70fd3b689e11f7.html",
+    "sha256": "152a28759bc3fe2c3a7eb1d32607c0adf88dc7fd14172c88d4c6ce61e5c74c7f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15340.json",
+    "sha256": "36f866584a13e34c4a79d8628912c8b217038267e09eacd53d58686e54e131a9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/31414d9f44635d29331fa1bd89b6c59cf0f96d59.html",
+    "sha256": "7a977c7e68d0e6cc90affada1e19b6ad45b7af7d87d1fe7a8ba0185bc1b00f3e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/4d5fa7ae7d22bd8e7ae9bb566856e34ebaca6788.html",
+    "sha256": "8cc2a76ea1beaac6bb1fc2dd5e880c8e436af26a524dd6b295e61d2fcee3b1f7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/926770b9593fed5561d357e934d4c2ee5b98e08d.html",
+    "sha256": "a8e9eb6ed6bc1de1814919a8ef0eed47048654e424b98f5d15e1ca6dcf5cec5b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ad4f81374e2c755064aec61b20bef34b213d2d7d.html",
+    "sha256": "027bf7813ec4f28f377e708eba8f3387d9ac6f9b1b0bc6a048018097a3703fc2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15357.json",
+    "sha256": "3768f78c5e969332cc054e92b696f8e9d5e020ee18bbd54233a39277c3c28bfa"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/397909022274c5f53b75a59af17e9a7bc9933186.html",
+    "sha256": "170fce2ea8aae4a7c0de62678fbec08aee202e6620c71285f65c80739938a671"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e800787342566a93bf5df9c52a4835dc413cd51a.html",
+    "sha256": "f2e86511d9aab9b198bb91b536e5a64bbfa333fdc32482a059140783255a49d9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/623fba7cb536d6343bc3fc3da7056a2025ea0917.html",
+    "sha256": "3eebd6d7b5219edeae5a66103b4a998a6c8ca8e3395a014d8c2db7163b31d595"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0ed766913a8b02888406ff94a2f035e63fb52518.html",
+    "sha256": "922b8a15433df3eb995ed5bf5f2f418d88407df012545173608c0b966f702a6d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15337.json",
+    "sha256": "e380135981ba018f38e82bbe7a65571d7ccfc5fdd9ba0bdcdef65acd87c8b0db"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ec8c6d8d7492a36eee1d68c591ca5e0c11d25136.html",
+    "sha256": "6fb55c0f2dd70aab91547c4ff8d7988a6ae925a1126f08d557f160d577115df4"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a43b1633d4253f10b11af80a9568067cec103bf1.html",
+    "sha256": "99236e4aa1990d1b9031b0e7aa58b7524f85d19dfa28ab1f6cdba88d7fd894ad"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/26cb3efaa86e550c83b9288300a2a493b4858b0f.html",
+    "sha256": "0115d365cdfb977ef6477ac8e20b0c2ee51f3b3eb675b3ec7c5f17d60c187f9f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/93109c027f7baed0f1fea55d1352da65d3417d58.html",
+    "sha256": "1213873d85e00df227d390aeb887fd021592ff8a4ebc8f73bdcc112777622df5"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/fbc487d36e8722beb34bb5490d334ccaad8d031c.html",
+    "sha256": "7dc0e3355900a411cb666e806e315babe97e5fbafd8b7a9b76dc8973d65d3748"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-index-momentum-in-mutual-fund-returns.json",
+    "sha256": "40e65f88079add2a57806832ecb2f6f44a2e22a6b633f0c05fc253c4728652b0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2efbe7b8aef2860de862c1a25144b632063061ba.html",
+    "sha256": "458889588aef19623760bb9e0943f24df59bae2bd6f3ee6ca13630b06dda2268"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3d2db2789333b280cc436c37aa8386b700c93387.html",
+    "sha256": "9de18de7f60daf2deb440841db956e8168fb681049f0a93cd9ac7b9cbef9c0e1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ae7ab5ecf56f98a03bc26d9169c96857c9b755b7.html",
+    "sha256": "6d57aec17f67c220e04d6bf08588811550b387487cb7940ea966f14af69294c8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d09e0bf0bf3aac39e23e061c89170c2c414f19cb.html",
+    "sha256": "df8bbeb8d665ea19e6980146d1b7330e4620bf639df50cfdf5e8b5a10ee02a69"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15358.json",
+    "sha256": "bd394a249951cfe5e39ac638b1b5974f0b6ddb587306e8d5db75b333d4eb032f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d18875d518916016da6a8761eb458f55b91afe79.html",
+    "sha256": "c96a09fabe91e3f5bfd8fcd69cbc80b3863bcba1f0452bf5453b0deb62fc71f7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/fdcce3dbe69dc4f64e48dc03edfc2fb20f25e299.html",
+    "sha256": "269ed5810f84d93656677329d0d0ea7a7d9f9b1c7ea3d6cf9e98805e15e0d48c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ccc8b2261e2750e3f9a055483761398757d69046.html",
+    "sha256": "a36453e9413f3f2bd4bb19085480548f00032132f467c77bfe8ab464af0a1cbb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/5cbb24e490ba21006addf464c8c5f67b74591400.html",
+    "sha256": "2a5604932f9e0f912e3b39585a4f1a1714d2df2f4ffdca96d31f10cf1579db5a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15376.json",
+    "sha256": "f5bbda7da5683fc99f483e64703a332c5d8a1e65972594d8be66680bd1855b0b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/4473eb4fefeaee01004c27cfd9c1d71cd45d6c81.html",
+    "sha256": "d31fae3a42e023414fe862a231c3b8fa03c2d69ba5ad4ea4c2ce884a3ed487c0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/4cf8481a60c52ab7301613cc7b11c06f1780dabf.html",
+    "sha256": "6c3f227683ea5885d532868ef8ed5efa8ee1a6c134a3d80a531681acc957dc66"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ad991fb3a7a2fa232103840eff9572aad8de3c73.html",
+    "sha256": "2a7f4491211469853931ea5ce5047bfdf78d7b41c183507133a041a0c0fa6b06"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/50d2daa9607b6cdb2b6b23453619c1ac9599b575.html",
+    "sha256": "54e005dda196b3b3ab72130021e185552e11bd1c137b5f009449f5f97dfacc32"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15362.json",
+    "sha256": "dc1703b31f42fb12ec56b67ece4171c057614d87f416d5036760db4d72ab603e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2a0c77c3141445a913f269be2f89a9fe66d40fa1.html",
+    "sha256": "49ee852b23468fb0f17f6a09666ae298cdf8bffbb88b1995459463c1433a614f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e89806be273171872115af1d6534403b28486044.html",
+    "sha256": "5d87dd902af06952c89f13028c3a44403dc716e08fc95911981653e87f1fb174"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7ff9460232c0812937be770d81a615089d1c7af9.html",
+    "sha256": "6cdf2a56b540fb678a063815e8f785d230069f9d4c5c22ea3794761af60fbbee"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3a2585c69d2308ecdb187a594f884fc83880da3f.html",
+    "sha256": "15f7a1738b4bf09cdd0d05da87fbe7c172ae02871daaffa2136ad5da31462f7a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15295.json",
+    "sha256": "de354d0d330690d6a22c7a4ea1f184a2cc1d255c3ce585ab4350570d977d02d7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c80968644edffd803e558ec22cb90a58a63ba38a.html",
+    "sha256": "196da68147bc449c6577d770e461e160019ae26e771bd59dbdf7a88305402fb8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/bdafd79dde7ec4eeca2c6904c47c2f3391518544.html",
+    "sha256": "fa696b6a65b23e5950bdf7b3eaf3680e4fb71b33252838b2d47cb08952222b57"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b2455b84ff61e37fd3aa16169f6c17af30e77193.html",
+    "sha256": "8f6378cd3b227c324f81abe2478b94f21c4320d403ed4c2074d46a468aadc479"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cbce69f79491de6fb38de4f95d406434b3eac223.html",
+    "sha256": "1a22cfb8486e4b026ed6e27fbd860064e9574591eaab657ba922487e65f93091"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15259.json",
+    "sha256": "0330a833a4a7e51a12c307d210041214a2acdafc29be3f4bd249749c69e6e532"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cb4b453a1d46a6fa580bc6f5b272d3b98a4ff879.html",
+    "sha256": "ae4e8fdce3be48fac86d191c7c956ff02993138cfe86b3c2b758a8a8ed0aaf17"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ae1f2950c8feb55134a344f85b0d5f1ca456684c.html",
+    "sha256": "145044f97a896d513864d727bf5a20e0d3aa37a457107e16d64fea59d81ad690"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6dc92ebf077a5025ff6233379c42b238596d3ea6.html",
+    "sha256": "cdca06799055b92739bc623c2b664b4f18a5dac3a7a826c451c430e8f8b35f5d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7f85cc64d1884301b0a4647c79787735054f2457.html",
+    "sha256": "ed155203155da5704c5474e2eb69695124f52fc7cd5e6df1208a7110ecf36d3d"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15350.json",
+    "sha256": "7631ea1b84aeafa44f2c7fad10c7cad4d3c552af2b165a963fac9b9d8eacb902"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/bccce7f4f1793648f34a8f677604b5f6f841b0a4.html",
+    "sha256": "7b7c959c16e7f81881dace5b83410adcece1257b4a9046208f71cccdabf92f55"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/94a70561f64472b7b4d42cb2410a14202bffc488.html",
+    "sha256": "69f028214bcd12f2951a8876094c6c685965804a2c3e85ea479b7650a922c7ee"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/41faf63d4d000e6706b06cc59bac5a22f9dfe222.html",
+    "sha256": "f8899992a24d9019f789da0873fbccfbf3fb04e8194b1e11be9fd4afd4feeacd"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/54db2a0b4d2d1c72f4d94b82ecdfd84c7089e573.html",
+    "sha256": "15c9895cc3936d186f5fda03bfd5befcf9dd48d3ba157158bed453d6d2693b6a"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15356.json",
+    "sha256": "de9a1ce913b78fb689b0207e19411061ba9c3079c0980a57d049a9ed4951e106"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1848e9efe831694bd647e24a9821349ab9c74b5a.html",
+    "sha256": "2ccbf8927ff480ae4c95f19a54550eecc7c483469d367f56ad2f777a33b97a3c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/774d359cfdf70295edb4e4ac721b5fd6b008c69b.html",
+    "sha256": "fc9b29f452c9424f25e26b77a6b1dc0ce656358d098c4249ac6fc1a58c09759a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/66e445883bb7cabbb76d904be08c49f493ddb751.html",
+    "sha256": "36206755aa3459ae033913d4b946a991172dfb5ef7343834ff592176bf922059"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/137b5deb818b003454a7f2a189a3ca7912242967.html",
+    "sha256": "154a555622f89bbeadc6cae8117e61d1201bf162f6e288f58034a3284b98c007"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15306.json",
+    "sha256": "ec70b1a19bb86aefadc627830ba49a13943c106ca5f9fe83f43655372ab7cae2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/41486716d33a69d8957822f0cbf5fc9a2cb1c98d.html",
+    "sha256": "7678b6dce76565159631cf427e54e6d40d28939b01cc56a55264686a4c56f3ad"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c8d3623a2ef289b26f8b695f85cb50b5caf189b0.html",
+    "sha256": "c3150d417f055e46e1d3549f028b401af71746d25c6dfd5a4f2eb53106799517"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8a2d56e463cfac86d2dd28c756289dd2878be392.html",
+    "sha256": "ecc35a95fbd9ca123136ff29059f7ddf1a01dc4f4cae4787244298047e31de9e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e85f53d8360026283b01884274d32220ddaec6cd.html",
+    "sha256": "638e5d0228c9defd95169817e9e9f8dcade02161121d6177ffb6149d4485d603"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15349.json",
+    "sha256": "f36bd052e313c263cdc8609cd5a0c4d5d33f5e551d169f2af1d06998332071e9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/49a362db3646ceddfea4bf1a2a17ebec6dc56a9b.html",
+    "sha256": "94784c6db7eaf557c0b439b06b8f754eee9d95577df438bb073f934fa6470605"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/450d0cfebe1f0169a98a95e7310e06b67ad5f57a.html",
+    "sha256": "fef5a28532851f8a6d4b2528e3ef97bb55a5498ef858c4ea766f3aa2c296b3f8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8caed6316f23a6190db373c1e1bbe78ed7abf6c2.html",
+    "sha256": "447e8c8ba217ccc5e2fa2d35435f590708517eb1cfb9fde98f6ad3537f3d56d2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2a93cea93fe760b0d28336a48868102327681296.html",
+    "sha256": "523467020b844aecb29e957b45c8d6a01db218b610eeaacf4521d346c68e8442"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15353.json",
+    "sha256": "7bef706e3a34bef96f4ff9998208977a025e82ebffa4877f1c158e69d8948d5a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a51901165d7647d8727e9f8fe7800963573424ed.html",
+    "sha256": "bc9fa74393b1d71a64a980645121f1e77204af769958afebea1bc8495dd6e611"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3564d32906d3ef1d3c93cd3a063e9321b53d6c24.html",
+    "sha256": "bf2d97c74ccd629e83aa4fba7cbe49cb94ab5fa633f6c9d59b8d6a155d313269"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/529a2d132ad1840e006092f2a551e5fbe0b7da19.html",
+    "sha256": "74a0e211ee19db501cd8bb49274ebf0694cb3311ffaeb7cb1c5a262c9595ff34"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1afea81285bbdcd522d23047a2c304c155d4615e.html",
+    "sha256": "56c0cffcd32d48d95c9ff345d18620b1015ef62983325c067f9c0a62200666be"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15380.json",
+    "sha256": "1b78238a84f180503162bd393036f638ecb038043b6a59e06c6d4e740093afb8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0b90427bb6d0efd397b979183c2e6af7bf036bb2.html",
+    "sha256": "a7a02e38126bdb815330392fa7d2c71c2ca6ceeb4a56afccf5d8199fec11140a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a2593a929bb5ee2ba6826bebcad9eb3521ba6935.html",
+    "sha256": "2b2b1c53feca5dda2f65d10a39e42c8551e181afbbcaff647ef82f7ee66094c8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/57f98de1cda073a807bb958a4a3ddb0b46bf7c50.html",
+    "sha256": "65b5124bac4fe03ab66d4fc108ab98218e271a9ff0f9aef986be3014cc6af94d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/44c69e4aac1b6394698e48600710017b212ba24c.html",
+    "sha256": "1db173f6e9c544e5c98f10b5979d264f75696275689bb3a29c27b436187854ed"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15256.json",
+    "sha256": "667bf5ecd00b3d3191acd86f7837339a3405b803747112f9c770a653cc011fff"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/68196fe39ad5c8f5e5bb2b8dbbd8ab2174677149.html",
+    "sha256": "6e4122a8b156d5008fcce2bace7db1cb1a9382e18d97c72aaa342d2b793ca531"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/168dc1b464eb048622132eb022f26311f1ef63bb.html",
+    "sha256": "4c87147235471c6d79f987ea959bf2ffedd7b63acc6ff3f3f62133311288b6b7"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6b0c293c50ebbe638da693b38d1b3c9f9df9edc2.html",
+    "sha256": "1fcdff963a28dbdfe81e7f81cd8993055cc89ff25835d113fcd3fdd46cf5a362"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d3f5c48496daada690af8dfaf0a2a85734de5763.html",
+    "sha256": "a9941d1f463eb75422638226fab3ffde1ba7917226dedb89dccd922269ae2ba5"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15366.json",
+    "sha256": "e951f21a8f955213fe0408b4f2a413a4ec482bef59fb9e9a394c4efaf8165753"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/824943d72fffb7ecfdb03a3bd627426697a17d27.html",
+    "sha256": "4faf8e8e2d0a2a85f5a2186e04b78f4e41d053b6066eaf1f7ff8f7de12c40439"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/64580ab5374498997568586ee4f77fa29b1a0063.html",
+    "sha256": "c9ebf136445cf454cc5cad1e1155d913e931a8ace556ea0629457221e1f95e2f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d1c444409df450035ff01a3fa2b9d3847a3b9751.html",
+    "sha256": "5f637002be237fcc1cf53ef1a7401f6a3ca931d08a75a335ef6fde716261978d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7859f123f7a6133d53ff7b3b85b2b14fe7905a6a.html",
+    "sha256": "2e45335863c8fc0c01d20f9e4b39f95c46c92a829f35ad8616ab0647b1840524"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15301.json",
+    "sha256": "3f606890c7d88696f76ce7de74027aa3de5dae91ffe493df5d50f563a7782fad"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/4b193a4cbcf813265b1e7efd5342ebdd95d038b2.html",
+    "sha256": "da926576da785126582e7be4df55112fe1c96ac280fd027505bc69bb4d5b52f0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/91f1e5a1b48e2349474c1ed123a86fbfc36535a4.html",
+    "sha256": "cd4e5f99c93a6bca2a4c2080d39d16a41f8724967aeaf794b387f1c929df0381"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e043cf65d8a459e26bbb4975ffbc8993f3c5c78c.html",
+    "sha256": "ccd6d03168058dec6798c167bbd2d735bc123f558fba562103c98318fcbcae41"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f65d0bfabf75c2a57c264f2bf7181493f4dbfbdb.html",
+    "sha256": "ae51e358b2732924cf8aa7f4ab51db0739c277eb2c27dc92b064aacb35c30588"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15342.json",
+    "sha256": "aa8ebab6b5e11cca137dfd1a44e04c7a6214dee6a9e96041a54c4850a0e58de2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f975737c02216e4bb0bfe607419a6465fb067b36.html",
+    "sha256": "b3f8740a205d4b9e3bea7d8bf9fb51151eab2ae5af0f5ed342cb2bc0bd5d2367"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3463891672b0997ca50cb045c51ef89241a4c3ed.html",
+    "sha256": "b0e099082a12324888f0a1df72ae7d4de1d75746f5b617defebaf2bd637071d6"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/41e0455c321a3b8d209bea42003baab9cbba6954.html",
+    "sha256": "aaeff7b66e636a4374a4a8fc93c61fe9165523ad4a4e93fd74ea7995becdaf57"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/fc12d369a8f12ff2cbeb2d4133d5cd5bc8d37eda.html",
+    "sha256": "313f75ce55c4d92bd1dc1d85d84a127907c48c788455070ca2425b0ff10556f0"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15261.json",
+    "sha256": "b0a0a7ee442b1567753a7dab90e6f726be384d9589a0ec089553a08acd7455ed"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e5ef7793f4f71ff2eea608df94cbc9e9871247a2.html",
+    "sha256": "46021aba9bc2717547674f82f772ffccc576933e787f3164497e35c61a0571d1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8663ff771f5a2882e6e26aa37d4e8904ce4847b8.html",
+    "sha256": "40ce34c681d75bae4f20b478a1fba40fb015789f08c72ce34426457c9d5b6003"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e7aa2b23961804140be327261779e59bbc242cd2.html",
+    "sha256": "cb9362527574ebb9d2353682fa685493232401d3ab0c43101b7df5adcbd6f343"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/53aad289826ae75bbf470ae7971539e41b24f56d.html",
+    "sha256": "482fdc1d70a107bd7fd70f1cbea6e409667bc07e85ebd86ea7e234f994d58d7f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15336.json",
+    "sha256": "0eb28fbfdfcc14c3beb1a1ce13707f860e7c0369d330974d5e679894511854e0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d0d909e7e94739387734eb0dd97fb7c4968519aa.html",
+    "sha256": "dfadef02cdfafdfe3aaccbdb7b440b5b86233d28c80a29f27f3489bf2d6a3aca"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e6148950f0212c5fec2bd1ffbf8ba70b26fee0be.html",
+    "sha256": "d0c38923f69bc650a6f8f4786670217ef13aceb38ca3a2b3fbbebc2ae5a59bd1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/219c78275a44b06ba5acf105190210b4e67f4e3c.html",
+    "sha256": "44b7967db66eed0defef65ae88f3f79806e7506f36c9d6295b8c064797bc92b2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0cfa5d6a19a4d86c8570fe8366017bdb5e625e06.html",
+    "sha256": "2baf53bed2af24bef707ab871d461a1d8a83155c8bae92e5ceb9038d16b0675f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15363.json",
+    "sha256": "bbbc01998a7e1592bd17e2e2a85428350ad96d0612730f8f110d340a0b0121fc"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2f1fbdce6a3c77f5698836651ce062e66195f0b1.html",
+    "sha256": "329f88b66e4537d5e5b8b2bb62c42182da85d007d4280f2ed98499e6d82fe487"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a6db2f94ac7748be443f63dc6b2de9383f26214a.html",
+    "sha256": "3247bee9ab5e73c7c86d09a44a12d55c606e21a39f2771d010a3c593db5a2e58"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f2180a0cabdc5dd48e9631a9f30b26ded2a8d410.html",
+    "sha256": "fea2877e9440b4860cec82c6f55c7b18751c27bfe76a35cef36d203055c74854"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/66df9ad049d404c95b1794e86ff48f3d3d4ebafe.html",
+    "sha256": "bd4b1c2a71a7103c4ad5d57331e2200be40bda20fd1af651bb0402916614c044"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15379.json",
+    "sha256": "7fa0922afa2d05b9d1a551efd09ea7130b9f7b7a76d4b04787147623f8f1544a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6d6f8267064b49643d8aa19c255c429253c27253.html",
+    "sha256": "b8ea4b1fc114233dbe4b84fe02524bfab145928cd58de2c7ae422e58baebce7f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d2c9c936e3566568242a741dadf1682c0e1feabb.html",
+    "sha256": "6c4bccfe8de13a1337bc84f5f59734ca8f9577ed78c066acb4897359aafcc3aa"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3c11e0b6f540b434202d3e4220c82b8ef51691fb.html",
+    "sha256": "6f59cec04ef7b40378dd0270da00af47c6870e08714d3aa16778e35e2d6c43fd"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0447f1a7d6adcdb70155dbaab1e08c0d10f1a8a4.html",
+    "sha256": "f9aa7bdf797309bca353aa6aa8acaac52eef744a4b3ea48c1bcc3086d1f1d339"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15341.json",
+    "sha256": "8a022f6d572e767bd3a19493c578d56e9c1cf12eeb8fe68c8fa0b4c19a670497"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c4cde160382bb7d05f919b555adfd39081fad1c1.html",
+    "sha256": "e24d7ef3db1881666aa68b13d775084f92bd425ce2d1c5104cacca962e191a0a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/def8def8760b38c897dbd41ef69e028446f83552.html",
+    "sha256": "ec1bc575bdc9eb509cf096db04f8e4e35eee856a9a1e86e1f96c2bf697d9a6ca"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/35a523221b62cf5c11ed8dfec645913e79eb8c70.html",
+    "sha256": "1b1dd324fc93a9ddf69ee9de173e6da02dfff87e6e21ea8a13b9839d293eadd2"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15303.json",
+    "sha256": "c31d1c725e4438156cd452d336c50f58ed2dfad5ba051c94441df0ffa2d07c75"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c5889c0aa8ebd903434f0970f68a8baf308cae92.html",
+    "sha256": "a9ec61c73f1532e4afe78cb924d6c0e08dd0e9c586fb87c68a64bd4b52929cb0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1fd2f524d58d09fbbf6a8b29db7a8ab4b11a2f6b.html",
+    "sha256": "449313c681d3f23b3f686ca5f1f8249a274b24ec4bffcabfcbfe7dd99b1858ad"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f3cdbee6f217b03081f2a5fd24f4050ba8bae979.html",
+    "sha256": "d5107d4c9638aea7846831e2fa39daf6dd0f5f99696a592b2f552bd7a320af4f"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15262.json",
+    "sha256": "761f5027877f30a5f95f8d1188ab01b868c6dfe8ab6e9b4f6e0f2ab868675548"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/42d452d4324efedc3159ab340e1186dbb0ec6f67.html",
+    "sha256": "c0a6f142d9503e5def68a0ca833a9524e73d18bd5e50a25b8b2a840860127695"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/bdbfa32fa5a9e7d75e736a300f49c96f7a8c11b7.html",
+    "sha256": "a397034e31984c7a260e67f1df179895a2661d55cd61d8b81159536d5c3af54f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/78e62f1052739033176fa8b5e183959bb966b2a4.html",
+    "sha256": "945136aa87783ee47a2a556cb32f5e36d9cbba43a69a7bf579ada4be77f0ebdf"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/218aff72d4a4773797e9fe6244140631822f0dd7.html",
+    "sha256": "772688f0fd685d3f65b84d5f68b905f84ba04b8a2a30cfc4928f852b6ac4ba66"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15355.json",
+    "sha256": "d242067f97e0cd5da50e33a7516c8076af286d2ea0fa5a6ac5eb7ef8e7bc49a6"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ffa619222fe6347d8f145ee44b8c4909b4314011.html",
+    "sha256": "ac8946fc803fd3b213fd0880ef86146f88438d71c294425e1de856a9fa86e3b1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b49f79e69abec3bb181e0bfc43d0ab9ac38b2167.html",
+    "sha256": "c0d4ef1dbfafbdbf7ec474be4b8e617e81d73443bcea854099973c65b4dc0421"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/31483b2afddd69fd8421732fb314a77b2e169b86.html",
+    "sha256": "aae576340a632b65d9cab0b8755a1320e7f07388d5be6450f7ee0ce90d9c2b7c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/20f54ed50933937ba91844f8d0c80f6a8fcb0280.html",
+    "sha256": "261e489892188ab0229e937f39966984aaad8c12e72e137038fdbb918de8ce64"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/fa809575f30fca4697b02cfb1b90b267c4d17e59.html",
+    "sha256": "35e301104e17a824918280ba413b8585dd13b8bba38bf8d1a2dd74e10cc6dfe0"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15260.json",
+    "sha256": "343e06b468d400bf97306e1be0de10215e3cc8d94fc94d24c764c861dcaa733e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2c85d7ed07f46e4f69bec74a513e8ec5f316bba2.html",
+    "sha256": "01a8c12bb7c79de06c60fd2eff0410f8fb1bcfd307fff1c165b4617b1ba06311"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f3764f8376ec187c28d256a57bcb4a1de129ea07.html",
+    "sha256": "8f3450f23436e519bf9fedbb50df28a5da3d9d1c2e614e3da34481c3fffbb2eb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/dfffb15e1bc36f0642c0e91f0e9d6bb75171a14b.html",
+    "sha256": "a94bfda8897801bd9d979603ad949ec7e1217d4ed1fd52121e984a9ddb268e16"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/fd1d64a3b65a926f197f11669803b3cc55211dd6.html",
+    "sha256": "58c5d64101117a543ae63974ecf2fc60d51a634b9b90c1b3e7c317c81b11a0a6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15305.json",
+    "sha256": "6bfc1be429396f743f3aa994775cbe36715c0ab5952fe24532fca4ffdcf4220d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/17958c4c1f3f49ddb111d1f2707f9eb51dec70c4.html",
+    "sha256": "24b0bc504fa8670f1c3f5fa5f1d5f5b965312d6d61d7d5a844e5acdf5975f9e0"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/5b5da9559ff996fae6fdfc35041b03d79cf1d328.html",
+    "sha256": "64645a9186104059c3ed855003ec8b2fd23c7079fd5c7816f9c809d6bef57e4b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/03c24b097e05d8506d51ea4f1111bdc9fab2f6b2.html",
+    "sha256": "d83e836579af70a22e953ff9c3ab89df0c6c2c6f35d9774f654aa5adb032ae13"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a859e6e573585a289be36ae2d5bb6bdffe7b157c.html",
+    "sha256": "101228b4c6995e2c07f86c09542edf7771d89904217e8baf2a4ecf9813ecb01c"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15307.json",
+    "sha256": "0336b0606386f2c60762642d7ae0754ecdf6b49a90d6c4b6db00a22d4619a1d6"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/9972cb078905215ca8dc69fdf33b267116625cc1.html",
+    "sha256": "3abdf363f742bc1d14c61a8d49cfa1e022581f6b2d8b23aa8eefa398de656e92"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0179e8bf99e5cfd92ed69e991b703f47458cd018.html",
+    "sha256": "ccc52d1f84924534421f18b02763f3c3d122e51aa698224bbc9710a8c3b6424f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a1b3ba6c7c9828631ddfe2b6ce06854613c01063.html",
+    "sha256": "844e05575a4811bd8c346e290407e7317eb3254a2155cd1b2a7a3b90b75f5edf"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/26f8e7e9c834addc54c506f641a092d766ed21c2.html",
+    "sha256": "80e341733fa8298d5127546ed9d7efac673bd51813c82c0297141059a065e4f6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15369.json",
+    "sha256": "ba816c6ec469f98f63268a66012941d0bb65f9281a85b3df9e65aefe8481f0cd"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/65639b2928dc5cf26cf1342d41bec6a626d784a2.html",
+    "sha256": "911091bd33fd5e9c0a3514e5e4b8c9efccf61202a93147553e62cdc49979b515"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/aa3ce636c0a1ec6a56e06c16b2caa80981bb6bf4.html",
+    "sha256": "d383109dcad7b25e65d9c75452eb7f7586ecd63f7cd15f70718d0f7274fea732"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/755688e44585150fc9b24df2addfe5cbda1e3b5f.html",
+    "sha256": "50c2d2c74bc2b9361fa34b5b79e4c132ccba4dda6128e4d87257e907ca060622"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8ce924793353b6eb8da49ad9284e9f27af505ceb.html",
+    "sha256": "27988131ea68778722ae9b56079c44f4eca79e4400b2789accaaf64de243a692"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15302.json",
+    "sha256": "8167eb5c46f2fce857d4921c923a01a62d83ff8da35fccfa8b6b5ea92397edbb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2130e924ddf0500f9461092e9100992672ed6b8b.html",
+    "sha256": "f14f3048b77e32dea9003dfeca2daabd637387c813722cbd3962e58431656922"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a095d84f70f4d47dee66287cbdc91b4973cc24f4.html",
+    "sha256": "b69f0ea5c946127e30b0c686719d6277c29a0d5e678b77192ee0deba29d4e7a8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/cff2f81dd7d83e118a51d52be44a9a8de4c35891.html",
+    "sha256": "3f8255c30b942b7ae71860db2e38c8236854234e93f9dc96d2f0b5dba8d0138e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6eebbb01e53448dca410edd907711a28746e33f0.html",
+    "sha256": "b82e1b3db29a76f86674675e92f23ea31c7f788b4eae25b6e620240f7da49ab5"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2014718b295354af8bd871d333cc6f605ee1540c.html",
+    "sha256": "c71ca37740e4759d2bb1c41028ea9b67bda8a79a39c3db5d0085267b5f88f566"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15272.json",
+    "sha256": "036c1a93f52122b354c2731767b4ae1b168bd4c8eec35e213ae2aef2a1bdbe52"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/46860f05d4f45b1f6ae172ead11364063e1aefa5.html",
+    "sha256": "afcceba042b686d56dd1ffe11f6263066f43d1f0a7826fd1a18512f949ad3c4f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/21ba8d10243b7b0702cccbe6631b3d74b18443c5.html",
+    "sha256": "56d63a2cbb910c9bb435aa035304f9a1cbdc45b780f24219398dc935e15c9e26"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6e8e09441bc17aa8c8b68517194fde875b285764.html",
+    "sha256": "9065c3779f5daa6383f25a914fbd43c6843be5a3988f6dec395491316f3fc3bf"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c56a62cae482f1817b12fba06b7e71b88f294d1d.html",
+    "sha256": "80b37110678660c8369423917f69b1c1ea131bd2db30e9bdf93c769701d1b5c6"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15257.json",
+    "sha256": "49a4c7d31fe45c55d1c53fc48286a133f775f33fb0345715e09fb066d3e258d3"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a6cf63455fdce9badd6a901cecaf42071b9a2a2c.html",
+    "sha256": "d3810d7c758f6402f1276ad697aa0027ecbf3a91d37b36eca33c0520ce7a8607"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1fa0f4e3ba10f2c8dd6ffc727c1aa4f38d3b6163.html",
+    "sha256": "e27d1318ea73a80f2d632774e4e8b404d7102b92f8d593dd44756172e1509d36"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e56515fc8b4fa2830754747644ba88a5d5cb7bdd.html",
+    "sha256": "14ff9a40e7bd951835e6d692119375ba4b2d60378dcad0b4a33f019214e6a2cb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0a1b0bd38821b121bc1faf23eab63c9db6ee63a6.html",
+    "sha256": "abe64b3a93e8f3656e7c11ffe33254cf6e8748ef272261a67c10f9c89675f1c8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15263.json",
+    "sha256": "107c5c4a8e2acd09287893754bfc4d15620b1e6fae8fbbe9e1d1086c64ef379a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6e0ee071c69369fa4c0444e4f259a6faa94f50bd.html",
+    "sha256": "25e5167418ebfcc493ace3070990bb77da87813ccb621be478b934dacb944540"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/0b1b3703cdcb3b3e4bab795d51f9e2a191d979cc.html",
+    "sha256": "390aa8d798993f8591e21f0bd5e5a692dd37b26d89c105c32837a70661f6f127"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3b0ead5b4b928aafc04036710edb1a64909235d4.html",
+    "sha256": "1e937914f7df24bc1c0fa98c6f3e8262db62b6db2ddd6dbdca08babf91a58d6f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a43a70eb9a84dd2e4b4861c217523ee925ff364d.html",
+    "sha256": "829b032d6028e1133657cc7f401d50069b38d23177cd7c7e2a5716858ff772b7"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15351.json",
+    "sha256": "9a6291fb89029bcc3a14d0583f68ab70db26a86c9c4a5b8254fb4daf2cfe04a9"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/587ce33522bedcff624a196a0d79adcc08c6db65.html",
+    "sha256": "298aeaeffa8b5df9c16a4705b90f568a65e024d06ab46d5d509bc151bf3d8794"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c5efef14931642f1060059adfa8ce9bdd818e4f6.html",
+    "sha256": "545ed4df5c6e9dbc1a143e353ec47a1023cfa8ffca14639d02490b6663a277a8"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/56ab2dbc36e624bfc09bb4f08a102393e46a498c.html",
+    "sha256": "32e53fa1fdcb910b9a5752f24912a5dfdac61c4bdf6924f3e152463f47028933"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8669ce34f82623f2a8be2cde6bbb2397e9e46a3d.html",
+    "sha256": "5af1786a05b49c54c93bf1e6ef19b6ac4eeb1a6d1ff7baeebabf8cd56d62b890"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/07a20e45a394a647cd861ff6b7cd753610c4cab6.html",
+    "sha256": "bd0aeaf01ecb50954163c5ac97a07b8813a3ffe5d2697f942962ea27fa872f7c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/e63b0d32d1357cecc5cd00fb723fcdd9de4c0432.html",
+    "sha256": "0c267dec727f30980acd5547ef56fb2b0c31bae6f4926b4568a31e1fc2502cb3"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-9031.json",
+    "sha256": "4cf91313360c870ec67a727947ccdaaf8c5b7b0df96a0eb339e671e791988095"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c9aef2cb92e91e3fac72598b9b32b897f824099e.html",
+    "sha256": "ddd009f6420880427e6782be5f5eb3353604f2641c70f2acadab6df0341bc28e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c06af0a8c40c66e7d8e7ae11009e847ef326527d.html",
+    "sha256": "466056bd8295e335df048b92a5c9f87ee7de6aa80a42924b2e8d7be379c45097"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/29481ab39eedd90155361694894792cb4fe873b4.html",
+    "sha256": "5b265a21626410f78f4610e029d3345a1099b439c1b7b28a687685bd787d16f2"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1379e9315b1d8b618e88d846e78ffbde557735a1.html",
+    "sha256": "68e149d585bd629daa95f2d884bdbb643531f935d42970c2f94566116f53c541"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15348.json",
+    "sha256": "15cb4692fcd76a69ddae3759a0bcf02184319bf59fb4c4668492d4d9fd80f660"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7d69c1951d0e945d740acc05379de3eb99f34c16.html",
+    "sha256": "b0f529f91170db33998436563514b9e949c99bd47001af5500e5714811508a78"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8c03fe66d8993be16a621b30b8f2cd90fd8938e6.html",
+    "sha256": "0a66c74a008b28354f6deed3c9d7989878bccdc919faf1a44e3ae368531b9c7d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ecac338cdc0cb6895701a0a783edefc58dd488b3.html",
+    "sha256": "0ebab82a7f785dedf882d1ab32e8bee99021cfeefc3c9cca14a3f8a92443185a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c59088bf0be91ef06f5e2e46e984dfb62e763884.html",
+    "sha256": "94dee55fe5d15579d87408532546c44a435fc2f0f20b95fa7f7ced8831c33290"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2d3e6c922a0d9626f2ab0b02515d4216e02ac9af.html",
+    "sha256": "71e7df5453d0e425e96a9b8532b8d18df30e7053cea9b7b94a9333f746fd8886"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/c76ecb6179ad754f1cf319b2fbae099947909088.html",
+    "sha256": "8c2df7d62bf2a92cc923b77004a4b45b72b6d32ab6d1e43f3a726e1ea73b31dd"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-9268.json",
+    "sha256": "939533d76be1a9ad5a2ccafd8114d5d9fe051dddc05fdb15345120deb3652e10"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f913c9ea7b2c36277a5dbc1ccff17b8d520793ce.html",
+    "sha256": "7765572afa945c5d9f760bf140c5f8ed68836e96264f4c9e48cf787e0b18210c"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d0a7cd5ed36d4875d713a71d60041114409b60e4.html",
+    "sha256": "e99960658cc6bec621e670814fe5aab41c69396cd1c2e6364ca02536b8e14692"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/83986fa4de5d8fb141b23c853cae35a199a1f0f3.html",
+    "sha256": "b2d493e0112da33fe6ba6cf51c4953e0b08e41b40f32626f424879ce2d8e6558"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/04066ff769ccada29177944c3fd799b2dae3b5ee.html",
+    "sha256": "e1643ddd05ec196844c68c95857e23f369cdf3ddc1f5ea7910c7fb33ec0358ef"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1e7e3ae72f411980e6a98ba319114cbf4d5802c9.html",
+    "sha256": "fe3dce2c66164baf22113786a122a29c6f5c2be4c51dd8a9a4373224bf76d9d8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15294.json",
+    "sha256": "f70b0e0c0acb7b4cd7e59a97df380fbc258878e887ce98e70e8f1604b38e8023"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/248865d625ba0445205535c06d257130b73c0a05.html",
+    "sha256": "38be3b3bafdc987e9976d548b4633e98e19e3693a79b3ad88f968939a2262c39"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/b26b9f76a703c631d706f642f7ea65c1b498956a.html",
+    "sha256": "7c4eae13a0fd65deb8e92e7e89b8a8a0ae81353c77c1408a542a13a0eb517d53"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3a493ab5f4298a86ef5aa1906090d5a6b616073e.html",
+    "sha256": "45f8c93b2e5a28aad7dcb1f16d575c8438374b48799e6bcb01a3c424d2b19b3d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/2c62d81ab1a776009b529a6e577573ffe6aec135.html",
+    "sha256": "ec10d347f5514f0a25f4d923426737d5f52223de2601cf1406e8a598c39685a8"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15267.json",
+    "sha256": "75e968554f88433f1c9158f003d28584e54a2b4e973d5247455c4a1eff5cfa2a"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a93480f66bc2ea90a8cbd4939a8ae52e8ce77f3e.html",
+    "sha256": "09528de04be25562948fdaf1dcc14ab739c631efee94ea205f9bdfca967bcec1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/6fe72745196ee4dca079e10378ecc418cff3d039.html",
+    "sha256": "97c9edd83aba186deef697ba1055ea53ca781f36c8ba90286c923b749fb13c5e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/5cd8e93d8c40cfc7b7d614cf3f32b390f173149d.html",
+    "sha256": "e9e2bfd8f6ca5b570bb48e01b4230b26a87608eb35beef714e00b416e527a85d"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/935af6ff0692f3e497a50e4b5d98aa4999e38707.html",
+    "sha256": "2299ffd5708132140d3299adb01b93e6524dd2b6bdc7c541d43261ff3e70b060"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15371.json",
+    "sha256": "b173294ed2db2b76b3a2251e0f2380ef94870dbaa2bfcf297581689b4ced031f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/597b32d9ac0521bd6ff57fe13f659598219f3ab1.html",
+    "sha256": "01158113d435150614074aec5d8ddb6862d50f38f5e2ce68f0038948e07fdd1e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7e88ae2fdbeb9225203a45b487e231a0cc3fb13a.html",
+    "sha256": "dacb4b6a1b9bfcf8be09e48e0c30a74fa5884f2bf08ee3804e16a213b317f18f"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/1d309c16066bad6d7f8b6021f8acf662b5e68d3e.html",
+    "sha256": "291f29e0f9ac2a1dcf14f6dd58d1f24b593b1f25290cf155c20a74e3ced1093b"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/223e7f341deeae69e7b97c0ad934e41a2b250a41.html",
+    "sha256": "5eaaa3e3cb6ca035b0f7b5760f948ae7492fd1c24ab7563e0a79a30f1bac0989"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d2ac60de74fddee14b564859e8cd3de5f95ac9c7.html",
+    "sha256": "3120a931a592bee27052148d78f5e1e11f199868382cbbb140b14828718765c1"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/415eea9a1bf57af49887a39c5ce5479741067d92.html",
+    "sha256": "975fc4fbb67fbb563ea0bd4e7e0eb5cc7bb1e4fcbaf96f62394bd2f33e60e06b"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15270.json",
+    "sha256": "5f342f34fc3e07b2389a7804f61490f9eeab7fc33d8a0900443d3f4df589b621"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/60fe4ebf46257c78906766f327ff42ab028f5a70.html",
+    "sha256": "d9edbf5f719b83b6e14d821c6dc67b6cfc0ddc2642a01ef0fa63cb22085cbf76"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d02e534cbc8ab2ff8df13d08b1fd30d46108693a.html",
+    "sha256": "63638832e7d6f4ff71b58238ec367a2979754c63d21fd21421d80c8af17e5edb"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/ac080d32d7e4230467902e51dbc12c061ea35959.html",
+    "sha256": "f1a770e6400904c23352ad84124a62dcdeca4ae962813e57f9a605ddd7852f23"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/43dfb6f927569c693ae36b2ceb84ad1be4238e81.html",
+    "sha256": "ebbf9055fff0aa4f1d48a0abf7139c5943de8a44245a9d3fe619daa76e253964"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15378.json",
+    "sha256": "2e5094735eab9e2445aee11546edc63adcc43020fb7da15b73c3bd66f1047c4e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/9421bb83677485500cbf615573e085fee9dafb50.html",
+    "sha256": "47460e2892f471be3e21921d2b84e370007679a1583089f00277f07f10d7aad4"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3a3ef40d9ef54e45c6015894263590b7f0496e19.html",
+    "sha256": "503d6dd7675094b29230eaafb4ba84a7f9c9cce3880a15c216f89dd09761ab6e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/f576900e841c4f2ae1c94ed0cc5e27243d33cb80.html",
+    "sha256": "4fdbd29e9f8e0fd839cb140b512e6b48e0beafba5ce2ec400d49de7b5d03bf1e"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/8ef11c2414ca7b2ab71c30bb2e22cb27e3fa6d38.html",
+    "sha256": "f8fa72a5f5b985ca9f0fa19714f283e45f98a72f4dec5c65a70a9732d8717356"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7f4896590cad1124389754056c44655f518415a3.html",
+    "sha256": "3ee1fd4cfbbedd93ce65b9c635447cc8f4e3f614ff9cb205dca824b64847c478"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/3ddfffec0b4253b3361ecb44e6ce22752a155516.html",
+    "sha256": "445350be3ac2c2d398e3c9ef371b0927a5a46a9a28d6c1b8fbef60829810c349"
+  },
+  {
+    "path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/d16c9d8d830f81641d780f486efafa5f2be93246.html",
+    "sha256": "07d68a7abfca9386404c134492d27245f742ce6dcd6a2bae32971693401aa4eb"
+  },
+  {
+    "path": ".local/qc-tutorial-packages-v1/github-search/QC-T-15268.json",
+    "sha256": "6b43cb3e9f618f1e10c9b718b844488faca62a18af0bef5da9efe8fc1546f1c4"
+  }
+]

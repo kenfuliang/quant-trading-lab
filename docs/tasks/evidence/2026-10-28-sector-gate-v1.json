@@ -1,0 +1,505 @@
+{
+  "schema": "sector-gate-v1-completion",
+  "status": "completed_bounded_study_joint_target_rejected",
+  "utc": "2026-10-28T22:58:26.066880+00:00",
+  "plan": {
+    "path": "research/plans/sector-gate-v1.frozen.json",
+    "sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049"
+  },
+  "financial_manifest": {
+    "path": ".local/sector-gate-v1/financial/manifest.json",
+    "sha256": "8b3b75ae5bcaa30697bd7bb22b8b37f8206b24b22197aee0e21966805fc5bb7b"
+  },
+  "method_sha256": "fe6bc2919e69fef1eadeb286e80e6d8870a844227837baa0e25f9ca5859a8f87",
+  "financial_attempts": 6,
+  "financial_cap": 6,
+  "financial_failures": 0,
+  "financial_retries": 0,
+  "financial_children": 6,
+  "max_concurrent_financial_children": 1,
+  "financial_child_seconds": 22.26657033408992,
+  "deadline": "2026-10-29T02:00:00+00:00",
+  "unused_financial_slots": 0,
+  "budget_closed": true,
+  "parent_budget_reopened": false,
+  "cases": [
+    {
+      "case": "gate-5",
+      "manifest_sha256": "c9fe3d6128dd77aceb74708be516aa5c06e48cd564cb203d00b6694dbc4db225",
+      "audit_sha256": "825f5edc27d9d3109454e16e54d3f2521caf870d83dbc3dbb3d9e931b354850d",
+      "capture": {
+        "case": "gate-5",
+        "attempt_id": "attempt-0001",
+        "reserved_utc": "2026-10-28T22:54:23.209456+00:00",
+        "status": "completed",
+        "plan_sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049",
+        "command": [
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+          "-m",
+          "research.studies.sector_gate.capture",
+          "--child",
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/plans/sector-gate-v1.frozen.json",
+          "gate-5",
+          "attempt-0001"
+        ],
+        "launch_intent_utc": "2026-10-28T22:54:23.209632+00:00",
+        "pid": 52534,
+        "started_utc": "2026-10-28T22:54:23.212301+00:00",
+        "exited_utc": "2026-10-28T22:54:26.942023+00:00",
+        "exit_code": 0,
+        "wall_seconds": 3.732179208076559,
+        "financial_slots": 1
+      }
+    },
+    {
+      "case": "vol-5",
+      "manifest_sha256": "0d66bb77e96a950653cddb51b684b8a2dad3aca1180b7395860faf465eddbbe1",
+      "audit_sha256": "4166fd9a4cd30f4fe16f50234dcdd4555ee0a4caad56f3991894b368df096e60",
+      "capture": {
+        "case": "vol-5",
+        "attempt_id": "attempt-0002",
+        "reserved_utc": "2026-10-28T22:54:26.943433+00:00",
+        "status": "completed",
+        "plan_sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049",
+        "command": [
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+          "-m",
+          "research.studies.sector_gate.capture",
+          "--child",
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/plans/sector-gate-v1.frozen.json",
+          "vol-5",
+          "attempt-0002"
+        ],
+        "launch_intent_utc": "2026-10-28T22:54:26.943622+00:00",
+        "pid": 52542,
+        "started_utc": "2026-10-28T22:54:26.945656+00:00",
+        "exited_utc": "2026-10-28T22:54:30.791011+00:00",
+        "exit_code": 0,
+        "wall_seconds": 3.847212916938588,
+        "financial_slots": 1
+      }
+    },
+    {
+      "case": "hold-5",
+      "manifest_sha256": "221adae7a960a299a664670e686c5127ed16874beda6a3f3b39a05b96d50407f",
+      "audit_sha256": "7e6bfba76bae3a70dbae2014c9c775e7b993527a575c580f771a400553d8c0ee",
+      "capture": {
+        "case": "hold-5",
+        "attempt_id": "attempt-0003",
+        "reserved_utc": "2026-10-28T22:54:30.792414+00:00",
+        "status": "completed",
+        "plan_sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049",
+        "command": [
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+          "-m",
+          "research.studies.sector_gate.capture",
+          "--child",
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/plans/sector-gate-v1.frozen.json",
+          "hold-5",
+          "attempt-0003"
+        ],
+        "launch_intent_utc": "2026-10-28T22:54:30.792622+00:00",
+        "pid": 52617,
+        "started_utc": "2026-10-28T22:54:30.794930+00:00",
+        "exited_utc": "2026-10-28T22:54:34.416667+00:00",
+        "exit_code": 0,
+        "wall_seconds": 3.6238157500047237,
+        "financial_slots": 1
+      }
+    },
+    {
+      "case": "gate-10",
+      "manifest_sha256": "ebb40b0b9b0659db1f824a748e66668ed2f23492e83236e3edba61338055b316",
+      "audit_sha256": "756328aa776a080d18f13fa9883076bcfe387965bf1492638789592e2d3532af",
+      "capture": {
+        "case": "gate-10",
+        "attempt_id": "attempt-0004",
+        "reserved_utc": "2026-10-28T22:54:34.418135+00:00",
+        "status": "completed",
+        "plan_sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049",
+        "command": [
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+          "-m",
+          "research.studies.sector_gate.capture",
+          "--child",
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/plans/sector-gate-v1.frozen.json",
+          "gate-10",
+          "attempt-0004"
+        ],
+        "launch_intent_utc": "2026-10-28T22:54:34.418323+00:00",
+        "pid": 52624,
+        "started_utc": "2026-10-28T22:54:34.420486+00:00",
+        "exited_utc": "2026-10-28T22:54:38.329447+00:00",
+        "exit_code": 0,
+        "wall_seconds": 3.910937707987614,
+        "financial_slots": 1
+      }
+    },
+    {
+      "case": "vol-10",
+      "manifest_sha256": "111b13d846155bc89d09532c6bcb38b70beb6765bd3dcfdf9afeb7c890fc97e2",
+      "audit_sha256": "0a1f26e2a38f25c70a9bf8026b6551c354d412d629ab7f277953b8193249e246",
+      "capture": {
+        "case": "vol-10",
+        "attempt_id": "attempt-0005",
+        "reserved_utc": "2026-10-28T22:54:38.331196+00:00",
+        "status": "completed",
+        "plan_sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049",
+        "command": [
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+          "-m",
+          "research.studies.sector_gate.capture",
+          "--child",
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/plans/sector-gate-v1.frozen.json",
+          "vol-10",
+          "attempt-0005"
+        ],
+        "launch_intent_utc": "2026-10-28T22:54:38.331405+00:00",
+        "pid": 52628,
+        "started_utc": "2026-10-28T22:54:38.333705+00:00",
+        "exited_utc": "2026-10-28T22:54:41.963238+00:00",
+        "exit_code": 0,
+        "wall_seconds": 3.63159008405637,
+        "financial_slots": 1
+      }
+    },
+    {
+      "case": "hold-10",
+      "manifest_sha256": "1a83cb5ab7afe858993afdca792854b1cb6568016c8a270f2e60a39eeefb3e27",
+      "audit_sha256": "7e6bfba76bae3a70dbae2014c9c775e7b993527a575c580f771a400553d8c0ee",
+      "capture": {
+        "case": "hold-10",
+        "attempt_id": "attempt-0006",
+        "reserved_utc": "2026-10-28T22:54:41.964833+00:00",
+        "status": "completed",
+        "plan_sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049",
+        "command": [
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+          "-m",
+          "research.studies.sector_gate.capture",
+          "--child",
+          "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/research/plans/sector-gate-v1.frozen.json",
+          "hold-10",
+          "attempt-0006"
+        ],
+        "launch_intent_utc": "2026-10-28T22:54:41.965044+00:00",
+        "pid": 52634,
+        "started_utc": "2026-10-28T22:54:41.966968+00:00",
+        "exited_utc": "2026-10-28T22:54:45.486068+00:00",
+        "exit_code": 0,
+        "wall_seconds": 3.5208346670260653,
+        "financial_slots": 1
+      }
+    }
+  ],
+  "summaries": {
+    "hold-10": {
+      "policy": "hold",
+      "cost_bps": 10,
+      "cagr_pct": 13.882882354253145,
+      "max_drawdown_pct": 31.948484128871513,
+      "calmar": 0.43453962630130955,
+      "sharpe": 0.851436230378733,
+      "terminal_equity": 955909.651456,
+      "sessions": 2242,
+      "uw_sessions": 489,
+      "uw_days": 709,
+      "underwater_fraction": 0.8438893844781445,
+      "right_censored": 0,
+      "fees_usd": 1,
+      "slippage_usd": 290.7,
+      "trades": 1,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9382199612524856,
+      "rebalance_decisions": 1,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    "vol-5": {
+      "policy": "vol",
+      "cost_bps": 5,
+      "cagr_pct": 14.612826483354802,
+      "max_drawdown_pct": 29.668899418906125,
+      "calmar": 0.49253011636970145,
+      "sharpe": 0.8632179585462817,
+      "terminal_equity": 1011934.48,
+      "sessions": 2242,
+      "uw_sessions": 170,
+      "uw_days": 248,
+      "underwater_fraction": 0.8661909009812667,
+      "right_censored": 0,
+      "fees_usd": 389,
+      "slippage_usd": 15323.0,
+      "trades": 389,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9794878864760583,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    "gate-5": {
+      "policy": "gate",
+      "cost_bps": 5,
+      "cagr_pct": 12.88709423400256,
+      "max_drawdown_pct": 12.474834306860805,
+      "calmar": 1.0330473268823317,
+      "sharpe": 1.002947647564863,
+      "terminal_equity": 883925.72,
+      "sessions": 2242,
+      "uw_sessions": 300,
+      "uw_days": 436,
+      "underwater_fraction": 0.8826940231935771,
+      "right_censored": 0,
+      "fees_usd": 430,
+      "slippage_usd": 15040.91,
+      "trades": 430,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.86090873163818,
+      "rebalance_decisions": 125,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    "vol-10": {
+      "policy": "vol",
+      "cost_bps": 10,
+      "cagr_pct": 14.309902291142507,
+      "max_drawdown_pct": 29.674498124317804,
+      "calmar": 0.48222895737588756,
+      "sharpe": 0.8481282695806013,
+      "terminal_equity": 988340.08,
+      "sessions": 2242,
+      "uw_sessions": 170,
+      "uw_days": 248,
+      "underwater_fraction": 0.8670829616413916,
+      "right_censored": 0,
+      "fees_usd": 387,
+      "slippage_usd": 29855.63,
+      "trades": 387,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9797016493867649,
+      "rebalance_decisions": 107,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    "gate-10": {
+      "policy": "gate",
+      "cost_bps": 10,
+      "cagr_pct": 12.566465747294187,
+      "max_drawdown_pct": 12.519588112730762,
+      "calmar": 1.0037443431957442,
+      "sharpe": 0.9809008857983627,
+      "terminal_equity": 861795.23,
+      "sessions": 2242,
+      "uw_sessions": 300,
+      "uw_days": 436,
+      "underwater_fraction": 0.8844781445138269,
+      "right_censored": 0,
+      "fees_usd": 429,
+      "slippage_usd": 29480.145,
+      "trades": 429,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.8610869475645722,
+      "rebalance_decisions": 125,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    },
+    "hold-5": {
+      "policy": "hold",
+      "cost_bps": 5,
+      "cagr_pct": 13.884781568546622,
+      "max_drawdown_pct": 31.9386584503368,
+      "calmar": 0.43473277345499167,
+      "sharpe": 0.8517463743922783,
+      "terminal_equity": 956051.771456,
+      "sessions": 2242,
+      "uw_sessions": 489,
+      "uw_days": 709,
+      "underwater_fraction": 0.8438893844781445,
+      "right_censored": 0,
+      "fees_usd": 1,
+      "slippage_usd": 148.58,
+      "trades": 1,
+      "clipped_buys": 0,
+      "mean_gross_exposure": 0.9379497120634783,
+      "rebalance_decisions": 1,
+      "start": "2017-02-01",
+      "end": "2025-12-31",
+      "anchor": "2017-01-31",
+      "mode": "project_ledger_development"
+    }
+  },
+  "decision": {
+    "contexts": {
+      "5": {
+        "checks": {
+          "calmar_gain_at_least_10pct": 1,
+          "cagr_not_lower": 0,
+          "drawdown_not_deeper": 1,
+          "underwater_sessions_not_longer": 0,
+          "underwater_days_not_longer": 0,
+          "not_spy_dominated": 1
+        },
+        "passed": 0,
+        "relative_calmar_gain": 1.0974297663189168
+      },
+      "10": {
+        "checks": {
+          "calmar_gain_at_least_10pct": 1,
+          "cagr_not_lower": 0,
+          "drawdown_not_deeper": 1,
+          "underwater_sessions_not_longer": 0,
+          "underwater_days_not_longer": 0,
+          "not_spy_dominated": 1
+        },
+        "passed": 0,
+        "relative_calmar_gain": 1.0814684142108582
+      }
+    },
+    "fixed_target_passed": 0,
+    "disposition": "reject_fixed_target",
+    "automatic_promotion": 0,
+    "independent_alpha_established": 0
+  },
+  "risk_state_sessions": {
+    "green": 1767,
+    "yellow": 407,
+    "red": 68
+  },
+  "independent_audits": 6,
+  "audit_totals": {
+    "sessions": 13452,
+    "fills_verified": 1637,
+    "events_verified": 4800,
+    "selections_verified": 466,
+    "daily_asset_contributions_verified": 147972,
+    "annual_metric_checks": 540,
+    "full_metric_checks": 84,
+    "rolling_metric_checks": 54
+  },
+  "fresh_control_parity_files": 32,
+  "annual_rows": 54,
+  "prior_sector_manifest_preserved": "3820bbf517aefb0afbdd4e508fc691e658e3c83ed74f7b5e9fd0e1d87798907c",
+  "prior_studies_preserved": [
+    {
+      "study": "calmar-epoch-20261028",
+      "artifacts_verified": 79,
+      "manifest_sha256": "c65d0463ccec1c7552980ef93ba8ac941cbad54c2668edbc2e3c344c8c815249"
+    },
+    {
+      "study": "ceiling-capture-c02",
+      "artifacts_verified": 94,
+      "manifest_sha256": "15a13f435ec2920cba068dfb468ad8d30e7e029d613b9a03292b13730c10db08"
+    },
+    {
+      "study": "proposal-c03",
+      "artifacts_verified": 94,
+      "manifest_sha256": "8f2ebf5662de705b4d4ccebfd82aba6794427ba9747d182294057b488b075614"
+    },
+    {
+      "study": "no-veto-c04",
+      "artifacts_verified": 94,
+      "manifest_sha256": "5af52ac12ae46c21516e34cb98361218ea4682ecb5663718eb2e70ed1bf5b343"
+    },
+    {
+      "study": "total-return-c05",
+      "artifacts_verified": 94,
+      "manifest_sha256": "5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8"
+    },
+    {
+      "study": "execution-c06",
+      "artifacts_verified": 94,
+      "manifest_sha256": "9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361"
+    }
+  ],
+  "prior_artifacts_verified": 549,
+  "leaderboard": {
+    "before_rows": 87,
+    "after_rows": 93,
+    "new_rows": 6,
+    "historical_rows_preserved": true,
+    "single_table": true,
+    "sha256": "0fd6710e9aaef6acd5c5087bfdb722d5e640a70cd6f91a1e257472baf643057c"
+  },
+  "report_artifacts": {
+    "reports/bounded-study/sector-gate-v1-20261028/index.html": "d2f3d7957fc78698e41cd3db6518c38b2268f3277391c868096873281480ff5d",
+    "reports/bounded-study/sector-gate-v1-20261028/annual-comparison.csv": "7f96d06829247673ed4086d9cf153e941e209934be4b5a334af7da5e0feff8ff",
+    "reports/bounded-study/sector-gate-v1-20261028/comparison.csv": "371e51d7f08d5b14aec565795fcdde3ec5b5bda131eb1adc4f43f25ce8d6e745",
+    "reports/bounded-study/sector-gate-v1-20261028/decision.json": "b646a154d94e594dd5eaf3faed77fb12467e9effdb3a09dbc7cc49aa1d852854"
+  },
+  "diagnosis": {
+    "path": ".local/sector-gate-v1/result-analysis.json",
+    "sha256": "34e7151c2e7bd149f1d99c7d8c27d3f50f52bd7baa770e02a58a6848c8cf7fff"
+  },
+  "qualification": {
+    "path": ".local/sector-gate-v1/qualification/qualified.json",
+    "sha256": "ce6a636123f998240e910df2dfd003dfd81052ce58908fa9699d20b9d40d17fb",
+    "synthetic_launches": 4,
+    "financial_runs": 0,
+    "intentional_failure_and_timeout_preserved": true
+  },
+  "cache_restart": {
+    "path": ".local/sector-gate-v1/cache-verification.log",
+    "sha256": "afa70706f0debfe6e7c83ddbed2a7d249af4704ae1edeccf0b66ff427dfce516",
+    "new_launches": 0
+  },
+  "repository": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty": 1
+  },
+  "verification": {
+    "preflight_make_check_exit": 0,
+    "tests": 498,
+    "post_documentation_checks": "passed",
+    "final_make_check_exit": 0,
+    "final_offline_tests": 498,
+    "docs_check_passed": true,
+    "pip_check_passed": true,
+    "git_diff_check_exit": 0,
+    "financial_runs_during_offline_checks": 0,
+    "final_make_check": {
+      "path": ".local/sector-gate-v1/final-make-check.log",
+      "sha256": "00274fc9ea14d5d8ae3a366530f08b1c3645d7ba9fa99059b3a33b2cfc3968f4"
+    }
+  },
+  "requirements": {
+    "one_sizing_stage_change": true,
+    "six_fixed_rules_cost_cases": true,
+    "matching_dates_costs_financing_and_actions": true,
+    "causal_prefix_and_independent_gate_verified": true,
+    "all_case_policy_account_contribution_metric_replays_passed": true,
+    "fresh_control_parent_parity_verified": true,
+    "serial_reserved_timestamped_execution": true,
+    "full_annual_temporal_and_diagnosis_saved": true,
+    "original_data_cases_and_negative_evidence_preserved": true,
+    "single_leaderboard_and_lesson_updated": true,
+    "final_offline_checks_passed": true,
+    "frozen_source_and_previous_evidence_reverified_after_checks": true
+  },
+  "scope": {
+    "viewed_restatement_development": true,
+    "new_downloads": 0,
+    "new_services": 0,
+    "broker_operations": 0,
+    "tracking_imports": 0,
+    "independent_alpha": false,
+    "native_or_broker_parity": false,
+    "automatic_promotion": false
+  },
+  "visual_preview": {
+    "status": "blocked",
+    "reason": "Browser URL policy disallows file: protocol; no workaround attempted",
+    "saved_html_payload_verified": true
+  },
+  "lesson": "Calmar rises roughly109% and drawdown falls about17.2pp; CAGR falls about1.7pp and longest underwater rises130sessions/188days. Reject fixed joint screen."
+}

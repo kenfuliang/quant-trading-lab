@@ -1,0 +1,68 @@
+{
+  "schema": "saved-loss-decision-trace/v1",
+  "status": "loss_locations_and_order_trade_links_complete_daily_attribution_incomplete",
+  "financial_runs": 0,
+  "downloads": 0,
+  "broker_calls": 0,
+  "strategy_changes": 0,
+  "case_counts": {
+    "t11": 557,
+    "gated_t11": 525
+  },
+  "inputs": [
+    {
+      "path": ".local/t11-reference-v2/exports/t11.json",
+      "sha256": "68b0d5e9ebb218cc6b49df4849f0e26dc0ce591217262c8f183ff318feb2b97d"
+    },
+    {
+      "path": ".local/t11-reference-v2/export-review-v2/t11-candidate-close-path.json",
+      "sha256": "10fde68748e1c0cd20d2adf10f14a02c64fc2bef72938979b12a2145fb3771f2"
+    },
+    {
+      "path": ".local/t11-reference-v2/exports/gated_t11.json",
+      "sha256": "b50ff407ed006522d8392f0110118ddc3608742c28d33ace75a0c58037550232"
+    },
+    {
+      "path": ".local/t11-reference-v2/export-review-v2/gated_t11-candidate-close-path.json",
+      "sha256": "46f76c8a7ac33320830765fe0109bc753724d1f4bd896fcfbd1681fc3c71abaf"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "scripts/trace_t11_saved_losses.py",
+      "sha256": "5edc2d378aeb4107284748bdf5c8338b1164e8dfaecc0f15d9f1a7eaf9ad0bc9"
+    },
+    {
+      "path": "docs/tasks/2026-10-31-t11-loss-decision-trace.md",
+      "sha256": "83893af1d06d4d1e4623d73138fec0560cf08a6442012ad31ba206fc09628a6d"
+    },
+    {
+      "path": ".local/t11-loss-trace-v1/trace.json",
+      "sha256": "cce137ac473211a3156b7f95bfb63c2664cf2c6ab1444f51ae8e76b011fa8bc2"
+    },
+    {
+      "path": ".local/t11-loss-trace-v1/t11-reported-closed-trades.csv",
+      "sha256": "4b466fcf98c45233d535df415a03a4a6a31ca38b4828c723dbd49af2cc3acf3a"
+    },
+    {
+      "path": ".local/t11-loss-trace-v1/gated_t11-reported-closed-trades.csv",
+      "sha256": "9005f05230671440bfd410d1669ade822c608942222ce0f83053a340aad4050b"
+    }
+  ],
+  "missing": [
+    "Original per-session features and branch IDs",
+    "Original daily gate trace",
+    "Full holdings/actions and cash reconciliation",
+    "Daily instrument PnL",
+    "Fee inclusion interpretation"
+  ],
+  "leaderboard_disposition": "no_new_score_closure_link",
+  "checks": [
+    "Official export hashes match prior validation",
+    "Sorted unique1508session reference paths",
+    "Every closed-trade order ID exists in corresponding export"
+  ],
+  "failures": [
+    "First exploratory inventory assumed analysis was a dictionary; field is a list. Read-only inspection stopped with AttributeError, corrected inventory without changing inputs."
+  ]
+}

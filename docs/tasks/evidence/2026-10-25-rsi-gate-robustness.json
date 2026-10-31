@@ -1,0 +1,158 @@
+{
+  "status": "completed",
+  "source": ".local/gate-robustness/1ddd9c98521e5498",
+  "output": ".local/performance/gate-robustness/20261025-v1",
+  "source_manifest": {
+    "manifest_sha256": "e2951e63a1edbb818221316bf5f97766f63ab6ede5a319d0ab80d4c19105da09",
+    "artifact_count": 105
+  },
+  "actual_financial_attempts": 9,
+  "failed_attempts": 0,
+  "wall_seconds": 13.994590208050795,
+  "audits": {
+    "decimal_sessions": 47547,
+    "metric_checks": 792,
+    "temporal_scalar_window_checks": 278397
+  },
+  "annual_return_win_counts": {
+    "base": {
+      "years": 21,
+      "gate_higher_return_years": 10,
+      "ema_higher_return_years": 9,
+      "ties": 2
+    },
+    "expensive": {
+      "years": 21,
+      "gate_higher_return_years": 10,
+      "ema_higher_return_years": 9,
+      "ties": 2
+    },
+    "delayed": {
+      "years": 21,
+      "gate_higher_return_years": 8,
+      "ema_higher_return_years": 11,
+      "ties": 2
+    }
+  },
+  "decision": {
+    "joint_claim": "retain_for_independent_validation",
+    "comparisons": {
+      "base": {
+        "passed": true,
+        "cagr_pp": 0.7212555655136796,
+        "drawdown_improvement_pp": 11.291364133991223,
+        "recovery_sessions_saved": 18
+      },
+      "expensive": {
+        "passed": true,
+        "cagr_pp": 0.6821755778756877,
+        "drawdown_improvement_pp": 10.61702633103586,
+        "recovery_sessions_saved": 153
+      },
+      "delayed": {
+        "passed": true,
+        "cagr_pp": 0.7191353224541785,
+        "drawdown_improvement_pp": 11.99049417883231,
+        "recovery_sessions_saved": 41
+      }
+    },
+    "historical_scope": "previously viewed development history; no alpha or promotion proof",
+    "duplicate_buy_hold_control_verified": true,
+    "baseline_parity_checks": [
+      {
+        "id": "5_ablate_ema",
+        "metric": "return_pct",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ablate_ema",
+        "metric": "drawdown_pct",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ablate_ema",
+        "metric": "sharpe",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ablate_ema",
+        "metric": "calmar",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ablate_ema",
+        "metric": "duration",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ema",
+        "metric": "return_pct",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ema",
+        "metric": "drawdown_pct",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ema",
+        "metric": "sharpe",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_ema",
+        "metric": "calmar",
+        "absolute_difference": 5.551115123125783e-17
+      },
+      {
+        "id": "5_ema",
+        "metric": "duration",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_buy_hold_entry_only",
+        "metric": "return_pct",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_buy_hold_entry_only",
+        "metric": "drawdown_pct",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_buy_hold_entry_only",
+        "metric": "sharpe",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_buy_hold_entry_only",
+        "metric": "calmar",
+        "absolute_difference": 0.0
+      },
+      {
+        "id": "5_buy_hold_entry_only",
+        "metric": "duration",
+        "absolute_difference": 0.0
+      }
+    ]
+  },
+  "block_ratio_warning": "Raw blocks calmar is cumulative return/DD, not annualized Calmar; excluded from ranks.",
+  "financial_budget_remaining": 0,
+  "artifact_hashes": {
+    "annual.csv": "2a711bbe078e5601c10797df45dc3c0b5eea2a091d074db0ec82c0581d87d9aa",
+    "blocks.csv": "f0b32b5a81d4797997b482d1dc76d2ad517d30a8ae38a289a30658a6f44bc43c",
+    "decision.json": "638db7f35290a363e1ae5f4cdd0fa56cff16e6ac1b3c9ee335c1cffc3c596f06",
+    "exposure-costs.csv": "f1e64770dd70f66f9ec979201768cf0c90ed3544015366a6c96ff4e1c7531ad1",
+    "index.html": "ccf2b33d867351a7e18c1a6469191ba9b6ac6f9d045be6475aaa7efed36e43fc",
+    "overall.csv": "dbeb596d22f6dbe58f3f26d4792347dbf5bca6edfa524f9e983ba4b8e70a8d16"
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests_passed": 227,
+    "git_diff_check_exit": 0,
+    "frozen_preflight_exit": 0,
+    "browser_visual_inspection": "not performed; static local package hash-verified",
+    "hosted_ci": "not run; local uncommitted research branch",
+    "report_builder": "read-only; independent metric reinspection; exit0"
+  }
+}

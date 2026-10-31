@@ -1,0 +1,161 @@
+{
+  "study": "stock-risk-v1",
+  "status": "complete-scoped-development",
+  "verified_utc": "2026-10-26T22:54:36.028581+00:00",
+  "attempts": [
+    {
+      "case": "original",
+      "attempt": 1,
+      "retry": false,
+      "status": "failed-before-save",
+      "source_sha256": "0b3db70641a8895e2215238918a86e8003e2c0a67f2f9c89d644de8c1dde654a",
+      "reserved_utc": "2026-10-26T22:32:57.153766+00:00",
+      "reason": "QC UI rejected zlib import; no backtest started. Readable source retained. No compression/encoding used in amended export."
+    },
+    {
+      "case": "original",
+      "attempt": 2,
+      "retry": true,
+      "status": "completed-verified",
+      "source_sha256": "132cb7f97c35c291331f59eac61b53d125df76428d007e28be7d84cdd2f7f02d",
+      "reserved_utc": "2026-10-26T22:34:12.059335+00:00",
+      "backtest_id": "81864c8625f9a1e7b2d9b80439693160"
+    },
+    {
+      "case": "gate",
+      "attempt": 3,
+      "retry": false,
+      "status": "completed-verified",
+      "source_sha256": "b6b8bbb93bfb3b614e332f3448b6d9a69020deb6f2ef04ef30fb136f78d6b24c",
+      "reserved_utc": "2026-10-26T22:37:22.178112+00:00",
+      "backtest_id": "3c9ba0d48f9a3b70f2ad2ced6219576e"
+    },
+    {
+      "case": "sector",
+      "attempt": 4,
+      "retry": false,
+      "status": "completed-verified",
+      "source_sha256": "2ce6e1339934f6dad7e4c74edeb21b9e98e3f69ced5a1c3dc3eb5c48fbc9da2b",
+      "reserved_utc": "2026-10-26T22:42:17.503449+00:00",
+      "backtest_id": "df4747b79b3cd36135990099a40251eb"
+    },
+    {
+      "case": "combined",
+      "attempt": 5,
+      "retry": false,
+      "status": "completed-verified",
+      "source_sha256": "0db2baf93a9a360832e961ce8e8fbda61c8731f91a89e943d62b017ad4bf6d56",
+      "reserved_utc": "2026-10-26T22:45:53.069027+00:00",
+      "backtest_id": "ac406aca983a707684fca537702b225e"
+    },
+    {
+      "case": "spy",
+      "attempt": 6,
+      "retry": false,
+      "status": "completed-verified",
+      "source_sha256": "eacaf1ec26c6b0f1ef4fd0922a554a685282fdf286f94deb5254e8ab200f15e6",
+      "reserved_utc": "2026-10-26T22:49:24.687155+00:00",
+      "backtest_id": "192bd4d29592c5c191dcddd0cd4a97ca"
+    }
+  ],
+  "validation": {
+    "offline": "make check exit0;321 tests",
+    "browser": {
+      "status": "passed",
+      "annual_years": 6,
+      "cases": 5,
+      "monthly_decisions": 360,
+      "monthly_security_rows": 1512,
+      "contribution_rows": 221,
+      "verified_cells": 13239,
+      "search_verified": true,
+      "comparison_sha256": "1d736b99cd1dbb08d260cc563ebd452f8bd96e8c27bfb1f06f9d143b2c1a8d91",
+      "verified_utc": "2026-10-26T22:53:03.741Z",
+      "final_text_verified": true
+    },
+    "restoration": {
+      "clipboard_matches": true,
+      "sha256": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+      "build_verified": true,
+      "build_evidence": [
+        "Built project 'Clone of Public Strategy - multi-model-tactical-etf-rotation' in Cloud for Lean Engine 2.5.0.0.18209, with Id 'f85006-c5f186'",
+        "Built project 'Clone of Public Strategy - multi-model-tactical-etf-rotation' in Cloud for Lean Engine 2.5.0.0.18209, with Id '88713c-c5f186'"
+      ],
+      "verified_utc": "2026-10-26T22:52:31.191Z"
+    },
+    "checks": [
+      "Fresh original/SPY financial parity",
+      "Identical stock universe/feature/selected-five identities",
+      "Identical1508session calendar and RAW gate inputs",
+      "Native PnL plus financing residual within10c",
+      "Annual compounding/Calmar/UW totals",
+      "No rejected/nonMOO/open orders or invalid features"
+    ]
+  },
+  "limits": [
+    "Viewed development history, not independent OOS",
+    "No exposure-matched timing-alpha attribution",
+    "USD10000 fixture, not300000 qualification",
+    "Sector target cap is not hard continuous exposure cap",
+    "Native PnL check is not independent transaction ledger",
+    "No broker/account/orders/services/imports/paid data/agents/commits/publication",
+    "Monthly targets are reconstructed from fixed rule; execution is staged",
+    "Monthly gate color is a snapshot; the gate also changes between months",
+    "Per-stock PnL is full-period native accounting; no monthly security PnL, causal or factor alpha attribution",
+    "Daily Sharpe moments not exported; native calculated metric is not independently reconstructed from raw NAV",
+    "Security IDs can retain old ticker prefixes; decision-date display ticker mapping was not exported",
+    "Hosted vendor snapshots are not independently frozen; hashes cover observed membership, eligibility and RAW gate inputs",
+    "Peak sector exposure uses latest observed monthly classification; SPY unknown bucket is not look-through sector exposure"
+  ],
+  "source_hashes": {
+    "original": "132cb7f97c35c291331f59eac61b53d125df76428d007e28be7d84cdd2f7f02d",
+    "gate": "b6b8bbb93bfb3b614e332f3448b6d9a69020deb6f2ef04ef30fb136f78d6b24c",
+    "sector": "2ce6e1339934f6dad7e4c74edeb21b9e98e3f69ced5a1c3dc3eb5c48fbc9da2b",
+    "combined": "0db2baf93a9a360832e961ce8e8fbda61c8731f91a89e943d62b017ad4bf6d56",
+    "spy": "eacaf1ec26c6b0f1ef4fd0922a554a685282fdf286f94deb5254e8ab200f15e6"
+  },
+  "code_hashes": {
+    "scripts/prepare_stock_risk.py": "4f83c12716da09144ee7fb2a44271530de5683ddbe4024992a3e6b6b3ee1f7f7",
+    "scripts/stock_risk_evidence.py": "a9811bbcabd51dcb88251e416abb0d0012ef2afed24b93742b1b966d608659ce",
+    "scripts/build_stock_risk.py": "4964753c7d086f0b2cbf34e134df34e3b57802f584d2524d4de477ba9c535efa",
+    "scripts/audit_stock_risk.py": "81c9c8345673bf643fdefbe8a640badf8e643d6fc06d1fd7c82414958a1e0134",
+    "research/quantconnect/stock_risk_policy.py": "48af0c8741ba12a2c73a4f745c707e42624ce398dab3cc12c62312f14f3d55ef",
+    "research/plans/stock-risk-v1.json": "e19ffdd84ba29bc5660b9139242a56ce603a621823ef51a3ad55d1625a712574",
+    "tests/test_stock_risk.py": "2431b33286204f12e998734d03930f1a1ba23d6259996ab4035f892c39428172",
+    "docs/tasks/2026-10-26-stock-risk-ablation.md": "0dda7cb3a0bfe86a57edf8ceed10d9ed188b6de46a8bfa0be1c602c96048325a"
+  },
+  "raw_evidence_hashes": {
+    "spy-packet.json": "cf596832568f27ea1597e204676e3d6450cbfc67b0a9b6e266604852bcbb2f55",
+    "sector-packet.json": "2e6fdcef10fcbb95183e4c6f9dd7fb6930bfdd023bc642ba76fdf5d562ac3c22",
+    "combined-packet.json": "fd09cd48344d07ecfeb99fcb2ef2704d84ce3054d83ca6b8ee1afafe9ba7ff2b",
+    "original-packet.json": "c450327a4e083a24e369c74951550ebc8e9afdcac6e8965b85efa24c775dc655",
+    "gate-packet.json": "ef8973257c5174dcc465a12cb756938a98e5d00f5318f972c6d433ae212a5666",
+    "combined-terminal-fragments.json": "403674b00390c7e7f7fd010f59d12654508efe90d227049caeca3df2434a00a3",
+    "gate-terminal-fragments.json": "9c5f2093007cf11d86741e2b92d119fb413a9f24d090198287b91d47d7616b62",
+    "sector-terminal-fragments.json": "eb2a49764aa67d9a07d1cd27c1a2246bfa7a2073689ac932759a917ac4849008",
+    "original-terminal-fragments.json": "88373df7d83e2b208e9cc4b0085422e33336f19c4f7c11fe1ebc3d25f6032897",
+    "spy-terminal-fragments.json": "6b9133025cdd30baba9e225e5f64e78c073551dad821e23011cf705fa722ac7b",
+    "gate-engine-evidence.json": "82688f2e7e1a2edadcc69cd8df231b5a391eb10aa461d3880ed214b9ef40faac",
+    "combined-engine-evidence.json": "0fe9511afedfa0937d41c4575101d771d398546f1e505fad6fb2f23245622001",
+    "sector-engine-evidence.json": "e43e2b376496be2db1d7d81241ae1c760ae2dbb92a61f7f490b09af856d4f58e",
+    "spy-engine-evidence.json": "1308101e6361907a2f236ea90871640337dfb1ab3cbe1fd82546d461e73d917e",
+    "original-engine-evidence.json": "08cfd260457358ce4f307d49f817873a9df9fcb7361dbe6ac2f7798f72dcbf7b",
+    "attempts.json": "5eab350ed9361aff65dcd98d24d29227ce0a83c63ad56b8b4f75640ba4aad5a7",
+    "source-restoration.json": "33d4ffd6b234ba9ecabc04d500584721e4134cbbb05e4530e0cb2122f59fd229",
+    "browser-check.json": "8b0e377f6393d1023d9b9a4734a71e12d599beecc14f95d9fff534ceb6cfc9a0",
+    "browser-verified-comparison.json": "11d19df03011bb10a7c8f8b0eec2f46c5ef586b30b4afbc07d9716df83a114ec",
+    "blocked-save-evidence.json": "f7f2cde30acb4b5fd8ce2e3a6ceb5453e3341da6c3d94c27ceca280d63ebbccc",
+    "original-project-source.py": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+    "original-source-pre-plain-log.py": "0b3db70641a8895e2215238918a86e8003e2c0a67f2f9c89d644de8c1dde654a",
+    "final-check.log": "80c62214195759c7555229366518a6f31e66e9557d2000731a2ec57f3d86f573"
+  },
+  "artifact_hashes": {
+    "index.html": "d98f27c5f3d3322db862ff46ec12d5217d6dd4e53b8510ab0bbb7b4d3241dd97",
+    "monthly-selections.csv": "c78d205411ce1e3564659b40b5cdf28c8302ade00d95252daba0d4449f62aa77",
+    "comparison.json": "1d736b99cd1dbb08d260cc563ebd452f8bd96e8c27bfb1f06f9d143b2c1a8d91",
+    "annual.csv": "7828b4b246bc3a242765b76b90d923b8def5692fd1502546d2dd54befaec2498",
+    "browser-monthly.png": "c0b6021936f750686f6852b3d76198e44ac43b4c2b715a39055cb9f162fa54cd",
+    "browser-overall.png": "b85d8323d24fc9ee6ce36ea60d560b9b2e8fb1ba0b00e16de0140ed5e0aaa2fb",
+    "stock-contributions.csv": "8e73434b6ecbae069d3f67c1a6919702c91b36d6f8616acb26a5ec0733da9df2"
+  }
+}

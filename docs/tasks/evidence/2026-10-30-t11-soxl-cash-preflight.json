@@ -1,0 +1,37 @@
+{
+  "schema": "engineering-preflight/v1",
+  "created_utc": "2026-10-30T18:10:35.122417+00:00",
+  "status": "projection_verified_financial_blocked",
+  "financial_runs": 0,
+  "downloads": 0,
+  "broker_connections": 0,
+  "orders": 0,
+  "synthetic_tests": {
+    "count": 3,
+    "exit": 0
+  },
+  "plan_sha256": "7c3300107ed3dd4345e1b16fda76eda409b855488d107478062223890a955ed1",
+  "saved_preview": {
+    "path": ".local/t11-paper-preview/20261030T033342Z/summary.json",
+    "sha256": "505faca0ad147f8e4e8473a2aa309967ccb94734cf580d1665621b907d8487aa",
+    "asof": "2026-10-29",
+    "qualification": "preview_complete_unqualified_not_for_orders",
+    "use": "One already-saved snapshot projection only; not a backtest, not current signal or order proposal.",
+    "projected": {
+      "soxl_target_nav": 0.9,
+      "cash_target_nav": 0.09999999999999998,
+      "reason": "soxl_eligible"
+    }
+  },
+  "historical_daily_parity": false,
+  "financial_metrics": null,
+  "checks": {
+    "make check": {
+      "exit": 0,
+      "tests": 583,
+      "log": "/tmp/t11-soxl-cash-check.log",
+      "log_sha256": "53faa7bb2997491ecf1519c67954b0766a2602148fe87cd4c29ff6ae562f25a1"
+    },
+    "leaderboard": "No metric-row change; linked engineering-only/blocked preflight."
+  }
+}

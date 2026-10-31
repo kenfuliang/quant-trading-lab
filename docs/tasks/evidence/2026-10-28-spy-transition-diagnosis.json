@@ -1,0 +1,1156 @@
+{
+  "diagnosis_id": "SPY-TRANSITION-DIAGNOSIS-20261028",
+  "status": "completed_descriptive_negative_evidence_incumbent_unchanged",
+  "created_utc": "2026-10-28T17:44:13.924760+00:00",
+  "frozen_plan": {
+    "path": ".local/spy-transition-diagnosis-20261028/plan.json",
+    "sha256": "93a172fd67edbf18ebf643c58f38f0cbb70c4fa2aa4052d5bfca44bb8688284b"
+  },
+  "source_verification": {
+    "path": ".local/spy-transition-diagnosis-20261028/source-verification.json",
+    "sha256": "8e450c2051b78954c4b1f088b89f8384d9343b235c1cd38712c688abf6aff8b0",
+    "checks": 116,
+    "all_passed": true,
+    "manifest_sha256": "c65d0463ccec1c7552980ef93ba8ac941cbad54c2668edbc2e3c344c8c815249",
+    "plan_sha256": "31e5602a9439580eff2554710bde9ab966bad5ea6a41d7020120e309fa63b3fb"
+  },
+  "results": {
+    "5": {
+      "sessions": 5283,
+      "first_date": "2005-01-03",
+      "last_date": "2025-12-31",
+      "continuous_ending_equity_usd": 1586620.0590000006,
+      "discrete_ending_equity_usd": 1739775.6459999995,
+      "wealth_gap_usd": -153155.5869999989,
+      "log_relative_wealth": -0.09215016126867373,
+      "components": {
+        "overnight": {
+          "usd_gap": -133676.90000000046,
+          "sum_daily_return_gap": -0.0859681054755311,
+          "log_relative_wealth": -0.0894381356700137
+        },
+        "intraday": {
+          "usd_gap": -11927.519999999315,
+          "sum_daily_return_gap": -0.0018575355959702556,
+          "log_relative_wealth": -0.006042797333187347
+        },
+        "dividends": {
+          "usd_gap": -6564.597,
+          "sum_daily_return_gap": 0.00587914870553786,
+          "log_relative_wealth": 0.005856588357147447
+        },
+        "commission": {
+          "usd_gap": -125.0,
+          "sum_daily_return_gap": -0.0002710048338946379,
+          "log_relative_wealth": -0.00027054047365716763
+        },
+        "slippage": {
+          "usd_gap": -861.5700000001208,
+          "sum_daily_return_gap": -0.0022496827545551183,
+          "log_relative_wealth": -0.002255276148964062
+        },
+        "financing": {
+          "usd_gap": 0.0,
+          "sum_daily_return_gap": 0.0,
+          "log_relative_wealth": 0.0
+        }
+      },
+      "audit": {
+        "dollar_gap_residual": 1.0186340659856796e-09,
+        "log_gap_residual": 1.096345236817342e-15,
+        "max_account_residual": 3.710738383233547e-10
+      },
+      "target_groups": {
+        "equal_target": {
+          "sessions": 4835,
+          "log_relative_wealth": -0.002413687312310249
+        },
+        "lower_target": {
+          "sessions": 220,
+          "log_relative_wealth": -0.03191808369486004
+        },
+        "higher_target": {
+          "sessions": 228,
+          "log_relative_wealth": -0.05781839026150192
+        }
+      },
+      "labels": {
+        "overnight:both_flat": {
+          "leg_count": 1020,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 1020
+        },
+        "intraday:equal_exposure": {
+          "leg_count": 557,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 557
+        },
+        "overnight:equal_exposure": {
+          "leg_count": 557,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 557
+        },
+        "intraday:continuous_lower_exposure": {
+          "leg_count": 1919,
+          "return_contribution_sum": -0.0006052906182485147,
+          "log_relative_wealth": 0.001510429498484046,
+          "sessions": 1919
+        },
+        "intraday:protection": {
+          "leg_count": 872,
+          "return_contribution_sum": 0.07679683267146982,
+          "log_relative_wealth": 0.07796436018125046,
+          "sessions": 872
+        },
+        "overnight:continuous_lower_exposure": {
+          "leg_count": 1922,
+          "return_contribution_sum": -0.029472284710452736,
+          "log_relative_wealth": -0.02817409288073798,
+          "sessions": 1922
+        },
+        "overnight:missed_gain": {
+          "leg_count": 1071,
+          "return_contribution_sum": -0.07140530213734358,
+          "log_relative_wealth": -0.07052683035688777,
+          "sessions": 1071
+        },
+        "overnight:rebound_subset": {
+          "leg_count": 497,
+          "return_contribution_sum": -0.03625059457348631,
+          "log_relative_wealth": -0.035736097924994055,
+          "sessions": 497
+        },
+        "intraday:missed_gain": {
+          "leg_count": 1033,
+          "return_contribution_sum": -0.0774021232897183,
+          "log_relative_wealth": -0.07645393068276628,
+          "sessions": 1033
+        },
+        "intraday:rebound_subset": {
+          "leg_count": 457,
+          "return_contribution_sum": -0.04449916582072376,
+          "log_relative_wealth": -0.04395850956613003,
+          "sessions": 457
+        },
+        "overnight:protection": {
+          "leg_count": 835,
+          "return_contribution_sum": 0.041933017426890803,
+          "log_relative_wealth": 0.0423527374761498,
+          "sessions": 835
+        },
+        "intraday:continuous_higher_exposure": {
+          "leg_count": 1788,
+          "return_contribution_sum": -0.0012522449777217278,
+          "log_relative_wealth": -0.007553226831671444,
+          "sessions": 1788
+        },
+        "intraday:higher_exposure_hurt": {
+          "leg_count": 812,
+          "return_contribution_sum": -0.3140819385753266,
+          "log_relative_wealth": -0.31703966243323073,
+          "sessions": 812
+        },
+        "overnight:continuous_higher_exposure": {
+          "leg_count": 1784,
+          "return_contribution_sum": -0.05649582076507841,
+          "log_relative_wealth": -0.061264042789275774,
+          "sessions": 1784
+        },
+        "overnight:higher_exposure_hurt": {
+          "leg_count": 768,
+          "return_contribution_sum": -0.30389294904842046,
+          "log_relative_wealth": -0.3070969361885012,
+          "sessions": 768
+        },
+        "intraday:higher_exposure_help": {
+          "leg_count": 965,
+          "return_contribution_sum": 0.31282969359760465,
+          "log_relative_wealth": 0.3094864356015594,
+          "sessions": 965
+        },
+        "overnight:higher_exposure_help": {
+          "leg_count": 996,
+          "return_contribution_sum": 0.24739712828334204,
+          "log_relative_wealth": 0.24583289339922546,
+          "sessions": 996
+        },
+        "intraday:both_flat": {
+          "leg_count": 1019,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 1019
+        }
+      },
+      "continuous_target_cuts": 236,
+      "continuous_target_adds": 196,
+      "shared_ema_ineligible_cash_sessions": 1019,
+      "warning_while_cash": "not assessable: saved decisions contain EMA eligibility and effective discrete target, not underlying gate colour/cap when EMA flat",
+      "continuous_trade_count": 1092,
+      "discrete_trade_count": 967,
+      "continuous_turnover_mark_usd": 23311566.900000006,
+      "discrete_turnover_mark_usd": 21574967.759999983,
+      "worst_relative_sessions": [
+        {
+          "date": "2020-03-12",
+          "target_group": "higher_target",
+          "continuous_target": 0.3936848181619142,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -31348.590000000084,
+          "daily_return_gap": -0.03850169908455359,
+          "log_relative_wealth_change": -0.03926248107348446,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.026811210044335836,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.011686546583664983,
+          "overnight_usd_gap": -21830.040000000015,
+          "intraday_usd_gap": -9515.339999999984,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -2.2099999999999227,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2020-03-16",
+          "target_group": "higher_target",
+          "continuous_target": 0.2911786311296892,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -30064.53999999992,
+          "daily_return_gap": -0.037241529979633814,
+          "log_relative_wealth_change": -0.0379527085897852,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.0356941464367638,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.0015321720682175614,
+          "overnight_usd_gap": -28815.359999999986,
+          "intraday_usd_gap": -1236.9000000000117,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -11.280000000000427,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2020-03-11",
+          "target_group": "higher_target",
+          "continuous_target": 0.4102929925117959,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -17653.679999999935,
+          "daily_return_gap": -0.02122176193781622,
+          "log_relative_wealth_change": -0.02145018094420839,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.012138673569771547,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.009061859008737124,
+          "overnight_usd_gap": -10097.760000000035,
+          "intraday_usd_gap": -7538.25999999997,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -16.659999999998377,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2020-03-18",
+          "target_group": "higher_target",
+          "continuous_target": 0.24762375440224169,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -10579.46000000008,
+          "daily_return_gap": -0.013418825031644932,
+          "log_relative_wealth_change": -0.013509671077740138,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.017234240316493028,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_help",
+          "intraday_return_gap_contribution": 0.003819423380450456,
+          "overnight_usd_gap": -13587.55000000001,
+          "intraday_usd_gap": 3011.25,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -2.160000000000082,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2011-08-18",
+          "target_group": "equal_target",
+          "continuous_target": 0.0,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -4868.609999999986,
+          "daily_return_gap": -0.012334530914022812,
+          "log_relative_wealth_change": -0.01241123261270803,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.012102920081329304,
+          "intraday_bucket": "both_flat",
+          "intraday_label": "",
+          "intraday_return_gap_contribution": 0.0,
+          "overnight_usd_gap": -4777.190000000002,
+          "intraday_usd_gap": 0.0,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -90.42000000000343,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2009-08-17",
+          "target_group": "higher_target",
+          "continuous_target": 1.0,
+          "discrete_target": 0.5,
+          "continuous_cut": false,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -4368.589999999967,
+          "daily_return_gap": -0.012182256829398885,
+          "log_relative_wealth_change": -0.01240907129535797,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.009558613318611055,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.0026267527289847875,
+          "overnight_usd_gap": -3427.9800000000214,
+          "intraday_usd_gap": -941.7599999999861,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": 1.1500000000002615,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2025-04-04",
+          "target_group": "higher_target",
+          "continuous_target": 0.7796092182824058,
+          "discrete_target": 0.5,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -7875.690000000177,
+          "daily_return_gap": -0.00934690726758547,
+          "log_relative_wealth_change": -0.00979662119207296,
+          "overnight_bucket": "continuous_lower_exposure",
+          "overnight_label": "protection",
+          "overnight_return_gap_contribution": 3.764664022992692e-06,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.009484785064180115,
+          "overnight_usd_gap": 2996.9000000000233,
+          "intraday_usd_gap": -11089.169999999991,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": 216.57999999999242,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2010-06-29",
+          "target_group": "higher_target",
+          "continuous_target": 0.8185380417876841,
+          "discrete_target": 0.5,
+          "continuous_cut": false,
+          "continuous_add": true,
+          "dollar_equity_change_gap": -3556.280000000028,
+          "daily_return_gap": -0.009567851635254754,
+          "log_relative_wealth_change": -0.009764283297893736,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.004273644917932933,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.005289498017369188,
+          "overnight_usd_gap": -1587.0100000000057,
+          "intraday_usd_gap": -1967.470000000002,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": -1.7999999999998977,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2025-04-10",
+          "target_group": "higher_target",
+          "continuous_target": 0.398214561569304,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -10932.59999999986,
+          "daily_return_gap": -0.009383189626358424,
+          "log_relative_wealth_change": -0.009580456694553794,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.004003589743903999,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.005509826964286127,
+          "overnight_usd_gap": -3503.850000000013,
+          "intraday_usd_gap": -7643.129999999917,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": 214.37999999998556,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2007-12-11",
+          "target_group": "higher_target",
+          "continuous_target": 0.8198379724530056,
+          "discrete_target": 0.5,
+          "continuous_cut": false,
+          "continuous_add": true,
+          "dollar_equity_change_gap": -3404.7700000000186,
+          "daily_return_gap": -0.0087040423973469,
+          "log_relative_wealth_change": -0.008862898886716956,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_help",
+          "overnight_return_gap_contribution": 0.00011742179304030621,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.008813024576708553,
+          "overnight_usd_gap": 45.95999999997997,
+          "intraday_usd_gap": -3447.4499999999916,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": -3.2800000000006264,
+          "financing_usd_gap": 0.0
+        }
+      ]
+    },
+    "10": {
+      "sessions": 5283,
+      "first_date": "2005-01-03",
+      "last_date": "2025-12-31",
+      "continuous_ending_equity_usd": 1560204.1189999997,
+      "discrete_ending_equity_usd": 1714663.0709999998,
+      "wealth_gap_usd": -154458.95200000005,
+      "log_relative_wealth": -0.09439994304405037,
+      "components": {
+        "overnight": {
+          "usd_gap": -133998.16000000067,
+          "sum_daily_return_gap": -0.08593355396761412,
+          "log_relative_wealth": -0.08940234855266617
+        },
+        "intraday": {
+          "usd_gap": -11853.879999999348,
+          "sum_daily_return_gap": -0.001816295107697249,
+          "log_relative_wealth": -0.0060066064744273475
+        },
+        "dividends": {
+          "usd_gap": -6776.601999999995,
+          "sum_daily_return_gap": 0.0058797212093087935,
+          "log_relative_wealth": 0.005857423532945439
+        },
+        "commission": {
+          "usd_gap": -121.0,
+          "sum_daily_return_gap": -0.0002445424827119156,
+          "log_relative_wealth": -0.0002456057668683345
+        },
+        "slippage": {
+          "usd_gap": -1709.310000000116,
+          "sum_daily_return_gap": -0.004589211659174323,
+          "log_relative_wealth": -0.00460280578303438
+        },
+        "financing": {
+          "usd_gap": 0.0,
+          "sum_daily_return_gap": 0.0,
+          "log_relative_wealth": 0.0
+        }
+      },
+      "audit": {
+        "dollar_gap_residual": 5.820766091346741e-11,
+        "log_gap_residual": 4.0245584642661925e-16,
+        "max_account_residual": 3.637978807091713e-10
+      },
+      "target_groups": {
+        "equal_target": {
+          "sessions": 4835,
+          "log_relative_wealth": 5.9525862456026684e-05
+        },
+        "lower_target": {
+          "sessions": 220,
+          "log_relative_wealth": -0.03450613185475529
+        },
+        "higher_target": {
+          "sessions": 228,
+          "log_relative_wealth": -0.05995333705175276
+        }
+      },
+      "labels": {
+        "overnight:both_flat": {
+          "leg_count": 1020,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 1020
+        },
+        "intraday:equal_exposure": {
+          "leg_count": 557,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 557
+        },
+        "overnight:equal_exposure": {
+          "leg_count": 557,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 557
+        },
+        "intraday:continuous_lower_exposure": {
+          "leg_count": 1957,
+          "return_contribution_sum": -0.0005743042835723002,
+          "log_relative_wealth": 0.0015415533475564534,
+          "sessions": 1957
+        },
+        "intraday:protection": {
+          "leg_count": 909,
+          "return_contribution_sum": 0.0767870452827026,
+          "log_relative_wealth": 0.07795579411653117,
+          "sessions": 909
+        },
+        "overnight:continuous_lower_exposure": {
+          "leg_count": 1960,
+          "return_contribution_sum": -0.02951362648106405,
+          "log_relative_wealth": -0.0282152613348839,
+          "sessions": 1960
+        },
+        "overnight:missed_gain": {
+          "leg_count": 1099,
+          "return_contribution_sum": -0.07142243106641057,
+          "log_relative_wealth": -0.0705444357599382,
+          "sessions": 1099
+        },
+        "overnight:rebound_subset": {
+          "leg_count": 520,
+          "return_contribution_sum": -0.03628047515471584,
+          "log_relative_wealth": -0.0357658277676068,
+          "sessions": 520
+        },
+        "intraday:missed_gain": {
+          "leg_count": 1037,
+          "return_contribution_sum": -0.07736134956627477,
+          "log_relative_wealth": -0.07641424076897468,
+          "sessions": 1037
+        },
+        "intraday:rebound_subset": {
+          "leg_count": 467,
+          "return_contribution_sum": -0.044481762599839,
+          "log_relative_wealth": -0.04394184974178998,
+          "sessions": 467
+        },
+        "overnight:protection": {
+          "leg_count": 841,
+          "return_contribution_sum": 0.0419088045853465,
+          "log_relative_wealth": 0.042329174425054295,
+          "sessions": 841
+        },
+        "intraday:continuous_higher_exposure": {
+          "leg_count": 1750,
+          "return_contribution_sum": -0.0012419908241249318,
+          "log_relative_wealth": -0.007548159821983752,
+          "sessions": 1750
+        },
+        "intraday:higher_exposure_hurt": {
+          "leg_count": 775,
+          "return_contribution_sum": -0.3140352832749953,
+          "log_relative_wealth": -0.31700641142563324,
+          "sessions": 775
+        },
+        "overnight:continuous_higher_exposure": {
+          "leg_count": 1746,
+          "return_contribution_sum": -0.05641992748655014,
+          "log_relative_wealth": -0.06118708721778209,
+          "sessions": 1746
+        },
+        "overnight:higher_exposure_help": {
+          "leg_count": 968,
+          "return_contribution_sum": 0.24736805280924523,
+          "log_relative_wealth": 0.24580970531527938,
+          "sessions": 968
+        },
+        "intraday:higher_exposure_help": {
+          "leg_count": 961,
+          "return_contribution_sum": 0.31279329245087084,
+          "log_relative_wealth": 0.3094582516036496,
+          "sessions": 961
+        },
+        "overnight:higher_exposure_hurt": {
+          "leg_count": 762,
+          "return_contribution_sum": -0.3037879802957951,
+          "log_relative_wealth": -0.3069967925330611,
+          "sessions": 762
+        },
+        "intraday:both_flat": {
+          "leg_count": 1019,
+          "return_contribution_sum": 0.0,
+          "log_relative_wealth": 0.0,
+          "sessions": 1019
+        }
+      },
+      "continuous_target_cuts": 236,
+      "continuous_target_adds": 196,
+      "shared_ema_ineligible_cash_sessions": 1019,
+      "warning_while_cash": "not assessable: saved decisions contain EMA eligibility and effective discrete target, not underlying gate colour/cap when EMA flat",
+      "continuous_trade_count": 1097,
+      "discrete_trade_count": 976,
+      "continuous_turnover_mark_usd": 23071319.16999999,
+      "discrete_turnover_mark_usd": 21371669.61,
+      "worst_relative_sessions": [
+        {
+          "date": "2020-03-12",
+          "target_group": "higher_target",
+          "continuous_target": 0.3936848181619142,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -30983.300000000047,
+          "daily_return_gap": -0.0384971299861715,
+          "log_relative_wealth_change": -0.03925772902397854,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.0268047169020626,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.01168567866768043,
+          "overnight_usd_gap": -21573.000000000015,
+          "intraday_usd_gap": -9404.879999999983,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -4.419999999999845,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2020-03-16",
+          "target_group": "higher_target",
+          "continuous_target": 0.2911786311296892,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -29723.269999999902,
+          "daily_return_gap": -0.0372494995321484,
+          "log_relative_wealth_change": -0.03796098645567602,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.03568851367419111,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.0015317610004942118,
+          "overnight_usd_gap": -28477.679999999986,
+          "intraday_usd_gap": -1222.2700000000116,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -22.320000000000846,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2020-03-11",
+          "target_group": "higher_target",
+          "continuous_target": 0.4102929925117959,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -17465.5,
+          "daily_return_gap": -0.021240162956091657,
+          "log_relative_wealth_change": -0.021468981108057037,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.012139272109083043,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.009059494084990669,
+          "overnight_usd_gap": -9981.960000000036,
+          "intraday_usd_gap": -7449.499999999971,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -33.03999999999678,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2020-03-18",
+          "target_group": "higher_target",
+          "continuous_target": 0.24762375440224169,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -10449.630000000005,
+          "daily_return_gap": -0.013409639579050503,
+          "log_relative_wealth_change": -0.013500360734032303,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.017224040747088137,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_help",
+          "intraday_return_gap_contribution": 0.003820920151873588,
+          "overnight_usd_gap": -13422.050000000008,
+          "intraday_usd_gap": 2977.5,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -4.080000000000155,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2011-08-18",
+          "target_group": "equal_target",
+          "continuous_target": 0.0,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -4932.709999999963,
+          "daily_return_gap": -0.012563662327116587,
+          "log_relative_wealth_change": -0.01264325246438108,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.012102959135214272,
+          "intraday_bucket": "both_flat",
+          "intraday_label": "",
+          "intraday_return_gap_contribution": 0.0,
+          "overnight_usd_gap": -4751.830000000003,
+          "intraday_usd_gap": 0.0,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": -1.0,
+          "slippage_usd_gap": -179.88000000000682,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2009-08-17",
+          "target_group": "higher_target",
+          "continuous_target": 1.0,
+          "discrete_target": 0.5,
+          "continuous_cut": false,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -4355.040000000037,
+          "daily_return_gap": -0.012179221902077098,
+          "log_relative_wealth_change": -0.012406027368929193,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.009558749941641121,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.002626729287859014,
+          "overnight_usd_gap": -3418.280000000021,
+          "intraday_usd_gap": -939.0599999999862,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": 2.300000000000196,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2010-06-29",
+          "target_group": "higher_target",
+          "continuous_target": 0.8185380417876841,
+          "discrete_target": 0.5,
+          "continuous_cut": false,
+          "continuous_add": true,
+          "dollar_equity_change_gap": -3541.8400000000256,
+          "daily_return_gap": -0.009567638299657788,
+          "log_relative_wealth_change": -0.009764137929706722,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.004270770816804929,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.005286595351148164,
+          "overnight_usd_gap": -1579.4600000000055,
+          "intraday_usd_gap": -1958.4200000000023,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": -3.9599999999999795,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2025-04-04",
+          "target_group": "higher_target",
+          "continuous_target": 0.7796092182824058,
+          "discrete_target": 0.5,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -7417.569999999832,
+          "daily_return_gap": -0.009226324854661128,
+          "log_relative_wealth_change": -0.009671973322473493,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -2.3273280606028734e-06,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.009492248242257507,
+          "overnight_usd_gap": 3022.960000000021,
+          "intraday_usd_gap": -10868.489999999994,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": 427.95999999998503,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2025-04-10",
+          "target_group": "higher_target",
+          "continuous_target": 0.398214561569304,
+          "discrete_target": 0.0,
+          "continuous_cut": true,
+          "continuous_add": false,
+          "dollar_equity_change_gap": -10511.319999999832,
+          "daily_return_gap": -0.00926329431520867,
+          "log_relative_wealth_change": -0.009459818509271831,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_hurt",
+          "overnight_return_gap_contribution": -0.0040092235273555335,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.00550955897887368,
+          "overnight_usd_gap": -3405.1500000000087,
+          "intraday_usd_gap": -7521.689999999919,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": 415.5199999999786,
+          "financing_usd_gap": 0.0
+        },
+        {
+          "date": "2007-12-11",
+          "target_group": "higher_target",
+          "continuous_target": 0.8198379724530056,
+          "discrete_target": 0.5,
+          "continuous_cut": false,
+          "continuous_add": true,
+          "dollar_equity_change_gap": -3399.0899999999674,
+          "daily_return_gap": -0.008703856646426034,
+          "log_relative_wealth_change": -0.008862719138106755,
+          "overnight_bucket": "continuous_higher_exposure",
+          "overnight_label": "higher_exposure_help",
+          "overnight_return_gap_contribution": 0.000117466456072684,
+          "intraday_bucket": "continuous_higher_exposure",
+          "intraday_label": "higher_exposure_hurt",
+          "intraday_return_gap_contribution": -0.008805853691460537,
+          "overnight_usd_gap": 45.89999999998,
+          "intraday_usd_gap": -3438.9899999999916,
+          "dividends_usd_gap": 0.0,
+          "commission_usd_gap": 0.0,
+          "slippage_usd_gap": -6.000000000000341,
+          "financing_usd_gap": 0.0
+        }
+      ]
+    }
+  },
+  "annual_attribution": {
+    "5": {
+      "2005": {
+        "sessions": 252,
+        "log_relative_wealth": 0.0,
+        "wealth_change_gap_usd": 0.0
+      },
+      "2006": {
+        "sessions": 251,
+        "log_relative_wealth": 0.0,
+        "wealth_change_gap_usd": 0.0
+      },
+      "2007": {
+        "sessions": 251,
+        "log_relative_wealth": -0.006751420263176508,
+        "wealth_change_gap_usd": -2551.048999999941
+      },
+      "2008": {
+        "sessions": 253,
+        "log_relative_wealth": -0.009588251286744148,
+        "wealth_change_gap_usd": -3350.630000000121
+      },
+      "2009": {
+        "sessions": 252,
+        "log_relative_wealth": -0.005727105130162007,
+        "wealth_change_gap_usd": -3115.423999999941
+      },
+      "2010": {
+        "sessions": 252,
+        "log_relative_wealth": -0.024625196734459873,
+        "wealth_change_gap_usd": -10931.638000000094
+      },
+      "2011": {
+        "sessions": 252,
+        "log_relative_wealth": 0.0010776541094022467,
+        "wealth_change_gap_usd": 1754.4100000000908
+      },
+      "2012": {
+        "sessions": 250,
+        "log_relative_wealth": 0.005242047664492461,
+        "wealth_change_gap_usd": -10.36499999993248
+      },
+      "2013": {
+        "sessions": 252,
+        "log_relative_wealth": -3.5106493978874514e-05,
+        "wealth_change_gap_usd": -5831.807000000088
+      },
+      "2014": {
+        "sessions": 252,
+        "log_relative_wealth": 2.2864060725246856e-05,
+        "wealth_change_gap_usd": -3183.6080000000075
+      },
+      "2015": {
+        "sessions": 252,
+        "log_relative_wealth": 0.0006251052370600133,
+        "wealth_change_gap_usd": 1910.1650000001537
+      },
+      "2016": {
+        "sessions": 252,
+        "log_relative_wealth": 0.004153982891201315,
+        "wealth_change_gap_usd": 1969.9499999999534
+      },
+      "2017": {
+        "sessions": 251,
+        "log_relative_wealth": -1.782477380526214e-05,
+        "wealth_change_gap_usd": -5021.97900000005
+      },
+      "2018": {
+        "sessions": 251,
+        "log_relative_wealth": 0.006212659319633274,
+        "wealth_change_gap_usd": 5017.656000000192
+      },
+      "2019": {
+        "sessions": 252,
+        "log_relative_wealth": -0.0034621736829484957,
+        "wealth_change_gap_usd": -7197.548999999883
+      },
+      "2020": {
+        "sessions": 253,
+        "log_relative_wealth": -0.05546139734002585,
+        "wealth_change_gap_usd": -57305.66100000008
+      },
+      "2021": {
+        "sessions": 252,
+        "log_relative_wealth": -0.0015266668138678038,
+        "wealth_change_gap_usd": -26819.74800000002
+      },
+      "2022": {
+        "sessions": 251,
+        "log_relative_wealth": 0.008848408264709789,
+        "wealth_change_gap_usd": 25345.608000000473
+      },
+      "2023": {
+        "sessions": 250,
+        "log_relative_wealth": -0.0014525045876024607,
+        "wealth_change_gap_usd": -15440.040999999968
+      },
+      "2024": {
+        "sessions": 252,
+        "log_relative_wealth": -0.0047139767479066445,
+        "wealth_change_gap_usd": -32929.449000000255
+      },
+      "2025": {
+        "sessions": 250,
+        "log_relative_wealth": -0.004971258961218593,
+        "wealth_change_gap_usd": -15464.427999999374
+      }
+    },
+    "10": {
+      "2005": {
+        "sessions": 252,
+        "log_relative_wealth": 0.0,
+        "wealth_change_gap_usd": 0.0
+      },
+      "2006": {
+        "sessions": 251,
+        "log_relative_wealth": 0.0,
+        "wealth_change_gap_usd": 0.0
+      },
+      "2007": {
+        "sessions": 251,
+        "log_relative_wealth": -0.007254876630269842,
+        "wealth_change_gap_usd": -2738.2949999999837
+      },
+      "2008": {
+        "sessions": 253,
+        "log_relative_wealth": -0.009345380125652183,
+        "wealth_change_gap_usd": -3247.2600000000675
+      },
+      "2009": {
+        "sessions": 252,
+        "log_relative_wealth": -0.00588037364171598,
+        "wealth_change_gap_usd": -3179.603999999992
+      },
+      "2010": {
+        "sessions": 252,
+        "log_relative_wealth": -0.025179127795603853,
+        "wealth_change_gap_usd": -11104.548000000068
+      },
+      "2011": {
+        "sessions": 252,
+        "log_relative_wealth": 0.001037541780457011,
+        "wealth_change_gap_usd": 1767.0300000000861
+      },
+      "2012": {
+        "sessions": 250,
+        "log_relative_wealth": 0.00521289021342301,
+        "wealth_change_gap_usd": -65.01800000004005
+      },
+      "2013": {
+        "sessions": 252,
+        "log_relative_wealth": -1.8880361217871277e-05,
+        "wealth_change_gap_usd": -5937.686999999918
+      },
+      "2014": {
+        "sessions": 252,
+        "log_relative_wealth": 9.932442510647895e-06,
+        "wealth_change_gap_usd": -3253.9940000000643
+      },
+      "2015": {
+        "sessions": 252,
+        "log_relative_wealth": 0.0001079019104037934,
+        "wealth_change_gap_usd": 1657.0250000000233
+      },
+      "2016": {
+        "sessions": 252,
+        "log_relative_wealth": 0.004143887581763198,
+        "wealth_change_gap_usd": 1944.2450000001118
+      },
+      "2017": {
+        "sessions": 251,
+        "log_relative_wealth": -5.559028973532827e-06,
+        "wealth_change_gap_usd": -5187.25
+      },
+      "2018": {
+        "sessions": 251,
+        "log_relative_wealth": 0.005912563964028051,
+        "wealth_change_gap_usd": 4772.17499999993
+      },
+      "2019": {
+        "sessions": 252,
+        "log_relative_wealth": -0.003655997127862572,
+        "wealth_change_gap_usd": -7534.9220000000205
+      },
+      "2020": {
+        "sessions": 253,
+        "log_relative_wealth": -0.05541812766067277,
+        "wealth_change_gap_usd": -56666.66799999995
+      },
+      "2021": {
+        "sessions": 252,
+        "log_relative_wealth": -0.0015787235549362944,
+        "wealth_change_gap_usd": -27119.24500000011
+      },
+      "2022": {
+        "sessions": 251,
+        "log_relative_wealth": 0.008846720008460637,
+        "wealth_change_gap_usd": 25489.66800000053
+      },
+      "2023": {
+        "sessions": 250,
+        "log_relative_wealth": -0.0014458565042318075,
+        "wealth_change_gap_usd": -15414.948000000091
+      },
+      "2024": {
+        "sessions": 252,
+        "log_relative_wealth": -0.004867539765092185,
+        "wealth_change_gap_usd": -33305.89100000006
+      },
+      "2025": {
+        "sessions": 250,
+        "log_relative_wealth": -0.005020938748869519,
+        "wealth_change_gap_usd": -15333.765000000363
+      }
+    }
+  },
+  "method": "Exact observed wealth difference, daily return decomposition and additive linked log-relative-wealth allocation. Not a counterfactual or causal treatment estimate.",
+  "tolerances": {
+    "usd_abs": 1e-05,
+    "return_abs": 1e-10,
+    "weight_abs": 1e-10
+  },
+  "missing": [
+    "Underlying colour/cap when EMA flat, so cash warnings unassessed.",
+    "First2 prior-return rebound contexts not evaluated.",
+    "Original per-attempt UTC timestamps remain missing.",
+    "No untouched holdout, counterfactual portfolio, native broker or funding sensitivity proof."
+  ],
+  "failure_history": [
+    {
+      "analysis_attempt": 1,
+      "status": "failed_relative_path_resolution_before_financial_path_read",
+      "log": ".local/spy-transition-diagnosis-20261028/analysis.log"
+    },
+    {
+      "analysis_attempt": 2,
+      "status": "passed_from_primary_evidence_root_no_source_change",
+      "log": ".local/spy-transition-diagnosis-20261028/analysis-from-evidence-root.log"
+    }
+  ],
+  "checks": {
+    "synthetic_tests": 6,
+    "test_exit": 0,
+    "observed_path_analysis_exit": 0,
+    "final_manifest_rehash": {
+      "passed": true,
+      "checks": 116
+    },
+    "links_and_json": "passed",
+    "scoped_whitespace": "passed with independent untracked-file scan"
+  },
+  "usage": {
+    "top_level_commands_so_far": 8,
+    "max_commands": 8,
+    "financial_runs": 0,
+    "network_requests": 0,
+    "services": 0,
+    "broker_operations": 0,
+    "subagents": 0,
+    "top_level_commands_actual": 8
+  },
+  "proposed_next_stage": "risk_and_sizing",
+  "hypothesis_only": "Continuous sizing beneath unchanged discrete ceiling; no removal of no-go protection. Potential lower growth/missed gains/turnover need prospective testing, no test authorized by diagnosis.",
+  "artifacts": [
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/10bp-attribution.csv",
+      "sha256": "80b3983405ff8314c609d7a49653d49f7612abdc9b3ada2e4e32766cc68eed19"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/5bp-attribution.csv",
+      "sha256": "2297910d5686d084869d9aa8cca577194c88fc570acad8910785d52a022a11c4"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/analysis-from-evidence-root.log",
+      "sha256": "50fbaadceca143b0c092f553edf653f1b408bb13c3db6f62e81f281fd7db9262"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/analysis.json",
+      "sha256": "d961bf1fcee9bfe30a71797bf3c7716727234c342cc33f5530ba0e2cc697f710"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/analysis.log",
+      "sha256": "da2bd1a892f1ba2c9419804dc54cb743721110c62321403dd3c1d8812624278e"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/annual-attribution.json",
+      "sha256": "e095fcf09ad1785e7443c622304ee0c6592213c206d5c069b19ca2a915d63218"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/command-log.json",
+      "sha256": "08da35969a8818470a9454ebbdf4e4a6704783e78327efa50e1c9f915257070a"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/plan.json",
+      "sha256": "93a172fd67edbf18ebf643c58f38f0cbb70c4fa2aa4052d5bfca44bb8688284b"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/source-verification.json",
+      "sha256": "8e450c2051b78954c4b1f088b89f8384d9343b235c1cd38712c688abf6aff8b0"
+    },
+    {
+      "path": ".local/spy-transition-diagnosis-20261028/tests.log",
+      "sha256": "44e161a86edcb15c7d008c28fa821325797d661be3b4a302f99153ecd4b0dc8f"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/scripts/current/calmar_transition_diagnosis.py",
+      "sha256": "41018012a95964052cb928bef55aa9002d3aaa201a976bd5d56ab8f27dd285c6"
+    },
+    {
+      "path": ".local/rsi-calmar-20261028/tests/test_calmar_transition_diagnosis.py",
+      "sha256": "d6b2f38db9e6c24f9a10c5a2d2421c2e5d0a74f16fccd428ed6b90c67a594b13"
+    }
+  ],
+  "report": {
+    "path": "docs/tasks/2026-10-28-spy-transition-diagnosis.md",
+    "sha256": "ed8670678bf7fd89943259bc73967c1bb425cbe825b3e483bb56254e8ec9cac6"
+  }
+}

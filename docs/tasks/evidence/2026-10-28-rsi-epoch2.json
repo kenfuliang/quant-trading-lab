@@ -1,0 +1,158 @@
+{
+  "id": "RSI-CALMAR-EPOCH2-20261028",
+  "status": "closed-no-qualifying-improvement",
+  "epoch": {
+    "id": "RSI-CALMAR-EPOCH2-20261028",
+    "status": "active",
+    "created_utc": "2026-10-28T20:38:05+00:00",
+    "deadline_utc": "2026-10-28T23:38:05+00:00",
+    "max_cycles": 2,
+    "max_financial_attempts": 12,
+    "workers": 1,
+    "automatic_retries": 0,
+    "failures_consume_budget": true,
+    "financial_case_timeout_seconds": 300,
+    "max_cycle_financial_wall_seconds": 1800,
+    "max_cases_per_cycle": 6,
+    "source_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "incumbent": "C01\u2013C04 unchanged discrete EMA/volatility gate,price-peak disabled",
+    "target": {
+      "calmar_lift": 0.1,
+      "cost_bps_per_side": [
+        5,
+        10
+      ],
+      "cagr_no_lower": true,
+      "drawdown_no_deeper": true,
+      "underwater_sessions_and_days_no_longer": true,
+      "simpler_control_required": true
+    },
+    "scope": "Free/local saved inputs; one stage per cycle; prospectively freeze executable and aggregate reservation before finance",
+    "first_direction": "Causal total-return feature representation from saved SPY dividends; qualify before selecting financial transformation scope",
+    "prior_trials": "Four closed six-case Calmar cycles,all rejected; earlier historical trial count unknown. No old budget reopened.",
+    "completion": "Audited retain/reject/blocked decision per cycle,one leaderboard,lessons and terminal epoch receipt; negative or blocked qualification may retire unused slots and retain incumbent. No forced improvement.",
+    "prohibited": [
+      "paid data",
+      "network data requests",
+      "credentials",
+      "brokers/orders",
+      "services",
+      "dependency install",
+      "commits/publication"
+    ],
+    "bounds_owner": "This immutable epoch contract; future executable must additionally enforce shared financial usage and absolute deadline; plan existence alone is not enforcement"
+  },
+  "qualification": {
+    "status": "conditionally-qualified-pure-feature-only",
+    "source_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "metadata": {
+      "source": "Yahoo Finance chart endpoint; retail research data, not independently reconciled",
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1072915200&period2=1767225600&interval=1d&events=div%2Csplits",
+      "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+      "raw_rows": 5535,
+      "first_date": "2004-01-02",
+      "last_date": "2025-12-31",
+      "dividend_events": 89,
+      "split_events": 0
+    },
+    "source_rows": 5535,
+    "evaluation_rows": 5283,
+    "feature_sha256": "c5a1bd1484dcaca9e09d8f5b28d88dc88ab02d6f8e30d28df8d0dbd5d3ba631f",
+    "builder_sha256": "aac49ec952fe6cc0486f0d0615ec497547640e6bbb951bf440045a7b0e73348e",
+    "checks": {
+      "synthetic_tests_passed": true,
+      "prefix": true,
+      "future_price_and_distribution_mutation": true,
+      "no_split_events": true,
+      "events_joined": true,
+      "prior_c04_manifest_unchanged": true
+    },
+    "financial_runs": 0,
+    "financial_attempts_remaining": 12,
+    "limitations": [
+      "Not a traded or cash-account series: reinvestment is a feature-index convention only",
+      "Fill prices,cash dividends and financing must remain unchanged in any later financial study",
+      "Daily event/source-vintage/right limitations remain attached",
+      "Completed-close feature needs exactly one caller lag to next open",
+      "No financial performance or alpha evaluated"
+    ]
+  },
+  "financial_reservations": 12,
+  "financial_starts": 12,
+  "financial_completed": 12,
+  "financial_attempts_remaining": 0,
+  "cycles_started": 2,
+  "remaining_cycle_slots": 0,
+  "incumbent_changed": false,
+  "goal_status": "research-complete",
+  "full_offline_check": {
+    "exit": 0,
+    "tests": 589,
+    "log_sha256": "a59d838faaa029e7051185e1e547c5a6ac0df23044228fd9eeb4e488acdf6591"
+  },
+  "raw_directory": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/rsi-epoch2-20261028",
+  "qualification_manifest_sha256": "4ced00fb68c109dca2315d2d0e6ffb44b2861c0a9cef48db08671bea9bff6c70",
+  "next_action": "No automatic extension; new research needs a separately scoped goal.",
+  "cycles": [
+    {
+      "id": "C05",
+      "receipt": "docs/tasks/evidence/2026-10-28-total-return-c05.json",
+      "outcome": "rejected-fixed-target",
+      "financial_attempts": 6
+    },
+    {
+      "id": "C06",
+      "receipt": "docs/tasks/evidence/2026-10-28-execution-c06.json",
+      "outcome": "rejected-fixed-target-with-recovered-postseal-export",
+      "financial_attempts": 6
+    }
+  ],
+  "target_reached": false,
+  "terminal_receipt": "docs/tasks/evidence/2026-10-28-rsi-epoch2-final.json",
+  "final_validation": {
+    "full_check_exit": 0,
+    "offline_tests": 624,
+    "full_check_log_sha256": "aba27478a3f2c9ab6fc2b92971c1b9491b6a6cb365ed675cc670f651a8b6fdfd",
+    "financial_artifacts_verified": 549,
+    "financial_bundles": [
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/calmar-epoch-20261028",
+        "manifest_sha256": "c65d0463ccec1c7552980ef93ba8ac941cbad54c2668edbc2e3c344c8c815249",
+        "artifacts": 79
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/ceiling-capture-c02",
+        "manifest_sha256": "15a13f435ec2920cba068dfb468ad8d30e7e029d613b9a03292b13730c10db08",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/proposal-c03",
+        "manifest_sha256": "8f2ebf5662de705b4d4ccebfd82aba6794427ba9747d182294057b488b075614",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/no-veto-c04",
+        "manifest_sha256": "5af52ac12ae46c21516e34cb98361218ea4682ecb5663718eb2e70ed1bf5b343",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/total-return-c05",
+        "manifest_sha256": "5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/execution-c06",
+        "manifest_sha256": "9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361",
+        "artifacts": 94
+      }
+    ],
+    "old_financial_artifacts_preserved": 455,
+    "new_c06_artifacts": 94,
+    "epoch_financial_artifacts": 188,
+    "all_old_leaderboard_rows_and_links_preserved": true,
+    "leaderboard_rows": 79,
+    "current_frozen_c06_code_and_qualification_verified": true,
+    "financial_runs_in_final_validation": 0,
+    "goal_evidence_complete": true
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "study": "sector-matched-v1",
+  "status": "complete-conditional-development",
+  "attempts": [
+    {
+      "case": "probe",
+      "retry": false,
+      "attempt": 1,
+      "status": "completed-verified",
+      "source_sha256": "7767ab1a1ead29d65cdc2a1946fe8204ef46e4282459537342a4f788993529e1",
+      "reserved_utc": "2026-10-27T01:28:18.748481+00:00",
+      "backtest_id": "6a941850ca1cc97ec5ff7394a1400f3f"
+    },
+    {
+      "case": "original",
+      "retry": false,
+      "attempt": 2,
+      "status": "failed-save-size",
+      "source_sha256": "d3a3d62fb28b771f730de5a5b59ea91bfd76339b827be970333a33dbdcfa0309",
+      "reserved_utc": "2026-10-27T01:36:21.573327+00:00",
+      "reason": "QC main.py37547 exceeds32000; no native backtest dispatched"
+    },
+    {
+      "case": "original",
+      "retry": true,
+      "attempt": 3,
+      "status": "completed-verified",
+      "source_sha256": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+      "reserved_utc": "2026-10-27T01:36:48.783427+00:00",
+      "backtest_id": "ae06ba0d0356d04e057ad3a6239cdf7b"
+    },
+    {
+      "case": "sector",
+      "retry": false,
+      "attempt": 4,
+      "status": "completed-verified",
+      "source_sha256": "6e7386f8a4df23916cf398adbd4d9f9cd7c364c9c31305963a0bb7fd441a8c77",
+      "reserved_utc": "2026-10-27T01:39:26.841861+00:00",
+      "backtest_id": "3c75e395f44a3fa584beeb6e1dc33aef"
+    },
+    {
+      "case": "matched",
+      "retry": false,
+      "attempt": 5,
+      "status": "completed-verified",
+      "source_sha256": "bb9aa5b861f2ae83ada74769cd08a0afed71c54c652da54af38045b0c2b41200",
+      "reserved_utc": "2026-10-27T01:42:20.774673+00:00",
+      "backtest_id": "8177e5657f2c8e8595b48aa93d2f5c48"
+    }
+  ],
+  "checks": [
+    "Fresh original financial control reproduces prior results",
+    "Identical 1,508 sessions, 72 monthly stock selections, universe and feature hashes",
+    "Sector and matched monthly total target hashes identical",
+    "All 27 missing observations resolved with strictly earlier dated evidence",
+    "Native PnL/financing residual within 10 cents; annual compounding and Calmar checked",
+    "No rejected, non-MOO, pending orders or invalid features"
+  ],
+  "limits": [
+    "Viewed development history, not independent OOS",
+    "Target-matched control is not realized exposure matching",
+    "USD10000fixture, not300000 qualification",
+    "No paid sources, agents, broker/account/order operations, services, imports, commits or publication",
+    "Four issuer labels are conditional public-filing research inferences, not recovered historical Morningstar truth",
+    "Target exposure matched at monthly decisions; realized gross exposure differs through returns, fees, rounding and staged fills",
+    "36% NAV sector target cap is not a continuous holding limit",
+    "Native net PnL includes fees; not independent fill/cash reconstruction or causal factor attribution",
+    "Daily Sharpe moments/raw NAV not exported; Sharpe is not independently reconstructed",
+    "Vendor history remains hosted and can change; derived hashes audit observed inputs",
+    "Market traffic-light gate is observed but never applied in any of these three cases",
+    "Security IDs can retain old ticker prefixes; only four missing issuers have decision-date ticker verification"
+  ],
+  "sector_minus_matched": {
+    "cagr": 0.002409818600000002,
+    "dd": 0.015556301800000005,
+    "sharpe": 0.014291433899999983,
+    "calmar": 0.06428749430000003,
+    "longest_uw": -1,
+    "end": 430.9001623658987
+  },
+  "artifacts": {
+    "index.html": "8f4deb3a485fef1340a7fd457719de806797491b67de634732782677c68aefd5",
+    "browser-review.png": "85a482591af64ef9f4b19ce54ea57db2a7d25a1a120b7840d728a75c78034a4e",
+    "monthly-selections.csv": "63ada799a0cabafa3ceea833257faefd2dab16f10be57bf47493bd3872186b17",
+    "comparison.json": "c5448af8c2322f85f35cb7826fe071ed19b166c6b72c9e3c03d393053b790a86",
+    "comparison-preview.png": "9f675a94a6806e01e5107cf0670a29624a94ad790444a5a73e15d4493d46392c",
+    "annual.csv": "9b727f98ce13b92c0d8f2319aba3ba03c8154535ff1eb6e275756141dfa55860",
+    "stock-contributions.csv": "522dffc62cf95c0aa880e9ab170e35abdc4d17328d0f4bc1637f25694f6449e6"
+  },
+  "source_hashes": {
+    "probe": "7767ab1a1ead29d65cdc2a1946fe8204ef46e4282459537342a4f788993529e1",
+    "original": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+    "sector": "6e7386f8a4df23916cf398adbd4d9f9cd7c364c9c31305963a0bb7fd441a8c77",
+    "matched": "bb9aa5b861f2ae83ada74769cd08a0afed71c54c652da54af38045b0c2b41200"
+  },
+  "final_audit": {
+    "status": "passed-conditional-development",
+    "cases": 3,
+    "diagnostic": 1,
+    "counted_attempts": 5,
+    "financial_sessions_per_case": 1508,
+    "annual_rows": 18,
+    "selection_rows": 1080,
+    "contribution_rows": 171,
+    "artifact_count": 7,
+    "checks": "input/source/packet checksums, control parity, target hashes, accounting, annual/temporal arithmetic, browser views, source restoration, closed budget, offline tests",
+    "exact_historical_vendor_sector_status": "unavailable; dated research inference only"
+  },
+  "offline_tests": 326,
+  "source_restored": true,
+  "temporary_browser_settings_restored": true,
+  "ledger_status": "closed-complete-conditional"
+}

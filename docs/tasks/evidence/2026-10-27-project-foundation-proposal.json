@@ -1,0 +1,88 @@
+{
+  "schema_version": "PROJECT-FOUNDATION-PROPOSAL-1",
+  "status": "proposal_prepared_and_checked",
+  "local_date": "2026-10-27",
+  "checked_utc": "2026-10-27T08:28:51.186299+00:00",
+  "scope": "documentation-only folder/content/report/foundation proposal",
+  "git": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty_worktree_preserved": true
+  },
+  "implementation_status": {
+    "proposal_document": "prepared; not adopted package migration",
+    "decision_brief_template": "proposed and reviewed",
+    "navigation_maps": "corrected to current research/reporting responsibilities"
+  },
+  "inventory": {
+    "top_level_research_python_modules": 54,
+    "script_python_files": 77,
+    "test_python_files": 66
+  },
+  "file_moves": 0,
+  "code_changes": 0,
+  "new_package_directories": 0,
+  "new_financial_runs": 0,
+  "services_started": 0,
+  "broker_operations": 0,
+  "new_template": "docs/templates/research-decision.md",
+  "standard_changed": false,
+  "package_migration_adopted": false,
+  "validation": {
+    "docs_check": {
+      "exit_code": 0,
+      "files": 134,
+      "result": "local targets, metadata, skill catalog parity passed"
+    },
+    "git_diff_check": {
+      "exit_code": 0
+    },
+    "historical_and_existing_template_files_verified_unchanged": 148,
+    "prior_foundation_runtime_source_paths_verified_unchanged": 162,
+    "behavior_tests": "not rerun; documentation-only change",
+    "review": "separate read-only folder and content/template reviews found no remaining blocker"
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "135798a114a398e4094268f86dc49348ba2a96acf85fe739afd610f7ae92b9b2"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "ba7b51e09695b82826ea2aba1a1c46837a67c11b13ddd530698bbbd5de12b46d"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "3a5219c213e982ab27b27c69f75a7e0ea8c4e5de57d727e980d404d4c3a610ff"
+    },
+    {
+      "path": "docs/tasks/2026-10-27-project-foundation-proposal.md",
+      "sha256": "88134af37cc4b0e2db224ac3eb8ee126e3e232c3435653814b553d25b8f93401"
+    },
+    {
+      "path": "docs/templates/research-decision.md",
+      "sha256": "3429cac694f2fec6db2fdc6a2d74951c0dc690df4c78a0d26e49ce5b7ec99a4e"
+    }
+  ],
+  "validation_artifacts": [
+    {
+      "path": ".local/project-foundation-proposal-20261027/docs-check.txt",
+      "sha256": "6ca5c402945a9839f2fd77e64ace4596ce6af84bc0bb5310f0fc6243af85c228"
+    },
+    {
+      "path": ".local/project-foundation-proposal-20261027/diff-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".local/project-foundation-proposal-20261027/preserve-manifest.json",
+      "sha256": "5b8574984eb6f3d5bb3bc6cf9d0fb232c015c3935974971b7c76e750a05fea11"
+    }
+  ],
+  "recommended_first_followup": "Trial proposed brief against one saved positive and one failed/blocked result; verify claims without new financial runs",
+  "remaining": [
+    "proposal not a migrated package layout",
+    "general backup/restore remains unverified",
+    "top-level licensing/contribution/contact gaps need owner decisions",
+    "real financial adapter and independent research-process/financial validation remain outside scope"
+  ]
+}

@@ -19,7 +19,10 @@ inputs and historical reports.
 
 For migration or journal changes, include duplicate/restart behavior and durable
 evidence. For broker behavior, use a fake adapter in offline verification and route
-external checks through `docs/operations/paper-connection.md`.
+external checks through the matching broker SOP (`docs/operations/paper-connection.md`
+for IBKR, `docs/operations/alpaca-paper.md` for Alpaca). Dataset acquisition
+uses trade-data-acquisition; saved-input fitness uses trade-data-audit. An
+infrastructure change does not implicitly execute either workflow.
 
 Finish with changed paths, actual validation results, canonical documentation
 impact, remaining limitations, and next action. A proposed module is not an

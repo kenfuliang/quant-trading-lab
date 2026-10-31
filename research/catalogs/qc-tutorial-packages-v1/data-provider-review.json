@@ -1,0 +1,41 @@
+{
+  "reviewed_date": "2026-10-26",
+  "status": "documentation_screening_only_no_new_market_data_downloads",
+  "providers": [
+    {
+      "id": "QC-EQUITY",
+      "url": "https://www.quantconnect.com/data/algoseek-us-equities",
+      "finding": "Free cloud access is advertised; local downloads are separate. Exact symbols/periods and account behavior untested."
+    },
+    {
+      "id": "QC-SECMASTER",
+      "url": "https://www.quantconnect.com/data/quantconnect-us-equity-security-master",
+      "finding": "Free cloud corporate-action/mapping access advertised; local on-premise download is separately priced and not used."
+    },
+    {
+      "id": "QC-FUNDAMENTALS",
+      "url": "https://www.quantconnect.com/data/morning-star-us-fundamentals",
+      "finding": "Free cloud historical fundamental access advertised. Not a permission to export the dataset or proof every historical field is sufficient."
+    },
+    {
+      "id": "ALPACA-BASIC",
+      "url": "https://docs.alpaca.markets/us/docs/about-market-data-api",
+      "finding": "Basic is free for US stocks/ETFs; advertised historical range starts2016, with feed and plan limits. No new API probe performed."
+    },
+    {
+      "id": "HISTDATA",
+      "url": "https://www.histdata.com/f-a-q/",
+      "finding": "Free GBPUSD history advertised; minute OHLC use bid prices and fixed EST without DST, not an automatically equivalent midpoint series."
+    },
+    {
+      "id": "YFINANCE",
+      "url": "https://github.com/ranaroussi/yfinance",
+      "finding": "Code license is separate from Yahoo data rights; README directs users to Yahoo terms and personal-use limitations."
+    },
+    {
+      "id": "FRENCH",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "finding": "Public factor-series downloads exist; factor returns do not replace historical stock holdings/fundamentals. CIZ/FIZ methodology changes require vintage control."
+    }
+  ]
+}
