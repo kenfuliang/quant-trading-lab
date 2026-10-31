@@ -1,1 +1,1 @@
-"""Forward study packages; frozen historical modules remain in place."""
+"""Current project implementations; historical flat paths remain frozen."""

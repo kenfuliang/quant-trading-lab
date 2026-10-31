@@ -6,7 +6,7 @@ import hashlib
 import json
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from research.gscore_study import CASES, audit_records, decode_fragments
+from research.studies.checkpoint_20261031.gscore_study import CASES, audit_records, decode_fragments
 ROOT=Path('.local/gscore-spy-v1')
 OUT=Path('.local/performance/gscore-spy-v1')
 

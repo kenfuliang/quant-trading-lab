@@ -9,9 +9,9 @@ import time
 import unittest
 from unittest.mock import patch
 
-from research.research_controller import WriterBusy
-from research.rsi_coordinator import (
-    ROOT, RSIError, RSIProgram, freeze_program, incremental_preflight_case, synthetic_case,
+from research.control.research_controller import WriterBusy
+from research.control.rsi_coordinator import (
+    ROOT, RSIError, RSIProgram, freeze_program, saved_preflight_case, synthetic_case,
 )
 
 
@@ -50,7 +50,7 @@ class CoordinatorTests(unittest.TestCase):
             self.assertEqual(result["status"], "completed")
             self.assertFalse(result["cached"])
             self.assertEqual(result["financial_slots"], 0)
-            self.assertIn("research/rsi_coordinator.py", result["code_hashes"])
+            self.assertIn("research/control/rsi_coordinator.py", result["code_hashes"])
             self.assertIn("-I", result["argv"])
             self.assertIn("artifacts/result.json", result["artifact_hashes"])
             self.assertEqual(program.usage()["launch_reservations"], 1)
@@ -130,7 +130,7 @@ class CoordinatorTests(unittest.TestCase):
                 if kind == "launch_intent":
                     program._opening_remaining = 0
                 return result
-            with patch.object(program, "_append", side_effect=expire), patch("research.rsi_coordinator.subprocess.Popen", side_effect=AssertionError("Expired program must not launch")):
+            with patch.object(program, "_append", side_effect=expire), patch("research.control.rsi_coordinator.subprocess.Popen", side_effect=AssertionError("Expired program must not launch")):
                 result = program.execute("c1", "a")
             self.assertEqual(result["status"], "interrupted_before_launch")
             self.assertEqual(program.usage()["launch_reservations"], 1)
@@ -139,7 +139,7 @@ class CoordinatorTests(unittest.TestCase):
     def test_concurrent_writer_is_rejected_in_second_process(self):
         spec = self.spec()
         path = Path(self.temp.name) / "spec.json"; path.write_text(json.dumps(spec))
-        code = "import json,sys; from research.rsi_coordinator import RSIProgram; from research.research_controller import WriterBusy\ntry: RSIProgram(sys.argv[1],spec=json.load(open(sys.argv[2])))\nexcept WriterBusy: print('writer-busy');sys.exit(0)\nsys.exit(3)"
+        code = "import json,sys; from research.control.rsi_coordinator import RSIProgram; from research.control.research_controller import WriterBusy\ntry: RSIProgram(sys.argv[1],spec=json.load(open(sys.argv[2])))\nexcept WriterBusy: print('writer-busy');sys.exit(0)\nsys.exit(3)"
         with RSIProgram(self.directory, spec=spec):
             child = subprocess.run([sys.executable, "-c", code, str(self.directory), str(path)], cwd=ROOT, capture_output=True, text=True, timeout=10)
         self.assertEqual(child.returncode, 0, child.stderr)
@@ -300,7 +300,7 @@ class CoordinatorTests(unittest.TestCase):
     def test_exact_command_and_code_identity_cannot_be_overridden(self):
         spec = self.spec()
         for mutate in (lambda p: p["cycles"][0]["cases"][0]["argv"].append("--execute"),
-                       lambda p: p["code_hashes"].update({"research/rsi_coordinator.py": "0" * 64}),
+                       lambda p: p["code_hashes"].update({"research/control/rsi_coordinator.py": "0" * 64}),
                        lambda p: p["cycles"][0]["cases"][0].update(financial_slots=8)):
             changed = copy.deepcopy(spec); mutate(changed)
             with self.assertRaisesRegex(RSIError, "changed"):
@@ -331,7 +331,7 @@ class CoordinatorTests(unittest.TestCase):
     def test_launch_error_consumes_attempt_and_retains_error(self):
         spec = self.spec()
         with RSIProgram(self.directory, spec=spec) as program:
-            with patch("research.rsi_coordinator.subprocess.Popen", side_effect=OSError("fixture exec unavailable")):
+            with patch("research.control.rsi_coordinator.subprocess.Popen", side_effect=OSError("fixture exec unavailable")):
                 result = program.execute("c1", "a")
             self.assertEqual(result["status"], "failed")
             self.assertEqual(program.usage()["launch_reservations"], 1)
@@ -348,7 +348,7 @@ class CoordinatorTests(unittest.TestCase):
                 if kind == "launched":
                     raise OSError("fixture journal unavailable")
                 return original(kind, payload)
-            with patch.object(program, "_append", side_effect=fail_launched), patch("research.rsi_coordinator.subprocess.Popen", return_value=child), patch("research.rsi_coordinator.os.killpg") as kill:
+            with patch.object(program, "_append", side_effect=fail_launched), patch("research.control.rsi_coordinator.subprocess.Popen", return_value=child), patch("research.control.rsi_coordinator.os.killpg") as kill:
                 with self.assertRaisesRegex(OSError, "journal unavailable"):
                     program.execute("c1", "a")
             kill.assert_called_once()
@@ -409,13 +409,29 @@ class CoordinatorTests(unittest.TestCase):
             self.assertEqual(program.usage()["launch_reservations"], 1)
             self.assertTrue(program.execute("c1", "a")["cached"])
 
+    def test_missing_execution_authority_before_first_attempt_cannot_reset_deadline(self):
+        spec = self.spec(wall_seconds=30)
+        with RSIProgram(self.directory, spec=spec) as program:
+            deadline = program.state["deadline_epoch"]
+            self.assertEqual(program.usage()["launch_reservations"], 0)
+        controller_before = (self.directory / "controller/events.jsonl").read_bytes()
+        (self.directory / "execution.jsonl").unlink()
+        (self.directory / "execution-state.json").unlink()
+        with patch("research.control.rsi_coordinator.time.time", return_value=deadline + 100):
+            with patch.object(RSIProgram, "_run_process", side_effect=AssertionError("No launch")):
+                with self.assertRaisesRegex(RSIError, "Missing execution authority"):
+                    RSIProgram(self.directory, spec=spec)
+        self.assertFalse((self.directory / "execution.jsonl").exists())
+        self.assertFalse((self.directory / "execution-state.json").exists())
+        self.assertEqual(controller_before, (self.directory / "controller/events.jsonl").read_bytes())
+
     def test_preflight_adapter_is_exact_read_only_no_financial_options(self):
-        case = incremental_preflight_case("saved")
+        case = saved_preflight_case("saved")
         # A mock replaces the process, so this unit test does not inspect market data.
-        with patch("research.rsi_coordinator._saved_preflight_inputs", return_value={}):
+        with patch("research.control.rsi_coordinator._saved_preflight_inputs", return_value={}):
             spec = self.spec(cycles=[self.cycle("c1", [case])])
             argv = spec["cycles"][0]["cases"][0]["argv"]
-            self.assertEqual(argv, [sys.executable, "-m", "research.incremental_sizing"])
+            self.assertEqual(argv, [sys.executable, str(ROOT / "scripts/current/rsi_foundation.py"), "preflight", "--attest"])
             with RSIProgram(self.directory, spec=spec) as program:
                 result_process = subprocess.CompletedProcess(argv, 0, b"Preflight passed; zero financial attempts\n", b"")
                 with patch.object(program, "_run_process", return_value=result_process):
@@ -429,7 +445,7 @@ class CoordinatorTests(unittest.TestCase):
 
     def test_cycle_contract_budget_and_artifacts_are_enforced(self):
         from tests.test_rsi_contracts import valid_cycle
-        from research.rsi_coordinator import digest
+        from research.control.rsi_coordinator import digest
         contract = valid_cycle()
         contract.update(program_id="test-program", cycle_id="c1")
         contract["artifacts"] = [{"path": "requirements.txt", "sha256": digest(ROOT / "requirements.txt")}]

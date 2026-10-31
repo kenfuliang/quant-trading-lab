@@ -1,12 +1,12 @@
 ---
-status: proposed
-updated: 2026-10-27
+status: active
+updated: 2026-10-31
 owner: research-maintainers
 ---
 
 # Research decision brief template
 
-Proposed complementary presentation template. Copy only for a concrete saved
+Complementary presentation template. Copy only for a concrete saved
 cycle/task; replace prompts and remove inapplicable branches. Aim for one page
 of core findings and link complete tables. This brief derives from authoritative
 evidence; it does not replace the [cycle record](research-cycle.md), its machine

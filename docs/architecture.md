@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -98,7 +98,7 @@ to publish credentials or datasets with unverified redistribution rights.
 
 ## Algorithm decision hierarchy
 
-[GRS-1.0](research-standard.md#minimal-pipeline) owns the minimal two-decision
+[GRS-1.1](research-standard.md#minimal-pipeline) owns the minimal two-decision
 pipeline, optional stage versions and adoption rules. This section owns the
 expanded component wiring only; it does not maintain another version sequence.
 The [cycle register](research-cycles.md) points to actual experiment records.
@@ -386,13 +386,13 @@ flowchart LR
     G --> A
 ```
 
-`research/research_controller.py` owns hash-chained decision events, idempotent
+`research/control/research_controller.py` owns hash-chained decision events, idempotent
 operations, logical/resource reservations and branch state. Its journal is local
 research history, not broker truth or proof of native node recovery.
-`research/bounded_study.py` owns strict saved-SPY plans, per-plan case limits,
+`research/studies/spy/bounded_study.py` owns strict saved-SPY plans, per-plan case limits,
 finite/coverage guards, output hashes and verified cache reuse. The coordinator
 currently enforces the aggregate financial ceiling and deadline outside that runner.
-`research/scoring.py` owns score consistency and ordering; [scoring](research-scoring.md)
+`research/control/scoring.py` owns score consistency and ordering; [scoring](research-scoring.md)
 owns meanings. `reporting/temporal.py` owns descriptive path calculations.
 The research ledger remains the existing Python simulator; neither this slice nor
 its tests establish Nautilus execution parity or new instrument support.
@@ -416,12 +416,12 @@ flowchart LR
     V --> R[Version registry: explicit scoped disposition]
 ```
 
-`research/rsi_contracts.py` owns RSI-CYCLE-1 validation and the narrow saved-C001
-lesson check. `research/rsi_coordinator.py` owns fixed registered commands,
+`research/control/rsi_contracts.py` owns RSI-CYCLE-1 validation and the narrow saved-C001
+lesson check. `research/control/rsi_coordinator.py` owns fixed registered commands,
 launch reservations, output preservation and safe stopped recovery under the
-controller's writer lock. `research/rsi_adoption.py` owns frozen evaluation
+controller's writer lock. `research/control/rsi_adoption.py` owns frozen evaluation
 context, numerical gate consistency and append-only version/rollback records.
-`scripts/rsi_foundation.py` joins these for the scoped demonstration and known
+`scripts/current/rsi_foundation.py` joins these for the scoped demonstration and known
 synthetic process comparison. Module existence is distinguished from its actual
 test/demo evidence in the checklist.
 
@@ -452,3 +452,219 @@ move is adopted by that proposal; this document remains the module/state owner.
 Add modules with their first concrete use. Keep native interfaces visible and
 introduce adapters where behavior varies, such as fake versus IB communication.
 No speculative database/migration package is needed for the native baseline.
+
+
+### Research package layout and frozen compatibility
+
+The proposed grouping is now implemented for the published research code:
+
+```text
+research/
+├── features/          causal feature transforms
+├── policies/          signals, allocation overlays and risk-gate rules
+├── evaluation/        financing ledger, reconciliation and input/temporal audits
+├── control/           catalogue access, scoring and research journal/controller
+├── studies/spy/       bounded runner, engine fixture, reports and historical adapters
+├── plans/             preserved study definitions; new gate plans use current/
+├── compatibility.json immutable old-file hashes and canonical module mapping
+└── *.py               frozen legacy implementations, retained for reproduction
+scripts/current/       current command entrypoints
+scripts/*.py           preserved legacy commands and unaffected operational tools
+tests/current/         behavioral suite for current implementations
+tests/test_*.py        preserved legacy coverage plus migration checks
+```
+
+New development imports the concrete implementations in these packages, rather
+than forwarding to flat modules. The machine-readable
+[compatibility manifest](../research/compatibility.json) owns the exact old-to-new
+mapping and baseline hashes. The legacy copies are intentional immutable source
+inputs, not second development owners. Never synchronize current edits back into
+them. Existing commands/imports therefore retain their original behavior and byte
+identity. Original test files remain unchanged; their migrated counterparts test
+the current graph. `tests/test_package_compatibility.py` checks frozen bytes,
+imports, source identity separation, CLI discovery and synthetic output parity.
+
+`make strategy-suite` and `make leverage-comparison` select current commands.
+For a new bounded plan use `scripts/current/bounded_study.py`; old
+`scripts/bounded_study.py` and flat imports remain the historical route. Current
+runners hash their new source paths; a legacy plan is rejected there rather than
+silently acquiring a different implementation. Existing hash/data failures in
+old plans remain failures. This migration never renews financial budgets.
+
+Historical gate adapters in the current namespace require separately prepared
+`research/plans/current/` plans, use `.local/current-risk-gate/` state and
+`reports/current-risk-gate/` outputs. Those plans are not generated or executed
+by this infrastructure change. Synthetic ETF probes likewise isolate state under
+`.local/current-etf-readiness/`. Historical comparisons still read their original
+report references. No historical report, plan or journal is renamed or rewritten.
+
+Shared metrics, saved-result adapters and renderers remain in `reporting/`, broker
+observation in `paper_trading/`. Ignored `data/` and `.local/` retain their roles.
+`research/README.md` remains the frozen SPY methodology. The primary checkout's
+unpublished later research is outside this published-main migration; move it only
+with its own source-identity review. No NautilusTrader or MLflow source changes,
+dependency upgrades or new financial results are part of this change.
+
+[Content/report conventions](README.md#content-structure) own document structure;
+[foundation adoption](tasks/2026-10-27-project-foundation-adoption.md) records this
+slice and remaining gaps without changing M1–M5 priority or runtime readiness.
+
+### Enforced Python dependency boundaries
+
+The executable layer policy lives in [`scripts/check_boundaries.py`](../scripts/check_boundaries.py).
+`make boundaries-check` runs it without importing application code; `make check`
+and the existing PR/push CI workflow include that gate. The
+[implementation review](tasks/2026-10-27-dependency-boundaries.md) records acceptance
+and the structural score; these are infrastructure findings, not strategy results.
+
+```mermaid
+flowchart TD
+    CMD[Current commands] --> STUDY[Studies]
+    STUDY --> POL[Policies]
+    STUDY --> EVAL[Evaluation and independent audits]
+    STUDY --> CTRL[Research control]
+    POL --> FEAT[Features]
+    EVAL --> REPORT[Shared reporting and metrics]
+    CMD --> PAPER[Paper observation tools]
+    CI[CI boundary gate] -.-> CMD
+    CI -.-> STUDY
+    LEGACY[Frozen legacy implementations: preserved, exempt from layering]
+```
+
+Reusable research/reporting/broker packages cannot import commands or tests.
+Features remain independent of higher layers; policies can use features, evaluation
+can use policies/features/reporting, and control remains separate from execution.
+Studies compose those pieces. Reporting and broker observation stay independent of
+research orchestration. The code policy owns the exact allowlist; all current
+project Python modules in these roots are checked, including future modules.
+Unknown flat research modules fail instead of inheriting a permissive exemption.
+Static dependency cycles also fail.
+
+[`research/evaluation/saved_review.py`](../research/evaluation/saved_review.py)
+owns the four unchanged independent saved-ledger review functions. Current callers
+import that library. Its metrics remain separate from the primary ledger and
+reporting calculations so extraction does not collapse independent checking.
+The current reviewer CLI records its own and the helper's hashes. Current study
+code lists and derived-review provenance reference the helper's new path.
+
+The compatibility manifest retains exactly the original protected-file hash map;
+its owner mapping additionally points the frozen reviewer to the new library and
+current command. Frozen legacy research/scripts/tests keep their original imports
+and bytes; current implementations cannot import them. Shared reporting and broker
+modules may be both hash-protected and current: they are checked for layering,
+not misclassified as obsolete just because their bytes are preserved.
+
+The checker resolves ordinary, relative, member, function-local and type-checking
+imports, recognizable literal dynamic imports and aliases. Nonliteral dynamic
+imports and recognized opaque Python loaders fail the checked contract. Tests
+exercise rejected imports/cycles, frozen tampering and the actual Make target's
+nonzero exit. This is static architecture enforcement, not a security sandbox,
+complete runtime dependency graph, third-party side-effect audit or validation of
+subprocess command targets. Arbitrary reflection and monkey-patching are outside
+its guarantee. Tests may deliberately use both graphs for compatibility checks.
+
+### Research evidence index
+
+The [generated evidence index](research-evidence-index.md) and
+[machine-readable view](research-evidence-index.json) provide navigation across
+published study definitions, receipts, result reports, failure narratives and
+lessons. They do not own result truth or supersede [GRS](research-standard.md).
+The [registry](../research/evidence-registry.json) owns curated study membership,
+plan ownership and explicit evidence references; source records retain all claims.
+The [generator](../research/control/evidence_index.py) owns deterministic rendering
+and validation. These are separate responsibilities, not duplicate result stores.
+
+```text
+Curated registry + original plans/tasks/receipts/reports
+                         ↓ validate and hash referenced files
+                  JSON + Markdown index
+                         ↓ compare committed generated bytes
+                    PR/push CI gate
+```
+
+Every indexed study has plans/results/failures/lessons slots. A published reference
+has a kind (plan, receipt, report, narrative or artifact), path, optional verified
+Markdown heading, note and derived SHA-256. Missing/unpublished/not-applicable
+slots require reasons and never receive clickable nonexistent artifact paths.
+A published receipt is not evidence that all of its underlying raw files are
+published. Failure references can be counterevidence or narrative context; notes
+must distinguish them from actual failed execution artifacts. Unknown failures
+are not zero failures, and a plan is not execution authorization.
+
+All JSON plans under `research/plans/`, including future nested plans, require
+exactly one study owner. Other task/receipt files are listed separately as unassigned
+supporting records, without inferring a research study from a filename. Initial
+coverage is the published plans, named legacy studies/diagnostics and the existing
+local-only C001 pointer; unpublished later research is not silently imported.
+This is not an exhaustive historical attempt reconstruction.
+
+`make research-index` regenerates only the two derived views. `make evidence-index-check`
+validates registry fields, plan coverage, reference existence/allowed local paths,
+Markdown heading anchors and committed output equality without writing. It is part
+of `make check`, already used by PR/push CI. Referenced source changes refresh hashes
+and make the view stale until regenerated. No network, broker, database, MLflow or
+financial execution is involved. Ordinary tests use disposable fixtures.
+
+Generation has no runtime timestamp or machine-local paths, and never inspects
+unpublished local artifacts. It validates all inputs before output writes; each
+output is atomically replaced. The two files are not a transactional database;
+CI detects partial/stale output if interrupted. Reference checking proves navigation
+and recorded bytes, not financial accuracy, source authenticity, schema validation
+of arbitrary receipts, complete claim-to-source alignment or backup/restore.
+
+### Closed evidence recovery
+
+[`research/control/evidence_recovery.py`](../research/control/evidence_recovery.py)
+owns manifest-qualified closed file-bundle copy/restore. The
+[recovery SOP](operations/evidence-recovery.md) owns operation and limitations.
+The current CLI records a separately pinned inventory hash; full inventories
+remain private. Source and restored bundles keep their original manifest bytes,
+terminal status and failures. Existing destinations are never merged/overwritten.
+No financial execution is imported or invoked. The [scoped drill](tasks/2026-10-27-evidence-recovery.md)
+is same-machine file recovery, not proof of complete project/store/disaster recovery.
+
+
+## Offline RSI foundation
+
+```mermaid
+flowchart LR
+    C[Cycle contract] --> P[Immutable bounded program]
+    P --> X[RSI coordinator]
+    X --> J[Existing current ResearchController journal]
+    X --> A[Fixed synthetic or saved-evidence checker]
+    A --> V[Artifact/context verification]
+    V --> R[Synthetic adoption or provisional financial disposition]
+```
+
+`research/control/rsi_contracts.py` owns RSI-CYCLE-1, contained artifact reads and
+the pinned saved-C001 lesson. The byte-matched installed
+`research/control/legacy_control_contract.py` verifies its narrow diagnostic
+transition; historical source bytes are checked but never executed.
+`research/control/rsi_coordinator.py` owns fixed commands, aggregate launch/time
+bounds, retained output and stopped ambiguous recovery under the existing current
+controller's single-writer lock. `research/control/rsi_adoption.py` owns exact
+context, numerical gates and append-only disposition/rollback records.
+`scripts/current/rsi_foundation.py` owns operator arguments and the bounded demo.
+[The SOP](operations/recursive-research.md) owns handoffs and command semantics;
+[the integration task](tasks/2026-10-27-rsi-integration.md) owns observed validation.
+
+No current module imports a frozen implementation or loads a historical runner.
+The fixed saved-preflight adapter requires authenticated inputs within its checkout
+before reservation; the standalone read-only CLI can check an explicit external
+history root without importing code from it. Missing private evidence is unavailable,
+not a synthetic pass. Financial execution is disabled. No NautilusTrader/MLflow
+source, dependency, broker state or financial incumbent changes.
+
+### Checkpoint integration reuse seams
+
+The2026-10-31checkpoint preserves frozen local implementations and ports current
+commands to canonical study/control packages. `research/compatibility.json` owns
+byte identities and exact paper/research reuse seams: credential parsing, native
+SPY strategy/configuration, pure T11 indicators and the risk policy. This is not
+permission for paper code to import arbitrary studies or descendant modules.
+
+The existing read-only T11 preview has one reviewed whole-file-SHA-bound opaque
+loader exception. Its private source must match `POLICY_HASH` before loading.
+Only `runpy.run_path` in that exact file/version is exempted from the static rule;
+changed bytes, other files and other loaders remain rejected. Static checking is
+not a sandbox or proof of policy purity, runtime readiness or order authorization.

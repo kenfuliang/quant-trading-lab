@@ -26,7 +26,7 @@ flowchart LR
 
 ## Frozen acquisition scope
 
-[Plan](../../.local/sector-acquisition-20261028/plan.json) freezes collector,
+Plan (`../../.local/sector-acquisition-20261028/plan.json`; private/local artifact, not published) freezes collector,
 helper/calendar/dependency/test identities before networking. New exclusive
 dataset ID: `alpaca-sector-etfs-2016-2025-v1`. Ten fixed sector ETFs
 XLB/XLE/XLF/XLI/XLK/XLP/XLRE/XLU/XLV/XLY plus SPY. Raw daily SIP OHLCV,

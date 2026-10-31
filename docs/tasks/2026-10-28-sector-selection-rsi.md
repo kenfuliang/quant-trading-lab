@@ -58,7 +58,7 @@ These advisory reviews are separate perspectives, not independent market validat
 versus SPY0.437 and longest underwater195 versus488sessions, with lower
 CAGR13.630% versus13.950% and more closes underwater. Those historical hosted
 summaries motivate the question; they are not qualified local financial inputs.
-The [earlier synthetic selector](../../.local/stage-wave1-20261027/target_selection/docs/tasks/2026-10-27-wave1-target-selection.md)
+The earlier synthetic selector (`../../.local/stage-wave1-20261027/target_selection/docs/tasks/2026-10-27-wave1-target-selection.md`; private/local artifact, not published)
 already explored risk-adjusted ranking. Novelty here is the prospective matched
 sector financial test, not invention of volatility-adjusted momentum. Exhaustive
 absence of duplicates across every project experiment is unverified.

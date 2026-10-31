@@ -104,7 +104,13 @@ class RecoveredSkillWorkflowTests(unittest.TestCase):
                 if field == 'source_path' and not path.exists():
                     # Ignored isolated checkouts are provenance, not CI inputs.
                     continue
-                self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), item[digest])
+                actual = hashlib.sha256(path.read_bytes()).hexdigest()
+                if field == 'installed_path' and actual != item[digest]:
+                    archive = json.loads((ROOT / 'docs/history/skills/checkpoint-archive.json').read_text())
+                    historical = ROOT / archive['by_sha256'][item[digest]]
+                    self.assertEqual(hashlib.sha256(historical.read_bytes()).hexdigest(), item[digest])
+                else:
+                    self.assertEqual(actual, item[digest])
         for item in evidence['walkthroughs']:
             path = ROOT / item['evidence']
             self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), item['evidence_sha256'])

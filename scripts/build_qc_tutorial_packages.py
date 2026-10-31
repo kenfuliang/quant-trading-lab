@@ -12,8 +12,8 @@ from urllib.parse import quote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from research.qc_source_review import inspect_html
-from research.qc_tutorial_packages import digest, inspect_python, license_gate, make_archive, archive_inventory
+from research.studies.checkpoint_20261031.qc_source_review import inspect_html
+from research.studies.checkpoint_20261031.qc_tutorial_packages import digest, inspect_python, license_gate, make_archive, archive_inventory
 
 RAW = ROOT / '.local/qc-tutorial-packages-v1'
 OLD = ROOT / '.local/qc-detail-rights-v1'

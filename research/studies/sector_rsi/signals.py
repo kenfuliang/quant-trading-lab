@@ -2,7 +2,7 @@
 import math
 import pandas as pd
 
-from research.sector_corporate_actions import SYMBOLS
+from research.studies.checkpoint_20261031.sector_corporate_actions import SYMBOLS
 
 
 def breadth_timeline(indexes):

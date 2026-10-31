@@ -11,21 +11,21 @@ input identity, dates/splits, benchmark, costs/financing, metrics and stopping
 conditions. Resolve missing decisions that alter the experiment before running;
 do not fill them using whichever setting improves the observed score.
 
-Inspect the current runner and saved inputs before choosing an entrypoint. The
-bounded saved-SPY path is `scripts/bounded_study.py PLAN.json`: default is preflight;
+Inspect the current runner and saved inputs before choosing an entrypoint. For an existing frozen plan, use its original script/import paths and preserve its source hashes. New plans use the canonical paths below; see the [compatibility contract](../../../docs/architecture.md#research-package-layout-and-frozen-compatibility). The
+bounded saved-SPY path is `scripts/current/bounded_study.py PLAN.json`: default is preflight;
 `--execute` runs the exact supported plan. Follow the
 [execution contract](../../../docs/research-development.md#experiment-execution),
 including coordinator reservation of aggregate financial attempts/deadline before
 launch; its per-plan case limit does not enforce a multi-study budget. Match the
-actual schema/support in `research/bounded_study.py`; preserve prior failed outputs.
+actual schema/support in `research/studies/spy/bounded_study.py`; preserve prior failed outputs.
 
 For the catalogue batch, the
-existing `scripts/strategy_suite.py` has fixed strategy IDs, exposure targets,
+existing `scripts/current/strategy_suite.py` has fixed strategy IDs, exposure targets,
 source path and financial assumptions; it is not a generic arbitrary-plan runner.
 Only use it when that exact batch is requested. From the repository root:
 
 ```sh
-.venv/bin/python scripts/strategy_suite.py --skip-import --workers 3
+.venv/bin/python scripts/current/strategy_suite.py --skip-import --workers 3
 ```
 
 `--skip-import` avoids the otherwise automatic MLflow import; it still renders

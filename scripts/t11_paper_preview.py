@@ -11,7 +11,7 @@ import urllib.parse
 import urllib.request
 from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from research.alpaca_pilot import credentials,NoRedirect
+from research.studies.checkpoint_20261031.alpaca_pilot import credentials,NoRedirect
 from paper_trading.t11_pilot import SYMBOLS
 from paper_trading.t11_preview import close_map,features,gate_preview,pinned_policy
 NY=ZoneInfo('America/New_York')

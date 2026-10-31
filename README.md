@@ -4,6 +4,23 @@ Updated 2026-10-30 (America/Los_Angeles). This file owns current capability stat
 and project entrypoints. The active priority is infrastructure, using Python and
 NautilusTrader locally without QuantConnect.
 
+## Current package layout
+
+Research implementations now live in `research/features/`, `policies/`,
+`evaluation/`, `control/` and `studies/spy/`. Use `scripts/current/` for new research
+commands; existing flat source paths remain frozen for saved experiments.
+The [architecture and compatibility contract](docs/architecture.md#research-package-layout-and-frozen-compatibility)
+explain the mapping, preserved entrypoints and separate source identities.
+[Migration evidence](docs/tasks/2026-10-27-code-reorganization.md) records the offline
+checks. Historical command examples below retain their original reproduction role.
+
+Current dependency directions are enforced by `make boundaries-check` and CI;
+see the [boundary contract](docs/architecture.md#enforced-python-dependency-boundaries).
+
+Closed file-bundle recovery is tested for one completed and one failed historical
+bundle; see the [SOP and limits](docs/operations/evidence-recovery.md). General
+database, tracking-store and disaster recovery remain unverified.
+
 ## Start here
 
 - [Six-ETF T11 selector comparison](docs/tasks/2026-10-30-t11-universe-comparison.md) — four provisional result rows; selector trails fresh gated T11, bounded budget closed, missing audits and comparisons preserved
@@ -16,7 +33,11 @@ NautilusTrader locally without QuantConnect.
 
 - [T11 official export validation](docs/tasks/2026-10-29-t11-export-validation.md) — both result downloads verified; candidate closing paths match prior summaries, while decision/input/native-execution gates remain blocked
 
+- [Generated research evidence index](docs/research-evidence-index.md) — plans, results, failures, lessons and explicit publication gaps
+
 - [Documentation map and conventions](docs/README.md)
+- [Project foundation and report formats](docs/tasks/2026-10-27-project-foundation-adoption.md)
+- [Golden research standard and cycle register](docs/research-standard.md)
 - [Teams, skills, routing and readiness](docs/skills.md)
 - [Canonical research leaderboard](docs/leaderboard.md) — saved results grouped by comparable context, with risk and temporal metrics
 - [Parallel RSI diagnosis and readiness](docs/tasks/2026-10-28-rsi-readiness-wave.md) — saved SPY attribution, blocked selector reconstruction and isolated synthetic execution-record audit; zero new financial runs
@@ -46,16 +67,19 @@ Define outcome → implement one slice → verify offline → record evidence
 | Capability | State and evidence |
 | --- | --- |
 | Development workflow and SOPs | Established in `docs/`; project skills in `.agents/skills/` |
+| Research documentation foundation | [GRS-1.0](docs/research-standard.md), cycle/decision/paper templates and [folder/content conventions](docs/tasks/2026-10-27-project-foundation-adoption.md); documentation availability does not imply automatic enforcement |
 | ML modeling and ML infrastructure advisers | Advisory availability is listed in the [catalog](docs/skills.md#available-advisory-skills); RSI handoff defined; [contracts](docs/advisory-team.md#ml-team-handoff-in-rsi). Consultation available; no generic training/orchestration or inference service implemented |
 | Research management and stage workflows | Recovered `/ask-pm`, `trade-research-management` and `trade-stage-development` instructions with provenance; [catalog](docs/skills.md) owns discovery. Offline receipt validation and descriptive readiness summaries added; [repair evidence](docs/tasks/2026-10-30-skills-sop-repair.md). No scheduler, generic runner enforcement or order authorization |
 | Bounded research skills | Available workflows are listed in the [catalog](docs/skills.md#available-research-workflows); [procedure](docs/research-development.md), [evaluation receipt](docs/tasks/2026-10-25-research-skills.md). Instructions support scoped offline work; no unattended optimizer or broker promotion implemented |
+| Stage development workflow | Shared [skill/catalog](docs/skills.md), [stage procedure](docs/research-development.md#individual-stage-development) and RSI handoffs; [one unchanged risk/sizing exercise](docs/tasks/2026-10-27-stage-development-skill.md) with synthetic integration checks. No generic stage runner or financial improvement established |
+| Offline RSI foundation | Strict cycle contracts, aggregate fixed-adapter coordinator and synthetic adoption/rollback under `research/control/`; [SOP](docs/operations/recursive-research.md), [integration evidence](docs/tasks/2026-10-27-rsi-integration.md). Saved C001 preflight requires private qualified history and reports unavailable when absent; financial adapters and automatic improvement remain unsupported |
 | Research scoring and decision control | Versioned evidence gates, raw-unit Pareto comparisons, bounded action priority and hash-chained reserve/record journal implemented; three pilot decisions, eight audited new cases and fresh adversarial review. [Review package](docs/tasks/2026-10-25-recursive-research-review.md); caller evidence verification and coordinator-enforced aggregate financial limits remain necessary |
-| RSI foundation | Strict cycle contracts, saved C001 lesson preflight, offline execution coordinator and version/evidence registry; [implementation checklist and actual verification](docs/tasks/2026-10-27-rsi-foundation-implementation.md), [skills/SOP handoffs](docs/operations/recursive-research.md). Default execution adapters remain synthetic/read-only. A [fixed C02 local adapter](.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md) in the isolated checkout verified six captured financial cases; its candidate was rejected and budget closed. Generic financial adapters and autonomous scientific improvement remain unavailable |
+| RSI foundation | Strict cycle contracts, saved C001 lesson preflight, offline execution coordinator and version/evidence registry; [implementation checklist and actual verification](docs/tasks/2026-10-27-rsi-foundation-implementation.md), [skills/SOP handoffs](docs/operations/recursive-research.md). Default execution adapters remain synthetic/read-only. A fixed C02 local adapter (`.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md`; private/local artifact, not published) in the isolated checkout verified six captured financial cases; its candidate was rejected and budget closed. Generic financial adapters and autonomous scientific improvement remain unavailable |
 | Temporal performance diagnostics | Rolling observed-session returns/Sharpe, deepest versus longest drawdowns, recovery/censoring and historical daily ES95; [research review](docs/tasks/2026-10-25-recursive-research-review.md). Descriptive history, not current risk signals or loss bounds |
 | Decision logs and outcome labels | Saved SPY gate inputs reconstructed separately from execution and matured5/21/63-session outcomes; protection, missed-rebound and already-cash warning analysis. [Contract](docs/research-development.md#decision-logs-and-outcome-labels), [review](http://127.0.0.1:8765/gate-decisions/20261025-v2/index.html). Prospective/live capture remains planned |
 | Feature engineering | Project-local skill, versioned three-feature registry and causal saved-SPY diagnostic implemented; [contract](docs/feature-engineering.md), [first test](docs/tasks/2026-10-25-feature-engineering-skill.md). Descriptive associations only; no trained predictor or changed strategy |
 | Local environment | Python 3.12 `.venv`; NautilusTrader 1.231.0 pinned in requirements.txt; exact packages in requirements.lock.txt |
-| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Hosted push/PR checks verify locked dependency installation, documentation and the checked-out branch’s offline suite; no deployment or broker operation |
+| GitHub Actions CI | PR/push workflow runs `make check` on Ubuntu/Python 3.12; [contract](docs/workflow.md#continuous-integration). Hosted push/PR checks verify locked dependencies, documentation, dependency layers, frozen file hashes and the checked-out branch’s offline suite; no deployment or broker operation |
 | Offline regression checks | `make check`; tests use fixtures and build observer configuration without connecting |
 | IBKR observation tools | Implemented in `paper_trading/`; `scripts/paper.py` exposes doctor, probe, observe; no execution client |
 | Broker verification | Blocked by paper-account access in the last observed session on 2026-10-24; no successful engine-to-broker connection recorded |
@@ -237,9 +261,10 @@ docs/               design, roadmap, SOPs, decisions, templates, task evidence
 reports/             dated historical evidence
 ```
 
-The [foundation proposal](docs/tasks/2026-10-27-project-foundation-proposal.md)
-maps folder/content responsibilities, reusable report templates and remaining
-foundations. Future grouping is proposed; historical paths remain intact.
+[Architecture](docs/architecture.md#repository-structure) owns folder responsibilities;
+[documentation conventions](docs/README.md#content-structure) own content and
+report-template selection. Future package grouping is forward-only and requires
+its own compatibility checks.
 
 `data/`, `vendor/`, `.venv/`, and `.local/` are ignored local material. Preserve
 source snapshots and prior reports. The retired LEAN setup is in `archive/lean/`.

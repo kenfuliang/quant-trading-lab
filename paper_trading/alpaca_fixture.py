@@ -8,7 +8,7 @@ import tempfile
 
 from nautilus_trader.model.data import Bar, QuoteTick
 from nautilus_trader.model.objects import Price, Quantity
-from research.spy_backtest import BAR_TYPE, INSTRUMENT_ID
+from research.studies.spy.spy_backtest import BAR_TYPE, INSTRUMENT_ID
 from paper_trading.alpaca import check_quote, validate_order, PaperError
 from paper_trading.alpaca_native import Context, started_node, stop_node
 
@@ -53,7 +53,7 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
         # Native Strategy.on_bar is the existing ComparisonStrategy method.
         base = datetime.now(timezone.utc) - timedelta(days=400)
         if saved_spy:
-            from research.spy_backtest import load_data
+            from research.studies.spy.spy_backtest import load_data
             path = Path(__file__).resolve().parents[1] / "reports/spy/20261024-235746-728801/source-data.json"
             frame, _, _ = load_data(path)
             warmup = frame.loc[:"2019-12-31"].tail(250)
@@ -98,7 +98,7 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
                   "signal_input": "saved_SPY_250_bars_to_2019_end_then_2020Q1" if saved_spy else "synthetic",
                   "timestamps": "synthetic_in_both_fixtures", "fake_fill_price": "fixed_100USD_not_historical_execution"}
         if saved_spy:
-            from research.alpaca_pilot import digest
+            from research.studies.checkpoint_20261031.alpaca_pilot import digest
             result["source_data_sha256"] = digest(path)
         return result
     finally:

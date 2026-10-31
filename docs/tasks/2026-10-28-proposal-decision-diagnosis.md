@@ -138,7 +138,7 @@ longer when baseline turns off. It is not honestly called an entry-only change.
 An always-long proposal under the SAME gate is the simpler exposure control:
 any improvement must beat a simpler policy rather than just more exposure.
 
-[Proposed C04 design](../../.local/rsi-calmar-20261028/research/plans/proposal-c04.proposed.json) is
+Proposed C04 design (`../../.local/rsi-calmar-20261028/research/plans/proposal-c04.proposed.json`; private/local artifact, not published) is
 **non-executable and authorizes zero financial attempts now**. A future separately
 approved bounded study proposes six cases,one worker,zero retries,5/10bp and the
 same costs/dates/accounting. Require≥10% netCalmar lift at both costs,no lower

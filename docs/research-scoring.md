@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -10,7 +10,7 @@ This document owns scoring meanings and research-selection interpretation.
 [Research development](research-development.md) owns lifecycle/handoffs;
 [goals](goals.md) owns the mandate and open investment choices; [roadmap](roadmap.md)
 owns platform readiness. The versioned machine contract is implemented in
-[research/scoring.py](../research/scoring.py); availability/test evidence is recorded
+[research/control/scoring.py](../research/control/scoring.py); availability/test evidence is recorded
 in the [ten-hour program](tasks/2026-10-25-recursive-research-program.md).
 This contract is initially a deterministic research heuristic, not trained RL/GAE,
 a calibrated expected-value model, investment advice or a promotion authority.

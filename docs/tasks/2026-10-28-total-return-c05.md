@@ -8,7 +8,7 @@ owner: research-maintainers
 
 Status: closed; fixed target rejected. This is cycle1 of
 [active epoch2](2026-10-28-rsi-epoch2.md); [GRS](../research-standard.md) owns
-acceptance. [Design](../../.local/rsi-calmar-20261028/research/plans/total-return-c05.design.json) freezes
+acceptance. Design (`../../.local/rsi-calmar-20261028/research/plans/total-return-c05.design.json`; private/local artifact, not published) freezes
 one upstream feature-representation change,not a new portfolio cash-flow model.
 
 ```mermaid

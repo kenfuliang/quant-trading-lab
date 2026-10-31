@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.experiment_receipts import validate_receipt
+from research.control.experiment_receipts import validate_receipt
 
 
 def main():

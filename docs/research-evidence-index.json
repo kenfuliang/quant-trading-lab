@@ -1,0 +1,2604 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-31",
+  "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials. Includes preserved local checkpoint plans; unmatched results/failures/lessons are explicitly unavailable.",
+  "authority": "Navigation only; present means file available, not independently verified or reproduced.",
+  "registry_sha256": "30d85fa78da3dc15d77cebb620755492109908dc8f6b7a35db336a40c1455f32",
+  "generator_sha256": "41f09be4e25fa31198c9863046506695e0da06656df01181b95fadd73c17291e",
+  "coverage": {
+    "studies": 54,
+    "published_plans": 52,
+    "unowned_plans": 0,
+    "supporting_records_unassigned": 215
+  },
+  "studies": [
+    {
+      "id": "checkpoint-calmar-epoch3-c1-frozen",
+      "title": "calmar-epoch3-c1.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/calmar-epoch3-c1.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "edd94d5c99be0267c74954f841b3e76aee4902ee6de900b56ba1ff01ed4808b7"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "deb4cbf153e574ff7b2b011509e17c1d3494475ccc864a87fd5e2f6e75178c9c"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "deb4cbf153e574ff7b2b011509e17c1d3494475ccc864a87fd5e2f6e75178c9c"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-calmar-epoch3.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "7837cb25790eb583129aa53f7fd922a62503d9192edfaaec7bc58d706fa6bf48"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-calmar-epoch3-c2-frozen",
+      "title": "calmar-epoch3-c2.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/calmar-epoch3-c2.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-calmar-epoch3-program",
+      "title": "calmar-epoch3.program",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/calmar-epoch3.program.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "2ed448d3118acc47b78fa076eaa73b1a1565b159401cfa42011ceb699fb51810"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "deb4cbf153e574ff7b2b011509e17c1d3494475ccc864a87fd5e2f6e75178c9c"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "deb4cbf153e574ff7b2b011509e17c1d3494475ccc864a87fd5e2f6e75178c9c"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-calmar-epoch3.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "7837cb25790eb583129aa53f7fd922a62503d9192edfaaec7bc58d706fa6bf48"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-capm-ablation-v1",
+      "title": "capm-ablation-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/capm-ablation-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "599017d9c502ecd725d21693928487e44e74752085bba09e31a3538d66a8f272"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-cost-stop-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "21dc2cf0b7d7e2a06d0ff2be6077b4a4da2675b04cc6f72d8b958b26adf53ca6"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-cost-stop-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "21dc2cf0b7d7e2a06d0ff2be6077b4a4da2675b04cc6f72d8b958b26adf53ca6"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-capm-cost-stop-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "0065d3b0738995bf54026be276822949f3881a145dff2c652223974473e5b599"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-capm-spy-v1",
+      "title": "capm-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/capm-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "d388775179a049560e9b000f1d7bd65a0e0ca97510a0e3c1f3c24b0d2371b088"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "fb56659cc6a5d97390a68c41d1cfa3b6da140461cb42d02d72b2878f7d22c95a"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "fb56659cc6a5d97390a68c41d1cfa3b6da140461cb42d02d72b2878f7d22c95a"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-capm-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "ca2fd094d1e616b2d1e194ad280462de1aa08edb51657f0cd7515165177bebe4"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-capm-spy-v1-accounting-retest",
+      "title": "capm-spy-v1.accounting-retest",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/capm-spy-v1.accounting-retest.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "9d9bef4c5fba89904339e70d81342a8a1ece044c9d63c6ed579ccc308fd057aa"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "fb56659cc6a5d97390a68c41d1cfa3b6da140461cb42d02d72b2878f7d22c95a"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "fb56659cc6a5d97390a68c41d1cfa3b6da140461cb42d02d72b2878f7d22c95a"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-capm-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "ca2fd094d1e616b2d1e194ad280462de1aa08edb51657f0cd7515165177bebe4"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-dual-thrust-spy-v1",
+      "title": "dual-thrust-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/dual-thrust-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "54f36dea13ae8daa40906bd71e6cd802b29af8cc0dc8f679e8b20a07505d7177"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-dual-thrust-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "481843a6667c5d4f5ae884d145f6dab54f08494511e14c9d7718e0d55ffa8cac"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-dual-thrust-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "481843a6667c5d4f5ae884d145f6dab54f08494511e14c9d7718e0d55ffa8cac"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-dual-thrust-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "49a8815bc818dbec749766d7afd878b3fb30540e2ad4aa0148a07b835e6e96da"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-grs-c001-continuous-sizing-v1",
+      "title": "grs-c001-continuous-sizing-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/grs-c001-continuous-sizing-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "0a49f435119a9b7575d124d7644626445a7f5bf86e6cf35aa3a37fa2c757d9b4"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-grs-c001-continuous-sizing.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "20cb8b10a57cefa8cc6dce314d5d1bf2a8130925e8b1bd41aac29d3170352cac"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-grs-c001-continuous-sizing.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "20cb8b10a57cefa8cc6dce314d5d1bf2a8130925e8b1bd41aac29d3170352cac"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-gscore-spy-v1",
+      "title": "gscore-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/gscore-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "d1deb93277c7d50582c711192a4672564005f2f5a4e89e1554492376f36f5394"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-gscore-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "8d37ae7441b5887a6a9660e3a06377d5b1b7d56dddd460d01d80af0f84801626"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-gscore-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "8d37ae7441b5887a6a9660e3a06377d5b1b7d56dddd460d01d80af0f84801626"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-gscore-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "42cedc01148aea7bda245162667ee918b5a284e02342854493fc61da81d1a5ce"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-multi-asset-unlock-v1-design",
+      "title": "multi-asset-unlock-v1.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/multi-asset-unlock-v1.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "a2c0e221fe3726a88920444011705c1166fdaf1355dd3bf745d37e82feeb1ee7"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-multi-asset-unlock-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "e0c5230050466cf88e635cdd28fc5ff6fe56a82d098388a80d2c09648cfd3935"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-multi-asset-unlock-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "e0c5230050466cf88e635cdd28fc5ff6fe56a82d098388a80d2c09648cfd3935"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc-breadth-v1",
+      "title": "qc-breadth-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc-breadth-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "b8543550f6740dd2a03adae4b81f750ab8049a072889d6cc6ab5cec7091a3c2c"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc-selection-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "8be0b433600bfb5e120214065cdaa60bc75a36d7376122651d2095d3dd1fbcb0"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc-selection-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "8be0b433600bfb5e120214065cdaa60bc75a36d7376122651d2095d3dd1fbcb0"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc-selection-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "da06a670804070bf448b3d5af535206709c4b181cea0a09f7ed766398606a8a1"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-ablation-v1",
+      "title": "qc504-ablation-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-ablation-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "a9b42422696d86b9547e00b2207973f5ffe0fd0ab6e8ba79c028cccc9a2ddae1"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "87d8a9a9aab749da97947ef036a090b756d0d81fda4252c3ba4252dd448e2da0"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "87d8a9a9aab749da97947ef036a090b756d0d81fda4252c3ba4252dd448e2da0"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-sleeve-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "4a7ae7e5e604311a960f16d7d67e5b2f0eb65fdc8d4fb67bfdf6dabb3ecdc8d2"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-ablation-v1-frozen",
+      "title": "qc504-ablation-v1.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-ablation-v1.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "4178d2ad41f57018163bfb8e9e4e33465c40cfd31469ee63e1568263cd780de0"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "87d8a9a9aab749da97947ef036a090b756d0d81fda4252c3ba4252dd448e2da0"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "87d8a9a9aab749da97947ef036a090b756d0d81fda4252c3ba4252dd448e2da0"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-sleeve-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "4a7ae7e5e604311a960f16d7d67e5b2f0eb65fdc8d4fb67bfdf6dabb3ecdc8d2"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-evaluation-v1",
+      "title": "qc504-evaluation-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-evaluation-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "7f449829bae9196091e66994fafaa6a067c4d453d17778a81230a3114a55d56d"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-evaluation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "5959facfad0722c62aedc383d84be3ff0388c8f33ed18e04a8e251e52d3267da"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-evaluation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "5959facfad0722c62aedc383d84be3ff0388c8f33ed18e04a8e251e52d3267da"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-evaluation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "f61dad9adfb141b6bc54fe38eba8351f7ffb69cfb54843b93520da9c1853313b"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-funded-v1",
+      "title": "qc504-funded-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-funded-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "9dd42f29cfa7aa9ad8774e7f712d3428b5de6dfae1f56337032d576aaba36061"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-funded-execution.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "70c471df165e40967f620c295fb360b86af7243e445b0f8b7949e43511e2401f"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-funded-execution.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "70c471df165e40967f620c295fb360b86af7243e445b0f8b7949e43511e2401f"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-funded-execution.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "1855fb156d4e4fec440b42fb1560fc22a0495ea04f5b922afc68679a19f3ddb3"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-t11-gate-v1",
+      "title": "qc504-t11-gate-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-t11-gate-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "21b832c870106805503cbcab8a2d33644a6cbec3a8bc23cb3580e6ce1c8a644b"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-t11-reproduction-rsi-goal.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "56797232e6a1fefa7861a23cd8d5755f043fbc2b0afbc41c51da1c3195a1c9c8"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-t11-gate.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "e5b0aa04282c109c4be32dbe815f3fb15e135d2246ae5f1536ad1cb77d296545"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-t11-reproduction-rsi-goal.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "56797232e6a1fefa7861a23cd8d5755f043fbc2b0afbc41c51da1c3195a1c9c8"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-t11-gate.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "e5b0aa04282c109c4be32dbe815f3fb15e135d2246ae5f1536ad1cb77d296545"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-t11-reproduction-rsi-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "46858f47e48f23a3e5149adc0c006133124fafc7f325433519798cda5ba9ff62"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-t11-gate.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "48fe37155893600480e26d9103f789a7b6cf7acbea71b95c854016e57d68d896"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-residual-momentum-rsi-v1",
+      "title": "residual-momentum-rsi-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/residual-momentum-rsi-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "6db7728c4bc2a3363b107e9d7eaadeceba06f742828a869bdffe88cb4a66eba6"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-comparison-issuer-v2-frozen",
+      "title": "sector-comparison-issuer-v2.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-comparison-issuer-v2.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "afb7403ebc7d5062bcb71939efab934bd3730499ef522176ee5d998c877baa4b"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-sector-comparison-issuer-v2.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "fc811e1377babad24b69443b477ad3605be49e975550c6d8c7bfb324276d900c"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-sector-comparison-issuer-v2.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "fc811e1377babad24b69443b477ad3605be49e975550c6d8c7bfb324276d900c"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-comparison-issuer-v2.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "168288b1413358626a1375bab94aa0edee0eb89c713f937b47f5b8aa7d2677b1"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-selection-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "7a643b048db4bba19dcbd5931d2d53b01378f4099da2d64e9a4d35914240a22b"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-gate-v1-frozen",
+      "title": "sector-gate-v1.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-gate-v1.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "f1025c9319353bb929554c0f02c83ddfcedd945638fed5e5c76048bf1585f049"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-gate-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "3bf2b05ddfb136c18f5f3e596a13088319b5d110eb9fba04dbd0ab91c2562419"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-gate-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "3bf2b05ddfb136c18f5f3e596a13088319b5d110eb9fba04dbd0ab91c2562419"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-matched-v1",
+      "title": "sector-matched-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-matched-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "b3be861ac5980673f497cf14c4e28c40598f7ecca55179b4b58ff747acdaae0e"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "4a147562765de3ed95148c922dbfdce400938bc305fc344fa4868654e7408d31"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "4a147562765de3ed95148c922dbfdce400938bc305fc344fa4868654e7408d31"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-sector-matched.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "0f9867415bb53114b05f192c46834a2e0d0f08602ab29cbfc75e0460e4642612"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-matched-v1-classifications",
+      "title": "sector-matched-v1.classifications",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-matched-v1.classifications.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "98d6c096db230a10c4c1988aeaf6ca29b8458e7acecfb72bc2c55e1a4cd3e337"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "4a147562765de3ed95148c922dbfdce400938bc305fc344fa4868654e7408d31"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "4a147562765de3ed95148c922dbfdce400938bc305fc344fa4868654e7408d31"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-sector-matched.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "0f9867415bb53114b05f192c46834a2e0d0f08602ab29cbfc75e0460e4642612"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-momentum-v1",
+      "title": "sector-momentum-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-momentum-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "375c65c011e5067cbe01ba43899a67f45699f12b3fae89ebd9f42780f91d6bbc"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1c7cb51040e1fba9146d9d7b0cc60fc1a928ffa052aa47f8f7482c10047c15f4"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1c7cb51040e1fba9146d9d7b0cc60fc1a928ffa052aa47f8f7482c10047c15f4"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-sector-momentum-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "00fcf99b83a3bb3fce6e8d4c4567bfc8e982e9828eba0cd6994f0adf591dcef1"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-momentum-v1-execution-repair",
+      "title": "sector-momentum-v1-execution-repair",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-momentum-v1-execution-repair.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "233fa5bd2d6c405f16f012a8ef544b622144ca8dba08f613b14835a6e5c52231"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1c7cb51040e1fba9146d9d7b0cc60fc1a928ffa052aa47f8f7482c10047c15f4"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1c7cb51040e1fba9146d9d7b0cc60fc1a928ffa052aa47f8f7482c10047c15f4"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-sector-momentum-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "00fcf99b83a3bb3fce6e8d4c4567bfc8e982e9828eba0cd6994f0adf591dcef1"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-selection-completion-v1",
+      "title": "selection-completion-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/selection-completion-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "fd7a1ee675ed9be0736dfbcb7da79fd9e126bc3e335df94663f1b2c55d76298f"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-selection-completion.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1a43c3fcb9f91704eb6e851be6fe11ff7975b02606b78953956e781e28b50041"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-selection-completion.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1a43c3fcb9f91704eb6e851be6fe11ff7975b02606b78953956e781e28b50041"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-completion.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "833798c820e288a2afe023c136e8ebd5ce4633c34e9e52291dc9fc98908f4301"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-research-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "eae00097d22b7d7a708ffee721345969b5bcb234a0701df2a0ccfc3a965157ac"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-selection-completion-v1-design",
+      "title": "selection-completion-v1.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/selection-completion-v1.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "5caa50a18051116062943c5628abcf279e62d9f1744297838e97c8413526e8ba"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-research-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "eae00097d22b7d7a708ffee721345969b5bcb234a0701df2a0ccfc3a965157ac"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-research-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "eae00097d22b7d7a708ffee721345969b5bcb234a0701df2a0ccfc3a965157ac"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-spy-gate-robustness-v1",
+      "title": "spy-gate-robustness-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-gate-robustness-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "1ddd9c98521e5498c93cb68dcb0066e22bf5ff84c146e856a73e2cdcff4c7329"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-gate-robustness-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "361dac99233cc667f67e0b326c2dfd9541a25e53db44474bba4343c6d7440edd"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-ema-volatility-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "98ba10bc49e4a77baa01aa8319023a5ad46b997fb1173bb8a18eafd04bfae2e8"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-gate-robustness-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "361dac99233cc667f67e0b326c2dfd9541a25e53db44474bba4343c6d7440edd"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-ema-volatility-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "98ba10bc49e4a77baa01aa8319023a5ad46b997fb1173bb8a18eafd04bfae2e8"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-stock-pairs-spy-v1",
+      "title": "stock-pairs-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/stock-pairs-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "079c23daed080960e2c5947fc0fb6950da226e1215b6df5da5860eaf38b33e05"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-pairs-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1acee981bca865c0ab6e3d61f9449194c1f508a73c46c5f91af6f796b15cba28"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-pairs-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "1acee981bca865c0ab6e3d61f9449194c1f508a73c46c5f91af6f796b15cba28"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-stock-pairs-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "d3ab954e6b5516e4261c6eae0b04b8ff46442429a4c4c9d781b80b8c028ed793"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-stock-risk-v1",
+      "title": "stock-risk-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/stock-risk-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "e19ffdd84ba29bc5660b9139242a56ce603a621823ef51a3ad55d1625a712574"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-risk-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "b83d4b06e79d60a25760d355acba5c7d1fd196539a8a14cc9577f8d5eb9a1f7f"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-risk-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "b83d4b06e79d60a25760d355acba5c7d1fd196539a8a14cc9577f8d5eb9a1f7f"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-stock-risk-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "0dda7cb3a0bfe86a57edf8ceed10d9ed188b6de46a8bfa0be1c602c96048325a"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-long-equity-universe-v1-design",
+      "title": "t11-long-equity-universe-v1.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-long-equity-universe-v1.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "85905a7df130329ae05850a1ede28f958bfc282de78333a282c9795a1ef6eedd"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-long-equity-universe.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "b7eb914f99bafca9b816e0291c0137c797d5e356c5083279062550ffe44eb7cf"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-long-equity-universe.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "b7eb914f99bafca9b816e0291c0137c797d5e356c5083279062550ffe44eb7cf"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-long-equity-universe-v2-design",
+      "title": "t11-long-equity-universe-v2.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-long-equity-universe-v2.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "9a72dc455af22aa4b0050195bfd74801f4189a875d9c604515c401f688a79e9c"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-research.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "2702777ece5b482b2b199a99767fb7935ab3ea6a0d085bea5f9b480a77bb4ce4"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-research.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "2702777ece5b482b2b199a99767fb7935ab3ea6a0d085bea5f9b480a77bb4ce4"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "d497f5b87652664c3aac850c0038e6cf5f3e0be8d0c6314f9a2d833dcc2484b8"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "f985f1279e0cdc6d837a32871ace7a6af5d57b98b2c434fab7baa893cbaa08a1"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-parallel-research-20261030",
+      "title": "t11-parallel-research-20261030",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-parallel-research-20261030.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "7d81f162beb722817554213d762217ce211f9f7df6baf38f5f4b91b254e8713d"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "fd17c49473a337b38186b82f2c1e9ec654963630aae47b8c0900ece6e2ad913d"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "fd17c49473a337b38186b82f2c1e9ec654963630aae47b8c0900ece6e2ad913d"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-parallel-research-20261030-launch",
+      "title": "t11-parallel-research-20261030.launch",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-parallel-research-20261030.launch.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "cc6e3e174a98118d79d9c22e5e1e0e380b8f507746e267ba2e67218b38ecbc8b"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "fd17c49473a337b38186b82f2c1e9ec654963630aae47b8c0900ece6e2ad913d"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "fd17c49473a337b38186b82f2c1e9ec654963630aae47b8c0900ece6e2ad913d"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-reproduction-rsi-v1-program",
+      "title": "t11-reproduction-rsi-v1.program",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-reproduction-rsi-v1.program.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "dab953e20e0483c3a6477c736768898a192856cffc4356c921fa692af8f31195"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-soxl-cash-v1",
+      "title": "t11-soxl-cash-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-soxl-cash-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "7c3300107ed3dd4345e1b16fda76eda409b855488d107478062223890a955ed1"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-soxl-cash.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "4f6bba953c78e774b4cd80894bd863167f9664eac23169164dcf8f36b62524a0"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-soxl-cash.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "4f6bba953c78e774b4cd80894bd863167f9664eac23169164dcf8f36b62524a0"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-capture-v1",
+      "title": "t11-universe-capture-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-capture-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "066012d27adb4e3a2f09eaeaf209d6c204254220b42859882132a1ca522764c6"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-capture-v2",
+      "title": "t11-universe-capture-v2",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-capture-v2.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "5001d420f54e217aa8fded892e66da8763eaa222df69e0b6af04fb778b9c8e51"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "d497f5b87652664c3aac850c0038e6cf5f3e0be8d0c6314f9a2d833dcc2484b8"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-capture-v3",
+      "title": "t11-universe-capture-v3",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-capture-v3.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "e5c13504e8abbe7bfe50ff340fe57fdfdd2c79e3d49902dd4f670100eb46ee2e"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-execution-v1",
+      "title": "t11-universe-execution-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-execution-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "2a6f1da7d222652c2344f3fcdb5efb702b3a460c1d5b58e3dcb0a52ccbab52bc"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-execution-v2",
+      "title": "t11-universe-execution-v2",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-execution-v2.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "fcbe4bdda64cc370f32cd4351847c32d3e82317213b150edfc55ddb8b3019b70"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "d497f5b87652664c3aac850c0038e6cf5f3e0be8d0c6314f9a2d833dcc2484b8"
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-execution-v3",
+      "title": "t11-universe-execution-v3",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-execution-v3.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged.",
+          "sha256": "46974a93743276925e09330344adf7cbe0bbd13c48b52776efc632931049f2c4"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative.",
+          "sha256": "de0e0764f44923eff2e229fb232d46c0163eaaab642eaa46898238d2f5cc5249"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements.",
+          "sha256": "d497f5b87652664c3aac850c0038e6cf5f3e0be8d0c6314f9a2d833dcc2484b8"
+        }
+      ]
+    },
+    {
+      "id": "continuous-cap-design",
+      "title": "Continuous volatility-cap proposal",
+      "family": "position sizing",
+      "reported_state": "proposed non-executable design",
+      "note": "A proposal, not an executed financial study or new budget.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-continuous-cap-development-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "bef826123183b0b0126e8a44cfafcb8199136717eb5b7f6c1d16bd978e7ab65a"
+        }
+      ],
+      "results": [
+        {
+          "state": "not_applicable",
+          "note": "Design explicitly requests no execution and allocates zero financial attempts."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_applicable",
+          "note": "No attempt is authorized by this design."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_applicable",
+          "note": "No executed-study lesson; parent results remain in the frozen design references."
+        }
+      ]
+    },
+    {
+      "id": "etf-readiness",
+      "title": "ETF diversification data/accounting readiness",
+      "family": "multi-asset prerequisites",
+      "reported_state": "financial comparison blocked",
+      "note": "Readiness and synthetic accounting evidence are distinct from completed multi-asset financial performance.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/etf-diversification-readiness-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "e4a04b22bfb3981da52c36235953b19c43d5bbdc7846877539914fc67f4c152a"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/etf-diversification-readiness-v1.frozen.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "adace794f4fda55beb79bc15a8feeb17c1f98c61ede2e7b2145b7b8d736b75d0"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-etf-readiness-completion.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "9d2ec12c8fd3340743894fe8f1ab79cd71d4dfd75ce14e4190d85caf654074cf"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-etf-readiness.md#exact-remaining-prerequisites",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "5c42ab244d1cfcce5a0fe40402ed2fb0fd9fc4e78107e137c4f39974b84d32ec"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-etf-readiness.md#completed-readiness-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "5c42ab244d1cfcce5a0fe40402ed2fb0fd9fc4e78107e137c4f39974b84d32ec"
+        }
+      ]
+    },
+    {
+      "id": "feature-diagnostic",
+      "title": "Three causal features against saved outcomes",
+      "family": "feature analysis",
+      "reported_state": "descriptive diagnostic",
+      "note": "Limitations/counterevidence are indexed under failures; this does not assert a failed execution or trained predictor.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-feature-diagnostic-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "dbe6ae6859e0ffc467981b0f23470ffaa766008b916e78046e535bfe9ed8f166"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-feature-engineering-skill.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "98c9ad34676ed4a3317fda17b9283ac7115fcc8e8e783c817764a0e6670a4197"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-feature-engineering-skill.md#actual-findings",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a"
+        },
+        {
+          "state": "unpublished",
+          "note": "Full feature diagnostic tables remain local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-feature-engineering-skill.md#evaluation-and-decision",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-feature-engineering-skill.md#evaluation-and-decision",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "b0908d5cdccbe5d2bc5b2daf1541962d75b1f86aaf4653fc6ea968f88b1fac0a"
+        }
+      ]
+    },
+    {
+      "id": "gate-outcome-diagnosis",
+      "title": "Gate decisions and matured outcome labels",
+      "family": "attribution",
+      "reported_state": "saved-result diagnosis",
+      "note": "Failure references describe missed rebounds and unhelpful warnings, not new simulated attempts.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "No separate plan JSON indexed; fixed diagnostic definitions are in the task."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-gate-decision-labels.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "3b2438f1c88d6c328392f1bb8c188505bc6ee757ad34944ffb4cfd5151b9abb4"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-gate-decision-labels.md#completed-diagnosis",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "dabf39c806a3f12f5473624c8eb09d75d044e3eb71252716a72921f157ade6eb"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-gate-decision-labels.md#warning-usefulness-versus-warning-counts",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "dabf39c806a3f12f5473624c8eb09d75d044e3eb71252716a72921f157ade6eb"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-gate-decision-labels.md#matched21-session-reduction-episode-outcomes",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "dabf39c806a3f12f5473624c8eb09d75d044e3eb71252716a72921f157ade6eb"
+        }
+      ]
+    },
+    {
+      "id": "grs-c001",
+      "title": "GRS-C001 local cycle pointer",
+      "family": "post-standard research",
+      "reported_state": "local evidence outside publication",
+      "note": "Known only through docs/research-cycles.md; deliberately no financial conclusion.",
+      "plans": [
+        {
+          "state": "unpublished",
+          "note": "The cycle register names C001 but its plan is outside this publication."
+        }
+      ],
+      "results": [
+        {
+          "state": "unpublished",
+          "note": "No inspectable C001 result package is published in this branch."
+        }
+      ],
+      "failures": [
+        {
+          "state": "unpublished",
+          "note": "Attempt/failure evidence is not published; never interpret this as zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "unpublished",
+          "note": "No C001 lesson is reproduced or assessed by this index."
+        }
+      ]
+    },
+    {
+      "id": "leveraged-spy",
+      "title": "Leveraged SPY financing comparison",
+      "family": "sizing and financing",
+      "reported_state": "historical comparison",
+      "note": "Historical development evidence; original sources retain their qualifications.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Frozen assumptions live in research/leverage-model.md; no standalone plan JSON indexed."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-leverage-comparison.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "0969c6cad7fdfb24da85175c007843f19b9c492f4d2259a43702a8c2fac0d46c"
+        },
+        {
+          "state": "unpublished",
+          "note": "Full leverage result bundle is not published in this branch."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No standalone execution-failure record indexed; stress outcomes are not execution failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-leverage-comparison.md",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "aa4df1f812c03d6291777bc44ef22f9a75249eebeceae09d0e0937b0f09fb15e"
+        }
+      ]
+    },
+    {
+      "id": "recursive-cycle1",
+      "title": "Sizing tradeoff review",
+      "family": "recursive SPY development",
+      "reported_state": "historical development",
+      "note": "Failure/lesson links are narrative context, not a claim that every variant failed or every raw attempt is published.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/recursive-portfolio-v1.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "ea47b6046e0b9f03c7f96517078b3e9028ce65fedc38e6c27989c7eeb20d2ba9"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-recursive-cycle1.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "c32b959d95df04f2a33162b8861b06289a41fc238d8e208939de53dbfc059d40"
+        },
+        {
+          "state": "unpublished",
+          "note": "Underlying case bundle remains local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ]
+    },
+    {
+      "id": "recursive-cycle2",
+      "title": "Fixed mixture complementarity",
+      "family": "recursive SPY development",
+      "reported_state": "historical development",
+      "note": "Failure/lesson links are narrative context, not a claim that every variant failed or every raw attempt is published.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/recursive-portfolio-v2.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "fe39b9a648cde4da86605cf9aee5863f3c96d52b156629325517d80db6104d99"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-recursive-cycle2.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "5dc2b364bcb780c1959cb771707d4b7d1392a3fd7fa09346a7e19283edeecd77"
+        },
+        {
+          "state": "unpublished",
+          "note": "Underlying case bundle remains local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ]
+    },
+    {
+      "id": "recursive-cycle3",
+      "title": "Fixed-rule cost sensitivity",
+      "family": "recursive SPY development",
+      "reported_state": "historical development",
+      "note": "Failure/lesson links are narrative context, not a claim that every variant failed or every raw attempt is published.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/recursive-cost-stress-v1.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "e75d4448a54f546ff2f7b6621485fc114439313b676ddb7da99bd4aea72762a8"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-recursive-cycle3.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "47496325c4b66b310332be21a8757bd0ed46d9c4517ab6dfb545c5edb2e2329e"
+        },
+        {
+          "state": "unpublished",
+          "note": "Underlying case bundle remains local-only."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-recursive-research-review.md#actual-pilot-findings-so-far",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "0eab0a361b44d660b6780520e69d26e139463ed122f83df910a3413c229fb533"
+        }
+      ]
+    },
+    {
+      "id": "risk-gate-ablation",
+      "title": "Price-peak component-removal ablation",
+      "family": "risk overlay ablation",
+      "reported_state": "development candidate retained",
+      "note": "The shared epoch record distinguishes prior failures, rejected joint-protection claims and the separate follow-up; it is not an untouched validation.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-price-peak-ablation-v1.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "449096da9fbe13855546c99e7c464fa6f570deacc83e680f78aca4e0372dfa05"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-completion.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "1e3b81c9fd2a4afd2761a5c029b7920509b65596f0fe91ebca70c8cc6e178c76"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ]
+    },
+    {
+      "id": "risk-gate-development",
+      "title": "Green/yellow/red gate with preserved recoveries",
+      "family": "risk overlay",
+      "reported_state": "completed bounded epoch with failures",
+      "note": "Historical development evidence; original sources retain their qualifications.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.design.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.executable.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.recovery.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5"
+        },
+        {
+          "state": "present",
+          "path": "research/plans/spy-risk-gate-development-v1.recovery2.json",
+          "kind": "plan",
+          "note": "Original definition preserved; indexing does not authorize execution.",
+          "sha256": "b6b57fe7077dff3b01fce24f4e318bfce9347b16af9bb4954751fd9c427ccc43"
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-completion.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "1e3b81c9fd2a4afd2761a5c029b7920509b65596f0fe91ebca70c8cc6e178c76"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        },
+        {
+          "state": "unpublished",
+          "note": "Raw ledgers and failed processes are not all published here."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#historical-checkpoint-stopped-performance-study-incomplete",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-rsi-risk-gate-checkpoint.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "7f1d32380b83525ed4212266ad031ed731ca7e28b8997c8504c577a2a9d7833a"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-risk-gate-epoch.md#final-bounded-epoch-review",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "8f26336ac2d87fcd3bcfbaf3d0c35cc5dabcd97ac73331d13ce3659a40e92ed6"
+        }
+      ]
+    },
+    {
+      "id": "rsi-offline-integration",
+      "title": "Offline RSI foundation integration",
+      "family": "research infrastructure",
+      "reported_state": "completed bounded offline integration; financial execution unsupported",
+      "note": "Synthetic mechanics and real read-only saved preflight are separate; no financial improvement claim.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Bounded infrastructure acceptance and limits live in the integration task, not a financial JSON plan."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-27-rsi-integration.json",
+          "kind": "receipt",
+          "note": "Engineering validation receipt; raw local artifacts remain private.",
+          "sha256": "e23fff3ac2b07389f58c1a4650b95cab33408e679753eae5be4b82dccd0003c7"
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#failures",
+          "kind": "narrative",
+          "note": "Retained focused-test failure and scope split; no financial trials.",
+          "sha256": "4f1119aa58f255408aded781ee939fccad2b41330f3e8aceaf48038f72a2cca5"
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-rsi-integration.md#lesson",
+          "kind": "narrative",
+          "note": "Read-only dependencies and integration claims require their own proof.",
+          "sha256": "4f1119aa58f255408aded781ee939fccad2b41330f3e8aceaf48038f72a2cca5"
+        }
+      ]
+    },
+    {
+      "id": "spy-fixture",
+      "title": "SPY EMA and buy-and-hold fixture",
+      "family": "baseline",
+      "reported_state": "historical fixture",
+      "note": "Historical development evidence; original sources retain their qualifications.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "No standalone frozen plan indexed; methodology is in research/README.md."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "reports/spy/20261024-235746-728801/report.md",
+          "kind": "report",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "d9279117d32c095d5ebe05a08ea2fadad171affa19b6d86ebc703df47e8ddaba"
+        },
+        {
+          "state": "present",
+          "path": "reports/spy/20261024-235746-728801/manifest.json",
+          "kind": "artifact",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "e4f1f736e5e42834cbe03d8609e22270d727224e4076bd313c0a992b871c6ba8"
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate failed-attempt artifact indexed; this is not proof of zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "research/README.md",
+          "kind": "narrative",
+          "note": "Original methodology and limitations; no standalone lesson paper indexed.",
+          "sha256": "a4c9362dfa5473889209e9427faae87e9e4c829b133ecfc2edbbe25f6d0e5c7b"
+        }
+      ]
+    },
+    {
+      "id": "strategy-suite",
+      "title": "Daily SPY strategy catalogue suite",
+      "family": "strategy screening",
+      "reported_state": "partial coverage",
+      "note": "The task reports supported cases and unsupported entries separately; indexing does not promote all 100 ideas to implemented strategies.",
+      "plans": [
+        {
+          "state": "not_recorded",
+          "note": "Batch protocol/code defines the cases; no standalone frozen plan JSON indexed."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-strategy-catalogue-suite.json",
+          "kind": "receipt",
+          "note": "Published receipt; underlying raw bundles may remain local-only.",
+          "sha256": "1cf9ccd595f8e220ba8442154511a76df50f26635f3749acb857dbcf9144819f"
+        },
+        {
+          "state": "unpublished",
+          "note": "Full suite bundle remains outside this publication."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-strategy-catalogue-suite.md",
+          "kind": "narrative",
+          "note": "Task discusses unsupported entries and verification failure cases; not a standalone failed-run artifact.",
+          "sha256": "42ab4b35001c327f64868904974e366b299066779513745530d44b5f862f3f08"
+        },
+        {
+          "state": "not_recorded",
+          "note": "No separate failed-attempt artifact is indexed; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-strategy-catalogue-suite.md",
+          "kind": "narrative",
+          "note": "Published source record; follow its scope and limitations.",
+          "sha256": "42ab4b35001c327f64868904974e366b299066779513745530d44b5f862f3f08"
+        }
+      ]
+    }
+  ],
+  "supporting_records_unassigned": [
+    "docs/tasks/2026-10-25-advisory-skills.md",
+    "docs/tasks/2026-10-25-alpaca-paper-integration.md",
+    "docs/tasks/2026-10-25-alpaca-us-stock-pilot.md",
+    "docs/tasks/2026-10-25-annual-comparison.md",
+    "docs/tasks/2026-10-25-capability-review.md",
+    "docs/tasks/2026-10-25-independent-data-review.md",
+    "docs/tasks/2026-10-25-infrastructure-skills.md",
+    "docs/tasks/2026-10-25-local-performance-browser.md",
+    "docs/tasks/2026-10-25-ml-team-roles.md",
+    "docs/tasks/2026-10-25-multi-asset-qualification-v2-checkpoint.md",
+    "docs/tasks/2026-10-25-multi-asset-qualification-v2.md",
+    "docs/tasks/2026-10-25-multi-asset-unlock.md",
+    "docs/tasks/2026-10-25-offline-ci.md",
+    "docs/tasks/2026-10-25-parallel-research-checklist.md",
+    "docs/tasks/2026-10-25-pr-review.md",
+    "docs/tasks/2026-10-25-quantconnect-spy-comparison.md",
+    "docs/tasks/2026-10-25-quantconnect-strategy-intake.md",
+    "docs/tasks/2026-10-25-recursive-cost-stress.md",
+    "docs/tasks/2026-10-25-recursive-research-adversarial-review.md",
+    "docs/tasks/2026-10-25-recursive-research-inventory.md",
+    "docs/tasks/2026-10-25-recursive-research-pilot.md",
+    "docs/tasks/2026-10-25-recursive-research-policy-evaluation.md",
+    "docs/tasks/2026-10-25-recursive-research-priors.md",
+    "docs/tasks/2026-10-25-recursive-research-program.md",
+    "docs/tasks/2026-10-25-recursive-research-scoring-design.md",
+    "docs/tasks/2026-10-25-research-decision-layers.md",
+    "docs/tasks/2026-10-25-research-expansion-prerequisites.md",
+    "docs/tasks/2026-10-25-research-skills.md",
+    "docs/tasks/2026-10-25-research-strategy-survival-funnel.md",
+    "docs/tasks/2026-10-25-risk-gate-bounded-test.md",
+    "docs/tasks/2026-10-25-risk-gate-research.md",
+    "docs/tasks/2026-10-25-rsi-decision-layer-plan.md",
+    "docs/tasks/2026-10-25-rsi-diversification-ideas.md",
+    "docs/tasks/2026-10-25-rsi-frontier-and-selection.md",
+    "docs/tasks/2026-10-25-rsi-gate-robustness.md",
+    "docs/tasks/2026-10-25-rsi-risk-mechanisms.md",
+    "docs/tasks/2026-10-25-score-ranking.md",
+    "docs/tasks/2026-10-25-sp500-stock-library.md",
+    "docs/tasks/2026-10-25-stock-backtest-readiness.md",
+    "docs/tasks/2026-10-25-teams-skills-catalog.md",
+    "docs/tasks/2026-10-25-working-foundation.md",
+    "docs/tasks/2026-10-26-quantconnect-inventory.md",
+    "docs/tasks/2026-10-26-quantconnect-research-master-plan.md",
+    "docs/tasks/2026-10-26-quantconnect-shortlist.md",
+    "docs/tasks/2026-10-26-quantconnect-source-rights.md",
+    "docs/tasks/2026-10-26-quantconnect-tutorial-packages.md",
+    "docs/tasks/2026-10-26-research-lessons.md",
+    "docs/tasks/2026-10-27-code-reorganization.md",
+    "docs/tasks/2026-10-27-dependency-boundaries.md",
+    "docs/tasks/2026-10-27-evidence-recovery.md",
+    "docs/tasks/2026-10-27-golden-research-standard.md",
+    "docs/tasks/2026-10-27-incremental-algorithm-stages.md",
+    "docs/tasks/2026-10-27-pr6-final-review.md",
+    "docs/tasks/2026-10-27-pr7-final-review.md",
+    "docs/tasks/2026-10-27-project-foundation-adoption.md",
+    "docs/tasks/2026-10-27-project-foundation-proposal.md",
+    "docs/tasks/2026-10-27-research-evidence-index.md",
+    "docs/tasks/2026-10-27-rsi-foundation-implementation.md",
+    "docs/tasks/2026-10-27-rsi-post-pr6-review.md",
+    "docs/tasks/2026-10-27-rsi-requirements-review.md",
+    "docs/tasks/2026-10-27-stage-development-skill.md",
+    "docs/tasks/2026-10-28-alpaca-t11-readiness.md",
+    "docs/tasks/2026-10-28-execution-c06.md",
+    "docs/tasks/2026-10-28-execution-record-hardening.md",
+    "docs/tasks/2026-10-28-leaderboard-closure.md",
+    "docs/tasks/2026-10-28-leaderboard.md",
+    "docs/tasks/2026-10-28-no-veto-c04.md",
+    "docs/tasks/2026-10-28-proposal-c03.md",
+    "docs/tasks/2026-10-28-proposal-decision-diagnosis.md",
+    "docs/tasks/2026-10-28-qc-market-components.md",
+    "docs/tasks/2026-10-28-qc-parallel-review-wave2.md",
+    "docs/tasks/2026-10-28-qc-parallel-review.md",
+    "docs/tasks/2026-10-28-qc-pipeline-stage-fit.md",
+    "docs/tasks/2026-10-28-qc-policy-components.md",
+    "docs/tasks/2026-10-28-qc-target-components.md",
+    "docs/tasks/2026-10-28-qc-wave2-carry-components.md",
+    "docs/tasks/2026-10-28-qc-wave2-event-components.md",
+    "docs/tasks/2026-10-28-qc-wave2-relative-components.md",
+    "docs/tasks/2026-10-28-rsi-epoch2.md",
+    "docs/tasks/2026-10-28-rsi-readiness-wave.md",
+    "docs/tasks/2026-10-28-sector-etf-acquisition.md",
+    "docs/tasks/2026-10-28-sector-gate-v1.md",
+    "docs/tasks/2026-10-28-sector-issuer-qualification.md",
+    "docs/tasks/2026-10-28-sector-selection-rsi.md",
+    "docs/tasks/2026-10-28-spy-transition-diagnosis.md",
+    "docs/tasks/2026-10-28-stock-selection-evidence-audit.md",
+    "docs/tasks/2026-10-28-t11-paper-runner.md",
+    "docs/tasks/2026-10-28-total-return-c05.md",
+    "docs/tasks/2026-10-29-next-algorithm-screen.md",
+    "docs/tasks/2026-10-29-t11-export-validation.md",
+    "docs/tasks/2026-10-29-t11-paper-rehearsal.md",
+    "docs/tasks/2026-10-29-t11-reference-reruns.md",
+    "docs/tasks/2026-10-30-calmar-epoch3-experience-report.md",
+    "docs/tasks/2026-10-30-residual-momentum-rsi.md",
+    "docs/tasks/2026-10-30-skills-sop-repair.md",
+    "docs/tasks/2026-10-30-soxl-parallel-review.md",
+    "docs/tasks/2026-10-30-soxl-signals-review.md",
+    "docs/tasks/2026-10-30-soxl-sizing-review.md",
+    "docs/tasks/2026-10-30-soxl-timing-review.md",
+    "docs/tasks/2026-10-30-t11-plateau-diagnosis.md",
+    "docs/tasks/2026-10-30-t11-soxl-cloud-results.md",
+    "docs/tasks/2026-10-30-trading-deployment-cost-review.md",
+    "docs/tasks/2026-10-31-local-checkpoint-pr.md",
+    "docs/tasks/2026-10-31-t11-hierarchy-headroom.md",
+    "docs/tasks/2026-10-31-t11-loss-decision-trace.md",
+    "docs/tasks/2026-10-31-t11-specialist-review.md",
+    "docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json",
+    "docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json",
+    "docs/tasks/evidence/2026-10-25-existing-risk-gates.json",
+    "docs/tasks/evidence/2026-10-25-independent-data-review.json",
+    "docs/tasks/evidence/2026-10-25-multi-asset-accounting-stress.json",
+    "docs/tasks/evidence/2026-10-25-multi-asset-blocked-audit.json",
+    "docs/tasks/evidence/2026-10-25-multi-asset-qualification-v2.json",
+    "docs/tasks/evidence/2026-10-25-multi-asset-unlock.json",
+    "docs/tasks/evidence/2026-10-25-nautilus-capabilities.json",
+    "docs/tasks/evidence/2026-10-25-performance-browser.json",
+    "docs/tasks/evidence/2026-10-25-quantconnect-spy-comparison.json",
+    "docs/tasks/evidence/2026-10-25-quantconnect-strategy-intake.json",
+    "docs/tasks/evidence/2026-10-25-recursive-control-parity.json",
+    "docs/tasks/evidence/2026-10-25-recursive-cycle2-scores.json",
+    "docs/tasks/evidence/2026-10-25-recursive-cycle3-scores.json",
+    "docs/tasks/evidence/2026-10-25-recursive-plan-amendment.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-adversarial-review.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-completion.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-inventory.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-policy-evaluation.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-priors.json",
+    "docs/tasks/evidence/2026-10-25-recursive-research-scoring-design.json",
+    "docs/tasks/evidence/2026-10-25-research-expansion-prerequisites.json",
+    "docs/tasks/evidence/2026-10-25-research-skills-eval-protocol.json",
+    "docs/tasks/evidence/2026-10-25-research-skills-evaluation.json",
+    "docs/tasks/evidence/2026-10-25-risk-gate-bounded-test.json",
+    "docs/tasks/evidence/2026-10-25-risk-gate-research.json",
+    "docs/tasks/evidence/2026-10-25-rsi-diversification-ideas.json",
+    "docs/tasks/evidence/2026-10-25-rsi-etf-readiness-setup.json",
+    "docs/tasks/evidence/2026-10-25-rsi-gate-robustness.json",
+    "docs/tasks/evidence/2026-10-25-score-ranking.json",
+    "docs/tasks/evidence/2026-10-25-sp500-stock-library.json",
+    "docs/tasks/evidence/2026-10-25-strategy-survival-funnel-families.csv",
+    "docs/tasks/evidence/2026-10-25-strategy-survival-funnel-review.json",
+    "docs/tasks/evidence/2026-10-25-temporal-review.json",
+    "docs/tasks/evidence/2026-10-26-quantconnect-inventory.json",
+    "docs/tasks/evidence/2026-10-26-quantconnect-source-rights.json",
+    "docs/tasks/evidence/2026-10-26-quantconnect-tutorial-packages.json",
+    "docs/tasks/evidence/2026-10-26-selection-completion-acceptance.json",
+    "docs/tasks/evidence/2026-10-26-selection-goal-preflight.json",
+    "docs/tasks/evidence/2026-10-27-code-reorganization.json",
+    "docs/tasks/evidence/2026-10-27-dependency-boundaries.json",
+    "docs/tasks/evidence/2026-10-27-evidence-recovery.json",
+    "docs/tasks/evidence/2026-10-27-grs-c001.json",
+    "docs/tasks/evidence/2026-10-27-grs-r001.json",
+    "docs/tasks/evidence/2026-10-27-pr6-final-review.json",
+    "docs/tasks/evidence/2026-10-27-pr7-final-review.json",
+    "docs/tasks/evidence/2026-10-27-project-foundation-adoption.json",
+    "docs/tasks/evidence/2026-10-27-project-foundation-proposal.json",
+    "docs/tasks/evidence/2026-10-27-research-evidence-index.json",
+    "docs/tasks/evidence/2026-10-27-rsi-foundation.json",
+    "docs/tasks/evidence/2026-10-27-rsi-post-pr6-review.json",
+    "docs/tasks/evidence/2026-10-27-rsi-requirements-review.json",
+    "docs/tasks/evidence/2026-10-27-stage-development-skill.json",
+    "docs/tasks/evidence/2026-10-28-alpaca-t11-readiness.json",
+    "docs/tasks/evidence/2026-10-28-execution-c06.json",
+    "docs/tasks/evidence/2026-10-28-execution-record-hardening.json",
+    "docs/tasks/evidence/2026-10-28-leaderboard-closure.json",
+    "docs/tasks/evidence/2026-10-28-leaderboard.json",
+    "docs/tasks/evidence/2026-10-28-no-veto-c04.json",
+    "docs/tasks/evidence/2026-10-28-proposal-c03.json",
+    "docs/tasks/evidence/2026-10-28-proposal-decision-diagnosis.json",
+    "docs/tasks/evidence/2026-10-28-qc-market-components.json",
+    "docs/tasks/evidence/2026-10-28-qc-parallel-review-wave2.json",
+    "docs/tasks/evidence/2026-10-28-qc-parallel-review.json",
+    "docs/tasks/evidence/2026-10-28-qc-pipeline-stage-fit.json",
+    "docs/tasks/evidence/2026-10-28-qc-policy-components.json",
+    "docs/tasks/evidence/2026-10-28-qc-target-components.json",
+    "docs/tasks/evidence/2026-10-28-qc-wave2-carry-components.json",
+    "docs/tasks/evidence/2026-10-28-qc-wave2-event-components.json",
+    "docs/tasks/evidence/2026-10-28-qc-wave2-relative-components.json",
+    "docs/tasks/evidence/2026-10-28-rsi-epoch2-final.json",
+    "docs/tasks/evidence/2026-10-28-rsi-epoch2.json",
+    "docs/tasks/evidence/2026-10-28-rsi-readiness-wave.json",
+    "docs/tasks/evidence/2026-10-28-sector-etf-acquisition.json",
+    "docs/tasks/evidence/2026-10-28-sector-execution-qualification.json",
+    "docs/tasks/evidence/2026-10-28-sector-feasibility-closure.json",
+    "docs/tasks/evidence/2026-10-28-sector-gate-v1.json",
+    "docs/tasks/evidence/2026-10-28-sector-issuer-qualification.json",
+    "docs/tasks/evidence/2026-10-28-sector-selection-blocked.json",
+    "docs/tasks/evidence/2026-10-28-sector-selection-readiness.json",
+    "docs/tasks/evidence/2026-10-28-sector-selection-rsi.json",
+    "docs/tasks/evidence/2026-10-28-spy-transition-diagnosis.json",
+    "docs/tasks/evidence/2026-10-28-stock-selection-evidence-audit.json",
+    "docs/tasks/evidence/2026-10-28-t11-paper-preparation.json",
+    "docs/tasks/evidence/2026-10-28-t11-policy-conformance.json",
+    "docs/tasks/evidence/2026-10-28-t11-reproduction-blocker-audit.json",
+    "docs/tasks/evidence/2026-10-28-total-return-c05.json",
+    "docs/tasks/evidence/2026-10-29-next-algorithm-screen.json",
+    "docs/tasks/evidence/2026-10-29-t11-export-validation.json",
+    "docs/tasks/evidence/2026-10-29-t11-paper-rehearsal.json",
+    "docs/tasks/evidence/2026-10-29-t11-reference-reruns.json",
+    "docs/tasks/evidence/2026-10-30-calmar-epoch3-c1.json",
+    "docs/tasks/evidence/2026-10-30-calmar-epoch3-c2.json",
+    "docs/tasks/evidence/2026-10-30-calmar-epoch3-terminal.json",
+    "docs/tasks/evidence/2026-10-30-receipt-compatibility.json",
+    "docs/tasks/evidence/2026-10-30-residual-momentum-readiness.json",
+    "docs/tasks/evidence/2026-10-30-residual-momentum-rsi.json",
+    "docs/tasks/evidence/2026-10-30-skills-recovery.json",
+    "docs/tasks/evidence/2026-10-30-skills-sop-repair.json",
+    "docs/tasks/evidence/2026-10-30-soxl-parallel-review.json",
+    "docs/tasks/evidence/2026-10-30-t11-plateau-diagnosis.json",
+    "docs/tasks/evidence/2026-10-30-t11-soxl-cash-preflight.json",
+    "docs/tasks/evidence/2026-10-30-t11-soxl-cloud-results.json",
+    "docs/tasks/evidence/2026-10-30-t11-soxl-cloud.json",
+    "docs/tasks/evidence/2026-10-30-trading-deployment-cost-review.json",
+    "docs/tasks/evidence/2026-10-31-t11-hierarchy-headroom.json",
+    "docs/tasks/evidence/2026-10-31-t11-loss-decision-trace.json",
+    "docs/tasks/evidence/2026-10-31-t11-specialist-review.json"
+  ]
+}

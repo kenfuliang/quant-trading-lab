@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from research.rsi_contracts import (
+from research.control.rsi_contracts import (
     ContractError, canonical_hash, preflight_known_c001, validate_cycle,
     verify_artifacts,
 )
@@ -216,7 +216,7 @@ class C001PreflightTests(unittest.TestCase):
         def save_json(path, value):
             return write(path, json.dumps(value, sort_keys=True))
 
-        helper_path = Path(__file__).resolve().parents[1] / "research/legacy_control_contract.py"
+        helper_path = Path(__file__).resolve().parents[1] / "research/control/legacy_control_contract.py"
         helper = write("research/legacy_control_contract.py", helper_path.read_bytes())
         source = write("source.json", "[]")
         code = write("fixture.py", "# saved fixture; never executed\n")
@@ -266,7 +266,7 @@ class C001PreflightTests(unittest.TestCase):
     def test_known_lesson_verified_identity_zero_launches_and_no_writes(self):
         receipt = self.saved_fixture()
         before = {str(p): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
-        with patch("research.rsi_contracts._C001_RECEIPT", receipt):
+        with patch("research.control.rsi_contracts._C001_RECEIPT", receipt):
             result = preflight_known_c001(self.root)
             self.assertEqual(result, preflight_known_c001(self.root))
         self.assertTrue(result["passed"])
@@ -280,7 +280,7 @@ class C001PreflightTests(unittest.TestCase):
     def test_authenticated_cash_trade_schema_semantic_and_timing_drift_fail(self):
         for drift in ("cash", "trade", "field", "semantic", "eligibility", "date"):
             receipt = self.saved_fixture(drift=drift)
-            with self.subTest(drift=drift), patch("research.rsi_contracts._C001_RECEIPT", receipt):
+            with self.subTest(drift=drift), patch("research.control.rsi_contracts._C001_RECEIPT", receipt):
                 with self.assertRaises(ContractError):
                     preflight_known_c001(self.root)
 
@@ -289,14 +289,14 @@ class C001PreflightTests(unittest.TestCase):
                         "fixture.py", "research/legacy_control_contract.py", "saved/c001/state.json"):
             receipt = self.saved_fixture()
             (self.root / changed).write_bytes(b"tampered")
-            with self.subTest(changed=changed), patch("research.rsi_contracts._C001_RECEIPT", receipt):
-                with patch("research.legacy_control_contract.compare_ema_diagnostic") as compare:
+            with self.subTest(changed=changed), patch("research.control.rsi_contracts._C001_RECEIPT", receipt):
+                with patch("research.control.legacy_control_contract.compare_ema_diagnostic") as compare:
                     with self.assertRaises(ContractError):
                         preflight_known_c001(self.root)
                     compare.assert_not_called()
         receipt = self.saved_fixture()
         (self.root / "source.json").unlink()
-        with patch("research.rsi_contracts._C001_RECEIPT", receipt), self.assertRaises(ContractError):
+        with patch("research.control.rsi_contracts._C001_RECEIPT", receipt), self.assertRaises(ContractError):
             preflight_known_c001(self.root)
 
     def test_default_anchor_rejects_unrecorded_receipt(self):

@@ -4,7 +4,7 @@ import hashlib
 import json
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.capm_review import audit_metrics
+from research.studies.checkpoint_20261031.capm_review import audit_metrics
 
 
 def main():

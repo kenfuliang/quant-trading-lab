@@ -6,7 +6,7 @@ import math
 import runpy
 
 import pandas as pd
-from research.risk_gate import states
+from research.policies.risk_gate import states
 from research.studies.t11_reproduction.indicators import WilderRSI, SimpleAverage
 from paper_trading.t11_pilot import SYMBOLS, POLICY_HASH
 

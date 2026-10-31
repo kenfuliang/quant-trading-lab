@@ -117,12 +117,12 @@ by `reporting.temporal`v1.2. Full Calmar uses calendar CAGR/full-path drawdown.
 | Equal-weight sectors | 10 | 0.318978 | 11.5395% | 36.17656% | 0.7314 | 315 / 460 |
 | SPY buy and hold | 10 | 0.434540 | 13.8829% | 31.94848% | 0.8514 | 489 / 709 |
 
-[Standalone review](../../reports/bounded-study/sector-issuer-v2-20261028/index.html)
+Standalone review (`../../reports/bounded-study/sector-issuer-v2-20261028/index.html`; private/local artifact, not published)
 contains the NAV chart and full annual/temporal table. The
-[72-row annual CSV](../../reports/bounded-study/sector-issuer-v2-20261028/annual-comparison.csv)
+72-row annual CSV (`../../reports/bounded-study/sector-issuer-v2-20261028/annual-comparison.csv`; private/local artifact, not published)
 includes return, year-reset DD, Sharpe, Calmar, underwater sessions/days/fraction,
 opening/ending equity and partial-year flags for all eight cases. The
-[summary CSV](../../reports/bounded-study/sector-issuer-v2-20261028/comparison.csv)
+summary CSV (`../../reports/bounded-study/sector-issuer-v2-20261028/comparison.csv`; private/local artifact, not published)
 adds exposure, fees, slippage, turnover and ranks within each cost context.
 Authoritative per-case ledgers, daily rolling diagnostics, decision records and
 monthly/yearly per-sector contributions are under the sealed financial bundle

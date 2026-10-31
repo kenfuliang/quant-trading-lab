@@ -8,7 +8,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from research.qc_tutorial_packages import digest, inspect_python, license_gate, archive_inventory
+from research.studies.checkpoint_20261031.qc_tutorial_packages import digest, inspect_python, license_gate, archive_inventory
 
 
 def audit():

@@ -1,54 +1,111 @@
 ---
 status: active
-updated: 2026-10-30
+updated: 2026-10-31
 owner: research-maintainers
 ---
 
 # Recursive research operating procedure
 
-This SOP owns the operational handoffs for the bounded RSI foundation.
-[GRS-1.1](../research-standard.md) owns the research/adoption/report rules;
-[research development](../research-development.md) owns scientific lifecycle
-contracts; [the catalog](../skills.md) owns skill discovery and readiness.
-Implementation and validation status belongs to the
-[foundation checklist](../tasks/2026-10-27-rsi-foundation-implementation.md).
-Following this sequence does not start a scheduler or make a financial runner
-eligible. Research improvement and financial improvement require separate evidence.
+This file owns offline RSI handoffs; [GRS](../research-standard.md) owns research,
+evidence and adoption rules. [Catalog](../skills.md) owns callable skills.
+[Integration receipt](../tasks/2026-10-27-rsi-integration.md) owns actual proof and
+limits. No financial execution adapter or unattended optimizer is available.
 
 ```mermaid
-flowchart TD
-    A[Route request and retrieve history] --> B[Freeze one proposal and criteria]
-    B --> C[Audit inputs and known lessons]
-    C -->|blocked| H[Preserve evidence and close]
-    C -->|eligible| D[Reserve and execute within one program]
-    D --> E[Verify bytes, accounts and evaluation context]
-    E --> F[Record retain, provisional or scoped adoption]
-    F --> H
-    H -. New separately bounded cycle .-> A
-    D -->|failure or uncertain interruption| I[Stop; reconcile before any further launch]
-    I --> H
+flowchart LR
+    H[Retrieve incumbent and lessons] --> C[Freeze one change and criteria]
+    C --> P[Verify inputs and prior lesson]
+    P --> B[Reserve fixed cases in one bounded program]
+    B --> E[Preserve and verify output]
+    E --> D[Explicit disposition and lesson]
+    B -->|Ambiguous crash or failed integrity| S[Stop and preserve; no automatic retry]
 ```
 
-## Handoff checklist
+| Step | Existing skill route | Required handoff |
+| --- | --- | --- |
+| Retrieve | trade-project → trade-research-history | Exact parent, prior failures, access history and open question |
+| Freeze | trade-stage-development for a component change; trade-candidate-evolution → trade-research-design | One changed stage, falsifier, controls, timing and finite bounds |
+| Preflight | trade-data-audit; feature workflow when relevant | Input hashes and known-lesson check; missing/failed evidence stops dependent work |
+| Execute | trade-experiment, only through a supported adapter | Frozen cases and shared program limits; actual reservation, exit and outputs |
+| Verify | trade-performance-diagnosis → trade-robust-evaluation | Accounts, comparability, uncertainty, adverse and failed evidence |
+| Disposition | trade-promotion-review | Exact incumbent/candidate identities and scoped retain/provisional/adopt decision |
+| Close | trade-research-history | All attempts, actual evidence, lesson and next eligible question |
 
-Invoke existing skills through their entries in the catalog. The following is a
-calling sequence, not another roster or permission system. One person or agent can
-perform several steps, but the proposer cannot redefine the frozen evaluator.
+These are handoffs, not an automatic dispatcher. Infrastructure repairs use
+trade-infra-change. Existing financial runners are not eligible through the new
+coordinator; synthetic registry adoption does not promote a financial strategy.
 
-| Step | Skill selection | Required input → handoff output | Stop condition |
-| --- | --- | --- | --- |
-| 1. Scope and retrieve | `trade-project`, then `trade-research-history` | Request and current context → exact incumbent, prior attempts/failures, data-exposure history and one open question | Missing incumbent/parent identity or closed budget |
-| 2. Propose and freeze | `trade-candidate-evolution`, `trade-research-design`; `trade-stage-development` for a stage implementation | Prior evidence → one changed stage, mechanism, falsifier, simpler controls, interface/timing and immutable criteria/bounds | Unbounded search, changed success definition or duplicated dead end without new evidence |
-| 3. Input and lesson preflight | `trade-data-audit`; `trade-feature-engineering` only when relevant | Frozen plan and source bytes → provenance/availability/artifact checks and saved-failure regression receipt | Missing qualified inputs, failed known lesson or contradictory evaluation exposure |
-| 4. Execute | `trade-experiment` through a supported coordinator adapter | Eligible frozen case → actual reservation/command/exit, output and artifact manifest | Unsupported adapter, exhausted program budget, changed bytes or ambiguous execution state |
-| 5. Diagnose and verify | `trade-performance-diagnosis`, `trade-robust-evaluation`; portfolio workflow when relevant | Preserved output and controls → scoped evaluation, adverse evidence and unresolved uncertainty | Invalid accounts, incomplete evidence or incomparable context |
-| 6. Disposition | `trade-promotion-review` | Frozen criteria and verified evaluation → explicit prior/new version and retain/provisional/adopt decision | Missing required check; no inferred adoption from a high score |
-| 7. Close and learn | `trade-research-management`, then `trade-research-history` | All attempts and disposition → validated receipt, lesson, leaderboard disposition, regression/check change, next eligible question | Missing failed/partial attempt, invalid new-format receipt or overstated claim |
+## Current commands
 
-Use `trade-infra-change` to implement or repair this infrastructure and
-`trade-local-ops` for operational failures. Advisory perspectives can challenge
-the plan through the catalog; adding a team name does not implement a workflow.
-Add a new skill only when repeated use exposes a workflow not covered here.
+```sh
+.venv/bin/python scripts/current/rsi_foundation.py preflight
+.venv/bin/python scripts/current/rsi_foundation.py preflight --evidence-root /path/to/qualified-local-history
+.venv/bin/python scripts/current/rsi_foundation.py demo --evidence-root /path/to/qualified-local-history --output .local/new-rsi-demo
+```
+
+Default preflight is read-only. Historical evidence absent from a fresh checkout
+returns JSON `unavailable` with exit 2. Bad integrity/unsafe paths return `failed`
+with exit 1. Successful real preflight recognizes only the pinned C001 diagnostic
+transition, preserving its failed gate, one consumed attempt and unchanged incumbent.
+No code is imported from `--evidence-root`; the installed current helper is used.
+This option does not download, modify or qualify arbitrary historical data.
+
+Demo requires an exclusive output inside this checkout and a passing real preflight
+before output creation. Its coordinator bounds two registered synthetic cases to
+120 seconds and zero financial slots; the recorded integration invocation also uses
+an enclosing 120-second process timeout for preflight/setup/adoption/report writing; a third request is rejected. Verified cache
+reuse does not relaunch. Synthetic adoption is explicitly rolled back. Unit tests
+use isolated fixtures, including synthetic historical closures; those fixtures do
+not make the real historical check available or establish financial performance.
+The old process-policy fixture result is retained as historical evidence, not rerun.
+
+## Recovery and authority
+
+Program identity freezes source/interpreter/input hashes, cases, criteria and shared
+limits. New cycle names do not reset a program budget. ResearchController owns the
+single writer/logical journal; RSIProgram owns actual fixed-command reservations,
+process outputs and execution log. Failed starts/timeouts consume reservations.
+Missing execution authority in an already initialized program stops even if no
+launch was reserved; reopening cannot reset its deadline. An unsealed launch intent after interruption is ambiguous: stop and reconcile;
+never retry automatically or erase the reservation. Completed cache reuse requires
+verified artifacts. Source or input drift rejects reuse.
+
+AdoptionRegistry requires exact plan/evaluation context, checks, numerical gates and
+artifact hashes; explicit rollback records the prior identity. Hashes establish
+byte identities, not evaluator independence, data rights, causal truth or alpha.
+Financial passing evaluations remain provisional. These local lock/fsync journals
+are not an OS sandbox, broker state authority or signed tamper-proof archive.
+MLflow/browser views do not replace receipts or authorize execution.
+
+
+## Adoption registry authority and reconciliation
+
+New registries persist `initialized.json` before their first journal record. It
+binds configuration and the local lock file's device/inode identity. Journal,
+head, marker and lock must remain regular non-symlink files. Active writers seal
+authority bytes and verify the lock identity before new decisions; loss, replacement
+or an older valid state stops progress rather than resetting the incumbent.
+Missing locks in initialized directories cannot be silently recreated. A partially
+initialized registry also requires reconciliation.
+
+Unmarked prior registry evidence, including earlier demos, is preserved. This
+revision does not automatically migrate or reopen it. Keep the original files and
+receipts; a restored/copied registry or lock whose identity changed requires a
+separate reviewed reconciliation, not a routine constructor retry. This is local
+fail-closed engineering, not offsite recovery or cryptographic authenticity.
+[PR #7 final review](../tasks/2026-10-27-pr7-final-review.md) records the fixes and
+actual regression checks; historical integration receipts retain their old identities.
+
+
+## Developing one stage
+
+Use trade-stage-development when a cycle specifies or changes a component boundary;
+[the stage procedure](../research-development.md#individual-stage-development) owns
+its worksheet, timing and verification details. It hands a frozen proposal to input
+preflight, implementation and scoped evaluation. Direct synthetic component checks
+are engineering verification, not financial execution through the RSI coordinator.
+The existing adapter restriction remains: only fixed synthetic and saved-read-only
+adapters are supported; adding a skill does not register a financial runner.
 
 ## Research management
 
@@ -83,74 +140,3 @@ link that closure from the explanation below the existing leaderboard table.
 Do not manufacture a zero-return row, duplicate an incumbent, or overwrite saved
 metrics. Research-version decisions remain subject to GRS; broker readiness is a
 separate review under the applicable paper SOP.
-
-## Artifact and authority boundaries
-
-- The cycle contract carries version, parent/incumbent, one changed stage,
-  field meaning/units, decision/execution timing, proposal, evaluation exposure,
-  criteria, controls, bounds and artifact identities.
-- The program spec freezes the supported cases, executable/interpreter/source
-  identities and aggregate launch/time limits across its cycles. A new cycle
-  cannot reset the same program's budget. A new program is a separately scoped
-  authorization boundary, not an automatic way to replenish a closed budget.
-- The coordinator owns actual allowed process launches. The existing controller
-  journal owns logical reservations; a logical reservation is not proof of a
-  simulation. Financial adapters are disabled in this foundation.
-- Evaluator records bind exact plan, data/code/score/evaluator context and output
-  hashes. Digests authenticate bytes relative to frozen trusted inputs; they do
-  not certify dataset rights, economic truth, statistical independence or alpha.
-- The version registry records synthetic engineering adoption/rollback. Financial
-  findings remain provisional here, subject to GRS and their own qualified study.
-- MLflow and browser reports can display evidence later. Neither can replace the
-  frozen source receipts or quietly alter the incumbent.
-
-## Run and recover
-
-Ordinary verification remains offline. The foundation entrypoint defaults to
-saved-evidence preflight; its explicit demonstration uses only synthetic and
-read-only adapters. Consult the checklist for the observed commands and results.
-
-```sh
-.venv/bin/python scripts/rsi_foundation.py
-.venv/bin/python scripts/rsi_foundation.py demo --output .local/rsi-foundation-example
-```
-
-The first command reads saved C001 evidence and writes no research artifacts. The explicit demo
-requires a new output directory; it reserves at most two subprocess launches with
-zero financial slots and a 120-second aggregate limit. It also runs the existing
-three known logical policy fixtures in both arms with two actions/two fixture units
-per arm/scenario. It records synthetic adoption and rollback, leaving financial
-versions unchanged. Reuse the saved demo receipt for review; do not overwrite a
-previous demonstration or interpret fixture output as financial performance.
-
-Before launch, confirm program identity, remaining aggregate bounds, exact inputs
-and known-lesson receipt. Preserve standard output, standard error, nonzero exits,
-timeouts and partial artifacts before higher-level audits. On restart, verify the
-journal/spec/output hashes. Reuse a completed result only after artifact verification.
-An interrupted unsealed launch is ambiguous: stop and reconcile it; do not
-automatically relaunch or delete its reservation. An exhausted or expired program
-stays closed.
-
-For a missing saved C001 bundle, report unavailable evidence and stop its check.
-For a changed monetary field, trade, source byte or manifest, report failed
-integrity. The narrow diagnostic compatibility check preserves C001's original
-failed strict gate, one consumed financial attempt and unevaluated challenger.
-Recognition of a known reporting difference does not reopen that experiment.
-
-Close with the actual disposition, supported lesson and next uncertainty. The
-paper-style template is used only when the GRS readiness criteria are met; a
-synthetic infrastructure demonstration is an engineering receipt, not a trading paper.
-
-
-## Read-only execution-record audit
-
-The [execution-record hardening task](../tasks/2026-10-28-execution-record-hardening.md) records an implemented and synthetically verified audit in the isolated research checkout. It reuses the existing coordinator's durable UTC/epoch lifecycle, fixed source/interpreter/case identities, consumed reservations and interrupted-launch reconciliation. A quiescent reader can validate ordering and expose unresolved/ambiguous attempts without writing or launching anything. It is not a replacement for logical outcome, artifact or financial-account audits, and its next-request summary is not execution authorization.
-
-This code remains in the isolated checkout named by that task; availability in the primary checkout or a merged release is not established. The frozen direct Calmar runner still lacks per-attempt UTC fields, and future direct financial-runner capture integration remains unimplemented. Do not backfill historical timestamps or enable financial coordinator adapters on the basis of synthetic audit success. A new financial runner must prospectively freeze and verify its capture integration before any new financial cycle.
-
-
-## Subsequent fixed financial capture integration
-
-The [C02 captured study](../../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md) supersedes the earlier future-runner integration gap for one explicitly registered local SPY comparison. It uses narrow internal spec/observation hooks and the existing durable lifecycle to capture six real financial cases with exact source/plan/case/interpreter bindings, UTC reservation/start/capture/result and sealed audits. Its completed restart was verified to launch no child. Default RSIProgram remains synthetic/read-only; the separate CapturedCeilingProgram is limited to that frozen six-case contract. This is not a generic adapter or broker execution feature.
-
-All six financial slots are consumed and the candidate was rejected on Calmar/growth. Original direct-runner timestamps remain missing; none were invented. Source is in the isolated uncommitted checkout and no primary/merged runtime availability is claimed. Further cases require a new finite design; synthetic or cached restarts never replenish the closed budget.

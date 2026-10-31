@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-27
 owner: research-maintainers
 ---
 
@@ -31,8 +31,8 @@ registry hashes bind every actual test. Keep raw fields, engineered inputs,
 execution observations and future labels distinct.
 
 The first local registry and pure builder are in
-[`research/feature_engineering.py`](../research/feature_engineering.py).
-[`scripts/feature_diagnostic.py`](../scripts/feature_diagnostic.py) is an offline
+[`research/features/feature_engineering.py`](../research/features/feature_engineering.py).
+[`scripts/current/feature_diagnostic.py`](../scripts/current/feature_diagnostic.py) is an offline
 saved-SPY diagnostic, not a generic model trainer or portfolio simulator. It
 reads the existing source and gate outcome manifest, checks exact joins, freezes
 calibration-only bin edges and reports later development blocks. No arbitrary

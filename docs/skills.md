@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-30
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -42,8 +42,8 @@ behavioral usefulness or automatically update session discovery.
 ![Team structure and shared workflow skills](diagrams/team-skills.png)
 
 Regenerate this presentation from the available-entry tables below with
-`.venv/bin/python scripts/render_team_skills.py`.
-The [renderer](../scripts/render_team_skills.py) reads this catalog; the PNG is a
+`.venv/bin/python scripts/current/render_team_skills.py`.
+The [renderer](../scripts/current/render_team_skills.py) reads this catalog; the PNG is a
 convenience export, not another roster owner. Update it when the catalog changes.
 
 ## Hierarchy
@@ -138,6 +138,10 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 | [trade-portfolio-analysis](../.agents/skills/trade-portfolio-analysis/SKILL.md) | Assess combination → interval-aligned dependence, exposures, joint-risk evidence and missing mechanics |
 | [trade-promotion-review](../.agents/skills/trade-promotion-review/SKILL.md) | Decide next stage → evidence-linked recommendation; operational readiness stated separately |
 | [trade-research-history](../.agents/skills/trade-research-history/SKILL.md) | Retrieve/record research learning → linked project history retaining failures and evaluation exposure |
+
+The [RSI SOP](operations/recursive-research.md) connects these existing workflows to
+the offline foundation. Only synthetic and fixed read-only saved-preflight adapters
+are implemented; financial execution remains unsupported. No new skill is installed.
 
 ## Available advisory skills
 

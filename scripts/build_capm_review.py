@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import datetime, timezone
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.capm_review import decode_fragments, audit_metrics
+from research.studies.checkpoint_20261031.capm_review import decode_fragments, audit_metrics
 ROOT = Path('.local/capm-spy-v1')
 OUT = Path('.local/performance/capm-spy-v1')
 

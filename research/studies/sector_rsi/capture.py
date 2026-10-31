@@ -13,7 +13,7 @@ import shutil
 import subprocess
 import sys
 import time
-from research.research_controller import ResearchController
+from research.control.research_controller import ResearchController
 from research.studies.sector_rsi.model import write_json
 
 ROOT=Path(__file__).resolve().parents[3]
@@ -118,7 +118,7 @@ def child(plan_path,case,attempt):
     plan=reservation_guard(plan_path,case,attempt);output=Path(plan['output_root'])/'cases'/case
     print(json.dumps({'child_started_utc':now(),'case':case,'mode':plan['mode']}),flush=True)
     if plan['mode']=='synthetic':
-        from research.sector_corporate_actions import ActionLedger
+        from research.studies.checkpoint_20261031.sector_corporate_actions import ActionLedger
         output.mkdir(parents=True,exist_ok=False);write_json(output/'partial.json',{'synthetic_fixture':True})
         if plan['program_id']=='proof-timeout':time.sleep(2)
         if plan['program_id']=='proof-failure':raise RuntimeError('Intentional synthetic capture failure.')

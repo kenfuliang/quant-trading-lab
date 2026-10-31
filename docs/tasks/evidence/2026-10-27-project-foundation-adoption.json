@@ -1,0 +1,98 @@
+{
+  "schema_version": "PROJECT-FOUNDATION-ADOPTION-1",
+  "status": "validated_for_publication",
+  "checked_utc": "2026-10-27T17:19:31.443607+00:00",
+  "local_date": "2026-10-27",
+  "base_commit": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "base_tree": "a7b588422672cf749cd29432c7c149cb6b2a3814",
+  "scope": "13 documentation/instruction files; folder/content/report convention adoption",
+  "source_local_proposal_sha256": "88134af37cc4b0e2db224ac3eb8ee126e3e232c3435653814b553d25b8f93401",
+  "grs_sha256": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+  "new_financial_runs": 0,
+  "code_changes": 0,
+  "file_moves": 0,
+  "new_package_directories": 0,
+  "services_started": 0,
+  "broker_operations": 0,
+  "primary_dirty_work_preserved": true,
+  "publication_boundary": {
+    "strategy_code_or_results_added": false,
+    "local_c001_evidence_included": false,
+    "register_states_unavailable_evidence": true,
+    "future_package_grouping": "proposed only",
+    "created_pull_request_and_head_checks": "live facts recorded on the associated PR and final handoff; not asserted by this pre-publication receipt"
+  },
+  "validation": {
+    "make_check": {
+      "exit_code": 0,
+      "tests_passed": 221,
+      "docs_files": 89,
+      "dependency_check": "passed",
+      "environment": "existing local Python environment reused; no clean install asserted"
+    },
+    "review": {
+      "standards": "no actionable findings",
+      "spec_scope": "no blockers"
+    },
+    "baseline_files_outside_publication_allowlist_verified_unchanged": 453,
+    "frozen_grs_bytes_unchanged": true,
+    "primary_status_digest_unchanged": true,
+    "hosted_ci": "not observed at this checkpoint"
+  },
+  "artifacts": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "0fcebf4e7b69eedd550f5a6cf0d2ee903c88dd93def4ffeeed910c6308e62f67"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1c23cb9ec5591a0887be503d84a92aef947d74cb2d65abeecf226898d0354843"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "eca5e7ebea1c037d7c6389c288d93a2a11fce75abbb9fbead85151a474ca1a53"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "38469db8eb9364931b19dc7d461b551d8ee68b351813d6798ecb9345fcd8cb17"
+    },
+    {
+      "path": "docs/research-development.md",
+      "sha256": "790d2468fa10c63aeae6c5f03f635bc9acb2e8c86bfe07439140ebda7e20d774"
+    },
+    {
+      "path": "docs/research-scoring.md",
+      "sha256": "b1fd7ec858ee515a4737a1b20c8df51961f720fa097fd212a1780cce8655eb8d"
+    },
+    {
+      "path": "docs/research-standard.md",
+      "sha256": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852"
+    },
+    {
+      "path": "docs/research-cycles.md",
+      "sha256": "6682cdd3b400ea7b00f59646ff03975d22de9ae4b67aa3c66a90622f0f24a68a"
+    },
+    {
+      "path": "docs/templates/research-cycle.md",
+      "sha256": "1a968f9e44c0e99003ed9a9a565a9cbf396d4866cf8f2dc850dc8bcc282e1071"
+    },
+    {
+      "path": "docs/templates/research-paper.md",
+      "sha256": "5c6165365d29f768dfcb7c9c46e998cd642c09f395e0ba1300983f8e923d7d93"
+    },
+    {
+      "path": "docs/templates/research-decision.md",
+      "sha256": "3677bc0fa058e2e0974d42101f8591599493a2a9553916a896b3552a1e92b4a5"
+    },
+    {
+      "path": "docs/tasks/2026-10-27-project-foundation-adoption.md",
+      "sha256": "df89dbea9f91518df0aa32c8493dac593ede52c70cee2c8af3870da28e8910e4"
+    }
+  ],
+  "remaining": [
+    "physical package extraction requires separately scoped compatibility work",
+    "short brief saved-positive/negative usage trial remains open",
+    "backup/restore and top-level license/contact gaps remain open",
+    "automatic enforcement and independent financial/process validation not implemented by documentation"
+  ]
+}

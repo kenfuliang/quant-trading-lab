@@ -15,10 +15,10 @@ Resolve whether the request is contract/design work, implementation or evaluatio
 Carry out the requested scope; a design-only deliverable does not start an experiment.
 For engineering-only validation, use finite synthetic component checks and report
 zero financial runs. A financial study needs its own qualified inputs, frozen plan
-and a supported runner in the actual checkout. An isolated financial adapter does
-not establish availability here.
+and supported runner; the current RSI coordinator has no financial adapter.
 
-Use the canonical stage procedure inside the existing cycle/task record. Specify decision-relevant versus evaluation-only fields,
+Use the [stage worksheet](../../../docs/templates/stage-development.md) inside the
+existing cycle/task record. Specify decision-relevant versus evaluation-only fields,
 units, availability/cutoff/execution times, warmup, missing/unknown behavior, state
 and invariants. An output already aligned to the execution event must retain that
 alignment; examine the producer and consumer before adding a shift or delay.

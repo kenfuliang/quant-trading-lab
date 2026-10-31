@@ -5,7 +5,7 @@ import hashlib
 import json
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.capm_ablation import CASES, audit_records, decode_fragments, factorial_effects
+from research.studies.checkpoint_20261031.capm_ablation import CASES, audit_records, decode_fragments, factorial_effects
 ROOT=Path('.local/capm-ablation-v1')
 OUT=Path('.local/performance/capm-ablation-v1')
 

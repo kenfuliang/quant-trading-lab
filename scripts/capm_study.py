@@ -6,7 +6,7 @@ from datetime import datetime, timezone, timedelta
 import argparse
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.quantconnect.capm_study import write_sources, ORIGINAL
+from research.studies.checkpoint_20261031.qc.capm_study import write_sources, ORIGINAL
 ROOT = Path('.local/capm-spy-v1')
 PLAN = Path('research/plans/capm-spy-v1.json')
 LEDGER = ROOT / 'budget.json'

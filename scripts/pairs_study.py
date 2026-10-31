@@ -7,7 +7,7 @@ import json
 import subprocess
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from research.pairs_study import STUDY,CASES,build_source,decode_fragments,audit_records
+from research.studies.checkpoint_20261031.pairs_study import STUDY,CASES,build_source,decode_fragments,audit_records
 ROOT=Path('.local')/STUDY
 PLAN=Path('research/plans')/(STUDY+'.json')
 

@@ -1,0 +1,725 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "033779f34e9944338ce474ead89aded352961791",
+  "policy": "Old paths are immutable compatibility implementations. New development uses canonical modules; old plans and result identities are never rewritten.",
+  "modules": {
+    "research/feature_engineering.py": {
+      "canonical_path": "research/features/feature_engineering.py",
+      "legacy_sha256": "7206d7e4177830f5404963d002bce1427b1f1d044f92ced07ae6fdb7de5dfc44"
+    },
+    "research/daily_signals.py": {
+      "canonical_path": "research/policies/daily_signals.py",
+      "legacy_sha256": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1"
+    },
+    "research/allocation_overlays.py": {
+      "canonical_path": "research/policies/allocation_overlays.py",
+      "legacy_sha256": "c9f28c47248118a6857496ba418e79fa8deae43c8ae6a5ca8a655093c1e61465"
+    },
+    "research/model_signals.py": {
+      "canonical_path": "research/policies/model_signals.py",
+      "legacy_sha256": "ebc03d8d14d76ac300c382255699fdf0cdef62d5b44a2dcc4597a80b71ddffa7"
+    },
+    "research/overnight_signal.py": {
+      "canonical_path": "research/policies/overnight_signal.py",
+      "legacy_sha256": "a5208a2f50768cdbad40d4dfd8fccd0c57b5773d51318b314d7cc0792c7e0771"
+    },
+    "research/risk_gate.py": {
+      "canonical_path": "research/policies/risk_gate.py",
+      "legacy_sha256": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97"
+    },
+    "research/etf_input_audit.py": {
+      "canonical_path": "research/evaluation/etf_input_audit.py",
+      "legacy_sha256": "7485622d6d36558feb7b75f4841ae7286276e15fdabebe6235fdf08d7b4b25c0"
+    },
+    "research/etf_readiness_probe.py": {
+      "canonical_path": "research/evaluation/etf_readiness_probe.py",
+      "legacy_sha256": "1ab48cb82bee47b03f8fd19f9d8aad98a845ce902658c602b8403d70b9530953"
+    },
+    "research/etf_readiness_rounding_probe.py": {
+      "canonical_path": "research/evaluation/etf_readiness_rounding_probe.py",
+      "legacy_sha256": "ae674267a3238d842f4dec80bff767923024235d893079d68cf906f0c2b2ff24"
+    },
+    "research/leverage_audit.py": {
+      "canonical_path": "research/evaluation/leverage_audit.py",
+      "legacy_sha256": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465"
+    },
+    "research/leveraged_spy.py": {
+      "canonical_path": "research/evaluation/leveraged_spy.py",
+      "legacy_sha256": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60"
+    },
+    "research/control_parity.py": {
+      "canonical_path": "research/evaluation/control_parity.py",
+      "legacy_sha256": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e"
+    },
+    "research/risk_gate_analysis.py": {
+      "canonical_path": "research/evaluation/risk_gate_analysis.py",
+      "legacy_sha256": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e"
+    },
+    "research/catalogue.py": {
+      "canonical_path": "research/control/catalogue.py",
+      "legacy_sha256": "33b9d3e075d4e4a78018c7715b8d3709744bb6cea57ea0327617150a79f37bef"
+    },
+    "research/scoring.py": {
+      "canonical_path": "research/control/scoring.py",
+      "legacy_sha256": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587"
+    },
+    "research/research_controller.py": {
+      "canonical_path": "research/control/research_controller.py",
+      "legacy_sha256": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d"
+    },
+    "research/bounded_study.py": {
+      "canonical_path": "research/studies/spy/bounded_study.py",
+      "legacy_sha256": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f"
+    },
+    "research/spy_backtest.py": {
+      "canonical_path": "research/studies/spy/spy_backtest.py",
+      "legacy_sha256": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35"
+    },
+    "research/spy_report.py": {
+      "canonical_path": "research/studies/spy/spy_report.py",
+      "legacy_sha256": "cd071ecf80adda0db9625c8e3e06e864794ab9226bfe1985fedc1d978c206666"
+    },
+    "research/risk_gate_study.py": {
+      "canonical_path": "research/studies/spy/risk_gate_study.py",
+      "legacy_sha256": "ed17c7ac37e36885781619721a61205ab9806333212a786764cbbc21b790c662"
+    },
+    "research/risk_gate_ablation.py": {
+      "canonical_path": "research/studies/spy/risk_gate_ablation.py",
+      "legacy_sha256": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb"
+    },
+    "research/risk_gate_recovery.py": {
+      "canonical_path": "research/studies/spy/risk_gate_recovery.py",
+      "legacy_sha256": "066912fb95a7124dab3af0003ac1706fbd41c0c024b80516e3eccdc102e358de"
+    },
+    "research/risk_gate_recovery2.py": {
+      "canonical_path": "research/studies/spy/risk_gate_recovery2.py",
+      "legacy_sha256": "84014cdebeb2dc1e1de643167170752af3b89f2d20fc851f5ab52768844871c2"
+    },
+    "scripts/gate_decision_review.py": {
+      "canonical_path": "scripts/current/gate_decision_review.py",
+      "legacy_sha256": "55aeec94c94fd8524912b9133b7375d866bff5b54f24debe7363d0afda38c3c4"
+    },
+    "scripts/spy_backtest.py": {
+      "canonical_path": "scripts/current/spy_backtest.py",
+      "legacy_sha256": "5d90c91ffde2f1c483574c04c3c78644d66bf81b6e889ebb9c8a2f4a3dc9edd7"
+    },
+    "scripts/strategy_suite.py": {
+      "canonical_path": "scripts/current/strategy_suite.py",
+      "legacy_sha256": "887010bbf1401bbe31c34d2818d9cd9762aeba89bd7bdedbcd8167d5bb88a8b6"
+    },
+    "scripts/bounded_study.py": {
+      "canonical_path": "scripts/current/bounded_study.py",
+      "legacy_sha256": "62c47d3f459e84816a54c57ec73d8316b78b2a5e233e6f8209f229c84a6d4826"
+    },
+    "scripts/leverage_comparison.py": {
+      "canonical_path": "scripts/current/leverage_comparison.py",
+      "legacy_sha256": "ead2a1e2c6a987f820f7408aa71fc6bc27ac127353159325734933873f7db0c0"
+    },
+    "scripts/feature_diagnostic.py": {
+      "canonical_path": "scripts/current/feature_diagnostic.py",
+      "legacy_sha256": "536170fa829e9f191058cab2897dbd86ae81104d34885a7a76af19f251a5b72c"
+    },
+    "scripts/build_risk_gate_epoch_review.py": {
+      "canonical_path": "scripts/current/build_risk_gate_epoch_review.py",
+      "legacy_sha256": "5c40d2134474e121c1124fd1da79f8f9694fd83ac18e78c2557103ca0b6561df"
+    },
+    "scripts/build_recursive_review.py": {
+      "canonical_path": "scripts/current/build_recursive_review.py",
+      "legacy_sha256": "c83e9cc9f39e923d2e87af497b3fb854ca8d938c1e06fe6f9ea196dc005aae39"
+    },
+    "scripts/build_risk_gate_checkpoint.py": {
+      "canonical_path": "scripts/current/build_risk_gate_checkpoint.py",
+      "legacy_sha256": "f3f3d91e1225d87b7d4604583ee0bff7907475a038111a7b165c5d8665d98126"
+    },
+    "scripts/recursive_research_review.py": {
+      "canonical_path": "research/evaluation/saved_review.py",
+      "current_command_path": "scripts/current/recursive_research_review.py",
+      "legacy_sha256": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d"
+    },
+    "research/alpaca_pilot.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/alpaca_pilot.py",
+      "legacy_sha256": "4d9d6ddb9c6fb61044675a1c81120151f1148ae663175ff3e98ef80127be78d2"
+    },
+    "research/capm_ablation.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/capm_ablation.py",
+      "legacy_sha256": "77b4fd00d602c9f7c9cb49107728a5267870648fce757ace1d4760eaf9d1bc01"
+    },
+    "research/capm_review.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/capm_review.py",
+      "legacy_sha256": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a"
+    },
+    "research/dual_thrust_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/dual_thrust_study.py",
+      "legacy_sha256": "37a1c7cf300be75a0ac48737646f5b71409aa47dc7ccfb8cbd0120212da9f158"
+    },
+    "research/experiment_receipts.py": {
+      "canonical_path": "research/control/experiment_receipts.py",
+      "legacy_sha256": "c62ba9f3cb79b15d1ebaf05bf708bdf558de4fe4852152cd7cd0f4c28320f9da"
+    },
+    "research/free_source_fetch.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/free_source_fetch.py",
+      "legacy_sha256": "8ae2b2c19cdd654366ffcfd56ec23422de6d274de67951d8d743e6e8104fb0a6"
+    },
+    "research/gate_robustness.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/gate_robustness.py",
+      "legacy_sha256": "3369ecfe8ae7dc3cbf61034ebdb7ba246e52e33520b0b76ea11b9543e5f9d01a"
+    },
+    "research/gscore_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/gscore_study.py",
+      "legacy_sha256": "1b23542e4c0266cbfdd93464d6d21974c87f7f71b7d482b475920014a2d462aa"
+    },
+    "research/incremental_sizing.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/incremental_sizing.py",
+      "legacy_sha256": "69b25a415485c9e0216cb0268d5b36288a669a78cbdbc182a774c3f627768807"
+    },
+    "research/issuer_actions.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/issuer_actions.py",
+      "legacy_sha256": "1f8be02e2d021cb4408fa89c58ddbfff44d410297b1dfde439c07b23355091de"
+    },
+    "research/legacy_control_contract.py": {
+      "canonical_path": "research/control/legacy_control_contract.py",
+      "legacy_sha256": "6d7ec4f449a6ddf0b44bd9849ba8110cb974e3209e6c27df3a2e1c028b14b2c1"
+    },
+    "research/multi_asset.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset.py",
+      "legacy_sha256": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d"
+    },
+    "research/multi_asset_accounting_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_accounting_probe.py",
+      "legacy_sha256": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b"
+    },
+    "research/multi_asset_accounting_stress.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_accounting_stress.py",
+      "legacy_sha256": "c7b0e8f1b7538e7090f6d5e4445af5fbce3be27a53cc8ed1ee1ef7c1c2009b70"
+    },
+    "research/multi_asset_audit.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_audit.py",
+      "legacy_sha256": "ef98d076bcf73b4014272714f7075ee39f3b26d9e4204332cf5fc875950cd196"
+    },
+    "research/multi_asset_cash_audit.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_cash_audit.py",
+      "legacy_sha256": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d"
+    },
+    "research/multi_asset_comparison.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_comparison.py",
+      "legacy_sha256": "50e0493a5c7053ea3d1d3c9eca96d9b807f3567565e2802fd5ae42cc6a2f9260"
+    },
+    "research/multi_asset_native_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_native_probe.py",
+      "legacy_sha256": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697"
+    },
+    "research/multi_asset_plan.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_plan.py",
+      "legacy_sha256": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e"
+    },
+    "research/native_multi_asset.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/native_multi_asset.py",
+      "legacy_sha256": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc"
+    },
+    "research/pairs_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/pairs_study.py",
+      "legacy_sha256": "a0d77aabe1cdcfdedf9161dcb790cc06b6c191e5459502c77b6060bddf1ce246"
+    },
+    "research/qc_inventory.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc_inventory.py",
+      "legacy_sha256": "8a8532a8b1fcdf932035946e6d68f9579e4f2748c946c7d4e319ed88414c68c1"
+    },
+    "research/qc_source_review.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc_source_review.py",
+      "legacy_sha256": "dfa50213153e9f0cc47dc10530fe462ac447b6beef25b77aa8a3b1b44f53fbd3"
+    },
+    "research/qc_tutorial_packages.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc_tutorial_packages.py",
+      "legacy_sha256": "b0f838af94443098f209a1b2821b7b70fdc09ce1819fd8594374683cb7ca6455"
+    },
+    "research/qualify_issuer_sources.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qualify_issuer_sources.py",
+      "legacy_sha256": "d6d454085c9561f3bdb072ae824f3a78fc2aa3c87f0f1d1e4c4652b6a4acd7e2"
+    },
+    "research/rsi_adoption.py": {
+      "canonical_path": "research/control/rsi_adoption.py",
+      "legacy_sha256": "2eef642971efdd9ca9daba81f5f48b51ce4b23f2296bca8851e3407d6b34af10"
+    },
+    "research/rsi_contracts.py": {
+      "canonical_path": "research/control/rsi_contracts.py",
+      "legacy_sha256": "a2826c5c089d8f63051996ddd27e1d8981c06a53a4b4d43a48c3210b544d674b"
+    },
+    "research/rsi_coordinator.py": {
+      "canonical_path": "research/control/rsi_coordinator.py",
+      "legacy_sha256": "f89705796b6fba5826dbfb53686b9d70eeff88831fafc307b70f109324112ac3"
+    },
+    "research/sector_corporate_actions.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/sector_corporate_actions.py",
+      "legacy_sha256": "a6a159a57d1a93569ffbc332b809eee545020cd53add77f58b479e5f196c8c9e"
+    },
+    "research/sector_etf_acquisition.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/sector_etf_acquisition.py",
+      "legacy_sha256": "d08ef3da7f3fde3a20ee7da5d2cd5b593a13399f7bb4b7857673c1c88af2e8db"
+    },
+    "research/sector_resolution.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/sector_resolution.py",
+      "legacy_sha256": "7df7065aee3dfffdfccb09a30a253f67354104e376e592079c486644c3ee51a0"
+    },
+    "research/us_etf_calendar.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/us_etf_calendar.py",
+      "legacy_sha256": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd"
+    },
+    "research/us_stock_library.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/us_stock_library.py",
+      "legacy_sha256": "ee0b265276879098e9c1fb424cad3061fa1d18d3b387bf77b25d1757b61cc472"
+    },
+    "research/workflow_readiness.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/workflow_readiness.py",
+      "legacy_sha256": "292a8576eff0fe3c2e8f968152d7b960d44648ab3fdc3f56703155ea0f533a9e"
+    },
+    "scripts/rsi_foundation.py": {
+      "canonical_path": "scripts/current/rsi_foundation.py",
+      "legacy_sha256": "352bc8f592247ba31fbf782064abf431e5847884a90da46c25b01277e0f03cd5"
+    },
+    "research/quantconnect/t11_gate_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/t11_gate_policy.py",
+      "legacy_sha256": "e14efca421ecb9cee54b2e00be2ac8859b1b8d3e3f9a8e9da17f755a8c2e5b1c"
+    },
+    "research/quantconnect/sector_matched_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/sector_matched_policy.py",
+      "legacy_sha256": "e2b4efd355f1acc5eabdc9378a4a4bec72e06c432f379511b5f2e5c997be46ca"
+    },
+    "research/quantconnect/sector_resolution_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/sector_resolution_probe.py",
+      "legacy_sha256": "75f570679da7264f410dcaf60711ed05302620f08bc419f153be65b6766d9c3e"
+    },
+    "research/quantconnect/selection_stock_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_stock_probe.py",
+      "legacy_sha256": "eb7f8302500b5dff5401891607269657289d813764fde20fc027f4c1be0d9349"
+    },
+    "research/quantconnect/selection_completion_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_completion_policy.py",
+      "legacy_sha256": "7c5dff07fa378f2c4d364b253bd1d422377699beb3e348945ac823d84ae6a663"
+    },
+    "research/quantconnect/selection_subscription_retention.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_subscription_retention.py",
+      "legacy_sha256": "f833987e1dbf42fc76a48f3e8e618a7425823393fd023b642b72c8d07b02b8af"
+    },
+    "research/quantconnect/qc504_audit.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/qc504_audit.py",
+      "legacy_sha256": "9e3ed456402d60ad9194bd2cc8fbb9bf02a2cd71d2aa06dc0fb7e2411a654a8a"
+    },
+    "research/quantconnect/selection_readiness_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_readiness_probe.py",
+      "legacy_sha256": "6cf70c21c73eeb497bb3154f18de59c030fb02aa493027151d3096c09419a33e"
+    },
+    "research/quantconnect/qc504_funded_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/qc504_funded_policy.py",
+      "legacy_sha256": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8"
+    },
+    "research/quantconnect/capm_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/capm_study.py",
+      "legacy_sha256": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601"
+    },
+    "research/quantconnect/stock_risk_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/stock_risk_policy.py",
+      "legacy_sha256": "48af0c8741ba12a2c73a4f745c707e42624ce398dab3cc12c62312f14f3d55ef"
+    },
+    "research/quantconnect/sector_metrics.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/sector_metrics.py",
+      "legacy_sha256": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f"
+    }
+  },
+  "protected_files": {
+    "reporting/__init__.py": "268d25cc8bd406f95fbb20aae7671eb58b73fcc1e4c66c3cb0ed71f51bf75f7c",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "reporting/comparison.html": "dc66e6672be2a58538b84630c8a14676191480e61e2cbacfedac4a8ad9588855",
+    "reporting/decision_labels.py": "6fd7eead1dd6efde96978b5ffe814b075508a03e1b4581b2da88f2ace0d3bfaf",
+    "reporting/gate_decisions.html": "b8d69332d65522b51209ccefe0ffb465c06d254343ae32eab5aa844986ff458e",
+    "reporting/leverage.html": "0df182924f940099fabc5caefc15f809133c92a6cfb8069e390a01d112b4a522",
+    "reporting/leverage.py": "c9e880c0d4b4f73ebd4ee1267e38547b41ef00e01c6609ba26505ba7fc02463d",
+    "reporting/recursive_research.py": "936f15d5faacaf26e6f5e62c7ab0eab2b5d6bb2696c2c39799934ce80c49528c",
+    "reporting/risk_gate_review.py": "a838effc7864a37cf504939170bec180b3a5a6067474231570a3370cacb521c8",
+    "reporting/saved_runs.py": "549b67c803faa032946e126ab3bae83d54a392a507c4194114dc8575d3934974",
+    "reporting/strategy_suite.html": "abe17e787de643d243956c291164085ae32b935eb66db88372534e7c38f93d00",
+    "reporting/strategy_suite.py": "69ad4f41195c3120ef08c8eaf19930199feb4371b5e4bc0573592cc160286d97",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/audit.json": "999af675ac255cd6c1964f6b9b5f1f01d162733933dd590f34a04f878b8c1bf0",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/independent-metrics.json": "307b5f3c7d9b5cc06f344b4895bdb79d33894b758a4c0b1369146d7d99bbb2c5",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/ledger.csv": "1c728378095c26c3e8cc6c7b640a37ae71b752ec3898b687ab08c76f947bd5f2",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/scores.json": "f4bbd06046b7846de4913faf4c3b3b0bc84e9ea77b41f2a58fca5703f14af2f6",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/signal.csv": "249164f6c9c5cbccd2072b72d839eb479ef7f08338856a18e52094b43d40e4c6",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/temporal-audit.json": "ea0b79e5579e209ccd9d8abba7d27aa5f2ec18a76170878f3e60ab672e452145",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/temporal.csv": "d21b85e510dd0f4550c27bdea97c794c9c8cd8f4bb8dfc9eb421c3df55501d4e",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/temporal.json": "404419f8e2e9955355e7b963970e635e2d057609632e88948842bb202a5c9997",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/timeline.csv": "8a00a2b30c19c0ac12c0504736582c4553511278283f7c8928ca52993599089b",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_ema/trades.csv": "0a29b55b0f7010a93ad2ce681347649503ce337c11fe98a43c03befbc809c35d",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/audit.json": "b725c3cfc006fe385f6926394388251d7c8e2c963ec2d1f49a59216844bc2b3b",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/independent-metrics.json": "7f04fdc3cb5801bcd7372e715af178bc137779f235b1f7ddf119294fd5d08ba8",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/ledger.csv": "db04c4b0b78cd6c699614389561d73e1348a65e12ba0176b42f9cdd15081b605",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/scores.json": "f94c52ff3605c15d3409c7377023d76f94fcebd25023e1a532eacac3fe6f47b0",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/signal.csv": "16e9ddd076d1c13f4a4f12a2f0ea35fbed771b19e9db63e42eb444964c4ddeda",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/temporal-audit.json": "35d08bb2bc3ad466d0b66a28c54b47071b492305365e6b6a6a256af18f1c88c7",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/temporal.csv": "b741ef5205558ed80bd5e9a1601c0a1e0d9bba71436ddaa2a91fce4d3d5d4e8c",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/temporal.json": "73a27b9f12b0ceac6c5d9104117110e1dc39a4cb106190d25262a2c0c76b8949",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/timeline.csv": "6f7183ed64b1664864f8221a2dc87ea0dd9766a9ab5207edbfea44f50dce59a3",
+    "reports/risk-gate/449096da9fbe1385/10_ablate_hold/trades.csv": "271005ae0eb7dd0944f946ce2a0a7990638d1b03c8b9872de9ac3182de02ffb4",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/audit.json": "a8de80b859885c4209a1ee63d84d91c96bd187877d4562cf7925e379946107be",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/independent-metrics.json": "e2caa594a1dccbe28f66ed711fa78df66453e5b2d6d455d9bc52299cd4195d68",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/ledger.csv": "4e7059b0d8fdc3ae8253ec43b64d4c667393cd9258afa9d59d58bcf7f85cf0b6",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/scores.json": "17486ba5662807bbae524f2a2f40c81a26d6afde31fbe6053b5692696bea19b5",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/signal.csv": "249164f6c9c5cbccd2072b72d839eb479ef7f08338856a18e52094b43d40e4c6",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/temporal-audit.json": "6f3f2eb45d4322789b3fd2e7b6019dc80a66b66d43afc7665c68c2def0776b44",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/temporal.csv": "9cfa81ba988f408afe1976a4dcd0ee48fe586eb2c940e1a68e68ca30552264a1",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/temporal.json": "23781733a760bf5ebf033f14dd4544bb0b0f9452cdef4710bb499eac7ac95962",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/timeline.csv": "c8c51f79566ce1305c1a4038794a6457cc1e1563951f1f8cee86f304c093dd06",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_ema/trades.csv": "e9a007aa96c26993388ba1026aff8390956344e4c008e264dc46bdafae4ec593",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/audit.json": "8cfa9e8dd33884ecfbc34bf018bf6c53e15c8657772995734afa8d070f986338",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/independent-metrics.json": "3f4393ca5198cdb0a23de614c1fff0507376b0e5ea54da0529b76ec2dc1cb8b6",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/ledger.csv": "4be61c8d708979b92914fe447f415107e3c7306b51f19c33591ae2ffda077dfc",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/scores.json": "7c0e4a51d006f79af86c192d719713c12d3f0fb903492edd1cb113249381556a",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/signal.csv": "16e9ddd076d1c13f4a4f12a2f0ea35fbed771b19e9db63e42eb444964c4ddeda",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/temporal-audit.json": "1e7af7666f0f801f919e719368f91013c428ad23e102af40d2e5cd7e71b10b0d",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/temporal.csv": "f0a6590a9ffaeedf5a863c835a25a447038bc84fb7e7b85585b05a7b600ac741",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/temporal.json": "ceebff616189e17a2e683855fd5ecbdb45311a040a74e338d5af34ba858468e6",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/timeline.csv": "254a551520ac3fb0ecbc33c70f3d0eb7e512e3b393a47f155e8a515abce9f1c8",
+    "reports/risk-gate/449096da9fbe1385/5_ablate_hold/trades.csv": "7a1a6a17b22b9fc5deb133855d20feb4472fa0c4e0e6e1b72e050b019f5bae34",
+    "reports/risk-gate/449096da9fbe1385/case-results.json": "77f89d3e9ce21723a5cb06ff1c4e9e4288f1a42143b3d5245cc3a7d534e854c6",
+    "reports/risk-gate/449096da9fbe1385/manifest.json": "99e76d57ca2912fdb9f02256a4ef378ceced25d12dc1f12d37a16d08504df80d",
+    "reports/risk-gate/449096da9fbe1385/plan.json": "449096da9fbe13855546c99e7c464fa6f570deacc83e680f78aca4e0372dfa05",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/audit.json": "51f1e156a41ef2710afc489269f58439a75c213ac28dbd19e6770a6c1d597848",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/independent-metrics.json": "4c2fc65d1b94e5565557e6351501e9b30ec8fffaf2a9435308b0a7556725eb78",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/ledger.csv": "65368b4d8874847acb23b063352f7046018fd04e6c1a275141d4d73c88eac800",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/scores.json": "8f3927691b0a14825298efac13e1a47e5c70ac746e86b2ff3d4f29426fb94126",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/signal.csv": "f00eef1a7eb0e3a74e5ef97ef1f1de601ddb42be0ec9650fe7930c48c8bc92f8",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/temporal-audit.json": "c1dad9af2e3fd62575dd92b5edd203cc30312a0beaf7cf266918c7a85ed4f61b",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/temporal.csv": "083e01f73c6e4dcc7e8df07c36c72d8f524de6e54e07f1d670922fb65e745174",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/temporal.json": "ebc8166e1e936cb76d05063d14649337a97641264d3684d692ff4795c132bc50",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/timeline.csv": "3f392441275021c1825d1c4e7a71c582e6fd3b2c4889e3dfa4b290e4428bb216",
+    "reports/risk-gate/5da2f7dccff31178/5_hold/trades.csv": "d4dc004731b2f24729ef60c9d4331f79a7446feeca6e4df770c4d5560ce2b77c",
+    "reports/risk-gate/5da2f7dccff31178/failure.json": "71286fa113a1db966f4a42013f397c060e8eb80c17141f3dbaf525b91adf30a2",
+    "reports/risk-gate/5da2f7dccff31178/manifest.json": "76af7cd58df03b286baefeee109cdf447d762fdb2f3568398cef69a120728354",
+    "reports/risk-gate/5da2f7dccff31178/plan.json": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7",
+    "reports/risk-gate/5da2f7dccff31178/post-stop-control-parity.json": "2e388b0022f5c4d6ed88828b7b07c7bc6fef53fc4e5a645fa035d78adf99442e",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/audit.json": "ced7e7ea1374578b2e4bc4d3bb85b8657ac5e0146528f16b709f851dc9a9ab90",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/independent-metrics.json": "d4ee79b3bb3032ef5590bfece67a8ea0b87a3e6ccd4427a66ddfe80f26e3c32f",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/ledger.csv": "aa5c6c9ed6693caee5eb759ca4c3ec052b08a4615e6a15f6949d0bcbafacabc0",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/scores.json": "876010cd0aa66214d00980fd040ca7961e3ce9e4dc1d1e4e70b86640c1dcad54",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/signal.csv": "28abd54a28e20dd112f66a26df1d8204ddd8cf8013f6abfd2b428d21f34e4093",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/temporal-audit.json": "b0ba6bcf22319a17603310235ebb1528b29d6ac18c0d364bfd9d4107ba15fe23",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/temporal.csv": "a79b4c281b9f93f93be315843469b8b481cb14cfcf0ebce154c575ae3e244fde",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/temporal.json": "449c5666dabf2a44c8a425908785c05bbc7afbb3d3a8381633613a257519fb16",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/timeline.csv": "5222ee3eb7088fd9661c28b3fbb06d54e412254ec653f866b8210f2abb7b78d2",
+    "reports/risk-gate/97e9d442a8b83201/5_ema/trades.csv": "68ddf4bf7294aafe5d435be8a7ab08545d4145d7472c35105d92d031d53f04a6",
+    "reports/risk-gate/97e9d442a8b83201/failure.json": "00191f1181d9432abb4dda95023aa18c3fc81ffa713e9755d27b7b152608908b",
+    "reports/risk-gate/97e9d442a8b83201/manifest.json": "c0ee72d865a2ab20a17a2989e6b2afe7fb4d60a3093580cda35739aa584097e2",
+    "reports/risk-gate/97e9d442a8b83201/plan.json": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5",
+    "reports/risk-gate/97e9d442a8b83201/state-before-recovery.json": "c0353878114f726c608e742a7a2c605d8bcd9f4dfbdd6477359c9a6cc6605acd",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/audit.json": "91aa99db3bc81b424371400425415a7f97830c8915478f46c987cd01e3e3e619",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/independent-metrics.json": "b21d4c17e5901da56c72b0925aef389a788f58e2a2977adc8156e764fac2fe84",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/ledger.csv": "bcc538b266883bc4ebe9f5c9b50c3ff42457acd7dbea21c360709dd854f8d8d9",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/scores.json": "47faa722f83ede41781153c0b19d3034c71c650dd3e4cb2fc2bc5cc8c25e844e",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/signal.csv": "92ccfb605a6ece3f8ef775d226714761f5bc7ecfae5ca98ceef75019e5e30747",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/temporal-audit.json": "a1576903ec30d5c3d557757b3adcd9ff46d47e76af8a8e6e3eb14024458a39de",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/temporal.csv": "b45072a6788b0a10c09f1e887fa73e041a665db18067016ce7dda030594ddad6",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/temporal.json": "7f07ee7a8b5e275343f87af5f51f3cb876fe704a87e96625dc751b67ea225207",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/timeline.csv": "8f73b117ecd88657ef0fb745a23d24084da3e5f07fc8ae3ca95d5ae0d23b53f8",
+    "reports/risk-gate/b6b57fe7077dff3b/10_buy_hold_entry_only/trades.csv": "3c39c5bde4078c5e432cb1ccd9e5584c9632e50468a196fa8d3c21fe3ff49700",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/audit.json": "9d1d86c80b92806c3e0fdbbdd148a2e1ea72ebbcd52e186f1b80c055464363b7",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/independent-metrics.json": "0528ff078f5acc7e9c4b8624528f9f41781b7796b6eb3a9d51be60c2a3b9e4ef",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/ledger.csv": "7d627190980399104cbce94363c55c11418c706770ae6dc11609db6824004f22",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/scores.json": "135d2e50fe1cd50f02eeee57d1eae1d96c45f5c55662edd56d9760eb8781fe5b",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/signal.csv": "6e266e37c6e4a8910c1985d3a0887922a91348ddbed60fa4190a501dfc1712a7",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/temporal-audit.json": "b0ba6bcf22319a17603310235ebb1528b29d6ac18c0d364bfd9d4107ba15fe23",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/temporal.csv": "4f13c68fc0295f863ef62bf4b84f9532efc13909f3dac979f52d8d5eeaa5a861",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/temporal.json": "4d700cbe4eb94cc969c1413624f97e7f0de89a2919de06934a0ac24ee30527ea",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/timeline.csv": "958a9ec45babcd13d14c0d49687596ce12cd6847e90ea5ae84f1a71cd5972604",
+    "reports/risk-gate/b6b57fe7077dff3b/10_ema/trades.csv": "d90cc562bc2b5892348257fb92ac3a5f7438b3bf630a3a07e11c83e82df7a230",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/audit.json": "a5d73b86bff0c8920181fa66fdf0f721ba04da62241d25068847ffa6f8e94c6f",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/independent-metrics.json": "a73d0a67eb2386f0093b7fcc5d1fdd42a590733132b312790cff642c88f109dd",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/ledger.csv": "fcd355c28fb9fc0c7ebc84ad9fc451fdec5cd03983b11ca4cac6b49a694c4a3c",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/scores.json": "bcd2860c1e913c9fdece4f152c6109b7f27b085eafabd386e0e6e8187ec2e0fb",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/signal.csv": "10b528a4494aaf25a6591b2f7c13e93d9b5f23095049ef391e2395983f2e8705",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/temporal-audit.json": "e3bea5c8a9d49c2d4a86ac001bb42e019f5ea9bfb5d97fa8b29bace4b4a430b3",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/temporal.csv": "29332c3dac89f703595a3f644d15c48d68c42d68d397c1280d4674197c9d8949",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/temporal.json": "ff77a05282199e43297b4f374839fd79f08134abe7c0681bfc5e42b4f5bb408a",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/timeline.csv": "257df29d7004e3543e2eaf05edbbc2a0e97257b955f92e778cad78b88b856d90",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_ema/trades.csv": "d12ca2900a4a6c0988e9d970d971e01278d14e7d7b22f78494a74435fdf2ba90",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/audit.json": "42ae91de31104533b0d644fb82a45d588289ebe9c4eacfe6dd9c72938459cc06",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/independent-metrics.json": "83353d511868194d73c277216903235430892e8fa27d3101521bad20e345f066",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/ledger.csv": "1ac2755ce798a51f5b1c0820c5ef36bc7216c0b03c98b26c01ea37ef6df5e4e4",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/scores.json": "2484fd6e9b00fa3c43c87b476581af970f2b829a56891d6a7b68d9ccc98fe4cc",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/signal.csv": "390f4fecf69509a76bc5c218769a5cd298ef82aec0c95c73b77e2a563704e071",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/temporal-audit.json": "d55a8372af68cffeb3ff1a4f4d22391b45cb914cd47dc0f4be9233159d933b49",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/temporal.csv": "a18051e80502434c9eedf2e60ffeb659bf862f23e5a15a59ac8c90961c6df8a1",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/temporal.json": "ac5d2641307c8111471c484c3a4f8a754922f4e9469b73b7b999d9649b485d4d",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/timeline.csv": "61ef5a5496126a85ddc4deba452d6ff3c233dc8e65e42b88991833bffb4de8ce",
+    "reports/risk-gate/b6b57fe7077dff3b/10_gate_hold/trades.csv": "c211d3f5d70bd9dedc99a8c14f647c5eb33ae22902d74b01450aa3d9285dd60e",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/audit.json": "ae37da349c7abe731ec4e71868c7d0f7ffe0d2110e0bd3621f6d851a2dd68749",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/independent-metrics.json": "1cb77e46652f36a445473d432ab32a7d78bc7f019cc637687be1efc7e27d2067",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/ledger.csv": "667cc0ebf2477359f2a1dc9436e9f1d1d0eae7fc83be3d02ba7956085b6a8906",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/scores.json": "abea84c59a51d1bbd1069e12738fbd2072ab9a7c7472ab420ddd4f392da8a41c",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/signal.csv": "a24acc355f62459935e5e223fba307f0d3ba6f104eabb4763baf00b9bc113bc7",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/temporal-audit.json": "beef3ed4ffa496b56be2ddd3702a59aa8559f36d4ca0f4fae11b3dfbcadc06ef",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/temporal.csv": "0610a814bba64449e7429dc46a2257fd71fa3f67c1af243e099a7f14022507de",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/temporal.json": "e73bdb3ad3dd541e74e6eb467b2f2e389a1a541315ce8d4a5d708d7b9887ed1c",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/timeline.csv": "7f81ef59c919f34a9b5554b9029ce0c9e7a9edbaa567f9c33e7e036244538f44",
+    "reports/risk-gate/b6b57fe7077dff3b/10_half_hold/trades.csv": "2586ccb5f1cb815863c933f297499c92c68c5e5da8eef8d85c5e24c3683fbf98",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/audit.json": "2f8320c1c9baf6a3ec50ef9b9630e0258887c4efbb230156cec68b385e67dca7",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/independent-metrics.json": "8d1dc36b439f8e74c0763e1f5469f2591ddd2c8220966b908e3c32c4ae6d227f",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/ledger.csv": "1cc3caf043eb1fb1729240e9620ad9e9d1499f8e41db9a4f0e5925cfdc194f26",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/scores.json": "5c05fae91024aeafcd9d96fbc58fa42443b09b544bc868e19c0f2713db89ca21",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/signal.csv": "f00eef1a7eb0e3a74e5ef97ef1f1de601ddb42be0ec9650fe7930c48c8bc92f8",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/temporal-audit.json": "c1dad9af2e3fd62575dd92b5edd203cc30312a0beaf7cf266918c7a85ed4f61b",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/temporal.csv": "fe6c4886684a9a494c6d1174624b8eb716848b4ea02c52115bd637a25dca591d",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/temporal.json": "6b38f38450bd9ff3edb3a4249a84ed69d6583054d39ed7807f6162bada138c8b",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/timeline.csv": "033a816f2162c0444d8f94b1bb8767a128535e7b61d0edf5a9902ae43860b7d6",
+    "reports/risk-gate/b6b57fe7077dff3b/10_hold/trades.csv": "a98372251e579a71c1254db40f2d3204de3e966e8fba6e6c5f53f88874a626b3",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/audit.json": "b834ce3a1d92c79722d7cf45aa4a180ac0cab032d5b85ca0cd32dd693c758dea",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/independent-metrics.json": "0cccbced47e3ba80274d4744344b6e05f30ac35f0fd7e6b8315386d0934f4b71",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/ledger.csv": "21f1a4b4cc68352ff49debbcfc7cf61b93512f3ae46477c4a8d146374ecd0669",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/scores.json": "842e8d31a470f42115d86094c9ecc0c9534cfde5884e2ae4a028ead3398ceccb",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/signal.csv": "92ccfb605a6ece3f8ef775d226714761f5bc7ecfae5ca98ceef75019e5e30747",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/temporal-audit.json": "a1576903ec30d5c3d557757b3adcd9ff46d47e76af8a8e6e3eb14024458a39de",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/temporal.csv": "86d643a78c522e9d44f0e44fed1b87e45f49735009d8c03ae77ac51817a3ca89",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/temporal.json": "fcda74a4335c933cd68c30445d8eba96beec6a56b0612f3397466828ed93350c",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/timeline.csv": "4a161b129e77bfe6f0f861a7eb3a3f0de199c7a5d3df128f4e56ed255c34ae7d",
+    "reports/risk-gate/b6b57fe7077dff3b/5_buy_hold_entry_only/trades.csv": "28a46164210b4d073956820fcf18ed7773933a7fcc25744b39b945a770458418",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/audit.json": "4aa78d33b0f129e7bb3bb40ec3034804494b3b19eddd5aedf1ec86d091713f74",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/independent-metrics.json": "e4d08de3ad02262913fdc8240b763717c7fdddc01ff5d64675bb28edfc77c0d1",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/ledger.csv": "49709f3dcc2becb67c95ab0f20af0ac0118f41d4a6b4f8700e3b7e8923ed2239",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/scores.json": "8346dd868e218a3b1d6803ee294a1d4f0dedf0a47a2ab43dc97c36c816d89cd7",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/signal.csv": "10b528a4494aaf25a6591b2f7c13e93d9b5f23095049ef391e2395983f2e8705",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/temporal-audit.json": "e3bea5c8a9d49c2d4a86ac001bb42e019f5ea9bfb5d97fa8b29bace4b4a430b3",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/temporal.csv": "dbf1de11408e0fbae7c28a1747401c9ca69544067f2be59b254ccbb4ed7e0e30",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/temporal.json": "3ff0355333ff96897876e7d6f656d5ed0a0e15a5e652981abc1b5b07ef2a997d",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/timeline.csv": "18b7d6e3ceb94684ccdafea9ded2653f33fbd4b0c1913bc9779b0312b9580597",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_ema/trades.csv": "c55d5a41f25ec828f187357f9de79558f69a4bc7f1795cef23c4f3ad854d1b6b",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/audit.json": "fa8728ea2af6d584d305ba867b590be732a9b3ed10fe6fcac784d51a91dcfea1",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/independent-metrics.json": "8a2f70d4f04b929bc8f635ad3c8db5b63adafa3c90ae08e9c4ee2e680b129660",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/ledger.csv": "6fc7bcb796cd29a9eacd3f9f5cdd5ea8d9589ca59b8e5d765676a5fa53eb2fc5",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/scores.json": "88c70c4be4919fc43b5d579740ea653cfca8406d7674329d55f34aaa80de4cf0",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/signal.csv": "390f4fecf69509a76bc5c218769a5cd298ef82aec0c95c73b77e2a563704e071",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/temporal-audit.json": "aa66a1f2ae35c6ed842df1a873b744f69f4d8ce712a5048d1010fe63910551bc",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/temporal.csv": "1504f9b44d49c10a46d673054ae3463627fc996928ffa619976c2b2ecfc86947",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/temporal.json": "709d45deeb719d94c64ad82779a0f84a454b258d3c97fedfe089af3305d6633c",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/timeline.csv": "0f86b5e4aec09557d67f43b639d0e0c6d2c94bd9a1d0fac4e37c40468caa8065",
+    "reports/risk-gate/b6b57fe7077dff3b/5_gate_hold/trades.csv": "d4635afb15508b4f8f51939623dcd95c72a1702afe36bd48f30bdae544b60bec",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/audit.json": "6006102576faad2a4e4212ce8c520ad9a3c8a467656ba90177d1c7f5f9fffad1",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/independent-metrics.json": "01acf76974334ff101a7ad63a21c5d22362dc8a809a74b00f0994586e7870389",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/ledger.csv": "44e3d3ec1e87e0ae892217f36521d64d5aa71ac36b2a857c6d8a2a8234dd6855",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/scores.json": "6066adf0ff44224e06893a22bb7b6d7b998dbea01134aa6d7ebb0f915b64fe9a",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/signal.csv": "a24acc355f62459935e5e223fba307f0d3ba6f104eabb4763baf00b9bc113bc7",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/temporal-audit.json": "beef3ed4ffa496b56be2ddd3702a59aa8559f36d4ca0f4fae11b3dfbcadc06ef",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/temporal.csv": "46d73fd4ad7c75b63c16cf319f14e2c06d48415b5b06dd2ad17529c20b0c9b40",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/temporal.json": "edcf1ce7e51f9693451a0e837e29319934b7c3aa73f32ede84b8514ffdf74127",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/timeline.csv": "50a53f13a5cab40d60e6764d0060e4f767de2be40592318a5f6a0b86d9287b79",
+    "reports/risk-gate/b6b57fe7077dff3b/5_half_hold/trades.csv": "082913095c18567100d4ff42e63b4ac74573bf27921c8e63d522df9aee4417e8",
+    "reports/risk-gate/b6b57fe7077dff3b/case-results.json": "557ced12da0fc0b31ba493aa8f8bcf804d076cd0e49c918d7ae935ec92c663aa",
+    "reports/risk-gate/b6b57fe7077dff3b/manifest.json": "bf4314e20b107b654feeea3faccf122e2ddf772efcc497a14bfac0c70e2ffd1f",
+    "reports/risk-gate/b6b57fe7077dff3b/plan.json": "b6b57fe7077dff3b01fce24f4e318bfce9347b16af9bb4954751fd9c427ccc43",
+    "reports/risk-gate/b6b57fe7077dff3b/state-before-recovery.json": "00191f1181d9432abb4dda95023aa18c3fc81ffa713e9755d27b7b152608908b",
+    "reports/spy/20261024-235659-766081/annual_returns.csv": "03039ba6a7694b1e2cedd05ea94995d32ebf484eb5d890e25992ea8fc4464d50",
+    "reports/spy/20261024-235659-766081/buy_hold_dividends.csv": "c18e68dd6efd1599b7dc8b4db0a92c78a213c9dfbbf626485f8b4a3d00554d69",
+    "reports/spy/20261024-235659-766081/buy_hold_equity.csv": "6483408f57582f0a0b4bc8c6099dd8bb6c9bbf34e573842e63e1ad2f9d4ad372",
+    "reports/spy/20261024-235659-766081/buy_hold_fills.csv": "caa3bc52ff4555de6af632b701a022569270c54becb98551da4ac01852e01fbd",
+    "reports/spy/20261024-235659-766081/buy_hold_orders.csv": "5b2a717016f8fbce965dd77d3d7c3f44a1d3a4027acbbe2d5f61c4dce99dcd3f",
+    "reports/spy/20261024-235659-766081/chart_data.csv": "84d77f7e43a6664c113e1f933dbb813b2b821bff6a6ea036dc1475d699d3f54b",
+    "reports/spy/20261024-235659-766081/comparison.png": "e0f38c1c20faf7594eba1a9221eac85874a532921619992050fc27ddbc7b024a",
+    "reports/spy/20261024-235659-766081/comparison.svg": "45b89a8f32c30b4c95811622efbf26b4120669d7aebf945c2a0a9ecad6004dbd",
+    "reports/spy/20261024-235659-766081/input_daily.csv": "23d8c005340c2a0143d85fa96d9622bb514b741a55047e2c6e897fe182512342",
+    "reports/spy/20261024-235659-766081/manifest.json": "b584a0684e1401b4ca59178d6d9ed033f2f29d1fdb2df2ab08b1b887de2724de",
+    "reports/spy/20261024-235659-766081/metrics.csv": "f8a199349776beaa6a092d99dca8944537db03f99023423bd013961803fe4ec9",
+    "reports/spy/20261024-235659-766081/report.md": "f5bac09c81169f850cf79eb7e838dfa16df97e5024740f749c85741edb369f93",
+    "reports/spy/20261024-235659-766081/source-data.json": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "reports/spy/20261024-235659-766081/summary.json": "76ccfe22e53c5cfc1ad09a65cadb8801296c1cd549c23b7ec1d7804c6de2ef5b",
+    "reports/spy/20261024-235659-766081/trend_dividends.csv": "80764c13cbb30623348ac220d3d3556e1d616af9d8928f4d5693bde1f90e2d03",
+    "reports/spy/20261024-235659-766081/trend_equity.csv": "8f7d7d3ada17fb07937565b69c5288485c1e8bd03540441b33d03a9a59457edd",
+    "reports/spy/20261024-235659-766081/trend_fills.csv": "52cb705ea38b2adebfd1b31e5e89c11935e25d57c878881d685ea426adff1119",
+    "reports/spy/20261024-235659-766081/trend_orders.csv": "91c45e203d3340b36087330e94383bb099e6279a6e51a7e370ef94139262e3d5",
+    "reports/spy/20261024-235746-728801/annual_returns.csv": "03039ba6a7694b1e2cedd05ea94995d32ebf484eb5d890e25992ea8fc4464d50",
+    "reports/spy/20261024-235746-728801/buy_hold_dividends.csv": "c18e68dd6efd1599b7dc8b4db0a92c78a213c9dfbbf626485f8b4a3d00554d69",
+    "reports/spy/20261024-235746-728801/buy_hold_equity.csv": "6483408f57582f0a0b4bc8c6099dd8bb6c9bbf34e573842e63e1ad2f9d4ad372",
+    "reports/spy/20261024-235746-728801/buy_hold_fills.csv": "7982bcf405c9e2b264fe3816b3806fbf6f9e72db91f3cb5f367dd91ea9df4f35",
+    "reports/spy/20261024-235746-728801/buy_hold_orders.csv": "bc5c9696310f07dba9a5ce5b1b3c02c70a1887f6c15929d827ab0f7e1edda1b7",
+    "reports/spy/20261024-235746-728801/chart_data.csv": "84d77f7e43a6664c113e1f933dbb813b2b821bff6a6ea036dc1475d699d3f54b",
+    "reports/spy/20261024-235746-728801/comparison.png": "901782b4e170341d54f1486e15a884e96bc13b71e36449c769812f58b6456516",
+    "reports/spy/20261024-235746-728801/comparison.svg": "03300ad7db9ae286f5ff0bef360c45e4ebaa95ed9b4d1b6bc3cec7134526b244",
+    "reports/spy/20261024-235746-728801/input_daily.csv": "23d8c005340c2a0143d85fa96d9622bb514b741a55047e2c6e897fe182512342",
+    "reports/spy/20261024-235746-728801/manifest.json": "e4f1f736e5e42834cbe03d8609e22270d727224e4076bd313c0a992b871c6ba8",
+    "reports/spy/20261024-235746-728801/metrics.csv": "f8a199349776beaa6a092d99dca8944537db03f99023423bd013961803fe4ec9",
+    "reports/spy/20261024-235746-728801/report.md": "d9279117d32c095d5ebe05a08ea2fadad171affa19b6d86ebc703df47e8ddaba",
+    "reports/spy/20261024-235746-728801/requirements.lock.txt": "f08bb91cc397dd9d03fc825276d564296fdcaaa7405de0d69ce0e2849b97004d",
+    "reports/spy/20261024-235746-728801/source-data.json": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "reports/spy/20261024-235746-728801/summary.json": "76ccfe22e53c5cfc1ad09a65cadb8801296c1cd549c23b7ec1d7804c6de2ef5b",
+    "reports/spy/20261024-235746-728801/tests.txt": "5de78d1e95402def4e0725be599e3782250949f7a5276ccbb37c5f335a9de22e",
+    "reports/spy/20261024-235746-728801/trend_dividends.csv": "80764c13cbb30623348ac220d3d3556e1d616af9d8928f4d5693bde1f90e2d03",
+    "reports/spy/20261024-235746-728801/trend_equity.csv": "8f7d7d3ada17fb07937565b69c5288485c1e8bd03540441b33d03a9a59457edd",
+    "reports/spy/20261024-235746-728801/trend_fills.csv": "9d5d5d348d2156605635bc5bc88a7b2b99ab80a2525fa60f718707319829098d",
+    "reports/spy/20261024-235746-728801/trend_orders.csv": "6bb4354a8f95a95181c6365d6e252a48dfe80e895fcaa73682f842af29b9370b",
+    "reports/spy/20261024-235746-728801/validation.json": "cad8cc6a0665a9a8070b9a6164f2dcce17c7543ef2047fda93f8689f6d8d0a7b",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "research/README.md": "a4c9362dfa5473889209e9427faae87e9e4c829b133ecfc2edbbe25f6d0e5c7b",
+    "research/__init__.py": "176ab0098e5c017d087170fbfb79fdb88415495f8aa0b3b599cb88180daaaa73",
+    "research/allocation-strategies.md": "7e7c6d4e9d1ce0e4de828a843599f0c30cee29e287948f2856bc663e9f73e67f",
+    "research/allocation_overlays.py": "c9f28c47248118a6857496ba418e79fa8deae43c8ae6a5ca8a655093c1e61465",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/catalogue.py": "33b9d3e075d4e4a78018c7715b8d3709744bb6cea57ea0327617150a79f37bef",
+    "research/control_parity.py": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e",
+    "research/daily-strategies.md": "d0c544f899bf9d54da13b6a77b8cc9fb4048d7759da117ecfa2c60a0767da6c4",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/etf_input_audit.py": "7485622d6d36558feb7b75f4841ae7286276e15fdabebe6235fdf08d7b4b25c0",
+    "research/etf_readiness_probe.py": "1ab48cb82bee47b03f8fd19f9d8aad98a845ce902658c602b8403d70b9530953",
+    "research/etf_readiness_rounding_probe.py": "ae674267a3238d842f4dec80bff767923024235d893079d68cf906f0c2b2ff24",
+    "research/feature_engineering.py": "7206d7e4177830f5404963d002bce1427b1f1d044f92ced07ae6fdb7de5dfc44",
+    "research/leverage-model.md": "d6224928351d6e50c5b1c33accf59e49928a690825076424cde60e7a727ad307",
+    "research/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "research/model-strategies.md": "47f5ec7a51c9a3e4ba5c0da7926e23eeab434bebbb249f7abfb78990e9cd4b26",
+    "research/model_signals.py": "ebc03d8d14d76ac300c382255699fdf0cdef62d5b44a2dcc4597a80b71ddffa7",
+    "research/overnight-strategy.md": "6d1d059fc0786316db344aa07f04d91049ab426d6ae9f6ff126ccbf963d58171",
+    "research/overnight_signal.py": "a5208a2f50768cdbad40d4dfd8fccd0c57b5773d51318b314d7cc0792c7e0771",
+    "research/plans/etf-diversification-readiness-v1.design.json": "e4a04b22bfb3981da52c36235953b19c43d5bbdc7846877539914fc67f4c152a",
+    "research/plans/etf-diversification-readiness-v1.frozen.json": "adace794f4fda55beb79bc15a8feeb17c1f98c61ede2e7b2145b7b8d736b75d0",
+    "research/plans/recursive-cost-stress-v1.json": "e75d4448a54f546ff2f7b6621485fc114439313b676ddb7da99bd4aea72762a8",
+    "research/plans/recursive-portfolio-v1.json": "ea47b6046e0b9f03c7f96517078b3e9028ce65fedc38e6c27989c7eeb20d2ba9",
+    "research/plans/recursive-portfolio-v2.json": "fe39b9a648cde4da86605cf9aee5863f3c96d52b156629325517d80db6104d99",
+    "research/plans/spy-continuous-cap-development-v1.design.json": "bef826123183b0b0126e8a44cfafcb8199136717eb5b7f6c1d16bd978e7ab65a",
+    "research/plans/spy-feature-diagnostic-v1.design.json": "dbe6ae6859e0ffc467981b0f23470ffaa766008b916e78046e535bfe9ed8f166",
+    "research/plans/spy-risk-gate-development-v1.design.json": "580f3fb3e4dda993524c54d0b72432479a102ebe6d5a358503a249b39d17b079",
+    "research/plans/spy-risk-gate-development-v1.executable.json": "5da2f7dccff311781ba3c60eb845706f1c8a9b1bb5f012f20ddc858bf03e94e7",
+    "research/plans/spy-risk-gate-development-v1.recovery.json": "97e9d442a8b83201dc43431e396260391b412b01a76546675e052895a74891a5",
+    "research/plans/spy-risk-gate-development-v1.recovery2.json": "b6b57fe7077dff3b01fce24f4e318bfce9347b16af9bb4954751fd9c427ccc43",
+    "research/plans/spy-risk-gate-price-peak-ablation-v1.json": "449096da9fbe13855546c99e7c464fa6f570deacc83e680f78aca4e0372dfa05",
+    "research/research_controller.py": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d",
+    "research/risk_gate.py": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+    "research/risk_gate_ablation.py": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb",
+    "research/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+    "research/risk_gate_recovery.py": "066912fb95a7124dab3af0003ac1706fbd41c0c024b80516e3eccdc102e358de",
+    "research/risk_gate_recovery2.py": "84014cdebeb2dc1e1de643167170752af3b89f2d20fc851f5ab52768844871c2",
+    "research/risk_gate_study.py": "ed17c7ac37e36885781619721a61205ab9806333212a786764cbbc21b790c662",
+    "research/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "research/spy_report.py": "cd071ecf80adda0db9625c8e3e06e864794ab9226bfe1985fedc1d978c206666",
+    "research/strategy-suite.md": "9cc4741a7804f6bea1144beea4acb0f70a6ad7f8ed88979885d309cdbffd39d2",
+    "research/strategy_catalogue.json": "506c85a453609e437c032f7f21da1b1bc91f1697d5e261020bfa1a1ffe6f832e",
+    "scripts/audit_nautilus_capabilities.py": "19ca06664431c024c8ef3177fb924511e3ad8af70e882f179a72cc36df36e656",
+    "scripts/bounded_study.py": "62c47d3f459e84816a54c57ec73d8316b78b2a5e233e6f8209f229c84a6d4826",
+    "scripts/build_recursive_review.py": "c83e9cc9f39e923d2e87af497b3fb854ca8d938c1e06fe6f9ea196dc005aae39",
+    "scripts/build_risk_gate_checkpoint.py": "f3f3d91e1225d87b7d4604583ee0bff7907475a038111a7b165c5d8665d98126",
+    "scripts/build_risk_gate_epoch_review.py": "5c40d2134474e121c1124fd1da79f8f9694fd83ac18e78c2557103ca0b6561df",
+    "scripts/check_docs.py": "a39c1926d9bab8fd9134e0a8c9d3422441b247a1723d8e70c63dae7743347e9d",
+    "scripts/feature_diagnostic.py": "536170fa829e9f191058cab2897dbd86ae81104d34885a7a76af19f251a5b72c",
+    "scripts/gate_decision_review.py": "55aeec94c94fd8524912b9133b7375d866bff5b54f24debe7363d0afda38c3c4",
+    "scripts/import_leverage_mlflow.py": "09c99bfaa92abd22db39b4d3d14e847acf6c3697c6eed7380cf480a05c7d47c2",
+    "scripts/import_performance_mlflow.py": "c5340bbf88ad4a2265aa58b403af3a7ac4b0ffd96957b29e13262808aea51783",
+    "scripts/import_strategy_suite_mlflow.py": "f016241deff7722d931f8e42c37a79aaad2a9eb3079afeb603143e48d7e3da6d",
+    "scripts/leverage_comparison.py": "ead2a1e2c6a987f820f7408aa71fc6bc27ac127353159325734933873f7db0c0",
+    "scripts/paper.py": "b9300d01a0281dc4b99d12507ed465c890559c07876f862bae1a7fd16a273a49",
+    "scripts/performance.py": "5efc48378e0d22b4266dc9119b9d3f6ec0796ce662660313286cf168edf21899",
+    "scripts/recursive_research_report.py": "2556fc5256fbca935f1bf714f032bb14815b4d17b2aee8eded10b4947cde1b3b",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "scripts/render_team_skills.py": "f55e5f3fd2875bf48ff84efc37b75c2ade5fc1d0dc7df840a2fab7c80b6a2e4b",
+    "scripts/spy_backtest.py": "5d90c91ffde2f1c483574c04c3c78644d66bf81b6e889ebb9c8a2f4a3dc9edd7",
+    "scripts/strategy_suite.py": "887010bbf1401bbe31c34d2818d9cd9762aeba89bd7bdedbcd8167d5bb88a8b6",
+    "tests/test_allocation_overlays.py": "0148a3ad792f0c206594b06a4b6c318bf09a8626fdf99d354e008cf5ab430a05",
+    "tests/test_annual_reports.py": "f163c1a62c31424de15f408b98102dae7a8b437cc201dad5573692fe0e1e1eae",
+    "tests/test_bounded_study.py": "7dd88be6eb88d6111455cac2207f1303455f2c487cf38d50b97a1935db2069e9",
+    "tests/test_bounded_study_adversarial.py": "f8757ec21201994fc0b6dcf7472b171d05942a241efd6147b3a1ce6f371696b0",
+    "tests/test_catalogue.py": "55c28fa9548703c40080d87359bf5cea5a7a7c3086340c40a79cbed036535759",
+    "tests/test_control_parity.py": "fd19d5363926958e4b2f0dee0440652ec76e602b7f60de9cf5d5b20367910c4b",
+    "tests/test_daily_signals.py": "978181f27d6bdadd03c6329f0c0e3186b18c6d2cd29edf8b3fdcb025e962ea8b",
+    "tests/test_decision_labels.py": "02fe728870d1511b9c1531333db7c123d1266a4e539761dc39f37c773cd5a3f3",
+    "tests/test_etf_input_audit.py": "c0e79744d9ec39933eaf9256e6e0c58086ca2be8d60a4bae80d3987aa9700b8b",
+    "tests/test_etf_readiness_proof.py": "380a51d5108b534280253291759357b32248f9e69ff3f60eb086037f6ecc1cb5",
+    "tests/test_feature_engineering.py": "01c5748255ee04d678651d28eb19171059238017eee72e15edd405e518566f9a",
+    "tests/test_leverage.py": "0152d338d33e19c33c4bac4c26137680c53d4d3ab6e562e2afba414323dc1b08",
+    "tests/test_model_signals.py": "7360be59a173c13ce894e57e194ca60453e029bc094e9033692a65363518d9dc",
+    "tests/test_overnight_signal.py": "26ef2fb9033a20f99aff70cc92af37c469c566c90a439f3f6ec4a4a174e0d575",
+    "tests/test_recursive_reporting.py": "226acadbd4635b621d66737c21abda51506ba02af4fab5f1231b159f7bad15c1",
+    "tests/test_recursive_review.py": "47ae81cc03dc20b8ac126d4d1608e4eecf3842b937a59da40c447f56b1bd4f9d",
+    "tests/test_research_controller.py": "25564035a1c374cd4f00d0d829c30bc6b131d2d32ca4cc9c74d3aad25f17ee74",
+    "tests/test_research_policy_adversarial.py": "e9edefe8ca6235623cb8a4873dfc6ec8a6b373c8a9cd3e8bc8dd39db45fdd0df",
+    "tests/test_research_scoring.py": "4333079440c294315b1cc0993f66c920133eac873e1b5ad59b5700b38208b0d4",
+    "tests/test_risk_gate.py": "32de320c2e66ee709651889f2569607dea231fe79b768a5bc5b1ebb0eefedf0d",
+    "tests/test_risk_gate_ablation.py": "5016c3e9301d93f400de01bcc24685710c42cb5a958c4a4997bcef179f749fc1",
+    "tests/test_risk_gate_analysis.py": "91633897265578ea3a1e415ab788a431ac90a1ed4ab6936cf8def9838ff5defd",
+    "tests/test_risk_gate_recovery.py": "dd82b340d4755e5700727e4dc9d356ebe362042eeafd9022834e0f370cafcc30",
+    "tests/test_risk_gate_recovery2.py": "157e82d06e6ff24f3291fffd1d385cddc8d68f606c896b5f19cf84cc375af82e",
+    "tests/test_risk_gate_review.py": "9a7b1b46e325b325b1b73180c250303b3783f3a74ee1fa4e3ea60e90b929ea1b",
+    "tests/test_risk_gate_study.py": "7126705b2ca6bb1b9f7f513d3caae670dd5f1781c607c557c4524670fe4fa137",
+    "tests/test_risk_gate_timeout.py": "1d63a429d09763aafb3e966eab79d63355e5c8b169315add934ee5861ab3a6f9",
+    "tests/test_saved_reports.py": "d75c5fb3406aba49fb027a337760c47c99f773744bdccf9b322f41654db3f15b",
+    "tests/test_setup.py": "c23730f76ce3873926f111ef392a1b8e19d72d179ddc4f2cf265531a7e65d197",
+    "tests/test_skill_catalog.py": "6c10603768ba1302f595a618b1a511ab3731709cf5ac447dadda7cf8ecf237e4",
+    "tests/test_spy_backtest.py": "8c36aebd993287c7d7dcbf6137910bb79dcab09db28c9f72669915282ec74ff7",
+    "tests/test_suite_reporting.py": "787d1861c1b79133e38b85f7b003b19cf1ef51cbb6db5c993c77198d44802cf4",
+    "tests/test_temporal.py": "703a1d8e6d3df642c707cea226fd35fdc31f0484d8ef9332dec633aa89fcd529",
+    "tests/test_temporal_adversarial.py": "f680ffe49b0679b3481dca55363022aa74d2a7eed18651fd97e14c8a34d7d414",
+    "tests/test_temporal_flat_window.py": "9086c12108b4b35685393f27c70293a78b05380c35adb4541a67f01ee32b3a3e",
+    "research/alpaca_pilot.py": "4d9d6ddb9c6fb61044675a1c81120151f1148ae663175ff3e98ef80127be78d2",
+    "research/capm_ablation.py": "77b4fd00d602c9f7c9cb49107728a5267870648fce757ace1d4760eaf9d1bc01",
+    "research/capm_review.py": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a",
+    "research/dual_thrust_study.py": "37a1c7cf300be75a0ac48737646f5b71409aa47dc7ccfb8cbd0120212da9f158",
+    "research/experiment_receipts.py": "c62ba9f3cb79b15d1ebaf05bf708bdf558de4fe4852152cd7cd0f4c28320f9da",
+    "research/free_source_fetch.py": "8ae2b2c19cdd654366ffcfd56ec23422de6d274de67951d8d743e6e8104fb0a6",
+    "research/gate_robustness.py": "3369ecfe8ae7dc3cbf61034ebdb7ba246e52e33520b0b76ea11b9543e5f9d01a",
+    "research/gscore_study.py": "1b23542e4c0266cbfdd93464d6d21974c87f7f71b7d482b475920014a2d462aa",
+    "research/incremental_sizing.py": "69b25a415485c9e0216cb0268d5b36288a669a78cbdbc182a774c3f627768807",
+    "research/issuer_actions.py": "1f8be02e2d021cb4408fa89c58ddbfff44d410297b1dfde439c07b23355091de",
+    "research/legacy_control_contract.py": "6d7ec4f449a6ddf0b44bd9849ba8110cb974e3209e6c27df3a2e1c028b14b2c1",
+    "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+    "research/multi_asset_accounting_probe.py": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b",
+    "research/multi_asset_accounting_stress.py": "c7b0e8f1b7538e7090f6d5e4445af5fbce3be27a53cc8ed1ee1ef7c1c2009b70",
+    "research/multi_asset_audit.py": "ef98d076bcf73b4014272714f7075ee39f3b26d9e4204332cf5fc875950cd196",
+    "research/multi_asset_cash_audit.py": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d",
+    "research/multi_asset_comparison.py": "50e0493a5c7053ea3d1d3c9eca96d9b807f3567565e2802fd5ae42cc6a2f9260",
+    "research/multi_asset_native_probe.py": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697",
+    "research/multi_asset_plan.py": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e",
+    "research/native_multi_asset.py": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc",
+    "research/pairs_study.py": "a0d77aabe1cdcfdedf9161dcb790cc06b6c191e5459502c77b6060bddf1ce246",
+    "research/qc_inventory.py": "8a8532a8b1fcdf932035946e6d68f9579e4f2748c946c7d4e319ed88414c68c1",
+    "research/qc_source_review.py": "dfa50213153e9f0cc47dc10530fe462ac447b6beef25b77aa8a3b1b44f53fbd3",
+    "research/qc_tutorial_packages.py": "b0f838af94443098f209a1b2821b7b70fdc09ce1819fd8594374683cb7ca6455",
+    "research/qualify_issuer_sources.py": "d6d454085c9561f3bdb072ae824f3a78fc2aa3c87f0f1d1e4c4652b6a4acd7e2",
+    "research/rsi_adoption.py": "2eef642971efdd9ca9daba81f5f48b51ce4b23f2296bca8851e3407d6b34af10",
+    "research/rsi_contracts.py": "a2826c5c089d8f63051996ddd27e1d8981c06a53a4b4d43a48c3210b544d674b",
+    "research/rsi_coordinator.py": "f89705796b6fba5826dbfb53686b9d70eeff88831fafc307b70f109324112ac3",
+    "research/sector_corporate_actions.py": "a6a159a57d1a93569ffbc332b809eee545020cd53add77f58b479e5f196c8c9e",
+    "research/sector_etf_acquisition.py": "d08ef3da7f3fde3a20ee7da5d2cd5b593a13399f7bb4b7857673c1c88af2e8db",
+    "research/sector_resolution.py": "7df7065aee3dfffdfccb09a30a253f67354104e376e592079c486644c3ee51a0",
+    "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+    "research/us_stock_library.py": "ee0b265276879098e9c1fb424cad3061fa1d18d3b387bf77b25d1757b61cc472",
+    "research/workflow_readiness.py": "292a8576eff0fe3c2e8f968152d7b960d44648ab3fdc3f56703155ea0f533a9e",
+    "research/quantconnect/t11_gate_policy.py": "e14efca421ecb9cee54b2e00be2ac8859b1b8d3e3f9a8e9da17f755a8c2e5b1c",
+    "research/quantconnect/spy_comparison.py": "6ce784d7047c30670c0494dee864d843f03c2e48049e8224c7634ec3f6973827",
+    "research/quantconnect/selection_access_probe.py": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270",
+    "research/quantconnect/selection_candidates.py": "f12f0978dbf2946a0133394cb8c9fa794945bc9c12b539777f9c8fb31f23a6d9",
+    "research/quantconnect/sector_matched_policy.py": "e2b4efd355f1acc5eabdc9378a4a4bec72e06c432f379511b5f2e5c997be46ca",
+    "research/quantconnect/sector_resolution_probe.py": "75f570679da7264f410dcaf60711ed05302620f08bc419f153be65b6766d9c3e",
+    "research/quantconnect/selection_stock_probe.py": "eb7f8302500b5dff5401891607269657289d813764fde20fc027f4c1be0d9349",
+    "research/quantconnect/selection_completion_policy.py": "7c5dff07fa378f2c4d364b253bd1d422377699beb3e348945ac823d84ae6a663",
+    "research/quantconnect/selection_subscription_retention.py": "f833987e1dbf42fc76a48f3e8e618a7425823393fd023b642b72c8d07b02b8af",
+    "research/quantconnect/sector_comparison.py": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4",
+    "research/quantconnect/qc504_audit.py": "9e3ed456402d60ad9194bd2cc8fbb9bf02a2cd71d2aa06dc0fb7e2411a654a8a",
+    "research/quantconnect/selection_readiness_probe.py": "6cf70c21c73eeb497bb3154f18de59c030fb02aa493027151d3096c09419a33e",
+    "research/quantconnect/qc504_funded_policy.py": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8",
+    "research/quantconnect/capm_study.py": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601",
+    "research/quantconnect/stock_risk_policy.py": "48af0c8741ba12a2c73a4f745c707e42624ce398dab3cc12c62312f14f3d55ef",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/quantconnect/sources/dual_thrust_fx_original.py": "58971b1adc9416803338f973a9064b8cfc813f7b8929c2eb9a27a927c2657555",
+    "research/quantconnect/sources/capm_framework_original.py": "4caaa23a312db6ae764a2177c403ec887e981bffab7735afcd7638be36e6ed52",
+    "research/quantconnect/sources/stock_pairs_original.py": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471",
+    "research/quantconnect/sources/g_score_legacy_original.py": "a3958ecc57127d1b50ee9e97257d7c79381195bde3e64912f601fdc53be32d1c",
+    "scripts/rsi_foundation.py": "352bc8f592247ba31fbf782064abf431e5847884a90da46c25b01277e0f03cd5",
+    "research/studies/t11_reproduction/conformance.py": "a1591d0065cbb26c56e98f8e17f7c06a7a2f9e154e756bc50f6f0e061eed3d33"
+  },
+  "paper_research_seams": [
+    "research.studies.checkpoint_20261031.alpaca_pilot",
+    "research.studies.spy.spy_backtest",
+    "research.studies.t11_reproduction.indicators",
+    "research.policies.risk_gate"
+  ],
+  "reviewed_opaque_loaders": {
+    "paper_trading/t11_preview.py": {
+      "sha256": "65a5a73895546e4e9c91d7e0016482faae91c829a4781aaa39c9b11312c3b01e",
+      "reason": "Existing read-only preview loads exactly the private policy pinned by POLICY_HASH, after byte verification; no broker/order effects. Whole-file changes invalidate this exception."
+    }
+  }
+}

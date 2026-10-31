@@ -11,8 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 import pandas as pd
-from research.gate_robustness import CASES, old
-from scripts.recursive_research_review import verify_artifacts
+from research.studies.checkpoint_20261031.gate_robustness import CASES, old
+from research.evaluation.saved_review import verify_artifacts
 
 
 def build(source, output):

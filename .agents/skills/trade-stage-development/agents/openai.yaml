@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trading Stage Development"
+  short_description: "Develop one bounded trading pipeline stage"
+  default_prompt: "Use $trade-stage-development to specify and verify one trading stage within a frozen RSI cycle."

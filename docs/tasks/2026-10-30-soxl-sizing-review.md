@@ -89,7 +89,7 @@ continuous sizing remained positive on severe March2020 losses when its discrete
 control was flat; it also missed gains. This argues against removing the no-go
 ceiling. It does not establish the same attribution for SOXL.
 
-The [C02 sizing evidence](../../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md)
+The C02 sizing evidence (`../../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md`; private/local artifact, not published)
 then retained the discrete ceiling: Calmar0.483702/0.473450 versus
 0.491514/0.481692 at5/10bp, with lower growth and only small depth improvements.
 Thus “smooth sizing below the ceiling” has already failed its own SPY screen.

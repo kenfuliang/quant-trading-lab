@@ -3,7 +3,7 @@ import csv,json,hashlib
 from datetime import datetime
 from pathlib import Path
 from build_qc_inventory import ROOT,RAW,DATA,OUT,source
-from research.qc_inventory import normalize_community,tutorial_article_observed
+from research.studies.checkpoint_20261031.qc_inventory import normalize_community,tutorial_article_observed
 
 def read(p):return json.loads(p.read_text())
 def audit():

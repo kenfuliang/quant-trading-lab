@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "offline-passed-hosted-ci-required",
+  "base": "033779f34e9944338ce474ead89aded352961791",
+  "reviewed_head": "7b863c30a7119e3c0a87b2ea7eac04772b3c121b",
+  "standards": {
+    "findings": 1,
+    "fixed": 1,
+    "unresolved": 0,
+    "issue": "Non-regular inventory read could block recovery."
+  },
+  "requirements": {
+    "findings": 1,
+    "fixed": 1,
+    "unresolved": 0,
+    "issue": "Current checkpoint report could mutate historical inputs."
+  },
+  "financial_research_trials": 0,
+  "broker_operations": 0,
+  "validation": {
+    "make_check_exit": 0,
+    "tests": 428,
+    "documentation_files": 96,
+    "current_modules": 59,
+    "preserved_files": 405,
+    "changed_preserved_files": 0,
+    "log_sha256": "3a3b2ec149d2df9c33f88927ea9a438e1e82b28d3b22b7c72ed22d48ee9bc60f",
+    "real_restore": {
+      "utc": "2026-10-28T01:29:11.782553+00:00",
+      "status": "passed",
+      "implementation_sha256": "1a1bad414c0660d888d0e12e483b514cfd74869891c0e376c989f822af0c258a",
+      "cases": [
+        {
+          "case": "successful",
+          "original_status": "completed",
+          "file_count": 23,
+          "inventory_sha256": "c6ffd5198c1833e75ed62ef88187eae54572ee33eb3310eac11462efe0f29a06",
+          "restored_hashes_match": true,
+          "original_hashes_unchanged": true
+        },
+        {
+          "case": "failed",
+          "original_status": "recovery_failed_no_further_launch",
+          "file_count": 15,
+          "inventory_sha256": "a92da044f0f3712ec51c770ef0012f94f3d4fa5ce70f7c9cf63186d05fe99955",
+          "restored_hashes_match": true,
+          "original_hashes_unchanged": true
+        }
+      ]
+    }
+  }
+}

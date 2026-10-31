@@ -6,7 +6,7 @@ from pathlib import Path
 import math
 import numpy as np
 import pandas as pd
-from research.sector_corporate_actions import ActionLedger, SYMBOLS, total_return_indexes
+from research.studies.checkpoint_20261031.sector_corporate_actions import ActionLedger, SYMBOLS, total_return_indexes
 from reporting.annual import annual_metrics, sharpe
 from reporting.temporal import analyze_temporal
 from research.studies.sector_gate.signals import timeline

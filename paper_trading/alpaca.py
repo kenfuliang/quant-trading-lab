@@ -8,7 +8,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from research.alpaca_pilot import NoRedirect, credentials
+from research.studies.checkpoint_20261031.alpaca_pilot import NoRedirect, credentials
 
 PAPER = "https://paper-api.alpaca.markets"
 DATA = "https://data.alpaca.markets"

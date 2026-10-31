@@ -73,8 +73,8 @@ ranking and joint-screen disposition remain separate in the single leaderboard.
 ## Annual evidence
 
 5bp results below; both cost levels, annual Sharpe/Calmar and annual underwater
-metrics are in the [saved comparison](../../reports/bounded-study/sector-gate-v1-20261028/index.html)
-and its [54-row annual CSV](../../reports/bounded-study/sector-gate-v1-20261028/annual-comparison.csv).
+metrics are in the saved comparison (`../../reports/bounded-study/sector-gate-v1-20261028/index.html`; private/local artifact, not published)
+and its 54-row annual CSV (`../../reports/bounded-study/sector-gate-v1-20261028/annual-comparison.csv`; private/local artifact, not published).
 Annual drawdown resets from the preceding year's last close. Annual Calmar uses
 simple calendar-period return/annual maximum drawdown, not annualized partial-year
 CAGR. Full-period and annual scores answer different questions.
@@ -114,7 +114,7 @@ recovers2023-06-30:300sessions/436calendar days, despite only10.755%loss in that
 episode. This shows why Calmar and maximum drawdown alone miss time costs.
 
 All red episodes, rather than selected favorable crash dates, are preserved in
-[paired analysis](../../.local/sector-gate-v1/result-analysis.json). They are
+paired analysis (`../../.local/sector-gate-v1/result-analysis.json`; private/local artifact, not published). They are
 2020-03-10–2020-05-11 (44sessions) and2025-04-10–2025-05-14 (24sessions).
 At5bp their ungated close-to-close returns are+1.903% and+4.223%, versus gated
 +1.091% and-0.394%. A crash avoidance signal can avoid a deep interim trough yet

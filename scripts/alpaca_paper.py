@@ -17,13 +17,13 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from research.alpaca_pilot import digest, number
+from research.studies.checkpoint_20261031.alpaca_pilot import digest, number
 from paper_trading.alpaca import AlpacaPaperHTTP, PaperError, check_quote, save
 from paper_trading.alpaca_native import Context, started_node, stop_node
 from paper_trading.alpaca_fixture import native_fixture
 from nautilus_trader.model.data import Bar, QuoteTick
 from nautilus_trader.model.objects import Price, Quantity
-from research.spy_backtest import BAR_TYPE, INSTRUMENT_ID
+from research.studies.spy.spy_backtest import BAR_TYPE, INSTRUMENT_ID
 
 NY = ZoneInfo("America/New_York")
 RUNS = ROOT / ".local/alpaca-paper/runs"

@@ -21,7 +21,7 @@ def read_case(case):
  return full,ys
 
 def build():
- from research.us_etf_calendar import sessions
+ from research.studies.checkpoint_20261031.us_etf_calendar import sessions
  calendar=sessions('2020-01-01','2025-12-31');expected_hash=hashlib.sha256(''.join(x.strftime('%Y-%m-%d')+'\n' for x in calendar).encode()).hexdigest()
  plan=json.loads((ROOT/'research/plans/selection-completion-v1.json').read_text());ledger=json.loads((RAW/'attempts.json').read_text());runs=[];annual=[];engines={}
  for c in CASES:

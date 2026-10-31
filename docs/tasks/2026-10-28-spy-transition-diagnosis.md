@@ -6,7 +6,7 @@ owner: research-maintainers
 
 # Saved SPY continuous-sizing transition diagnosis
 
-**Completed, descriptive development diagnosis; incumbent unchanged.** The continuous 20% annualized-volatility cap lost relative to the discrete EMA/volatility gate mainly through different market exposure, especially overnight, rather than transaction costs alone. This explains the fixed saved comparison; it does not prove that removing one class of trades would improve a future portfolio. [GRS](../research-standard.md), [diagnosis SOP](../research-development.md#performance-diagnosis) and [scoring](../research-scoring.md) retain policy ownership. The [closed epoch](../../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-calmar-rsi-epoch.md) owns original results and expired budgets.
+**Completed, descriptive development diagnosis; incumbent unchanged.** The continuous 20% annualized-volatility cap lost relative to the discrete EMA/volatility gate mainly through different market exposure, especially overnight, rather than transaction costs alone. This explains the fixed saved comparison; it does not prove that removing one class of trades would improve a future portfolio. [GRS](../research-standard.md), [diagnosis SOP](../research-development.md#performance-diagnosis) and [scoring](../research-scoring.md) retain policy ownership. The closed epoch (`../../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-calmar-rsi-epoch.md`; private/local artifact, not published) owns original results and expired budgets.
 
 ```mermaid
 flowchart LR

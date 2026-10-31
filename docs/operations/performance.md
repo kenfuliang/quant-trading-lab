@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-26
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -536,3 +536,26 @@ free input gate, failures, assumptions and the closed negative decision.
 manifest, source/packet/build identity, closed budget, input/calendar/action parity,
 accounting and browser checks. Neither launches simulations or services. The
 hindsight-selected stock-hold control does not establish a stock-selection edge.
+
+## Current stopped-checkpoint report
+
+For a derived view of the initial one-failed/eleven-unstarted checkpoint, use the
+current command with an explicit fresh output directory:
+
+```sh
+.venv/bin/python scripts/current/build_risk_gate_checkpoint.py --state FROZEN_STOPPED_SNAPSHOT.json --output NEW_DERIVED_REPORT
+```
+
+Without `--state`, the command checks `.local/current-risk-gate/state.json`; it does
+not fall back to historical state. A later completed epoch is rejected rather than
+being presented as this old checkpoint. The source bundle's saved hashes must pass
+before output creation. All new parity and observation records stay in the derived
+output. Source bundles, failure records, state and manifests are read-only; input
+hashes are checked again before the report is completed. A partial derived report
+is preserved on failure, and existing output directories are refused.
+
+The view records zero new financial attempts and separately identifies the original
+historical attempt. Reading an old failed snapshot never grants a retry or rewrites
+its status. The original flat script is a frozen compatibility implementation;
+new report generation uses the current command above. See the
+[final PR review](../tasks/2026-10-27-pr6-final-review.md) for preservation regressions.

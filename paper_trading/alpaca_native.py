@@ -24,7 +24,7 @@ from nautilus_trader.model.identifiers import AccountId, ClientId, TradeId, Venu
 from nautilus_trader.model.objects import AccountBalance, Money, Price, Quantity
 from nautilus_trader.model.currencies import USD
 
-from research.spy_backtest import ComparisonStrategy, ComparisonConfig, INSTRUMENT_ID, BAR_TYPE, VENUE, instrument
+from research.studies.spy.spy_backtest import ComparisonStrategy, ComparisonConfig, INSTRUMENT_ID, BAR_TYPE, VENUE, instrument
 from .alpaca import PaperError, MAX_NOTIONAL, validate_order, save
 
 

@@ -6,7 +6,7 @@ import hashlib
 import json
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from research.pairs_study import STUDY,CASES,audit_records,decode_fragments
+from research.studies.checkpoint_20261031.pairs_study import STUDY,CASES,audit_records,decode_fragments
 ROOT=Path('.local')/STUDY
 OUT=Path('.local/performance')/STUDY
 PLAN=Path('research/plans')/(STUDY+'.json')

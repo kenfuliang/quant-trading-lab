@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-30
+updated: 2026-10-31
 owner: research-maintainers
 ---
 
@@ -37,7 +37,7 @@ all prior trials and never resets evaluation-data exposure.
 
 - [Parallel RSI diagnosis and readiness wave](tasks/2026-10-28-rsi-readiness-wave.md): completed saved-account diagnosis, blocked selector reconstruction and isolated synthetic lifecycle-audit implementation. Zero new financial runs; no candidate promoted or old budget reopened.
 
-- [C02 captured ceiling-smooth study](../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md): six real timestamped cases and cache-only restart verified; target rejected, incumbent unchanged, budget exhausted.
+- C02 captured ceiling-smooth study (`../.local/rsi-calmar-20261028/docs/tasks/2026-10-28-ceiling-capture-study.md`; private/local artifact, not published): six real timestamped cases and cache-only restart verified; target rejected, incumbent unchanged, budget exhausted.
 
 - [C03 faster position proposal](tasks/2026-10-28-proposal-c03.md): six captured/audited cases; EMA and SMA price proposals trail unchanged incumbent; closed rejection, no new data or reopened budgets.
 

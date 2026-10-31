@@ -7,7 +7,7 @@ import sys
 import numpy as np
 import pandas as pd
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from research import gate_robustness as saved
+from research.studies.checkpoint_20261031 import gate_robustness as saved
 from reporting.risk_gate_review import verify_temporal_details
 
 OUT=Path('.local/grs-r001')

@@ -3,7 +3,7 @@ import csv,hashlib,json,re,sys
 from pathlib import Path
 from collections import Counter,defaultdict
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
-from research.qc_inventory import classify,normalize_community,tutorial_index,tutorial_article_observed
+from research.studies.checkpoint_20261031.qc_inventory import classify,normalize_community,tutorial_index,tutorial_article_observed
 RAW=ROOT/'.local/qc-inventory-v1';DATA=ROOT/'research/catalogs/qc-inventory-v1';OUT=ROOT/'.local/performance/qc-inventory-v1'
 
 def read(p):return json.loads(p.read_text())

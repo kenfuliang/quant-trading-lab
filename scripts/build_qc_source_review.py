@@ -8,7 +8,7 @@ from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from research.qc_source_review import inspect_html, duplicate_groups, similarity_leads, rights, sha256
+from research.studies.checkpoint_20261031.qc_source_review import inspect_html, duplicate_groups, similarity_leads, rights, sha256
 
 RAW = ROOT / '.local/qc-detail-rights-v1'
 OUT = ROOT / 'research/catalogs/qc-detail-rights-v1'

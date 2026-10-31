@@ -1,8 +1,15 @@
 """Check process-replay grading rather than trusting self-reported success counts."""
 from copy import deepcopy
 import unittest
+import contextlib
+import io
+import json
+from pathlib import Path
+import tempfile
+from unittest.mock import patch
 
-from scripts.rsi_foundation import grade_replay
+from scripts.current.rsi_foundation import grade_replay, main
+from research.control.rsi_contracts import ContractError, EvidenceUnavailable
 
 
 class ReplayGradingTests(unittest.TestCase):
@@ -37,6 +44,43 @@ class ReplayGradingTests(unittest.TestCase):
             {"selected": "z-integrity", "credited_questions": []}], resolved_questions=[], resolved_count=0)
         self.assertEqual(grade_replay(result)["independently_checked_resolutions"], 0)
         self.assertEqual(grade_replay(result)["critical_errors_observed"], 0)
+
+
+class CurrentEntrypointTests(unittest.TestCase):
+    def test_absent_private_evidence_exits_unavailable_without_creating_demo(self):
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder).resolve() / "must-not-exist"
+            stream = io.StringIO()
+            with contextlib.redirect_stdout(stream):
+                result = main(["preflight", "--evidence-root", folder])
+            self.assertEqual(result, 2)
+            self.assertEqual(json.loads(stream.getvalue())["status"], "unavailable")
+            # A missing preflight stops before the demo makes any artifact directory.
+            with patch("scripts.current.rsi_foundation.ROOT", Path(folder).resolve()):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    result = main(["demo", "--evidence-root", folder, "--output", str(output)])
+            self.assertEqual(result, 2)
+            self.assertFalse(output.exists())
+
+    def test_integrity_failure_is_failed_not_missing_or_synthetic_success(self):
+        stream = io.StringIO()
+        with patch("scripts.current.rsi_foundation.preflight_known_c001", side_effect=ContractError("hash mismatch")):
+            with contextlib.redirect_stdout(stream):
+                code = main(["preflight"])
+        self.assertEqual(code, 1)
+        self.assertEqual(json.loads(stream.getvalue())["status"], "failed")
+
+    def test_attestation_is_fixed_and_cannot_request_demo_or_external_inputs(self):
+        for args in (["demo", "--attest"], ["--attest", "--evidence-root", "/tmp"]):
+            with self.subTest(args=args), contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit) as error:
+                    main(args)
+                self.assertEqual(error.exception.code, 2)
+        with patch("scripts.current.rsi_foundation.preflight_known_c001", return_value={"passed": True}):
+            stream = io.StringIO()
+            with contextlib.redirect_stdout(stream):
+                self.assertEqual(main(["--attest"]), 0)
+            self.assertEqual(stream.getvalue(), "Preflight passed; zero financial attempts\n")
 
 
 if __name__ == "__main__":

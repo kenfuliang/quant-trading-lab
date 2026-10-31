@@ -19,9 +19,9 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from research.rsi_adoption import AdoptionRegistry
-from research.rsi_contracts import canonical_hash, preflight_known_c001, validate_cycle, verify_artifacts
-from research.rsi_coordinator import RSIError, RSIProgram, freeze_program, incremental_preflight_case, synthetic_case
+from research.control.rsi_adoption import AdoptionRegistry
+from research.control.rsi_contracts import canonical_hash, preflight_known_c001, validate_cycle, verify_artifacts
+from research.control.rsi_coordinator import RSIError, RSIProgram, freeze_program, incremental_preflight_case, synthetic_case
 
 
 def digest(path):
