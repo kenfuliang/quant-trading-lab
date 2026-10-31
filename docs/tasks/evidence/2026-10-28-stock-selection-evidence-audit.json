@@ -1,0 +1,442 @@
+{
+  "id": "stock-selection-evidence-audit-20261028",
+  "status": "completed-audit-with-blocked-selector-reconstruction",
+  "updated": "2026-10-28",
+  "verified_utc": "2026-10-28T17:44:19.569773+00:00",
+  "canonical_context": "sector-matched-v1:original",
+  "eligibility": {
+    "exact_historical_eligible50_top5_selector_reconstruction": "blocked",
+    "saved_chosen_five_target_intent_replay": "conditional_only_no_independent_score_or_financial_replay"
+  },
+  "bounds": {
+    "max_minutes": 40,
+    "max_analysis_check_commands": 8,
+    "actual_commands": 8,
+    "elapsed_minutes_since_scope_freeze": 4.78,
+    "financial_runs": 0,
+    "network_calls": 0,
+    "new_market_data": 0,
+    "packages_services_broker_operations": 0,
+    "source_strategy_imports": 0
+  },
+  "canonical": {
+    "case": "original",
+    "backtest_id": "ae06ba0d0356d04e057ad3a6239cdf7b",
+    "sessions": 1508,
+    "decision_rows": 72,
+    "decision_first": "2020-01-02",
+    "decision_last": "2025-12-01",
+    "chosen_occurrences": 360,
+    "unique_chosen_ids": 57,
+    "ready_distribution": {
+      "50": 71,
+      "49": 1
+    },
+    "under_ready_dates": [
+      "2021-09-01"
+    ],
+    "dates_ordered_unique_one_per_month": true,
+    "five_distinct_valid_symbol_indices_each_month": true,
+    "membership_sha256": "dcd683efc9fcbe365e989e58a1c6bceec7f91bf4599d1ea53c1b944275ed44d2",
+    "feature_sha256": "8cffb6454b405b5a06db732531bdba1456daed969a3efb6fa9bf45f76d6fdc13",
+    "source": {
+      "path": ".local/sector-matched-v1/original-source.py",
+      "sha256": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+      "historical_expected_sha256": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+      "historical_source_match": true
+    },
+    "packet_sha256": "3bcb20985b7a5e3298b1f7f3f3c262dccf6b69babc0da5e81601f332d86c0fe8",
+    "terminal_sha256": "d2d43ded93930bb36b8205f5aa9fce5b9f319129cfb3be8f569025b434b07ee4",
+    "packet_fragments": 51,
+    "packet_digest_prefix": "4ba1022935bb",
+    "packet_reassembly_matches_saved": true,
+    "monthly_chosen_ids_saved": true,
+    "packet_full_keys": [
+      "study",
+      "case",
+      "full",
+      "annual_keys",
+      "annual",
+      "contributions",
+      "residual_usd",
+      "symbols",
+      "months",
+      "gate_counts",
+      "gate_changes",
+      "gate_input_sha256",
+      "gate_seed_n",
+      "average_gross",
+      "peak_sector_gross",
+      "selected_unknown_sector",
+      "target_sha256",
+      "resolved_n"
+    ],
+    "monthly_field_schema": [
+      "decision_date_YYYYMMDD",
+      "gate_state_code",
+      "ready_count",
+      "chosen_symbol_indices"
+    ],
+    "full_fields": [
+      "n",
+      "end",
+      "ret",
+      "cagr",
+      "dd",
+      "sharpe",
+      "calmar",
+      "uw",
+      "uw_fraction",
+      "longest_uw",
+      "longest_uw_days",
+      "censored",
+      "rejects",
+      "fills",
+      "other_fills",
+      "max_gross",
+      "fees",
+      "calendar_hash",
+      "feature_sha256",
+      "feature_future",
+      "feature_invalid",
+      "feature_unordered",
+      "selection_events",
+      "history_short",
+      "min_ready",
+      "membership_sha256",
+      "financing_usd",
+      "pending_orders",
+      "funding_debit_error"
+    ]
+  },
+  "contexts": {
+    "qc-breadth-v1": {
+      "case": "momentum",
+      "sessions": 1508,
+      "first": "2020-01-02",
+      "last": "2025-12-31",
+      "monthly_decision_count_reported": 72,
+      "history_short": 51,
+      "min_ready": 0,
+      "membership_sha256": "dcd683efc9fcbe365e989e58a1c6bceec7f91bf4599d1ea53c1b944275ed44d2",
+      "feature_sha256": null,
+      "monthly_chosen_ids_saved": false,
+      "source": {
+        "path": ".local/qc-breadth-v1/momentum-source.py",
+        "sha256": "bf91deb5ea7ec5ed6c71f047b3f5ebb73cbde7ecb6ed7c520aa05f835f499212",
+        "historical_expected_sha256": "bf91deb5ea7ec5ed6c71f047b3f5ebb73cbde7ecb6ed7c520aa05f835f499212",
+        "historical_source_match": true
+      },
+      "summary_sha256": "9238240d7a3f98e3a6930bddae73228fa7b6ba9e7200b7f5c9e3f32f8d7e9071"
+    },
+    "selection-completion-v1": {
+      "case": "stock",
+      "sessions": 1508,
+      "first": "2020-01-02",
+      "last": "2025-12-31",
+      "monthly_decision_count_reported": 72,
+      "history_short": 1,
+      "min_ready": 49,
+      "membership_sha256": "dcd683efc9fcbe365e989e58a1c6bceec7f91bf4599d1ea53c1b944275ed44d2",
+      "feature_sha256": "8cffb6454b405b5a06db732531bdba1456daed969a3efb6fa9bf45f76d6fdc13",
+      "monthly_chosen_ids_saved": false,
+      "source": {
+        "path": ".local/selection-completion-v1/stock-source.py",
+        "sha256": "228d624f23284b8456bd8599df6b3b93ed055fe26a62a5cbca62d43196afd632",
+        "historical_expected_sha256": "228d624f23284b8456bd8599df6b3b93ed055fe26a62a5cbca62d43196afd632",
+        "historical_source_match": true
+      },
+      "summary_sha256": "fdabc9a7b41045d2abd3e1051b5302b073a30335f1fa5ae5caefc59f72cd6d0f"
+    },
+    "stock-risk-v1": {
+      "case": "original",
+      "backtest_id": "81864c8625f9a1e7b2d9b80439693160",
+      "sessions": 1508,
+      "decision_rows": 72,
+      "decision_first": "2020-01-02",
+      "decision_last": "2025-12-01",
+      "chosen_occurrences": 360,
+      "unique_chosen_ids": 57,
+      "ready_distribution": {
+        "50": 71,
+        "49": 1
+      },
+      "under_ready_dates": [
+        "2021-09-01"
+      ],
+      "dates_ordered_unique_one_per_month": true,
+      "five_distinct_valid_symbol_indices_each_month": true,
+      "membership_sha256": "dcd683efc9fcbe365e989e58a1c6bceec7f91bf4599d1ea53c1b944275ed44d2",
+      "feature_sha256": "8cffb6454b405b5a06db732531bdba1456daed969a3efb6fa9bf45f76d6fdc13",
+      "source": {
+        "path": ".local/stock-risk-v1/original-source.py",
+        "sha256": "132cb7f97c35c291331f59eac61b53d125df76428d007e28be7d84cdd2f7f02d",
+        "historical_expected_sha256": "132cb7f97c35c291331f59eac61b53d125df76428d007e28be7d84cdd2f7f02d",
+        "historical_source_match": true
+      },
+      "packet_sha256": "c450327a4e083a24e369c74951550ebc8e9afdcac6e8965b85efa24c775dc655",
+      "terminal_sha256": "88373df7d83e2b208e9cc4b0085422e33336f19c4f7c11fe1ebc3d25f6032897",
+      "packet_fragments": 50,
+      "packet_digest_prefix": "75d5197a8627",
+      "packet_reassembly_matches_saved": true,
+      "monthly_chosen_ids_saved": true,
+      "packet_full_keys": [
+        "study",
+        "case",
+        "full",
+        "annual_keys",
+        "annual",
+        "contributions",
+        "residual_usd",
+        "symbols",
+        "months",
+        "gate_counts",
+        "gate_changes",
+        "gate_input_sha256",
+        "gate_seed_n",
+        "average_gross",
+        "peak_sector_gross",
+        "selected_unknown_sector"
+      ],
+      "monthly_field_schema": [
+        "decision_date_YYYYMMDD",
+        "gate_state_code",
+        "ready_count",
+        "chosen_symbol_indices"
+      ],
+      "full_fields": [
+        "n",
+        "end",
+        "ret",
+        "cagr",
+        "dd",
+        "sharpe",
+        "calmar",
+        "uw",
+        "uw_fraction",
+        "longest_uw",
+        "longest_uw_days",
+        "censored",
+        "rejects",
+        "fills",
+        "other_fills",
+        "max_gross",
+        "fees",
+        "calendar_hash",
+        "feature_sha256",
+        "feature_future",
+        "feature_invalid",
+        "feature_unordered",
+        "selection_events",
+        "history_short",
+        "min_ready",
+        "membership_sha256",
+        "financing_usd",
+        "pending_orders",
+        "funding_debit_error"
+      ]
+    },
+    "sector-matched-v1": {
+      "case": "original",
+      "backtest_id": "ae06ba0d0356d04e057ad3a6239cdf7b",
+      "sessions": 1508,
+      "decision_rows": 72,
+      "decision_first": "2020-01-02",
+      "decision_last": "2025-12-01",
+      "chosen_occurrences": 360,
+      "unique_chosen_ids": 57,
+      "ready_distribution": {
+        "50": 71,
+        "49": 1
+      },
+      "under_ready_dates": [
+        "2021-09-01"
+      ],
+      "dates_ordered_unique_one_per_month": true,
+      "five_distinct_valid_symbol_indices_each_month": true,
+      "membership_sha256": "dcd683efc9fcbe365e989e58a1c6bceec7f91bf4599d1ea53c1b944275ed44d2",
+      "feature_sha256": "8cffb6454b405b5a06db732531bdba1456daed969a3efb6fa9bf45f76d6fdc13",
+      "source": {
+        "path": ".local/sector-matched-v1/original-source.py",
+        "sha256": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+        "historical_expected_sha256": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+        "historical_source_match": true
+      },
+      "packet_sha256": "3bcb20985b7a5e3298b1f7f3f3c262dccf6b69babc0da5e81601f332d86c0fe8",
+      "terminal_sha256": "d2d43ded93930bb36b8205f5aa9fce5b9f319129cfb3be8f569025b434b07ee4",
+      "packet_fragments": 51,
+      "packet_digest_prefix": "4ba1022935bb",
+      "packet_reassembly_matches_saved": true,
+      "monthly_chosen_ids_saved": true,
+      "packet_full_keys": [
+        "study",
+        "case",
+        "full",
+        "annual_keys",
+        "annual",
+        "contributions",
+        "residual_usd",
+        "symbols",
+        "months",
+        "gate_counts",
+        "gate_changes",
+        "gate_input_sha256",
+        "gate_seed_n",
+        "average_gross",
+        "peak_sector_gross",
+        "selected_unknown_sector",
+        "target_sha256",
+        "resolved_n"
+      ],
+      "monthly_field_schema": [
+        "decision_date_YYYYMMDD",
+        "gate_state_code",
+        "ready_count",
+        "chosen_symbol_indices"
+      ],
+      "full_fields": [
+        "n",
+        "end",
+        "ret",
+        "cagr",
+        "dd",
+        "sharpe",
+        "calmar",
+        "uw",
+        "uw_fraction",
+        "longest_uw",
+        "longest_uw_days",
+        "censored",
+        "rejects",
+        "fills",
+        "other_fills",
+        "max_gross",
+        "fees",
+        "calendar_hash",
+        "feature_sha256",
+        "feature_future",
+        "feature_invalid",
+        "feature_unordered",
+        "selection_events",
+        "history_short",
+        "min_ready",
+        "membership_sha256",
+        "financing_usd",
+        "pending_orders",
+        "funding_debit_error"
+      ]
+    }
+  },
+  "scope": {
+    "private_scope": ".local/stock-selection-evidence-audit-20261028/scope-frozen.json",
+    "file_count": 239,
+    "bytes": 3907556,
+    "originals_unchanged": true,
+    "three_phases_four_distinct_study_records": true,
+    "no_cross_context_splicing": true
+  },
+  "hash_semantics": {
+    "source_update_expressions": [
+      {
+        "line": 226,
+        "expression": "self._membership_hash.update((str(self.time.date()) + ':' + '|'.join((str(s.id) for s in self._selected)) + '\\n').encode())"
+      },
+      {
+        "line": 490,
+        "expression": "self._feature_hash.update((str(self.time.date()) + ':' + '|'.join((str(s.id) for s in ready)) + '\\n').encode())"
+      }
+    ],
+    "membership_sha256": "rolling decision-date and selected50-ID text, no invertible membership record",
+    "feature_sha256": "rolling decision-date and ready-ID text, not price values or scores"
+  },
+  "missing_required_fields": [
+    "eligible50 identities for each monthly decision",
+    "coarse eligible candidates/price/dollar_volume/market_cap values and rejected reasons",
+    "momentum values and full candidate score ranking",
+    "253 decision-vintage closes/action normalization and exact bar timestamps for each candidate",
+    "all-symbol exclusion reasons and input readiness records",
+    "per-decision public and vendor availability timestamps for required fundamentals",
+    "per-decision timezone-aware timestamp and complete contemporaneous display mapping",
+    "independent fill/cash/action records for portfolio replay"
+  ],
+  "field_coverage": {
+    "monthly_dates_and_chosen_ids": "observed72dates360occurrences57IDs",
+    "chosen_order": "saved insertion order only; numeric score and optimality not independently verified",
+    "eligible50": "not recoverable; aggregate rolling membership digest only",
+    "all_eligible_scores": "absent",
+    "input_price_values": "absent",
+    "exclusions": "aggregate history_short1 and ready49 date; separate limited diagnostic, no complete exclusions ledger",
+    "public_vendor_available_at": "absent; end_time observation in selected classification probe is not both availability times",
+    "decision_time": "date stored; first completed SPY close inferred from source contract, no per-decision timestamp export",
+    "corporate_action_price_basis": "SCALED_RAW requested in source; full decision-vintage raw/action inputs not saved"
+  },
+  "checks": {
+    "canonical_and_stock_risk_selected_ids_and_dates_match": true,
+    "negative_mutation_copies_rejected": [
+      "missing_fragment",
+      "corrupted_fragment"
+    ],
+    "complete_source_input_reconstruction": false,
+    "saved_calendar_digest_equality_is_not_independent_exchange_calendar_validation": true
+  },
+  "rights": "Own aggregate derived audit/selection logs; raw vendor data stayed hosted. No new redistribution grant established.",
+  "new_private_artifacts": [
+    {
+      "path": ".local/stock-selection-evidence-audit-20261028/audit-results.json",
+      "sha256": "ce8f03d1d228eaac19085e252819a9e7886f5b7bbe14419369f23c1aa4a451de"
+    },
+    {
+      "path": ".local/stock-selection-evidence-audit-20261028/audit.py",
+      "sha256": "70098e69ef89d51237c6c1956251f9ffb38abf981b0f646cea5712a97a2920a7"
+    },
+    {
+      "path": ".local/stock-selection-evidence-audit-20261028/canonical-chosen-five.csv",
+      "sha256": "e4619d120377345fbe9f8c7a7332db58491013c99cfddd3e309cc94743dee4ec"
+    },
+    {
+      "path": ".local/stock-selection-evidence-audit-20261028/json-field-inventory.json",
+      "sha256": "7daa4d45ea919f5d824c055b4bcae45dbf08100a3fbe16396f1423fbcec52e76"
+    },
+    {
+      "path": ".local/stock-selection-evidence-audit-20261028/scope-frozen.json",
+      "sha256": "978243981f612486790f2dd3a00f7279b493964bfd90b6d159170526bbce84d3"
+    }
+  ],
+  "report": {
+    "path": "docs/tasks/2026-10-28-stock-selection-evidence-audit.md",
+    "sha256": "d77c56b8680e2ef5f1d0c8c680e9b962b0b0709ab0bd2c24182d6518f928a7ea"
+  },
+  "validation": {
+    "source_hashes_four_contexts_match_historical": true,
+    "packet_reassembly_two_contexts": true,
+    "monthly_dates_and_indices": true,
+    "tamper_negative_checks": 2,
+    "json_container_files_inventoried": 128,
+    "frozen_original_file_hashes_verified": 239,
+    "tests_full_suite": false,
+    "financial_runs": 0,
+    "json_and_local_links": true,
+    "whitespace": "passed in parent-only explicit trailing-whitespace check",
+    "parent_rechecked_original_hashes": 239,
+    "agent_command8_exit": 1,
+    "agent_finalization_historical_status": "failed assertion; preserved original returned report/receipt and command journal"
+  },
+  "lesson": "Saved winners and ready-ID hashes cannot reproduce the complete historical opportunity set or price-score calculation.",
+  "next_bounded_action": "Propose zero-financial decision-log schema and synthetic export fixture; qualify missing historical inputs/rights separately in a new context.",
+  "financial_budget_created": false,
+  "agent_finalization_failure": {
+    "agent_command": 8,
+    "actual_exit": 1,
+    "stage": "final documentation assertion only",
+    "traceback": "File <stdin>,line12: AssertionError",
+    "cause": "git diff --no-index --check /dev/null newfile returns1 for different files, with empty stdout/stderr; assertion incorrectly required0",
+    "parent_scope": "Technical documentation finalization only; no ninth agent command, no audit rerun or data refresh",
+    "checked_utc": "2026-10-28T17:46:48.614618+00:00",
+    "frozen_inputs_unchanged": 239,
+    "trailing_whitespace_check": "passed for both returned files"
+  },
+  "parent_finalization_artifact": {
+    "path": ".local/stock-selection-evidence-audit-20261028/parent-finalization.json",
+    "sha256": "3e38c072fea3b825ac161473de1aaf10a326bad8bde9ed772c388340e907c428"
+  }
+}

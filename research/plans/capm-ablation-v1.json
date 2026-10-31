@@ -1,0 +1,127 @@
+{
+  "study_id": "capm-ablation-v1",
+  "status": "frozen-before-financial-runs",
+  "created_utc": "2026-10-27T04:32:18.989038+00:00",
+  "deadline_utc": "2026-10-27T06:02:18.989038+00:00",
+  "project_id": 38512092,
+  "cases": {
+    "c25_on": {
+      "strategy": "capm",
+      "cost_mode": "stress",
+      "stop_enabled": true
+    },
+    "c0_on": {
+      "strategy": "capm",
+      "cost_mode": "zero",
+      "stop_enabled": true
+    },
+    "c0_off": {
+      "strategy": "capm",
+      "cost_mode": "zero",
+      "stop_enabled": false
+    },
+    "cf_on": {
+      "strategy": "capm",
+      "cost_mode": "fees",
+      "stop_enabled": true
+    },
+    "cf_off": {
+      "strategy": "capm",
+      "cost_mode": "fees",
+      "stop_enabled": false
+    },
+    "c25_off": {
+      "strategy": "capm",
+      "cost_mode": "stress",
+      "stop_enabled": false
+    },
+    "s0": {
+      "strategy": "spy",
+      "cost_mode": "zero",
+      "stop_enabled": false
+    },
+    "sf": {
+      "strategy": "spy",
+      "cost_mode": "fees",
+      "stop_enabled": false
+    },
+    "s25": {
+      "strategy": "spy",
+      "cost_mode": "stress",
+      "stop_enabled": false
+    }
+  },
+  "cost_levels": {
+    "zero": {
+      "slippage": 0.0,
+      "fee_model": "ConstantFeeModel"
+    },
+    "fees": {
+      "slippage": 0.0,
+      "fee_model": "InteractiveBrokersFeeModel"
+    },
+    "stress": {
+      "slippage": 0.0025,
+      "fee_model": "InteractiveBrokersFeeModel"
+    }
+  },
+  "primary_cases": 9,
+  "max_total_attempts": 11,
+  "technical_retry_slots": 2,
+  "source_hashes": {
+    "c25_on": "0c64f789f100dc6f4431cbef59d78a39566f897eb1cf9e05cc084dc707d04584",
+    "c0_on": "e52b2dd3c6feb3d2c1394b4ca64132c2fcfa782b29db9d6ba9d78bda356af476",
+    "c0_off": "c4cd5a2f2d99a1e4aed8e27d9db798056d7d2d080de78fe90b2134759cb17e45",
+    "cf_on": "d7c21541b4718cb95950965f28cced9e784dcc7f530d023745ed31b62bce8e6a",
+    "cf_off": "5ab8938ea815ea241f7d569eb116949a43ef6a59c160a15cd42945f896356462",
+    "c25_off": "8a2ecbc2dc4c221472d04f24875b5b4c1041f8dd3acdde7951ec930310f593f8",
+    "s0": "fee930c16ea42871699a52e9c69f06a188ffb13f8ec22b0c78394cae453ee39a",
+    "sf": "724a660ba50c4f14d6cae9fe3d68dc11ecb868df154bc9fcb13fab7d4c4af95d",
+    "s25": "524a19e193b7467483ef76fd24f35aa9226f385b80646ae7155357b55dff284d"
+  },
+  "input_hashes": {
+    "research/quantconnect/capm_study.py": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/quantconnect/sources/capm_framework_original.py": "4caaa23a312db6ae764a2177c403ec887e981bffab7735afcd7638be36e6ed52",
+    "research/capm_ablation.py": "77b4fd00d602c9f7c9cb49107728a5267870648fce757ace1d4760eaf9d1bc01",
+    "research/capm_review.py": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a"
+  },
+  "context": {
+    "start": "2016-01-01",
+    "end": "2025-12-31",
+    "capital_usd": 300000,
+    "cash_buffer": 0.01,
+    "universe": "Unchanged29 legacy source symbols and manually subscribed SPY; same reverse regression21bar/top2 monthly and source framework except declared stop factor.",
+    "execution": "Native minute ImmediateExecution/equal-weight source models; SPY entry-only. Same native minimum-order policy. Default normalization and native bid/ask fills retained.",
+    "financing": "Unchanged6% debit ACT/360 on previous closing cash; zero credit; disable native per-security interest.",
+    "costs": "zero: ConstantFeeModel(0),0 added slippage; fees: nativeIB commissions,0 added slippage; stress: nativeIB commissions,25bp added slippage. Native quote spreads remain in every level; zero is not a frictionless market.",
+    "risk": "Only CAPM per-security1% source model versus NullRiskManagementModel. SPY no stop at every level.",
+    "metrics": "Same full/annual returns, closing drawdown, zeroRF sample daily Sharpe sqrt252, fullCAGR/absDD and annualreturn/absDD Calmar; UWfraction, longest sessions/calendar days and terminal censoring. Annual peaks reset; full peak carries.",
+    "data": "Reuse free hosted US equity/quote/action data, same observed enginev18209; aggregate outputs only, no dense market/NAV export."
+  },
+  "hypotheses": [
+    "Stop effect differs by cost level; the large prior loss may reflect repeated re-entry and costs.",
+    "No-stop may reduce turnover but expose larger price losses; no presumption of better risk."
+  ],
+  "contrasts": "Stop-on minus off at each level; commissions effect fees-minus-zero; added-slippage effect stress-minus-fees; interaction(stop effect at stress)-(stop effect at zero), full and annual. These are total closed-loop policy effects, not same-trade fee subtraction.",
+  "primary_estimand": "Full-period CAGR contrasts and total-cost\u00d7stop interaction; DD/Calmar/Sharpe/UW/exposure/turnover are joint diagnostics. No threshold or winner-based tuning.",
+  "controls": "Nine fresh cases, no cache reuse. c25_on ands25 must reproduce prior audited11 metric records before qualification. Six CAPM monthly selection hashes must match.",
+  "history": "Viewed development history, no untouched OOS, no trained advantage or promotion.",
+  "stops": [
+    "11attempts including failures,90minute deadline,at most2technical retries; no widening or threshold changes.",
+    "First c25_on must pass dependency/native-book/configuration checks and reproduce earlier metrics before other cases.",
+    "Stop/flag missing periods, wrong source token/case/model,nonpositiveNAV,accounting failures,calendar/selection differences,paid access or version drift.",
+    "Preserve failed attempts. No paid data/services/broker operations/real orders/dependency installations/commits/publication."
+  ],
+  "technical_amendments": [
+    {
+      "created_utc": "2026-10-27T04:36:56.580709+00:00",
+      "kind": "technical-instrumentation-only",
+      "reason": "First control stopped in first universe callback before any closing mark. Passive audit used Python custom attributes on the native QCAlgorithm callback proxy. Move passive counters/digest to module scope; no ranking, trading or cost changes. Underlying exception was masked by the end handler, so proxy failure remains a diagnosis hypothesis pending successful control.",
+      "old_plan_sha256": "a6b52a9b8b2cb08be4d0042bb859009d9e0477920899f43292f349d7feba8c2d",
+      "preserved": ".local/capm-ablation-v1/superseded/attempt1",
+      "strategy_budget_unchanged": true,
+      "deadline_unchanged": true
+    }
+  ]
+}

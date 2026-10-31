@@ -1,0 +1,299 @@
+{
+  "status": "completed_engineering_readiness_not_ready",
+  "prior_research_preserved": {
+    "README.md": "Prior bytes saved; current canonical file contains additive new goal/capability/procedure update",
+    "docs/goals.md": "Prior bytes saved; current canonical file contains additive new goal/capability/procedure update",
+    "docs/research-development.md": "Prior bytes saved; current canonical file contains additive new goal/capability/procedure update",
+    "docs/tasks/2026-10-25-rsi-gate-robustness-review.md": "unchanged",
+    "docs/tasks/2026-10-25-rsi-gate-robustness.md": "unchanged",
+    "docs/tasks/evidence/2026-10-25-rsi-gate-robustness.json": "unchanged",
+    "research/gate_robustness.py": "unchanged",
+    "research/plans/spy-gate-robustness-v1.json": "unchanged",
+    "scripts/build_gate_robustness_review.py": "unchanged",
+    "tests/test_gate_robustness.py": "unchanged"
+  },
+  "protocol": "docs/tasks/2026-10-25-multi-asset-unlock.md",
+  "protocol_sha256": "d999ec4fd7a073139c52e67487226f198bb7fe19b16fcc90001a236e4d1ae7bc",
+  "design": "research/plans/multi-asset-unlock-v1.design.json",
+  "design_sha256": "a2c0e221fe3726a88920444011705c1166fdaf1355dd3bf745d37e82feeb1ee7",
+  "historical_financial_attempts": 0,
+  "conditional_ceiling": 10,
+  "conditional_budget_closed": true,
+  "new_price_downloads": 0,
+  "official_document_read_attempts": 11,
+  "native_synthetic_attempts": [
+    {
+      "output": ".local/multi-asset-unlock-v1/native-1",
+      "status": "completed",
+      "source_sha256": "bd71e5f8d8ed07f516faf8c21c136202e6434edcf463904662487ab400198578"
+    },
+    {
+      "output": ".local/multi-asset-unlock-v1/native-2",
+      "status": "completed",
+      "source_sha256": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697",
+      "code_hashes": {
+        "research/multi_asset.py": "c39acefd1d4753c9527fc8ad9ac1de28a6cf613b5dfba327923a347f35975828",
+        "research/multi_asset_native_probe.py": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697",
+        "research/etf_readiness_probe.py": "1ab48cb82bee47b03f8fd19f9d8aad98a845ce902658c602b8403d70b9530953",
+        "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+        "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc"
+      },
+      "started_utc": "2026-10-25T23:50:29.267468+00:00"
+    }
+  ],
+  "verified_artifact_manifests": {
+    "native-1": {
+      "manifest_sha256": "a5300d46bb28906d02bf0ed47bca6c6cbf757140b412ced45761bbdb09a25b6a",
+      "artifact_count": 5
+    },
+    "native-2": {
+      "manifest_sha256": "bc31fb408c827131e2fc662504673db383aa7290791cd6228d9e1fc3230523c3",
+      "artifact_count": 10
+    },
+    "input-audit": {
+      "manifest_sha256": "86e67de13805eb4ec92f525f5bc3153a41b2cd0440589252fbc84458d40a272a",
+      "artifact_count": 1
+    },
+    "input-audit-v2": {
+      "manifest_sha256": "51c5a07f51ac53db46c7a018729a7dcf2aff1306ee118d6ae726dae7f25369fa",
+      "artifact_count": 1
+    }
+  },
+  "readiness": {
+    "status": "not_ready",
+    "new_market_data_downloads": 0,
+    "historical_financial_attempts": 0,
+    "inputs": [
+      {
+        "symbol": "SPY",
+        "checks_status": "basic_structure_passed_primary_study_blocked",
+        "rows": 5305,
+        "first_date": "2004-12-01",
+        "last_date": "2025-12-31",
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "provider_exchange_code": "PCX",
+        "inception_lower_bound": "1993-01-22",
+        "inception_source": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-500-etf-trust-spy",
+        "identity_pass": true,
+        "sorted_unique_dates_pass": true,
+        "finite_positive_price_and_volume_checks_pass": true,
+        "ohlc_envelope_pass": true,
+        "weekend_rejection_pass": true,
+        "no_pre_inception_rows_pass": true,
+        "adjusted_close_present": true,
+        "adjusted_close_is_not_execution_price": true,
+        "reported_dividend_count": 85,
+        "reported_split_count": 0,
+        "dividend_fields": [
+          "amount",
+          "date"
+        ],
+        "event_session_joins_pass": true,
+        "payment_dates_present": false,
+        "observed_warmup_month_ends": 13,
+        "ten_month_warmup_observed": true,
+        "raw_price_adjustment_semantics": "unverified: field names/events alone do not certify treatment of splits/distributions",
+        "corporate_action_completeness": "unverified: empty or matching provider event lists are not independent certification",
+        "session_calendar_completeness": "unverified: matching observed rows is not a venue calendar",
+        "point_in_time_availability": "unverified: timestamp labels are not proof of historical publication/availability",
+        "rights": "unverified: anonymousHTTP200 is not data-use or redistribution permission",
+        "dividend_cash_availability": "blocked: dated amounts do not establish payment-date cash; GLD reportednone is not blanket source certification",
+        "evaluation_class": "viewed/publicly studied development history, not untouched evaluation",
+        "source": ".local/etf-readiness/acquisition/yahoo-spy-attempt-1.bin",
+        "sha256": "fb07ced3cda40ee637e12b17a6104ad49fc60cdd55c1ea558b56e74be341c92e",
+        "evaluation_rows": 5031
+      },
+      {
+        "symbol": "IEF",
+        "checks_status": "basic_structure_passed_primary_study_blocked",
+        "rows": 5305,
+        "first_date": "2004-12-01",
+        "last_date": "2025-12-31",
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "provider_exchange_code": "NGM",
+        "inception_lower_bound": "2002-07-22",
+        "inception_source": "https://www.ishares.com/us/products/239456/ishares-710-year-treasury-bond-etf",
+        "identity_pass": true,
+        "sorted_unique_dates_pass": true,
+        "finite_positive_price_and_volume_checks_pass": true,
+        "ohlc_envelope_pass": true,
+        "weekend_rejection_pass": true,
+        "no_pre_inception_rows_pass": true,
+        "adjusted_close_present": true,
+        "adjusted_close_is_not_execution_price": true,
+        "reported_dividend_count": 254,
+        "reported_split_count": 0,
+        "dividend_fields": [
+          "amount",
+          "date"
+        ],
+        "event_session_joins_pass": true,
+        "payment_dates_present": false,
+        "observed_warmup_month_ends": 13,
+        "ten_month_warmup_observed": true,
+        "raw_price_adjustment_semantics": "unverified: field names/events alone do not certify treatment of splits/distributions",
+        "corporate_action_completeness": "unverified: empty or matching provider event lists are not independent certification",
+        "session_calendar_completeness": "unverified: matching observed rows is not a venue calendar",
+        "point_in_time_availability": "unverified: timestamp labels are not proof of historical publication/availability",
+        "rights": "unverified: anonymousHTTP200 is not data-use or redistribution permission",
+        "dividend_cash_availability": "blocked: dated amounts do not establish payment-date cash; GLD reportednone is not blanket source certification",
+        "evaluation_class": "viewed/publicly studied development history, not untouched evaluation",
+        "source": ".local/etf-readiness/acquisition/yahoo-ief-attempt-2.bin",
+        "sha256": "0f9ec28fc4df9d89a7332bcf73e88b648f2bee792a92426454aa983d73b6730d",
+        "evaluation_rows": 5031
+      },
+      {
+        "symbol": "GLD",
+        "checks_status": "basic_structure_passed_primary_study_blocked",
+        "rows": 5305,
+        "first_date": "2004-12-01",
+        "last_date": "2025-12-31",
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "provider_exchange_code": "PCX",
+        "inception_lower_bound": "2004-11-18",
+        "inception_source": "https://www.spdrgoldshares.com/usa/gld/",
+        "identity_pass": true,
+        "sorted_unique_dates_pass": true,
+        "finite_positive_price_and_volume_checks_pass": true,
+        "ohlc_envelope_pass": true,
+        "weekend_rejection_pass": true,
+        "no_pre_inception_rows_pass": true,
+        "adjusted_close_present": true,
+        "adjusted_close_is_not_execution_price": true,
+        "reported_dividend_count": 0,
+        "reported_split_count": 0,
+        "dividend_fields": [],
+        "event_session_joins_pass": true,
+        "payment_dates_present": false,
+        "observed_warmup_month_ends": 13,
+        "ten_month_warmup_observed": true,
+        "raw_price_adjustment_semantics": "unverified: field names/events alone do not certify treatment of splits/distributions",
+        "corporate_action_completeness": "unverified: empty or matching provider event lists are not independent certification",
+        "session_calendar_completeness": "unverified: matching observed rows is not a venue calendar",
+        "point_in_time_availability": "unverified: timestamp labels are not proof of historical publication/availability",
+        "rights": "unverified: anonymousHTTP200 is not data-use or redistribution permission",
+        "dividend_cash_availability": "blocked: dated amounts do not establish payment-date cash; GLD reportednone is not blanket source certification",
+        "evaluation_class": "viewed/publicly studied development history, not untouched evaluation",
+        "source": ".local/etf-readiness/acquisition/yahoo-gld-attempt-3.bin",
+        "sha256": "1cdf05fbc73ddec46d7e835f9df79d8f36851ea66b8c94096c187219d923b4c5",
+        "evaluation_rows": 5031
+      }
+    ],
+    "prior_input_manifest_verified": {
+      "manifest_sha256": "cc68d247d0770b403e3c8c1d5f4f20fa1ea2e67e0700259fed03671be6683950",
+      "artifact_count": 7
+    },
+    "native_manifest_verified": {
+      "manifest_sha256": "bc31fb408c827131e2fc662504673db383aa7290791cd6228d9e1fc3230523c3",
+      "artifact_count": 10
+    },
+    "common_observed_calendar_equal": true,
+    "observed_intersection_is_not_calendar_qualification": true,
+    "spy_snapshot_parity": {
+      "original_spy_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+      "overlapping_rows": 5305,
+      "rounded_ohlc_mismatching_cells": 0,
+      "maximum_rounded_ohlc_difference": 0.0,
+      "distribution_date_sets_match": true,
+      "maximum_distribution_difference": 0.0
+    },
+    "remaining_gates": {
+      "intended_use_rights": false,
+      "raw_price_and_action_semantics_qualified": false,
+      "action_completeness_verified": false,
+      "historical_dividend_payment_dates_complete": false,
+      "exchange_calendar_and_availability_qualified": false,
+      "native_corporate_actions_configured": false,
+      "monthly_signals_synthetic_tests_passed": true,
+      "cash_allocator_native_synthetic_probe_passed": true,
+      "historical_runner_and_continuous_nav_verified": false
+    },
+    "synthetic_test_evidence": {
+      "make_check_exit": 0,
+      "offline_tests_passed": 238,
+      "new_multi_asset_behavior_tests": 11,
+      "log": ".local/multi-asset-unlock-v1/make-check-final2.log",
+      "log_sha256": "bf9a93e42d84029847436b28b3945c9e10332eb93340bab77fa1abc34249e5c1",
+      "code_hashes": {
+        "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+        "research/multi_asset_plan.py": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e",
+        "tests/test_multi_asset.py": "e25edd4caab9e3f0baf09e981cfe7c15a13682e42e50452362de027e462549e2"
+      }
+    },
+    "native_planner_ast_matches_current": true,
+    "native_receivable_revision_note": "Recorded probe source is preserved. A subsequent stricter payment-date input guard has unit coverage only; no further native run or corporate-action readiness claim.",
+    "expected_launch_rejection": "Historical launch blocked: intended_use_rights, raw_price_and_action_semantics_qualified, action_completeness_verified, historical_dividend_payment_dates_complete, exchange_calendar_and_availability_qualified, native_corporate_actions_configured, historical_runner_and_continuous_nav_verified"
+  },
+  "native_results": [
+    {
+      "status": "synthetic_native_allocator_seam_passed",
+      "synthetic_only": true,
+      "historical_financial_paths": 0,
+      "native_fills": 6,
+      "commission_usd": 6,
+      "final_cash": "30.07",
+      "final_positions": {
+        "GLD": 39,
+        "IEF": 0,
+        "SPY": 0
+      },
+      "decimal_replay_passed": true,
+      "sell_fill_ack_before_buys": true,
+      "ex_date_receivable_not_spendable": true,
+      "payment_credited_once": true,
+      "split_handler": "not implemented or retested; earlier negative evidence preserved",
+      "limitations": [
+        "Fixed simultaneous synthetic quotes and immediate complete fills only",
+        "No historical eligibility, partial-fill, restart or broker parity proof",
+        "Project-side in-memory receivable fixture; no native receivable service"
+      ]
+    },
+    {
+      "status": "synthetic_native_allocator_seam_passed",
+      "synthetic_only": true,
+      "historical_financial_paths": 0,
+      "native_fills": 6,
+      "commission_usd": 6,
+      "final_cash": "30.07",
+      "final_positions": {
+        "GLD": 39,
+        "IEF": 0,
+        "SPY": 0
+      },
+      "decimal_replay_passed": true,
+      "sell_fill_ack_before_buys": true,
+      "ex_date_receivable_not_spendable": true,
+      "payment_credited_once": true,
+      "split_handler": "not implemented or retested; earlier negative evidence preserved",
+      "limitations": [
+        "Fixed simultaneous synthetic quotes and immediate complete fills only",
+        "No historical eligibility, partial-fill, restart or broker parity proof",
+        "Project-side in-memory receivable fixture; no native receivable service"
+      ]
+    }
+  ],
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests_passed": 238,
+    "new_multi_asset_behavior_tests": 11,
+    "log": ".local/multi-asset-unlock-v1/make-check-final2.log",
+    "log_sha256": "bf9a93e42d84029847436b28b3945c9e10332eb93340bab77fa1abc34249e5c1",
+    "code_hashes": {
+      "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+      "research/multi_asset_plan.py": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e",
+      "tests/test_multi_asset.py": "e25edd4caab9e3f0baf09e981cfe7c15a13682e42e50452362de027e462549e2"
+    }
+  },
+  "publication": "none; local uncommitted branch; separate diagram PR untouched",
+  "completed_utc": "2026-10-25T23:55:11.370951+00:00",
+  "code_hashes": {
+    "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+    "research/multi_asset_plan.py": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e",
+    "research/multi_asset_native_probe.py": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697",
+    "research/multi_asset_audit.py": "ef98d076bcf73b4014272714f7075ee39f3b26d9e4204332cf5fc875950cd196",
+    "tests/test_multi_asset.py": "e25edd4caab9e3f0baf09e981cfe7c15a13682e42e50452362de027e462549e2"
+  }
+}

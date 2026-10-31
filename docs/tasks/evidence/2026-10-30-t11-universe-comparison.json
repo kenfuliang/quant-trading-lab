@@ -1,0 +1,448 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "T11-UNIVERSE-20261030-C1",
+  "status": "incomplete",
+  "outcome_reason": "Ten slots closed; four unique native summary cases. Selector not adopted. Missing daily exports, full ledger/input audits, truncated25bp captures and omitted comparisons; final submission unknown and counted.",
+  "missing_evidence": {
+    "cases.0.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.1.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.2.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.3.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.4.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.5.name": "No observed run identity/build for failed or unknown submission.",
+    "cases.5.run_id": "No observed run identity/build for failed or unknown submission.",
+    "cases.5.build": "No observed run identity/build for failed or unknown submission.",
+    "cases.5.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.6.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.7.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.8.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity.",
+    "cases.9.name": "No observed run identity/build for failed or unknown submission.",
+    "cases.9.run_id": "No observed run identity/build for failed or unknown submission.",
+    "cases.9.build": "No observed run identity/build for failed or unknown submission.",
+    "cases.9.data": "Hosted provider input snapshot not exported or independently hashed; monthly qualification does not replace full data identity."
+  },
+  "cases": [
+    {
+      "case_id": "attempt1-full25",
+      "name": "Casual Sky Blue Barracuda",
+      "run_id": "750ae867415f70601dc3f0d2f9842dd0",
+      "source": ".local/t11-universe-cloud-v2/full25/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v2/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "failed_input_timing"
+    },
+    {
+      "case_id": "attempt2-full25",
+      "name": "Square Yellow Green Pig",
+      "run_id": "b70d52e34ce132f48fe0fa1a26822e8d",
+      "source": ".local/t11-universe-cloud-v3/full25/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v3/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "failed_input_timing"
+    },
+    {
+      "case_id": "attempt3-full25",
+      "name": "Logical Yellow Armadillo",
+      "run_id": "820ec21ecd7ccbf0700199ddba65c615",
+      "source": ".local/t11-universe-cloud-v4/full25/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v4/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "failed_input_timing"
+    },
+    {
+      "case_id": "attempt4-rs125",
+      "name": "Smooth Fluorescent Orange Jackal",
+      "run_id": "d28f940b754f7bed266d27901517f881",
+      "source": ".local/t11-universe-cloud-v6/rs125/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v6/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "completed_capture_incomplete"
+    },
+    {
+      "case_id": "attempt5-rs125",
+      "name": "Muscular Orange Rhinoceros",
+      "run_id": "3b574397a34a7d2eb569f1e41aeb8866",
+      "source": ".local/t11-universe-cloud-v7/rs125/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v7/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "completed_capture_incomplete"
+    },
+    {
+      "case_id": "attempt6-full25",
+      "name": null,
+      "run_id": null,
+      "source": ".local/t11-universe-cloud-v9/full25/main.py",
+      "build": null,
+      "plan": ".local/t11-universe-cloud-v9/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "rejected_before_execution"
+    },
+    {
+      "case_id": "attempt7-full25",
+      "name": "Geeky Red Orange Goshawk",
+      "run_id": "72058efde3e440484e5a6359fb49590a",
+      "source": ".local/t11-universe-cloud-v10/full25/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v10/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "completed_capture_incomplete"
+    },
+    {
+      "case_id": "attempt8-equal25",
+      "name": "Formal Green Chicken",
+      "run_id": "8d7ecc4bee1369d912f888e512523d8b",
+      "source": ".local/t11-universe-cloud-v11/equal25/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v11/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 25bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "completed_provisional"
+    },
+    {
+      "case_id": "attempt9-rs150",
+      "name": "Square Yellow Crocodile",
+      "run_id": "d8cd8111647dcc3d1c8f51f36cdef0a0",
+      "source": ".local/t11-universe-cloud-v11/rs150/main.py",
+      "build": "2.5.0.0.18222",
+      "plan": ".local/t11-universe-cloud-v11/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 50bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "completed_provisional"
+    },
+    {
+      "case_id": "attempt10-full50",
+      "name": null,
+      "run_id": null,
+      "source": ".local/t11-universe-cloud-v11/full50/main.py",
+      "build": null,
+      "plan": ".local/t11-universe-cloud-v11/frozen-plan.json",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged native next-open controller; 50bp slippage and matching reserve; native IB fees; 6%ACT/360 prior-debit interest; zero cash credit; native dividends/actions; independent ledger unverified.",
+      "metric_conventions": "closing-v1;365.25calendar-day CAGR; initial10000anchor; daily-close DD; zero-RF sample Sharpe sqrt252; recovery-inclusive-v1.2 temporal",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "outcome": "submission_unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".local/t11-universe-cloud-v2/full25/main.py",
+      "sha256": "d622f51196ea91330e78d1dfbc6659ed94a66bfc7b2de482b4baa79b09530459",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v2/frozen-plan.json",
+      "sha256": "58eed251958dab9fa06e8bc0b960da1b62d10a8bd2f7f284185fec93fc926aa8",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v2/full25/result.ax.txt",
+      "sha256": "d03b87d686978d7071b60d6d5622c1bef1431f86e73446578f1efb84ab493860",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v2/full25/failure.ax.txt",
+      "sha256": "69b03c21f54d5db236ec191cf7a7c659265ec399a53bad5f60da924e11ce5043",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v3/full25/main.py",
+      "sha256": "8f2544cc9c040e527eab8f25c7520a9557f967dd3da725e1898706ca6ac3c752",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v3/frozen-plan.json",
+      "sha256": "f7964aae10297108d1823b8de1ac3808bbad2c16723d139bf5a691103f19bf5f",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v3/full25/result.ax.txt",
+      "sha256": "9ce855b32568b7c447f5cde2b4d52d23ea704a36f128e405210b2c1dea83fe68",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v4/full25/main.py",
+      "sha256": "981b6d7dae5a764ff0de2661d48b5e65fc5840864ec7a2fc6534fe6f965429f5",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v4/frozen-plan.json",
+      "sha256": "5b38a5629c85d70b92077de5cbbd289759e83df68331c3fac63933bd0f4f2e54",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v4/full25/result.ax.txt",
+      "sha256": "910083153dd192398bacbdf853e357ecccfc5c9b5cac7ee788b9993685125bc4",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v6/rs125/main.py",
+      "sha256": "c2e67a8f6a5e95ebb6f733e1a70f612ca5ec3b438f910a3af72b9eccfe91c688",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v6/frozen-plan.json",
+      "sha256": "d4e7e22919b385a54d0bc77366a3c0256087f0bc483a763ddca81399afa5439f",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v6/rs125/result.ax.txt",
+      "sha256": "5acba52fce71e0ed0dd8aba8c99efa9440f36b61ce7fc94a232bc76147314567",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v7/rs125/main.py",
+      "sha256": "f75478fe894abdd7a8cf3d339f723afe3d8d862351c1534c94e61dba99f29ee9",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v7/frozen-plan.json",
+      "sha256": "79d53a867ae9414996b217725f02bd26ea45b5a44a56b66ca57d63b1768df9ca",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v7/rs125/result.ax.txt",
+      "sha256": "6f57cd381f04f5c528c960a47a6e948c31348c5b3b754ab09a553c983c3f8aeb",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v7/rs125/captured.partial.json",
+      "sha256": "f66f3b7be76682b18b42042692ab368753ac2f1ee506dd29ee5ef88bc5e577ea",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v9/full25/main.py",
+      "sha256": "3b4cf60d5a3043ab1351fcd85a00e9023f51bdd06008eb121d8ccdd549b22c11",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v9/frozen-plan.json",
+      "sha256": "533677c2cda3f9e4baf97dbd87f5780e7d1625d87ba7ce1e30cda4e08e0ae5d0",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v9/full25/result.ax.txt",
+      "sha256": "4915f194ddb00e603ae5d7877dc8f2333c6d29d41e2f86689530f98a2c371bc4",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v9/full25/resume.ax.txt",
+      "sha256": "4915f194ddb00e603ae5d7877dc8f2333c6d29d41e2f86689530f98a2c371bc4",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v10/full25/main.py",
+      "sha256": "ea1cb2c34ca20146692a3575a1cf0e66705af0f688805458289c23460b320694",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v10/frozen-plan.json",
+      "sha256": "2992e1336dcbf08aa6415fab4e6cac38415ac8961b3d365e726026c0b0766aa6",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v10/full25/result.ax.txt",
+      "sha256": "ebf33f6fd33bd2476c3cff714740ebd55ff335a3f046293cdee9da4b75777aae",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v10/full25/captured.partial.json",
+      "sha256": "1a6e694c8685f5e02e8327fc1abb2b9a97c9edbc0283b64f05ad687a0511d130",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/equal25/main.py",
+      "sha256": "9b99475d3a1916e811207a27af6485698e14d66bd084d9f2ecbad1ef34793a5b",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/frozen-plan.json",
+      "sha256": "237b5b7a86296ef992fc54047da7b31e01bf951e3be31afffe55c613439a364c",
+      "role": "frozen case identities"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/equal25/result.ax.txt",
+      "sha256": "67e02e48d46bdc2fdb9ea48572de2846c062cb900a50087cfb5ddaf725eb48d1",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/equal25/captured.json",
+      "sha256": "cc12bad77fa163df50df4380c8d7bfdf09e934d02b27ad2b67f7bdf5a75d5a6e",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/rs150/main.py",
+      "sha256": "ca8cced3a8be51c81e52536bd36940e0a096bc468e8d88d07206ff163cf7be25",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/rs150/result.ax.txt",
+      "sha256": "794fd924a362b4dccbc8336b2055d5a11d55e34b5c923e4b864d4deb7db79f4f",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/rs150/captured.json",
+      "sha256": "f48b0218f2bcdd3e8e4eb74b8ba4932212c576824535cfd68c56076701a662a2",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/full50/main.py",
+      "sha256": "0636094b5647fd527807a6545209b0fe81998b295de9f626df4f30ce468648ea",
+      "role": "frozen private source"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/full50/submission-state.ax.txt",
+      "sha256": "b90c5401c102cbea93401bee63229540637dc4819e639fd427a521c2d294e77d",
+      "role": "saved observation or capture; failure evidence preserved"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/journal.json",
+      "sha256": "3d8596865155fe5123444dc93e795e1a2ae1dee424caddb89e27461ad5656d2d",
+      "role": "aggregate attempts and terminal dispositions"
+    },
+    {
+      "path": ".local/performance/t11-universe-v1/comparison.json",
+      "sha256": "8d5c16e364bc7d73a35b2157cf0e700609e142f53ca4238b5e0c20833b40983b",
+      "role": "four provisional result summaries"
+    },
+    {
+      "path": ".local/performance/t11-universe-v1/annual.csv",
+      "sha256": "7b61e0bc2df946a432d243124ed5c88ef4e6cb56b2f46a5e084777b1d6ebe035",
+      "role": "eighteen captured annual rows"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+      "sha256": "d497f5b87652664c3aac850c0038e6cf5f3e0be8d0c6314f9a2d833dcc2484b8",
+      "role": "closed study and lesson"
+    },
+    {
+      "path": "research/plans/t11-long-equity-universe-v2.design.json",
+      "sha256": "9a72dc455af22aa4b0050195bfd74801f4189a875d9c604515c401f688a79e9c",
+      "role": "frozen economic design"
+    },
+    {
+      "path": "research/plans/t11-universe-capture-v3.json",
+      "sha256": "e5c13504e8abbe7bfe50ff340fe57fdfdd2c79e3d49902dd4f670100eb46ee2e",
+      "role": "plain-text capture amendment"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/comparison-dashboard.png",
+      "sha256": "412510b27dbd34b15b4f9b67a637fa2ec7f51202d80678ee19801d305faafc6b",
+      "role": "browser visual evidence"
+    }
+  ],
+  "comparison_groups": [],
+  "validation": {
+    "make_check": "passed597tests, docs and dependencies",
+    "focused": "11tests passed",
+    "financial_slots_used": 10,
+    "new_broker_orders": 0,
+    "receipt": "Structure and all explicit artifact hashes validated; no financial certification",
+    "final_docs_check": "passed189documents",
+    "browser": "Four overall rows/eighteen annual rows visible;50bp filter shows selector and hides25bp control; restored all-cost view."
+  },
+  "limitations": [
+    "No daily-decision reproduction or alpha established",
+    "No paper/live readiness",
+    "full50 unknown; equal50/restricted/half not completed"
+  ]
+}

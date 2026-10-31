@@ -10,6 +10,12 @@ This is the canonical capability/reuse assessment for our pinned dependency, not
 claim that the project operates every upstream feature. Root [README](../README.md)
 owns current project status; [roadmap](roadmap.md) owns delivery sequence.
 
+Subsequent project proof on 2026-10-25: the
+[Alpaca price pilot](tasks/2026-10-25-alpaca-us-stock-pilot.md) verified C03 native
+bar/instrument write/read and identical import on four instruments/164 real bars,
+plus separate synthetic restore. This supplements the historical audit observations
+below; it does not establish general ingestion, corporate actions or trading readiness.
+
 ## Version and evidence rules
 
 Reviewed upstream tag **v1.231.0**, commit

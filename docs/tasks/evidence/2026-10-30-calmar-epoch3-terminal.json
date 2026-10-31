@@ -1,0 +1,148 @@
+{
+  "status": "passed",
+  "audited_utc": "2026-10-30T07:38:40.562823+00:00",
+  "stop_reason": "shared twelve-case cap reached; neither fixed target passed",
+  "financial_cases": 12,
+  "financial_failures": 0,
+  "automatic_retries": 0,
+  "remaining_financial_slots": 0,
+  "concurrency_verified": 1,
+  "source_and_input_freezes_verified": 1,
+  "sealed_cases_verified": 12,
+  "source_snapshots_verified": 1,
+  "zero_account_difference_cases": 12,
+  "annual_metric_checks": 1080,
+  "full_metric_checks": 168,
+  "rolling_metric_checks": 108,
+  "financial_root_and_journal_hashes_before_after_cached_checks_equal": 1,
+  "cache_checks": [
+    {
+      "status": "cached_verified",
+      "new_launches": 0,
+      "financial_slots": 0
+    },
+    {
+      "status": "cached_verified",
+      "new_launches": 0,
+      "financial_slots": 0
+    }
+  ],
+  "journal_events": 31,
+  "journal_head": "7d6afd2f2809221c4f76b89a4aa0f1d5882221c65b5a5d62ab1e986b181c110d",
+  "all_branches_retired": 1,
+  "all_reservations_completed": 1,
+  "incumbent_changed": 0,
+  "independent_alpha_established": 0,
+  "broker_operations": 0,
+  "deadline": "2026-10-30T11:24:38+00:00",
+  "cases": [
+    {
+      "case": "gate-5",
+      "attempt_id": "attempt-0001",
+      "pid": 33821,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:32:05.503111+00:00",
+      "exited_utc": "2026-10-30T07:32:10.346292+00:00",
+      "wall_seconds": 4.846163667039946
+    },
+    {
+      "case": "equal-5",
+      "attempt_id": "attempt-0002",
+      "pid": 33887,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:32:10.352867+00:00",
+      "exited_utc": "2026-10-30T07:32:14.642331+00:00",
+      "wall_seconds": 4.293103874893859
+    },
+    {
+      "case": "corr-5",
+      "attempt_id": "attempt-0003",
+      "pid": 33931,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:32:14.647006+00:00",
+      "exited_utc": "2026-10-30T07:32:19.116312+00:00",
+      "wall_seconds": 4.471739041968249
+    },
+    {
+      "case": "gate-10",
+      "attempt_id": "attempt-0004",
+      "pid": 33970,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:32:19.122785+00:00",
+      "exited_utc": "2026-10-30T07:32:23.453302+00:00",
+      "wall_seconds": 4.33346695790533
+    },
+    {
+      "case": "equal-10",
+      "attempt_id": "attempt-0005",
+      "pid": 33991,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:32:23.457725+00:00",
+      "exited_utc": "2026-10-30T07:32:27.614791+00:00",
+      "wall_seconds": 4.159341708989814
+    },
+    {
+      "case": "corr-10",
+      "attempt_id": "attempt-0006",
+      "pid": 33998,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:32:27.620245+00:00",
+      "exited_utc": "2026-10-30T07:32:32.545512+00:00",
+      "wall_seconds": 4.928414041060023
+    },
+    {
+      "case": "gate-5",
+      "attempt_id": "attempt-0007",
+      "pid": 35048,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:35:12.927319+00:00",
+      "exited_utc": "2026-10-30T07:35:16.938344+00:00",
+      "wall_seconds": 4.013643458019942
+    },
+    {
+      "case": "vol-5",
+      "attempt_id": "attempt-0008",
+      "pid": 35056,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:35:16.943851+00:00",
+      "exited_utc": "2026-10-30T07:35:21.282016+00:00",
+      "wall_seconds": 4.341049959068187
+    },
+    {
+      "case": "breadth-5",
+      "attempt_id": "attempt-0009",
+      "pid": 35066,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:35:21.287390+00:00",
+      "exited_utc": "2026-10-30T07:35:26.945854+00:00",
+      "wall_seconds": 5.660954041988589
+    },
+    {
+      "case": "gate-10",
+      "attempt_id": "attempt-0010",
+      "pid": 35074,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:35:26.950372+00:00",
+      "exited_utc": "2026-10-30T07:35:30.860772+00:00",
+      "wall_seconds": 3.9124276670627296
+    },
+    {
+      "case": "vol-10",
+      "attempt_id": "attempt-0011",
+      "pid": 35078,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:35:30.865063+00:00",
+      "exited_utc": "2026-10-30T07:35:34.785396+00:00",
+      "wall_seconds": 3.9223167500458658
+    },
+    {
+      "case": "breadth-10",
+      "attempt_id": "attempt-0012",
+      "pid": 35100,
+      "exit_code": 0,
+      "started_utc": "2026-10-30T07:35:34.790285+00:00",
+      "exited_utc": "2026-10-30T07:35:40.766291+00:00",
+      "wall_seconds": 5.978213125024922
+    }
+  ]
+}

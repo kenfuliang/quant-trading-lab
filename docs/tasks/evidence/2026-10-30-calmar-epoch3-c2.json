@@ -1,0 +1,461 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "E3-C2",
+  "status": "success",
+  "outcome_reason": "All six reserved cases captured and independently audited; scientific disposition is separately recorded below, not inferred from execution success.",
+  "missing_evidence": {},
+  "cases": [
+    {
+      "case_id": "gate-5",
+      "name": "gate-5 c2",
+      "run_id": "attempt-0007",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "gate",
+        "cost_bps": 5,
+        "cagr_pct": 12.88709423400256,
+        "max_drawdown_pct": 12.474834306860805,
+        "calmar": 1.0330473268823317,
+        "sharpe": 1.002947647564863,
+        "terminal_equity": 883925.72,
+        "sessions": 2242,
+        "uw_sessions": 300,
+        "uw_days": 436,
+        "underwater_fraction": 0.8826940231935771,
+        "right_censored": 0,
+        "fees_usd": 430,
+        "slippage_usd": 15040.91,
+        "trades": 430,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.86090873163818,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35048,
+      "started_utc": "2026-10-30T07:35:12.927319+00:00",
+      "exited_utc": "2026-10-30T07:35:16.938344+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "vol-5",
+      "name": "vol-5 c2",
+      "run_id": "attempt-0008",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "vol",
+        "cost_bps": 5,
+        "cagr_pct": 14.612826483354802,
+        "max_drawdown_pct": 29.668899418906125,
+        "calmar": 0.49253011636970145,
+        "sharpe": 0.8632179585462817,
+        "terminal_equity": 1011934.48,
+        "sessions": 2242,
+        "uw_sessions": 170,
+        "uw_days": 248,
+        "underwater_fraction": 0.8661909009812667,
+        "right_censored": 0,
+        "fees_usd": 389,
+        "slippage_usd": 15323.0,
+        "trades": 389,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.9794878864760583,
+        "rebalance_decisions": 107,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35056,
+      "started_utc": "2026-10-30T07:35:16.943851+00:00",
+      "exited_utc": "2026-10-30T07:35:21.282016+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "breadth-5",
+      "name": "breadth-5 c2",
+      "run_id": "attempt-0009",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=5bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "breadth",
+        "cost_bps": 5,
+        "cagr_pct": 7.877843994452638,
+        "max_drawdown_pct": 16.86145475625591,
+        "calmar": 0.46721022049000915,
+        "sharpe": 0.7179584997707671,
+        "terminal_equity": 589785.33,
+        "sessions": 2242,
+        "uw_sessions": 527,
+        "uw_days": 768,
+        "underwater_fraction": 0.9179304192685103,
+        "right_censored": 0,
+        "fees_usd": 487,
+        "slippage_usd": 15359.77,
+        "trades": 487,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.7668302319560953,
+        "rebalance_decisions": 158,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35066,
+      "started_utc": "2026-10-30T07:35:21.287390+00:00",
+      "exited_utc": "2026-10-30T07:35:26.945854+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "gate-10",
+      "name": "gate-10 c2",
+      "run_id": "attempt-0010",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "gate",
+        "cost_bps": 10,
+        "cagr_pct": 12.566465747294187,
+        "max_drawdown_pct": 12.519588112730762,
+        "calmar": 1.0037443431957442,
+        "sharpe": 0.9809008857983627,
+        "terminal_equity": 861795.23,
+        "sessions": 2242,
+        "uw_sessions": 300,
+        "uw_days": 436,
+        "underwater_fraction": 0.8844781445138269,
+        "right_censored": 0,
+        "fees_usd": 429,
+        "slippage_usd": 29480.145,
+        "trades": 429,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.8610869475645722,
+        "rebalance_decisions": 125,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35074,
+      "started_utc": "2026-10-30T07:35:26.950372+00:00",
+      "exited_utc": "2026-10-30T07:35:30.860772+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "vol-10",
+      "name": "vol-10 c2",
+      "run_id": "attempt-0011",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "vol",
+        "cost_bps": 10,
+        "cagr_pct": 14.309902291142507,
+        "max_drawdown_pct": 29.674498124317804,
+        "calmar": 0.48222895737588756,
+        "sharpe": 0.8481282695806013,
+        "terminal_equity": 988340.08,
+        "sessions": 2242,
+        "uw_sessions": 170,
+        "uw_days": 248,
+        "underwater_fraction": 0.8670829616413916,
+        "right_censored": 0,
+        "fees_usd": 387,
+        "slippage_usd": 29855.63,
+        "trades": 387,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.9797016493867649,
+        "rebalance_decisions": 107,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35078,
+      "started_utc": "2026-10-30T07:35:30.865063+00:00",
+      "exited_utc": "2026-10-30T07:35:34.785396+00:00",
+      "exit_code": 0
+    },
+    {
+      "case_id": "breadth-10",
+      "name": "breadth-10 c2",
+      "run_id": "attempt-0012",
+      "source": "sha256:2c93280d9a1e24f182d7e9a813e45431860ba29c0e99233a7a255c5c600e176a",
+      "build": "Python 3.12.13; project Decimal ledger / separate Fraction replay, not native broker simulation",
+      "plan": "research/plans/calmar-epoch3-c2.frozen.json sha256:e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "data": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json sha256:7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "date_range": {
+        "start": "2017-02-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD300000;98pct target;whole shares;sell-first,next-open;cost=10bp per side plus USD1/order;issuer actions/receivables;zero interest,no borrowing/tax",
+      "metric_conventions": "daily-close NAV;CAGR actual365.25;Calmar=CAGR/absDD;Sharpe252,zeroRF;temporal-v1.2 recovery-inclusive sessions/days;censoring explicit",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      },
+      "metrics": {
+        "policy": "breadth",
+        "cost_bps": 10,
+        "cagr_pct": 7.492097276927212,
+        "max_drawdown_pct": 17.296288348041,
+        "calmar": 0.43316214011752274,
+        "sharpe": 0.6866568586954586,
+        "terminal_equity": 571249.16,
+        "sessions": 2242,
+        "uw_sessions": 567,
+        "uw_days": 829,
+        "underwater_fraction": 0.9206066012488849,
+        "right_censored": 0,
+        "fees_usd": 485,
+        "slippage_usd": 30052.415,
+        "trades": 485,
+        "clipped_buys": 0,
+        "mean_gross_exposure": 0.7670061604147093,
+        "rebalance_decisions": 158,
+        "start": "2017-02-01",
+        "end": "2025-12-31",
+        "anchor": "2017-01-31",
+        "mode": "project_ledger_development"
+      },
+      "pid": 35100,
+      "started_utc": "2026-10-30T07:35:34.790285+00:00",
+      "exited_utc": "2026-10-30T07:35:40.766291+00:00",
+      "exit_code": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "research/plans/calmar-epoch3-c2.frozen.json",
+      "sha256": "e5a7edfc2cddd62d57cd8fe8571c5e04431a1d6bea085ccf4c20ed9d7d37b55d",
+      "role": "frozen executable plan"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/manifest.json",
+      "sha256": "5cc3208383fa0fe868f33dc89d6b9ee3c9966ad263cddb0965c1bbac82987cf5",
+      "role": "sealed cycle output manifest"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2-review/decision.json",
+      "sha256": "5897c03eafb101de6c80dc55960ce30312eb2b3ca8f3537265ac87158988c8da",
+      "role": "frozen criterion evaluation"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2-review/annual-comparison.csv",
+      "sha256": "6dc6113a9396b42bca0d80e499c426f3ed467b659618a1b2c98435209c11485c",
+      "role": "annual returns drawdown Sharpe Calmar underwater"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/gate-5/manifest.json",
+      "sha256": "6f6aae8ee06f9dd6a0add9d82e8a5ad16805cb4bcebea2aeefb6e99a1967cbe8",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/gate-5/summary.json",
+      "sha256": "fdf6eb7665161be42bc300021c92afc629a64dd1963b01a3faace2c7c96ebd14",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/gate-5/independent-audit.json",
+      "sha256": "a2f3e7164c0712447a0c798edc11bbdd65ee42c59fa3f8a2d765bde6f9807090",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/vol-5/manifest.json",
+      "sha256": "88cdedd2b5802f0c9521670e0455c484ad0f1960e1681ace9c66b4992dd4b2d6",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/vol-5/summary.json",
+      "sha256": "28c6b8f9147423c44be1612b1747ab6b73c4083ef308c65904767a369fa63f5d",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/vol-5/independent-audit.json",
+      "sha256": "4166fd9a4cd30f4fe16f50234dcdd4555ee0a4caad56f3991894b368df096e60",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/breadth-5/manifest.json",
+      "sha256": "142eabb6d67ba4b622451406888113a8b1e9bff0828656fe3217ade04e344574",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/breadth-5/summary.json",
+      "sha256": "434f562ab63996ff05ca584aa1785599338b5617471651af706ad3c5106f56d3",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/breadth-5/independent-audit.json",
+      "sha256": "66470ba7dde0278994f36c368cb245e4ea0cc047ba97d04af97bfb6bc93f3400",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/gate-10/manifest.json",
+      "sha256": "96d1c5700be39a0fa134b9a67c0d96c601003fb9831477a4c574fe27f6c0df9c",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/gate-10/summary.json",
+      "sha256": "ad006d449f13acee389c433a17cf970d5450b4d60a77b972b58a88dcdc80ea49",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/gate-10/independent-audit.json",
+      "sha256": "0d71fd8af61e25b511ae1975c2ae3843aca5c4d22f93aac69cc2d06c594fc775",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/vol-10/manifest.json",
+      "sha256": "cd1ba238bc913a01b1b7b01029fb6f2b0d56276684947c31979088dd721e5fb0",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/vol-10/summary.json",
+      "sha256": "58dfcf77f8c31e7e7497f83a871a6d8cc2380b8abdfc2f5c48d5127756ddf5a3",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/vol-10/independent-audit.json",
+      "sha256": "0a1f26e2a38f25c70a9bf8026b6551c354d412d629ab7f277953b8193249e246",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/breadth-10/manifest.json",
+      "sha256": "4a49e8b0d2ed632a5f13d3075d98f2187feaedea2e890a5b58715da72f1a7cc0",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/breadth-10/summary.json",
+      "sha256": "02135ab969a0ae50836a8b128c69c39c5291fb4a899829dcf9663a8e0be7de5b",
+      "role": "sealed case evidence"
+    },
+    {
+      "path": ".local/calmar-epoch3/c2/financial/cases/breadth-10/independent-audit.json",
+      "sha256": "bae7a91c57ba2f7b0b4b02b17d1a1e114bda2f8d6610e6673b78c62a3211f398",
+      "role": "sealed case evidence"
+    }
+  ],
+  "comparison_groups": [
+    [
+      "gate-5",
+      "vol-5",
+      "breadth-5"
+    ],
+    [
+      "gate-10",
+      "vol-10",
+      "breadth-10"
+    ]
+  ],
+  "disposition": {
+    "candidate": "breadth",
+    "incumbent": "gate",
+    "simpler_control": "vol",
+    "contexts": {
+      "5": {
+        "relative_calmar_lift": -0.5477358990899104,
+        "checks": {
+          "calmar_lift_at_least_10pct": 0,
+          "cagr_not_lower": 0,
+          "drawdown_not_deeper": 0,
+          "underwater_sessions_not_longer": 0,
+          "underwater_days_not_longer": 0,
+          "not_simpler_control_dominated": 1
+        },
+        "passed": 0
+      },
+      "10": {
+        "relative_calmar_lift": -0.5684537172698665,
+        "checks": {
+          "calmar_lift_at_least_10pct": 0,
+          "cagr_not_lower": 0,
+          "drawdown_not_deeper": 0,
+          "underwater_sessions_not_longer": 0,
+          "underwater_days_not_longer": 0,
+          "not_simpler_control_dominated": 1
+        },
+        "passed": 0
+      }
+    },
+    "fixed_target_passed": 0,
+    "decision": "reject_fixed_target",
+    "independent_alpha_established": 0,
+    "operational_promotion": 0
+  },
+  "financial_slots": 6,
+  "shared_epoch_usage_asof": {
+    "attempts": 12,
+    "resource_units_committed": 12.0,
+    "resource_unit": "financial_case"
+  },
+  "completed_utc": "2026-10-30T07:35:40.768786+00:00",
+  "new_financial_runs": 6,
+  "broker_connections": 0,
+  "independent_alpha_established": 0,
+  "source_data_scope": "Personal/local restated viewed development; fixed ETF universe; no raw data redistribution."
+}

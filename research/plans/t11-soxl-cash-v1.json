@@ -1,0 +1,63 @@
+{
+  "schema": "t11-soxl-cash-design/v1",
+  "status": "blocked_financial_preflight",
+  "created_utc": "2026-10-30T18:10:35.122417+00:00",
+  "scope": "SOXL or cash from unchanged upstream T11 signals and unchanged traffic-light gate",
+  "selection": "SOXL eligible iff positive SOXL in original pre-gate base_weights; concentrate entire 90% investable target into SOXL, scale once by original gate cap; every other branch cash, including oversold TQQQ/SPXL branches. Not ready or unassessed cash.",
+  "decision_timing": "Completed-close upstream inputs only; output retains decision timestamp. Original staged signal-change/MOO controller applies target; no daily target maintenance, no extra shift, no spending unsettled/unfilled proceeds. Not implemented by projection.",
+  "gate": "unchanged SPY EMA50/200 and volatility/hysteresis from research/plans/qc504-t11-gate-v1.json; no SOXL-specific feature fitting",
+  "cases_proposed": [
+    "gated_t11",
+    "soxl_cash_ungated",
+    "soxl_cash_gated",
+    "soxl_buy_hold"
+  ],
+  "cost_contexts_bps": [
+    25,
+    50
+  ],
+  "initial_nav_usd": 10000,
+  "dates": [
+    "2020-01-02",
+    "2025-12-31"
+  ],
+  "accounting_parent": "research/plans/qc504-t11-gate-v1.json",
+  "accounting": "Keep original staged execution, reserve, native fees and 6% ACT/360 prior-debit financing; matched controls require audited restatement. Buy/hold 90% initial target and no daily maintenance. Actual leveraged ETF prices include embedded fund costs; never multiply returns or add fictitious ETF financing. Corporate actions, dividends/ex-pay and final receivables reconciled.",
+  "metrics": [
+    "Calmar",
+    "CAGR",
+    "max_drawdown",
+    "Sharpe",
+    "yearly_return",
+    "yearly_drawdown",
+    "yearly_Sharpe",
+    "yearly_Calmar",
+    "longest_underwater_sessions",
+    "longest_underwater_calendar_days",
+    "censored_recovery",
+    "turnover",
+    "fees",
+    "slippage",
+    "financing"
+  ],
+  "classification": "Viewed-history development, not untouched out-of-sample",
+  "hypothesis": "SOXL concentration may improve growth but worsen drawdown; gate efficacy measured against same SOXL eligibility without cap. No predetermined winning outcome.",
+  "promotion": "Canonical GRS criteria and matched contexts; no result, leaderboard score or broker readiness from projection checks.",
+  "financial_bound": {
+    "proposed_max_cases": 8,
+    "automatic_retries": 0,
+    "execution_enabled": false,
+    "used": 0,
+    "note": "Independent proposed comparison, not a transfer/reset of the pending three-session 36-case budget; runner/input qualification required before launch."
+  },
+  "blockers": [
+    "No qualified full 2020-2025 causal T11 decision input panel and original 2004 gate seed or explicitly qualified restatement.",
+    "Saved recent preview is unqualified and only414 sessions; cannot use as full-period T11 reproduction.",
+    "No qualified staged execution/accounting runner for these four cases.",
+    "Private T11 source reuse rights must be resolved for the chosen execution route."
+  ],
+  "source": {
+    "selection": "research/studies/t11_soxl_cash/selection.py",
+    "sha256": "a711765033ae01da2c0fd743094045edfa72009f40dfee19c0a96372cb224be0"
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "review_id": "qc-wave2-relative-components-20261028",
+  "status": "representative_methods_screened_runtime_and_rights_gates_remain",
+  "created_utc": "2026-10-28T17:16:59.835695+00:00",
+  "bounds": {
+    "max_minutes": 25,
+    "max_representatives": 4,
+    "max_web_calls": 10,
+    "financial_attempts": 0
+  },
+  "actual_usage": {
+    "representatives": 4,
+    "web_calls": 2,
+    "financial_runs": 0,
+    "dataset_downloads": 0,
+    "source_exports": 0,
+    "package_installs": 0,
+    "services_started": 0,
+    "broker_operations": 0,
+    "subagents": 0
+  },
+  "family_coverage": {
+    "mean_reversion": {
+      "status": "representative_method_reviewed_not_family_complete",
+      "representatives": [
+        "QC-T-15311"
+      ]
+    },
+    "relative_value": {
+      "status": "two_representative_methods_reviewed_not_family_complete",
+      "representatives": [
+        "QC-T-15300",
+        "QC-T-15298"
+      ]
+    },
+    "liquidity_microstructure": {
+      "status": "representative_method_reviewed_stage_correction_alpha_not_execution",
+      "representatives": [
+        "QC-T-15352"
+      ]
+    }
+  },
+  "inputs": [
+    {
+      "path": "research/catalogs/qc-inventory-v1/catalog.json",
+      "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+    },
+    {
+      "path": "research/catalogs/qc-stage-fit-v1/mapping.csv",
+      "sha256": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa"
+    },
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": "docs/tasks/2026-10-28-qc-parallel-review.md",
+      "sha256": "602cd0303d23f8b60a7ca75fa0af6a5bcf6302a26af3e6a36e3a369ef05778e6"
+    },
+    {
+      "path": "docs/tasks/2026-10-26-stock-pairs-spy-comparison.md",
+      "sha256": "d3ab954e6b5516e4261c6eae0b04b8ff46442429a4c4c9d781b80b8c028ed793"
+    },
+    {
+      "path": "research/quantconnect/sources/stock_pairs_original.py",
+      "sha256": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471"
+    },
+    {
+      "path": "research/quantconnect/sources/LICENSE-JeSuisTM.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  ],
+  "cards": [
+    {
+      "id": "QC-T-15311",
+      "title": "Short-Term Reversal Strategy in Stocks",
+      "families_reviewed": [
+        "mean_reversion"
+      ],
+      "evidence_basis": "current primary public method description plus existing pinned package/rights receipt; no new execution",
+      "source_url": "https://www.quantconnect.com/research/15311/short-term-reversal-strategy-in-stocks/",
+      "current_page_revision": null,
+      "historical_method_refs": [
+        {
+          "path": "04 Strategy Library/10 Short-Term Reversal Strategy in Stocks/01 Abstract.html",
+          "sha256": "f6c8edec3cf725af97dacf20334a900eea83190ae21dec7bb4d8e3dfe9ee8816",
+          "git_blob_sha": "e1419ee7a9a4847c00fc4cdb0025ea486b0264e5",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/10%20Short-Term%20Reversal%20Strategy%20in%20Stocks/01%20Abstract.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/10 Short-Term Reversal Strategy in Stocks/02 Method.html",
+          "sha256": "fb88ff31fcc1fb777b84d10ee00220fdf729700e3ff7bf32910b8b4bb1521086",
+          "git_blob_sha": "8b9f0211ca166d031592071b5618703bee83a60f",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/10%20Short-Term%20Reversal%20Strategy%20in%20Stocks/02%20Method.html",
+          "blocks": 4,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/10 Short-Term Reversal Strategy in Stocks/04 Algorithm.html",
+          "sha256": "0a7abef068d6b43645542b043bf3d0f13d04eee79f02d29d3f7c5bc2d3648f3d",
+          "git_blob_sha": "c2e37d5b514272719e32e950fda38059ede5e1c2",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/10%20Short-Term%20Reversal%20Strategy%20in%20Stocks/04%20Algorithm.html",
+          "blocks": 0,
+          "iframes": 1
+        },
+        {
+          "path": "04 Strategy Library/10 Short-Term Reversal Strategy in Stocks/05 Relative Performance.html",
+          "sha256": "974ad813bf3ba4180fe6b87ac01f369fe372d2979f5097139e24a34688734655",
+          "git_blob_sha": "3d18c34bc77925ca7cb10138831384369d3a62ab",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/10%20Short-Term%20Reversal%20Strategy%20in%20Stocks/05%20Relative%20Performance.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/10 Short-Term Reversal Strategy in Stocks/07 Market & Competition Qualification.html",
+          "sha256": "735434b14d04b23a90abbe7660274bd3721423c26f01d3e33cbc1f4954beb164",
+          "git_blob_sha": "1c0cad5feb163515c655220a2090ad236e045dfc",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/10%20Short-Term%20Reversal%20Strategy%20in%20Stocks/07%20Market%20&%20Competition%20Qualification.html",
+          "blocks": 0,
+          "iframes": 0
+        }
+      ],
+      "stage_fit": [
+        "target_selection",
+        "position_proposal"
+      ],
+      "input_contract_proposed": "Completed universe liquidity values and prior returns with explicit available-at timestamps.",
+      "output_contract_proposed": "Weekly ranked long/short intent plus exclusions and readiness; first fill after complete decision inputs.",
+      "asof_contract": "Every required input availability and formation/fit cutoff must precede decision; next eligible fill cannot precede decision. Same-bar fill semantics not qualified.",
+      "horizon": "One-week review cadence, 22-session feature lookback; realized holding can end on universe removal.",
+      "blockers": [
+        "Point-in-time full-US eligible universe, prices/actions and dollar volume; current500 survivors are not equivalent.",
+        "Short borrow/recalls, dividend liability, turnover/spread and capacity need independent qualification.",
+        "Public source alone does not establish current engine/runtime readiness."
+      ],
+      "simple_controls": [
+        "Same universe equal-weight long-only",
+        "Same gross long-short with no reversal ranking",
+        "Long and short legs separately"
+      ],
+      "duplicate_status": "Not code-compared; shared family/title is not source-equivalence proof.",
+      "source_package_status": "blocked_no_qualified_complete_licensed_package_found_in_review",
+      "financial_result_this_review": null,
+      "next_bounded_question": "Audit saved catalog support for weekly as-of liquidity ranks and mature22-session features; zero runs."
+    },
+    {
+      "id": "QC-T-15300",
+      "title": "Pairs Trading with Stocks",
+      "families_reviewed": [
+        "relative_value"
+      ],
+      "evidence_basis": "current primary public method description plus existing pinned package/rights receipt; no new execution",
+      "source_url": "https://www.quantconnect.com/research/15300/pairs-trading-with-stocks/",
+      "current_page_revision": null,
+      "historical_method_refs": [
+        {
+          "path": "04 Strategy Library/19 Pairs Trading with Stocks/01 Introduction.html",
+          "sha256": "8e81eb513a47ca10aaddd07aa2056b43e5d4027b039a6ff2842a100842d9edc5",
+          "git_blob_sha": "d22f3100a532b927e62c3ce454606b3a492a0ca7",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/19%20Pairs%20Trading%20with%20Stocks/01%20Introduction.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/19 Pairs Trading with Stocks/03 Algorithm.html",
+          "sha256": "a5e218111917cb21c51e4d891e60f553420a8402a7f7c8c6f88ec8b5bca3c702",
+          "git_blob_sha": "4b088a315103dc249a64559dc9f03adc61699905",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/19%20Pairs%20Trading%20with%20Stocks/03%20Algorithm.html",
+          "blocks": 0,
+          "iframes": 1
+        },
+        {
+          "path": "04 Strategy Library/19 Pairs Trading with Stocks/04 Source.html",
+          "sha256": "de411b4156e23b380bd6532d0ce75d0caee3415c6dca7d381197468f712a896d",
+          "git_blob_sha": "e8be1669d330a31c7413e67ca3df9a740245ff35",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/19%20Pairs%20Trading%20with%20Stocks/04%20Source.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/19 Pairs Trading with Stocks/02 Method.html",
+          "sha256": "8ee3a6ece4927c0d502ebaf92f701b95307ddf5ac9ca7d7ce7bbae0ca33b0ec4",
+          "git_blob_sha": "0a9dd7378ac10f4755b90560d9b07f6f5b285fca",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/19%20Pairs%20Trading%20with%20Stocks/02%20Method.html",
+          "blocks": 0,
+          "iframes": 0
+        }
+      ],
+      "stage_fit": [
+        "target_selection",
+        "position_proposal"
+      ],
+      "input_contract_proposed": "Strictly prior aligned normalized prices, formation boundaries and known pair identities.",
+      "output_contract_proposed": "Pair list/distance plus divergence state, signed leg intent, hedge method and invalid/missing state.",
+      "asof_contract": "Every required input availability and formation/fit cutoff must precede decision; next eligible fill cannot precede decision. Same-bar fill semantics not qualified.",
+      "horizon": "One-year formation, half-year reformation/trading window; exit on reversion.",
+      "blockers": [
+        "Normalized-price distance is not a calibrated cointegration test.",
+        "Independent licensed NVDA/AMD cointegration alternative materially differs from distance selector.",
+        "Local multi-stock histories/actions/universe and historic locates are unqualified by this review.",
+        "Simultaneous leg/fill policy, gross/net/beta drift and borrow/financing costs remain explicit prerequisites."
+      ],
+      "simple_controls": [
+        "Fixed pair with identical signal/risk",
+        "Distance-ranked pairs versus eligible-pair control",
+        "Same-pair long hold as opportunity cost only",
+        "Cash and SPY context"
+      ],
+      "duplicate_status": "Not code-compared; shared family/title is not source-equivalence proof.",
+      "source_package_status": "licensed_source_or_mechanism_alternative_exported",
+      "financial_result_this_review": null,
+      "next_bounded_question": "Use existing saved pair gate/turnover evidence to distinguish scarce eligibility from trading losses; do not retune closed negative baseline."
+    },
+    {
+      "id": "QC-T-15352",
+      "title": "Liquidity Effect in Stocks",
+      "families_reviewed": [
+        "liquidity_microstructure"
+      ],
+      "evidence_basis": "current primary public method description plus existing pinned package/rights receipt; no new execution",
+      "source_url": "https://www.quantconnect.com/research/15352/liquidity-effect-in-stocks/",
+      "current_page_revision": null,
+      "historical_method_refs": [
+        {
+          "path": "04 Strategy Library/24 Liquidity Effect in Stocks/01 Introduction.html",
+          "sha256": "3d058a3705113b54ee0638de8c9cfae3c206a049d856f51d0c6c2b86235fcf8e",
+          "git_blob_sha": "abeb5958068739cd523c7e691cef7d0731407d02",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/24%20Liquidity%20Effect%20in%20Stocks/01%20Introduction.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/24 Liquidity Effect in Stocks/02 Method.html",
+          "sha256": "11c15775d72fbac0ee84373ceac0f9c48a8e2d5281ee66175ef26b7b7c87349d",
+          "git_blob_sha": "6fd287805145df1073e62a1262fbdda35532b0a4",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/24%20Liquidity%20Effect%20in%20Stocks/02%20Method.html",
+          "blocks": 5,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/24 Liquidity Effect in Stocks/03 Algorithm.html",
+          "sha256": "56b5a6c06978a7ab52b839d58d9636ba6202b8e5f934511d919d49ca039d0302",
+          "git_blob_sha": "15edb8370c0ce5ff68a3e1f01791d8c9ca52b6c0",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/24%20Liquidity%20Effect%20in%20Stocks/03%20Algorithm.html",
+          "blocks": 0,
+          "iframes": 1
+        },
+        {
+          "path": "04 Strategy Library/24 Liquidity Effect in Stocks/04 Source.html",
+          "sha256": "33c952cd6af14e654f4c10b907da07206bd687158814cf8bee8d9db82be6fe8b",
+          "git_blob_sha": "e09165f5e024e48f63c9920845b781fbcae75737",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/24%20Liquidity%20Effect%20in%20Stocks/04%20Source.html",
+          "blocks": 0,
+          "iframes": 0
+        }
+      ],
+      "stage_fit": [
+        "feature",
+        "target_selection",
+        "position_proposal"
+      ],
+      "input_contract_proposed": "Historical volume, point-in-time shares outstanding and market cap, security classifications and publication lag.",
+      "output_contract_proposed": "As-of turnover score, eligible universe, rank/quantile and signed portfolio intent; execution uses separate risk/liquidity checks.",
+      "asof_contract": "Every required input availability and formation/fit cutoff must precede decision; next eligible fill cannot precede decision. Same-bar fill semantics not qualified.",
+      "horizon": "Yearly rebalance with trailing volume window; exact turnover scaling needs source/runtime audit.",
+      "blockers": [
+        "Liquidity as return predictor is not an execution algorithm or measured spread/impact improvement.",
+        "PIT shares outstanding, market cap, fundamentals and historic small-cap membership unavailable/unqualified locally.",
+        "HasFundamentalData alone must not be accepted as proof of every claimed ADR/ETF/fund exclusion; audit exact identifiers.",
+        "Mean-daily versus annual volume terminology and split-consistent numerator/denominator require explicit units.",
+        "Illiquid short fills, locates/recalls, market impact and concentration can invalidate cheap-fill assumptions."
+      ],
+      "simple_controls": [
+        "Same eligible universe equal weights",
+        "Market-cap matched holdings",
+        "High versus low turnover with identical cost/risk policy",
+        "Long-only low-turnover as a separately named adaptation"
+      ],
+      "duplicate_status": "Not code-compared; shared family/title is not source-equivalence proof.",
+      "source_package_status": "blocked_no_qualified_complete_licensed_package_found_in_review",
+      "financial_result_this_review": null,
+      "next_bounded_question": "Offline audit one dated snapshot of turnover unit/availability and eligible-universe contract before any return test."
+    },
+    {
+      "id": "QC-T-15298",
+      "title": "Pairs Trading-Copula vs Cointegration",
+      "families_reviewed": [
+        "relative_value"
+      ],
+      "evidence_basis": "current primary public method description plus existing pinned package/rights receipt; no new execution",
+      "source_url": "https://www.quantconnect.com/research/15298/pairs-trading-copula-vs-cointegration/",
+      "current_page_revision": null,
+      "historical_method_refs": [
+        {
+          "path": "04 Strategy Library/03 Pairs Trading-Copula vs Cointegration/01 Abstract.html",
+          "sha256": "ee647868a7909e2b9e891d9eb9b6b3793aa4af2502becf44d09603fdd4a619e6",
+          "git_blob_sha": "d95036a0941951d3dd96d69ef9be3bf04989f954",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/03%20Pairs%20Trading-Copula%20vs%20Cointegration/01%20Abstract.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/03 Pairs Trading-Copula vs Cointegration/03 Part I - Copula Method.html",
+          "sha256": "36b32051021aebe977323b2bdf12d8e00c2879b9e3738dc22ce4ab12bdc75e7c",
+          "git_blob_sha": "a16ea55e9fc7db1418aecc34606370b1b444761e",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/03%20Pairs%20Trading-Copula%20vs%20Cointegration/03%20Part%20I%20-%20Copula%20Method.html",
+          "blocks": 5,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/03 Pairs Trading-Copula vs Cointegration/02 Framework of Copula.html",
+          "sha256": "821b2bd5954db2c8443e700fcd71169ccdbd87c6ac193615a8efddadacc06263",
+          "git_blob_sha": "27a28d6a3768adc3081c8ce7bdbaff48a5f00ac4",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/03%20Pairs%20Trading-Copula%20vs%20Cointegration/02%20Framework%20of%20Copula.html",
+          "blocks": 0,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/03 Pairs Trading-Copula vs Cointegration/04 Part II - Cointegration Method.html",
+          "sha256": "0f9fd467dbd7fe36f1044c4bdc59e6d6c15d247009f163f6313de72505c135ce",
+          "git_blob_sha": "d36c895c03423d80161f64125e422882091b3a89",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/03%20Pairs%20Trading-Copula%20vs%20Cointegration/04%20Part%20II%20-%20Cointegration%20Method.html",
+          "blocks": 1,
+          "iframes": 0
+        },
+        {
+          "path": "04 Strategy Library/03 Pairs Trading-Copula vs Cointegration/06 Algorithm.html",
+          "sha256": "864bb2e885d9d2f76409b88191273ef6ef4f3e71f08c771aeea672e9e8232986",
+          "git_blob_sha": "228f289209c37441fb5ea1cd92e2a2761738cbdd",
+          "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/03%20Pairs%20Trading-Copula%20vs%20Cointegration/06%20Algorithm.html",
+          "blocks": 0,
+          "iframes": 2
+        }
+      ],
+      "stage_fit": [
+        "feature",
+        "target_selection",
+        "position_proposal"
+      ],
+      "input_contract_proposed": "Prior formation returns, train-only empirical marginals/model parameters and causal current aligned observations.",
+      "output_contract_proposed": "Selected pair, model family/version, fit cutoff, conditional mispricing values, signed leg proposal and invalid-fit reason.",
+      "asof_contract": "Every required input availability and formation/fit cutoff must precede decision; next eligible fill cannot precede decision. Same-bar fill semantics not qualified.",
+      "horizon": "Monthly formation refresh with trailing12-month data; daily decision cadence in displayed method.",
+      "blockers": [
+        "Copula family chosen by AIC is statistical-model selection, not trading-strategy selection or market red/green state.",
+        "Article names QQQ/XLK after copula selection but calls GLD/DGL the same pair in cointegration section; common input comparison unverified.",
+        "Boundary clipping, tau/theta admissibility, unstable hedge ratios and zero/negative beta require synthetic checks.",
+        "No complete qualified licensed implementation; SciPy/statsmodels mathematical helpers do not establish locked full runtime.",
+        "Historical ETF inception, adjustments, multi-leg borrow/fills/costs and out-of-sample fit stability remain blockers."
+      ],
+      "simple_controls": [
+        "Same frozen pair/date/cost copula versus linear spread",
+        "Same model with fixed rather than selected family",
+        "No-trade/cash control"
+      ],
+      "duplicate_status": "Not code-compared; shared family/title is not source-equivalence proof.",
+      "source_package_status": "blocked_no_qualified_complete_licensed_package_found_in_review",
+      "financial_result_this_review": null,
+      "next_bounded_question": "Resolve exact pair/sample/source identity and common accounting before claiming one dependence model improves another."
+    }
+  ],
+  "licensed_alternative": {
+    "repository": "je-suis-tm/quant-trading",
+    "revision": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "path": "Pair trading backtest.py",
+    "url": "https://github.com/je-suis-tm/quant-trading/blob/611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5/Pair%20trading%20backtest.py",
+    "git_blob_sha": "5677413fa51f7dc7798b558ef52ce16d04bb3822",
+    "sha256": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471",
+    "license": "Apache-2.0, prior scoped license receipt; market data rights separate",
+    "local_hash_verified": true,
+    "original_tutorial_equivalence": false
+  },
+  "preserved_negative_baseline": {
+    "task": "docs/tasks/2026-10-26-stock-pairs-spy-comparison.md",
+    "finding": "Causal fixed NVDA/AMD mechanism adaptation failed both improvement screens; negative growth and prolonged underwater period. Do not reinterpret pair hold as prospective stock-selection skill.",
+    "budget": "closed; no slots reopened"
+  },
+  "best_next_question": {
+    "stage": "data qualification / causal features",
+    "question": "Can one historical decision be reconstructed with known eligible universe, action-consistent inputs and every availability timestamp? Stop on missing evidence before scores or orders.",
+    "financial_attempts": 0
+  },
+  "limitations": [
+    "Four representative methods do not complete622records or their families.",
+    "No current exact code/runtime/license qualification for tutorial packages.",
+    "No returns reproduced or inferred from third-party results.",
+    "Prior evidence and shared master/catalog untouched."
+  ]
+}

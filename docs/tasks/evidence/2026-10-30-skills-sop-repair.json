@@ -1,0 +1,238 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "engineering-skills-sop-repair-20261030",
+  "status": "success",
+  "missing_evidence": {},
+  "completed_utc": "2026-10-30T07:10:59.781804+00:00",
+  "cases": [
+    {
+      "case_id": "offline-workflow-repair",
+      "name": "Skills and SOP repair \u2014 engineering verification only",
+      "run_id": "offline-repair-20261030",
+      "source": "sha256:dd8a3a60878d95f0f7d6571fb13bf6edef2b6f0274e80f57b0762dcc0e65c09f",
+      "build": "Python 3.12.13; pinned project dependencies; no engine simulation",
+      "plan": "docs/tasks/2026-10-30-skills-sop-repair.md sha256:3b517528585187106340132e5f006002f2dd4b0a6a3e17ee80700caf5d03ec19",
+      "data": "Existing redacted T11/epoch receipts and synthetic fixtures; no new market data",
+      "date_range": {
+        "start": "2026-10-30",
+        "end": "2026-10-30"
+      },
+      "accounting": "Engineering task only; no portfolio, fills, financing or return calculation",
+      "metric_conventions": "engineering-checks/v1; no CAGR, Calmar or trading metrics",
+      "attempts": {
+        "used": 0,
+        "limit": 0
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "a2a216d3694093f926d418a458fbbb8f4ef632b801f7edecdc5a55ca017a22d1",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/skills.md",
+      "sha256": "d0ae8d90ccbbfe610c0a18b24dc9b6c2308c90b4ccb5278fc9732a6103b62d97",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/advisory-team.md",
+      "sha256": "8382761bca9ef997a2af96f9818ac5fffeb99187dbcc958bf091b83b42afeb5b",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "7af581e707e68f4150f3b674369506fd648d856ddb598b2db7f75bf371f516c8",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/workflow.md",
+      "sha256": "96cc0e29ac81c9c00ca569af7ffbceae2c3c2b520895155f4e7cfb8f9bee8582",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/research-standard.md",
+      "sha256": "36f64c8d1c6e5041a45e2350c804f247f5f3e2d486325949257c87cc08b7dbef",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/research-development.md",
+      "sha256": "7f046cfb5452204865050c15bcd0086ed0743a6fdb5bfdf0d66f56ec3a89aad8",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/operations/recursive-research.md",
+      "sha256": "f7a390d639dbe06fbe7440000e99387fa0c6c98935024a4a371e06fad234181f",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/operations/alpaca-paper.md",
+      "sha256": "6b8bcb1cf4f2fc8a071a162eab51ae956aa679f9e601b62e78a422275bbf7931",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/templates/research-cycle.md",
+      "sha256": "9f25936cd7efe8b825efe6babb777f2e77ea95f3155e1ad2f27a99a421c8c228",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/templates/experiment-receipt.json",
+      "sha256": "fc3257c748a924de7398e49a08e88295252f6625467597d253ba41ba3977b9bc",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/leaderboard.md",
+      "sha256": "7c4ec17efb1f949b865c30c9fe0f115a84463f42ef19985e6f826aaa50c5caa7",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/diagrams/team-skills.png",
+      "sha256": "e4954758942a7f753cefd1f70a6d04e6a2260925ea6edb368b3ebb8e1cf0403a",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "scripts/render_team_skills.py",
+      "sha256": "11145713f445bbc7c41dfe700724c09d6bf7da740f43051cd6610578327bd3a7",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "research/experiment_receipts.py",
+      "sha256": "c62ba9f3cb79b15d1ebaf05bf708bdf558de4fe4852152cd7cd0f4c28320f9da",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "scripts/check_experiment_receipt.py",
+      "sha256": "b31e6394d0c14e6f0e5e6752caef3e9d3b535e62dc51cff0e5df77a15bf70e7b",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "research/workflow_readiness.py",
+      "sha256": "292a8576eff0fe3c2e8f968152d7b960d44648ab3fdc3f56703155ea0f533a9e",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "tests/test_experiment_receipts.py",
+      "sha256": "b52578f88f2525f1554d3953cf55e83c48d0bd875e0b8e5946d1d44a90a15f6e",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "tests/test_workflow_readiness.py",
+      "sha256": "55b32641e3078d71620c4b0a1f8ae167eb8716914cd1428e7325dd36789d4ae9",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "tests/test_repair_skill_workflows.py",
+      "sha256": "5165202ded816b5c21755cc36920ff85eceecd3d2a6ddbf96022e650441a942b",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-skills-sop-repair.md",
+      "sha256": "3b517528585187106340132e5f006002f2dd4b0a6a3e17ee80700caf5d03ec19",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-skills-recovery.json",
+      "sha256": "778108111122f5464aa7273d33a2fe20008cfc8e2f8c33981b562a3aac2456c2",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-receipt-compatibility.json",
+      "sha256": "a3b8666621865636c4d9131b117cec7179185910b22ce3f9bed1e2b9e895653b",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/ask-pm/SKILL.md",
+      "sha256": "ac0f2c6138f7a83069c54ba95501b46f646e0cffec21469d731bd3f867543f2f",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-research-management/SKILL.md",
+      "sha256": "ccb841de1fe9b1393550e51034f7382e1e8024de24d83ef1ef4e20361fe9378a",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-stage-development/SKILL.md",
+      "sha256": "8055602baaf1efa0c80408697db04060347a1064f5e9915e25b4d8d576f762da",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-candidate-evolution/SKILL.md",
+      "sha256": "d0937cfffdeee252a8b4385815d7015ca8ec3bd2347f60ce371b6ad6eb70007b",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-research-design/SKILL.md",
+      "sha256": "e49e34771bf164b0ca485c80b84efc0471606eb39490be0bbbdb58361253fa22",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-promotion-review/SKILL.md",
+      "sha256": "abc5db7cd83f04e043492d3c51bfd122575c051b112936d2699be85bc229a487",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-experiment/SKILL.md",
+      "sha256": "921c6ad669f94668dd45e0de18ac0f93d69dec13e8e12ae2dd61beee25147f39",
+      "role": "implementation-or-workflow-evidence"
+    },
+    {
+      "path": ".agents/skills/trade-research-history/SKILL.md",
+      "sha256": "750cdcfdb40c95a6b8fcf6f97c9a1c414632c030292ffc228f41f87a4654b939",
+      "role": "implementation-or-workflow-evidence"
+    }
+  ],
+  "comparison_groups": [],
+  "checkout": {
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "branch": "codex/rsi-gate-robustness",
+    "dirty": true,
+    "head_is_not_complete_source_identity": true
+  },
+  "agents": {
+    "count": 3,
+    "tasks": [
+      "repair_skills",
+      "repair_receipts",
+      "repair_readiness"
+    ],
+    "shared_docs_integrated_by": "root"
+  },
+  "checks": {
+    "make_check": {
+      "exit": 0,
+      "tests": 560,
+      "duration_seconds": 10.839,
+      "docs_at_invocation": 175,
+      "dependency_check": "no broken requirements",
+      "private_log": ".local/skills-sop-repair-20261030/make-check.log",
+      "log_sha256": "7c6a58a43a705c7da45ed75beef86e15ccdbddf7ea13ecd3fc3eae5303102cc6"
+    },
+    "focused_final": {
+      "exit": 0,
+      "tests": 29,
+      "private_log": ".local/skills-sop-repair-20261030/final-focused.log"
+    },
+    "diagram": "regenerated and visually inspected; eight roles and eighteen workflows; no overlaps/clipping",
+    "historical_evidence": "original receipts and both official export hashes rechecked unchanged",
+    "review": "canonical owner/link review; metric-row policy discrepancy corrected; no raw data or credentials added to repair artifacts"
+  },
+  "scope_counts": {
+    "financial_runs": 0,
+    "downloads": 0,
+    "broker_connections": 0,
+    "orders": 0,
+    "services": 0,
+    "deployments": 0,
+    "commits": 0,
+    "publication": 0
+  },
+  "leaderboard_disposition": "no metric-row change; closure link added below existing single table",
+  "t11_order_bearing_ready": false,
+  "limitations": [
+    "Bundled skill-creator validator unavailable: PyYAML absent; project checks used without installing dependencies.",
+    "Readiness summaries check reviewer declarations, not independent truth or broker eligibility.",
+    "Receipt format is required for new cycles; generic enforcement across legacy runners remains unimplemented.",
+    "No hosted CI, clean-checkout verification, independent LLM skill benchmark, alpha or operational-readiness claim."
+  ]
+}

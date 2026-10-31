@@ -1,0 +1,42 @@
+{
+  "schema": "sector-feasibility-stop-closure-v1",
+  "utc": "2026-10-28T21:59:52.935480+00:00",
+  "disposition": "completed_explicit_failed_input_stop_branch_not_financial_comparison",
+  "reason": "Original goal explicitly directs stop with evidence-backed blocked-readiness report if any mandatory input remains missing. That report was delivered before qualification deadline; no financial execution became eligible in that scope. User now explicitly requests a fresh comparison after separately authorized acquisition and issuer reconciliation.",
+  "original_stop_report": {
+    "path": "docs/tasks/evidence/2026-10-28-sector-selection-blocked.json",
+    "sha256": "27b030a73c659354477cc06102388fca126a8befb7c157aec352775ea2f779f5"
+  },
+  "requirements_audit": [
+    {
+      "requirement": "qualify inputs or stop with evidence-backed missing-input report",
+      "proof": "missing ten-sector panel verified and reported in three consecutive goal turns",
+      "state": "stop_branch_complete"
+    },
+    {
+      "requirement": "financial execution only after qualified immutable freeze",
+      "proof": "zero reservations and financial launches; gate never passed in original scope",
+      "state": "satisfied_no_launch"
+    },
+    {
+      "requirement": "no SPY substitution, old budget reopening or unsupported result",
+      "proof": "no substitute portfolios or performance rows; comparison unrun",
+      "state": "satisfied"
+    },
+    {
+      "requirement": "preserve evidence and close with lesson",
+      "proof": "readiness and blocked receipts plus canonical task preserve source identities and readiness lesson",
+      "state": "satisfied"
+    },
+    {
+      "requirement": "Calmar improvement and eight-case comparison conditional on readiness",
+      "proof": "conditional branch not entered; no improvement or completed financial comparison claimed",
+      "state": "not_executed_under_explicit_stop_branch"
+    }
+  ],
+  "financial_attempts": 0,
+  "scientific_improvement_established": false,
+  "same_thread_tool_limitation": "create_goal rejected an unfinished blocked predecessor; closure uses fulfilled explicit stop branch, not invented financial success",
+  "no_deadline_reset": true,
+  "fresh_scope": "separately authorized by user on issuer reconciliation request; not a silent extension of old scope"
+}

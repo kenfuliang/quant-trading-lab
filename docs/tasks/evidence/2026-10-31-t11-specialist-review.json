@@ -1,0 +1,146 @@
+{
+  "schema": "t11-specialist-review/v1",
+  "date": "2026-10-31",
+  "scope": "Eight skill perspectives applied in one chat; not independent reviewers",
+  "status": "analysis_complete_attribution_and_readiness_incomplete",
+  "financial_runs": 0,
+  "downloads": 0,
+  "agents_launched": 0,
+  "broker_calls": 0,
+  "model_fits": 0,
+  "items": [
+    {
+      "work_id": "DATA",
+      "skills": [
+        "trade-data-audit"
+      ],
+      "status": "conditional_descriptive_blocked_reproduction",
+      "blocker": "Original input snapshot and per-session feature availability missing"
+    },
+    {
+      "work_id": "FEATURES",
+      "skills": [
+        "trade-feature-engineering"
+      ],
+      "status": "contract_review_complete_prediction_not_assessed",
+      "blocker": "Feature/label diagnostics require original causal inputs and independent mature outcomes"
+    },
+    {
+      "work_id": "LOGIC",
+      "skills": [
+        "ask-algo",
+        "ask-quant"
+      ],
+      "status": "policy_level_supported_branch_attribution_inconclusive",
+      "blocker": "Original branch IDs, proposals and native timing missing"
+    },
+    {
+      "work_id": "PORTFOLIO",
+      "skills": [
+        "trade-portfolio-analysis"
+      ],
+      "status": "shared_dependence_supported_diversification_not_assessed",
+      "blocker": "Actual holdings, action ledger and portfolio factor exposure missing"
+    },
+    {
+      "work_id": "RISK",
+      "skills": [
+        "ask-risk",
+        "trade-performance-diagnosis"
+      ],
+      "status": "historical_tail_tradeoff_supported",
+      "blocker": "No prospective loss bound or approved hard30percent limit"
+    },
+    {
+      "work_id": "EXECUTION",
+      "skills": [
+        "ask-algo",
+        "trade-local-ops"
+      ],
+      "status": "structure_consistent_native_replay_unverified",
+      "blocker": "Event-level fills, actions, cash and restart evidence missing"
+    },
+    {
+      "work_id": "ROBUSTNESS",
+      "skills": [
+        "trade-robust-evaluation"
+      ],
+      "status": "development_evidence_supported_generalization_inconclusive",
+      "blocker": "Viewed history and incomplete cross-context controls; no untouched evaluation"
+    },
+    {
+      "work_id": "MANAGEMENT",
+      "skills": [
+        "trade-research-management",
+        "ask-pm"
+      ],
+      "status": "review_complete_no_score_change",
+      "blocker": "Closed budgets preserved; readiness incomplete"
+    }
+  ],
+  "leaderboard": {
+    "path": "docs/leaderboard.md",
+    "disposition": "no_new_score_closure_link",
+    "incumbent_changed": false
+  },
+  "checks": {
+    "export_hashes": "match_prior_audit",
+    "path_rows": 1508,
+    "matched_calendars": true,
+    "finite_positive_prices_and_nonzero_quantities": true,
+    "synthetic_tests_passed": 15,
+    "initial_docs_check": "failed_missing_companion_receipt_during_assembly; corrected by creating this receipt",
+    "final_docs_check": "passed192documents",
+    "diff_whitespace": "passed"
+  },
+  "artifacts": [
+    {
+      "path": "docs/tasks/2026-10-31-t11-specialist-review.md",
+      "sha256": "cb7e7ef519f9dc8fd31edc5899a3711e9da6efdac534502f09da9c43b7b9abc2"
+    },
+    {
+      "path": "docs/leaderboard.md",
+      "sha256": "d5198fe2f486fb444d39578b7a0878ed61eb0b4f482729a7ca515eabc2b68cb4"
+    },
+    {
+      "path": ".local/t11-specialist-review-v1/offline-findings.json",
+      "sha256": "899d9e0f1acf03f9aabb0f816fbf12415ae8d353f74852f111f019bd6793f966"
+    },
+    {
+      "path": ".local/t11-specialist-review-v1/source-review.json",
+      "sha256": "5b2071e91db12c3962782941b47ffa8ee42ff481a44b7bf431b2e02827b82645"
+    },
+    {
+      "path": ".local/t11-specialist-review-v1/offline-tests.log",
+      "sha256": "debe5d6a1b97407858cb826bb1910bb0aaf80b6d801aad20b2bc26532984e90c"
+    },
+    {
+      "path": ".local/t11-reference-v2/gated_t11-source.py",
+      "sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+    },
+    {
+      "path": ".local/t11-reference-v2/t11-source.py",
+      "sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d"
+    },
+    {
+      "path": ".local/t11-reference-v2/exports/t11.json",
+      "sha256": "68b0d5e9ebb218cc6b49df4849f0e26dc0ce591217262c8f183ff318feb2b97d"
+    },
+    {
+      "path": ".local/t11-reference-v2/exports/gated_t11.json",
+      "sha256": "b50ff407ed006522d8392f0110118ddc3608742c28d33ace75a0c58037550232"
+    },
+    {
+      "path": ".local/t11-reference-v2/export-review-v2/t11-candidate-close-path.json",
+      "sha256": "10fde68748e1c0cd20d2adf10f14a02c64fc2bef72938979b12a2145fb3771f2"
+    },
+    {
+      "path": ".local/t11-reference-v2/export-review-v2/gated_t11-candidate-close-path.json",
+      "sha256": "46f76c8a7ac33320830765fe0109bc753724d1f4bd896fcfbd1681fc3c71abaf"
+    },
+    {
+      "path": ".local/t11-universe-cloud-v11/journal.json",
+      "sha256": "3d8596865155fe5123444dc93e795e1a2ae1dee424caddb89e27461ad5656d2d"
+    }
+  ]
+}

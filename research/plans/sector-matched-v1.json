@@ -1,0 +1,75 @@
+{
+  "study_id": "sector-matched-v1",
+  "stage": "closed-complete-conditional",
+  "created_utc": "2026-10-27T01:25:06.890680+00:00",
+  "deadline_utc": "2026-10-27T02:55:06.890680+00:00",
+  "max_total_attempts": 6,
+  "max_diagnostic_cases": 1,
+  "max_financial_cases": 3,
+  "technical_retries": 2,
+  "cases": [
+    "original",
+    "sector",
+    "matched"
+  ],
+  "dates": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "capital_usd": 10000,
+  "costs": "Same25bp native IB fees, staged MOO,90%base, flat6%debit ACT/360 and zero credit interest",
+  "resolution_gate": "Order-free historical primary sector vs historical industry/group/SIC and security field investigation; freeze evidence and effective/available dates before financial cases. Never fill using future/current labels. Unresolved material classifications block financial stage.",
+  "control": "Same original top five; each month equal-scale every original weight to sector-treatment total target exposure, computed causally from that same month classification. Exact target exposure match; actual closing exposure may differ through returns, fees and whole-share rounding. No hindsight matching to realized exposures.",
+  "sector": "Retain36%NAV sector target pro-rata, no replacements or redistribution; no traffic-light gate",
+  "hypothesis": "Does sector allocation improve DD, Sharpe, Calmar and temporal recovery against equal-stock weights at the same monthly target exposure? Report CAGR/wealth tradeoffs; no parameter tuning.",
+  "stops": "Six hosted attempts or90minutes; one diagnostic case plus three financial cases and at most two technical retries. Stop financial stage on unresolved required classification, causal timestamps, changed cohort or failed integrity. Preserve negative evidence.",
+  "limits": [
+    "Viewed development history, not independent OOS",
+    "Target-matched control is not realized exposure matching",
+    "USD10000fixture, not300000 qualification",
+    "No paid sources, agents, broker/account/order operations, services, imports, commits or publication"
+  ],
+  "source_hashes": {
+    "probe": "7767ab1a1ead29d65cdc2a1946fe8204ef46e4282459537342a4f788993529e1",
+    "original": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+    "sector": "6e7386f8a4df23916cf398adbd4d9f9cd7c364c9c31305963a0bb7fd441a8c77",
+    "matched": "bb9aa5b861f2ae83ada74769cd08a0afed71c54c652da54af38045b0c2b41200"
+  },
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "classification_status": "conditional public-filing research inference, not recovered vendor classification",
+  "classification_registry": "research/plans/sector-matched-v1.classifications.json",
+  "classification_registry_sha256": "98d6c096db230a10c4c1988aeaf6ca29b8458e7acecfb72bc2c55e1a4cd3e337",
+  "qualification": "conditional-eligible-for-fixed-three-case-research",
+  "primary_estimand": "Sector minus matched-control full-period Calmar, with raw CAGR/DD/UW/wealth tradeoffs; no hidden return threshold or tuning",
+  "case_identity": "Original five and eligibility fixed; sector and matched total monthly target hashes must be equal; original control must reproduce stock-risk-v1 financial metrics",
+  "export": "Same readable checksummed compact derived packet; full security IDs/contributions and72monthly top-five decisions. No new raw vendor price/fundamental export.",
+  "input_hashes": {
+    "research/sector_resolution.py": "7df7065aee3dfffdfccb09a30a253f67354104e376e592079c486644c3ee51a0",
+    "research/quantconnect/sector_matched_policy.py": "e2b4efd355f1acc5eabdc9378a4a4bec72e06c432f379511b5f2e5c997be46ca",
+    "research/quantconnect/sector_resolution_probe.py": "75f570679da7264f410dcaf60711ed05302620f08bc419f153be65b6766d9c3e",
+    "scripts/sector_matched_study.py": "5d8af21b8cedde57496db55a7c1632769d4016072c000afc965ad458f15e867f",
+    "research/plans/sector-matched-v1.classifications.json": "98d6c096db230a10c4c1988aeaf6ca29b8458e7acecfb72bc2c55e1a4cd3e337",
+    ".local/stock-risk-v1/original-source.py": "132cb7f97c35c291331f59eac61b53d125df76428d007e28be7d84cdd2f7f02d"
+  },
+  "technical_amendment": {
+    "reason": "Hosted32000character file limit; retained full registry locally; embedded only six fields read by resolver; indentation only otherwise",
+    "changes": {
+      "original": {
+        "before": "d3a3d62fb28b771f730de5a5b59ea91bfd76339b827be970333a33dbdcfa0309",
+        "after": "8d79902fc14c818ab3805803fc1ad40b9366fd65c33267673e63b89263a78af9",
+        "chars": 29824
+      },
+      "sector": {
+        "before": "3d372ac1eee43de78da63beaa73278f2b9f5ab98b4fedce2154d87673b8aa694",
+        "after": "6e7386f8a4df23916cf398adbd4d9f9cd7c364c9c31305963a0bb7fd441a8c77",
+        "chars": 29820
+      },
+      "matched": {
+        "before": "56cc13d72151c984bca354526be869247a2459e087fcbef1cc887b3bf63f7f6d",
+        "after": "bb9aa5b861f2ae83ada74769cd08a0afed71c54c652da54af38045b0c2b41200",
+        "chars": 29822
+      }
+    }
+  },
+  "closed_utc": "2026-10-27T01:45:59.811679+00:00"
+}

@@ -1,0 +1,270 @@
+{
+  "schema": "t11-reproduction-blocker-audit-v1",
+  "observed_utc": "2026-10-29T06:14:55.908423+00:00",
+  "status": "blocked_pending_reference_and_qualified_execution_inputs",
+  "goal_complete": false,
+  "same_blocking_condition": "Original daily reference and qualified native execution inputs/route absent; cannot verify faithful historical reproduction or start RSI optimization.",
+  "consecutive_goal_turns_with_condition": 3,
+  "turn_evidence": [
+    {
+      "path": "docs/tasks/evidence/2026-10-28-t11-reproduction-rsi-goal.json",
+      "sha256": "56797232e6a1fefa7861a23cd8d5755f043fbc2b0afbc41c51da1c3195a1c9c8"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-28-t11-policy-conformance.json",
+      "sha256": "dc627e1511f65a3bef38fb9166007427552679220f1c87a8ef7e9b34fe720071"
+    }
+  ],
+  "previous_turn_classification": "progress: private policy port conformance and indicator prototype added; external reference/input gates persisted",
+  "current_turn_classification": "revalidated_external_blocker; no verified live financial worker or background wait",
+  "requirements": [
+    {
+      "requirement": "Preserve original T11 and gated sources and saved results",
+      "status": "verified",
+      "evidence": {
+        "t11": {
+          "path": ".local/qc504-t11-gate-v1/t11-source.py",
+          "sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d"
+        },
+        "gated_t11": {
+          "path": ".local/qc504-t11-gate-v1/gated_t11-source.py",
+          "sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+        }
+      },
+      "limits": "Existing aggregate references preserved; no daily original path invented."
+    },
+    {
+      "requirement": "Finite source/data/execution and single-stage program contract",
+      "status": "verified_preparation_envelope_only",
+      "evidence": {
+        "path": "research/plans/t11-reproduction-rsi-v1.program.json",
+        "sha256": "dab953e20e0483c3a6477c736768898a192856cffc4356c921fa692af8f31195"
+      },
+      "limits": "Financial adapter disabled; no executable input/evaluator freeze exists."
+    },
+    {
+      "requirement": "Daily historical signals, decisions and controller traces",
+      "status": "incomplete",
+      "evidence": "3000invented snapshots and18000exact original-method comparisons; no1508-session historical decision traces.",
+      "limits": "Synthetic feature inputs do not prove Wilder/normalization/availability parity."
+    },
+    {
+      "requirement": "Consistent independent full historical accounting",
+      "status": "incomplete",
+      "evidence": "Closing NAV/funding contracts and invented-state tests only.",
+      "limits": "Native fees, staged MOO/margin, reverse splits, cash-in-lieu, distribution and cash transitions not independently replayed."
+    },
+    {
+      "requirement": "Verify against original saved2020-2025daily results",
+      "status": "blocked_external_reference",
+      "evidence": {
+        "t11": {
+          "status": "daily_reference_missing",
+          "daily_parity": false,
+          "financial_runs": 0
+        },
+        "gated_t11": {
+          "status": "daily_reference_missing",
+          "daily_parity": false,
+          "financial_runs": 0
+        }
+      },
+      "limits": "Saved annual/full statistics cannot uniquely establish a daily NAV/order/decision path."
+    },
+    {
+      "requirement": "Qualified free/permitted historical inputs or supported hosted verification route",
+      "status": "blocked_external_inputs_or_access",
+      "evidence": {
+        "decision_required": [
+          "AGG",
+          "BIL",
+          "BND",
+          "BTAL",
+          "IEF",
+          "IOO",
+          "KMLM",
+          "PSQ",
+          "QLD",
+          "QQQ",
+          "SH",
+          "SOXL",
+          "SOXS",
+          "SPXL",
+          "SPY",
+          "SQQQ",
+          "TECL",
+          "TECS",
+          "TLT",
+          "TQQQ",
+          "UVXY",
+          "VTV",
+          "XLF",
+          "XLK"
+        ],
+        "decision_required_count": 24,
+        "source_subscribed": [
+          "AGG",
+          "BIL",
+          "BND",
+          "BSV",
+          "BTAL",
+          "FAS",
+          "IEF",
+          "IOO",
+          "KMLM",
+          "LABU",
+          "PSQ",
+          "QLD",
+          "QQQ",
+          "QQQE",
+          "SH",
+          "SMH",
+          "SOXL",
+          "SOXS",
+          "SPXL",
+          "SPY",
+          "SQQQ",
+          "SVIX",
+          "SVXY",
+          "TECL",
+          "TECS",
+          "TLT",
+          "TQQQ",
+          "UVIX",
+          "UVXY",
+          "VOOG",
+          "VOOV",
+          "VOX",
+          "VTV",
+          "XLF",
+          "XLK",
+          "XLP",
+          "XLY"
+        ],
+        "source_subscribed_count": 37,
+        "qualified_common_symbols": [
+          "SPY",
+          "XLF",
+          "XLK"
+        ],
+        "missing_decision_symbols": [
+          "AGG",
+          "BIL",
+          "BND",
+          "BTAL",
+          "IEF",
+          "IOO",
+          "KMLM",
+          "PSQ",
+          "QLD",
+          "QQQ",
+          "SH",
+          "SOXL",
+          "SOXS",
+          "SPXL",
+          "SQQQ",
+          "TECL",
+          "TECS",
+          "TLT",
+          "TQQQ",
+          "UVXY",
+          "VTV"
+        ],
+        "raw_gate_seed_2004_2019_qualified": false
+      },
+      "limits": "3of24decision symbols qualified locally; no qualified2004gate seed; current cloud18215 differs from saved18209."
+    },
+    {
+      "requirement": "At most two eligible unchanged baseline financial cases",
+      "status": "not_started",
+      "evidence": {
+        "financial_attempts": 0,
+        "financial_cap": 6,
+        "baseline_cap": 2,
+        "financial_adapter_enabled": false
+      },
+      "limits": "Readiness gates prevent faithful execution; no proxy series or alternative policy substituted."
+    },
+    {
+      "requirement": "One-stage RSI challenger after baseline parity",
+      "status": "gated_not_started",
+      "evidence": {
+        "challengers": 0,
+        "first_cycle_cap": 4
+      },
+      "limits": "No optimization or criteria tuning before baseline parity."
+    },
+    {
+      "requirement": "Leaderboard, evidence and paper-style learning after research",
+      "status": "partial",
+      "evidence": "Single leaderboard retains original rows/evidence status; preparation/checklist/negative probe documented.",
+      "limits": "No new performance rows, historical lesson or candidate promotion without financial results."
+    },
+    {
+      "requirement": "Free/local scope, no brokers/publication and preserved negative evidence",
+      "status": "verified_scoped_actions",
+      "evidence": {
+        "financial_attempts": 0,
+        "broker_operations": 0,
+        "third_party_port_publication": false,
+        "raw_qc_data_export": 0,
+        "first_failed_probe_log_sha256": "39695ac0051540b71a2bec4d34e1ef83e2a0df046e0098fd119f3116262b05ed"
+      },
+      "limits": "Private synthetic analysis does not grant redistribution/data rights."
+    }
+  ],
+  "bounds": {
+    "new_financial_attempt_cap": 6,
+    "baseline_cap": 2,
+    "first_cycle_cap": 4,
+    "workers": 1,
+    "automatic_retries": 0,
+    "case_seconds": 300,
+    "aggregate_child_seconds": 1800,
+    "deadline_utc": "2026-10-29T07:45:00+00:00"
+  },
+  "financial_attempts": 0,
+  "unused_financial_slots": 6,
+  "automatic_retries": 0,
+  "optimization_eligible": false,
+  "original_sources_preserved": {
+    "t11": {
+      "path": ".local/qc504-t11-gate-v1/t11-source.py",
+      "sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d"
+    },
+    "gated_t11": {
+      "path": ".local/qc504-t11-gate-v1/gated_t11-source.py",
+      "sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+    }
+  },
+  "source_files_reverified": {
+    "research/studies/t11_reproduction/__init__.py": "ed717dd3d3d4c9ff6a8449fc81d6bf019ad4eff05ea0da657b473c1888da25ef",
+    "research/studies/t11_reproduction/indicators.py": "2df4bd67f1fa95d66b4055cffe2413a52363542a9aa188035d9e10382317b0e1",
+    "research/studies/t11_reproduction/contracts.py": "1cf8c3ec18a4b192f9d18524d3407fb68ab0ff22d2b085c4e7156a8616ddb843",
+    "research/studies/t11_reproduction/reference.py": "1cefd2a2ec4b01c084291f682dda0144837e0b1feb707c0825677819ffdabc86",
+    "research/studies/t11_reproduction/conformance.py": "a1591d0065cbb26c56e98f8e17f7c06a7a2f9e154e756bc50f6f0e061eed3d33",
+    "research/studies/t11_reproduction/readiness.py": "c2aedb49e66f4ad7a835dba29e69d9b6252901264b5ce43a6c71d68cb527af14",
+    "tests/test_t11_reproduction.py": "04f6ce7672e5dcb4a80a7be1ff700a2ca06e0c91a7f8779ac53a820646d4f1be",
+    "tests/test_t11_conformance.py": "fde5c0f4539c657683dc906ae30974d185b83ad407b3ee316fa3d7599a48091b",
+    "tests/test_t11_indicators.py": "9f0961633bc7aab08227684b4603a651df93990631203f0ab4397ce2dff53e9b"
+  },
+  "prior_checks": {
+    "offline_tests": 515,
+    "source_evaluations": 18000,
+    "invented_snapshots": 3000,
+    "full_check_log_sha256": "141b8736186d2f100864bb22bd9ff190c19a8cfbcd1b52203328438af347ce03"
+  },
+  "resume_requirements": [
+    "Provide local paths to official built-in DownloadResultsJSONs for project38484741 backtests89a43cf6901a6d40877f5045a1d63ceb and0f58294f8b09ea6cd4383773a7d70c9a, or restore a usable official result-reading interface. No raw vendor exports.",
+    "Qualify free/local target histories, actions, normalization and2004RAW gate seed, or verify a supported hosted route keeping vendor data in cloud.",
+    "Resolve native engine/indicator/staged fill/fee/action accounting contracts and independently verify daily source/account parity before a challenger.",
+    "Respect the unchanged2026-10-29T07:45UTC deadline; if elapsed, request a fresh bounded scope rather than silently renew the envelope."
+  ],
+  "file_discovery_scope": "Exact private T11/funded evidence directories and registered qualified bundle inspected. No matching targeted T11/backtest export paths were returned by the Downloads filename query; no assertion about unknown user locations.",
+  "validation": {
+    "docs_check_exit": 0,
+    "git_diff_check_exit": 0,
+    "source_and_prior_proof_reverified": true,
+    "new_financial_attempts": 0
+  }
+}

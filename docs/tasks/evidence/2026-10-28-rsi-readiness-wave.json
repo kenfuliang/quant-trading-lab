@@ -1,0 +1,101 @@
+{
+  "schema": "rsi-readiness-wave-v1",
+  "status": "completed-with-explicit-blockers",
+  "started_utc": "2026-10-28T17:39:56.913423+00:00",
+  "scope": "Saved SPY diagnosis, historical stock-selection audit, timestamped-record synthetic infrastructure",
+  "financial_runs": 0,
+  "network_calls": 0,
+  "broker_operations": 0,
+  "package_service_changes": 0,
+  "subagents": 3,
+  "nested_agents": 0,
+  "inputs": {
+    ".local/rsi-calmar-20261028/research/plans/rsi-calmar-20261028-c01.json": "31e5602a9439580eff2554710bde9ab966bad5ea6a41d7020120e309fa63b3fb",
+    ".local/rsi-calmar-20261028/research/plans/rsi-calmar-20261028.epoch.json": "8ea6e6ada088794c4be6c4d30eb0da64850c0600dace504263447d2575ede09e",
+    ".local/rsi-calmar-20261028/.local/calmar-epoch-20261028/manifest.json": "c65d0463ccec1c7552980ef93ba8ac941cbad54c2668edbc2e3c344c8c815249",
+    ".local/rsi-calmar-20261028/.local/calmar-epoch-20261028/state.json": "36d6f3c917b4e69c6ced53426d7d30837c4b150885934449c92c82cefebcc576",
+    "docs/tasks/evidence/2026-10-28-qc-parallel-review-wave2.json": "0a314c29d430de86032f4b3037adfb10460d238d6a7cec2f94ae24d5f5f4e670",
+    "docs/research-standard.md": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852"
+  },
+  "lanes": [
+    {
+      "agent": "qc_policy_review",
+      "id": "spy-transition-diagnosis",
+      "type": "saved-output diagnosis",
+      "minutes": 40,
+      "max_logged_analysis_checks": 8,
+      "report": "docs/tasks/2026-10-28-spy-transition-diagnosis.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-spy-transition-diagnosis.json"
+    },
+    {
+      "agent": "qc_target_review",
+      "id": "stock-selection-evidence-audit",
+      "type": "saved-input readiness audit",
+      "minutes": 40,
+      "max_logged_analysis_checks": 8,
+      "report": "docs/tasks/2026-10-28-stock-selection-evidence-audit.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-stock-selection-evidence-audit.json"
+    },
+    {
+      "agent": "qc_market_review",
+      "id": "execution-record-hardening",
+      "type": "offline infrastructure with synthetic checks",
+      "minutes": 45,
+      "max_logged_analysis_checks": 10,
+      "report": "docs/tasks/2026-10-28-execution-record-hardening.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-execution-record-hardening.json"
+    }
+  ],
+  "primary_head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "isolated_code_checkout": ".local/rsi-calmar-20261028",
+  "isolated_code_head": "7ce3b53d1c79e54cbe81669ee81cef4d2f192d6b",
+  "policy": [
+    "No old trial budget reopened",
+    "Frozen financial runner/source/outputs unchanged",
+    "No strategy reruns or counterfactual portfolios",
+    "Future outcomes are retrospective labels only",
+    "Missing historical inputs remain a named blocker",
+    "Synthetic record proof is not financial integration readiness"
+  ],
+  "completed_utc": "2026-10-28T17:48:52.547407+00:00",
+  "outputs": {
+    "docs/tasks/2026-10-28-spy-transition-diagnosis.md": "ed8670678bf7fd89943259bc73967c1bb425cbe825b3e483bb56254e8ec9cac6",
+    "docs/tasks/evidence/2026-10-28-spy-transition-diagnosis.json": "55ded9eb8bb70f50ffe23e3e3381eab0e2db05b2c401a38a116a0efe2aed593a",
+    "docs/tasks/2026-10-28-stock-selection-evidence-audit.md": "545c857d91067ae62f6643b0746fdb7c6b0bbebfd28540b4b16c236ea0d5fa18",
+    "docs/tasks/evidence/2026-10-28-stock-selection-evidence-audit.json": "e59fa0c91b43f6d45d5e2b52d0dbe1bd21553d343b337e6302e4ee904c2dd235",
+    "docs/tasks/2026-10-28-execution-record-hardening.md": "a8c38a4d0b3dc405b0ab7ae6fa96bc9220d2f2a58723dff6b1d8a9239770d438",
+    "docs/tasks/evidence/2026-10-28-execution-record-hardening.json": "960d551bdb8199276341359eaa0766090f71b3bec848e37b1f340176f51228a2"
+  },
+  "outcomes": {
+    "spy": "Exact saved wealth/log-return attribution completed; no causal replacement or portfolio simulated.",
+    "stock_selector": "Exact historical eligible50/top5 reconstruction blocked; chosen-five intent replay conditional only.",
+    "infrastructure": "New strict read-only lifecycle audit and persistent synthetic recovery evidence; future direct-financial capture remains unimplemented."
+  },
+  "failed_checks_preserved": [
+    "SPY analysis first invocation used wrong evidence cwd; unchanged code succeeded from correct root, no financial retry.",
+    "Stock audit eighth command failed a documentation assertion requiring exit0 from no-index Git difference; original returns/journal preserved, parent finished whitespace/hash validation only."
+  ],
+  "validation": {
+    "parent_full_check_exit": 0,
+    "offline_tests": 546,
+    "focused_infra_tests": 8,
+    "focused_diagnosis_tests": 6,
+    "primary_documentation_files_checked": 152,
+    "agent_artifact_hashes_rechecked": 93,
+    "original_selection_inputs_rechecked": 239,
+    "original_inputs_and_reused_code_hashes": "passed",
+    "financial_runs": 0,
+    "network_calls": 0,
+    "broker_operations": 0,
+    "services_or_package_changes": 0,
+    "full_check_log": ".local/rsi-readiness-integration-20261028/make-check.log",
+    "full_check_log_sha256": "59909cacf56fd220fd08290be0fc0635190c0436a094a810ca6e29f8169e467a"
+  },
+  "next_task": {
+    "prerequisite": "Prospectively freeze direct-runner lifecycle capture integration and synthetic validation; no historical timestamp backfill.",
+    "candidate_hypothesis": "One risk/sizing change: fixed smooth cap beneath unchanged discrete no-go ceiling, with explicit rebound/growth costs; not evaluated here.",
+    "selector_boundary": "New decision-log export contract with eligible/excluded names, full scores, input/window identities and public/vendor availability; synthetic tests first.",
+    "no_automatic_financial_authorization": true
+  },
+  "old_budgets_reopened": false
+}

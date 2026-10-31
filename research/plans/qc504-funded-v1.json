@@ -1,0 +1,49 @@
+{
+  "study_id": "qc504-funded-v1",
+  "status": "frozen-before-runs",
+  "created_utc": "2026-10-26T19:09:46.195959+00:00",
+  "deadline_utc": "2026-10-26T19:54:46.195959+00:00",
+  "cases": [
+    "ensemble",
+    "t10",
+    "t11",
+    "s2",
+    "s3"
+  ],
+  "max_financial_attempts": 7,
+  "max_unique_cases": 5,
+  "technical_repair_slots": 2,
+  "source_hashes": {
+    "ensemble": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+    "t10": "f6befea80a9d028596f19afde009dbef3ad2a33a7088636912ba4eff29e5837e",
+    "t11": "0b965b202345a481ee75007237654743c563aff5decc683f69c0ceab73423e74",
+    "s2": "d5bc8f88f7c65b43d67d75b650ad7f9d52d1e93d4e94e189776264cb88c328aa",
+    "s3": "4118e1838e97becf4e47e26b4dc634f114d0cfb3b3cb2da243b1a45140b574c2"
+  },
+  "input_hashes": {
+    "ensemble": "98d520f339c31cba04540589e9c091451d051ed3ed6684aa81f2487da079d8cb",
+    "t10": "8300463efc7c91206d03993d8544798e5f2e8e76cb67aca7df35376ea2e40d31",
+    "t11": "e1edf203b0784d57866c90350c5597d7716caf1ff15f221ad69d4cf97874872e",
+    "s2": "ae29e95904b1079ecd39e3ac99366f53e8a6f9f7ba78dd82d271ce641012913f",
+    "s3": "95487b6b49757ceba5fab4cea70661b8cdcb79f28a00519c1048b710e50a72f4"
+  },
+  "start": "2020-01-01",
+  "end": "2025-12-31",
+  "capital_usd": 10000,
+  "slippage": 0.0025,
+  "allocation_target": 0.9,
+  "fee_model": "Original IB margin/default fees retained;2USD +.01USD/share reservation for fees in sizing, actual native fees unchanged",
+  "financing": "6% fixed annual debit ACT/360 on previous closing USD cash for elapsed calendar days; charge at current close before order sizing. Zero credit interest, disable native per-security margin interest; no terminal accrual beyond final close.",
+  "execution": "Per-sleeve signal-change intent preserved. MOO reductions first; after confirmed sales, re-evaluate current causal signals at next close and buy no earlier than subsequent open. At most one reduction batch per unchanged intent. No spending unfilled proceeds. Buy cash cap leaves10% NAV reserve,25bp slippage and fee reservation, sequential native initial-margin preflight, halve only until affordable. No daily target maintenance after intent completion. Pending order guard; every skipped/clipped/deferral counted.",
+  "hypothesis": "Shared execution policy yields zero actual rejected orders in all five cases with explicit funding debit reconciliation. Failure is preserved, not used to tune allocation or timing.",
+  "metrics": "Same full/annual return, DD, zero-RF daily Sharpe, Calmar and underwater metrics as ablation; financing, debt days, stage waits, clipping, margin deferrals and pending orders",
+  "baseline": "Saved qc504-ablation-v1 cases reused as controls; combined execution/allocation/funding change, not pure financing attribution",
+  "sample": "Previously inspected development history; not untouched OOS",
+  "stops": [
+    "Seven total attempts or45-minute deadline",
+    "Technical-only retries; no financial parameter tuning",
+    "Nonfinite/nonpositive NAV or source/case identity mismatch",
+    "Rejections retained as failed acceptance, no silent repair"
+  ],
+  "exports": "Only aggregate results; raw prices/daily NAV remain hosted; third-party source remains ignored/private; no broker, paid data, publication or orders"
+}

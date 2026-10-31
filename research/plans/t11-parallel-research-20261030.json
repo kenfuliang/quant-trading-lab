@@ -1,0 +1,208 @@
+{
+  "schema": "t11-parallel-research/v1",
+  "created_utc": "2026-10-30T07:50:04.957143+00:00",
+  "status": "blocked_chat_registration",
+  "approved_settings": {
+    "primary": "gated_t11",
+    "secondary_control": "t11",
+    "hours_per_lane": 4,
+    "financial_cases_per_lane": 12,
+    "financial_cases_aggregate": 36,
+    "workers_per_lane": 1,
+    "automatic_financial_retries": 0,
+    "current_working_tree_included": true
+  },
+  "permissions": {
+    "free_local_inputs_only": true,
+    "public_anonymous_source_research": true,
+    "credentials": false,
+    "broker_connections": false,
+    "orders": false,
+    "paid_resources": false,
+    "services_or_deployment": false,
+    "commits_or_publication": false,
+    "raw_vendor_export": false
+  },
+  "benchmark": {
+    "reference_engine": "2.5.0.0.18215",
+    "original_daily_parity": false,
+    "original_account_ledger_reconciled": false,
+    "period_start": "2020-01-02",
+    "period_end": "2025-12-31",
+    "capital_usd": 10000,
+    "friction_bps": 25,
+    "allocation_target": 0.9,
+    "financing": "6% fixed annual debit ACT/360 on previous closing USD cash for elapsed calendar days; charge at current close before order sizing. Zero credit interest, disable native per-security margin interest; no terminal accrual beyond final close.",
+    "execution": "Per-sleeve signal-change intent preserved. MOO reductions first; after confirmed sales, re-evaluate current causal signals at next close and buy no earlier than subsequent open. At most one reduction batch per unchanged intent. No spending unfilled proceeds. Buy cash cap leaves10% NAV reserve,25bp slippage and fee reservation, sequential native initial-margin preflight, halve only until affordable. No daily target maintenance after intent completion. Pending order guard; every skipped/clipped/deferral counted.",
+    "fee_model": "Original IB margin/default fees retained;2USD +.01USD/share reservation for fees in sizing, actual native fees unchanged",
+    "references": {
+      "t11": {
+        "identity": {
+          "name": "Calm Fluorescent Yellow Manatee",
+          "backtest_id": "ae7d527233c8cec348ee4da07c9fe0eb"
+        },
+        "export_sha256": "68b0d5e9ebb218cc6b49df4849f0e26dc0ce591217262c8f183ff318feb2b97d",
+        "metrics_legacy": {
+          "n": 1508,
+          "end": 1124734.5941,
+          "ret": 111.47345941,
+          "cagr": 1.1966643441416505,
+          "dd": -0.5125637522452132,
+          "calmar": 2.334664398135512,
+          "sharpe": 1.6901171643830069,
+          "uw": 1272,
+          "uw_fraction": 0.843501326259947,
+          "longest_uw": 146,
+          "longest_uw_days": 214,
+          "censored": true,
+          "return_sum": 5.675729559684032,
+          "return_square_sum": 1.9046679322781987,
+          "calendar_hash": "87c22e187bc043abfe58b4830af314e8e8db663c4ce0daf9b0cf26de381fb059"
+        },
+        "temporal_v1_2": {
+          "longest_underwater_duration_sessions": 147,
+          "longest_underwater_duration_calendar_days": 215
+        }
+      },
+      "gated_t11": {
+        "identity": {
+          "name": "Hipster Blue Owlet",
+          "backtest_id": "96cee07260398f6cdb20c92b08bc50e5"
+        },
+        "export_sha256": "b50ff407ed006522d8392f0110118ddc3608742c28d33ace75a0c58037550232",
+        "metrics_legacy": {
+          "n": 1508,
+          "end": 501845.8225,
+          "ret": 49.18458225,
+          "cagr": 0.920276357569169,
+          "dd": -0.3689778580696712,
+          "calmar": 2.4941235292102553,
+          "sharpe": 1.640011149285339,
+          "uw": 1277,
+          "uw_fraction": 0.846816976127321,
+          "longest_uw": 199,
+          "longest_uw_days": 292,
+          "censored": true,
+          "return_sum": 4.566675281742522,
+          "return_square_sum": 1.3086742246321232,
+          "calendar_hash": "87c22e187bc043abfe58b4830af314e8e8db663c4ce0daf9b0cf26de381fb059"
+        },
+        "temporal_v1_2": {
+          "longest_underwater_duration_sessions": 200,
+          "longest_underwater_duration_calendar_days": 293
+        }
+      }
+    },
+    "claim_boundary": "References are official-export aggregate-compatible, not qualified local daily-decision/account reproduction. Original trace absent is disclosed; a qualified transparent restatement may be tested only against freshly audited matched T11 controls, and must be labeled restatement, never original-parity proof."
+  },
+  "win_criteria": {
+    "calmar_relative_improvement_min": 0.1,
+    "cagr_no_lower_than_matched_gated_T11": true,
+    "drawdown_no_deeper": true,
+    "underwater_sessions_no_longer": true,
+    "underwater_calendar_days_no_longer": true,
+    "both_cost_contexts_bps": [
+      25,
+      50
+    ],
+    "simpler_exposure_control_required": true,
+    "metric_tolerance_percentage_points": 1e-09,
+    "duration_tolerance": 0,
+    "independent_challenge_required_before_adoption": true,
+    "no_unmatched_context_rank": true
+  },
+  "lane_scopes": {
+    "market": {
+      "stage": "market conditions and recovery timing",
+      "shared_benchmark_owner": true,
+      "instruction": "First qualify T11 inputs/accounting/execution baseline, then propose a single causal regime/recovery change; retain all selector/sizing/controller semantics."
+    },
+    "selection": {
+      "stage": "target or strategy selection",
+      "shared_benchmark_owner": false,
+      "instruction": "Research a different target/strategy-choice mechanism from saved T11 decisions, freeze one selection change while holding gate and sizing fixed; no correlation-greedy sector retry."
+    },
+    "risk": {
+      "stage": "portfolio risk/sizing/execution",
+      "shared_benchmark_owner": false,
+      "instruction": "Diagnose path-dependent T11 leverage/concentration, distinguish embedded ETF leverage from cash financing; freeze one risk/sizing or intent-execution change, not a gate+selector combination."
+    }
+  },
+  "ownership": {
+    "primary_checkout": "coordinator only; lanes must not write here",
+    "lane_worktrees": "each lane owns its separate tree, artifacts, journal, task and handoff; no peer writes",
+    "leaderboard": "canonical primary docs/leaderboard.md updated by coordinator after receipt verification; lanes produce mergeable row proposals, not competing central leaderboards",
+    "benchmark_handoff": "market lane seals benchmark evidence in its own worktree; coordinator verifies and distributes read-only references; no duplicate shared downloads by other lanes"
+  },
+  "read_only_source_root": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we",
+  "allowlisted_private_read_paths": [
+    ".local/t11-reference-v2/plan.json",
+    ".local/t11-reference-v2/exports",
+    ".local/t11-reference-v2/export-review-v2",
+    ".local/t11-reproduction-v1",
+    ".local/t11-paper-preview",
+    "data/manifests",
+    "data/qualified",
+    "data/normalized"
+  ],
+  "excluded_private_paths": [
+    ".env*",
+    "lean.json",
+    ".lean",
+    "any credentials, tokens, session cookies or broker state"
+  ],
+  "pending_forks": [
+    {
+      "clientThreadId": "client-new-thread:06c2d0b6-3698-48a8-92ad-b8a1add34fe3",
+      "threadId": null
+    },
+    {
+      "clientThreadId": "client-new-thread:e1f30be6-3bd7-4547-afbd-208dc3d69d99",
+      "threadId": null
+    },
+    {
+      "clientThreadId": "client-new-thread:7d256f48-45bc-4540-af07-6d2ded357a68",
+      "threadId": null
+    }
+  ],
+  "observed_isolated_worktrees": [
+    "/Users/kenfuliang/.codex/worktrees/ea44/is-there-any-repo-that-we",
+    "/Users/kenfuliang/.codex/worktrees/29dd/is-there-any-repo-that-we",
+    "/Users/kenfuliang/.codex/worktrees/6587/is-there-any-repo-that-we"
+  ],
+  "bootstrap_verification": {
+    "latest_skills_present": true,
+    "epoch3_lessons_present": true,
+    "research_standard_sha256_matches": true,
+    "env_alpaca_present": false,
+    "ignored_private_data_were_copied": false
+  },
+  "stop_rules": [
+    "primary criteria pass -> independent challenge/report, no automatic deployment",
+    "lane four-hour deadline or twelve-case cap -> terminal closure, no reset",
+    "genuine external blocker after bounded repair and repeated audit -> explicit blocked, not complete",
+    "an unmatched substitute study never counts as beating T11"
+  ],
+  "dispatch_observation": {
+    "checked_utc": "2026-10-30T07:53:53.355814+00:00",
+    "registered_child_thread_ids": [],
+    "worktrees_exist": true,
+    "chat_registration_unresolved": true,
+    "source_in_saved_projects": false,
+    "project_registration_api_available": false,
+    "codex_ui_control": "denied by computer-control policy",
+    "launch_packets": "research/plans/t11-parallel-research-20261030.launch.json",
+    "financial_cases_started": 0,
+    "status": "blocked_chat_registration"
+  },
+  "blocked_audit": {
+    "checked_utc": "2026-10-30T07:53:53.355814+00:00",
+    "condition": "Existing worktrees have no registered child thread IDs; source repository is absent from saved projects. No supported API can register the project, and computer control of Codex was denied.",
+    "consecutive_goal_turns_minimum": 3,
+    "financial_cases_started": 0,
+    "lane_goals_started": 0,
+    "scope_complete": false,
+    "resume_condition": "Actual child IDs become available, or repository is added as a saved Codex project so the supported project worktree launch route is available.",
+    "preservation": "Existing worktrees, unsent assignments, private evidence and all 36 unspent cases retained."
+  }
+}

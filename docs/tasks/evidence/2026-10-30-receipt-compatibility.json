@@ -1,0 +1,79 @@
+{
+  "schema": "receipt-compatibility-review/v1",
+  "reviewed_utc": "2026-10-30T07:07:39.816319+00:00",
+  "status": "historical_evidence_preserved_not_migrated",
+  "new_financial_runs": 0,
+  "downloads": 0,
+  "broker_connections": 0,
+  "original_receipt_sha256": {
+    "docs/tasks/evidence/2026-10-29-t11-export-validation.json": "e34720780f6000fa80c6b73761d503f8bdddf4a3478490ea960d866d1c4b8861",
+    "docs/tasks/evidence/2026-10-29-t11-reference-reruns.json": "2faa115a071893ce97cadb06102ca42c7cf2eb2741046225f3b2e69391364a61"
+  },
+  "historical_v1_validation_errors": [
+    "schema: expected experiment-receipt/v1",
+    "status: expected success, failed, blocked or incomplete",
+    "missing_evidence: expected path-to-reason object",
+    "cycle_id: required nonempty identity/description; unavailable values need null and missing_evidence reason",
+    "outcome_reason: required nonempty identity/description; unavailable values need null and missing_evidence reason",
+    "cases: expected nonempty array (use a named unexecuted case for blocked work)",
+    "artifacts: expected array of explicit path/sha256/role records"
+  ],
+  "export_hash_checks": {
+    "t11": {
+      "present": true,
+      "expected_sha256": "68b0d5e9ebb218cc6b49df4849f0e26dc0ce591217262c8f183ff318feb2b97d",
+      "actual_sha256": "68b0d5e9ebb218cc6b49df4849f0e26dc0ce591217262c8f183ff318feb2b97d",
+      "matches": true
+    },
+    "gated_t11": {
+      "present": true,
+      "expected_sha256": "b50ff407ed006522d8392f0110118ddc3608742c28d33ace75a0c58037550232",
+      "actual_sha256": "b50ff407ed006522d8392f0110118ddc3608742c28d33ace75a0c58037550232",
+      "matches": true
+    }
+  },
+  "observed_available_fields": [
+    "case names",
+    "backtest IDs",
+    "engine version",
+    "export hashes",
+    "aggregate compatibility metrics",
+    "explicit daily parity and paper readiness limits"
+  ],
+  "new_contract_fields_not_in_original_envelope": [
+    "cycle_id",
+    "per-case source/build/plan/data identities",
+    "per-case accounting/date/metric-convention declarations",
+    "per-case frozen attempt bounds",
+    "standard artifacts array",
+    "explicit missing_evidence paths"
+  ],
+  "limitations": [
+    "Historical receipt is not an experiment-receipt/v1 and is intentionally not rewritten. Separate rerun receipts carry additional provenance; this review does not merge or infer it.",
+    "Hash verification establishes saved byte identity only, not daily decision reproduction, accounting reconciliation or paper readiness."
+  ],
+  "offline_tests": {
+    "command": ".venv/bin/python -m unittest tests.test_experiment_receipts -v",
+    "passed": 12
+  },
+  "validation_events": [
+    {
+      "command": "python3 -m py_compile research/experiment_receipts.py scripts/check_experiment_receipt.py",
+      "status": "failed_environment_only",
+      "reason": "System Python 3.9 attempted a restricted external macOS cache write; no source or original evidence changed."
+    },
+    {
+      "command": ".venv/bin/python -m py_compile research/experiment_receipts.py scripts/check_experiment_receipt.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python scripts/check_experiment_receipt.py docs/templates/experiment-receipt.json --root .",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python -m unittest tests.test_experiment_receipts -v",
+      "exit_code": 0,
+      "passed": 12
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -15,13 +15,13 @@ runtime timestamps use UTC.
 | Question | Owner |
 | --- | --- |
 | What works now and how do I start? | [Root README](../README.md) |
+| Which strategies lead our saved comparisons, and what are their tradeoffs? | [Canonical research leaderboard](leaderboard.md); original studies retain metric/evidence ownership |
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
-| What is the golden pipeline and rule for research evidence, disposition and papers? | [GRS-1.0](research-standard.md); [cycle register](research-cycles.md) |
-| Where are study plans, results, failures and lessons linked? | [Generated research evidence index](research-evidence-index.md); [index contract](architecture.md#research-evidence-index) |
-| How do offline RSI components hand off frozen work and recover? | [RSI SOP](operations/recursive-research.md); [integration evidence and remaining checklist](tasks/2026-10-27-rsi-integration.md) |
-| How do we develop one pipeline stage? | [Stage procedure](research-development.md#individual-stage-development), [worksheet](templates/stage-development.md); callable skill/readiness in the catalog |
+| What is the golden pipeline and rule for research evidence, stage adoption and paper-style lessons? | [GRS-1.0 research standard](research-standard.md); [cycle register](research-cycles.md) |
+| What must a new experiment receipt capture and validate? | [GRS receipt contract](research-standard.md#experiment-receipt-contract) |
 | How do bounded research iterations produce evidence? | [Research development procedure](research-development.md) |
+| How do RSI skills hand off a frozen cycle through execution, evidence and disposition? | [Recursive research SOP](operations/recursive-research.md); [bounded foundation checklist](tasks/2026-10-27-rsi-foundation-implementation.md) |
 | How do we define, validate and diagnose features? | [Feature engineering](feature-engineering.md) |
 | How do we score strategies and choose research directions? | [Research scoring contract](research-scoring.md) |
 | What does pinned NautilusTrader already provide? | [Capability matrix](capabilities.md) |
@@ -30,11 +30,13 @@ runtime timestamps use UTC.
 | What are we building and who owns state? | [Architecture](architecture.md) |
 | What folder/content/report foundations have been adopted? | [Foundation adoption task and remaining checklist](tasks/2026-10-27-project-foundation-adoption.md); folder ownership remains in architecture |
 | What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
+| How does independent historical data become reusable research input? | [Local data library](data-library.md); distinguishes the implemented price pilot from planned qualification |
 | What is next and what proves completion? | [Roadmap](roadmap.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |
 | How do we check IBKR paper connectivity? | [Paper observation](operations/paper-connection.md) |
+| How do we test SPY through Alpaca paper and log operational evidence? | [Bounded Alpaca integration](operations/alpaca-paper.md) |
 | How do we restore closed research evidence bundles? | [Evidence recovery SOP](operations/evidence-recovery.md); [scoped real-bundle drill](tasks/2026-10-27-evidence-recovery.md) |
 | How do we handle uncertainty or failure? | [Incident and recovery SOP](operations/incidents.md) |
 | How do we record a task or incident? | [Templates](templates/) |

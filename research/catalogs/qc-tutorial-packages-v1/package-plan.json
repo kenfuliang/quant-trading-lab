@@ -1,0 +1,180 @@
+[
+  {
+    "package_id": "capm-framework",
+    "tutorial_id": "QC-T-15345",
+    "source_local": ".local/qc-tutorial-packages-v1/licensed-candidates/Algorithm.Python/CapmAlphaRankingFrameworkAlgorithm.py",
+    "repo": "QuantConnect/Lean",
+    "revision_file": "Lean-revision.txt",
+    "revision_dir": ".local/qc-detail-rights-v1",
+    "source_path": "Algorithm.Python/CapmAlphaRankingFrameworkAlgorithm.py",
+    "license_local": ".local/qc-tutorial-packages-v1/licensed-candidates/LICENSE",
+    "repo_apache_verified": true,
+    "relation": "Official framework alternative explicitly references tutorial; not exact hosted source",
+    "material_differences": [
+      "Minute subscriptions, daily21-return history, constant alpha, equal weights, 1% per-security risk model; these are not a verified replica of original execution.",
+      "Fixed legacy Dow-symbol list includes historical tickers; use historical mapping, not the present-day500-stock list."
+    ],
+    "external_runtime": {
+      "name": "LEAN with AlgorithmImports and CLR assemblies",
+      "source_pin": "22404ea28b8d3f3c9eb74d6ed9f0444426f8e417",
+      "binding_evidence": "Common/AlgorithmImports.py",
+      "required_python_packages": [
+        "numpy",
+        "pandas"
+      ],
+      "versions": "Upstream source does not specify full Python dependency versions; not installed/tested here."
+    },
+    "data": {
+      "inputs": [
+        "Historical US equity minute subscriptions and daily prices for fixed legacy Dow symbols plus SPY",
+        "Corporate actions, delistings and historical symbol mapping",
+        "21-session lookback, 2016-01-01 to2017-01-01 configured window"
+      ],
+      "free_cloud": "Official US Equities and Security Master list free cloud access; account/source-specific operation not tested.",
+      "free_local": "Alpaca Basic advertises equities/ETF history since2016; full legacy-symbol and adjustment coverage for this algorithm unverified.",
+      "provider_refs": [
+        "QC-EQUITY",
+        "QC-SECMASTER",
+        "ALPACA-BASIC"
+      ],
+      "readiness": "blocked_until_historical_symbol_and_bar_coverage_and_runtime_checks"
+    },
+    "review_findings": [
+      "Source-file and license preservation only; no performance reproduction or Nautilus port.",
+      "AlgorithmImports loads NumPy optionally; dependency availability must be checked in a future isolated LEAN environment."
+    ]
+  },
+  {
+    "package_id": "dual-thrust-fx",
+    "tutorial_id": "QC-T-15258",
+    "source_local": ".local/qc-tutorial-packages-v1/JSTM-candidates/Dual Thrust backtest.py",
+    "repo": "je-suis-tm/quant-trading",
+    "revision_file": "JSTM-revision.txt",
+    "revision_dir": ".local/qc-tutorial-packages-v1",
+    "source_path": "Dual Thrust backtest.py",
+    "license_local": ".local/qc-tutorial-packages-v1/JSTM-candidates/LICENSE",
+    "repo_apache_verified": true,
+    "relation": "Independent Apache-licensed implementation explicitly cites tutorial rules; different asset/data implementation",
+    "material_differences": [
+      "Uses GBPUSD input instead of tutorial SPY hourly example.",
+      "Five-day range instead of tutorial four-day example; native input conversion differs."
+    ],
+    "external_runtime": {
+      "name": "Standalone Python",
+      "required_python_packages": [
+        "numpy",
+        "pandas",
+        "matplotlib"
+      ],
+      "versions": "No upstream requirements/lock supplied for this standalone script; compatibility unverified."
+    },
+    "data": {
+      "inputs": [
+        "Local gbpusd.csv with date and price columns",
+        "Intraday FX observations with enough history for5-day range",
+        "Timezone, bid/ask/spread conversion and session-close assumptions"
+      ],
+      "free_cloud": "Not a drop-in LEAN cloud algorithm.",
+      "free_local": "HistData documents free GBPUSD data, but its minute OHLC are BID-based in fixed EST; source asks for a price/mid series. No equivalent input file validated.",
+      "provider_refs": [
+        "HISTDATA"
+      ],
+      "readiness": "blocked_missing_input_schema_and_timezone_bid_mid_contract"
+    },
+    "review_findings": [
+      "Top-level os.chdir to D:/ must be reviewed before any execution.",
+      "Script supplies signals/plots; portfolio accounting and standardized cost-aware performance reporting are not complete.",
+      "Do not install or execute automatically."
+    ]
+  },
+  {
+    "package_id": "stock-pairs",
+    "tutorial_id": "QC-T-15300",
+    "source_local": ".local/qc-tutorial-packages-v1/JSTM-candidates/Pair trading backtest.py",
+    "repo": "je-suis-tm/quant-trading",
+    "revision_file": "JSTM-revision.txt",
+    "revision_dir": ".local/qc-tutorial-packages-v1",
+    "source_path": "Pair trading backtest.py",
+    "license_local": ".local/qc-tutorial-packages-v1/JSTM-candidates/LICENSE",
+    "repo_apache_verified": true,
+    "relation": "Independent cointegration-pairs mechanism alternative, not verified tutorial-equivalent implementation",
+    "material_differences": [
+      "Fixed NVDA/AMD example during2013-2014 rather than proof of tutorial universe and pair-selection protocol.",
+      "Uses Engle-Granger testing with rolling250-observation bandwidth."
+    ],
+    "external_runtime": {
+      "name": "Standalone Python",
+      "required_python_packages": [
+        "numpy",
+        "pandas",
+        "matplotlib",
+        "statsmodels",
+        "yfinance"
+      ],
+      "versions": "No upstream version lock supplied; modern yfinance output/adjustment defaults and pandas indexing need validation."
+    },
+    "data": {
+      "inputs": [
+        "NVDA and AMD daily Yahoo price series for2013-2014",
+        "Price adjustment/split policy",
+        "Synchronized dates, borrow availability, funding, spread and commission assumptions"
+      ],
+      "free_cloud": "A future separate port could use free cloud US equity data; this file is not a LEAN algorithm.",
+      "free_local": "yfinance is an access library, not a data license; personal-use restrictions and Yahoo terms need review. Alpaca advertised history since2016 cannot reproduce this2013-2014 default window.",
+      "provider_refs": [
+        "YFINANCE",
+        "ALPACA-BASIC",
+        "QC-EQUITY"
+      ],
+      "readiness": "blocked_period_coverage_data_rights_and_lookahead_accounting"
+    },
+    "review_findings": [
+      "portfolio() sizes using max(price) over the entire evaluated series: future-aware sizing, so not an admissible baseline until separately repaired.",
+      "Source comments claiming no forward bias are not validation.",
+      "Borrow, financing and fill assumptions not qualified; no result imported."
+    ]
+  },
+  {
+    "package_id": "g-score-legacy",
+    "tutorial_id": "QC-T-15267",
+    "source_local": ".local/qc-tutorial-packages-v1/unlicensed-inspection/SLQC/G-Score Investing.py",
+    "repo": "santoshlite/StrategyLibraryQC",
+    "revision_file": "SLQC-revision.txt",
+    "revision_dir": ".local/qc-tutorial-packages-v1",
+    "source_path": "G-Score Investing.py",
+    "license_local": ".local/qc-tutorial-packages-v1/licensed-candidates/LICENSE",
+    "repo_apache_verified": false,
+    "relation": "Complete single-file licensed G-Score candidate; current hosted source/version identity unverified",
+    "material_differences": [
+      "Legacy2020 QuantConnect class and API naming; exact engine version unknown.",
+      "Code selects lowest book-to-market quartile with //4 although comment calls it a quintile."
+    ],
+    "external_runtime": {
+      "name": "Legacy LEAN/QC-injected API globals; statistics, pickle, collections are Python stdlib",
+      "required_python_packages": [],
+      "versions": "Original engine/runtime not identified; current LEAN tree retains AlphaStreamsBrokerageModel, but that does not prove compatibility.",
+      "reference_engine_pin_only": "22404ea28b8d3f3c9eb74d6ed9f0444426f8e417"
+    },
+    "data": {
+      "inputs": [
+        "Point-in-time historical US stock fundamentals and sector classification",
+        "Quarterly ROA history spanning3years, plus financial statements and capitalization",
+        "US equity prices/actions and historical universe, configured2012-2020 window",
+        "ObjectStore data contract if reusing saved ROA state"
+      ],
+      "free_cloud": "Morningstar Fundamentals and Security Master advertise free cloud access; exact historical fields/algorithm compatibility not tested.",
+      "free_local": "Our price-only catalog lacks equivalent point-in-time fundamental history; Alpaca Basic does not establish it.",
+      "provider_refs": [
+        "QC-FUNDAMENTALS",
+        "QC-SECMASTER",
+        "QC-EQUITY"
+      ],
+      "readiness": "blocked_pit_fundamentals_legacy_runtime_and_state_contract"
+    },
+    "review_findings": [
+      "Explicit file-level Apache-2.0 grant clears only this file, not neighboring files in the unlicensed repository.",
+      "pickle.loads and ObjectStore access require a trusted state-input contract; no state data exported or loaded.",
+      "No live mode, broker connection or backtest executed."
+    ]
+  }
+]

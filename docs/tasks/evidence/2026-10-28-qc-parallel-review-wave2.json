@@ -1,0 +1,174 @@
+{
+  "schema": "qc-component-review-wave2-v1",
+  "status": "completed-screening-with-blockers",
+  "started_utc": "2026-10-28T17:16:06.423494+00:00",
+  "scope": "Remaining family representative screening; not all622 code reviews",
+  "inputs": {
+    "research/catalogs/qc-inventory-v1/catalog.json": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01",
+    "research/catalogs/qc-stage-fit-v1/mapping.json": "278c605d255e96cef086e07669e529189cfe977d60a3c20a25ecbddcbcd08f32",
+    "research/catalogs/qc-tutorial-packages-v1/review.json": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543",
+    "docs/tasks/evidence/2026-10-28-qc-parallel-review.json": "1e5715c6e733b0ea1c62512a58a33ecec5c3771fca6046f2c4ea329194261e18",
+    "docs/research-standard.md": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+    "docs/research-intake.md": "cd3185be831a501b73ccb8f12b356421b1c747c5e5475ed5a37b3a3d389229c7"
+  },
+  "family_denominator": 17,
+  "family_counts_overlap": true,
+  "prior_wave_primary_family_hints": {
+    "machine_learning": 3,
+    "macro_sentiment": 2,
+    "ensemble": 1,
+    "allocation_rotation": 5,
+    "trend": 3,
+    "value_quality": 2,
+    "momentum": 4
+  },
+  "lanes": [
+    {
+      "agent": "qc_policy_review",
+      "families": [
+        "mean_reversion",
+        "relative_value",
+        "liquidity_microstructure"
+      ],
+      "slug": "relative",
+      "report": "docs/tasks/2026-10-28-qc-wave2-relative-components.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-qc-wave2-relative-components.json",
+      "reviewed_ids": [
+        "QC-T-15311",
+        "QC-T-15300",
+        "QC-T-15352",
+        "QC-T-15298"
+      ]
+    },
+    {
+      "agent": "qc_market_review",
+      "families": [
+        "carry_term_structure",
+        "options",
+        "monitoring_framework"
+      ],
+      "slug": "carry",
+      "report": "docs/tasks/2026-10-28-qc-wave2-carry-components.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-qc-wave2-carry-components.json",
+      "reviewed_ids": [
+        "QC-T-15264",
+        "QC-T-15372",
+        "QC-T-15382",
+        "QC-C-157"
+      ]
+    },
+    {
+      "agent": "qc_target_review",
+      "families": [
+        "earnings_event",
+        "seasonality",
+        "passive_accumulation"
+      ],
+      "slug": "event",
+      "report": "docs/tasks/2026-10-28-qc-wave2-event-components.md",
+      "receipt": "docs/tasks/evidence/2026-10-28-qc-wave2-event-components.json",
+      "reviewed_ids": [
+        "QC-T-15369",
+        "QC-T-15377",
+        "QC-T-15295",
+        "QC-C-158"
+      ]
+    }
+  ],
+  "bounds_per_lane": {
+    "minutes": 25,
+    "representative_groups": 4,
+    "web_calls": 10,
+    "financial_runs": 0,
+    "data_downloads": 0,
+    "source_exports": 0,
+    "package_service_changes": 0,
+    "broker_operations": 0,
+    "subagents": 0
+  },
+  "rules": [
+    "Original source snapshot retained",
+    "Title-only or blocked families remain explicitly unverified",
+    "No complete source/rights/data/runtime/performance claim from a representative review",
+    "No old research budget reopened"
+  ],
+  "coverage_correction": {
+    "finding": "Prior13 primary IDs have7distinct catalog family tags. Volatility was discussed through HMM but not tagged on those records.",
+    "remaining_catalog_families": 10,
+    "additional_cross_cutting_family": "volatility",
+    "existing_representative": "QC-T-15382",
+    "bound_change": false
+  },
+  "completed_utc": "2026-10-28T17:20:28.658092+00:00",
+  "actual_usage": {
+    "agents": 3,
+    "representative_groups": 12,
+    "distinct_primary_ids": 12,
+    "web_calls": 10,
+    "financial_runs": 0,
+    "data_downloads": 0,
+    "source_exports": 0,
+    "package_service_changes": 0,
+    "broker_operations": 0,
+    "nested_agents": 0
+  },
+  "output_hashes": {
+    "docs/tasks/2026-10-28-qc-wave2-relative-components.md": "b165addfff1760bd3f8cae82afb830b1395114328a8a6013f7fc2cc627f4d816",
+    "docs/tasks/evidence/2026-10-28-qc-wave2-relative-components.json": "93de539267ba02c79375bb824bd12f648548f482d9f2a11f332cbc5137784617",
+    "docs/tasks/2026-10-28-qc-wave2-carry-components.md": "268630fddf97d9bc500905179239aeee15821cf62061d0ff1745aac7895a4e74",
+    "docs/tasks/evidence/2026-10-28-qc-wave2-carry-components.json": "9a8d3b986dc79c1b380f4f68210a4e94a968177b03ce67e9f6f09e0b4bb1998a",
+    "docs/tasks/2026-10-28-qc-wave2-event-components.md": "eeb6a4814b50e7c51237f0a7df83ff6380039d4a037bc3e121c11f66f32f54e4",
+    "docs/tasks/evidence/2026-10-28-qc-wave2-event-components.json": "1094824f3636d030ba04e866c6a4445851744dd07b6a4842511f7fe1fbc61ec3"
+  },
+  "wave2_primary_ids": [
+    "QC-C-157",
+    "QC-C-158",
+    "QC-T-15264",
+    "QC-T-15295",
+    "QC-T-15298",
+    "QC-T-15300",
+    "QC-T-15311",
+    "QC-T-15352",
+    "QC-T-15369",
+    "QC-T-15372",
+    "QC-T-15377",
+    "QC-T-15382"
+  ],
+  "coverage_summary": {
+    "families": 17,
+    "waves": 2,
+    "representative_groups": 24,
+    "distinct_screened_primary_ids": 25,
+    "remaining_without_primary_representative_screen": 597,
+    "title_only_families": [
+      "monitoring_framework",
+      "passive_accumulation"
+    ]
+  },
+  "family_coverage_artifacts": {
+    "research/catalogs/qc-family-coverage-v1/coverage.csv": "a81cc754af3d3dafa604badfe7ef4ce8d4cdca5847a9fd18fcfae95e27a0945f",
+    "research/catalogs/qc-family-coverage-v1/coverage.json": "ac49f56c53c0a80d5a4687e981c049732c9482433ea7beae338210682159d69d"
+  },
+  "findings": [
+    "Liquidity factor is ranking/proposal, not execution improvement",
+    "Pairs similarity and statistical model selection do not verify cointegration or adaptive policy selection",
+    "Carry/options prose versus code source ambiguities need resolution before testing",
+    "Expiry-week strategy trades equity; calendar theme does not imply option positions",
+    "DCA external contributions must be removed from return NAV",
+    "Monitoring and passive representatives remain title-only"
+  ],
+  "next_proposed_tasks": [
+    "Saved SPY transition attribution with zero financial runs",
+    "Reconstruct stock selection as-of decisions with zero financial runs",
+    "Synthetic month-turn timing contract and decision-log completeness checks"
+  ],
+  "no_new_experiment_budget": true,
+  "validation": {
+    "documentation_check": "passed:148 files",
+    "scoped_diff_whitespace": "passed",
+    "input_and_output_hashes": "passed",
+    "family_rows": 17,
+    "combined_primary_ids": 25,
+    "financial_runs": 0
+  }
+}

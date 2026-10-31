@@ -1,0 +1,76 @@
+{
+  "status": "synthetic_accounting_stress_passed_price_input_pending",
+  "observed_utc": "2026-10-26T00:25:33.184872+00:00",
+  "prior_checkpoint": "docs/tasks/evidence/2026-10-25-multi-asset-qualification-v2.json",
+  "prior_checkpoint_sha256": "225fecf4042bc07f2dd7db7433c3dbd6814e346605cc0c04e62ad116022d1243",
+  "frozen_synthetic_plan": ".local/multi-asset-qualification-v2/accounting-stress-plan.json",
+  "frozen_synthetic_plan_sha256": "59797c7559bf2ea310126edeed97c4735f01c81676823c2c961f34bcfe3fc39b",
+  "new_native_proofs": {
+    "accounting-rotation_25bp": {
+      "synthetic_only": true,
+      "historical_financial_attempts": 0,
+      "case": "rotation_25bp",
+      "cost_bps": 25,
+      "audit": {
+        "passed": true,
+        "sessions": 3,
+        "fills": 6,
+        "maximum_difference_usd": 0.0,
+        "terminal_receivable_usd": "0",
+        "native_cash_and_inventory_verified": true,
+        "target_policy_implementation": "Independent descending affordability check; no project planner called"
+      }
+    },
+    "accounting-same_day_rounding_25bp": {
+      "synthetic_only": true,
+      "historical_financial_attempts": 0,
+      "case": "same_day_rounding_25bp",
+      "cost_bps": 25,
+      "audit": {
+        "passed": true,
+        "sessions": 3,
+        "fills": 2,
+        "maximum_difference_usd": 0.0,
+        "terminal_receivable_usd": "0",
+        "native_cash_and_inventory_verified": true,
+        "target_policy_implementation": "Independent descending affordability check; no project planner called"
+      }
+    }
+  },
+  "manifest_verification": {
+    "accounting-rotation_25bp": {
+      "manifest_sha256": "2c34b9544e4235a3a3abb9427341401d674fc4ec222021a88a115674aa68283c",
+      "artifact_count": 11
+    },
+    "accounting-same_day_rounding_25bp": {
+      "manifest_sha256": "74e1ca355ad99f96b4e4e666fdd0b9695337f8f3c40d377633d1cf41c9f08d0e",
+      "artifact_count": 11
+    }
+  },
+  "native_probes_total": 4,
+  "native_probe_limit": 4,
+  "historical_financial_attempts": 0,
+  "financial_case_limit": 10,
+  "source_requests": 12,
+  "native_ceiling_guard": {
+    "expected_exit": 1,
+    "log": ".local/multi-asset-qualification-v2/native-ceiling-rejection.log",
+    "sha256": "4ea7d13842b66d977ee04f2a569cb32f98f32bb9479a4de138e91b794de0d546"
+  },
+  "price_input_guard": {
+    "expected_exit": 1,
+    "log": ".local/multi-asset-qualification-v2/comparison-preflight-continuation.log",
+    "sha256": "698caeb24284c533b995f7f56e47b32160105104784791a8a1bb84ebbe6f1f8e"
+  },
+  "goal_complete": false,
+  "missing_required_input": "Permission-qualified SPY/IEF/GLD price export source/scope and local path; prior human question still pending",
+  "previous_goal_turn_classification": "progress: issuer/action/calendar acquisition and tested historical accounting",
+  "this_goal_turn_classification": "progress:25bp and same-day rounding native checks plus exhausted-budget rejection proof",
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 248,
+    "log": ".local/multi-asset-qualification-v2/make-check-continuation.log",
+    "log_sha256": "79978c179be15135643919c85797f5e09722cbbf45e3989d0630974e3afc0b84",
+    "git_diff_check_exit": 0
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema": "spy-gate-robustness-v1",
+  "created_utc": "2026-10-25T22:23:13.246019+00:00",
+  "protocol_sha256": "251fd3ae9a331c1b3ecc58540fa70bba54e80f05a0f36594a7d85efb4b0f8bce",
+  "code_hashes": {
+    "research/risk_gate.py": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+    "research/risk_gate_study.py": "ed17c7ac37e36885781619721a61205ab9806333212a786764cbbc21b790c662",
+    "research/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "research/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/leverage-model.md": "d6224928351d6e50c5b1c33accf59e49928a690825076424cde60e7a727ad307",
+    "tests/test_risk_gate.py": "32de320c2e66ee709651889f2569607dea231fe79b768a5bc5b1ebb0eefedf0d",
+    "tests/test_risk_gate_analysis.py": "91633897265578ea3a1e415ab788a431ac90a1ed4ab6936cf8def9838ff5defd",
+    "tests/test_risk_gate_study.py": "7126705b2ca6bb1b9f7f513d3caae670dd5f1781c607c557c4524670fe4fa137",
+    "research/control_parity.py": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e",
+    "tests/test_control_parity.py": "fd19d5363926958e4b2f0dee0440652ec76e602b7f60de9cf5d5b20367910c4b",
+    "research/risk_gate_ablation.py": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb",
+    "reporting/risk_gate_review.py": "a838effc7864a37cf504939170bec180b3a5a6067474231570a3370cacb521c8",
+    "research/gate_robustness.py": "3369ecfe8ae7dc3cbf61034ebdb7ba246e52e33520b0b76ea11b9543e5f9d01a",
+    "tests/test_gate_robustness.py": "3341c9f0fddfed9a94c2f57ca289f72014de1fcf497a46ba8e5146c92353d3ae"
+  },
+  "source": {
+    "path": "reports/spy/20261024-235746-728801/source-data.json",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "warmup_start": "2004-01-02",
+    "evaluation_start": "2005-01-03",
+    "evaluation_end": "2025-12-31",
+    "expected_evaluation_sessions": 5283,
+    "historical_access": "already viewed development history; no protected holdout",
+    "raw_price_signal_policy": "Saved unadjusted OHLC rounded to cents before features; dividends separately credited by account ledger; raw-price peaks start at first saved2004close"
+  },
+  "model": {
+    "capital": 300000.0,
+    "annual_rate": 0.06,
+    "allocation": 0.99,
+    "initial_margin": 0.5,
+    "maintenance": 0.25,
+    "cost_bps": 5.0,
+    "commission": 1.0
+  },
+  "cases": [
+    {
+      "id": "base_gate_ema",
+      "context": "base",
+      "rule": "gate_ema",
+      "cost_bps": 5,
+      "signal_delay": 0
+    },
+    {
+      "id": "base_ema",
+      "context": "base",
+      "rule": "ema",
+      "cost_bps": 5,
+      "signal_delay": 0
+    },
+    {
+      "id": "base_buy_hold_entry_only",
+      "context": "base",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 5,
+      "signal_delay": 0
+    },
+    {
+      "id": "expensive_gate_ema",
+      "context": "expensive",
+      "rule": "gate_ema",
+      "cost_bps": 25,
+      "signal_delay": 0
+    },
+    {
+      "id": "expensive_ema",
+      "context": "expensive",
+      "rule": "ema",
+      "cost_bps": 25,
+      "signal_delay": 0
+    },
+    {
+      "id": "expensive_buy_hold_entry_only",
+      "context": "expensive",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 25,
+      "signal_delay": 0
+    },
+    {
+      "id": "delayed_gate_ema",
+      "context": "delayed",
+      "rule": "gate_ema",
+      "cost_bps": 25,
+      "signal_delay": 1
+    },
+    {
+      "id": "delayed_ema",
+      "context": "delayed",
+      "rule": "ema",
+      "cost_bps": 25,
+      "signal_delay": 1
+    },
+    {
+      "id": "delayed_buy_hold_entry_only",
+      "context": "delayed",
+      "rule": "buy_hold_entry_only",
+      "cost_bps": 25,
+      "signal_delay": 0
+    }
+  ],
+  "max_attempts": 9,
+  "wall_seconds": 900,
+  "financial_workers": 1,
+  "automatic_retries": 0,
+  "parent_manifest_sha256": "b6b04c8545c9a25af22eb0f583d4dae0ad03dff6e2f29c515676f0e0209dfba8",
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "git_status": "?? docs/tasks/2026-10-25-rsi-gate-robustness.md\n?? research/gate_robustness.py\n?? tests/test_gate_robustness.py\n"
+}

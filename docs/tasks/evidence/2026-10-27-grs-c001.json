@@ -1,0 +1,97 @@
+{
+  "cycle": "GRS-C001",
+  "standard": "GRS-1.0",
+  "status": "closed-inconclusive-control-schema-mismatch",
+  "change_type": "improve_existing_stage",
+  "stage": "position sizing",
+  "max_financial_attempts": 8,
+  "actual_financial_attempts": 1,
+  "wall_seconds": 900,
+  "workers": 1,
+  "automatic_retries": 0,
+  "independent_validation": false,
+  "incumbent_changed": false,
+  "plan": "research/plans/grs-c001-continuous-sizing-v1.json",
+  "artifacts": ".local/grs-c001",
+  "engineering_failures": [
+    "Synthetic date string expectation corrected before freeze; no financial run."
+  ],
+  "completed_qualified_cases": 0,
+  "completed_comparisons": 0,
+  "unexecuted_cases": 7,
+  "attempts": [
+    {
+      "id": "5bp_ema",
+      "status": "failed",
+      "reserved_utc": "2026-10-27T07:34:32.398411+00:00",
+      "error": "5bp_ema failed; no retry"
+    },
+    {
+      "id": "5bp_half_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "5bp_discrete_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "5bp_continuous_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "10bp_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "10bp_half_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "10bp_discrete_ema",
+      "status": "reserved"
+    },
+    {
+      "id": "10bp_continuous_ema",
+      "status": "reserved"
+    }
+  ],
+  "started_utc": "2026-10-27T07:34:32.398239+00:00",
+  "closed_utc": "2026-10-27T07:34:33.986656+00:00",
+  "elapsed_seconds": 1.5882331660250202,
+  "plan_sha256": "0a49f435119a9b7575d124d7644626445a7f5bf86e6cf35aa3a37fa2c757d9b4",
+  "manifest_sha256": "94cae5ab2e68c2b8e8b7a67b18c394601db3f96f7b14c3e472c554d08d0eb7e0",
+  "diagnosis": {
+    "kind": "read_only_diagnosis_no_financial_retry",
+    "strict_frozen_gate": "failed_retained",
+    "economic_field_parity": true,
+    "trade_exact": true,
+    "date_count": 5283,
+    "mismatched_field": "effective_target_leverage",
+    "mismatched_sessions": 1019,
+    "old_semantics": "EMA effective0or1 target",
+    "new_semantics": "nominal1budget even when flat",
+    "new_nominal_constant_one": true,
+    "old_equals_intended_target": true,
+    "all_other_fields_tolerance": 1e-07,
+    "extra_financial_attempts": 0
+  },
+  "candidate_performance": "not_evaluated",
+  "next_question": "Test a schema-aware legacy diagnostic adapter on saved outputs before requesting any new financial comparison; no closed-budget retry.",
+  "engineering_followup": {
+    "kind": "read_only_contract_adapter_verification",
+    "source": "research/legacy_control_contract.py",
+    "sha256": "6d7ec4f449a6ddf0b44bd9849ba8110cb974e3209e6c27df3a2e1c028b14b2c1",
+    "check": {
+      "passed": true,
+      "trade_exact": true,
+      "all_other_fields_atol": 1e-07,
+      "only_translated_field": "effective_target_leverage",
+      "legacy_semantics": "effective EMA0/1 target",
+      "current_semantics": "nominal1budget",
+      "mismatch_sessions": 1019,
+      "frozen_gate_overridden": false
+    },
+    "extra_financial_attempts": 0,
+    "future_integration": "New plan/version required; original frozen gate remains failed."
+  }
+}

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -74,10 +74,10 @@ Descriptive frontier membership does not establish statistical superiority.
 ## Stage-addition acceptance
 
 [GRS-1.0](research-standard.md#incremental-improvement-and-disposition) owns
-incremental stage disposition and report-readiness requirements. The unit-preserving
-vector, same-context Pareto comparison and claim-specific eligibility definitions
-above supply its score meanings. No score-policy implementation, retrospective
-ranking or broker authorization changes with this documentation adoption.
+incremental adoption and disposition requirements. The vector, Pareto and
+claim-specific evidence definitions above supply its score meanings. This does
+not change `research-score-v0.2`, retrospectively rerank prior runs or authorize
+broker operation. No competing stage-adoption policy is maintained here.
 
 ## Research actions use an auditable priority tuple
 

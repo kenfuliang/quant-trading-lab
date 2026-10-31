@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: research-maintainers
 ---
 
@@ -22,3 +22,5 @@ Follow [GRS](../research-standard.md); this template does not redefine its rules
 - Disposition and reason; unchanged incumbent / provisional challenger:
 - Short lesson, report eligibility and link if warranted:
 - Next uncertainty and evidence condition; no automatic continuation:
+
+For new cycles, capture and validate the [versioned experiment receipt](../research-standard.md#experiment-receipt-contract) before closure. Link actual names/run/build identities, failed/partial attempts, artifact hashes, validation outcome and single-leaderboard disposition. Historical records remain unchanged.

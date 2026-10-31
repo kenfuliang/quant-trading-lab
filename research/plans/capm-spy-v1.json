@@ -1,0 +1,78 @@
+{
+  "study_id": "capm-spy-v1",
+  "status": "frozen-before-probe",
+  "created_utc": "2026-10-27T03:50:59.202164+00:00",
+  "deadline_utc": "2026-10-27T05:20:59.202164+00:00",
+  "cases": [
+    "probe",
+    "capm",
+    "spy"
+  ],
+  "max_total_attempts": 5,
+  "max_financial_attempts": 4,
+  "technical_repair_slots": 2,
+  "project_id": 38510582,
+  "source_repo": "QuantConnect/Lean",
+  "source_commit": "22404ea28b8d3f3c9eb74d6ed9f0444426f8e417",
+  "original_path": ".local/qc-tutorial-packages-v1/licensed-candidates/Algorithm.Python/CapmAlphaRankingFrameworkAlgorithm.py",
+  "original_sha256": "4caaa23a312db6ae764a2177c403ec887e981bffab7735afcd7638be36e6ed52",
+  "source_hashes": {
+    "probe": "96d262d007233c89a96612b09f2f4a90b1fae7cd152923261aea51fb1e5cc48a",
+    "capm": "f69732f6fa7c2b2ff8e6277002a339373867a4bcba01a63801249449e6c3827c",
+    "spy": "29ce31e35e82490ecde61bef1656838fb7b9081716ecc62ac9add98e890d4c1f"
+  },
+  "start": "2016-01-01",
+  "end": "2025-12-31",
+  "capital_usd": 300000,
+  "cash_buffer": 0.01,
+  "slippage": 0.0025,
+  "fees": "Native InteractiveBrokersFeeModel, IB margin brokerage; extend initializer, assert actual model.",
+  "financing": "6% annual fixed debit ACT/360 on prior close USD cash, charge at current close; zero credit; native per-security interest disabled. No accrual after last close.",
+  "candidate": "Original 29 fixed legacy symbols, monthly source reverse-regression intercept top2, ConstantAlpha(one day up), EqualWeighting, ImmediateExecution, 1% per-security drawdown stop. No rank/threshold optimization.",
+  "baseline": "SPY initial target100% with common1% cash buffer, hold without rebalancing or stop.",
+  "timing": "Source monthly scheduled universe at first session market open; minute native execution. Closing NAV after final SPY minute before framework decisions; no forced final liquidation. Probe uses daily SPY clock and annual21daily/1minute source history checks.",
+  "data": "Free hosted US equity price/corporate-action/map data only. Native source Symbol.create identities retained; no replacement with current constituents. No fundamentals/alternative data dependency.",
+  "source_caveats": [
+    "Official framework alternative, not exact hosted tutorial.",
+    "29 names, fixed survivor/selection biases; legacy mapping needs probe.",
+    "Regression predicts benchmark from stock, not standard stock-on-market CAPM; retain source.",
+    "1% per-security stop is not portfolio1% maximum drawdown."
+  ],
+  "metrics": "Full/annual total return, daily close maximum drawdown, sample daily Sharpe annualizedsqrt252 at zero RF, full CAGR/absDD Calmar, annual return/abs annualDD Calmar; underwater fraction, longest sessions and calendar days, terminal censoring. Annual peak resets, full path carries peak.",
+  "primary_estimand": "Descriptive full-period Calmar difference vs SPY with return/drawdown/underwater tradeoffs. No pass threshold or post-result tuning.",
+  "history": "Viewed development sample; no untouched OOS or forward result.",
+  "exports": "Own aggregate metrics/counts/calendar hashes only. Raw bars, dense NAV/returns and corporate actions stay hosted.",
+  "stops": [
+    "Five total attempts including probe/technical failures; at most two technical-only repairs;90minute deadline.",
+    "Probe must complete before financial cases. If startup dependencies or required startup data fail, stop or documented technical repair within budget.",
+    "Nonfinite/nonpositive NAV, missing/misaligned history, invalid rejects, wrong fee/interest model or accounting residuals fail eligibility.",
+    "No paid resources/data, parameter tuning, broker/account operations, orders outside simulation, services, commits or publication."
+  ],
+  "technical_amendments": [
+    {
+      "utc": "2026-10-27T03:57:24.560687+00:00",
+      "before_financial_results": true,
+      "reason": "Result webview controls failed; emit identical aggregate records through debug terminal instead of log-only panel. Expand annual probe calendar/future-time audit and use Python type name for native fee assertion. No signal/date/cost change.",
+      "prior_source_hashes": {
+        "probe": "a5c228bdc0cc19f155c18fc358be9c5f87355553fe77db14232fb7575366ac1b",
+        "capm": "7e0f1af1865ccaff484c4c4d257133bea495c0c69f733e8c29ca95e97fd29234",
+        "spy": "6ce6905cd2f90871acd74c3b319022d09f87e91c4259915d64ec58cc9cd3f396"
+      }
+    },
+    {
+      "utc": "2026-10-27T04:05:00.955695+00:00",
+      "reason": "Native active Portfolio.Values omits removed securities from lifetime realized PnL. Use supported Portfolio.TotalNetProfit (SecurityManager.Total) and current-mark unrealized PnL; retain failed active-only check, check event fees against native lifetime fees, and add aggregate turnover/SPY fill counts. Signals, executions, costs and funding unchanged.",
+      "prior_source_hashes": {
+        "probe": "96d262d007233c89a96612b09f2f4a90b1fae7cd152923261aea51fb1e5cc48a",
+        "capm": "ae3cb0fad58fa7bc66a2108047ba59db743a69b28738617ae26057003f795a0a",
+        "spy": "f6706525d3a581d7b9934810f71193a2b7e738805cd349c0879f82f77a23065a"
+      },
+      "source_evidence": [
+        "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Common/Securities/SecurityPortfolioManager.cs#L494",
+        "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Common/Securities/SecurityHolding.cs#L318"
+      ],
+      "required_retest": "Repaired CAPM full metrics and calendar must reproduce attempt3 within rounding, no score-based changes.",
+      "remaining_technical_retries_after_retest": 0
+    }
+  ]
+}

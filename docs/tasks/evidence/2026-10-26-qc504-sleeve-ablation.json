@@ -1,0 +1,156 @@
+{
+  "study_id": "qc504-ablation-v1",
+  "status": "complete",
+  "missing": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "case": "ensemble",
+      "reserved_utc": "2026-10-26T18:43:14.491317+00:00",
+      "status": "completed-summary-captured",
+      "source_sha256": "e6dd46a6915153bbf29c02f7c6f2203a169596dd545c43fb5aff7fb6e1d408f2",
+      "backtest_id": "19b04ef4c7c1e87564825d94dfe916a0"
+    },
+    {
+      "attempt": 2,
+      "case": "t10",
+      "status": "completed-native-only-unselected-reporting-retry-captured",
+      "reserved_utc": "2026-10-26T18:44:49.606958+00:00",
+      "source_sha256": "2d42ce330461d76c12ecc1f2a52214af01121bea7ba7a5b1d32b5c5b57aae65d",
+      "backtest_id": "b3f8470ec98496bc433f80db77295c84",
+      "native_end_usd": 2684578.66
+    },
+    {
+      "attempt": 3,
+      "case": "t11",
+      "status": "completed-native-only-unselected-reporting-retry-captured",
+      "reserved_utc": "2026-10-26T18:47:51.539184+00:00",
+      "source_sha256": "0b0be9fece803021bcfe9b0be4a78312bfa6fbcc1797c2a3ed457c7317e9d8c0",
+      "backtest_id": "a334597c93b361f58a765159b06c21b6",
+      "native_end_usd": 3057426.44,
+      "observed_order_rejects": "at least6 from visible terminal"
+    },
+    {
+      "attempt": 4,
+      "case": "s2",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:50:45.098775+00:00",
+      "source_sha256": "ae29e95904b1079ecd39e3ac99366f53e8a6f9f7ba78dd82d271ce641012913f",
+      "backtest_id": "f3a5e4650c02c61662180002a02ed5a8"
+    },
+    {
+      "attempt": 5,
+      "case": "s3",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:52:02.216047+00:00",
+      "source_sha256": "95487b6b49757ceba5fab4cea70661b8cdcb79f28a00519c1048b710e50a72f4",
+      "backtest_id": "4a2dce9dabda71b743eac39de687d0de"
+    },
+    {
+      "attempt": 6,
+      "case": "t10",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:53:16.755309+00:00",
+      "source_sha256": "8300463efc7c91206d03993d8544798e5f2e8e76cb67aca7df35376ea2e40d31",
+      "backtest_id": "bd43ca98fd281678a8eafb26582c5e0b",
+      "native_repeat_end_match_within_cent": true
+    },
+    {
+      "attempt": 7,
+      "case": "t11",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:54:33.327006+00:00",
+      "source_sha256": "e1edf203b0784d57866c90350c5597d7716caf1ff15f221ad69d4cf97874872e",
+      "backtest_id": "23db61c6dff6d821171a4ca9d002c90c",
+      "native_repeat_end_match_within_cent": true
+    }
+  ],
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "engine": "LEAN2.5.0.0.18209 observed; verify per run",
+  "checks": [
+    "annual/full NAV compounding",
+    "annual/full Calmar",
+    "Sharpe moments",
+    "underwater totals",
+    "session-calendar hash alignment"
+  ],
+  "limits": [
+    "Hosted same-engine/data diagnostics, not independent replication",
+    "Full-budget standalone is not inside-ensemble profit attribution",
+    "Previously viewed development sample; no untouched OOS alpha",
+    "Funding and embedded leverage unqualified",
+    "Rejected-order paths conditional; no silent repair",
+    "No market impact/capacity validation"
+  ],
+  "source_hashes": {
+    "ensemble": "98d520f339c31cba04540589e9c091451d051ed3ed6684aa81f2487da079d8cb",
+    "t10": "8300463efc7c91206d03993d8544798e5f2e8e76cb67aca7df35376ea2e40d31",
+    "t11": "e1edf203b0784d57866c90350c5597d7716caf1ff15f221ad69d4cf97874872e",
+    "s2": "ae29e95904b1079ecd39e3ac99366f53e8a6f9f7ba78dd82d271ce641012913f",
+    "s3": "95487b6b49757ceba5fab4cea70661b8cdcb79f28a00519c1048b710e50a72f4"
+  },
+  "selected_attempts": {
+    "ensemble": {
+      "attempt": 1,
+      "case": "ensemble",
+      "reserved_utc": "2026-10-26T18:43:14.491317+00:00",
+      "status": "completed-summary-captured",
+      "source_sha256": "e6dd46a6915153bbf29c02f7c6f2203a169596dd545c43fb5aff7fb6e1d408f2",
+      "backtest_id": "19b04ef4c7c1e87564825d94dfe916a0"
+    },
+    "t10": {
+      "attempt": 6,
+      "case": "t10",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:53:16.755309+00:00",
+      "source_sha256": "8300463efc7c91206d03993d8544798e5f2e8e76cb67aca7df35376ea2e40d31",
+      "backtest_id": "bd43ca98fd281678a8eafb26582c5e0b",
+      "native_repeat_end_match_within_cent": true
+    },
+    "t11": {
+      "attempt": 7,
+      "case": "t11",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:54:33.327006+00:00",
+      "source_sha256": "e1edf203b0784d57866c90350c5597d7716caf1ff15f221ad69d4cf97874872e",
+      "backtest_id": "23db61c6dff6d821171a4ca9d002c90c",
+      "native_repeat_end_match_within_cent": true
+    },
+    "s2": {
+      "attempt": 4,
+      "case": "s2",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:50:45.098775+00:00",
+      "source_sha256": "ae29e95904b1079ecd39e3ac99366f53e8a6f9f7ba78dd82d271ce641012913f",
+      "backtest_id": "f3a5e4650c02c61662180002a02ed5a8"
+    },
+    "s3": {
+      "attempt": 5,
+      "case": "s3",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T18:52:02.216047+00:00",
+      "source_sha256": "95487b6b49757ceba5fab4cea70661b8cdcb79f28a00519c1048b710e50a72f4",
+      "backtest_id": "4a2dce9dabda71b743eac39de687d0de"
+    }
+  },
+  "code_sha256": {
+    "scripts/prepare_qc504_ablation.py": "2c7e796be5a78116dc007851fe1f190e7c155807e784f6f4ec1f5d3d53109333",
+    "scripts/repair_qc504_ablation_reporting.py": "c047df612676c6d42446a93d5abde8237346e6b0e07be3fce0e3711030fa3bd3",
+    "scripts/parse_qc504_fragments.py": "0179aeea99bfa168fe420b2564a90050122178b8f8fc959c7c43c60c0549dc0a",
+    "scripts/build_qc504_ablation.py": "65f13aaaf8033e9331fbb22a02b5871284e3357a63427fc0b4d788f12fc5ade4",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/plans/qc504-ablation-v1.json": "a9b42422696d86b9547e00b2207973f5ffe0fd0ab6e8ba79c028cccc9a2ddae1",
+    "research/plans/qc504-ablation-v1.frozen.json": "4178d2ad41f57018163bfb8e9e4e33465c40cfd31469ee63e1568263cd780de0"
+  },
+  "artifacts": {
+    "s3-summary-cells.json": "2861086b908e80236bd0c3a05cc8607c4d3dddda2eb99c4cee6f66805b42f026",
+    "t11-summary-cells.json": "cb686e9460b7c33aa80c0ac52bb8da99891e2b097c821bdf4b60a6b95d2793c7",
+    "t10-summary-cells.json": "a97587f17914683c34c9c875961285b7f7486b6b054b21ef3d68a28274af0b12",
+    "ensemble-summary-cells.json": "e6a02c8e833ee607366cc431429086178c8da4bb787634c6b31a9aaf2dc8ff2a",
+    "s2-summary-cells.json": "caf71652759b76e45c2f123f2f81fbedaf8f45ee8d566566a7dc5ae7db88cd15",
+    "t11-terminal-fragments.json": "2f78449d7ccaa850210a3aebf9014093cb764d51219c31bc74c6dc894c614395",
+    "s2-terminal-fragments.json": "a29adf058bc16f188480dcc9b3e2f4416d2c7fcb5f9346657cb0f796fdf31e0e",
+    "t10-terminal-fragments.json": "ae238f4675419df73e746295b64dea92e1795327b3220970db95d93abae0445d",
+    "s3-terminal-fragments.json": "549680012fc336bc07cb9bbef5a7aa9bf6dd41fc07ba42212d53b20875409eed"
+  }
+}

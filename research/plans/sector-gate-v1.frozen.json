@@ -1,0 +1,151 @@
+{
+  "schema": "sector-gate-v1",
+  "mode": "financial",
+  "program_id": "sector-gate-v1-20261028",
+  "frozen_utc": "2026-10-28T22:54:18.079698+00:00",
+  "output_root": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/sector-gate-v1/financial",
+  "journal_root": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/sector-gate-v1/financial/journal",
+  "cases": [
+    "gate-5",
+    "vol-5",
+    "hold-5",
+    "gate-10",
+    "vol-10",
+    "hold-10"
+  ],
+  "attempt_cap": 6,
+  "case_seconds": 300,
+  "aggregate_seconds": 1800,
+  "deadline": "2026-10-29T02:00:00+00:00",
+  "workers": 1,
+  "automatic_retries": 0,
+  "python": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.venv/bin/python",
+  "python_sha256": "1ce7aea77992ab97bb6225339a1d72a79925d5641e461cdfc2584916119a7edb",
+  "sources": {
+    "research/__init__.py": "176ab0098e5c017d087170fbfb79fdb88415495f8aa0b3b599cb88180daaaa73",
+    "research/studies/__init__.py": "292300887303234af050aa07fe879c14ef2f86b29e8b05e5c433ba9391bc881f",
+    "research/studies/sector_selection/__init__.py": "b41655044a115617faac7900738ffdcb60a1c7c34df70c5ecff14efffa1d408b",
+    "research/studies/sector_selection/model.py": "63f74ec6b714e6dab2f731506a6bcda82242c79f3cdfd580ad0612f2673dc49f",
+    "research/studies/sector_selection/audit.py": "a794bfbc7192649c5b0b4e0f2df5969d89d5a1b1d10ecb251dc0df484e373fdc",
+    "research/studies/sector_selection/capture.py": "15ce52ae23dee5f1461c717d1c4ede10823e840447ae141023fb36a8b7a35393",
+    "research/studies/sector_selection/review.py": "2e912bac7df56ab3d79abc9d0e525fa1c63aef239c86491d187f6a7aa38fa2c4",
+    "research/sector_corporate_actions.py": "a6a159a57d1a93569ffbc332b809eee545020cd53add77f58b479e5f196c8c9e",
+    "research/research_controller.py": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d",
+    "research/scoring.py": "14323eedee28d8a65dd80be46d9ea4cf6617d14c080e1e6646e0342a8586b587",
+    "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+    "reporting/__init__.py": "268d25cc8bd406f95fbb20aae7671eb58b73fcc1e4c66c3cb0ed71f51bf75f7c",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "tests/test_sector_corporate_actions.py": "aaf4e06f3eeb3349b6a0a3855570dba038bae7af71f561b2856c65292345bc40",
+    "tests/test_sector_selection_model.py": "e9ef24a180d94720305e4d6a46f011389eb935e3c3d6fe627d26655527f53964",
+    "tests/test_sector_selection_capture.py": "36466a76059635eac3d5f8294a42ee8ae592f3f8b7bec8afe37f16eaed27c0ae",
+    "tests/test_sector_selection_review.py": "480fda4fdf177d3c9e02c4f3f4a86718e85e81263741f097176b4a2d2d13452e",
+    "research/studies/sector_gate/signals.py": "c36dedb1b9ed8a568d018e868afdf2b4d1da002e60cc7f1f2ec58022c58f6127",
+    "research/studies/sector_gate/audit.py": "5bbdac7410afb3bd2dd05c9e9fe8525f85ffabe9f64cc6b3abd67e8859e976fe",
+    "research/studies/sector_gate/__init__.py": "c2704b4fc0c7d61eff96360d3715d49edfb8740114558937665d0f653e978f74",
+    "research/studies/sector_gate/review.py": "2760a2b3c0541d716db66cf25e5666921c543945f9abdc2babd458994a73ab24",
+    "research/studies/sector_gate/model.py": "25eb858db2625087e8a970f25ebae2c42ad9eec262bf115dd8e7669dbc3b6d67",
+    "research/studies/sector_gate/capture.py": "ee5cb8ff662a2af035baa08171c90d678a5f3e87a2e38dba08b7e48e39d07939",
+    "tests/test_sector_gate.py": "9d7c376fe34ff9e29ce3380fd04f43b3235398f73debf7f7df93178cdb8b288e",
+    "tests/test_sector_gate_capture.py": "381f66b6a2c84b0ba9d5a58169be1d44c4ab8cd885260a1bea25b8259503d5fd",
+    "research/risk_gate.py": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+    "research/risk_gate_ablation.py": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb"
+  },
+  "bundle": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+  "input_source_manifest": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+  "qualification": ".local/sector-gate-v1/qualification/qualified.json",
+  "input_files": {
+    "qualified_bundle": {
+      "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+      "sha256": "7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623"
+    },
+    "source_manifest": {
+      "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+      "sha256": "cd226c05e4c2e111bdef9a4ccde9d330961b53f34100968364bfda96786bc20a"
+    },
+    "execution_qualification": {
+      "path": ".local/sector-gate-v1/qualification/qualified.json",
+      "sha256": "ce6a636123f998240e910df2dfd003dfd81052ce58908fa9699d20b9d40d17fb"
+    },
+    "parent_manifest": {
+      "path": ".local/sector-comparison-issuer-v2/financial/manifest.json",
+      "sha256": "3820bbf517aefb0afbdd4e508fc691e658e3c83ed74f7b5e9fd0e1d87798907c"
+    },
+    "parent_plan": {
+      "path": "research/plans/sector-comparison-issuer-v2.frozen.json",
+      "sha256": "afb7403ebc7d5062bcb71939efab934bd3730499ef522176ee5d998c877baa4b"
+    },
+    "leaderboard_before": {
+      "path": ".local/sector-gate-v1/leaderboard-before.md",
+      "sha256": "2d2f070f8b2220846c081308d0a2ee0003c00f49ee7c1ee63d467b1aa6a1c7f8"
+    },
+    "protocol": {
+      "path": ".local/sector-gate-v1/protocol-before.md",
+      "sha256": "63442cfaa16eb8d0ae1fc98ef1daf8428b42be2e00f327de296ececb4419a9ac"
+    }
+  },
+  "start": "2017-02-01",
+  "end": "2025-12-31",
+  "warmup_start": "2016-01-04",
+  "anchor": "2017-01-31",
+  "rules": {
+    "scientific_incumbent": "vol",
+    "challenger": "gate",
+    "controls": [
+      "hold"
+    ],
+    "ranking": "unchanged parent vol:252session total return/63session annualized volatility,top3",
+    "top_n": 3,
+    "ties": "symbol ascending",
+    "capital_usd": 300000,
+    "target_gross": ".98",
+    "cash_yield": 0,
+    "borrowing": 0,
+    "fees_usd_per_nonzero_order": 1,
+    "adverse_fill_bps": [
+      5,
+      10
+    ],
+    "fill_rounding": "half-even cents",
+    "quantity": "floor(prior_NAV*.98*cap*same-day-known-split/(number_selected*prior_raw_close));sellfirst;cashfeasible",
+    "selection_timing": "monthend completed close, available by next NYmidnight, execution next trading open",
+    "cash_actions": "prior holdings entitle before open; overdue payments at open,same-day pay at close; half-even cents/event",
+    "splits": "quantity adjustment before open,no fill/fee; no held in-kind in evaluation",
+    "feature_non_cash": "XLF2016entitlement valued at contemporaneous XLREclose,warmup only",
+    "costs_limit": "constant modeled slippage,no empirical spread/impact or capacity calibration",
+    "gate": "SPY raw-close EMA50/200 +20sample-return volatility; red>=.40,yellow fast<=slow or vol>=.25; five closes<.35 red-to-yellow; five additional fast>slow and vol<.20 yellow-to-green; dd disabled",
+    "gate_warmup": "first raw2016-01-04close; unassessed until200closes,initializeyellow;preserve staged counters; not old2004seed",
+    "gate_caps": {
+      "green": 1,
+      "yellow": 0.5,
+      "red": 0,
+      "unassessed": 0
+    },
+    "rebalance": "initial,monthly,orprior-closecapchange; no daily drift retargeting; previous monthly picks reused on offcycle gate changes",
+    "selection_while_cash": "monthly ranking continues; cached picks/scores used on reentry",
+    "ceiling_limit": "target only; drifting/intraday exposure not guaranteed; red fully liquidates at next open"
+  },
+  "criteria": {
+    "minimum_relative_calmar_gain_both_costs": 0.1,
+    "cagr_not_lower": 1,
+    "drawdown_not_deeper": 1,
+    "uw_sessions_not_longer": 1,
+    "uw_days_not_longer": 1,
+    "not_simpler_control_dominated": 1,
+    "pct_point_tolerance": 1e-09
+  },
+  "temporal_contract": "reporting.temporal v1.2 recovery-inclusive duration, calendar days and censoring; initially anchored equity",
+  "annual_contract": "calendar reset using prior last close NAV;2017partial, annual Calmar uses simple annual return not CAGR",
+  "evaluation_exposure": "viewed restated development, no independent holdout; no fitting/search",
+  "native_or_broker_parity": 0,
+  "qualification_note": "9focused invented-input/mock tests;498offline suite;4actual synthetic capture probes before freeze;zero financial runs",
+  "repository": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty": 1
+  },
+  "parent_financial_attempts_closed": 8,
+  "parent_budget_reopened": 0
+}

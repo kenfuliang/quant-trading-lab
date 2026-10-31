@@ -1,0 +1,42 @@
+{
+  "study_id": "qc504-ablation-v1",
+  "status": "frozen-before-runs",
+  "created_utc": "2026-10-26T18:42:52.066043+00:00",
+  "deadline_utc": "2026-10-26T19:22:52.066043+00:00",
+  "cases": [
+    "ensemble",
+    "t10",
+    "t11",
+    "s2",
+    "s3"
+  ],
+  "max_financial_attempts": 6,
+  "max_successful_cases": 5,
+  "technical_repair_slots": 1,
+  "start": "2020-01-01",
+  "end": "2025-12-31",
+  "capital_usd": 10000,
+  "slippage_per_fill": 0.0025,
+  "fees_and_financing": "Original IB margin/fee defaults; no added funding model. Financing not qualified.",
+  "allocation": "Standalone selected sleeve QUARTER=1.0; other weight methods return empty. Ensemble unchanged QUARTER=.25. Same full portfolio budget; embedded exposure varies.",
+  "order_policy": "Original close-price whole-share sizing and next-open MOO, trade on signal-label change; no cash buffer or rejection repair.",
+  "source": "Original private clone #504 v1.1.0; frozen previous cost25 adapter",
+  "source_hashes": {
+    "ensemble": "e6dd46a6915153bbf29c02f7c6f2203a169596dd545c43fb5aff7fb6e1d408f2",
+    "t10": "2d42ce330461d76c12ecc1f2a52214af01121bea7ba7a5b1d32b5c5b57aae65d",
+    "t11": "0b0be9fece803021bcfe9b0be4a78312bfa6fbcc1797c2a3ed457c7317e9d8c0",
+    "s2": "7129e70b50ac54193435279b7e05beaa98e1eb27087f825ef0cedcfa2428cb9f",
+    "s3": "8cf57b9d616a379e155963a7bcf31c03ef3c8d3746afd5c51d3edcbd6d917b2f"
+  },
+  "input_hash": "1e051678623351b49be678b6ced879f2d5e51cfc52c8398a91f423332c7ed102",
+  "metrics": "Annual/full returns, closing DD, zero-RF daily sample Sharpe sqrt252, Calmar, carried-peak underwater fraction, longest sessions/calendar days and censoring; exposure/cash/fees/rejects.",
+  "hypothesis": "Ensemble improves downside-adjusted performance or recovery relative to best-return standalone; reject a universal superiority claim if any sleeve dominates across metrics. No unseen alpha test.",
+  "ranking": "Report raw metrics/Pareto tradeoffs; order-rejected cases conditional, missing evidence unranked. No tuned parameters after viewing.",
+  "stops": [
+    "Six total financial attempts or40-minute deadline",
+    "source/case identity mismatch",
+    "nonfinite/nonpositive NAV",
+    "missing result retained; technical-only retry within cap"
+  ],
+  "exports": "Aggregate summary metrics/P&L only; no raw/daily market data; private source retained, no publication/broker/order actions"
+}

@@ -1,0 +1,134 @@
+{
+  "cycle": "GRS-C001",
+  "standard": "GRS-1.0",
+  "status": "frozen-before-financial-results",
+  "created_utc": "2026-10-27T07:34:27.431915+00:00",
+  "design_path": "research/plans/spy-continuous-cap-development-v1.design.json",
+  "design_sha256": "bef826123183b0b0126e8a44cfafcb8199136717eb5b7f6c1d16bd978e7ab65a",
+  "cases": [
+    {
+      "id": "5bp_ema",
+      "rule": "ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_half_ema",
+      "rule": "half_ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_discrete_ema",
+      "rule": "discrete_ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_continuous_ema",
+      "rule": "continuous_ema",
+      "cost_bps": 5
+    },
+    {
+      "id": "10bp_ema",
+      "rule": "ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10bp_half_ema",
+      "rule": "half_ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10bp_discrete_ema",
+      "rule": "discrete_ema",
+      "cost_bps": 10
+    },
+    {
+      "id": "10bp_continuous_ema",
+      "rule": "continuous_ema",
+      "cost_bps": 10
+    }
+  ],
+  "max_attempts": 8,
+  "wall_seconds": 900,
+  "financial_workers": 1,
+  "automatic_retries": 0,
+  "source": {
+    "path": "reports/spy/20261024-235746-728801/source-data.json",
+    "sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+    "warmup": "2004-01-02 through 2004-12-31",
+    "evaluation_start": "2005-01-03",
+    "evaluation_end": "2025-12-31",
+    "expected_sessions": 5283,
+    "classification": "already viewed development history; no independent confirmation",
+    "new_requests": 0
+  },
+  "model": {
+    "capital": 300000.0,
+    "annual_rate": 0.06,
+    "allocation": 0.99,
+    "initial_margin": 0.5,
+    "maintenance": 0.25,
+    "cost_bps": 5.0,
+    "commission": 1.0
+  },
+  "code_hashes": {
+    "research/risk_gate.py": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+    "research/risk_gate_study.py": "ed17c7ac37e36885781619721a61205ab9806333212a786764cbbc21b790c662",
+    "research/risk_gate_analysis.py": "9cf41048f260ec690134227338df3ca870a8e01a0600c24310a57caf5804793e",
+    "research/leveraged_spy.py": "200a052fbab10d8b3f6362997b8deb8de20e8318a3dccb986e168563146b8c60",
+    "research/leverage_audit.py": "4076800bbcbf7b92b0c4c41ea73735c51e9448843a6d80927558c3941560f465",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/daily_signals.py": "3b53be69c843556869239859804227d56e8ef7b982f1f8e80fe5960bff4f2ff1",
+    "research/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "reporting/temporal.py": "74e26497f59f7406b37f42ef2f2f3a15a533cf2c33d5e3f0c7781f85983fc06d",
+    "reporting/annual.py": "5a9839aff76bde45077b73ab9baaa93627c40b9cff9e646b855eea1ed6eb1351",
+    "scripts/recursive_research_review.py": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d",
+    "requirements.txt": "024e0041677bec13c1d67dcbbf4e27923073dd0e53f80b9a70b28417857adb2c",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc",
+    "research/leverage-model.md": "d6224928351d6e50c5b1c33accf59e49928a690825076424cde60e7a727ad307",
+    "tests/test_risk_gate.py": "32de320c2e66ee709651889f2569607dea231fe79b768a5bc5b1ebb0eefedf0d",
+    "tests/test_risk_gate_analysis.py": "91633897265578ea3a1e415ab788a431ac90a1ed4ab6936cf8def9838ff5defd",
+    "tests/test_risk_gate_study.py": "7126705b2ca6bb1b9f7f513d3caae670dd5f1781c607c557c4524670fe4fa137",
+    "research/control_parity.py": "3572642662abf417542bd2bf274da69b290804c2c2272524a7ba317a5580876e",
+    "tests/test_control_parity.py": "fd19d5363926958e4b2f0dee0440652ec76e602b7f60de9cf5d5b20367910c4b",
+    "research/risk_gate_ablation.py": "b8af846648fb4f61f7db8db6ef949a4bf6b82b6ca92c99655e1d9d404a5712cb",
+    "reporting/risk_gate_review.py": "a838effc7864a37cf504939170bec180b3a5a6067474231570a3370cacb521c8",
+    "research/incremental_sizing.py": "69b25a415485c9e0216cb0268d5b36288a669a78cbdbc182a774c3f627768807",
+    "tests/test_incremental_sizing.py": "11008e4310102df8caf9370df42601cdcacbfdae7402477ff4e208db785ed567"
+  },
+  "parent_manifests": {
+    ".local/performance/risk-gate/20261025-epoch-v1": "b6b04c8545c9a25af22eb0f583d4dae0ad03dff6e2f29c515676f0e0209dfba8",
+    "reports/risk-gate/449096da9fbe1385": "99e76d57ca2912fdb9f02256a4ef378ceced25d12dc1f12d37a16d08504df80d",
+    "reports/risk-gate/97e9d442a8b83201": "c0ee72d865a2ab20a17a2989e6b2afe7fb4d60a3093580cda35739aa584097e2",
+    "reports/risk-gate/b6b57fe7077dff3b": "bf4314e20b107b654feeea3faccf122e2ddf772efcc497a14bfac0c70e2ffd1f"
+  },
+  "control_paths": {
+    "5bp_ema": "reports/risk-gate/97e9d442a8b83201/5_ema",
+    "10bp_ema": "reports/risk-gate/b6b57fe7077dff3b/10_ema",
+    "5bp_discrete_ema": "reports/risk-gate/449096da9fbe1385/5_ablate_ema",
+    "10bp_discrete_ema": "reports/risk-gate/449096da9fbe1385/10_ablate_ema"
+  },
+  "golden_standard_sha256": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "rule_contract": {
+    "ema": "Prior completed close EMA50>EMA200; full nominal1 when true else0; adjust=False, min_periods50/200; unchanged saved rule.",
+    "half_ema": "Same EMA eligibility; target0.5 when eligible else0. New matched sizing control, not the saved half_hold rule.",
+    "discrete_ema": "Frozen price-peak ablation from parent plan: set drawdown feature0 in original state recurrence, retaining EMA, sigma20, all thresholds/confirmations/caps. Do not simplify it by name.",
+    "continuous_ema": "Same EMA eligibility; target=min(1,0.20/sigma20) when eligible and sigma20>0 else0; sigma20=sample std(ddof1) of20 raw-close simple returns * sqrt252. One lag to next open. Valid zero volatility gives0; invalid/nonfinite after warmup fails preflight/stops execution. No state hysteresis, price-peak input, color-triggered caps or fitted parameters."
+  },
+  "primary_claim": {
+    "control": "discrete_ema",
+    "treatment": "continuous_ema",
+    "criterion": "At each cost, longest observed peak-to-recovery/observed-end duration strictly shorter and maximum drawdown magnitude no worse (fraction tolerance1e-10); require both costs. Failure at either cost rejects this specified historical claim; invalid evidence means unassessed, not a financial rejection."
+  },
+  "simplicity_check": {
+    "control": "half_ema",
+    "criterion": "Same-context full-path vector netCAGR maximize, MDD magnitude minimize, duration minimize. If half_ema no worse on all3 and strictly better on1 at both costs, retire added-complexity claim for continuous. Equality is no evidence to prefer complexity. Mixed results tradeoff/inconclusive; no scalar tie-break."
+  },
+  "corrections": [
+    "allocation=.99 means 99% invested budget/1% sizing reserve; original wording preserved, numerical model unchanged"
+  ],
+  "interpretation": "One sizing-policy replacement; calibration-free20%volatility parameter from prior proposal. No claim that difference isolates color discretization. All data already viewed.",
+  "bounds": "New eight-case budget only; no retries/variants/downloads/dependencies/services/imports/broker actions/publication; stop on first integrity failure.",
+  "prior_trials": "Original gate and ablation plus robustness and feature studies are cited; all-history trial count not exhaustively reconstructed. Existing design had zero allocated/executed paths.",
+  "report_policy": "Primary failure yields a negative-results lesson, not a successful-algorithm paper; independent validation and accepted growth sacrifice remain absent even on path-screen pass."
+}

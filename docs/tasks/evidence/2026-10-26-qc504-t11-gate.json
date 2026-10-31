@@ -1,0 +1,144 @@
+{
+  "study_id": "qc504-t11-gate-v1",
+  "status": "complete",
+  "missing": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "case": "ensemble",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T20:20:04.487680+00:00",
+      "source_sha256": "3a8287bbcf461b551c6fb714281c491c58b04d4139adefad9f635247bc27684b",
+      "backtest_id": "e765ba911d5367f1addf8e9e140b6a93"
+    },
+    {
+      "attempt": 2,
+      "case": "t11",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T20:21:12.850892+00:00",
+      "source_sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d",
+      "backtest_id": "89a43cf6901a6d40877f5045a1d63ceb"
+    },
+    {
+      "attempt": 3,
+      "case": "gated_t11",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T20:22:35.022336+00:00",
+      "source_sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa",
+      "backtest_id": "0f58294f8b09ea6cd4383773a7d70c9a"
+    }
+  ],
+  "attempts_used": 3,
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "engine_evidence": {
+    "ensemble": [
+      "2019-02-26 00:00:00 Launching analysis for e765ba911d5367f1addf8e9e140b6a93 with LEAN Engine v2.5.0.0.18209",
+      "2025-12-31 16:00:00 Algorithm Id:(e765ba911d5367f1addf8e9e140b6a93) completed in 12.81 seconds at 9k data points per second. Processing total of 114,532 data points."
+    ],
+    "t11": [
+      "2019-02-26 00:00:00 Launching analysis for 89a43cf6901a6d40877f5045a1d63ceb with LEAN Engine v2.5.0.0.18209",
+      "2025-12-31 16:00:00 Algorithm Id:(89a43cf6901a6d40877f5045a1d63ceb) completed in 8.46 seconds at 14k data points per second. Processing total of 114,532 data points."
+    ],
+    "gated_t11": [
+      "2019-02-26 00:00:00 Launching analysis for 0f58294f8b09ea6cd4383773a7d70c9a with LEAN Engine v2.5.0.0.18209",
+      "2025-12-31 16:00:00 Algorithm Id:(0f58294f8b09ea6cd4383773a7d70c9a) completed in 10.65 seconds at 11k data points per second. Processing total of 114,532 data points."
+    ]
+  },
+  "closed_utc": "2026-10-26T20:23:39.416875+00:00",
+  "control_parity": {
+    "ensemble": {
+      "end": 0.0,
+      "cagr": 0.0,
+      "dd": 0.0,
+      "sharpe": 0.0,
+      "calmar": 0.0,
+      "longest_uw": 0,
+      "fills": 0,
+      "rejects": 0,
+      "financing_usd": 0.0
+    },
+    "t11": {
+      "end": 0.0,
+      "cagr": 0.0,
+      "dd": 0.0,
+      "sharpe": 0.0,
+      "calmar": 0.0,
+      "longest_uw": 0,
+      "fills": 0,
+      "rejects": 0,
+      "financing_usd": 0.0
+    }
+  },
+  "gate_tradeoff": {
+    "drawdown_reduction_pp": 14.358589317237524,
+    "gap_above_30pct_pp": 6.897785801034134,
+    "cagr_retention": 0.7690346604328563,
+    "terminal_wealth_retention": 0.44619043914819145,
+    "longest_underwater_change_sessions": 53,
+    "reached_30pct": false
+  },
+  "failed_acceptance": [],
+  "validation": {
+    "offline_check": "make check exit0;297 tests passed, docs/dependencies passed",
+    "browser": "All six annual metric views and underwater/Calmar sorting verified",
+    "source_restoration": {
+      "project_id": 38484741,
+      "restored_source": ".local/qc504-funded-v1/ensemble-source.py",
+      "verification": "Exact clipboard comparison after save",
+      "exact": true,
+      "extra_backtests_after_restore": 0
+    }
+  },
+  "checks": [
+    "Checksummed complete fragments",
+    "Three matching session and RAW gate input hashes",
+    "Fresh controls reproduce prior financial metrics",
+    "Annual/full NAV compounding and Sharpe moments",
+    "Annual/full Calmar and underwater counts",
+    "Annual/full financing and same-step NAV debit",
+    "Native PnL plus financing residual within10cents"
+  ],
+  "limits": [
+    "Inspected2020\u20132025 development history; no untouched OOS evidence",
+    "SPY market gate caps all T11 holdings, including inverse/volatility hedges",
+    "No equal-exposure control; cannot isolate timing skill from reduced exposure",
+    "MOO and staged rotation delay; gate is not a guaranteed drawdown stop",
+    "Daily close drawdown omits intraday risk",
+    "Native plus financing reconciliation is not independent fill/cash reconstruction",
+    "6pct fixed debit ACT/360, not historical broker schedule; credit interest zero",
+    "Embedded ETF leverage/expenses remain in prices; capacity and live parity unqualified"
+  ],
+  "source_hashes": {
+    "ensemble": "3a8287bbcf461b551c6fb714281c491c58b04d4139adefad9f635247bc27684b",
+    "t11": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d",
+    "gated_t11": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+  },
+  "code_sha256": {
+    "scripts/prepare_qc504_gate.py": "ac69ea085226111ec5422043a9dcbecac5d1e5f15a7fc648535eaa8a8b17524b",
+    "scripts/qc504_gate_budget.py": "0354a3c9af612f5805a1da970822685bb56817a59382839c9ac430cb3742bfff",
+    "scripts/parse_qc504_gate_fragments.py": "5463968b993b4bd3319527ba049201b2745868165fe8cce30a124ff94b9d3c72",
+    "scripts/build_qc504_gate.py": "e305afc1841c5941a98eac0fafdcbb808822cb17aa4ef99d3129f1e28225cd39",
+    "scripts/build_qc504_ablation.py": "65f13aaaf8033e9331fbb22a02b5871284e3357a63427fc0b4d788f12fc5ade4",
+    "research/quantconnect/t11_gate_policy.py": "e14efca421ecb9cee54b2e00be2ac8859b1b8d3e3f9a8e9da17f755a8c2e5b1c",
+    "research/quantconnect/sector_comparison.py": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4",
+    "research/quantconnect/qc504_funded_policy.py": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/plans/qc504-t11-gate-v1.json": "21b832c870106805503cbcab8a2d33644a6cbec3a8bc23cb3580e6ce1c8a644b",
+    "tests/test_qc504_gate.py": "59d6d73995f32fc36ac7c9c0c86479173c383de29abf84225d2898717192de44"
+  },
+  "artifacts": {
+    "t11-summary-cells.json": "db5d720d1a109ed474ef2e6fbebcc92554d321d1bf1d14c5e708e94bc31fda7a",
+    "ensemble-summary-cells.json": "0a954cd79aa71660cc341c9a1e00683ecd2c1a9a2eb7b03a70d31592f25c0bf6",
+    "gated_t11-summary-cells.json": "edf5b748ed4166a1a88f195389ea262965553c1ee1ec36f68e436941d0ad9eb8",
+    "gated_t11-terminal-fragments.json": "0e522e80ced1c77b2208eec270a5b7bad13f2757b20de421675da63301bbf06e",
+    "t11-terminal-fragments.json": "4b16f96f2b844d1facbb076b5a1497543c327f27d4b95e743ed596c61aaaf32e",
+    "ensemble-terminal-fragments.json": "df0cbb141e4150642b00e2983013b5438ef4fe7ddc2a45311be54bb3d5f6413e",
+    "gated_t11-engine-evidence.json": "ed36fd5d33ac4c25b96c1ac128f2ab42390bd67028b64310c8e17d0aba793eef",
+    "t11-engine-evidence.json": "c7e57ecca898bbe18b0f37476c037575fae0b8eb73ac9dec22af4f0567e1048c",
+    "ensemble-engine-evidence.json": "76f13695a42fd64c81a883b88c3e9b6922ee9b6f4eb9dae74681628e75f6ffd4",
+    "attempts.json": "ee543a5383c5e60795e50ebe168af22fd29bce49ac3905106847dce8e2d9fc1f",
+    "browser-check.json": "fae185fc52e5e3f7b40522252a23d759108ac3c6f1aa2555d2ac10d6e80f7ce1",
+    "source-restoration.json": "b535962bd7b317481a554480645cce07449912bd06659e5087c6e188313f6314",
+    "final-check.log": "47880e7de15ec49610eac61eb9d4ab93ccd703e2b3e62d6e94b2c4f7453ee11e"
+  }
+}

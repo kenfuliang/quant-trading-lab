@@ -1,0 +1,119 @@
+{
+  "study": "stock-pairs-spy-v1",
+  "status": "frozen-before-probe-and-financial-runs",
+  "created_utc": "2026-10-27T06:03:00.824398+00:00",
+  "deadline_utc": "2026-10-27T07:33:00.824398+00:00",
+  "max_total_attempts": 6,
+  "technical_retry_slots": 2,
+  "cases": [
+    "probe",
+    "spy",
+    "pairhold",
+    "pairs"
+  ],
+  "project_id": 38514439,
+  "expected_engine": "2.5.0.0.18209",
+  "source_hashes": {
+    "probe": "313012764521a81840df63122f459815d710d8cca56537ac59f333ccb0e2e413",
+    "spy": "cc75b0b6392d086a3f79cf5cb0dafcf0c1b8f8f8a6998f868fdb5395f2f5458d",
+    "pairhold": "a3842b0982a4fbb826531970a02c0706c5e2a6cfa1f92b025027e870230f88a5",
+    "pairs": "02e0e6ea7948557f15c347f89e072ce5859f46f833ea6f3b4d71d7a5721f3ea2"
+  },
+  "input_hashes": {
+    "research/pairs_study.py": "a0d77aabe1cdcfdedf9161dcb790cc06b6c191e5459502c77b6060bddf1ce246",
+    "scripts/pairs_study.py": "7359e6093a7fce3a7ac32a99fbf6fb10812c2bf73f61f669d748fd1ac1186182",
+    "research/quantconnect/sources/stock_pairs_original.py": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471",
+    "research/quantconnect/sources/LICENSE-JeSuisTM.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/quantconnect/capm_study.py": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/capm_review.py": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc"
+  },
+  "git": {
+    "cwd": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we",
+    "branch": "codex/rsi-gate-robustness",
+    "sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty": true
+  },
+  "negative_baselines": [
+    {
+      "study": "capm-ablation-v1",
+      "manifest_path": ".local/performance/capm-ablation-v1/manifest.json",
+      "manifest_sha256": "01cc2398e30ddfa1f5ac30f186c868856fe8a94644c1e882ff8216d116c00111"
+    },
+    {
+      "study": "dual-thrust-spy-v1",
+      "manifest_path": ".local/performance/dual-thrust-spy-v1/manifest.json",
+      "manifest_sha256": "9eae4b7e5c675a982cef8f7dc88f8aaefc5368cf0ddf4c54ba7c6334a0f4e0ec"
+    }
+  ],
+  "source": {
+    "tutorial_id": "QC-T-15300",
+    "package": "stock-pairs",
+    "repo": "je-suis-tm/quant-trading",
+    "revision": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "path": "Pair trading backtest.py",
+    "license": "Apache-2.0 repository grant; original bytes and accompanying license preserved",
+    "relation": "Independent mechanism alternative; declared causal NVDA/AMD adaptation, not exact hosted tutorial or original 2013-2014 reproduction"
+  },
+  "context": {
+    "window": [
+      "2016-01-01",
+      "2025-12-31"
+    ],
+    "capital_usd": 300000,
+    "training": "For every close use exactly250 strictly prior aligned sessions from600calendar-day daily-history requests; SCALED_RAW normalizes only actions known by current decision time. Current close is excluded from fitting; used only for residual scoring. No pre-2016 trades or NAV; 2015 history seeds features.",
+    "signal": "Regress AMD(Y) on NVDA(X) in price levels plus constant. Cointegration-specific statsmodels.coint, trend c, maxlag5, AIC; require p<.05, beta>0 and negative lag-residual coefficient in the source-inspired error-correction regression. Compute current dimensionless residual z using prior-sample mean/sample SD. Flat enters longX/shortY at z>=1, inverse at z<=-1. Retain direction until zero crossing or gate fails, then cash. Daily refitting/rebalancing; no parameter grid or maximum holding stop.",
+    "execution": "After close t queue percentage weights for next session9:32; raw current prices determine native quantities. Hedge shares ratio beta translated into dollar weights using decision prices; absolute target weights sum.98. Native ordered reductions/increases; final-close queued signal is unexecuted, no forced terminal liquidation. Holdings may drift beyond targets.",
+    "controls": "spy:98% SPY purchase once at Jan5,2016 9:32 after first shared Jan4 close; pairhold:49%NVDA+49%AMD at that same time, no rebalance. All cases subscribe to all3symbols and fit the same features to audit parity. Pairhold diagnoses long-asset opportunity cost, not a net/beta/exposure-matched control.",
+    "costs": "Native IB commissions + fixed5bp/fill and native quote/fill defaults. Native raw-mode splits and dividend cash credits/debits, including short dividends. Funding6%ACT/360 prior-closing-negativecash,zero credit,native interest disabled. Short borrow3%ACT/365 on previous-event short notional times UTC elapsed seconds including overnight/weekends; native historical availability/locates assumed, not verified. Taxes/locate/recall/capacity not modeled.",
+    "data": "Free hosted US equities/security-master history and minute bars. RAW execution avoids future full-history normalization; SCALED_RAW fit data uses known actions. Existing account access must pass a zero-order probe over all2514sessions and both NVDA splits. Only own aggregates/counts/hashes exported, no raw market paths.",
+    "metrics": "Full/annual return, closing DD, sample-daily zeroRF Sharpe sqrt252, full calendar-CAGR/absDD and annual return/absDD Calmar, UWfraction/longest sessions/calendar days/terminal censoring. Additional minute-mark DD, mean/max gross, mean net, short minute count, eligible-day fraction, dividends/borrow/fees and daily native book residual."
+  },
+  "risks": [
+    "Original full-sample max-price sizing is future aware; source ADF residual p-value uses inappropriate ordinary unit-root reference after estimated regression; trigger bands mix z and price SD, holding state resets daily. All repaired as declared mechanism adaptation.",
+    "The source-selected NVDA/AMD pair is an ex-post surviving pair and already discussed in2018; 2016-2025is viewed development history, not untouched selection validation.",
+    "Cointegration gate assumes I(1), has rolling multiple-testing/relationship-breakdown risks and is not a stable-profits certificate. No broad pair search or inference of causality from PnL."
+  ],
+  "hypothesis": "A causal cointegration-gated pair offers useful positive net risk-adjusted performance versus SPY after realistic stated friction assumptions.",
+  "primary_estimand": "Full Calmar(pairs)-Calmar(SPY), conditional on positive pair CAGR; growth and temporal criteria are separately fixed diagnostics.",
+  "decision_rule": {
+    "growth": "Retain for independent validation only if CAGR>SPY,Calmar>=SPY,longestUW<=SPY.",
+    "risk_alternative": "Retain as a risk-research alternative only if CAGR>0,Sharpe>=SPY,DD<SPY,longestUW<=SPY. If neither screen passes, stop this fixed adaptation; no retuning on viewed history.",
+    "drawdown": "Closing or minute DD>30% flags reassessment, not hard loss bound."
+  },
+  "gates": [
+    "Free zero-order probe:10annual checkpoints,250strict-prior aligned history observations each day,2514ready sessions,raw normalization,actual dependencies/nativeIBmodel,zero orders,>=2NVDA splits and>=30NVDA/SPY dividend events.",
+    "Fresh SPY must reconcile before two other finance cases. All4fit hashes and3financial calendars/minute counts must match. Native daily/lifetime book residual<=USD2; fee/lastmarkresidual<=USD.01; no invalid/pending orders/nonpositive NAV."
+  ],
+  "stops": [
+    "Reserve before every launch;<=6total attempts,<=2technical retries;deadline90minutes. Failures count; source/build/engine drift stops dependent runs until explicit archived technical amendment.",
+    "No financial run if input gate blocked. No results-driven asset/parameter/cost search, paid resources, dependencies, new services, MLflow import, agents, broker/account/order operations, commits or publication."
+  ],
+  "technical_amendments": [
+    {
+      "created_utc": "2026-10-27T06:06:40.137887+00:00",
+      "kind": "early-close-history-request-only",
+      "reason": "300-bar count request stopped on2016-11-25early close before any financial case. Reuse existing600calendar-day workaround, still select exactly250strict-prior aligned observations; no financial rule/threshold/cost change.",
+      "archive": ".local/stock-pairs-spy-v1/superseded/attempt1",
+      "old_plan_sha256": "593a7a652f05ce78f4e001db6b59fdb575ebe273edf9ea56c78048a660b26559",
+      "budgets_unchanged": true,
+      "financial_cases_observed": 0
+    },
+    {
+      "created_utc": "2026-10-27T06:11:45.454614+00:00",
+      "kind": "local-enum-display-audit-only",
+      "reason": "Actual engine emits RAW instead of Raw. Normalize enum-name capitalization in local audit; every generated source remains byte-identical. No new hosted attempt or financial result.",
+      "archive": ".local/stock-pairs-spy-v1/superseded/enum-audit",
+      "generated_sources_unchanged": true
+    },
+    {
+      "created_utc": "2026-10-27T06:12:42.817775+00:00",
+      "kind": "pre-financial-utc-borrow-clock-correction",
+      "reason": "Review before any financial launch found local naive elapsed clock could miss DST hours. Use UTC elapsed seconds in financial cases; same3%ACT365 model. Actual zero-order probe source is byte-identical; fitting and all probe checks unchanged. No additional hosted attempt.",
+      "archive": ".local/stock-pairs-spy-v1/superseded/pre-financial-utc-audit",
+      "financial_cases_observed": 0,
+      "probe_source_unchanged": true
+    }
+  ]
+}

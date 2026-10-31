@@ -1,0 +1,54 @@
+{
+  "schema": "residual-readiness/v1",
+  "cycle_id": "RM-20261030-01",
+  "status": "financial_comparison_blocked",
+  "stock_manifest": {
+    "path": "data/manifests/spy-equities-2016-2025-v1.json",
+    "sha256": "95602e7332a5cb9ac34e6334f1e9c624cfbd62d8f8b66d40e309034a685e6adf",
+    "dataset_id": "spy-equities-2016-2025-v1",
+    "status": "acquisition_complete_conditional_price_data",
+    "financial_comparison_eligible": false,
+    "corporate_actions": "not_acquired",
+    "instruments_cataloged": 500
+  },
+  "gates": {
+    "qualified_stock_actions": false,
+    "pit_membership": "not established; current 2026 holdings cohort",
+    "factor_vintage_and_availability": "not qualified; no factor-data acquisition in this cycle",
+    "factor_data_reuse_rights": "not established by free access",
+    "captured_residual_financial_runner": "not implemented; prototype produces proposals only"
+  },
+  "sources_reviewed": [
+    {
+      "kind": "paper",
+      "url": "https://pure.eur.nl/ws/files/46882404/ResidualMomentum-2011.pdf",
+      "finding": "36-month FF3 regression, 11-month residual signal excluding last month and fitted alpha; independent mathematical prototype only; original long-short result not reproduced"
+    },
+    {
+      "kind": "factor-data provider",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "archive_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/Data_Library/f-f_factors_archive.html",
+      "finding": "annual vintage archives show July cuts released August (exceptions possible); not a complete monthly publication/revision schedule; FIZ/CIZ methodology changed in 2025"
+    },
+    {
+      "kind": "implementation candidate",
+      "url": "https://github.com/ArturSepp/OptimalPortfolios/blob/1d6e128b57b1ba75cd08b4ac8a27e95166a6e1fb/src/optimalportfolios/alphas/signals/residual_momentum.py",
+      "license_url": "https://github.com/ArturSepp/OptimalPortfolios/blob/1d6e128b57b1ba75cd08b4ac8a27e95166a6e1fb/LICENSE",
+      "finding": "both pages failed to fetch, cache miss; source/license not verified or imported"
+    }
+  ],
+  "resource_usage": {
+    "implementation_candidates": 1,
+    "factor_sources": 1,
+    "financial_attempts": 0,
+    "market_data_downloads": 0,
+    "source_imports": 0,
+    "broker_connections": 0,
+    "new_dependencies": 0
+  },
+  "limitations": [
+    "Manifest review is not a new 500-stock row-by-row audit.",
+    "No exhaustive filesystem claim about absence of factor data; no qualified factor panel supplied to this cycle.",
+    "No financial performance or paper readiness established."
+  ]
+}

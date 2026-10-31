@@ -1,0 +1,18 @@
+{
+  "schema": "sector-execution-qualification-v1",
+  "status": "passed",
+  "frozen_plan": {
+    "path": "research/plans/sector-comparison-issuer-v2.frozen.json",
+    "sha256": "afb7403ebc7d5062bcb71939efab934bd3730499ef522176ee5d998c877baa4b"
+  },
+  "qualification": {
+    "path": ".local/sector-comparison-issuer-v2/qualification/qualified.json",
+    "sha256": "415a88485ba0d8fd304f50de6dfa0339f55281a33aa7d4ab61d9a700f79b2122"
+  },
+  "financial_runs": 0,
+  "synthetic_launches": 4,
+  "offline_tests": 489,
+  "fixed_financial_attempt_cap": 8,
+  "original_blocked_goal_not_reopened": true,
+  "native_or_broker_parity": false
+}

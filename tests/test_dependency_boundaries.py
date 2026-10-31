@@ -135,6 +135,39 @@ class DependencyBoundaryTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn('Dependency boundary check passed', result.stdout)
 
+    def test_paper_seams_allow_attributes_not_descendant_modules(self):
+        self.source('research/studies/bridge/__init__.py', 'VALUE = 1\n')
+        self.source('research/studies/bridge/unsafe.py', 'VALUE = 2\n')
+        self.source('paper_trading/probe.py', 'from research.studies.bridge import VALUE\n')
+        self.manifest['paper_research_seams'] = ['research.studies.bridge']
+        self.write_manifest()
+        self.assertEqual(check(self.root)[0], [])
+        self.source('paper_trading/probe.py', 'from research.studies.bridge.unsafe import VALUE\n')
+        self.assertIn('paper_trading cannot import', self.messages())
+        self.source('research/studies/unlisted.py', 'VALUE = 3\n')
+        self.source('paper_trading/probe.py', 'from research.studies.unlisted import VALUE\n')
+        self.assertIn('paper_trading cannot import', self.messages())
+
+    def test_reviewed_loader_is_exact_file_hash_and_loader_kind(self):
+        name = 'paper_trading/preview.py'
+        path = self.source(name, 'import runpy\nrunpy.run_path("private.py")\n')
+        def approve():
+            self.manifest['reviewed_opaque_loaders'] = {
+                name: {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'reason': 'synthetic reviewed loader'}}
+            self.write_manifest()
+        approve()
+        self.assertEqual(check(self.root)[0], [])
+        path.write_text(path.read_text() + '# changed bytes\n')
+        self.assertIn('opaque code loading', self.messages())
+        for code in ['exec("pass")\n', 'import runpy\nrunpy.run_module("private")\n']:
+            path.write_text(code)
+            approve()
+            self.assertIn('opaque code loading', self.messages())
+        path.write_text('import runpy\nrunpy.run_path("private.py")\n')
+        approve()
+        self.source('paper_trading/other.py', path.read_text())
+        self.assertIn('other.py', self.messages())
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: research-maintainers
 ---
 
@@ -106,3 +106,37 @@ preflight, implementation and scoped evaluation. Direct synthetic component chec
 are engineering verification, not financial execution through the RSI coordinator.
 The existing adapter restriction remains: only fixed synthetic and saved-read-only
 adapters are supported; adding a skill does not register a financial runner.
+
+## Research management
+
+Use the catalog to invoke `/ask-pm` for advisory coordination or
+`trade-research-management` for an authorized durable closure. The manager checks
+cycle ownership, completed attempts, failed/partial evidence, remaining budget and
+next prerequisites; it cannot replenish a closed program or declare readiness from
+a high score. A missing input is a named blocker, not permission to launch another
+cycle. Consultation does not launch agents.
+
+Before closing a new cycle, validate its receipt using the
+[GRS receipt contract](../research-standard.md#experiment-receipt-contract).
+Retain the actual validation exit and findings. Validation checks structure and
+referenced bytes, not scientific truth. Historical cycles retain their originals;
+compatibility findings must identify unavailable fields without inventing them.
+Capture case names, exact run/build identities and exports when results arrive,
+not after the browser session or source version has been lost.
+
+## Leaderboard closure contract
+
+Every completed research cycle records a disposition in the
+[single leaderboard](../leaderboard.md), whose table remains first and unique.
+Update the existing matching study/case row with evidence status, tags, failures
+and lessons, or add a new measured case in its comparison context. Keep Calmar,
+CAGR, drawdown and time underwater visible using the
+[scoring definitions](../research-scoring.md). Do not treat another period, exposure
+or accounting convention as a comparable rank.
+
+For a workflow-only, blocked or invalid cycle with no new performance measurement,
+record an explicit **no metric-row change** disposition in its task/receipt and
+link that closure from the explanation below the existing leaderboard table.
+Do not manufacture a zero-return row, duplicate an incumbent, or overwrite saved
+metrics. Research-version decisions remain subject to GRS; broker readiness is a
+separate review under the applicable paper SOP.

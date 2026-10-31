@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-25",
+  "dataset_id": "spy-equities-2016-2025-v1",
+  "status": "acquisition_complete_conditional_price_data",
+  "universe_kind": "current_SPY_equity_holdings_proxy_not_historical_membership",
+  "holdings_asof": "2026-10-22",
+  "universe_equities": 503,
+  "excluded_non_equity_holdings": 2,
+  "issuer_file_sha256": "df96332ee05f95e11cdfb3a69991b162bfb349564e91010333840a35373a708a",
+  "window": {
+    "start": "2016-01-01",
+    "end": "2025-12-31",
+    "expected_sessions": 2514
+  },
+  "quality_counts": {
+    "structural_full_window": 459,
+    "structural_partial_window": 41,
+    "unavailable": 3
+  },
+  "unavailable_symbols": [
+    "FDXF",
+    "HONA",
+    "VYLR"
+  ],
+  "rows_cataloged": 1212539,
+  "instruments_cataloged": 500,
+  "http_attempts": 130,
+  "response_bytes": 130621651,
+  "elapsed_seconds": 192.59919408301357,
+  "limits": {
+    "requests": 240,
+    "bytes": 250000000,
+    "acquisition_seconds": 900
+  },
+  "local_manifest": "data/manifests/spy-equities-2016-2025-v1.json",
+  "local_catalog": "data/catalog/spy-equities-2016-2025-v1",
+  "local_coverage": "data/normalized/spy-equities-2016-2025-v1-coverage.csv",
+  "coverage_sha256": "3cdb3989d36c24399463fd9d70be4d98160a1e248775bd6f05b293980f783a9e",
+  "audit": {
+    "manifest_sha256": "95602e7332a5cb9ac34e6334f1e9c624cfbd62d8f8b66d40e309034a685e6adf",
+    "artifact_hashes_verified": 1635,
+    "native_catalog_bars_verified": 1212539,
+    "native_catalog_instruments": 500,
+    "method": "all final catalog bars compared by native value and timestamp signature against frozen normalized rows in batches of 20 symbols",
+    "passed": true
+  },
+  "source_hashes": {
+    "code_sha256": "ee0b265276879098e9c1fb424cad3061fa1d18d3b387bf77b25d1757b61cc472",
+    "pilot_helper_sha256": "4d9d6ddb9c6fb61044675a1c81120151f1148ae663175ff3e98ef80127be78d2",
+    "calendar_sha256": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd"
+  },
+  "validation": {
+    "offline_tests_passed": 272,
+    "make_check_exit": 0,
+    "network_used_by_tests": false,
+    "docs_check": "passed: 95 files",
+    "diff_check": "passed",
+    "prior_work_preservation": "passed: only intended README and data contract changed",
+    "credential_scan": "passed: actual credential value comparison across six task files"
+  },
+  "financial_comparison_eligible": false,
+  "limitations": [
+    "Current holdings viewed backward: survivor-selected, no historical membership or delisting qualification.",
+    "Raw prices: corporate-action and identity-history qualification incomplete.",
+    "Partial coverage does not establish listing dates.",
+    "No financial backtest or broker/account/order operations in this acquisition.",
+    "Source-use and redistribution scope unqualified; price and holdings data kept local."
+  ]
+}

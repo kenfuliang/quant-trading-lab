@@ -1,0 +1,86 @@
+{
+  "study": "dual-thrust-spy-v1",
+  "status": "frozen-before-financial-runs",
+  "created_utc": "2026-10-27T05:39:12.416403+00:00",
+  "deadline_utc": "2026-10-27T07:00:45.436933+00:00",
+  "expected_engine": "2.5.0.0.18209",
+  "project_id": 38513705,
+  "cases": [
+    "spy",
+    "intraday",
+    "dual"
+  ],
+  "max_total_attempts": 5,
+  "technical_retry_slots": 2,
+  "aggregate_task_max_attempts": 6,
+  "parent_budget_path": ".local/gscore-spy-v1/budget.json",
+  "parent_budget_sha256": "0be2f45e28b2050863c98a1f58ff982cf2324cdc8a55e32ec45686e1f01a76b5",
+  "source_hashes": {
+    "spy": "fa91b49453e213317257eea51903152383734fc0b7d108371ad8fefff1f8ea7e",
+    "intraday": "8be2617b2c20b1fe00f64e9ca5a91aeabe3eff400576b2288ca7eaffe2145e7a",
+    "dual": "6bb5601d131812ec574f129f4ee3b109fb1081c153dc33f8f1beb0fd39850fbc"
+  },
+  "input_hashes": {
+    "research/dual_thrust_study.py": "37a1c7cf300be75a0ac48737646f5b71409aa47dc7ccfb8cbd0120212da9f158",
+    "scripts/dual_thrust_study.py": "e92472a83474866d61b2a54674a493c9deabb97389d4d14d5701d67d9d269ab0",
+    "research/quantconnect/sources/dual_thrust_fx_original.py": "58971b1adc9416803338f973a9064b8cfc813f7b8929c2eb9a27a927c2657555",
+    "research/quantconnect/sources/LICENSE-JeSuisTM.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "research/quantconnect/capm_study.py": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/capm_review.py": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a"
+  },
+  "fallback": "G-score blocked after one zero-order probe by retired quarterly ROA and known legacy ratio-date look-ahead. No G-score financial outcome observed. Same aggregate6attempt ceiling and original90minute deadline; new candidate frozen before its outcomes.",
+  "source": {
+    "tutorial_id": "QC-T-15258",
+    "package": "dual-thrust-fx",
+    "repo": "je-suis-tm/quant-trading",
+    "revision": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "path": "Dual Thrust backtest.py",
+    "license": "Apache2.0 repository grant preserved with source.",
+    "defect": "min2day rolling range includes the current session; signal_generation reads it at the session open. Causal adaptation lags to five fully completed prior sessions."
+  },
+  "context": {
+    "window": [
+      "2016-01-01",
+      "2025-12-31"
+    ],
+    "seed": [
+      "2015-12-21",
+      "2015-12-31"
+    ],
+    "capital_usd": 300000,
+    "algorithm": "SPY regular-session upper/lower=first observed minute open \u00b10.5*max(HH-LC,HC-LL) over previous5completed regular sessions only. Completed-minute close >upper targets+98%; <lower targets-98%; inside band retain direction. Execute prior decision at next minute; reset and liquidate5min before actual session close, including early closes.",
+    "control": "spy: one98% purchase after first2016minute decision, nextminute fill, hold; intraday:98% long from same nextminute entry every session until5min before actual close. Same market-data clock/fees/financing, no forced terminal liquidation for hold.",
+    "cost": "Native IB commissions + fixed5bp slippage per fill with native bid/ask/fills. Assumptions, not observed execution or capacity.",
+    "funding": "6% ACT/360 on prior closing negative cash, zero credit; native per-security interest disabled. Short borrow at fixed3% ACT/365 accrued using previous-minute short notional and elapsed seconds; unrestricted simulated SPY availability assumed, not verified historical locates. No overnight short/dividend exposure permitted.",
+    "data": "Existing free hosted SPY minute equity/quote/action feed; no fundamental or paid inputs, new downloads/installs/services. Seed is never traded. Only own metrics/counts/hashes exported; dense prices/NAV remain hosted.",
+    "metrics": "Same full/annual return, closing DD, zeroRF sample daily Sharpe sqrt252, fullCAGR/absDD and annualreturn/absDD Calmar, UWfraction, longest sessions/calendar days and terminal censoring. Additional full minute-mark DD, mean/max minute gross and long/short minute counts because closing gross is zero for intraday cases."
+  },
+  "hypothesis": "A causal symmetric opening-range breakout improves net growth/risk tradeoff beyond holding SPY and a same-session long control.",
+  "primary_estimand": "Dual full net CAGR minus SPY CAGR; intraday-control excess CAGR and risk/temporal measures are joint diagnostics.",
+  "decision_rule": "Retain only for further validation if dual CAGR>SPY, Calmar>=SPY, longestUW<=SPY and CAGR>intraday control; otherwise do not call it an improvement or retune. Intraday/closing DDabove30% flags reassessment; no promotion/annual-doubling claim.",
+  "data_gate": "Prior CAPM free-SPY data probe/financial audits established hosted access. Fresh SPY control must pass native accounting/calendar plus2514five-prior-session readiness checks before candidate/control variants. All3range/calendar hashes and minute counts must match.",
+  "history": "Viewed2016-2025development history; no fitting, unseen holdout, strategy/cost grid or trained RL advantage.",
+  "stops": [
+    "Aggregate6attempts includes closed G-score1; fallback at most5attempts for3cases+2technical retries, original deadline unchanged.",
+    "Reserve before launch; stop/flag source/build/version drift, wrong calendar/range, rejected/pending orders, nonpositiveNAV, any unplanned overnight position or accounting failures.",
+    "No paid resources, broker/account operations, live/paper orders, dependencies, new services, MLflow import, agents, commits or publication."
+  ],
+  "negative_baseline": {
+    "study": "capm-ablation-v1",
+    "manifest_path": ".local/performance/capm-ablation-v1/manifest.json",
+    "manifest_sha256": "01cc2398e30ddfa1f5ac30f186c868856fe8a94644c1e882ff8216d116c00111",
+    "disposition": "Preserve as negative baseline; no changes or reruns. Different new execution/cost context prevents combining old CAPM results in one leaderboard."
+  },
+  "technical_amendments": [
+    {
+      "created_utc": "2026-10-27T05:46:44.635941+00:00",
+      "kind": "passive-fee-model-observation-only",
+      "reason": "Closing-only fee observation is empty for flat-at-close intraday strategies. Capture actual model on filled events for intraday and dual cases; no financial logic changes. SPY generated source stays byte-identical.",
+      "old_plan_sha256": "ac158e87732c10895f22257a00a0555a421ba5897bf8daae48fdb41e755a3978",
+      "archive": ".local/dual-thrust-spy-v1/superseded/attempt2",
+      "budget_deadline_rules_unchanged": true,
+      "reproduction_required": "All11intradaymetricrecords must equal the preserved first completed path."
+    }
+  ]
+}

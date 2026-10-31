@@ -1,0 +1,117 @@
+{
+  "schema": "sector-issuer-qualification-v1",
+  "utc": "2026-10-28T22:03:39.141435+00:00",
+  "status": "data_and_synthetic_accounting_qualified_execution_pending",
+  "qualified_bundle": {
+    "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+    "sha256": "7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623"
+  },
+  "source_manifest": {
+    "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+    "sha256": "cd226c05e4c2e111bdef9a4ccde9d330961b53f34100968364bfda96786bc20a"
+  },
+  "cash_actions": 442,
+  "in_kind_actions": 1,
+  "split_actions": 5,
+  "missing_pay_dates_filled": 160,
+  "provider_missing_distributions_restored": 11,
+  "restored_SPY_dates": [
+    "2016-03-18",
+    "2018-06-15"
+  ],
+  "provider_duplicate_dates": 3,
+  "payment_date_conflicts_resolved_issuer_primary": 2,
+  "amount_conflicts_preserved_issuer_primary": 4,
+  "excluded_zero_issuer_rows": [
+    {
+      "symbol": "XLRE",
+      "ex_date": "2016-09-16",
+      "pay_date": "2016-09-26",
+      "source_row": "12230",
+      "reason": "issuer_explicit_zero_distribution",
+      "amount": "0"
+    }
+  ],
+  "unresolved_payment_dates": 0,
+  "unmatched_provider_event_keys": [],
+  "source_requests": 10,
+  "source_response_bytes": 14888938,
+  "source_failures_preserved": [
+    {
+      "name": "split-faq",
+      "error_type": "ValueError",
+      "http_status": null
+    },
+    {
+      "name": "xlf-sec",
+      "error_type": "HTTPError",
+      "http_status": 403
+    }
+  ],
+  "qualification_failures_preserved": [
+    {
+      "attempt": "initial reconciliation invocation",
+      "status": "failed_before_parsing",
+      "exception": "ModuleNotFoundError: No module named research",
+      "cause": "Direct .local script launch does not include repository root on import path",
+      "original_capture": "conversation tool output; not a fabricated on-disk stderr capture",
+      "remedy": "Run identical script with explicit PYTHONPATH=.",
+      "financial_runs": 0
+    },
+    {
+      "attempt": "reconciliation attempt2",
+      "failure": "issuer explicit zero distribution rejected by overstrict positive-only parser",
+      "stderr_path": ".local/sector-issuer-qualification-20261028/reconcile-attempt2.log",
+      "remedy": "Preserve XLRE2016-09-16zero row as explicit excluded nonpayment; no cash fabricated",
+      "financial_runs": 0
+    },
+    {
+      "attempt": "input qualification attempt1",
+      "failure": "Path.relative_to on relative price path; failed before final bundle creation",
+      "original_method_sha256": "2fcee6ecb1ac5afc51cbf222eb382615dc265f1aa089451402ecc3bf1e5fa641",
+      "partial_artifacts_preserved": [
+        "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/calendar.csv",
+        ".local/sector-issuer-qualification-20261028/xlf-primary-filing-review.json"
+      ],
+      "remedy": "New recovery method resolves paths and verifies unchanged partial artifacts before exclusive final bundle export",
+      "financial_runs": 0
+    }
+  ],
+  "financial_runs": 0,
+  "native_accounting_claim": false,
+  "financial_execution_ready": false,
+  "scope": "private personal restated development analysis; original-vintage/redistribution/native/broker parity not established",
+  "checks": {
+    "new_synthetic_tests": 17,
+    "full_make_check": {
+      "exit": 0,
+      "tests": 476
+    },
+    "causal_feature_prefix_checks": 22,
+    "final_docs": {
+      "exit": 0,
+      "files": 162
+    },
+    "scoped_whitespace": {
+      "exit": 0
+    },
+    "all_retained_source_manifest_files_verified": 35,
+    "original_download_artifacts_verified": 31,
+    "leaderboard_sha256_at_goal_setup": "1312a5d2202e8ff8431ab728e9ee72a0d252d7fd14a601126875d72723851497"
+  },
+  "fresh_comparison_goal": {
+    "tool_status": "active",
+    "deadline_utc": "2026-10-29T01:15:00Z",
+    "financial_attempt_cap": 8,
+    "workers": 1,
+    "retries": 0,
+    "per_case_seconds": 300,
+    "aggregate_financial_seconds": 2400,
+    "period": [
+      "2017-02-01",
+      "2025-12-31"
+    ],
+    "executable_freeze": "pending",
+    "leaderboard": "unchanged until actual audited financial results"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "RM-20261030-01",
+  "status": "blocked",
+  "outcome_reason": "Financial comparison not launched: stock corporate actions/PIT universe, factor as-of vintages/rights and captured financial runner unqualified. Engineering selector conformance completed.",
+  "missing_evidence": {
+    "cases.1.run_id": "No financial attempt was reserved or launched.",
+    "cases.1.data": "No qualified joint monthly stock/factor/vintage input manifest exists for this cycle."
+  },
+  "cases": [
+    {
+      "case_id": "synthetic-selector-conformance",
+      "name": "Residual momentum: engineering tests only",
+      "run_id": "offline-rm-20261030-01",
+      "source": "research/studies/residual_momentum/selector.py sha256:ceda4538071fb8a006f0520aa33144baffbae7fd07520a8fbcc1a2355b803ac3",
+      "build": "Python 3.12.13; pinned dependencies; no engine simulation",
+      "plan": "research/plans/residual-momentum-rsi-v1.json sha256:6db7728c4bc2a3363b107e9d7eaadeceba06f742828a869bdffe88cb4a66eba6",
+      "data": "Invented monthly factor/return observations; no market-price input",
+      "date_range": {
+        "start": "2026-10-30",
+        "end": "2026-10-30"
+      },
+      "accounting": "No portfolio accounting or simulated fills; stage conformance only",
+      "metric_conventions": "Synthetic numerical and causal-prefix assertions; no performance metrics",
+      "attempts": {
+        "used": 0,
+        "limit": 0
+      }
+    },
+    {
+      "case_id": "financial-comparison-not-launched",
+      "name": "Residual momentum: financial comparison blocked",
+      "run_id": null,
+      "source": "research/studies/residual_momentum/selector.py sha256:ceda4538071fb8a006f0520aa33144baffbae7fd07520a8fbcc1a2355b803ac3",
+      "build": "Python 3.12.13; pinned dependencies; no engine simulation",
+      "plan": "research/plans/residual-momentum-rsi-v1.json sha256:6db7728c4bc2a3363b107e9d7eaadeceba06f742828a869bdffe88cb4a66eba6",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-01",
+        "end": "2025-12-31"
+      },
+      "accounting": "Not executed; qualified exact accounting/runner freeze still required",
+      "metric_conventions": "Prospective daily-close Calmar/CAGR/max drawdown/time-underwater; no values computed",
+      "attempts": {
+        "used": 0,
+        "limit": 6
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "research/studies/residual_momentum/__init__.py",
+      "sha256": "5bd114b8a213e26fcd1e2f42d9b1506174d83a9730d3000eb00a5bc3724bc5f7",
+      "role": "cycle-plan-source-or-evidence"
+    },
+    {
+      "path": "research/studies/residual_momentum/selector.py",
+      "sha256": "ceda4538071fb8a006f0520aa33144baffbae7fd07520a8fbcc1a2355b803ac3",
+      "role": "cycle-plan-source-or-evidence"
+    },
+    {
+      "path": "tests/test_residual_momentum_selector.py",
+      "sha256": "8571e571f3c0084684c7725bf5d21478919873b30dd1354bc3e62ce08f8c6d86",
+      "role": "cycle-plan-source-or-evidence"
+    },
+    {
+      "path": "research/plans/residual-momentum-rsi-v1.json",
+      "sha256": "6db7728c4bc2a3363b107e9d7eaadeceba06f742828a869bdffe88cb4a66eba6",
+      "role": "cycle-plan-source-or-evidence"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-residual-momentum-rsi.md",
+      "sha256": "0cd396832df657de56039a129ae33f3f02e217e8d6c4c96b7dbee1d7acdd07e0",
+      "role": "cycle-plan-source-or-evidence"
+    },
+    {
+      "path": "docs/tasks/evidence/2026-10-30-residual-momentum-readiness.json",
+      "sha256": "0d01a2dde2dfe8f31b7be3ce217e4f9400c3e5f667ef69026694b509cd8598d5",
+      "role": "cycle-plan-source-or-evidence"
+    }
+  ],
+  "comparison_groups": [],
+  "checks": {
+    "focused": {
+      "exit": 0,
+      "tests": 9
+    },
+    "full_check": {
+      "exit": 0,
+      "tests": 569,
+      "seconds": 14.904,
+      "documentation_files": 176,
+      "dependencies": "No broken requirements",
+      "log_sha256": "7e6406a1cf68c128c00376494a526b121115a4056fbc5a189f18fd7457fa236c"
+    }
+  },
+  "financial_attempts": {
+    "used": 0,
+    "limit": 6,
+    "closed_unused_allowance": 6,
+    "automatic_continuation": false
+  },
+  "leaderboard_disposition": "no metric-row change",
+  "goal_cycle_disposition": "engineering complete; financial comparison blocked; no Calmar improvement established",
+  "source_candidate_failures": [
+    "Pinned OptimalPortfolios source and license pages failed to fetch; no code imported."
+  ],
+  "scope_counts": {
+    "financial_runs": 0,
+    "market_data_downloads": 0,
+    "broker_connections": 0,
+    "orders": 0,
+    "new_dependencies": 0,
+    "deployments": 0
+  },
+  "completed_utc": "2026-10-30T07:22:18.990310+00:00",
+  "preserved_failures": [
+    "Initial synthetic fixture shared availability buffers; one error, corrected with independent deep copy.",
+    "Initial full check failed on not-yet-created closure receipt link; corrected and full suite passed.",
+    "Pinned candidate source/license pages unavailable; no code copied."
+  ],
+  "deadline_amendment": "Revision 2 anchors deadline to actual goal creation, shortening original bound; no viewed financial outcomes."
+}

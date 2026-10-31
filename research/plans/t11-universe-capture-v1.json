@@ -1,0 +1,23 @@
+{
+  "schema": "t11-universe-capture-amendment/v1",
+  "created_utc": "2026-10-31T04:03:59.018772+00:00",
+  "parent": "research/plans/t11-universe-execution-v3.json",
+  "source_plan": ".local/t11-universe-cloud-v9/frozen-plan.json",
+  "used": 5,
+  "max_attempts": 10,
+  "remaining": [
+    "full25",
+    "equal25",
+    "rs150",
+    "full50",
+    "equal50"
+  ],
+  "reason": "Onepackedchecksummedpayloadsplit60charsreducesterminalmessage/bytepressure;noportfolio/feature/executionchanges. Priorcasealloverallandannualmetricsretainedwithmissingfields.",
+  "terminal_boundary": "Captureeveryremainingopenorder. OnlyknownMOOsubmittedon2025-12-31canbeclassifiedunfilledterminalintent;noexecutionbeyondwindow,nocostorPNLfromfuturefills. Otherpending/unknownsubmissionsstopcomparison. Nooperationalreadinessinferred.",
+  "unassessed": [
+    "OriginalrestrictedT11guardatbothcosts",
+    "Exposurematching",
+    "Independentaccountreconciliation"
+  ],
+  "encoding": "zlib+base64,60-characterchunks,rawJSONdigest;completechunksetandboundeddecodeverifiedoffline. v8notlaunched;avoidswhitespaceandoutputquotaissues."
+}

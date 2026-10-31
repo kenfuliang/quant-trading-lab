@@ -1,0 +1,242 @@
+{
+  "report": {
+    "id": "GRS-R001",
+    "path": "docs/tasks/2026-10-27-ema-volatility-experience-report.md",
+    "sha256": "98ba10bc49e4a77baa01aa8319023a5ad46b997fb1173bb8a18eafd04bfae2e8",
+    "classification": "development technical report",
+    "external_publication": false
+  },
+  "kind": "retrospective_read_only_evidence_audit_and_experience_report",
+  "status": "audited-development-evidence",
+  "checked_utc": "2026-10-27T07:37:50.807516+00:00",
+  "new_financial_attempts": 0,
+  "original_financial_attempts": 9,
+  "source_directory": ".local/gate-robustness/1ddd9c98521e5498",
+  "source_manifest": {
+    "manifest_sha256": "e2951e63a1edbb818221316bf5f97766f63ab6ede5a319d0ab80d4c19105da09",
+    "artifact_count": 105
+  },
+  "source_plan_sha256": "1ddd9c98521e5498c93cb68dcb0066e22bf5ff84c146e856a73e2cdcff4c7329",
+  "source_sha256": "992d9f62de93aa860ae00fc81d3810dbe0ac302a55102886fc5c50545130a8ba",
+  "reviewer_sha256": "899d423e011e9b2255674524eceb56e45875a37887827ef83b9399bda595a3c1",
+  "checks": {
+    "base_gate_ema": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 967,
+        "maximum_difference_usd": 6.984919309616089e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 513
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2295,
+        "episodes": 255,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "base_ema": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 800,
+        "maximum_difference_usd": 4.656612873077393e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 531
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2151,
+        "episodes": 239,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "base_buy_hold_entry_only": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 1,
+        "maximum_difference_usd": 4.656612873077393e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 1243
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2709,
+        "episodes": 301,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "expensive_gate_ema": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 964,
+        "maximum_difference_usd": 4.656612873077393e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 531
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2205,
+        "episodes": 245,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "expensive_ema": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 826,
+        "maximum_difference_usd": 4.656612873077393e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 684
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2061,
+        "episodes": 229,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "expensive_buy_hold_entry_only": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 1,
+        "maximum_difference_usd": 2.3283064365386963e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 1243
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2709,
+        "episodes": 301,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "delayed_gate_ema": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 1008,
+        "maximum_difference_usd": 6.984919309616089e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 517
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2295,
+        "episodes": 255,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "delayed_ema": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 804,
+        "maximum_difference_usd": 6.984919309616089e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 558
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2106,
+        "episodes": 234,
+        "tail_and_drawdown_checks": 6
+      }
+    },
+    "delayed_buy_hold_entry_only": {
+      "accounting": {
+        "passed": true,
+        "sessions": 5283,
+        "fills": 1,
+        "maximum_difference_usd": 2.3283064365386963e-10
+      },
+      "metric_checks": 88,
+      "temporal": {
+        "passed": true,
+        "scalar_and_window_checks": 30933,
+        "longest_duration_sessions": 1243
+      },
+      "details": {
+        "passed": true,
+        "episode_field_checks": 2709,
+        "episodes": 301,
+        "tail_and_drawdown_checks": 6
+      }
+    }
+  },
+  "comparisons": {
+    "base": {
+      "passed": true,
+      "cagr_pp": 0.7212555655136796,
+      "drawdown_improvement_pp": 11.291364133991223,
+      "recovery_sessions_saved": 18
+    },
+    "expensive": {
+      "passed": true,
+      "cagr_pp": 0.6821755778756877,
+      "drawdown_improvement_pp": 10.61702633103586,
+      "recovery_sessions_saved": 153
+    },
+    "delayed": {
+      "passed": true,
+      "cagr_pp": 0.7191353224541785,
+      "drawdown_improvement_pp": 11.99049417883231,
+      "recovery_sessions_saved": 41
+    }
+  },
+  "audited_sessions": 47547,
+  "metric_checks": 792,
+  "max_account_difference_usd": 6.984919309616089e-10,
+  "independent_validation": false,
+  "new_algorithm": false,
+  "source_unchanged": true,
+  "positive_claim": "Frozen gate passes joint development criteria versus EMA in three cost/timing contexts.",
+  "counterevidence": [
+    "Entry-only holding grows faster in all contexts.",
+    "Gate loses2012\u20132018cumulative return to EMA in all contexts.",
+    "Exposure-matched timing benefit and future advantage remain unverified.",
+    "Known block cumulative-return/DD ratio excluded from annualized Calmar rankings."
+  ],
+  "figure": {
+    "path": "docs/diagrams/ema-volatility-experience.png",
+    "sha256": "10415f961a4c30788751cde1da697d1ad8bbf860d6411ed735304f5ae64051cd"
+  },
+  "limits": "Viewed retail-data fixture; ex-date dividend cash; synthetic execution; no native broker parity or publication."
+}

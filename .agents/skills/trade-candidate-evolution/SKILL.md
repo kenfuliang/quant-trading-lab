@@ -9,6 +9,10 @@ Read [candidate evolution](../../../docs/research-development.md#candidate-evolu
 the [mandate](../../../docs/goals.md), the candidate's exact rule and the relevant
 diagnosis and trial history. For a published idea, retain the source/adaptation
 distinction established by [research intake](../../../docs/research-intake.md).
+Apply the canonical [selection and stopping review](../../../docs/research-development.md#selection-and-stopping-review)
+before proposing another attempt. Explain how a revisited failed mechanism differs
+or what new evidence justifies reopening it; a parameter/name change is insufficient.
+Missing rights or free/local inputs produce a bounded readiness task first.
 
 Start from a documented weakness or opportunity. If none is supported, identify
 the diagnostic needed to decide what to change; avoid inventing a defect from a

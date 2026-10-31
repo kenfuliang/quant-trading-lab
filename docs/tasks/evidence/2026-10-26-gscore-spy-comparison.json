@@ -1,0 +1,30 @@
+{
+  "schema": "gscore-readiness-receipt/v1",
+  "status": "closed-data-readiness-blocked",
+  "recorded_utc": "2026-10-27T05:51:54.327913+00:00",
+  "updated_local_date": "2026-10-26",
+  "study": "gscore-spy-v1",
+  "financial_cases": 0,
+  "budget": {
+    "study": "gscore-spy-v1",
+    "status": "closed",
+    "attempts": [
+      {
+        "id": 1,
+        "case": "probe",
+        "status": "failed-retired-quarterly-roa",
+        "source_sha256": "7f5609d9ee771eeda527c2a0aba2beebc5333b1466ca1e42b3f9ee44354a0f25",
+        "reserved_utc": "2026-10-27T05:31:44.147809+00:00",
+        "backtest_id": "107aec083d70ba3a0ab88a8401d64c9d",
+        "recorded_utc": "2026-10-27T05:33:48.155480+00:00"
+      }
+    ],
+    "closed_utc": "2026-10-27T05:36:22.134195+00:00"
+  },
+  "source_sha256": "a3958ecc57127d1b50ee9e97257d7c79381195bde3e64912f601fdc53be32d1c",
+  "blocker": "Current Morningstar ROA.ThreeMonths throws a retirement error. The official migration notice identifies look-ahead dates in the legacy ratio feed; legacy engine considered, never launched.",
+  "migration_source": "https://www.quantconnect.com/forum/discussion/21449",
+  "financial_interpretation": "No G-Score return, ranking or alpha result exists. Prepared financial code remains unverified.",
+  "fallback": "dual-thrust-spy-v1",
+  "data_boundary": "One free, order-free hosted data probe; no raw data exports, paid resources or broker operations."
+}

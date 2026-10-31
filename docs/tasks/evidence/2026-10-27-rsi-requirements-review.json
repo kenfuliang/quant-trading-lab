@@ -1,0 +1,50 @@
+{
+  "review": "RSI-REQ-20261027",
+  "kind": "requirements_consultation_and_source_review",
+  "recorded_utc": "2026-10-27T07:52:58.834401+00:00",
+  "status": "review_complete_requirements_proposed",
+  "canonical_owner": "docs/research-standard.md",
+  "standard_changed": false,
+  "new_financial_attempts": 0,
+  "new_training_jobs": 0,
+  "new_tests_run": 0,
+  "implementation_changes": false,
+  "incumbent_changed": false,
+  "separate_review_perspectives": [
+    "evaluation_validity",
+    "controller_reliability"
+  ],
+  "independent_financial_validation": false,
+  "files": {
+    "docs/research-standard.md": "84bc34121652b9d23faab009be4ef142125327fedfdd7c1a76838c86c2efc852",
+    "docs/research-scoring.md": "f916ef4c6387163876672b5ae783ab80ed0323a0cd80683a8acbaa81a5155c0c",
+    "docs/research-cycles.md": "fa4677999c78a9d7ff200fcf7473e793cec2da6da89602f2e7a87cd1a49978d4",
+    "research/research_controller.py": "1fb516ff84da0b80e191421939e4bc65a48cc282fada5f526978c0ccd7c7123d",
+    "research/bounded_study.py": "3b5778b2df03bab9dafd7fb47fa26dee888e745e2554236b78da1d8bb4cc561f",
+    "research/incremental_sizing.py": "69b25a415485c9e0216cb0268d5b36288a669a78cbdbc182a774c3f627768807",
+    "research/legacy_control_contract.py": "6d7ec4f449a6ddf0b44bd9849ba8110cb974e3209e6c27df3a2e1c028b14b2c1",
+    "docs/tasks/2026-10-27-grs-c001-continuous-sizing.md": "20cb8b10a57cefa8cc6dce314d5d1bf2a8130925e8b1bd41aac29d3170352cac",
+    "docs/tasks/evidence/2026-10-27-grs-c001.json": "dea21e854ebf01cc80901e0d404562f3d8b34a5d7ff75e9328d345d0ccdebc4f",
+    "docs/tasks/2026-10-25-recursive-research-policy-evaluation.md": "d4f45259de4171142c16725062613db95a9edda2d07210f91d192f60a5f9d179"
+  },
+  "review_document": {
+    "path": "docs/tasks/2026-10-27-rsi-requirements-review.md",
+    "sha256": "3eecc5186011341d2c3a1b23cdafa2ddc15de51864770361e9b9cdfbab76df5e"
+  },
+  "primary_sources": [
+    {
+      "url": "https://github.com/microsoft/RD-Agent",
+      "use": "Prior architecture, not performance adoption"
+    },
+    {
+      "url": "https://arxiv.org/abs/2505.15155",
+      "use": "Research/development/evaluation feedback prior"
+    },
+    {
+      "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+      "use": "Program proposal and automated evaluation prior"
+    }
+  ],
+  "main_gap": "Make known lessons change preflight and subsequent decisions, then prove controller/process benefit at equal budgets.",
+  "proposed_next_acceptance": "Known C001 semantic mismatch detected before a financial attempt, economic drift still rejected, closed evidence retained."
+}

@@ -1,0 +1,1140 @@
+{
+  "id": "RSI-CALMAR-EPOCH2-20261028",
+  "status": "closed-no-qualifying-improvement",
+  "updated": "2026-10-28",
+  "closed_utc": "2026-10-28T21:18:30.832441+00:00",
+  "original_created_utc": "2026-10-28T20:38:05+00:00",
+  "original_deadline_utc": "2026-10-28T23:38:05+00:00",
+  "epoch_contract_sha256": "ff9107068abbf495e4734ae480c842f416649ee3467a276d5627fc1241069010",
+  "elapsed_seconds": 2425.832441,
+  "target_reached": false,
+  "incumbent_changed": false,
+  "independent_alpha_established": false,
+  "cycles": [
+    {
+      "id": "c05",
+      "stage": "causal feature representation",
+      "receipt": "docs/tasks/evidence/2026-10-28-total-return-c05.json",
+      "receipt_sha256": "5c888be0b0c10055aa44062ca9e8c47211dbe7350763c923f5c29e5512ec4355",
+      "financial_attempts": 6,
+      "outcome": "rejected-fixed-target",
+      "target_reached": false,
+      "manifest_sha256": "5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8"
+    },
+    {
+      "id": "c06",
+      "stage": "execution/rebalancing",
+      "receipt": "docs/tasks/evidence/2026-10-28-execution-c06.json",
+      "receipt_sha256": "635575ef4bb41afecda2828e2af16a035c3c44d259e5e050dbfd730eddb6d8d1",
+      "financial_attempts": 6,
+      "outcome": "rejected-fixed-target",
+      "target_reached": false,
+      "manifest_sha256": "9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361"
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "c05/5bp_incumbent",
+      "cycle": "c05",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 5,
+      "global_reserved_utc": "2026-10-28T20:52:04.690903+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T20:52:04.700049+00:00",
+        "launch_intent": "2026-10-28T20:52:04.701500+00:00",
+        "launched": "2026-10-28T20:52:04.715562+00:00",
+        "captured": "2026-10-28T20:52:06.992902+00:00",
+        "finalized": "2026-10-28T20:52:07.007038+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T20:52:07.034063+00:00",
+      "result_sha256": "2b405287e36fea420ff5f58c882510f30e11911f2e9c23c39eb582ae48cb38c5",
+      "calmar": 0.49151393504661667,
+      "cagr_pct": 8.734273289715322,
+      "drawdown_pct": -17.77014376792173,
+      "underwater_sessions": 513,
+      "underwater_calendar_days": 746
+    },
+    {
+      "case_id": "c05/10bp_incumbent",
+      "cycle": "c05",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 10,
+      "global_reserved_utc": "2026-10-28T20:52:07.034813+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T20:52:07.045173+00:00",
+        "launch_intent": "2026-10-28T20:52:07.046703+00:00",
+        "launched": "2026-10-28T20:52:07.060406+00:00",
+        "captured": "2026-10-28T20:52:09.316946+00:00",
+        "finalized": "2026-10-28T20:52:09.329834+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T20:52:09.367376+00:00",
+      "result_sha256": "b0be3a1c198bd80fd4bf8bbb2af5b1bc8ddd122f7911b7f6d78afcadabab6bb1",
+      "calmar": 0.4816921600083108,
+      "cagr_pct": 8.658984170052907,
+      "drawdown_pct": -17.97617833328139,
+      "underwater_sessions": 514,
+      "underwater_calendar_days": 749
+    },
+    {
+      "case_id": "c05/5bp_total_return_trend_only",
+      "cycle": "c05",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 5,
+      "global_reserved_utc": "2026-10-28T20:52:09.368391+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T20:52:09.378133+00:00",
+        "launch_intent": "2026-10-28T20:52:09.379918+00:00",
+        "launched": "2026-10-28T20:52:09.392964+00:00",
+        "captured": "2026-10-28T20:52:11.472338+00:00",
+        "finalized": "2026-10-28T20:52:11.484705+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T20:52:11.508757+00:00",
+      "result_sha256": "cf12cb75e7d529ed587bd0e72632d9a43d88c3324073d658fb0ad283fc635909",
+      "calmar": 0.465774678549234,
+      "cagr_pct": 8.600696590887114,
+      "drawdown_pct": -18.46535886767402,
+      "underwater_sessions": 531,
+      "underwater_calendar_days": 769
+    },
+    {
+      "case_id": "c05/10bp_total_return_trend_only",
+      "cycle": "c05",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 10,
+      "global_reserved_utc": "2026-10-28T20:52:11.509761+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T20:52:11.519073+00:00",
+        "launch_intent": "2026-10-28T20:52:11.520923+00:00",
+        "launched": "2026-10-28T20:52:11.533548+00:00",
+        "captured": "2026-10-28T20:52:13.592598+00:00",
+        "finalized": "2026-10-28T20:52:13.605032+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T20:52:13.628775+00:00",
+      "result_sha256": "a6a4a75ed8df08d44e8a1c1753ad5de55c930437ba260885155dc8ee4112cdd7",
+      "calmar": 0.4577554909602322,
+      "cagr_pct": 8.529660594906009,
+      "drawdown_pct": -18.633660902708925,
+      "underwater_sessions": 531,
+      "underwater_calendar_days": 769
+    },
+    {
+      "case_id": "c05/5bp_total_return_features",
+      "cycle": "c05",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 5,
+      "global_reserved_utc": "2026-10-28T20:52:13.629899+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T20:52:13.638788+00:00",
+        "launch_intent": "2026-10-28T20:52:13.640648+00:00",
+        "launched": "2026-10-28T20:52:13.653816+00:00",
+        "captured": "2026-10-28T20:52:15.773604+00:00",
+        "finalized": "2026-10-28T20:52:15.786566+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T20:52:15.811820+00:00",
+      "result_sha256": "9d4dbe768421bc72f3b649adf71eecfc353273e340f4a7600ea17e5fcb131fc1",
+      "calmar": 0.43985712114872755,
+      "cagr_pct": 8.547765646243777,
+      "drawdown_pct": -19.433050495853056,
+      "underwater_sessions": 556,
+      "underwater_calendar_days": 805
+    },
+    {
+      "case_id": "c05/10bp_total_return_features",
+      "cycle": "c05",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 10,
+      "global_reserved_utc": "2026-10-28T20:52:15.812966+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T20:52:15.822255+00:00",
+        "launch_intent": "2026-10-28T20:52:15.824323+00:00",
+        "launched": "2026-10-28T20:52:15.843378+00:00",
+        "captured": "2026-10-28T20:52:17.993468+00:00",
+        "finalized": "2026-10-28T20:52:18.007420+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T20:52:18.033984+00:00",
+      "result_sha256": "17cbc25f308f3f6ccdd990cbeebedc1f3caabb86ac47801501059678bb4eba00",
+      "calmar": 0.43365318901602296,
+      "cagr_pct": 8.480206423554204,
+      "drawdown_pct": -19.555272827109015,
+      "underwater_sessions": 557,
+      "underwater_calendar_days": 806
+    },
+    {
+      "case_id": "c06/5bp_incumbent",
+      "cycle": "c06",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 5,
+      "global_reserved_utc": "2026-10-28T21:08:35.921913+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T21:08:35.931740+00:00",
+        "launch_intent": "2026-10-28T21:08:35.933338+00:00",
+        "launched": "2026-10-28T21:08:35.947136+00:00",
+        "captured": "2026-10-28T21:08:37.822452+00:00",
+        "finalized": "2026-10-28T21:08:37.834667+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T21:08:37.858778+00:00",
+      "result_sha256": "582ff49745ca04d718851dc2fcf6745a6e0852da465a109cbdbdb1a7d5508ffd",
+      "calmar": 0.49151393504661667,
+      "cagr_pct": 8.734273289715322,
+      "drawdown_pct": -17.77014376792173,
+      "underwater_sessions": 513,
+      "underwater_calendar_days": 746
+    },
+    {
+      "case_id": "c06/10bp_incumbent",
+      "cycle": "c06",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 10,
+      "global_reserved_utc": "2026-10-28T21:08:37.860171+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T21:08:37.869262+00:00",
+        "launch_intent": "2026-10-28T21:08:37.870751+00:00",
+        "launched": "2026-10-28T21:08:37.883551+00:00",
+        "captured": "2026-10-28T21:08:39.778334+00:00",
+        "finalized": "2026-10-28T21:08:39.790277+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T21:08:39.815748+00:00",
+      "result_sha256": "696b4c098c21c05fba5f87452fd8cb6e4c617e90ec4538ee6c574a8bebe6d809",
+      "calmar": 0.4816921600083108,
+      "cagr_pct": 8.658984170052907,
+      "drawdown_pct": -17.97617833328139,
+      "underwater_sessions": 514,
+      "underwater_calendar_days": 749
+    },
+    {
+      "case_id": "c06/5bp_no_buy_topups_control",
+      "cycle": "c06",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 5,
+      "global_reserved_utc": "2026-10-28T21:08:39.817405+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T21:08:39.826986+00:00",
+        "launch_intent": "2026-10-28T21:08:39.828517+00:00",
+        "launched": "2026-10-28T21:08:39.843178+00:00",
+        "captured": "2026-10-28T21:08:41.644485+00:00",
+        "finalized": "2026-10-28T21:08:41.657488+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T21:08:41.683148+00:00",
+      "result_sha256": "b114566a64be0b7a58fddaa504b6dfb2a438769050ca6735c2653adae98f25e3",
+      "calmar": 0.4955629985776092,
+      "cagr_pct": 8.62309608027967,
+      "drawdown_pct": -17.400605180431405,
+      "underwater_sessions": 513,
+      "underwater_calendar_days": 746
+    },
+    {
+      "case_id": "c06/10bp_no_buy_topups_control",
+      "cycle": "c06",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 10,
+      "global_reserved_utc": "2026-10-28T21:08:41.684841+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T21:08:41.694448+00:00",
+        "launch_intent": "2026-10-28T21:08:41.696288+00:00",
+        "launched": "2026-10-28T21:08:41.709474+00:00",
+        "captured": "2026-10-28T21:08:43.482515+00:00",
+        "finalized": "2026-10-28T21:08:43.495583+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T21:08:43.523542+00:00",
+      "result_sha256": "dcb9259914e8e0f287f8b9bec35a09e2a6c8844b6127bd583d93ff269c7d49c5",
+      "calmar": 0.4858998511033589,
+      "cagr_pct": 8.55209454620185,
+      "drawdown_pct": -17.60052925882185,
+      "underwater_sessions": 514,
+      "underwater_calendar_days": 749
+    },
+    {
+      "case_id": "c06/5bp_monthly_buy_topups",
+      "cycle": "c06",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 5,
+      "global_reserved_utc": "2026-10-28T21:08:43.525586+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T21:08:43.535797+00:00",
+        "launch_intent": "2026-10-28T21:08:43.538230+00:00",
+        "launched": "2026-10-28T21:08:43.552394+00:00",
+        "captured": "2026-10-28T21:08:45.364816+00:00",
+        "finalized": "2026-10-28T21:08:45.377768+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T21:08:45.402488+00:00",
+      "result_sha256": "31f39e2da8cb2df88b590f957792b82d389a9df4ec663b8d3e3f03001dd20b49",
+      "calmar": 0.49146183349616285,
+      "cagr_pct": 8.721992229898756,
+      "drawdown_pct": -17.747038804320205,
+      "underwater_sessions": 513,
+      "underwater_calendar_days": 746
+    },
+    {
+      "case_id": "c06/10bp_monthly_buy_topups",
+      "cycle": "c06",
+      "status": "completed",
+      "child_returncode": 0,
+      "financial_slots": 1,
+      "cost_bps": 10,
+      "global_reserved_utc": "2026-10-28T21:08:45.404561+00:00",
+      "local_timestamps": {
+        "reserved": "2026-10-28T21:08:45.414107+00:00",
+        "launch_intent": "2026-10-28T21:08:45.416382+00:00",
+        "launched": "2026-10-28T21:08:45.428700+00:00",
+        "captured": "2026-10-28T21:08:47.232527+00:00",
+        "finalized": "2026-10-28T21:08:47.245781+00:00"
+      },
+      "global_finalized_utc": "2026-10-28T21:08:47.270341+00:00",
+      "result_sha256": "8e3ec2dc69ada3e53018bbbaf596f0f1ee87d3a264c5663948d9cedfd305aea5",
+      "calmar": 0.4818099608482288,
+      "cagr_pct": 8.649233452510119,
+      "drawdown_pct": -17.95154553733821,
+      "underwater_sessions": 514,
+      "underwater_calendar_days": 749
+    }
+  ],
+  "totals": {
+    "cycles": 2,
+    "max_cycles": 2,
+    "reserved": 12,
+    "started": 12,
+    "completed": 12,
+    "financial_failures": 0,
+    "retries": 0,
+    "postseal_driver_failures": 1,
+    "unused_slots": 0,
+    "remaining_slots": 0
+  },
+  "shared_journal_sha256": "281f5628547c274bf93f4699ddeef6b2894fc8d230b7cb7b11624ad6152f0c00",
+  "shared_state": {
+    "epoch_sha256": "ff9107068abbf495e4734ae480c842f416649ee3467a276d5627fc1241069010",
+    "usage": {
+      "attempts": 12,
+      "resource_units_committed": 12.0,
+      "resource_unit": "financial_attempts_including_failures"
+    },
+    "cycles": {
+      "c05": {
+        "question_id": "c05",
+        "mechanism": "fixed-plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8",
+        "parent_branch_id": null,
+        "status": "retired",
+        "reason": "Bounded cycle closed; no retries",
+        "evidence": [
+          "manifest:5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8"
+        ],
+        "seen_evidence": [
+          "manifest:5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8"
+        ],
+        "status_history": [
+          {
+            "status": "active",
+            "reason": "registered",
+            "evidence": []
+          },
+          {
+            "status": "retired",
+            "reason": "Bounded cycle closed; no retries",
+            "evidence": [
+              "manifest:5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8"
+            ]
+          }
+        ]
+      },
+      "c06": {
+        "question_id": "c06",
+        "mechanism": "fixed-plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641",
+        "parent_branch_id": null,
+        "status": "retired",
+        "reason": "Bounded cycle closed; no retries",
+        "evidence": [
+          "manifest:9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361"
+        ],
+        "seen_evidence": [
+          "manifest:9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361"
+        ],
+        "status_history": [
+          {
+            "status": "active",
+            "reason": "registered",
+            "evidence": []
+          },
+          {
+            "status": "retired",
+            "reason": "Bounded cycle closed; no retries",
+            "evidence": [
+              "manifest:9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361"
+            ]
+          }
+        ]
+      }
+    },
+    "attempts": {
+      "attempt-0001": {
+        "action": {
+          "branch_id": "c05",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          ],
+          "id": "c05/5bp_incumbent",
+          "observation_key": "6986e27302a3c57ab56c8b9a987a35535b6338c40527366fcbbbb05b5b8cdd90",
+          "observation_spec": {
+            "case": "5bp_incumbent",
+            "cycle": "c05",
+            "plan_sha256": "fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          },
+          "question_id": "c05",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "6986e27302a3c57ab56c8b9a987a35535b6338c40527366fcbbbb05b5b8cdd90",
+          "observation_label": "c05/5bp_incumbent"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:2b405287e36fea420ff5f58c882510f30e11911f2e9c23c39eb582ae48cb38c5"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0002": {
+        "action": {
+          "branch_id": "c05",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          ],
+          "id": "c05/10bp_incumbent",
+          "observation_key": "38313236828f265aaf4c706f69dab36ce573e15c68c3d4fd27c4af984482382f",
+          "observation_spec": {
+            "case": "10bp_incumbent",
+            "cycle": "c05",
+            "plan_sha256": "fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          },
+          "question_id": "c05",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "38313236828f265aaf4c706f69dab36ce573e15c68c3d4fd27c4af984482382f",
+          "observation_label": "c05/10bp_incumbent"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:b0be3a1c198bd80fd4bf8bbb2af5b1bc8ddd122f7911b7f6d78afcadabab6bb1"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0003": {
+        "action": {
+          "branch_id": "c05",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          ],
+          "id": "c05/5bp_total_return_trend_only",
+          "observation_key": "21de453c2ed61ad6da29105921c35dbaad2f72d117702f1bf3ceebb2653a1747",
+          "observation_spec": {
+            "case": "5bp_total_return_trend_only",
+            "cycle": "c05",
+            "plan_sha256": "fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          },
+          "question_id": "c05",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "21de453c2ed61ad6da29105921c35dbaad2f72d117702f1bf3ceebb2653a1747",
+          "observation_label": "c05/5bp_total_return_trend_only"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:cf12cb75e7d529ed587bd0e72632d9a43d88c3324073d658fb0ad283fc635909"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0004": {
+        "action": {
+          "branch_id": "c05",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          ],
+          "id": "c05/10bp_total_return_trend_only",
+          "observation_key": "524c96a6140802eaa33120c4fbb2e21dd156a58dd868c7759f41b5f0721573a3",
+          "observation_spec": {
+            "case": "10bp_total_return_trend_only",
+            "cycle": "c05",
+            "plan_sha256": "fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          },
+          "question_id": "c05",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "524c96a6140802eaa33120c4fbb2e21dd156a58dd868c7759f41b5f0721573a3",
+          "observation_label": "c05/10bp_total_return_trend_only"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:a6a4a75ed8df08d44e8a1c1753ad5de55c930437ba260885155dc8ee4112cdd7"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0005": {
+        "action": {
+          "branch_id": "c05",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          ],
+          "id": "c05/5bp_total_return_features",
+          "observation_key": "e3ec27f3b5282617546cacd4b54088cd79a3af249f37aaeedc5e989853816b82",
+          "observation_spec": {
+            "case": "5bp_total_return_features",
+            "cycle": "c05",
+            "plan_sha256": "fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          },
+          "question_id": "c05",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "e3ec27f3b5282617546cacd4b54088cd79a3af249f37aaeedc5e989853816b82",
+          "observation_label": "c05/5bp_total_return_features"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:9d4dbe768421bc72f3b649adf71eecfc353273e340f4a7600ea17e5fcb131fc1"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0006": {
+        "action": {
+          "branch_id": "c05",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          ],
+          "id": "c05/10bp_total_return_features",
+          "observation_key": "92643a9b88c7232db454c96e836e968ceb293bb437358f74bc3106c064018525",
+          "observation_spec": {
+            "case": "10bp_total_return_features",
+            "cycle": "c05",
+            "plan_sha256": "fdf71b77642b86a4de489b28b7cdc12c3d05b49eba1eb5b6d7134883d798d8e8"
+          },
+          "question_id": "c05",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "92643a9b88c7232db454c96e836e968ceb293bb437358f74bc3106c064018525",
+          "observation_label": "c05/10bp_total_return_features"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:17cbc25f308f3f6ccdd990cbeebedc1f3caabb86ac47801501059678bb4eba00"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0007": {
+        "action": {
+          "branch_id": "c06",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          ],
+          "id": "c06/5bp_incumbent",
+          "observation_key": "55b29a473a38ae6f28b33fb91ed00ddd62d829014ba219e5451e8609c525b4ae",
+          "observation_spec": {
+            "case": "5bp_incumbent",
+            "cycle": "c06",
+            "plan_sha256": "cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          },
+          "question_id": "c06",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "55b29a473a38ae6f28b33fb91ed00ddd62d829014ba219e5451e8609c525b4ae",
+          "observation_label": "c06/5bp_incumbent"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:582ff49745ca04d718851dc2fcf6745a6e0852da465a109cbdbdb1a7d5508ffd"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0008": {
+        "action": {
+          "branch_id": "c06",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          ],
+          "id": "c06/10bp_incumbent",
+          "observation_key": "e56b6b3866e9f5c63ff4c13782c70f627d5dd2830fbcbc0d1a9b5571cb42c034",
+          "observation_spec": {
+            "case": "10bp_incumbent",
+            "cycle": "c06",
+            "plan_sha256": "cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          },
+          "question_id": "c06",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "e56b6b3866e9f5c63ff4c13782c70f627d5dd2830fbcbc0d1a9b5571cb42c034",
+          "observation_label": "c06/10bp_incumbent"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:696b4c098c21c05fba5f87452fd8cb6e4c617e90ec4538ee6c574a8bebe6d809"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0009": {
+        "action": {
+          "branch_id": "c06",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          ],
+          "id": "c06/5bp_no_buy_topups_control",
+          "observation_key": "5d3f3c626e2520e8a0ff006972ec94f3906159d475ec16ebf6b048279aa07b45",
+          "observation_spec": {
+            "case": "5bp_no_buy_topups_control",
+            "cycle": "c06",
+            "plan_sha256": "cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          },
+          "question_id": "c06",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "5d3f3c626e2520e8a0ff006972ec94f3906159d475ec16ebf6b048279aa07b45",
+          "observation_label": "c06/5bp_no_buy_topups_control"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:b114566a64be0b7a58fddaa504b6dfb2a438769050ca6735c2653adae98f25e3"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0010": {
+        "action": {
+          "branch_id": "c06",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          ],
+          "id": "c06/10bp_no_buy_topups_control",
+          "observation_key": "da83eb141d863d6a25e89439963c7f235c7206f414ba08bad5230fbba04d3b19",
+          "observation_spec": {
+            "case": "10bp_no_buy_topups_control",
+            "cycle": "c06",
+            "plan_sha256": "cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          },
+          "question_id": "c06",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "da83eb141d863d6a25e89439963c7f235c7206f414ba08bad5230fbba04d3b19",
+          "observation_label": "c06/10bp_no_buy_topups_control"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:dcb9259914e8e0f287f8b9bec35a09e2a6c8844b6127bd583d93ff269c7d49c5"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0011": {
+        "action": {
+          "branch_id": "c06",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          ],
+          "id": "c06/5bp_monthly_buy_topups",
+          "observation_key": "3df010ed733412a224f611bb75620f9c2e807931dbe3579c70e4951f25fc470b",
+          "observation_spec": {
+            "case": "5bp_monthly_buy_topups",
+            "cycle": "c06",
+            "plan_sha256": "cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          },
+          "question_id": "c06",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "3df010ed733412a224f611bb75620f9c2e807931dbe3579c70e4951f25fc470b",
+          "observation_label": "c06/5bp_monthly_buy_topups"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:31f39e2da8cb2df88b590f957792b82d389a9df4ec663b8d3e3f03001dd20b49"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      },
+      "attempt-0012": {
+        "action": {
+          "branch_id": "c06",
+          "class": 2,
+          "context_id": "4866d067070adcaa6dae502f92275c453870734a78d5b8e49201d24ef3fbbece",
+          "cost_upper_bound": 1,
+          "decision_value": 1,
+          "evidence": [
+            "plan:cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          ],
+          "id": "c06/10bp_monthly_buy_topups",
+          "observation_key": "1c93da4ee2a7cbf1d08c9d9c32bce91e88c74f2f0ce6d8d7b2d7686af6f92fc2",
+          "observation_spec": {
+            "case": "10bp_monthly_buy_topups",
+            "cycle": "c06",
+            "plan_sha256": "cba46fc8fa733a49e0b01a3e25f1b47364e419c55c2cd0ca05f8fc4941c0f641"
+          },
+          "question_id": "c06",
+          "shared_questions": [],
+          "witness": [
+            {
+              "decision": "record",
+              "observation": "sealed audits pass"
+            },
+            {
+              "decision": "stop",
+              "observation": "execution uncertain or invalid"
+            }
+          ],
+          "observation_identity": "1c93da4ee2a7cbf1d08c9d9c32bce91e88c74f2f0ce6d8d7b2d7686af6f92fc2",
+          "observation_label": "c06/10bp_monthly_buy_topups"
+        },
+        "status": "completed",
+        "outcome": {
+          "actual_resource_units": 1.0,
+          "evidence": [
+            "result:8e3ec2dc69ada3e53018bbbaf596f0f1ee87d3a264c5663948d9cedfd305aea5"
+          ],
+          "inspection_trace": [
+            "Verify fixed plan/case and child lifecycle",
+            "Verify sealed output and audit identity"
+          ],
+          "observation_kind": "fresh_simulation",
+          "resolutions": [],
+          "status": "completed",
+          "summary": "Scoped child outcome from sealed execution evidence"
+        }
+      }
+    },
+    "journal_sha256": "281f5628547c274bf93f4699ddeef6b2894fc8d230b7cb7b11624ad6152f0c00",
+    "remaining_seconds": 8374.339417
+  },
+  "serial_worker_verified": true,
+  "deadline_verified": true,
+  "guard_rejections": [
+    "third-cycle",
+    "thirteenth-attempt"
+  ],
+  "guard_rejections_mutated_journal": false,
+  "annual_rows": 252,
+  "independent_metric_checks": 1056,
+  "financial_manifests": [
+    {
+      "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/total-return-c05",
+      "sha256": "5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8",
+      "artifacts": 94
+    },
+    {
+      "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/execution-c06",
+      "sha256": "9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361",
+      "artifacts": 94
+    }
+  ],
+  "postseal_recovery": {
+    "status": "recovered-read-only-after-sealed-financial-success",
+    "driver_exit": 1,
+    "financial_case_exits": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "financial_attempts_in_epoch": 12,
+    "new_financial_launches": 0,
+    "original_c05_receipt_unchanged": true,
+    "shared_event_journal_unchanged": true,
+    "financial_manifest_unchanged": true,
+    "manifest_sha256": "9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361",
+    "destination": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/rsi-epoch2-20261028/c06-shared-receipt.json",
+    "receipt_sha256": "c0d550f4013f7fc65c1f8a139dda1cac6fb0a0b6b104f81fd0bf5f4801bae891",
+    "failure": "FixedC06 driver retained C05 receipt filename; exclusive-create refused overwrite after all six cases,sealing and retirement.",
+    "frozen_code_unchanged": true
+  },
+  "requirements": [
+    {
+      "requirement": "Different directions after four failures",
+      "status": "passed",
+      "evidence": "C05causal feature representation and C06execution/rebalancing frozen designs"
+    },
+    {
+      "requirement": "Free/local inputs qualified",
+      "status": "passed",
+      "evidence": "Identical saved source SHA,raw fills and source qualification receipts; no external data"
+    },
+    {
+      "requirement": "At most two cycles/twelve attempts",
+      "status": "passed",
+      "evidence": "Two retired shared branches,twelve unique completed reservations; third cycle/thirteenth attempt rejected"
+    },
+    {
+      "requirement": "One worker/no retries",
+      "status": "passed",
+      "evidence": "Twelve nonoverlapping child intervals,unique case IDs,all child exits0 and no extra financial launches"
+    },
+    {
+      "requirement": "Original three-hour deadline",
+      "status": "passed",
+      "evidence": "All global reservations/finalizations and cycle runtimes verified before2026-10-28T23:38:05Z"
+    },
+    {
+      "requirement": "Frozen one-stage rules and controls",
+      "status": "passed",
+      "evidence": "Design/executable created before each reservation; exact qualified code/current/archive hashes match"
+    },
+    {
+      "requirement": "Same dates/costs/financing",
+      "status": "passed",
+      "evidence": "5283sessions,2005\u20132025,300000USD,5/10bp,commission1USD,6%debit,ex-datecash,rawfillparity"
+    },
+    {
+      "requirement": "Calmar and guards evaluated honestly",
+      "status": "passed",
+      "evidence": "Both fixed target decisions rejected; no incumbent change or independent-alpha claim"
+    },
+    {
+      "requirement": "All accounts/annual/temporal audited",
+      "status": "passed",
+      "evidence": "252annual rows and1056independent metric checks,12Decimal/temporal audits,4incumbentparity proofs"
+    },
+    {
+      "requirement": "Failures preserved",
+      "status": "passed",
+      "evidence": "C06parent exit1 after sealing; traceback,unchangedC05receipt,read-only export and zero-rerun recovery retained"
+    },
+    {
+      "requirement": "Attempt/unused accounting",
+      "status": "passed",
+      "evidence": "12reserved/started/completed,0financialfailed,0unused,0retries,onepostsealdriverfailure"
+    },
+    {
+      "requirement": "Leaderboard and lessons",
+      "status": "passed",
+      "evidence": "Both cycle reports/receipts and single79-row leaderboard updated; checked by final tests"
+    },
+    {
+      "requirement": "Passing full checks",
+      "status": "passed",
+      "evidence": "make check exit0,624offline tests; documentation,boundaries,index,dependencies,receipt/leaderboard checks and whitespace passed"
+    }
+  ],
+  "prohibited_actions": {
+    "paid_or_network_data": 0,
+    "credentials": 0,
+    "broker_orders": 0,
+    "services": 0,
+    "dependency_installs": 0,
+    "commits_publication": 0
+  },
+  "goal_completion": "verified-complete",
+  "lesson": "Neither dividend-consistent features nor lower buy-topup churn establishes the material joint improvement. No-topup shows small Calmar/growth tradeoff; preserve incumbent and all negative evidence. Financial child success does not establish a clean parent export workflow.",
+  "next_work": "No automatic extension. A later separately scoped task may fix/version export-path handling and review qualified independent signals/data; no further financial launch under this epoch.",
+  "final_verified_utc": "2026-10-28T21:21:44.254615+00:00",
+  "final_validation": {
+    "full_check_exit": 0,
+    "offline_tests": 624,
+    "full_check_log_sha256": "aba27478a3f2c9ab6fc2b92971c1b9491b6a6cb365ed675cc670f651a8b6fdfd",
+    "financial_artifacts_verified": 549,
+    "financial_bundles": [
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/calmar-epoch-20261028",
+        "manifest_sha256": "c65d0463ccec1c7552980ef93ba8ac941cbad54c2668edbc2e3c344c8c815249",
+        "artifacts": 79
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/ceiling-capture-c02",
+        "manifest_sha256": "15a13f435ec2920cba068dfb468ad8d30e7e029d613b9a03292b13730c10db08",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/proposal-c03",
+        "manifest_sha256": "8f2ebf5662de705b4d4ccebfd82aba6794427ba9747d182294057b488b075614",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/no-veto-c04",
+        "manifest_sha256": "5af52ac12ae46c21516e34cb98361218ea4682ecb5663718eb2e70ed1bf5b343",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/total-return-c05",
+        "manifest_sha256": "5ec06c44683d82ea294a00b45f60722b05a309a1fdee17ce00b5920eb7815ca8",
+        "artifacts": 94
+      },
+      {
+        "bundle": "/Users/kenfuliang/Documents/Codex/2026-10-24/is-there-any-repo-that-we/.local/rsi-calmar-20261028/.local/execution-c06",
+        "manifest_sha256": "9b5f4d911e58a98bc17099ec7e433e6d5d12c9ca5311f5dbccc4fe8291449361",
+        "artifacts": 94
+      }
+    ],
+    "old_financial_artifacts_preserved": 455,
+    "new_c06_artifacts": 94,
+    "epoch_financial_artifacts": 188,
+    "all_old_leaderboard_rows_and_links_preserved": true,
+    "leaderboard_rows": 79,
+    "current_frozen_c06_code_and_qualification_verified": true,
+    "financial_runs_in_final_validation": 0,
+    "goal_evidence_complete": true
+  },
+  "remaining_work": [],
+  "automatic_continuation": false
+}

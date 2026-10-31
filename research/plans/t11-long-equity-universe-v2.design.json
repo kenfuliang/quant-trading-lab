@@ -1,0 +1,42 @@
+{
+  "schema": "t11-universe-design/v2",
+  "status": "proposed_research_design_not_executable",
+  "design_id": "T11-LONG-UNIVERSE-20261030-02",
+  "parent": "research/plans/t11-long-equity-universe-v1.design.json",
+  "candidate": "GATE-RS1: T11-gate-derived long-equity selector, not faithful T11",
+  "tradable_etfs": ["TECL", "SOXL", "TQQQ", "QQQ", "SOXX", "VTI"],
+  "cash": "Residual USD; no cash ETF substitution or assumed interest.",
+  "changed_stage": "Replace position proposal only; no retained original T11 branch eligibility in this first ranking variant.",
+  "selection_rule": {
+    "families": {"technology": ["TECL"], "semiconductors": ["SOXL", "SOXX"], "nasdaq100": ["TQQQ", "QQQ"], "broad_us": ["VTI"]},
+    "features": "For each actual ETF total-return close index TR, momentum = TR[t]/TR[t-252]-1; volatility = sample standard deviation of last63 daily simple total returns times sqrt(252). Score = momentum/volatility. This is not a Sharpe estimate or a perfect removal of leverage effects.",
+    "eligibility": "All six series must have complete common-calendar causal coverage and253 closes; ETF must have positive252-session momentum and volatility greater than1e-12. Zero volatility is undefined/ineligible with a reason, not a favorable infinite score. Invalid source/state blocks the case.",
+    "timing": "Rank at last common regular-session completed close of each calendar month, only after actual bar availability; first allocation at first qualified evaluation decision with prior warmup. Execute through unchanged next-open staged controller, never same-close fill.",
+    "ranking": "Descending score, then ascending ticker for exact ties; greedily take at most two ETFs, at most one from each declared family.",
+    "weights": "Each selected ETF receives0.5 normalized pre-gate weight. With only one eligible family, retain the other half as cash. None eligible means cash.",
+    "between_rankings": "Persist selected normalized proposal until next ranking. Existing daily gate can scale or zero it; gate recovery can reenable that persisted proposal. No extra daily trend exit, debounce, volatility sizing or buy-topup maintenance is added.",
+    "gate_and_reserve": "Original SPY traffic-light cap1/0.5/0 and90% reserve applied once, unchanged.",
+    "limitation": "Declared families remove exact wrapper duplication only; technology, Nasdaq, semiconductor and broad-market holdings still overlap. Ranking may change implicit leverage, not just predictive quality."
+  },
+  "comparison_proposal": {
+    "policies": ["fresh full gated T11", "original T11 restricted to permitted weights, excluded weight becomes cash without renormalization", "fixed equal-family allowed-universe allocation plus gate", "GATE-RS1", "half-sized fixed equal-family control plus gate"],
+    "equal_family_weights": {"TECL": 0.25, "SOXL": 0.125, "SOXX": 0.125, "TQQQ": 0.125, "QQQ": 0.125, "VTI": 0.25},
+    "equal_family_execution": "Constant normalized proposal, unchanged signal-change controller; not continuous daily equal-weight maintenance. Half-sized control scales proposal by0.5.",
+    "cost_bps": [25, 50],
+    "dates": ["2020-01-02", "2025-12-31"],
+    "capital_usd": 10000,
+    "accounting": "Match original staged controller, IB fees, affordability reserves,6% ACT/360 prior debit and zero cash credit. Actual ETF paths and corporate actions, not leveraged proxy reconstruction. Original gate seed retained.",
+    "proposed_screen": "At both costs: closing-path Calmar at least10% above both restricted-T11 and fixed equal-family controls, CAGR at least90% of each, drawdown no deeper and recovery-inclusive maximum underwater sessions/calendar days no longer. Full gated T11 remains external research benchmark; report failure to beat it explicitly.",
+    "inference_limit": "Half-sized reference is not exact exposure matching. A passing result supports only the modeled combined allocation; timing/selection alpha remains unassessed without credible exposure attribution or matched controls.",
+    "future_max_cases": 10,
+    "future_launch_hours": 3,
+    "workers": 1,
+    "automatic_retries": 0,
+    "financial_execution_enabled": false,
+    "currently_authorized_cases": 0,
+    "used": 0,
+    "stop": "No launch before qualified input, source/reuse/execution-route and capture/accounting gates; stop on unresolved integrity/capture failure. All attempts count, no parameter sweep."
+  },
+  "research_status": "Viewed-history development proposal; no guarantee of improvement, no untouched holdout, no ML training or financial cases.",
+  "blockers": ["Complete free/permitted six-ETF history, warmup, actions and exact as-of availability", "Original full gate bootstrap and reproducible state", "Daily decision, controller, fills and account capture", "Independent account and temporal-v1.2 audit", "Qualified runner and separately frozen executable budget; no reuse of exhausted cloud allowance"]
+}

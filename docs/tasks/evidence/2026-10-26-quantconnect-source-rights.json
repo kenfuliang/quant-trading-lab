@@ -1,0 +1,103 @@
+{
+  "id": "qc-detail-rights-v1",
+  "captured_utc": "2026-10-27T02:54:58.272083+00:00",
+  "status": "bounded_static_review_complete_with_O03_and_O04_blockers",
+  "user_choice": "licensed_sources_first",
+  "objective_status": {
+    "O03": "partial_blocked_complete_community_source_and_contracts",
+    "O04": "started_all_records_triaged_not_all_rights_cleared",
+    "O05": "no_new_source_package_export"
+  },
+  "stats": {
+    "total_records": 622,
+    "licensed_tutorial_methods": 82,
+    "community_complete_source_pending": 540,
+    "github_files_inspected": 341,
+    "in_scope_github_files": 337,
+    "supplemental_folders_excluded_from_population": [
+      "118 Time Series Momentum Effect"
+    ],
+    "observed_code_blocks": 354,
+    "meaningful_code_blocks": 201,
+    "algorithm_class_candidate_records": 5,
+    "iframe_file_count": 85,
+    "fragment_identity_groups": 0,
+    "fragment_similarity_leads": 3,
+    "complete_packages_verified": 0,
+    "package_duplicates_verified": 0,
+    "source_packages_exported": 0,
+    "rights_dispositions": 622,
+    "manual_detail_cards": 8,
+    "financial_attempts": 0,
+    "observed_requirements": {
+      "historical_warmup": 29,
+      "monthly_schedule": 11,
+      "forex_prices_and_conventions": 2,
+      "daily_schedule": 2,
+      "custom_or_external_data": 18,
+      "equity_prices_and_actions": 6,
+      "point_in_time_fundamentals": 26,
+      "option_chains_quotes_expiry_assignment": 1,
+      "futures_chains_contracts_and_rolls": 1,
+      "leverage_declaration": 2
+    }
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 339,
+    "documentation_files_checked": 115,
+    "dependency_check": "passed",
+    "source_overlay_audit": {
+      "id": "qc-detail-rights-v1",
+      "passed": true,
+      "records": 622,
+      "manifest_inputs_verified": 348,
+      "artifact_and_processing_hashes_verified": 10,
+      "complete_packages_verified": 0,
+      "financial_attempts": 0
+    },
+    "prior_inventory_audit": "passed unchanged frozen snapshot",
+    "browser": "passed manual filter, ID search, empty state, source disclosure and warning visibility",
+    "git_diff_check_exit": 0
+  },
+  "source_revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+  "browser_url": "http://127.0.0.1:8765/qc-detail-rights-v1/index.html",
+  "files": [
+    {
+      "path": "research/catalogs/qc-detail-rights-v1/manifest.json",
+      "sha256": "21620e0bed926ce7e88baa39d7bffd94260ae5ae1545be61607b2b44d8f4033d"
+    },
+    {
+      "path": ".local/qc-detail-rights-v1/offline-checks-final.txt",
+      "sha256": "11badf7025fec3e2b966ecc1165e50f024044c49fb2df63ac0967bd615b812c0"
+    },
+    {
+      "path": ".local/qc-detail-rights-v1/audit.json",
+      "sha256": "f4d7398bc14bdab5e89000c32ad0ed6a1a4e402d0d3980032924c22364c4c749"
+    },
+    {
+      "path": ".local/performance/qc-detail-rights-v1/browser-audit.json",
+      "sha256": "8d5fdda483cb64c5c56bbfb224f81133716ba1b22cff1052ee4d54037b444848"
+    },
+    {
+      "path": ".local/performance/qc-detail-rights-v1/review-preview.png",
+      "sha256": "abc0860fc9d2b30d14df2384b1da5dd98df87af288f7e14e47ddd79757599d66"
+    }
+  ],
+  "restrictions_observed": {
+    "new_financial_attempts": 0,
+    "new_complete_packages_exported": 0,
+    "new_bulk_QC_website_collection": 0,
+    "agents_launched": 0,
+    "broker_actions": 0,
+    "paid_usd": 0,
+    "commits_or_publication": 0
+  },
+  "remaining": [
+    "540 community complete sources and source-specific permissions",
+    "Full contracts and dependency manifests for all candidates",
+    "Dataset-specific cloud/download/redistribution checks",
+    "Whole-package duplicate/fork verification",
+    "Permitted source-package export is a later O05 action"
+  ]
+}

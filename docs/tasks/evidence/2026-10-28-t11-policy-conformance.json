@@ -1,0 +1,120 @@
+{
+  "schema": "t11-private-policy-conformance-progress-v1",
+  "status": "policy_source_conformance_passed_historical_parity_incomplete",
+  "observed_utc": "2026-10-29T06:10:52.129231+00:00",
+  "program_sha256": "dab953e20e0483c3a6477c736768898a192856cffc4356c921fa692af8f31195",
+  "financial_attempts": 0,
+  "financial_cap": 6,
+  "optimization_eligible": false,
+  "original_sources_preserved": {
+    "t11": {
+      "path": ".local/qc504-t11-gate-v1/t11-source.py",
+      "sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d"
+    },
+    "gated_t11": {
+      "path": ".local/qc504-t11-gate-v1/gated_t11-source.py",
+      "sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+    }
+  },
+  "proof": {
+    "status": "passed_synthetic_policy_conformance_only",
+    "completed_utc": "2026-10-29T06:02:30.554410+00:00",
+    "snapshots": 3000,
+    "source_evaluations": 18000,
+    "caps": [
+      0,
+      0.5,
+      1
+    ],
+    "wall_seconds": 0.639765499974601,
+    "branch_reasons": {
+      "not_ready": 97,
+      "oversold_spy": 106,
+      "overbought_mix": 1027,
+      "extreme_overbought": 962,
+      "bear_split": 325,
+      "bull_risk": 262,
+      "bull_inverse": 77,
+      "oversold_tqqq": 144
+    },
+    "financial_attempts": 0,
+    "source_contract_sha256": "1c8ed0ead3fe24a662758cb59ecb0705395b0612f170784afecde347d7c7fa2b",
+    "decision_log_sha256": "3c0dd8542d62b5dbc4e76b3f8fa449324fd6c795a53f2b1740868fc27741a649",
+    "third_party_port_publication": false,
+    "indicator_math_parity": false,
+    "historical_decisions_or_accounts_proven": false,
+    "native_execution_parity": false
+  },
+  "proof_contract": {
+    "path": ".local/t11-reproduction-v1/policy-conformance-v2/policy-conformance-contract.json",
+    "sha256": "1c8ed0ead3fe24a662758cb59ecb0705395b0612f170784afecde347d7c7fa2b"
+  },
+  "private_port": {
+    "path": ".local/t11-reproduction-v1/policy_port.py",
+    "sha256": "56ff1d5255a9ed80deb10cb62711db1c627df8b2f0cb3c82632a49678ed0f431",
+    "redistribution_rights_claimed": false
+  },
+  "source_files": {
+    "research/studies/t11_reproduction/__init__.py": "ed717dd3d3d4c9ff6a8449fc81d6bf019ad4eff05ea0da657b473c1888da25ef",
+    "research/studies/t11_reproduction/indicators.py": "2df4bd67f1fa95d66b4055cffe2413a52363542a9aa188035d9e10382317b0e1",
+    "research/studies/t11_reproduction/contracts.py": "1cf8c3ec18a4b192f9d18524d3407fb68ab0ff22d2b085c4e7156a8616ddb843",
+    "research/studies/t11_reproduction/reference.py": "1cefd2a2ec4b01c084291f682dda0144837e0b1feb707c0825677819ffdabc86",
+    "research/studies/t11_reproduction/conformance.py": "a1591d0065cbb26c56e98f8e17f7c06a7a2f9e154e756bc50f6f0e061eed3d33",
+    "research/studies/t11_reproduction/readiness.py": "c2aedb49e66f4ad7a835dba29e69d9b6252901264b5ce43a6c71d68cb527af14",
+    "tests/test_t11_reproduction.py": "04f6ce7672e5dcb4a80a7be1ff700a2ca06e0c91a7f8779ac53a820646d4f1be",
+    "tests/test_t11_conformance.py": "fde5c0f4539c657683dc906ae30974d185b83ad407b3ee316fa3d7599a48091b",
+    "tests/test_t11_indicators.py": "9f0961633bc7aab08227684b4603a651df93990631203f0ab4397ce2dff53e9b"
+  },
+  "negative_evidence": {
+    "first_probe": "restricted oracle rejected original values() call before policy evaluations; fixed allowlist/built-in class setup in new version; all first-probe files preserved",
+    "path": ".local/t11-reproduction-v1/policy-conformance.log",
+    "sha256": "39695ac0051540b71a2bec4d34e1ef83e2a0df046e0098fd119f3116262b05ed",
+    "original_source_evaluations_before_failure": 0,
+    "financial_attempts": 0,
+    "frozen_failed_contract_sha256": "16d2448b1b93e49b55adabafab420e859b452871409de79d126f6a1b039dc79f",
+    "source_snapshot_dir": ".local/t11-reproduction-v1/policy-conformance-v1-source"
+  },
+  "indicator_prototype": {
+    "status": "invented-input_source_semantics_only",
+    "native_dotnet_execution": false,
+    "dotnet_sdk_available": false,
+    "local_framework_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+    "license": "Apache-2.0 framework source; no third-party strategy redistribution grant inferred",
+    "framework_file_hashes": {
+      "vendor/Lean/LICENSE": "522cf0a716ce03f67d46f8fceb5bf78c5b84400ec5cd8d14bf9f02cddc1cb6ba",
+      "vendor/Lean/Indicators/RelativeStrengthIndex.cs": "b8c297a77c563b4f287e1236664d8e84cb6ac938e66ca41b2ee43b56397da0a9",
+      "vendor/Lean/Indicators/WilderMovingAverage.cs": "2116c05711beac6f97936eaf24c5fc7ae04318572f3ab1f5ae907d9339dfd127",
+      "vendor/Lean/Indicators/SimpleMovingAverage.cs": "9ad026997a917663a711f62ea916b35be3e0629f4966341d12ab94b83e0c856a"
+    },
+    "native_saved_engine18209_identity_proven": false,
+    "key_behavior": "Flat input RSI100; SMA/Wilder readiness/seeding and10decimal loss rounding; PythonDecimal28 native precision parity unverified"
+  },
+  "official_reference_access": {
+    "authenticated_project_visible": true,
+    "page_webmcp_tools_available": false,
+    "current_nested_controls_usable": false,
+    "saved_results_or_orders_downloaded": 0,
+    "raw_vendor_data_exported": 0,
+    "user_local_result_paths_requested": true
+  },
+  "remaining_requirements": [
+    "permitted original daily NAV/orders/decisions where originally recorded",
+    "qualified historical input and2004gate seed or supported hosted verification route",
+    "native engine/normalization/indicator parity",
+    "staged MOO/native fee/margin/corporate-action/funding account replay",
+    "two eligible captured baselines before first RSI challenger"
+  ],
+  "validation": {
+    "focused_preparation_tests": 17,
+    "full_check": "passed",
+    "full_make_check_exit": 0,
+    "offline_tests": 515,
+    "docs_passed": true,
+    "pip_check_passed": true,
+    "git_diff_check_exit": 0,
+    "log_sha256": "141b8736186d2f100864bb22bd9ff190c19a8cfbcd1b52203328438af347ce03"
+  },
+  "no_new_leaderboard_rows": true,
+  "broker_operations": 0,
+  "services_started": 0
+}

@@ -1,0 +1,28 @@
+{
+  "cycle_id": "RM-20261030-01",
+  "created_utc": "2026-10-30T07:19:08.072778+00:00",
+  "deadline_utc": "2026-10-30T08:47:54+00:00",
+  "stage": "target-selection",
+  "mechanism": "36-month FF3 residual 12-1 momentum",
+  "max_financial_cases": 6,
+  "max_source_candidates": 2,
+  "factor_sources": 1,
+  "workers": 1,
+  "retries": 0,
+  "acquisition_allowed": false,
+  "financial_gate": "requires new immutable qualified execution freeze; disabled in this engineering slice",
+  "criteria": {
+    "calmar_relative_improvement_min": 0.1,
+    "cagr_loss_max_pp": 1,
+    "drawdown_deepening_max_pp": 1,
+    "underwater_ratio_max": 1.1
+  },
+  "controls": [
+    "ordinary-momentum",
+    "equal-weight"
+  ],
+  "prior_screen": "docs/tasks/2026-10-29-next-algorithm-screen.md",
+  "revision": 2,
+  "goal_started_utc": "2026-10-30T07:17:54+00:00",
+  "amendment": "Correct deadline anchor to actual goal creation, shortening bound; zero financial cases or observed portfolio outcomes. Original plan preserved privately."
+}

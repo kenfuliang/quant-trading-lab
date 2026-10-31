@@ -1,0 +1,80 @@
+{
+  "study_id": "selection-completion-v1",
+  "status": "design-not-executable",
+  "created_utc": "2026-10-26T21:16:24.614725+00:00",
+  "goal": "docs/tasks/2026-10-26-selection-research-goal.md",
+  "scope": [
+    "asset-class momentum",
+    "stock momentum",
+    "low-volatility stocks"
+  ],
+  "max_total_hosted_launches": 14,
+  "diagnostic_launches": 2,
+  "planned_financial_launches": 9,
+  "technical_retries": 3,
+  "execution_window_minutes": 120,
+  "deadline_policy": "Freeze absolute UTC deadline before first new hosted launch. Reserve every attempt before dispatch, including probes and failures; no reopening prior budgets.",
+  "cases": [
+    "asset_momentum_repaired",
+    "stock_momentum_repaired",
+    "lowvol_repaired",
+    "spy_control",
+    "asset_equal_weight",
+    "stock_momentum_universe_equal_weight",
+    "lowvol_universe_equal_weight",
+    "stock_momentum_cost_delay_stress",
+    "stock_equal_weight_cost_delay_stress"
+  ],
+  "cached_controls": [
+    "qc-breadth-v1:t11"
+  ],
+  "base_assumptions": {
+    "start": "2020-01-01",
+    "end": "2025-12-31",
+    "capital_usd": 10000,
+    "target_budget": 0.9,
+    "slippage_bps": 25,
+    "fee_model": "Same native IB margin/default fees",
+    "debit_rate": 0.06,
+    "debit_basis": "ACT/360 previous closing negative USD cash",
+    "credit_rate": 0,
+    "execution": "Preserve funded staged MOO controller; causal selection and explicit history readiness"
+  },
+  "stress": {
+    "slippage_bps": 50,
+    "extra_decision_delay_sessions": 1,
+    "comparison": "Two separately labelled matched stress cases; do not attribute combined effect to cost or delay alone"
+  },
+  "acceptance": {
+    "asset_momentum": "Positive net CAGR difference versus same-five-ETF equal weight; report DD and temporal opportunity cost",
+    "stock_momentum": "Positive net CAGR difference versus same historical eligible universe equal weight; separately report matched stress difference",
+    "lowvol": "Smaller full-period closing DD than same historical eligible universe equal weight, with nonnegative full-period CAGR; report displaced growth and duration",
+    "evidence_gate": "Diagnosed missing-history events; causal/finite/ready inputs; matched controls/costs/calendars; complete summaries and reconciliation; failed gates mean inconclusive, not a financial win",
+    "decision": "Retain for independent validation only if evidence gate and declared mechanism test pass; stop this fixed variant if mechanism test fails; inconclusive for conflicting/insufficient evidence. No live promotion."
+  },
+  "baseline": {
+    "qc-breadth-v1": {
+      "manifest_sha256": "23fa96bf35e4cbd9934acfffac2e49cf9993a195863a279fad49517f4dac14cf",
+      "comparison_sha256": "1f6efa77997bf0f11e66fc5d3541f1280d0f76dd4df8b26ac23f7fbaaf00f8dd",
+      "verified_artifacts": 4
+    },
+    "qc504-funded-v1": {
+      "manifest_sha256": "6e09228a78df714d5e8335254c8fd9384c162dc410b41aedeb37355ddc0aceb3",
+      "comparison_sha256": "722164fe46be91e08ef1104f5fe0287258a06a179f671b2e2aed545b4105e7d3",
+      "verified_artifacts": 4
+    }
+  },
+  "execution_gate": "Order-free readiness diagnosis first, then freeze versioned executable sources, hashes and exact timing/eligibility rules before financial launch. This design itself cannot authorize arbitrary financial variants.",
+  "stops": [
+    "14 launches or frozen2hour deadline",
+    "No further repairs after3technical retries",
+    "No free data/access or unresolved causal/history integrity: stop dependent runs and preserve evidence",
+    "No after-result signal/threshold/universe optimization"
+  ],
+  "limits": [
+    "Viewed development history, not independent OOS",
+    "Retain/stop decisions apply to these exact adaptations, not entire literature",
+    "USD300000 capacity/deployment qualification remains outside this epoch",
+    "Remaining seven shortlist candidates are queued, not in scope"
+  ]
+}

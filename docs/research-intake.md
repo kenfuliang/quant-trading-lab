@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-25
+updated: 2026-10-26
 owner: project-maintainers
 ---
 
@@ -33,6 +33,25 @@ equity curves are discovery signals, not investment evidence.
 Separate libraries/frameworks from strategy findings. A model zoo or analysis
 library is useful infrastructure reference but does not itself establish a
 deployable strategy or transferable performance.
+
+## Source acquisition and reuse gates
+
+Use licensed sources first for the QuantConnect catalog, per the user's current
+choice. The [details/rights receipt](tasks/2026-10-26-quantconnect-source-rights.md)
+records the current access review. Do not treat a website Clone control, a matching
+title, an embedded backtest or a framework license as permission to redistribute
+another author's algorithm. Use documented official interfaces only within their
+verified permitted scope; do not work around website extraction restrictions.
+
+Record acquisition permission, code inspection/modification/redistribution,
+external dependencies, data cloud/download/redistribution rights and result-artifact
+rights separately. A blocked or unknown field remains a blocker for the affected
+export. A licensed method snippet is useful research evidence but is not a complete
+source package, dataset entitlement or current-engine compatibility receipt. A code-only
+source bundle can be exported under an applicable verified grant while runtime or
+data readiness remains blocked, provided those limits are explicit and no restricted
+data or result artifacts are included. Preserve file-level grants even where a
+repository has no general license; do not extend them to neighboring files.
 
 ## Intake procedure
 
@@ -107,8 +126,68 @@ requirements remain attached to each catalogue entry rather than fabricated resu
 
 ## Completed source screenings
 
+- [QuantConnect shared-strategy screening](tasks/2026-10-25-quantconnect-strategy-intake.md)
+  (2026-10-25): five ideas screened; two displayed code files inspected. Description/code
+  discrepancies and concentration risk recorded; no cloning or reproduction performed.
+- [Independent data providers and collectors](tasks/2026-10-25-independent-data-review.md)
+  (2026-10-25): recurring-free versus trial/paid coverage compared across equities,
+  ETFs, forex and exchange futures; six collector source revisions and licenses
+  inspected. Source/runtime adoption unverified; [library plan](data-library.md)
+  proposes qualification before acquisition or financial reuse.
 - [Strategy Survival Funnel review](tasks/2026-10-25-research-strategy-survival-funnel.md)
   (2026-10-25): pinned source and published CSV consistency reviewed; 47 families,
   318 configurations and 9222 cases. Screened for process/definition reuse; direct
   code adoption held for license clarification, returns not independently reproduced.
   This screening supersedes discovery-only descriptions for this candidate.
+
+- [Ten QuantConnect research candidates](tasks/2026-10-26-quantconnect-shortlist.md)
+  (2026-10-26): ten official article methods screened across ETF allocation, stock
+  factors, earnings, pairs, intraday and options. Exact code/access/performance
+  unverified; first-wave inspection order recorded, no new backtests launched.
+
+- [First-three QuantConnect selection comparison](tasks/2026-10-26-qc-selection-comparison.md)
+  (2026-10-26): pinned legacy examples inspected; free hosted equity/fundamental
+  sample access verified; five source-informed/baseline cases completed after two
+  preserved technical issues. Readiness gaps make results provisional; no exact
+  published-strategy reproduction, independent alpha or promotion established.
+
+## Comprehensive QuantConnect review plan
+
+The [O00–O15 objective checklist](tasks/2026-10-26-quantconnect-research-master-plan.md)
+tracks the requested broad catalog/export/evaluation initiative. It applies this
+intake contract to a dated accessible snapshot, preserving all blocked and rejected
+records. The earlier shortlist remains historical input, not the entire catalog.
+This link adds a supporting work plan; the [O00–O03 inventory receipt](tasks/2026-10-26-quantconnect-inventory.md) now
+records 540 community IDs and 82 tutorial-index entries, their provisional family
+map and prior-research crosswalk. Bulk source export and new simulations remain
+unstarted; one tutorial target is a soft404 and detailed source contracts remain open.
+
+
+The [CAPM alternative follow-up](tasks/2026-10-26-capm-spy-comparison.md) now
+qualifies one of the licensed framework alternatives for a scoped free hosted
+comparison. It is not exact tutorial-source reproduction. Its unfavorable fixed
+cost result, actual dependencies, native-accounting limits and all technical
+failures remain linked in that receipt; no broader catalog readiness is implied.
+The subsequent [cost/stock-stop ablation](tasks/2026-10-26-capm-cost-stop-ablation.md)
+completed nine qualified cases with matching controls. Separating commissions,
+slippage stress and the stock stop leaves all six variants below matching SPY on
+CAGR, Sharpe and Calmar. Preserve the negative implementation and its cost-dependent
+tradeoffs; this does not clear other packages or justify repeated threshold tuning.
+
+
+The [next licensed-candidate receipt](tasks/2026-10-26-dual-thrust-spy-comparison.md)
+keeps that negative baseline unchanged. The first choice, G-Score, stopped before
+financial testing because its quarterly API retired and legacy ratio timestamps
+are known to look ahead. The licensed Dual Thrust fallback required a causal
+prior-session range repair and a clearly named SPY adaptation. Its three-case
+free-data comparison passes the scoped accounting/data audit but fails the frozen
+improvement screen. This closes five aggregate attempts; it neither clears the
+other tutorial packages nor rejects an entire strategy family.
+
+
+The [stock-pairs follow-up](tasks/2026-10-26-stock-pairs-spy-comparison.md) qualifies
+free hosted price/action inputs and explicitly repairs future-aware sizing,
+statistical calibration, state and information timing in a named mechanism
+adaptation. Its negative financial result and high-growth/high-DD hindsight-selected
+hold control are preserved with the closed five-attempt ledger. Source permission,
+input readiness and candidate quality remain separate dispositions.

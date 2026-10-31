@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: project-maintainers
 ---
 
@@ -8,7 +8,8 @@ owner: project-maintainers
 
 For new implementation work, follow the [current package layout](architecture.md#research-package-layout-and-frozen-compatibility). Flat research modules and original commands are frozen compatibility copies; do not edit them to implement a new candidate.
 
-This document owns the research-cycle handoffs and evidence contracts. The
+This document owns research-development tool procedures and scientific handoffs;
+[GRS](research-standard.md) owns cycle evidence and adoption requirements. The
 [mandate](goals.md) owns objectives/open risk decisions; [intake](research-intake.md)
 owns external claims/rights; [workflow](workflow.md) owns implementation; the
 [skill map](skills.md) owns discovery/readiness. This is an offline research
@@ -46,6 +47,23 @@ by the user remains valid; no redundant approval step is added to ordinary offli
 
 ## Research design
 
+Blocked source/accounting follow-up:
+[qualification and comparison checkpoint](tasks/2026-10-25-multi-asset-qualification-v2-checkpoint.md).
+It retains a source-permission input gate and has not launched the historical
+comparison. Its protocol owns this fresh budget; prior epoch limits stay closed.
+
+Latest multi-asset enablement:
+[trend and relative-strength review](tasks/2026-10-25-multi-asset-unlock-review.md).
+It implements synthetic-tested signal/allocation seams; its source qualification
+and historical comparison remain blocked. The
+[protocol](tasks/2026-10-25-multi-asset-unlock.md) defines five rules at two costs.
+
+Latest completed frozen-candidate challenge:
+[execution robustness review](tasks/2026-10-25-rsi-gate-robustness-review.md).
+It used a new nine-path budget and retained the EMA/volatility-only candidate for
+independent validation; the budget is exhausted. Its fixed
+[protocol](tasks/2026-10-25-rsi-gate-robustness.md) remains unchanged after freeze.
+
 Latest completed readiness audit: [bounded ETF diversification readiness](tasks/2026-10-25-rsi-etf-readiness.md).
 Source qualification and native shared-cash proof precede a prospective six-case
 portfolio comparison. Its not-ready decision preserves zero historical financial attempts; the
@@ -74,20 +92,55 @@ results influence later choices. Model fitting, setting selection and evaluation
 are separate decisions. Purge/embargo lengths, when relevant, follow overlapping
 labels/holding periods rather than an arbitrary universal number of days.
 
-## Incremental-stage experiments and reports
+### Selection and stopping review
 
-[GRS-1.0](research-standard.md) is the single owner for the minimal algorithm
-pipeline, one-change cycles, evidence, stage disposition and paper readiness.
-Use its [cycle register](research-cycles.md) and
-[cycle template](templates/research-cycle.md). The procedures here operate the
-actual supported tools and budgets; adopting the standard does not add an
-unattended optimizer or change an exhausted study's allowance.
+Before choosing the next experiment, retrieve the incumbent, related trials and
+negative lessons. Name the economic mechanism and explain what new evidence or
+different mechanism makes this proposal informative. A different threshold,
+renamed rule or new stage label does not by itself escape a failed direction.
+When a mechanism has repeatedly failed, prefer a genuinely different question;
+revisit only with a documented new input, diagnosis or falsifiable explanation.
+Record the decision even when the best choice is to stop or retain the incumbent.
 
-A [decision brief](templates/research-decision.md) presents a saved result with
-comparability, failed/missing evidence and sources. A substantial experience
-report uses the [paper template](templates/research-paper.md) only when GRS
-criteria are met. Both derive from original cycle artifacts and preserve viewed
-history, negative findings and operational-readiness limits.
+Review source reuse rights and actual free/local input availability before reserving
+financial attempts. Public visibility, API access and an observed timestamp do not
+establish reuse rights, point-in-time universe membership or feature publication
+time. Missing dependencies yield a readiness task with no financial claims.
+Freeze one change, controls, thresholds, aggregate attempts, deadline, worker count
+and retry policy under [GRS](research-standard.md#the-bounded-loop). Consumed or
+expired budgets stay closed; a new file, agent or child cycle does not reset them.
+
+## Individual stage development
+
+Use this procedure for one existing-stage improvement or one optional-stage
+addition under [GRS](research-standard.md#minimal-pipeline). Freeze the stage's
+input/output meanings, units, instrument identifiers, availability/as-of times,
+decision horizon, warmup/missing-data behavior and fallback/no-go output. Name
+which upstream and downstream contracts stay fixed and pin the incumbent and
+unchanged controls. Do not combine a new selector, new sizing and new execution
+model under one claimed stage improvement.
+
+First test synthetic conformance: normal inputs, missing/future/stale inputs,
+boundary values, deterministic outputs and the next stage's accepted interface.
+Preserve failed checks. Synthetic passage establishes only the exercised interface;
+it does not establish financial benefit, native execution parity or qualified data.
+A subsequent financial test needs its separately frozen scope, ready inputs and
+remaining budget. It must use the incumbent's matched accounting and the declared
+effect and guardrails before changing any research version.
+
+## Incremental-stage experiments
+
+[GRS-1.1](research-standard.md) is the canonical owner for the minimal pipeline,
+one-change cycles, evidence records, incremental adoption and paper-style reports.
+Use its [bounded loop](research-standard.md#the-bounded-loop),
+[cycle register](research-cycles.md) and [cycle template](templates/research-cycle.md).
+The tool procedures below implement that contract within each runner's actual
+capability and budget; this link does not enable an unattended optimizer.
+
+The [RSI operating SOP](operations/recursive-research.md) connects these scientific
+handoffs to the scoped coordinator, contract, artifact and version-record tools.
+Its [foundation checklist](tasks/2026-10-27-rsi-foundation-implementation.md) tracks
+implementation and observed acceptance separately from financial readiness.
 
 ## Data audit
 
@@ -157,6 +210,21 @@ request a missing series rather than manufacture it. Lower leverage/costs alone
 can explain a higher ratio. State evidence, alternate explanation and a falsifiable
 next test; no re-tuning during diagnosis unless the user requested it.
 
+### Calmar comparison eligibility
+
+[Scoring](research-scoring.md) owns Calmar's definition and the
+[single leaderboard](leaderboard.md) owns its presentation. For a ranking claim,
+first reconcile dates/calendar and opening anchors, capital/external cash flows,
+currency/actions, costs/financing, exposure controls and metric conventions.
+Different exposure can be an intentional treatment; disclose it and include an
+exposure-matched control before attributing an improvement to timing or selection.
+Do not compare built-in intraday drawdown with daily-close drawdown as one score.
+Keep CAGR, maximum drawdown, time underwater (session/calendar units, recovery
+inclusion and censoring) and evidence status beside Calmar. If conventions cannot
+be reconciled, retain contextual results without an unqualified rank. Numerical
+materiality and growth/recovery constraints are frozen before challenger outcomes;
+no universal Calmar threshold is introduced by this procedure.
+
 ## Candidate evolution
 
 Retrieve prior hypotheses, rejected variants and evaluation access before proposing
@@ -216,7 +284,50 @@ recommendation/record, not deployment, broker configuration or orders. Operation
 procedures retain authority in [paper operations](operations/paper-connection.md),
 [incidents](operations/incidents.md) and the [roadmap](roadmap.md).
 
+### Evidence transitions are separate
+
+```mermaid
+flowchart LR
+    A[Aggregate compatibility] -. does not establish .-> D[Daily decision and account reproduction]
+    D -. does not establish .-> P[Operational paper readiness]
+    O[Qualified signals and execution/recovery evidence] --> P
+```
+
+Report aggregate compatibility, daily decision/account reproduction and operational
+readiness independently, each as supported, failed, unknown or not applicable with
+evidence. Matching summary statistics cannot reconstruct the original decisions
+or cash ledger. Research reproduction cannot prove order reconciliation or recovery;
+an operationally qualified paper pilot can proceed under its own SOP without a
+missing original historical trace, while historical-parity claims remain unknown.
+For Alpaca use the [paper handoff](operations/alpaca-paper.md#research-to-paper-handoff).
+
+`research/workflow_readiness.py` provides an implemented **descriptive offline
+review helper**, `summarize_review(review, checks)`, for research selection,
+Calmar comparability, daily reproduction and paper handoff. Each `ReviewCheck`
+records `met` with an evidence reference, or `failed`/`unknown` with a reason.
+Omitted observations remain unknown; unexpected check names fail explicitly.
+The result distinguishes failed from missing checks and always states
+`authorizes_execution: false` and `independently_verified: false`. Callers still
+inspect artifact bytes, times, rights and accounts using the canonical procedures.
+This helper neither measures freshness/budgets nor replaces receipt validation,
+RSI contracts, native risk, execution checks or any broker state machine.
+
 ## Research history
+
+The [stock-momentum gate/sector ablation](tasks/2026-10-26-stock-risk-ablation.md)
+adds five fixed fresh cases, monthly chosen-security/sector/target logs and complete
+full-period security PnL. It is a separate closed development study; its sector
+treatment includes unknown-classification cash exclusions and does not prove a
+hard continuous sector cap or independent timing alpha.
+
+Completed bounded research goal: [first-three selection reviews](tasks/2026-10-26-selection-research-goal.md).
+It owns this epoch's limits and deliverables; the [final review](tasks/2026-10-26-selection-completion.md) owns results and lessons, without reopening prior budgets.
+
+
+Dated synthesis: [consolidated research lessons](tasks/2026-10-26-research-lessons.md)
+links observed tradeoffs, failed claims and next discriminating questions to their
+original receipts. It does not replace those records or reset data exposure.
+
 
 Project history belongs in versioned task/protocol records and evidence receipts,
 with bulky/private raw artifacts in ignored reports or `.local/` according to the

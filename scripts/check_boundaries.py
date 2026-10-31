@@ -137,7 +137,10 @@ def check(root):
             errors.append(f'{relative}:{error.lineno}: invalid Python: {error.msg}')
             continue
         edges, problems = dependencies(tree, module, path.name == '__init__.py')
-        errors.extend(f'{relative}:{line}: {message}' for line, message in problems)
+        exception = manifest.get('reviewed_opaque_loaders', {}).get(str(relative), {})
+        pinned_loader = (exception.get('reason') and exception.get('sha256') == hashlib.sha256(path.read_bytes()).hexdigest())
+        errors.extend(f'{relative}:{line}: {message}' for line, message in problems
+                      if not (pinned_loader and message.startswith('opaque code loading') and 'runpy.run_path' in message))
         for line, target in edges:
             if target.split('.')[0] not in PROJECT_ROOTS:
                 continue
@@ -148,12 +151,15 @@ def check(root):
             if resolved in frozen_modules:
                 errors.append(f'{relative}:{line}: current code imports frozen implementation {resolved}')
                 continue
+            approved_paper_seam = (source_layer == 'paper_trading' and any(
+                resolved == seam
+                for seam in manifest.get('paper_research_seams', [])))
             target_layer = layer(target)
             # Allow package namespaces when their member edge carries the layer.
             if target in {'research', 'scripts', 'tests'}:
                 if target == 'research':
                     continue
-            if target_layer not in ALLOWED[source_layer]:
+            if target_layer not in ALLOWED[source_layer] and not approved_paper_seam:
                 errors.append(f'{relative}:{line}: {source_layer} cannot import {target} ({target_layer or "unclassified"})')
             if resolved in active:
                 graph[module].add(resolved)

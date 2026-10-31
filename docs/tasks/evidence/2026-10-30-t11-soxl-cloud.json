@@ -1,0 +1,244 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "T11-SOXL-CLOUD-20261030-01",
+  "status": "blocked",
+  "outcome_reason": "Eight private sources compiled and bounded cloud plan prepared. Automatic approval review rejected uploading private source to QuantConnect pending explicit user approval. No financial attempt launched.",
+  "missing_evidence": {
+    "cases.0.run_id": "No financial run started; source upload approval pending.",
+    "cases.0.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.0.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.1.run_id": "No financial run started; source upload approval pending.",
+    "cases.1.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.1.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.2.run_id": "No financial run started; source upload approval pending.",
+    "cases.2.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.2.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.3.run_id": "No financial run started; source upload approval pending.",
+    "cases.3.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.3.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.4.run_id": "No financial run started; source upload approval pending.",
+    "cases.4.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.4.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.5.run_id": "No financial run started; source upload approval pending.",
+    "cases.5.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.5.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.6.run_id": "No financial run started; source upload approval pending.",
+    "cases.6.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.6.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata.",
+    "cases.7.run_id": "No financial run started; source upload approval pending.",
+    "cases.7.build": "No case source uploaded or case build created; unrelated environment18217 build is not a case build.",
+    "cases.7.data": "Cloud input/provider snapshot cannot be bound until actual run captures subscriptions and available metadata."
+  },
+  "cases": [
+    {
+      "case_id": "gated_t11_25bp",
+      "name": "gated_t11_25bp",
+      "run_id": null,
+      "source": "b575762f59ed562795df41e723968e9aa2efd46cf8cc031fbdeafda88825703e",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 25bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_ungated_25bp",
+      "name": "soxl_cash_ungated_25bp",
+      "run_id": null,
+      "source": "36818bf6da3654b2033c63d26987cf2ec2d4e357ec5ed507ab6ed766e2f038dd",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 25bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_gated_25bp",
+      "name": "soxl_cash_gated_25bp",
+      "run_id": null,
+      "source": "aaabf1e1aa3221413834650e0719eadaffa77f89371c2cdad869017f53eaba67",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 25bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_buy_hold_25bp",
+      "name": "soxl_buy_hold_25bp",
+      "run_id": null,
+      "source": "e35c79dc7eb0a6abde82a1e2b3c31b05cb11ebd15eae58c7cb47c865e1bbc761",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 25bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "gated_t11_50bp",
+      "name": "gated_t11_50bp",
+      "run_id": null,
+      "source": "7538df9a3fed63dd9633c2ccdfc0c3098a298583f7ff14f1f1a621f1e7c480d7",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 50bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_ungated_50bp",
+      "name": "soxl_cash_ungated_50bp",
+      "run_id": null,
+      "source": "ac07d0165f63177245b44e52129ff3f1ade41adf2d6ea2fc89566ecd71619186",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 50bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_gated_50bp",
+      "name": "soxl_cash_gated_50bp",
+      "run_id": null,
+      "source": "325b4153e7fdc2ef63fd45cc6746e216fbcca7ff1bc1b5397a485d13efb7c809",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 50bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_buy_hold_50bp",
+      "name": "soxl_buy_hold_50bp",
+      "run_id": null,
+      "source": "5dbda9d70957f3776439be50d6599bf7171787cc01d94d91d38cbb7bfc74a055",
+      "build": null,
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "Native adjusted subscriptions,2004 raw SPY gate seed, T11 branch policy, existing staged signal-change MOO execution, 90% reserve applied once by controller, IB fees and6% ACT360 financing. Friction 50bp.",
+      "metric_conventions": "Custom daily-close CAGR/abs(maxDD); annual calendar return/annualDD; sample252 Sharpe zero risk-free; temporal-v1.2 recovery-inclusive underwater. No measured values yet.",
+      "attempts": {
+        "used": 0,
+        "limit": 1
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".local/t11-soxl-cloud-v1/frozen-plan.json",
+      "sha256": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/source-checks.json",
+      "sha256": "3cdb85ab1fecd35f06297832f13fce68468dbce4a040b7d4c5bb79bfd06874f9",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/project-prepared.jpg",
+      "sha256": "503d94f374ba265eeca5f24e03c71bc06a608b23180507c62d320159a1508c56",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_25bp/main.py",
+      "sha256": "b575762f59ed562795df41e723968e9aa2efd46cf8cc031fbdeafda88825703e",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_25bp/main.py",
+      "sha256": "36818bf6da3654b2033c63d26987cf2ec2d4e357ec5ed507ab6ed766e2f038dd",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_25bp/main.py",
+      "sha256": "aaabf1e1aa3221413834650e0719eadaffa77f89371c2cdad869017f53eaba67",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_25bp/main.py",
+      "sha256": "e35c79dc7eb0a6abde82a1e2b3c31b05cb11ebd15eae58c7cb47c865e1bbc761",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_50bp/main.py",
+      "sha256": "7538df9a3fed63dd9633c2ccdfc0c3098a298583f7ff14f1f1a621f1e7c480d7",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_50bp/main.py",
+      "sha256": "ac07d0165f63177245b44e52129ff3f1ade41adf2d6ea2fc89566ecd71619186",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_50bp/main.py",
+      "sha256": "325b4153e7fdc2ef63fd45cc6746e216fbcca7ff1bc1b5397a485d13efb7c809",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_50bp/main.py",
+      "sha256": "5dbda9d70957f3776439be50d6599bf7171787cc01d94d91d38cbb7bfc74a055",
+      "role": "Private source/plan/verification evidence; not a financial result."
+    }
+  ],
+  "comparison_groups": []
+}

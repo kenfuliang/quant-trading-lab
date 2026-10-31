@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "status": "review_complete_next_task_planned_not_started",
+  "main_sha": "4fc663164434e15b68324d8266ff421294af717b",
+  "structure_score": 8.2,
+  "structure_rubric": "unchanged prior nine-dimension recovery review",
+  "rsi_requirement_scores": {
+    "R01": 8,
+    "R02": 8,
+    "R03": 4,
+    "R04": 7,
+    "R05": 6,
+    "R06": 5,
+    "R07": 7,
+    "R08": 6,
+    "R09": 3,
+    "R10": 8
+  },
+  "rsi_score": 6.2,
+  "rsi_rubric": "equal weights; broad requirement readiness including unpublished local components; separate from structure",
+  "verification": {
+    "checks": [
+      {
+        "group": "implementation_artifacts",
+        "path": "research/rsi_contracts.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "research/rsi_coordinator.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "research/rsi_adoption.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "scripts/rsi_foundation.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "tests/test_rsi_contracts.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "tests/test_rsi_coordinator.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "tests/test_rsi_adoption.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "implementation_artifacts",
+        "path": "tests/test_rsi_foundation.py",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/make-check.txt",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/final-docs-check.txt",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/diff-check.txt",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/integrity-check.json",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/before-manifest.json",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/demo/manifest.json",
+        "exists": true,
+        "hash_matches": true
+      },
+      {
+        "group": "evidence_artifacts",
+        "path": ".local/rsi-foundation-20261027/demo/summary.json",
+        "exists": true,
+        "hash_matches": true
+      }
+    ],
+    "local_only_paths": {
+      "research/rsi_contracts.py": true,
+      "research/rsi_coordinator.py": true,
+      "research/rsi_adoption.py": true,
+      "scripts/rsi_foundation.py": true,
+      "docs/operations/recursive-research.md": true,
+      "docs/tasks/2026-10-27-rsi-foundation-implementation.md": true
+    },
+    "main_sha": "4fc663164434e15b68324d8266ff421294af717b"
+  },
+  "historical_test_counts": {
+    "merged_pr": 428,
+    "unpublished_foundation": 449,
+    "combined_suite": "not run/not inferred"
+  },
+  "next_task": {
+    "name": "Integrate existing offline RSI foundation into canonical packages and CI",
+    "implementation_started": false,
+    "max_full_local_check_runs": 2,
+    "max_fresh_demos": 1,
+    "demo_max_process_launches": 2,
+    "demo_wall_seconds": 120,
+    "financial_launches": 0,
+    "new_model_fits": 0,
+    "new_data_downloads": 0,
+    "dependency_upgrades": 0
+  },
+  "review_operations": {
+    "financial_launches": 0,
+    "demos": 0,
+    "model_fits": 0,
+    "broker_operations": 0
+  },
+  "independent_alpha_established": false,
+  "generalized_process_improvement_established": false,
+  "documentation_validation": {
+    "exit_code": 0,
+    "files_checked": 135,
+    "metadata_links_skill_parity": "passed"
+  }
+}

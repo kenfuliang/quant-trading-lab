@@ -1,12 +1,12 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-10-31
 owner: research-maintainers
 ---
 
 # Golden research pipeline standard
 
-Standard ID: **GRS-1.0**. This is the single normative owner for the minimal
+Standard ID: **GRS-1.1**. This is the single normative owner for the minimal
 algorithm pipeline, incremental stage adoption, per-cycle evidence requirements
 and research-report readiness. Other documents link here instead of redefining
 these rules. The [mandate](goals.md) owns investment preferences, [architecture](architecture.md#algorithm-decision-hierarchy)
@@ -95,6 +95,40 @@ third-party strategy source require separate redistribution rights. MLflow and
 browser pages are views; frozen source artifacts and receipts remain evidence.
 Correct records with linked versions and preserve originals. Never edit personal
 Codex memory as part of this project-history requirement.
+
+## Experiment receipt contract
+
+GRS-1.1 adds `experiment-receipt/v1` for cycles opened after this revision.
+It makes result capture and offline validation explicit; adoption criteria and
+frozen historical protocols are unchanged. Use the
+[JSON example](templates/experiment-receipt.json) and the offline validator:
+
+```sh
+.venv/bin/python scripts/check_experiment_receipt.py RECEIPT --root ARTIFACT_ROOT
+```
+
+The receipt binds cycle/case names and exact run IDs to source/build, frozen plan,
+data, dates, accounting assumptions, metric conventions, attempts and referenced
+artifact hashes. Capture actual exports and their run identities when each result
+arrives. Include every failed, abandoned or partial attempt; an unavailable field
+must have a specific missing-evidence reason. Success requires complete identity
+and required evidence; failed, blocked and incomplete outcomes do not fabricate
+identities or performance.
+
+Validate before cycle closure or proposing leaderboard promotion. Preserve the
+validator exit and errors. A valid failure receipt means the failure was recorded
+properly, not that its strategy passed. Validation cannot establish data rights,
+causality, independence, accounting truth or profitability; scientific review
+remains required. Referenced files are local and explicitly scoped to the supplied
+artifact root, with hashes checked offline. Validation must never fetch URLs or
+follow a path outside that root.
+
+Existing receipts remain immutable under their original protocols. Run a separate
+compatibility review and name missing fields instead of silently migrating them.
+A summary match or hash match is not daily-decision reproduction. The
+[repair receipt](tasks/2026-10-30-skills-sop-repair.md) documents this introduction
+and saved T11 compatibility exercise. Generic automatic enforcement in every
+historical runner remains unimplemented.
 
 ## Incremental improvement and disposition
 

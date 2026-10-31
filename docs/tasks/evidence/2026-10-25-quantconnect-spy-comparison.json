@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-25",
+  "status": "completed_comparison_with_conditional_EMA",
+  "project_url": "https://www.quantconnect.com/project/38460130",
+  "modes": [
+    "hold",
+    "ema",
+    "gate"
+  ],
+  "source_sha256": "6ce784d7047c30670c0494dee864d843f03c2e48049e8224c7634ec3f6973827",
+  "gate_reference_sha256": "eeb71707dcda99603c48f77f122f3d7a2333f36bd205f01665a46810daa96f97",
+  "saved_state_steps_matched": 5534,
+  "confirmed_financial_backtest_ids": [
+    "82cd58e69dced78daeface1fade8c47e",
+    "3efdaac032eea7d234f8a3e21eba47c8",
+    "6421cb33f5a1113c23b79cad36d39fe5"
+  ],
+  "offline_tests": 273,
+  "cloud_engine_observed": "2.5.0.0.18205",
+  "final_source_cloud_runtime_verified": true,
+  "verification_gate_text": "Verify Your Account by Linking Your Credit Card",
+  "user_will_complete_verification": true,
+  "paid_upgrade_or_broker_actions": false,
+  "local_screenshot": ".local/quantconnect-comparison-v1/comparison-dashboard.jpg",
+  "invalid_run_preserved": "ee2f69e35884e1480d19166a3330c641",
+  "actual_financial_paths": 4,
+  "overall": [
+    {
+      "mode": "hold",
+      "name": "Buy and hold",
+      "backtest_id": "82cd58e69dced78daeface1fade8c47e",
+      "cagr_pct": 9.174,
+      "max_drawdown_pct": 51.8,
+      "sharpe_native": 0.362,
+      "end_equity_usd": 1896262.31,
+      "orders_native": 1.0,
+      "fees_usd": 1.0,
+      "drawdown_recovery_native": 1800.0,
+      "sessions": 5283,
+      "dividends": 84,
+      "splits": 0,
+      "rejected_orders": 0,
+      "policy": "raw;USD1/order;5bps;prior-close-sized next MOO;99pct;cash;no interest",
+      "annual_compounding_residual_usd": -0.003340000519528985,
+      "calmar_approx_from_native_rounded": 0.1771042471042471,
+      "comparison_status": "completed: no rejected orders"
+    },
+    {
+      "mode": "ema",
+      "name": "EMA50/200",
+      "backtest_id": "3efdaac032eea7d234f8a3e21eba47c8",
+      "cagr_pct": 7.776,
+      "max_drawdown_pct": 28.6,
+      "sharpe_native": 0.335,
+      "end_equity_usd": 1446569.28,
+      "orders_native": 28.0,
+      "fees_usd": 25.0,
+      "drawdown_recovery_native": 805.0,
+      "sessions": 5283,
+      "dividends": 84,
+      "splits": 0,
+      "rejected_orders": 3,
+      "policy": "raw;USD1/order;5bps;prior-close-sized next MOO;99pct;cash;no interest",
+      "annual_compounding_residual_usd": 0.004054999444633722,
+      "calmar_approx_from_native_rounded": 0.27188811188811185,
+      "comparison_status": "conditional: 3 buying-power rejections"
+    },
+    {
+      "mode": "gate",
+      "name": "Original risk gate",
+      "backtest_id": "6421cb33f5a1113c23b79cad36d39fe5",
+      "cagr_pct": 6.917,
+      "max_drawdown_pct": 19.6,
+      "sharpe_native": 0.324,
+      "end_equity_usd": 1222634.68,
+      "orders_native": 1568.0,
+      "fees_usd": 1568.0,
+      "drawdown_recovery_native": 2109.0,
+      "sessions": 5283,
+      "dividends": 84,
+      "splits": 0,
+      "rejected_orders": 0,
+      "policy": "raw;USD1/order;5bps;prior-close-sized next MOO;99pct;cash;no interest",
+      "annual_compounding_residual_usd": -0.0037499999161809683,
+      "calmar_approx_from_native_rounded": 0.3529081632653061,
+      "comparison_status": "completed: no rejected orders"
+    }
+  ],
+  "annual_records": 63,
+  "annual_years": [
+    2005,
+    2025
+  ],
+  "browser_url": "http://127.0.0.1:8765/quantconnect-spy-v1/index.html",
+  "data_identity_checks": {
+    ".local/quantconnect-comparison-v1/hold-overview.txt": "5e94951c6482aef8e2d9e3881448294c626ed19a31004f8e12fc9005bed7d98c",
+    ".local/quantconnect-comparison-v1/hold-log-cells.json": "1f91f532ef647a950e005d856a7170be3e72f578368f56a76947ec3ea9276f50",
+    ".local/quantconnect-comparison-v1/ema-overview.txt": "898430a510afb4d8318a64a53051168368fef8c77751747123a70670ff7469cf",
+    ".local/quantconnect-comparison-v1/ema-log-cells.json": "6f031cbe5aafcf1cf1c29b37ce72e8d10c31d3c2fcd4dfdd239d83302963d993",
+    ".local/quantconnect-comparison-v1/gate-overview.txt": "33a8c92015d1568ef7136860734dad26b773cc3b43d24158321b4435ed6c4f1f",
+    ".local/quantconnect-comparison-v1/gate-log-cells.json": "1e557e8d083fd8a6b0a30d243c16578f1d7c675a107c020b4623e218bc610c1d"
+  },
+  "limitations": [
+    "Development history, no untouched test or alpha claim.",
+    "EMA had3buying-power rejections; results reflect those actual simulation outcomes and do not qualify ideal order-policy parity.",
+    "Buy-and-hold and EMA accumulate dividends in cash during held spells; gate daily resizing can reinvest.",
+    "Native Sharpe and recovery definitions remain vendor-defined; not equated to local metric implementation.",
+    "Annual equity compounding is checked against displayed ending NAV; independent daily accounting/fill audit not performed.",
+    "Constant5bps model configured; realized per-fill slippage not independently verified."
+  ],
+  "dashboard_checks": {
+    "http_status": 200,
+    "annual_rows": 21,
+    "chart_bars": 63,
+    "drawdown_selector": "exercised"
+  },
+  "annual_compounding_check": "All3ending NAV residuals below USD0.01",
+  "source_snapshots": {
+    "hold": "6ce784d7047c30670c0494dee864d843f03c2e48049e8224c7634ec3f6973827",
+    "ema": "ef8e55ef61abde68b972d2e358dcddd135c6344bb704ad6fd98346913a98fddd",
+    "gate": "2da746d6d333304e4e431b7320a56bb440f8d50e99f0cfd0d073a22e48689962"
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests_passed": 273,
+    "docs_check": "passed99files",
+    "git_diff_check": "passed",
+    "annual_compounding": "all3withinUSD0.01",
+    "browser_selected_metric": "within_year_max_drawdown",
+    "engine_accounting_parity": "not independently verified"
+  },
+  "output_artifacts_sha256": {
+    ".local/performance/quantconnect-spy-v1/index.html": "c2660ae107b38a62cac042d6dc2da574f6172cc34473071ca1a5d480fa72c34d",
+    ".local/performance/quantconnect-spy-v1/comparison.json": "731c3bcb026c8229dbd42984d2cfd8b8e4461ddd6cd5c24cb1070cc223dc8d5d",
+    ".local/performance/quantconnect-spy-v1/annual.csv": "0f42568ff4d81d7a9ad790e8d65ae49304a5d86d6a0fad73f0bf3e19f6b3d6ff"
+  }
+}

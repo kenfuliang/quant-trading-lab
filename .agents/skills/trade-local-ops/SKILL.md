@@ -1,6 +1,6 @@
 ---
 name: trade-local-ops
-description: Check the local trading environment, diagnose failed runs, or perform requested IBKR paper observation using this project's operating procedures.
+description: Check the local trading environment, diagnose failed runs, or perform requested read-only broker observation using this project's operating procedures.
 ---
 
 # Local trading operations
@@ -10,8 +10,10 @@ Read root README for current verification status and `docs/operations/local.md`
 for commands and completion criteria.
 
 - Environment check: run local checks and report their actual scope.
-- Requested broker observation: read `docs/operations/paper-connection.md`; verify
-  its prerequisites and use its read-only commands.
+- Requested broker observation: select the provider-specific SOP: IBKR uses
+  `docs/operations/paper-connection.md`; Alpaca uses
+  `docs/operations/alpaca-paper.md`. Verify prerequisites and use only the requested
+  read-only observation/preflight mode. Session/order modes are separate scope.
 - Failure, stale data, crash, or uncertain external outcome: read
   `docs/operations/incidents.md`; preserve evidence before recovery.
 

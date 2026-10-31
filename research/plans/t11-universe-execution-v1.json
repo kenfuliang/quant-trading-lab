@@ -1,0 +1,27 @@
+{
+  "schema": "t11-universe-execution-amendment/v1",
+  "created_utc": "2026-10-31T03:52:54.555039+00:00",
+  "design_parent": "research/plans/t11-long-equity-universe-v2.design.json",
+  "source_plan": ".local/t11-universe-cloud-v4/frozen-plan.json",
+  "aggregate_limit": 10,
+  "used_before_amendment": 2,
+  "deadline_utc": "2026-10-31T06:48:18.856919+00:00",
+  "planned_remaining": [
+    "full25",
+    "restricted25",
+    "equal25",
+    "rs125",
+    "full50",
+    "restricted50",
+    "equal50",
+    "rs150"
+  ],
+  "omitted": [
+    "half25",
+    "half50"
+  ],
+  "feature_availability": "Latest253common completed closes, maximum one SPY exchange session lag; no future bars, no imputation. Report lagged monthly decisions.",
+  "reason": "Strict same-session history failed on early close. No complete performance outcome used for amendment.",
+  "unchanged": "252/63momentum-volatility rule, gate, sizing, controller, capital, dates, costs, financing, screening criteria",
+  "evidence_qualification": "Provisional native-engine development results; complete typed summaries required, daily ledger/snapshot audit not claimed."
+}

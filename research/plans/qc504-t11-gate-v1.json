@@ -1,0 +1,54 @@
+{
+  "study_id": "qc504-t11-gate-v1",
+  "status": "frozen-before-runs",
+  "created_utc": "2026-10-26T20:19:34.431753+00:00",
+  "deadline_utc": "2026-10-26T21:04:34.431753+00:00",
+  "cases": [
+    "ensemble",
+    "t11",
+    "gated_t11"
+  ],
+  "max_financial_attempts": 5,
+  "max_unique_cases": 3,
+  "technical_repair_slots": 2,
+  "source_hashes": {
+    "ensemble": "3a8287bbcf461b551c6fb714281c491c58b04d4139adefad9f635247bc27684b",
+    "t11": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d",
+    "gated_t11": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+  },
+  "input_hashes": {
+    "ensemble": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+    "t11": "0b965b202345a481ee75007237654743c563aff5decc683f69c0ceab73423e74",
+    "gated_t11": "0b965b202345a481ee75007237654743c563aff5decc683f69c0ceab73423e74"
+  },
+  "start": "2020-01-01",
+  "end": "2025-12-31",
+  "capital_usd": 10000,
+  "slippage": 0.0025,
+  "allocation_target": 0.9,
+  "fee_model": "Original IB margin/default fees retained;2USD +.01USD/share reservation for fees in sizing, actual native fees unchanged",
+  "financing": "6% fixed annual debit ACT/360 on previous closing USD cash for elapsed calendar days; charge at current close before order sizing. Zero credit interest, disable native per-security margin interest; no terminal accrual beyond final close.",
+  "execution": "Per-sleeve signal-change intent preserved. MOO reductions first; after confirmed sales, re-evaluate current causal signals at next close and buy no earlier than subsequent open. At most one reduction batch per unchanged intent. No spending unfilled proceeds. Buy cash cap leaves10% NAV reserve,25bp slippage and fee reservation, sequential native initial-margin preflight, halve only until affordable. No daily target maintenance after intent completion. Pending order guard; every skipped/clipped/deferral counted.",
+  "hypothesis": "Apply the previously retained EMA/volatility-only gate to all T11 weights. Describe drawdown change toward30%, CAGR and terminal wealth retention, Sharpe/Calmar and underwater tradeoffs. No tuning or claim of pure timing alpha.",
+  "metrics": "Existing identical full/annual returns, DD, Sharpe, Calmar, UW fraction/session/calendar duration and censored status; gate color counts/input hash; actual rejection, financing reconciliation and control parity",
+  "baseline": "Three fresh runs; ungated T11 and ensemble must reproduce funded-v1. No additional variants.",
+  "sample": "All inspected development history. Not untouched OOS. No half-exposure control, therefore no timing-alpha inference.",
+  "stops": [
+    "Five attempts or45minutes; at most2 technical-only retries",
+    "No financial threshold or signal tuning",
+    "Stop on identity, nonfiniteNAV or future/missinggate data; preserve failures"
+  ],
+  "exports": "Only aggregate results; raw prices/daily NAV remain hosted; third-party source remains ignored/private; no broker, paid data, publication or orders",
+  "gate": {
+    "variant": "retained EMA/volatility only; dd input fixed zero",
+    "input": "RAW SPY close rounded cents; seed2004-01-02 to2019-12-31; completed current session RAW history only; existing T11 Adjusted subscription untouched",
+    "rules": "EMA50/200 adjustFalse;20-return sample volatility sqrt252; red>=40%; yellow trend nonpositive orvol>=25%; red recovery5days vol<35%; green recovery5days positive trend andvol<20%",
+    "caps": {
+      "green": 1,
+      "yellow": 0.5,
+      "red": 0,
+      "unassessed": 0
+    },
+    "timing": "Close observer before unchanged funded MOO controller; cap changes alter weight intent; reductions first and buys staged. Not instant liquidation, no guarantee of30% loss bound."
+  }
+}

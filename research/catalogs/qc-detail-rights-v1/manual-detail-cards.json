@@ -1,0 +1,168 @@
+[
+  {
+    "id": "QC-T-15338",
+    "source_filename": "02 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "Five asset-class ETFs; tickers absent from inspected method",
+      "frequency": "Monthly rebalance",
+      "holding_period": "Method states one month; actual fills/exits unverified",
+      "mechanism": "Rank 12-month momentum; equal weight strongest three",
+      "shorting": "No short leg described; complete source unavailable",
+      "data_needs": [
+        "Adjusted ETF prices and corporate actions",
+        "At least 12-month signal history",
+        "Historical ETF availability and trading calendars"
+      ],
+      "blockers": [
+        "Full ticker/configuration package missing",
+        "Free data and license unverified"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15308",
+    "source_filename": "02 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "Ten sector ETFs; tickers absent from inspected method",
+      "frequency": "Start of each month",
+      "holding_period": "Monthly rebalance; exact fills/holding period unverified",
+      "mechanism": "Adaptation of asset-class momentum: rank 12-month momentum, equal weight top three",
+      "data_needs": [
+        "Sector ETF adjusted prices/actions",
+        "At least 12-month signal history",
+        "Historical ETF availability"
+      ],
+      "blockers": [
+        "Full universe/configuration package missing",
+        "Not identical to asset-class momentum: universe differs"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15270",
+    "source_filename": "03 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "SPY ETF",
+      "frequency": "Minute bars; monthly model training",
+      "holding_period": "Declared 10-minute insight duration; execution unverified",
+      "mechanism": "Gradient-boosting predicted return versus stated trade-cost threshold",
+      "shorting": "Positive/negative prediction directions shown",
+      "data_needs": [
+        "Minute OHLCV and exchange sessions",
+        "Four-week rolling training window",
+        "Execution spread/commission assumptions"
+      ],
+      "blockers": [
+        "Method explicitly omits model training implementation",
+        "Historical minute data entitlement unverified",
+        "Model/library versions and leakage audit missing"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15360",
+    "source_filename": "02 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "CME/ICE commodity continuous futures #1 via Quandl custom data",
+      "frequency": "Daily settlement, monthly portfolio rebalance",
+      "holding_period": "Monthly rebalance; contract-level holding/roll policy unverified",
+      "mechanism": "12-month momentum; long highest quintile, short lowest",
+      "shorting": "Long and short legs declared",
+      "data_needs": [
+        "Historical daily non-adjusted spot-month continuous settlement series",
+        "Continuous-to-tradable-contract mapping",
+        "Rolls, multipliers, margin, collateral and financing"
+      ],
+      "blockers": [
+        "Continuous research series is not a tradable contract",
+        "Legacy Quandl source/current free availability unverified"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15264",
+    "source_filename": "02 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "Nine currencies linked to central-bank rate series; full pairs not enumerated in method",
+      "frequency": "First trading day monthly",
+      "holding_period": "Monthly rebalance; exact exits unverified",
+      "mechanism": "Long highest-rate currency, short lowest-rate currency",
+      "shorting": "Long and short currencies declared",
+      "data_needs": [
+        "Point-in-time central-bank rates from legacy Quandl source",
+        "FX prices and session/currency conventions",
+        "Rollover, funding and rate-publication timing"
+      ],
+      "blockers": [
+        "Rate-series coverage/free rights unverified",
+        "Rate differential is not realized broker financing"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15370",
+    "source_filename": "03 Stock Selection.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "US stock universe using fundamental factors",
+      "frequency": "Monthly portfolio construction",
+      "holding_period": "Monthly reconstitution; exact execution unverified",
+      "mechanism": "Composite of six equally weighted factor ranks; select highest-ranked 20",
+      "data_needs": [
+        "Point-in-time fundamentals and reporting availability",
+        "Historical dollar-volume stock universe",
+        "Daily prices, actions and delistings"
+      ],
+      "blockers": [
+        "Saved price bars alone are insufficient",
+        "Factor selection sample and later evaluation require leakage review"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15268",
+    "source_filename": "04 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "Ten largest technology stocks from fundamental universe selection",
+      "frequency": "Monthly universe refresh; daily return samples",
+      "holding_period": "Next-open to following-open predictive target; actual positions unverified",
+      "mechanism": "Gaussian Naive Bayes; four historical intraday-return features, 100 training samples by default",
+      "data_needs": [
+        "Point-in-time market capitalization and sector classifications",
+        "Daily open/close prices and actions",
+        "Chronological label availability and history for changing constituents"
+      ],
+      "blockers": [
+        "Forward-shifted training labels require causal timing audit",
+        "Price-only fixed-universe catalog does not supply historical fundamentals"
+      ]
+    }
+  },
+  {
+    "id": "QC-T-15378",
+    "source_filename": "03 Method.html",
+    "basis": "manual_reading_of_pinned_method_not_runtime_validation",
+    "details": {
+      "instruments": "Drug manufacturers selected with Morningstar industry, dollar volume and PE fields",
+      "frequency": "Intraday news accumulation; Wednesday signal 30 minutes after open",
+      "holding_period": "Declared entry after 30 bars, exit at market close",
+      "mechanism": "News sentiment dictionary plus fundamental industry screen",
+      "shorting": "Method overview says long; shown code emits sentiment sign, including negative values. Needs complete execution review.",
+      "data_needs": [
+        "Timestamped Tiingo news feed and sentiment dictionary",
+        "Point-in-time industry/PE/dollar-volume universe",
+        "Intraday prices and exchange calendar"
+      ],
+      "blockers": [
+        "News rights/availability not established by repository license",
+        "Description/code directional discrepancy unresolved"
+      ]
+    }
+  }
+]

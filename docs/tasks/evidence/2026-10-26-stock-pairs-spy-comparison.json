@@ -1,0 +1,547 @@
+{
+  "schema": "stock-pairs-spy-receipt/v1",
+  "status": "completed-scoped-audit-qualified-negative-improvement",
+  "updated_local_date": "2026-10-26",
+  "recorded_utc": "2026-10-27T06:30:47.889865+00:00",
+  "study": "stock-pairs-spy-v1",
+  "comparison_eligible": true,
+  "protocol": {
+    "path": "research/plans/stock-pairs-spy-v1.json",
+    "sha256": "079c23daed080960e2c5947fc0fb6950da226e1215b6df5da5860eaf38b33e05"
+  },
+  "source": {
+    "tutorial_id": "QC-T-15300",
+    "package": "stock-pairs",
+    "repo": "je-suis-tm/quant-trading",
+    "revision": "611b73f2c3f577ac5b28aaa19ac8c43d3236c7a5",
+    "path": "Pair trading backtest.py",
+    "license": "Apache-2.0 repository grant; original bytes and accompanying license preserved",
+    "relation": "Independent mechanism alternative; declared causal NVDA/AMD adaptation, not exact hosted tutorial or original 2013-2014 reproduction"
+  },
+  "budget": {
+    "study": "stock-pairs-spy-v1",
+    "status": "closed",
+    "attempts": [
+      {
+        "id": 1,
+        "case": "probe",
+        "status": "failed-early-close-history-readiness",
+        "source_sha256": "4825a61078c55b8781d131664b66c8339fe13c9babce3e121fb5c8d3550a67d3",
+        "reserved_utc": "2026-10-27T06:04:09.260952+00:00",
+        "backtest_id": "817464e74c809921ae940e96c00f7a9f",
+        "recorded_utc": "2026-10-27T06:06:15.845387+00:00"
+      },
+      {
+        "id": 2,
+        "case": "probe",
+        "status": "completed",
+        "source_sha256": "313012764521a81840df63122f459815d710d8cca56537ac59f333ccb0e2e413",
+        "reserved_utc": "2026-10-27T06:07:17.002300+00:00",
+        "backtest_id": "c1733a7de803db89c96fb2c128ee2d40",
+        "recorded_utc": "2026-10-27T06:11:45.549572+00:00"
+      },
+      {
+        "id": 3,
+        "case": "spy",
+        "status": "completed",
+        "source_sha256": "cc75b0b6392d086a3f79cf5cb0dafcf0c1b8f8f8a6998f868fdb5395f2f5458d",
+        "reserved_utc": "2026-10-27T06:13:23.184162+00:00",
+        "backtest_id": "2c54feac1f3e462db259954ff6b278ab",
+        "recorded_utc": "2026-10-27T06:16:56.724828+00:00"
+      },
+      {
+        "id": 4,
+        "case": "pairs",
+        "status": "completed",
+        "source_sha256": "02e0e6ea7948557f15c347f89e072ce5859f46f833ea6f3b4d71d7a5721f3ea2",
+        "reserved_utc": "2026-10-27T06:17:49.682627+00:00",
+        "backtest_id": "d533a19a2b3f9da0443c389ca1ee49a7",
+        "recorded_utc": "2026-10-27T06:21:58.280698+00:00"
+      },
+      {
+        "id": 5,
+        "case": "pairhold",
+        "status": "completed",
+        "source_sha256": "a3842b0982a4fbb826531970a02c0706c5e2a6cfa1f92b025027e870230f88a5",
+        "reserved_utc": "2026-10-27T06:22:47.571796+00:00",
+        "backtest_id": "c931732b772d48979ed056632e360033",
+        "recorded_utc": "2026-10-27T06:27:03.199751+00:00"
+      }
+    ],
+    "closed_utc": "2026-10-27T06:27:03.304622+00:00"
+  },
+  "financial_cases": 3,
+  "annual_rows": 30,
+  "input_probe": {
+    "study": "stock-pairs-spy-v1",
+    "case": "probe",
+    "kind": "probe",
+    "source_token": "91093fb51f52d289",
+    "ready_days": 2514,
+    "fit_hash": "a5918a95543224185a4b7434a0e650c7a811585e0a8254578ae41c7de32c39fa",
+    "years": [
+      {
+        "year": 2016,
+        "prior_count": 250,
+        "prior_last": "2015-12-31",
+        "decision": "2016-01-04",
+        "p": 0.80922473,
+        "history_aligned": true
+      },
+      {
+        "year": 2017,
+        "prior_count": 250,
+        "prior_last": "2016-12-30",
+        "decision": "2017-01-03",
+        "p": 0.03541592,
+        "history_aligned": true
+      },
+      {
+        "year": 2018,
+        "prior_count": 250,
+        "prior_last": "2017-12-29",
+        "decision": "2018-01-02",
+        "p": 0.07417531,
+        "history_aligned": true
+      },
+      {
+        "year": 2019,
+        "prior_count": 250,
+        "prior_last": "2018-12-31",
+        "decision": "2019-01-02",
+        "p": 0.88393649,
+        "history_aligned": true
+      },
+      {
+        "year": 2020,
+        "prior_count": 250,
+        "prior_last": "2019-12-31",
+        "decision": "2020-01-02",
+        "p": 0.60916332,
+        "history_aligned": true
+      },
+      {
+        "year": 2021,
+        "prior_count": 250,
+        "prior_last": "2020-12-31",
+        "decision": "2021-01-04",
+        "p": 0.23448155,
+        "history_aligned": true
+      },
+      {
+        "year": 2022,
+        "prior_count": 250,
+        "prior_last": "2021-12-31",
+        "decision": "2022-01-03",
+        "p": 0.27149098,
+        "history_aligned": true
+      },
+      {
+        "year": 2023,
+        "prior_count": 250,
+        "prior_last": "2022-12-30",
+        "decision": "2023-01-03",
+        "p": 0.50550608,
+        "history_aligned": true
+      },
+      {
+        "year": 2024,
+        "prior_count": 250,
+        "prior_last": "2023-12-29",
+        "decision": "2024-01-02",
+        "p": 0.87466012,
+        "history_aligned": true
+      },
+      {
+        "year": 2025,
+        "prior_count": 250,
+        "prior_last": "2024-12-31",
+        "decision": "2025-01-02",
+        "p": 0.12595179,
+        "history_aligned": true
+      }
+    ],
+    "fills": 0,
+    "rejects": 0,
+    "statsmodels": "0.14.6",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "normalization": [
+      "RAW"
+    ],
+    "models": [
+      "InteractiveBrokersFeeModel"
+    ],
+    "split_counts": {
+      "SPY": 0,
+      "NVDA": 2,
+      "AMD": 0
+    },
+    "dividend_counts": {
+      "SPY": 40,
+      "NVDA": 41,
+      "AMD": 0
+    }
+  },
+  "action_parity": true,
+  "decision": {
+    "growth_checks": {
+      "cagr_beats_spy": false,
+      "calmar_at_least_spy": false,
+      "longest_uw_no_worse": false
+    },
+    "risk_checks": {
+      "positive_cagr": false,
+      "sharpe_at_least_spy": false,
+      "shallower_dd": true,
+      "longest_uw_no_worse": false
+    },
+    "growth_pass": false,
+    "risk_alternative_pass": false,
+    "calmar_excess": -0.521369963393,
+    "cagr_excess": -0.158199989849,
+    "positive_cagr_condition": false,
+    "drawdown_reassessment": false,
+    "status": "stop-fixed-adaptation-no-improvement-screen-passed"
+  },
+  "cases": {
+    "spy": {
+      "study": "stock-pairs-spy-v1",
+      "case": "spy",
+      "kind": "full",
+      "metrics": {
+        "n": 2514,
+        "end": 1077768.58731,
+        "ret": 2.5925619577,
+        "cagr": 0.136404185602,
+        "dd": -0.312638536631,
+        "sharpe": 0.859778649705,
+        "calmar": 0.436299974634,
+        "annual_calmar": 8.292522046817,
+        "uw": 2118,
+        "uw_fraction": 0.842482100239,
+        "longest_uw": 488,
+        "longest_uw_days": 708,
+        "censored": true,
+        "return_sum": 1.41535517111,
+        "return_square_sum": 0.272328219257
+      },
+      "audit": {
+        "source_token": "314f6ef6d7480f2f",
+        "fit_hash": "a5918a95543224185a4b7434a0e650c7a811585e0a8254578ae41c7de32c39fa",
+        "ready_days": 2514,
+        "eligible_days": 156,
+        "borrow_usd": 0.0,
+        "minute_observations": 976680,
+        "minute_mean_gross": 0.9254742748,
+        "minute_mean_net": 0.9254742748,
+        "minute_max_gross": 0.9709285516,
+        "minute_dd": -0.326247321547,
+        "short_minutes": 0,
+        "daily_book_max": 0.0,
+        "executions": 1,
+        "split_counts": {
+          "SPY": 0,
+          "NVDA": 2,
+          "AMD": 0
+        },
+        "dividend_counts": {
+          "SPY": 40,
+          "NVDA": 41,
+          "AMD": 0
+        },
+        "native_dividends": 84891.69,
+        "first": "2016-01-04",
+        "last": "2025-12-31",
+        "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+        "fills": 1,
+        "rejects": 0,
+        "fees": 7.215,
+        "interest": 0.0,
+        "min_cash": 8866.33731,
+        "max_gross": 0.97087067,
+        "fee_models": [
+          "InteractiveBrokersFeeModel"
+        ],
+        "native_fee_residual": 0.0,
+        "active_only_residual": 115.44,
+        "fill_notional_usd": 291126.45,
+        "spy_fills": 1,
+        "traded_symbols": 1,
+        "native_book_residual": 0.0,
+        "last_mark_residual": 0.0,
+        "pending": 0
+      }
+    },
+    "pairhold": {
+      "study": "stock-pairs-spy-v1",
+      "case": "pairhold",
+      "kind": "full",
+      "metrics": {
+        "n": 2514,
+        "end": 43981455.42994,
+        "ret": 145.604851433133,
+        "cagr": 0.646588907226,
+        "dd": -0.656961103465,
+        "sharpe": 1.266602515342,
+        "calmar": 0.984211856403,
+        "annual_calmar": 221.633899884247,
+        "uw": 2241,
+        "uw_fraction": 0.891408114558,
+        "longest_uw": 407,
+        "longest_uw_days": 592,
+        "censored": true,
+        "return_sum": 6.178030518382,
+        "return_square_sum": 2.3990484755
+      },
+      "audit": {
+        "source_token": "ac89224d4a39b499",
+        "fit_hash": "a5918a95543224185a4b7434a0e650c7a811585e0a8254578ae41c7de32c39fa",
+        "ready_days": 2514,
+        "eligible_days": 156,
+        "borrow_usd": 0.0,
+        "minute_observations": 976680,
+        "minute_mean_gross": 0.9934144714,
+        "minute_mean_net": 0.9934144714,
+        "minute_max_gross": 0.9991776591,
+        "minute_dd": -0.670361480561,
+        "short_minutes": 0,
+        "daily_book_max": 0.0,
+        "executions": 1,
+        "split_counts": {
+          "SPY": 0,
+          "NVDA": 2,
+          "AMD": 0
+        },
+        "dividend_counts": {
+          "SPY": 40,
+          "NVDA": 41,
+          "AMD": 0
+        },
+        "native_dividends": 35148.01,
+        "first": "2016-01-04",
+        "last": "2025-12-31",
+        "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+        "fills": 2,
+        "rejects": 0,
+        "fees": 281.64,
+        "interest": 0.0,
+        "min_cash": 8652.77994,
+        "max_gross": 0.99916251,
+        "fee_models": [
+          "InteractiveBrokersFeeModel"
+        ],
+        "native_fee_residual": 0.0,
+        "active_only_residual": 3836.76,
+        "fill_notional_usd": 291065.58,
+        "spy_fills": 0,
+        "traded_symbols": 2,
+        "native_book_residual": 0.0,
+        "last_mark_residual": 0.0,
+        "pending": 0
+      }
+    },
+    "pairs": {
+      "study": "stock-pairs-spy-v1",
+      "case": "pairs",
+      "kind": "full",
+      "metrics": {
+        "n": 2514,
+        "end": 240659.6973904206,
+        "ret": -0.197801008699,
+        "cagr": -0.021795804247,
+        "dd": -0.256210263627,
+        "sharpe": -0.408543556182,
+        "calmar": -0.085069988759,
+        "annual_calmar": -0.772026092548,
+        "uw": 2368,
+        "uw_fraction": 0.941925218775,
+        "longest_uw": 2341,
+        "longest_uw_days": 3401,
+        "censored": true,
+        "return_sum": -0.207273612451,
+        "return_square_sum": 0.025808422069
+      },
+      "audit": {
+        "source_token": "b1b036c483d0a66a",
+        "fit_hash": "a5918a95543224185a4b7434a0e650c7a811585e0a8254578ae41c7de32c39fa",
+        "ready_days": 2514,
+        "eligible_days": 156,
+        "borrow_usd": 1707.457737,
+        "minute_observations": 976680,
+        "minute_mean_gross": 0.0398418359,
+        "minute_mean_net": 0.0009795993,
+        "minute_max_gross": 1.139245651,
+        "minute_dd": -0.263670950746,
+        "short_minutes": 39990,
+        "daily_book_max": 0.0,
+        "executions": 2513,
+        "split_counts": {
+          "SPY": 0,
+          "NVDA": 2,
+          "AMD": 0
+        },
+        "dividend_counts": {
+          "SPY": 40,
+          "NVDA": 41,
+          "AMD": 0
+        },
+        "native_dividends": 265.83,
+        "first": "2016-01-04",
+        "last": "2025-12-31",
+        "calendar_hash": "7cb12b829012150730b8e5c02523c66db5bf80b6b2b6c5471f68ff24085f4b60",
+        "fills": 218,
+        "rejects": 0,
+        "fees": 2577.505,
+        "interest": 0.0,
+        "min_cash": 36152.486292,
+        "max_gross": 1.09673838,
+        "fee_models": [
+          "InteractiveBrokersFeeModel"
+        ],
+        "native_fee_residual": 0.0,
+        "active_only_residual": -0.0,
+        "fill_notional_usd": 9715205.87,
+        "spy_fills": 0,
+        "traded_symbols": 2,
+        "native_book_residual": -0.0,
+        "last_mark_residual": 0.0,
+        "pending": 0
+      }
+    }
+  },
+  "negative_baselines": [
+    {
+      "study": "capm-ablation-v1",
+      "manifest_path": ".local/performance/capm-ablation-v1/manifest.json",
+      "manifest_sha256": "01cc2398e30ddfa1f5ac30f186c868856fe8a94644c1e882ff8216d116c00111"
+    },
+    {
+      "study": "dual-thrust-spy-v1",
+      "manifest_path": ".local/performance/dual-thrust-spy-v1/manifest.json",
+      "manifest_sha256": "9eae4b7e5c675a982cef8f7dc88f8aaefc5368cf0ddf4c54ba7c6334a0f4e0ec"
+    }
+  ],
+  "browser_url": "http://127.0.0.1:8765/stock-pairs-spy-v1/index.html",
+  "manifest": {
+    "path": ".local/performance/stock-pairs-spy-v1/manifest.json",
+    "sha256": "7ae62dbeb7101311a72466675e3c201c1b4dd49ea36cbe582b2557fe4a146ec9",
+    "files": 63
+  },
+  "validation": {
+    "offline_tests": 372,
+    "offline_tests_passed": true,
+    "dependency_check_passed": true,
+    "offline_log": {
+      "path": ".local/stock-pairs-final-check.log",
+      "sha256": "7632d69b268453f33c12be1645558a2be3cd2adbf748bc8e47ce00cf9ccea8a7",
+      "exit_code": 0
+    },
+    "artifact_audit_passed": true,
+    "browser": {
+      "passed": true,
+      "status": "Completed \u00b7 all cases qualified",
+      "full_rows": 3,
+      "annual_rows": 30,
+      "all_table_cells_verified": true,
+      "charts": [
+        {
+          "metric": "ret",
+          "points": 30,
+          "passed": true
+        },
+        {
+          "metric": "dd",
+          "points": 30,
+          "passed": true
+        },
+        {
+          "metric": "sharpe",
+          "points": 24,
+          "passed": true
+        },
+        {
+          "metric": "annual_calmar",
+          "points": 24,
+          "passed": true
+        },
+        {
+          "metric": "uw_fraction",
+          "points": 30,
+          "passed": true
+        },
+        {
+          "metric": "longest_uw",
+          "points": 30,
+          "passed": true
+        },
+        {
+          "metric": "longest_uw_days",
+          "points": 30,
+          "passed": true
+        }
+      ],
+      "undefined_ratio_cells": 12,
+      "pair_sharpe_segments": 3,
+      "decision": {
+        "growth_checks": {
+          "cagr_beats_spy": false,
+          "calmar_at_least_spy": false,
+          "longest_uw_no_worse": false
+        },
+        "risk_checks": {
+          "positive_cagr": false,
+          "sharpe_at_least_spy": false,
+          "shallower_dd": true,
+          "longest_uw_no_worse": false
+        },
+        "growth_pass": false,
+        "risk_alternative_pass": false,
+        "calmar_excess": -0.521369963393,
+        "cagr_excess": -0.158199989849,
+        "positive_cagr_condition": false,
+        "drawdown_reassessment": false,
+        "status": "stop-fixed-adaptation-no-improvement-screen-passed"
+      }
+    },
+    "negative_baseline_audits": {
+      "capm": 77,
+      "dual_thrust": 43
+    }
+  },
+  "amendments": [
+    {
+      "created_utc": "2026-10-27T06:06:40.137887+00:00",
+      "kind": "early-close-history-request-only",
+      "reason": "300-bar count request stopped on2016-11-25early close before any financial case. Reuse existing600calendar-day workaround, still select exactly250strict-prior aligned observations; no financial rule/threshold/cost change.",
+      "archive": ".local/stock-pairs-spy-v1/superseded/attempt1",
+      "old_plan_sha256": "593a7a652f05ce78f4e001db6b59fdb575ebe273edf9ea56c78048a660b26559",
+      "budgets_unchanged": true,
+      "financial_cases_observed": 0
+    },
+    {
+      "created_utc": "2026-10-27T06:11:45.454614+00:00",
+      "kind": "local-enum-display-audit-only",
+      "reason": "Actual engine emits RAW instead of Raw. Normalize enum-name capitalization in local audit; every generated source remains byte-identical. No new hosted attempt or financial result.",
+      "archive": ".local/stock-pairs-spy-v1/superseded/enum-audit",
+      "generated_sources_unchanged": true
+    },
+    {
+      "created_utc": "2026-10-27T06:12:42.817775+00:00",
+      "kind": "pre-financial-utc-borrow-clock-correction",
+      "reason": "Review before any financial launch found local naive elapsed clock could miss DST hours. Use UTC elapsed seconds in financial cases; same3%ACT365 model. Actual zero-order probe source is byte-identical; fitting and all probe checks unchanged. No additional hosted attempt.",
+      "archive": ".local/stock-pairs-spy-v1/superseded/pre-financial-utc-audit",
+      "financial_cases_observed": 0,
+      "probe_source_unchanged": true
+    }
+  ],
+  "limitations": [
+    "Declared causal mechanism adaptation, not exact tutorial/original2013-2014 reproduction",
+    "Hindsight-selected surviving pair; viewed development history, no untouched alpha/stock-selection evidence",
+    "Assumed fills/slippage/borrow/short availability; native ex-date cash policy, no independent vendor/cash/action replay",
+    "Native minimum-order guard warning retained; skipped-rebalance count and isolated effects unmeasured",
+    "Six flat years have undefined annual Sharpe/Calmar; continuous drawdown/UW do not reset",
+    "Both fixed improvement screens fail; no strategy/cost search, trained RL advantage or promotion"
+  ],
+  "data_boundary": "Free hosted data; own aggregates/counts/hashes only. No raw bars or dense NAV exports, paid resources, new services, dependencies, MLflow imports, agents, broker/account/order operations, commits or publication."
+}

@@ -1,0 +1,32 @@
+{
+  "review_date": "2026-10-25",
+  "status": "screened_not_reproduced",
+  "method": "Read-only QuantConnect Strategy Explorer and displayed Code tab inspection",
+  "snapshots": {
+    "286-page.txt": "80f35a562cbb216cc7c22ec4916d6ec9f3b61e902c6f541da9987eb9dd7feaed",
+    "485-page.txt": "7949661df6c9399731df78857344d6e1af708f0b520206d506241285817a7e5c",
+    "659-code.txt": "0b671efa5ab04cdeeda479e818bf8e4ebda70aac5a82dbc305bbb3369c6636dc",
+    "659-page.txt": "8ee36306cbae66546d1b39f91d12082381ef06e3b3f940904f9f82d66004ce7b",
+    "676-code.txt": "8f006746d6b7052054ed7eb99e6bbae01553ed463b52b31f55eee7aa101ce87b",
+    "676-page.txt": "565c6e3cb3041274b7aff284c3ad68820e10c2421e441e275bf54c8fc804cde7",
+    "explorer.txt": "615260c831a515c1f340f6361a0bcddfc8096b11dec463c570f59d7d1c36901b"
+  },
+  "financial_backtests_started": 0,
+  "clones_created": 0,
+  "license_and_data_entitlements": "unverified",
+  "code_observations": {
+    "676": {
+      "version": "1.1.0",
+      "submitted": "2026-10-01",
+      "displayed_code_universe_count": 15,
+      "description_universe_count": 20,
+      "skip_21_days_implemented": false,
+      "volatility_implementation": "STD of price levels, not daily returns"
+    },
+    "659": {
+      "version": "1.0.0",
+      "submitted": "2026-07-14",
+      "weight": "1 / number of desired positions; potentially near full allocation to one stock"
+    }
+  }
+}

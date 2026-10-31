@@ -1,0 +1,63 @@
+{
+  "study_id": "t11-reference-v2",
+  "status": "closed_two_runs_complete_exports_unverified",
+  "closed_utc": "2026-10-29T20:27:02.218252+00:00",
+  "financial_attempts_used": 2,
+  "original_cloud_source_restored": true,
+  "restored_sha256": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+  "exports_verified": false,
+  "source_identity_verified_both": true,
+  "attempts": [
+    {
+      "case": "t11",
+      "status": "completed_export_pending",
+      "reserved_utc": "2026-10-29T07:41:37.883547+00:00",
+      "cloud_source_sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d",
+      "cloud_engine": "2.5.0.0.18215",
+      "cloud_build_id": "0c8b8e-1ffba4",
+      "backtest_id": "ae7d527233c8cec348ee4da07c9fe0eb",
+      "actual_name": "Calm Fluorescent Yellow Manatee",
+      "audit_summary": {
+        "cagr": 1.1966643441528793,
+        "dd": -0.5125637511827166,
+        "calmar": 2.33466440299696,
+        "sharpe": 1.6901171638164987,
+        "rejects": 0,
+        "fills": 1062,
+        "end_equity": 1124734.594134504,
+        "source": "existing aggregate audit observed in cloud terminal; built-in stats differ in conventions"
+      },
+      "overview_statistics": {
+        "cagr_percent": 119.574,
+        "drawdown_percent": 51.3,
+        "sharpe": 1.908,
+        "end_equity": 1124734.59,
+        "total_orders": 1062
+      }
+    },
+    {
+      "case": "gated_t11",
+      "status": "completed_export_pending",
+      "reserved_utc": "2026-10-29T07:47:02.367625+00:00",
+      "cloud_source_sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa",
+      "cloud_engine": "2.5.0.0.18215",
+      "backtest_id": "96cee07260398f6cdb20c92b08bc50e5",
+      "actual_name": "Hipster Blue Owlet",
+      "cloud_build_id": "433bd5-616d74",
+      "overview_statistics": {
+        "cagr_percent": 91.961,
+        "drawdown_percent": 36.9,
+        "sharpe": 1.709,
+        "end_equity": 501845.82,
+        "total_orders": 998
+      }
+    }
+  ],
+  "private_plan_sha256": "f294d0e4e25b93fcb4c873e12224682cdec0d46b777722728a9326e9477fecda",
+  "limitations": [
+    "Official JSON exports not verified: embedded browser interaction/download timeout",
+    "Not original18209 engine daily parity",
+    "No new raw prices, reconstructed indicators or daily decision traces exported",
+    "No paper or live orders; no retries"
+  ]
+}

@@ -135,6 +135,194 @@
       "canonical_path": "research/evaluation/saved_review.py",
       "current_command_path": "scripts/current/recursive_research_review.py",
       "legacy_sha256": "01947ec555c8558e623bd214f3e12083e15fd700d50fa230b45c18a71d437d7d"
+    },
+    "research/alpaca_pilot.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/alpaca_pilot.py",
+      "legacy_sha256": "4d9d6ddb9c6fb61044675a1c81120151f1148ae663175ff3e98ef80127be78d2"
+    },
+    "research/capm_ablation.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/capm_ablation.py",
+      "legacy_sha256": "77b4fd00d602c9f7c9cb49107728a5267870648fce757ace1d4760eaf9d1bc01"
+    },
+    "research/capm_review.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/capm_review.py",
+      "legacy_sha256": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a"
+    },
+    "research/dual_thrust_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/dual_thrust_study.py",
+      "legacy_sha256": "37a1c7cf300be75a0ac48737646f5b71409aa47dc7ccfb8cbd0120212da9f158"
+    },
+    "research/experiment_receipts.py": {
+      "canonical_path": "research/control/experiment_receipts.py",
+      "legacy_sha256": "c62ba9f3cb79b15d1ebaf05bf708bdf558de4fe4852152cd7cd0f4c28320f9da"
+    },
+    "research/free_source_fetch.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/free_source_fetch.py",
+      "legacy_sha256": "8ae2b2c19cdd654366ffcfd56ec23422de6d274de67951d8d743e6e8104fb0a6"
+    },
+    "research/gate_robustness.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/gate_robustness.py",
+      "legacy_sha256": "3369ecfe8ae7dc3cbf61034ebdb7ba246e52e33520b0b76ea11b9543e5f9d01a"
+    },
+    "research/gscore_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/gscore_study.py",
+      "legacy_sha256": "1b23542e4c0266cbfdd93464d6d21974c87f7f71b7d482b475920014a2d462aa"
+    },
+    "research/incremental_sizing.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/incremental_sizing.py",
+      "legacy_sha256": "69b25a415485c9e0216cb0268d5b36288a669a78cbdbc182a774c3f627768807"
+    },
+    "research/issuer_actions.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/issuer_actions.py",
+      "legacy_sha256": "1f8be02e2d021cb4408fa89c58ddbfff44d410297b1dfde439c07b23355091de"
+    },
+    "research/legacy_control_contract.py": {
+      "canonical_path": "research/control/legacy_control_contract.py",
+      "legacy_sha256": "6d7ec4f449a6ddf0b44bd9849ba8110cb974e3209e6c27df3a2e1c028b14b2c1"
+    },
+    "research/multi_asset.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset.py",
+      "legacy_sha256": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d"
+    },
+    "research/multi_asset_accounting_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_accounting_probe.py",
+      "legacy_sha256": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b"
+    },
+    "research/multi_asset_accounting_stress.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_accounting_stress.py",
+      "legacy_sha256": "c7b0e8f1b7538e7090f6d5e4445af5fbce3be27a53cc8ed1ee1ef7c1c2009b70"
+    },
+    "research/multi_asset_audit.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_audit.py",
+      "legacy_sha256": "ef98d076bcf73b4014272714f7075ee39f3b26d9e4204332cf5fc875950cd196"
+    },
+    "research/multi_asset_cash_audit.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_cash_audit.py",
+      "legacy_sha256": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d"
+    },
+    "research/multi_asset_comparison.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_comparison.py",
+      "legacy_sha256": "50e0493a5c7053ea3d1d3c9eca96d9b807f3567565e2802fd5ae42cc6a2f9260"
+    },
+    "research/multi_asset_native_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_native_probe.py",
+      "legacy_sha256": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697"
+    },
+    "research/multi_asset_plan.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/multi_asset_plan.py",
+      "legacy_sha256": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e"
+    },
+    "research/native_multi_asset.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/native_multi_asset.py",
+      "legacy_sha256": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc"
+    },
+    "research/pairs_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/pairs_study.py",
+      "legacy_sha256": "a0d77aabe1cdcfdedf9161dcb790cc06b6c191e5459502c77b6060bddf1ce246"
+    },
+    "research/qc_inventory.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc_inventory.py",
+      "legacy_sha256": "8a8532a8b1fcdf932035946e6d68f9579e4f2748c946c7d4e319ed88414c68c1"
+    },
+    "research/qc_source_review.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc_source_review.py",
+      "legacy_sha256": "dfa50213153e9f0cc47dc10530fe462ac447b6beef25b77aa8a3b1b44f53fbd3"
+    },
+    "research/qc_tutorial_packages.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc_tutorial_packages.py",
+      "legacy_sha256": "b0f838af94443098f209a1b2821b7b70fdc09ce1819fd8594374683cb7ca6455"
+    },
+    "research/qualify_issuer_sources.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qualify_issuer_sources.py",
+      "legacy_sha256": "d6d454085c9561f3bdb072ae824f3a78fc2aa3c87f0f1d1e4c4652b6a4acd7e2"
+    },
+    "research/rsi_adoption.py": {
+      "canonical_path": "research/control/rsi_adoption.py",
+      "legacy_sha256": "2eef642971efdd9ca9daba81f5f48b51ce4b23f2296bca8851e3407d6b34af10"
+    },
+    "research/rsi_contracts.py": {
+      "canonical_path": "research/control/rsi_contracts.py",
+      "legacy_sha256": "a2826c5c089d8f63051996ddd27e1d8981c06a53a4b4d43a48c3210b544d674b"
+    },
+    "research/rsi_coordinator.py": {
+      "canonical_path": "research/control/rsi_coordinator.py",
+      "legacy_sha256": "f89705796b6fba5826dbfb53686b9d70eeff88831fafc307b70f109324112ac3"
+    },
+    "research/sector_corporate_actions.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/sector_corporate_actions.py",
+      "legacy_sha256": "a6a159a57d1a93569ffbc332b809eee545020cd53add77f58b479e5f196c8c9e"
+    },
+    "research/sector_etf_acquisition.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/sector_etf_acquisition.py",
+      "legacy_sha256": "d08ef3da7f3fde3a20ee7da5d2cd5b593a13399f7bb4b7857673c1c88af2e8db"
+    },
+    "research/sector_resolution.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/sector_resolution.py",
+      "legacy_sha256": "7df7065aee3dfffdfccb09a30a253f67354104e376e592079c486644c3ee51a0"
+    },
+    "research/us_etf_calendar.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/us_etf_calendar.py",
+      "legacy_sha256": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd"
+    },
+    "research/us_stock_library.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/us_stock_library.py",
+      "legacy_sha256": "ee0b265276879098e9c1fb424cad3061fa1d18d3b387bf77b25d1757b61cc472"
+    },
+    "research/workflow_readiness.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/workflow_readiness.py",
+      "legacy_sha256": "292a8576eff0fe3c2e8f968152d7b960d44648ab3fdc3f56703155ea0f533a9e"
+    },
+    "scripts/rsi_foundation.py": {
+      "canonical_path": "scripts/current/rsi_foundation.py",
+      "legacy_sha256": "352bc8f592247ba31fbf782064abf431e5847884a90da46c25b01277e0f03cd5"
+    },
+    "research/quantconnect/t11_gate_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/t11_gate_policy.py",
+      "legacy_sha256": "e14efca421ecb9cee54b2e00be2ac8859b1b8d3e3f9a8e9da17f755a8c2e5b1c"
+    },
+    "research/quantconnect/sector_matched_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/sector_matched_policy.py",
+      "legacy_sha256": "e2b4efd355f1acc5eabdc9378a4a4bec72e06c432f379511b5f2e5c997be46ca"
+    },
+    "research/quantconnect/sector_resolution_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/sector_resolution_probe.py",
+      "legacy_sha256": "75f570679da7264f410dcaf60711ed05302620f08bc419f153be65b6766d9c3e"
+    },
+    "research/quantconnect/selection_stock_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_stock_probe.py",
+      "legacy_sha256": "eb7f8302500b5dff5401891607269657289d813764fde20fc027f4c1be0d9349"
+    },
+    "research/quantconnect/selection_completion_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_completion_policy.py",
+      "legacy_sha256": "7c5dff07fa378f2c4d364b253bd1d422377699beb3e348945ac823d84ae6a663"
+    },
+    "research/quantconnect/selection_subscription_retention.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_subscription_retention.py",
+      "legacy_sha256": "f833987e1dbf42fc76a48f3e8e618a7425823393fd023b642b72c8d07b02b8af"
+    },
+    "research/quantconnect/qc504_audit.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/qc504_audit.py",
+      "legacy_sha256": "9e3ed456402d60ad9194bd2cc8fbb9bf02a2cd71d2aa06dc0fb7e2411a654a8a"
+    },
+    "research/quantconnect/selection_readiness_probe.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/selection_readiness_probe.py",
+      "legacy_sha256": "6cf70c21c73eeb497bb3154f18de59c030fb02aa493027151d3096c09419a33e"
+    },
+    "research/quantconnect/qc504_funded_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/qc504_funded_policy.py",
+      "legacy_sha256": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8"
+    },
+    "research/quantconnect/capm_study.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/capm_study.py",
+      "legacy_sha256": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601"
+    },
+    "research/quantconnect/stock_risk_policy.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/stock_risk_policy.py",
+      "legacy_sha256": "48af0c8741ba12a2c73a4f745c707e42624ce398dab3cc12c62312f14f3d55ef"
+    },
+    "research/quantconnect/sector_metrics.py": {
+      "canonical_path": "research/studies/checkpoint_20261031/qc/sector_metrics.py",
+      "legacy_sha256": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f"
     }
   },
   "protected_files": {
@@ -464,6 +652,74 @@
     "tests/test_suite_reporting.py": "787d1861c1b79133e38b85f7b003b19cf1ef51cbb6db5c993c77198d44802cf4",
     "tests/test_temporal.py": "703a1d8e6d3df642c707cea226fd35fdc31f0484d8ef9332dec633aa89fcd529",
     "tests/test_temporal_adversarial.py": "f680ffe49b0679b3481dca55363022aa74d2a7eed18651fd97e14c8a34d7d414",
-    "tests/test_temporal_flat_window.py": "9086c12108b4b35685393f27c70293a78b05380c35adb4541a67f01ee32b3a3e"
+    "tests/test_temporal_flat_window.py": "9086c12108b4b35685393f27c70293a78b05380c35adb4541a67f01ee32b3a3e",
+    "research/alpaca_pilot.py": "4d9d6ddb9c6fb61044675a1c81120151f1148ae663175ff3e98ef80127be78d2",
+    "research/capm_ablation.py": "77b4fd00d602c9f7c9cb49107728a5267870648fce757ace1d4760eaf9d1bc01",
+    "research/capm_review.py": "777ab1a1fac6db5580edea21104378b13ee26334e86510fa1fb7d3ea6d25774a",
+    "research/dual_thrust_study.py": "37a1c7cf300be75a0ac48737646f5b71409aa47dc7ccfb8cbd0120212da9f158",
+    "research/experiment_receipts.py": "c62ba9f3cb79b15d1ebaf05bf708bdf558de4fe4852152cd7cd0f4c28320f9da",
+    "research/free_source_fetch.py": "8ae2b2c19cdd654366ffcfd56ec23422de6d274de67951d8d743e6e8104fb0a6",
+    "research/gate_robustness.py": "3369ecfe8ae7dc3cbf61034ebdb7ba246e52e33520b0b76ea11b9543e5f9d01a",
+    "research/gscore_study.py": "1b23542e4c0266cbfdd93464d6d21974c87f7f71b7d482b475920014a2d462aa",
+    "research/incremental_sizing.py": "69b25a415485c9e0216cb0268d5b36288a669a78cbdbc182a774c3f627768807",
+    "research/issuer_actions.py": "1f8be02e2d021cb4408fa89c58ddbfff44d410297b1dfde439c07b23355091de",
+    "research/legacy_control_contract.py": "6d7ec4f449a6ddf0b44bd9849ba8110cb974e3209e6c27df3a2e1c028b14b2c1",
+    "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+    "research/multi_asset_accounting_probe.py": "4872ad444b2d34c2194339063e621a4f1847c18d6ee58b988bc99a94b546b59b",
+    "research/multi_asset_accounting_stress.py": "c7b0e8f1b7538e7090f6d5e4445af5fbce3be27a53cc8ed1ee1ef7c1c2009b70",
+    "research/multi_asset_audit.py": "ef98d076bcf73b4014272714f7075ee39f3b26d9e4204332cf5fc875950cd196",
+    "research/multi_asset_cash_audit.py": "1dae46e8c381e9433a0dba2d5305658f73bc530c6a2b60c8152fc0e1eb93376d",
+    "research/multi_asset_comparison.py": "50e0493a5c7053ea3d1d3c9eca96d9b807f3567565e2802fd5ae42cc6a2f9260",
+    "research/multi_asset_native_probe.py": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697",
+    "research/multi_asset_plan.py": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e",
+    "research/native_multi_asset.py": "d27f0032ae41b375f9891b60e7b7477697d0e62dd3fb1792f971d8bcd9a247cc",
+    "research/pairs_study.py": "a0d77aabe1cdcfdedf9161dcb790cc06b6c191e5459502c77b6060bddf1ce246",
+    "research/qc_inventory.py": "8a8532a8b1fcdf932035946e6d68f9579e4f2748c946c7d4e319ed88414c68c1",
+    "research/qc_source_review.py": "dfa50213153e9f0cc47dc10530fe462ac447b6beef25b77aa8a3b1b44f53fbd3",
+    "research/qc_tutorial_packages.py": "b0f838af94443098f209a1b2821b7b70fdc09ce1819fd8594374683cb7ca6455",
+    "research/qualify_issuer_sources.py": "d6d454085c9561f3bdb072ae824f3a78fc2aa3c87f0f1d1e4c4652b6a4acd7e2",
+    "research/rsi_adoption.py": "2eef642971efdd9ca9daba81f5f48b51ce4b23f2296bca8851e3407d6b34af10",
+    "research/rsi_contracts.py": "a2826c5c089d8f63051996ddd27e1d8981c06a53a4b4d43a48c3210b544d674b",
+    "research/rsi_coordinator.py": "f89705796b6fba5826dbfb53686b9d70eeff88831fafc307b70f109324112ac3",
+    "research/sector_corporate_actions.py": "a6a159a57d1a93569ffbc332b809eee545020cd53add77f58b479e5f196c8c9e",
+    "research/sector_etf_acquisition.py": "d08ef3da7f3fde3a20ee7da5d2cd5b593a13399f7bb4b7857673c1c88af2e8db",
+    "research/sector_resolution.py": "7df7065aee3dfffdfccb09a30a253f67354104e376e592079c486644c3ee51a0",
+    "research/us_etf_calendar.py": "d02a7594e9d4f8f41adbad03c9c4dbb1910954f5cd760fc778986b757c680fdd",
+    "research/us_stock_library.py": "ee0b265276879098e9c1fb424cad3061fa1d18d3b387bf77b25d1757b61cc472",
+    "research/workflow_readiness.py": "292a8576eff0fe3c2e8f968152d7b960d44648ab3fdc3f56703155ea0f533a9e",
+    "research/quantconnect/t11_gate_policy.py": "e14efca421ecb9cee54b2e00be2ac8859b1b8d3e3f9a8e9da17f755a8c2e5b1c",
+    "research/quantconnect/spy_comparison.py": "6ce784d7047c30670c0494dee864d843f03c2e48049e8224c7634ec3f6973827",
+    "research/quantconnect/selection_access_probe.py": "2f0b5f856c8dfec1901d3c8c980ef5e17995bb756414547aafe1955764ace270",
+    "research/quantconnect/selection_candidates.py": "f12f0978dbf2946a0133394cb8c9fa794945bc9c12b539777f9c8fb31f23a6d9",
+    "research/quantconnect/sector_matched_policy.py": "e2b4efd355f1acc5eabdc9378a4a4bec72e06c432f379511b5f2e5c997be46ca",
+    "research/quantconnect/sector_resolution_probe.py": "75f570679da7264f410dcaf60711ed05302620f08bc419f153be65b6766d9c3e",
+    "research/quantconnect/selection_stock_probe.py": "eb7f8302500b5dff5401891607269657289d813764fde20fc027f4c1be0d9349",
+    "research/quantconnect/selection_completion_policy.py": "7c5dff07fa378f2c4d364b253bd1d422377699beb3e348945ac823d84ae6a663",
+    "research/quantconnect/selection_subscription_retention.py": "f833987e1dbf42fc76a48f3e8e618a7425823393fd023b642b72c8d07b02b8af",
+    "research/quantconnect/sector_comparison.py": "ee9dd74329d5ed595472d8be6f53fb4cd0b5c4eb43a5095e419202be03fb30c4",
+    "research/quantconnect/qc504_audit.py": "9e3ed456402d60ad9194bd2cc8fbb9bf02a2cd71d2aa06dc0fb7e2411a654a8a",
+    "research/quantconnect/selection_readiness_probe.py": "6cf70c21c73eeb497bb3154f18de59c030fb02aa493027151d3096c09419a33e",
+    "research/quantconnect/qc504_funded_policy.py": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8",
+    "research/quantconnect/capm_study.py": "af4fb7c3d546402be8e21bb58199feafc82eb63538766d9accaf6d4830c6a601",
+    "research/quantconnect/stock_risk_policy.py": "48af0c8741ba12a2c73a4f745c707e42624ce398dab3cc12c62312f14f3d55ef",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/quantconnect/sources/dual_thrust_fx_original.py": "58971b1adc9416803338f973a9064b8cfc813f7b8929c2eb9a27a927c2657555",
+    "research/quantconnect/sources/capm_framework_original.py": "4caaa23a312db6ae764a2177c403ec887e981bffab7735afcd7638be36e6ed52",
+    "research/quantconnect/sources/stock_pairs_original.py": "d3088cbee0bc494513075d8f79ec4a9e940e17f432b9e2a86977f639a1e9d471",
+    "research/quantconnect/sources/g_score_legacy_original.py": "a3958ecc57127d1b50ee9e97257d7c79381195bde3e64912f601fdc53be32d1c",
+    "scripts/rsi_foundation.py": "352bc8f592247ba31fbf782064abf431e5847884a90da46c25b01277e0f03cd5",
+    "research/studies/t11_reproduction/conformance.py": "a1591d0065cbb26c56e98f8e17f7c06a7a2f9e154e756bc50f6f0e061eed3d33"
+  },
+  "paper_research_seams": [
+    "research.studies.checkpoint_20261031.alpaca_pilot",
+    "research.studies.spy.spy_backtest",
+    "research.studies.t11_reproduction.indicators",
+    "research.policies.risk_gate"
+  ],
+  "reviewed_opaque_loaders": {
+    "paper_trading/t11_preview.py": {
+      "sha256": "65a5a73895546e4e9c91d7e0016482faae91c829a4781aaa39c9b11312c3b01e",
+      "reason": "Existing read-only preview loads exactly the private policy pinned by POLICY_HASH, after byte verification; no broker/order effects. Whole-file changes invalidate this exception."
+    }
   }
 }

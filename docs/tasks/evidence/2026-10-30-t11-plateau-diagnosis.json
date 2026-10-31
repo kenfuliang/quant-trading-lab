@@ -1,0 +1,34 @@
+{
+  "schema": "saved-path-diagnosis/v1",
+  "status": "descriptive_complete_attribution_incomplete",
+  "financial_runs": 0,
+  "downloads": 0,
+  "broker_operations": 0,
+  "artifacts": [
+    {
+      "path": "scripts/diagnose_t11_saved_paths.py",
+      "sha256": "e388e201a72f999ca4f97bfd4ba8310f1f4c95941e4199f35eda2fd728d323cb"
+    },
+    {
+      "path": ".local/t11-reference-v2/export-review-v2/t11-candidate-close-path.json",
+      "sha256": "10fde68748e1c0cd20d2adf10f14a02c64fc2bef72938979b12a2145fb3771f2"
+    },
+    {
+      "path": ".local/t11-reference-v2/export-review-v2/gated_t11-candidate-close-path.json",
+      "sha256": "46f76c8a7ac33320830765fe0109bc753724d1f4bd896fcfbd1681fc3c71abaf"
+    },
+    {
+      "path": ".local/t11-diagnosis-v1/saved-path-diagnosis.json",
+      "sha256": "2885f5a83addab7c479224b5d3f2f682243ef1c3f58750d8677e43a121b33524"
+    },
+    {
+      "path": "docs/tasks/2026-10-30-t11-plateau-diagnosis.md",
+      "sha256": "1e1c2f7ef73fb146ec707edc8bd580416fd0d9c4466f4a97efbf6b24d4e987f5"
+    }
+  ],
+  "limitations": [
+    "No original daily branch/feature/gate trace",
+    "Not a financial experiment or promotion receipt",
+    "Retrospective development paths, no OOS claim"
+  ]
+}

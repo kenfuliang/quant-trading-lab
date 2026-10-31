@@ -1,0 +1,187 @@
+{
+  "schema": "t11-reproduction-rsi-v1-program-envelope",
+  "created_utc": "2026-10-29T05:55:00.849530+00:00",
+  "status": "preparation_only_financial_adapter_disabled",
+  "goal_reference": "Active current-thread T11 reproduction and first RSI cycle goal",
+  "parent_original_plan": {
+    "path": "research/plans/qc504-t11-gate-v1.json",
+    "sha256": "21b832c870106805503cbcab8a2d33644a6cbec3a8bc23cb3580e6ce1c8a644b"
+  },
+  "parents": {
+    "t11": {
+      "path": ".local/qc504-t11-gate-v1/t11-source.py",
+      "sha256": "2c475c95560063b73bbc90625330d52776b2f335d95eace2bcd2de42bf71957d"
+    },
+    "gated_t11": {
+      "path": ".local/qc504-t11-gate-v1/gated_t11-source.py",
+      "sha256": "384fac14daeb752138d0a368882015f39343d992d5301cb6201424d9c612b0fa"
+    }
+  },
+  "bounds": {
+    "new_financial_attempt_cap": 6,
+    "baseline_cap": 2,
+    "first_cycle_cap": 4,
+    "workers": 1,
+    "automatic_retries": 0,
+    "case_seconds": 300,
+    "aggregate_child_seconds": 1800,
+    "deadline_utc": "2026-10-29T07:45:00+00:00"
+  },
+  "baseline": {
+    "cases": [
+      "t11",
+      "gated_t11"
+    ],
+    "start": "2020-01-02",
+    "end": "2025-12-31",
+    "anchor": "2019-12-31",
+    "capital_usd": 10000,
+    "adverse_slippage_bps": 25,
+    "source_engine": "2.5.0.0.18209",
+    "fees": "original native IB/default; fee reservation is not actual fees",
+    "funding": "6% ACT/360 on previous closing debit cash; zero credit; no post-boundary accrual",
+    "intent_and_execution": "original staged MOO controller; no policy change"
+  },
+  "first_cycle": {
+    "status": "conditional_not_proposed_or_frozen",
+    "cases": [
+      "incumbent-25",
+      "challenger-25",
+      "incumbent-50",
+      "challenger-50"
+    ],
+    "maximum_changed_stages": 1,
+    "criterion": {
+      "minimum_relative_calmar_gain_each_cost": 0.1,
+      "cagr_not_lower": true,
+      "drawdown_not_deeper": true,
+      "uw_sessions_not_longer": true,
+      "uw_days_not_longer": true,
+      "pct_point_roundoff_tolerance": 1e-09
+    },
+    "requires": "both baseline cases pass original-source, aggregate, independent daily/policy and full account parity; then freeze one new version before outcomes"
+  },
+  "input_readiness": {
+    "decision_symbols": [
+      "AGG",
+      "BIL",
+      "BND",
+      "BTAL",
+      "IEF",
+      "IOO",
+      "KMLM",
+      "PSQ",
+      "QLD",
+      "QQQ",
+      "SH",
+      "SOXL",
+      "SOXS",
+      "SPXL",
+      "SPY",
+      "SQQQ",
+      "TECL",
+      "TECS",
+      "TLT",
+      "TQQQ",
+      "UVXY",
+      "VTV",
+      "XLF",
+      "XLK"
+    ],
+    "full_subscriptions": [
+      "AGG",
+      "BIL",
+      "BND",
+      "BSV",
+      "BTAL",
+      "FAS",
+      "IEF",
+      "IOO",
+      "KMLM",
+      "LABU",
+      "PSQ",
+      "QLD",
+      "QQQ",
+      "QQQE",
+      "SH",
+      "SMH",
+      "SOXL",
+      "SOXS",
+      "SPXL",
+      "SPY",
+      "SQQQ",
+      "SVIX",
+      "SVXY",
+      "TECL",
+      "TECS",
+      "TLT",
+      "TQQQ",
+      "UVIX",
+      "UVXY",
+      "VOOG",
+      "VOOV",
+      "VOX",
+      "VTV",
+      "XLF",
+      "XLK",
+      "XLP",
+      "XLY"
+    ],
+    "qualified_common_symbols": [
+      "SPY",
+      "XLF",
+      "XLK"
+    ],
+    "missing_decision_symbols": [
+      "AGG",
+      "BIL",
+      "BND",
+      "BTAL",
+      "IEF",
+      "IOO",
+      "KMLM",
+      "PSQ",
+      "QLD",
+      "QQQ",
+      "SH",
+      "SOXL",
+      "SOXS",
+      "SPXL",
+      "SQQQ",
+      "TECL",
+      "TECS",
+      "TLT",
+      "TQQQ",
+      "UVXY",
+      "VTV"
+    ],
+    "gate_seed_ready": false,
+    "daily_reference_ready": false,
+    "source_reuse_scope_verified": false,
+    "native_engine_execution_parity_verified": false
+  },
+  "preparation_sources": {
+    "research/studies/t11_reproduction/__init__.py": "ed717dd3d3d4c9ff6a8449fc81d6bf019ad4eff05ea0da657b473c1888da25ef",
+    "research/studies/t11_reproduction/contracts.py": "1cf8c3ec18a4b192f9d18524d3407fb68ab0ff22d2b085c4e7156a8616ddb843",
+    "research/studies/t11_reproduction/reference.py": "1cefd2a2ec4b01c084291f682dda0144837e0b1feb707c0825677819ffdabc86",
+    "research/studies/t11_reproduction/readiness.py": "c2aedb49e66f4ad7a835dba29e69d9b6252901264b5ce43a6c71d68cb527af14",
+    "tests/test_t11_reproduction.py": "04f6ce7672e5dcb4a80a7be1ff700a2ca06e0c91a7f8779ac53a820646d4f1be",
+    "requirements.lock.txt": "f1ffe0e2cbfc09b02e6ab664b54fc2eaa1457f32338d90f0f70c26fcc4bcf5cc"
+  },
+  "data_downloads_authorized_by_this_file": false,
+  "financial_adapter_enabled": false,
+  "gates": "No launches from this envelope. Executable exact source/input/evaluator and reservation-capture plan required within the same bounds. No scope/budget reset.",
+  "proof_level": "read-only preparation/invented-state checks; not strategy port or native/account replay parity",
+  "scope": {
+    "free_inputs_only": true,
+    "raw_qc_vendor_data_export": false,
+    "broker_operations": false,
+    "services": false,
+    "publication": false
+  },
+  "repository": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty": true
+  }
+}

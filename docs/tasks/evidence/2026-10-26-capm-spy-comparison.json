@@ -1,0 +1,76 @@
+{
+  "study_id": "capm-spy-v1",
+  "status": "completed-development-comparison",
+  "completed_utc": "2026-10-27T04:24:19.310914+00:00",
+  "git": {
+    "branch": "codex/rsi-gate-robustness",
+    "head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+    "dirty": true,
+    "unrelated_work_preserved": true
+  },
+  "source": {
+    "relationship": "Apache-2.0 official framework alternative, not exact hosted tutorial reproduction",
+    "original_commit": "22404ea28b8d3f3c9eb74d6ed9f0444426f8e417",
+    "original_sha256": "4caaa23a312db6ae764a2177c403ec887e981bffab7735afcd7638be36e6ed52",
+    "executed_source_sha256": {
+      "capm": "f69732f6fa7c2b2ff8e6277002a339373867a4bcba01a63801249449e6c3827c",
+      "spy": "29ce31e35e82490ecde61bef1656838fb7b9081716ecc62ac9add98e890d4c1f"
+    }
+  },
+  "runtime": {
+    "engine": "2.5.0.0.18209",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "full_hosted_environment_lock": false
+  },
+  "access": {
+    "free_hosted": true,
+    "universe_candidates": 29,
+    "annual_checkpoints": 10,
+    "all_29_daily_and_minute_and_aligned": true,
+    "probe_orders": 0,
+    "raw_market_data_exported": false
+  },
+  "comparison": {
+    "start": "2016-01-01",
+    "end": "2025-12-31",
+    "capital_usd": 300000,
+    "slippage_per_fill": 0.0025,
+    "fee_model": "InteractiveBrokersFeeModel",
+    "financing": "6% debit ACT/360 on prior close, zero credit, no charges accrued",
+    "sessions_each": 2514,
+    "calendar_parity": true,
+    "native_accounting_passed_both": true,
+    "independent_cash_action_replay": false,
+    "all_11_capm_metric_records_exactly_reproduced": true,
+    "unseen_evaluation": false,
+    "conclusion": "Reject this fixed CAPM alternative as a SPY improvement in the tested25bp scenario; other costs and risk ablations untested."
+  },
+  "budgets": {
+    "original_attempts": 5,
+    "original_closed": true,
+    "explicitly_authorized_extra_attempts": 1,
+    "extension_closed": true,
+    "financial_attempts_total": 4,
+    "probe_attempts_total": 2,
+    "all_failures_retained": true
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 350,
+    "docs_files_checked": 117,
+    "dependency_check": "No broken requirements found",
+    "browser_views": 6,
+    "annual_table_rows": 20,
+    "chart_bars_each": 20,
+    "initial_test_tool_note": "pytest unavailable; used established unittest/make check without installing packages",
+    "artifacts_manifest": ".local/performance/capm-spy-v1/manifest.json",
+    "browser_evidence": ".local/performance/capm-spy-v1/browser-audit.json"
+  },
+  "artifacts": {
+    "report": "http://127.0.0.1:8765/capm-spy-v1/index.html",
+    "aggregate_results": ".local/performance/capm-spy-v1/review.json",
+    "preview": ".local/performance/capm-spy-v1/review-preview.png",
+    "retest_proof": ".local/capm-spy-v1/retest-reconciliation.json"
+  }
+}

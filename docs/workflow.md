@@ -69,7 +69,10 @@ offline suite proves only the behavior it exercised.
 
 Update README when capability availability changes and roadmap only when milestone
 acceptance is met. Update a decision record when changing an architectural choice.
-Task closure does not establish paper or live readiness.
+Task closure does not establish paper or live readiness. New research cycles additionally
+require the [GRS versioned receipt check](research-standard.md#experiment-receipt-contract)
+and [management closure handoff](operations/recursive-research.md#research-management);
+historical evidence is preserved rather than retroactively rewritten.
 
 Commits and remote publication follow the requested task scope. Before the first
 commit, review ignored paths and staged content for secrets, account identifiers,

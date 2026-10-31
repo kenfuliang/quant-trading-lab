@@ -1,0 +1,97 @@
+{
+  "schema": "alpaca-paper-integration-v1",
+  "date_local": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "updated_utc": "2026-10-26T04:37:11.725594+00:00",
+  "status": "implementation_offline_verified_broker_fills_pending",
+  "branch": "codex/rsi-gate-robustness",
+  "base_head": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "working_tree": "uncommitted changes plus preserved earlier research",
+  "paper_host": "https://paper-api.alpaca.markets",
+  "spy_strategy": "existing native ComparisonStrategy.on_bar EMA50/200",
+  "modifications": [
+    "one-share sizing",
+    "regular-hours DAY limits",
+    "flat-start single-decision bounded session"
+  ],
+  "limits": {
+    "max_spy_shares": 1,
+    "max_order_notional_usd": 1000,
+    "max_orders": 2,
+    "http_attempts_per_run": 120,
+    "decision_observation_seconds": 45
+  },
+  "real_broker_orders_submitted": 0,
+  "real_broker_fills_verified": false,
+  "native_fill_evidence": "fake transport only",
+  "mlflow_runs": [
+    {
+      "mode": "offline",
+      "run_id": "19ea136c7ccc4ff395119cd4de7ababf",
+      "url": "http://127.0.0.1:5050/#/experiments/6/runs/19ea136c7ccc4ff395119cd4de7ababf",
+      "source": ".local/alpaca-paper/runs/20261026T043333202213Z-offline/summary.json",
+      "sha256": "f186e45d2cfc2f97c3d90c4af431a36e024c2601087c92b4b09789ca8e232a87",
+      "status": "passed_offline_native_lifecycle",
+      "metrics": {
+        "native_fills": 2.0,
+        "broker_post_count": 2.0,
+        "submissions": 2.0
+      },
+      "artifact_byte_match": true
+    },
+    {
+      "mode": "replay",
+      "run_id": "e3e4ecb5770b481db3e57483f49e0833",
+      "url": "http://127.0.0.1:5050/#/experiments/6/runs/e3e4ecb5770b481db3e57483f49e0833",
+      "source": ".local/alpaca-paper/runs/20261026T043422924311Z-replay/summary.json",
+      "sha256": "5498b32029adef0c0f7e84af59512338473087c6814268317a7f1f7f583f7e27",
+      "status": "passed_offline_native_lifecycle",
+      "metrics": {
+        "native_fills": 2.0,
+        "broker_post_count": 2.0,
+        "submissions": 2.0
+      },
+      "artifact_byte_match": true
+    },
+    {
+      "mode": "session",
+      "run_id": "57defc2a975a43f4873191549c31c321",
+      "url": "http://127.0.0.1:5050/#/experiments/6/runs/57defc2a975a43f4873191549c31c321",
+      "source": ".local/alpaca-paper/runs/20261026T043528455440Z-session/summary.json",
+      "sha256": "d3fef88b9a424c98a42d0f3ef1cd8fe5fb72ba36248c4cfc0e472086c18b3665",
+      "status": "not_run_outside_first_open_minute",
+      "metrics": {
+        "native_fills": 0.0,
+        "broker_submissions": 0.0,
+        "market_open": 0.0
+      },
+      "artifact_byte_match": true
+    }
+  ],
+  "mlflow_artifact_identity": "all three byte matched redacted source summaries",
+  "native_version": "1.231.0",
+  "source_snapshots": "verified for final three run code hashes",
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 267,
+    "new_paper_tests": 10,
+    "make_check_log_sha256": "b7b50b895459a51f772d43548740a3dc8e7a01311138c91f53ee7c7daeca6914",
+    "credential_scan": "passed without printing values",
+    "hosted_ci": "not_run"
+  },
+  "limitations": [
+    "Actual broker fills pending regular market hours",
+    "Fractional partial fills halt for manual reconciliation",
+    "General execution reports, position adoption and restart recovery unsupported",
+    "Native generic reconciliation disabled only for bounded flat-start client",
+    "No profitability metrics or broker parity claimed"
+  ],
+  "negative_evidence_preserved": [
+    "offline-tests-initial.log",
+    "offline-tests-second.log",
+    "offline-tests-third.log",
+    "debug-native/native-events.json",
+    "debug-native-2/native-events.json"
+  ],
+  "next_open_los_angeles": "2026-10-26T06:30:00-07:00"
+}

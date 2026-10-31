@@ -1,0 +1,100 @@
+{
+  "schema": "multi-asset-unlock-design-v1",
+  "status": "not_executable_source_and_historical_runner_blocked",
+  "historical_execution_authorized": false,
+  "max_conditional_financial_paths": 10,
+  "financial_paths_executed": 0,
+  "cases": [
+    {
+      "id": "5bp_spy_entry_only",
+      "rule": "spy_entry_only",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_frozen_spy_gate",
+      "rule": "frozen_spy_gate",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_static_equal",
+      "rule": "static_equal",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_trend_equal",
+      "rule": "trend_equal",
+      "cost_bps": 5
+    },
+    {
+      "id": "5bp_relative_strength",
+      "rule": "relative_strength",
+      "cost_bps": 5
+    },
+    {
+      "id": "25bp_spy_entry_only",
+      "rule": "spy_entry_only",
+      "cost_bps": 25
+    },
+    {
+      "id": "25bp_frozen_spy_gate",
+      "rule": "frozen_spy_gate",
+      "cost_bps": 25
+    },
+    {
+      "id": "25bp_static_equal",
+      "rule": "static_equal",
+      "cost_bps": 25
+    },
+    {
+      "id": "25bp_trend_equal",
+      "rule": "trend_equal",
+      "cost_bps": 25
+    },
+    {
+      "id": "25bp_relative_strength",
+      "rule": "relative_strength",
+      "cost_bps": 25
+    }
+  ],
+  "source_protocol": "docs/tasks/2026-10-25-multi-asset-unlock.md",
+  "protocol_sha256": "d999ec4fd7a073139c52e67487226f198bb7fe19b16fcc90001a236e4d1ae7bc",
+  "required_gates": [
+    "intended_use_rights",
+    "raw_price_and_action_semantics_qualified",
+    "action_completeness_verified",
+    "historical_dividend_payment_dates_complete",
+    "exchange_calendar_and_availability_qualified",
+    "native_corporate_actions_configured",
+    "monthly_signals_synthetic_tests_passed",
+    "cash_allocator_native_synthetic_probe_passed",
+    "historical_runner_and_continuous_nav_verified"
+  ],
+  "universe": [
+    "SPY",
+    "IEF",
+    "GLD"
+  ],
+  "evaluation": [
+    "2006-01-03",
+    "2025-12-31"
+  ],
+  "nominal_exposure": 1,
+  "capital_usd": 300000,
+  "allocation_reserve": 0.99,
+  "whole_shares": true,
+  "cash_interest": 0,
+  "commission_usd": 1,
+  "financial_workers": 1,
+  "financial_wall_seconds": 900,
+  "automatic_retries": 0,
+  "history_class": "already viewed/public development history; no untouched holdout",
+  "historical_prices": "no new price snapshots; saved original Yahoo sources unchanged",
+  "rule_owner": "docs/tasks/2026-10-25-multi-asset-unlock.md",
+  "code_hashes": {
+    "research/multi_asset.py": "9ebb05332aa6e234b6d41717e0fe4bf20228ea9d128f056b3e718d73aaced82d",
+    "research/multi_asset_plan.py": "15d4f4c3c996d1ec1444e94fa0853ce73116c0b1f7ec0a22eec19bd57e59ed4e",
+    "research/multi_asset_native_probe.py": "d827d33f69fab4942141b977b85024b5ff693662d66a3a96ea8c91d241256697",
+    "research/multi_asset_audit.py": "ef98d076bcf73b4014272714f7075ee39f3b26d9e4204332cf5fc875950cd196",
+    "tests/test_multi_asset.py": "e25edd4caab9e3f0baf09e981cfe7c15a13682e42e50452362de027e462549e2"
+  }
+}

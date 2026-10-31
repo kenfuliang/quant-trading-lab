@@ -1,0 +1,45 @@
+{
+  "study_id": "qc504-ablation-v1",
+  "status": "reporting-amendment-frozen-after-attempt3",
+  "created_utc": "2026-10-26T18:42:52.066043+00:00",
+  "deadline_utc": "2026-10-26T19:22:52.066043+00:00",
+  "cases": [
+    "ensemble",
+    "t10",
+    "t11",
+    "s2",
+    "s3"
+  ],
+  "max_financial_attempts": 7,
+  "max_successful_cases": 5,
+  "technical_repair_slots": 2,
+  "start": "2020-01-01",
+  "end": "2025-12-31",
+  "capital_usd": 10000,
+  "slippage_per_fill": 0.0025,
+  "fees_and_financing": "Original IB margin/fee defaults; no added funding model. Financing not qualified.",
+  "allocation": "Standalone selected sleeve QUARTER=1.0; other weight methods return empty. Ensemble unchanged QUARTER=.25. Same full portfolio budget; embedded exposure varies.",
+  "order_policy": "Original close-price whole-share sizing and next-open MOO, trade on signal-label change; no cash buffer or rejection repair.",
+  "source": "Original private clone #504 v1.1.0; frozen previous cost25 adapter",
+  "source_hashes": {
+    "ensemble": "98d520f339c31cba04540589e9c091451d051ed3ed6684aa81f2487da079d8cb",
+    "t10": "8300463efc7c91206d03993d8544798e5f2e8e76cb67aca7df35376ea2e40d31",
+    "t11": "e1edf203b0784d57866c90350c5597d7716caf1ff15f221ad69d4cf97874872e",
+    "s2": "ae29e95904b1079ecd39e3ac99366f53e8a6f9f7ba78dd82d271ce641012913f",
+    "s3": "95487b6b49757ceba5fab4cea70661b8cdcb79f28a00519c1048b710e50a72f4"
+  },
+  "input_hash": "1e051678623351b49be678b6ced879f2d5e51cfc52c8398a91f423332c7ed102",
+  "metrics": "Annual/full returns, closing DD, zero-RF daily sample Sharpe sqrt252, Calmar, carried-peak underwater fraction, longest sessions/calendar days and censoring; exposure/cash/fees/rejects.",
+  "hypothesis": "Ensemble improves downside-adjusted performance or recovery relative to best-return standalone; reject a universal superiority claim if any sleeve dominates across metrics. No unseen alpha test.",
+  "ranking": "Report raw metrics/Pareto tradeoffs; order-rejected cases conditional, missing evidence unranked. No tuned parameters after viewing.",
+  "stops": [
+    "Six total financial attempts or40-minute deadline",
+    "source/case identity mismatch",
+    "nonfinite/nonpositive NAV",
+    "missing result retained; technical-only retry within cap"
+  ],
+  "exports": "Aggregate summary metrics/P&L only; no raw/daily market data; private source retained, no publication/broker/order actions",
+  "revision": 2,
+  "amended_utc": "2026-10-26T18:50:45.023933+00:00",
+  "amendment": "Two native-complete cases have inaccessible log tables and truncated terminal JSON. Fragment reporting at145 chars with checksum; omit asset lists/selection counts, retain P&L residual. Two reporting-only reruns; no financial policy change; same original deadline. Preserve frozen v1 and all attempts."
+}

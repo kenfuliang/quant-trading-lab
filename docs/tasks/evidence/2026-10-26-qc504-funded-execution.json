@@ -1,0 +1,102 @@
+{
+  "study_id": "qc504-funded-v1",
+  "status": "complete",
+  "missing": [],
+  "failed_acceptance": [],
+  "attempts": [
+    {
+      "attempt": 1,
+      "case": "ensemble",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T19:11:16.942957+00:00",
+      "source_sha256": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+      "backtest_id": "f527f756469dadc3fa560ee6e7cb4234"
+    },
+    {
+      "attempt": 2,
+      "case": "t10",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T19:13:42.061851+00:00",
+      "source_sha256": "f6befea80a9d028596f19afde009dbef3ad2a33a7088636912ba4eff29e5837e",
+      "backtest_id": "6cf4fbae069d377c6c7a5ca35f51187d"
+    },
+    {
+      "attempt": 3,
+      "case": "t11",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T19:15:10.603368+00:00",
+      "source_sha256": "0b965b202345a481ee75007237654743c563aff5decc683f69c0ceab73423e74",
+      "backtest_id": "516702e9c35bfa0d1701fcfc883d82cd"
+    },
+    {
+      "attempt": 4,
+      "case": "s2",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T19:17:40.517188+00:00",
+      "source_sha256": "d5bc8f88f7c65b43d67d75b650ad7f9d52d1e93d4e94e189776264cb88c328aa",
+      "backtest_id": "3a23e84824b462e41b060db0a9a82fe6"
+    },
+    {
+      "attempt": 5,
+      "case": "s3",
+      "status": "completed-summary-captured",
+      "reserved_utc": "2026-10-26T19:20:25.943091+00:00",
+      "source_sha256": "4118e1838e97becf4e47e26b4dc634f114d0cfb3b3cb2da243b1a45140b574c2",
+      "backtest_id": "3ac046fa387fcb9a232eeb42ba94bab9"
+    }
+  ],
+  "attempts_used": 5,
+  "closed_utc": "2026-10-26T19:25:25.810201+00:00",
+  "unused_repair_slots": 2,
+  "git_sha": "4999ec5767eccdd6f61863b14a05e459855f95e3",
+  "engine": "LEAN2.5.0.0.18209 observed",
+  "checks": [
+    "Annual/full NAV and return moments",
+    "Annual/full Calmar",
+    "Matching old/new session hash",
+    "Global underwater totals",
+    "Annual/total financing",
+    "Every funding debit matched same-step NAV reduction"
+  ],
+  "baseline_sha256": "e6420d3df7ce02d1a260f5a6b19441a89d2dd25fa0576e82c985d565521a6c3d",
+  "source_hashes": {
+    "ensemble": "8207000bb37f1d7600b74bbfe438bb91aede74ee490060f7ad759939a3d5fc9f",
+    "t10": "f6befea80a9d028596f19afde009dbef3ad2a33a7088636912ba4eff29e5837e",
+    "t11": "0b965b202345a481ee75007237654743c563aff5decc683f69c0ceab73423e74",
+    "s2": "d5bc8f88f7c65b43d67d75b650ad7f9d52d1e93d4e94e189776264cb88c328aa",
+    "s3": "4118e1838e97becf4e47e26b4dc634f114d0cfb3b3cb2da243b1a45140b574c2"
+  },
+  "code_sha256": {
+    "scripts/prepare_qc504_funded.py": "f36ed64d9036b77d3ececfef21eb70a37a706d0d98a9dadc511e95a3347ca73d",
+    "scripts/qc504_funded_budget.py": "f231d15edb77e5ffc0501696026ef6f41433cad1e45bd1a7b5f9c0409e6448cc",
+    "scripts/parse_qc504_funded_fragments.py": "82b14581997e82d6a4a23659a29d9defed5f91e140962c1bee8053d2bb729840",
+    "scripts/build_qc504_funded.py": "99851d8f4d88b24059019d1a2f75b61a9fddf16f6270e2b1dee3d0d8492b5015",
+    "scripts/build_qc504_ablation.py": "65f13aaaf8033e9331fbb22a02b5871284e3357a63427fc0b4d788f12fc5ade4",
+    "research/quantconnect/qc504_funded_policy.py": "e27a07266ff674dbea25f2442a852bc63ab416d4567746453bf895ce2b203bf8",
+    "research/quantconnect/sector_metrics.py": "c64774981d4543132478da9bfd7b9df20118e998d9dd840c5b43302a1339831f",
+    "research/plans/qc504-funded-v1.json": "9dd42f29cfa7aa9ad8774e7f712d3428b5de6dfae1f56337032d576aaba36061",
+    "tests/test_qc504_funded.py": "7cc6986a104ef247a0c2c6ee4e31fdc83ad28570840bd40c43a69403af41c60e"
+  },
+  "artifacts": {
+    "s3-summary-cells.json": "0398bce3ad5abffb6f6e505997da82b46da8b5809603797b5f30cb6ef29b1a13",
+    "t11-summary-cells.json": "2ec302fc0ea8c9f8f359139d0b7811c05340209d43c8d6072fbb8ad617f742a8",
+    "t10-summary-cells.json": "37c5c5d0980d452fb6e3f5ad248d7864b97f2038df990b8de17f723d2c6fda35",
+    "ensemble-summary-cells.json": "2a29f5bf766924824be02757d5b3b571066adcaa0656d450c20c28509f57f243",
+    "s2-summary-cells.json": "447c323193216471549ef6c2c30d5ee6964f084107cdd13436e6a4d33be71ce0",
+    "t11-terminal-fragments.json": "f4f4fc30cc37f9f8ad6620ee512d65d34096e836f6fc2fb11edd4171ec04ad0c",
+    "s2-terminal-fragments.json": "dc04fc2584f345de4f8198fc2fa72a76cc0842c24043a73e2f8280b39d63b7d9",
+    "t10-terminal-fragments.json": "40a57ad03bbf95f4c89de1fd8cb5db773138b1beae4f421787eb1af73f527cd0",
+    "ensemble-terminal-fragments.json": "83628babf0bb1daafd643226585116a71fe1f535b7d08f838950d351dfd01331",
+    "s3-terminal-fragments.json": "a2dad17ad89c45e30654b370f33f1e9d998100ec656978163cb9925efd7ccd39"
+  },
+  "limits": [
+    "Combined staging/90pct sizing/funding intervention; not isolated financing effect",
+    "Extra rotation delay and clipping alter exposure",
+    "6pct flat ACT/360 assumption, not broker historical schedule",
+    "Daily close debt/marks omit intraday funding and risk",
+    "Previously exposed development sample; no new alpha evidence",
+    "Vendor price snapshot not independently hashed; matching calendar hashes verify session coverage only",
+    "Embedded ETF leverage/expenses reflected in prices; underlying capacity unqualified",
+    "Native accounting plus explicit financing checks, not independent fill/cash ledger"
+  ]
+}

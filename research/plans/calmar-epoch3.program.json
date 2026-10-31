@@ -1,0 +1,72 @@
+{
+  "schema": "calmar-research-program/v1",
+  "program_id": "calmar-epoch3-20261030",
+  "status": "active-preparation",
+  "created_utc": "2026-10-30T07:24:38+00:00",
+  "deadline_utc": "2026-10-30T11:24:38+00:00",
+  "bounds": {
+    "financial_cases": 12,
+    "workers": 1,
+    "automatic_financial_retries": 0,
+    "case_timeout_seconds": 300,
+    "paid_resources": false,
+    "broker_operations": false,
+    "deployment": false,
+    "publication": false
+  },
+  "case_accounting": "Every launched or failed historical case consumes one shared slot; reservations before launch; old budgets remain closed.",
+  "stopping_conditions": [
+    "shared deadline or case cap reached",
+    "candidate passes frozen cycle criteria",
+    "all scoped viable paths demonstrably blocked after readiness work"
+  ],
+  "route_order": [
+    "residual momentum prerequisites: not yet financially eligible",
+    "qualified fixed-sector ETF selection: new correlation-aware mechanism",
+    "one separately frozen different-stage cycle if first cycle fails"
+  ],
+  "input_bundle": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+  "input_source_manifest": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+  "cycle1": {
+    "id": "E3-C1",
+    "stage": "target-selection",
+    "candidate": "correlation-diverse top-three from top-six volatility-adjusted momentum sectors",
+    "incumbent": "existing gated volatility-adjusted top-three",
+    "simpler_control": "same gate with equal-weight ten sectors",
+    "cases": 6,
+    "costs_bps": [
+      5,
+      10
+    ],
+    "period": [
+      "2017-02-01",
+      "2025-12-31"
+    ],
+    "criteria": {
+      "calmar_relative_gain_min": 0.1,
+      "cagr_no_lower": true,
+      "drawdown_no_deeper": true,
+      "longest_underwater_sessions_no_longer": true,
+      "longest_underwater_calendar_days_no_longer": true,
+      "not_simpler_control_dominated": true
+    },
+    "financial_execution": "disabled until versioned runner, source-bound lifecycle proof and frozen executable plan are qualified"
+  },
+  "cycle2": {
+    "cases_max": 6,
+    "status": "not yet frozen; no launch authorization without remaining shared bounds and one-stage contract"
+  },
+  "readiness_checks": {
+    "qualified_bundle": {
+      "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json",
+      "sha256": "7988bdd135a83fd01e454418709e7cf00a985bde169bede406cd611276dcd623",
+      "matches_saved_qualified_identity": true
+    },
+    "source_manifest": {
+      "path": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/source-manifest.json",
+      "sha256": "cd226c05e4c2e111bdef9a4ccde9d330961b53f34100968364bfda96786bc20a",
+      "matches_saved_qualified_identity": true
+    },
+    "bundle_payloads": "all declared bundle payload hashes verified"
+  }
+}

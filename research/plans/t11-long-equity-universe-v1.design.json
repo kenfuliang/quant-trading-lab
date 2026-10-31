@@ -1,0 +1,35 @@
+{
+  "schema": "t11-universe-design/v1",
+  "status": "awaiting_selection_rule",
+  "design_id": "T11-LONG-UNIVERSE-20261030-01",
+  "scope": "New position-proposal variant; preserve original T11 and every prior study.",
+  "tradable_etfs": ["TECL", "SOXL", "TQQQ", "QQQ", "SOXX", "VTI"],
+  "cash": "Unallocated USD balance, not a security ticker, market-data series or order target.",
+  "interpretation": "Proposed complete permitted position universe; excluded original T11 assets may remain signal inputs but cannot silently be remapped to another ETF.",
+  "selection_rule": null,
+  "unresolved": [
+    "Choose original-branch mapping versus a new fixed trend/relative-strength ranking selector.",
+    "If using branch mapping, specify each original excluded branch and whether its output is cash or an explicitly chosen permitted exposure.",
+    "If using ranking, freeze lookback, trend eligibility, score, selection count, ties, rebalance timing and missing-data behavior before implementation.",
+    "A leveraged-ETF return ranking changes embedded leverage exposure; specify simpler and exposure-aware controls before attributing gains to selection."
+  ],
+  "unchanged_contracts": {
+    "gate": "Existing SPY traffic-light gate; green/yellow/red normalized caps 1/0.5/0; unassessed 0.",
+    "sizing": "Existing 90% investable reserve applied exactly once downstream; positive proposal weights sum at most one. Final target is normalized proposal multiplied by gate cap and 0.9 once.",
+    "execution": "Existing completed-input decisions and staged next-open controller. No daily unchanged-target maintenance introduced implicitly.",
+    "evidence": "Every proposed position and input availability must be logged; future outcomes are evaluation only. No daily reproduction or readiness inferred from summary agreement."
+  },
+  "readiness": {
+    "local_preview_symbols_present": ["TECL", "SOXL", "TQQQ", "QQQ"],
+    "local_preview_symbols_absent": ["SOXX", "VTI"],
+    "preview_source": ".local/t11-paper-preview/20261030T033342Z/plan.json",
+    "qualification": "Preview plan coverage only, not qualified bar availability, full-period history, actions, indicator parity or a supported financial runner."
+  },
+  "financial_execution": {
+    "enabled": false,
+    "attempts_allowed": 0,
+    "attempts_used": 0,
+    "reason": "Universe request does not specify selector or request a new financial comparison. Previous eight-case allowance remains exhausted."
+  },
+  "external_actions": "No downloads, source uploads, broker operations, orders or deployments."
+}

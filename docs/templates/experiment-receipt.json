@@ -1,0 +1,36 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": null,
+  "status": "blocked",
+  "outcome_reason": "Unfilled template; no execution or readiness claim.",
+  "missing_evidence": {
+    "cycle_id": "Assign the unique frozen cycle ID before execution.",
+    "cases.0.name": "Record the actual case name.",
+    "cases.0.run_id": "No run has been launched.",
+    "cases.0.source": "Record immutable source identity and list its permitted local artifact below.",
+    "cases.0.build": "Record engine version and build identity.",
+    "cases.0.plan": "Record the frozen plan identity and its hashed local artifact.",
+    "cases.0.data": "Record the input manifest identity and its hashed local artifact.",
+    "cases.0.date_range.start": "Freeze start date before execution.",
+    "cases.0.date_range.end": "Freeze end date before execution.",
+    "cases.0.accounting": "Freeze capital, costs, financing, dividends, actions and fill timing.",
+    "cases.0.metric_conventions": "Identify the metric contract/version, units and temporal convention."
+  },
+  "cases": [
+    {
+      "case_id": "unexecuted",
+      "name": null,
+      "run_id": null,
+      "source": null,
+      "build": null,
+      "plan": null,
+      "data": null,
+      "date_range": {"start": null, "end": null},
+      "accounting": null,
+      "metric_conventions": null,
+      "attempts": {"used": 0, "limit": 0}
+    }
+  ],
+  "artifacts": [],
+  "comparison_groups": []
+}

@@ -1,0 +1,100 @@
+{
+  "schema": "sector-selection-readiness-v1",
+  "utc": "2026-10-28T21:31:56.315839+00:00",
+  "status": "blocked_input_readiness",
+  "goal_status": "active_pending_input_blocked_threshold_not_yet_met",
+  "previous_goal_turn": "progress_direction_and_bounds_frozen",
+  "current_goal_turn": "progress_actual_input_audit_completed",
+  "same_input_blocker_goal_turns": 2,
+  "audit_scope": [
+    "data/manifests/*.json",
+    "data/normalized/spy-equities-2016-2025-v1/*.json filenames",
+    "Alpaca pilot manifest symbol declaration",
+    ".local/sector-momentum-v1 files and hashes",
+    "known three-asset qualified bundle existence"
+  ],
+  "audit_scope_limit": "Not a whole-disk search; no credential, account, network, strategy import, catalog service or financial simulation. Unknown copies outside these declared research locations remain unverified.",
+  "artifacts": {
+    ".local/sector-selection-rsi-20261028/input_audit.py": "40f5d66efa362bb68725966f1d2ea34e14e633f98c6fbaf88b16ae3b60571962",
+    ".local/sector-selection-rsi-20261028/input-audit.json": "4ebe13a19569fb7e855074950471b4752e3fd4f5598652b548deaf0568ff27fb",
+    ".local/sector-selection-rsi-20261028/verification.json": "c2e19cdc94d780e1b1164ed779abfa5146610cd0c3ff5c97bf40ecd46eef3ea6"
+  },
+  "missing_sector_series": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "gates": {
+    "required_local_sector_panel": "blocked_missing_ten_sector_inputs",
+    "permitted_use_for_sector_panel": "missing_evidence",
+    "corporate_actions_and_return_features": "missing_sector_input_evidence",
+    "historical_accounting_parity": "unverified_not_run",
+    "capture_lifecycle_new_version": "unverified_not_run",
+    "immutable_executable_freeze": "not_reached"
+  },
+  "verification": {
+    "result_sha256": "4ebe13a19569fb7e855074950471b4752e3fd4f5598652b548deaf0568ff27fb",
+    "method_sha256": "40f5d66efa362bb68725966f1d2ea34e14e633f98c6fbaf88b16ae3b60571962",
+    "source_artifacts_verified_unchanged": 22,
+    "missing_sector_series_count": 10,
+    "financial_runs": 0,
+    "outcome": "blocked"
+  },
+  "user_input_request": "authorized existing local export path and source only; no credentials",
+  "financial_attempts_reserved": 0,
+  "financial_runs": 0,
+  "conditional_cap": 8,
+  "current_executable_allowance": 0,
+  "scope_actions": {
+    "downloads": 0,
+    "credential_reads": 0,
+    "broker_operations": 0,
+    "services": 0,
+    "financial_imports": 0
+  },
+  "requirements_audit": [
+    {
+      "requirement": "review lessons with teams and select distinct mechanism",
+      "state": "complete",
+      "evidence": "2026-10-28-sector-selection-rsi.json and task"
+    },
+    {
+      "requirement": "qualify sector price/action/use-rights inputs",
+      "state": "blocked",
+      "evidence": "input-audit.json; ten required sector series missing"
+    },
+    {
+      "requirement": "freeze qualified executable and test unique capture lifecycle",
+      "state": "not_reached",
+      "evidence": "upstream input gate fails; no adapter claimed qualified"
+    },
+    {
+      "requirement": "eight-case Calmar comparison with annual/temporal/accounting audits",
+      "state": "not_executed",
+      "evidence": "zero reservations/financial runs; conditional execution gated"
+    },
+    {
+      "requirement": "preserve failures, lessons and existing leaderboard evidence",
+      "state": "complete_for_readiness",
+      "evidence": "22 source artifacts unchanged; no financial row added"
+    }
+  ],
+  "checks": {
+    "docs": {
+      "exit": 0,
+      "files": 159
+    },
+    "scoped_whitespace": {
+      "exit": 0
+    },
+    "audit_artifacts_verified": 3,
+    "preserved_parent_evidence_verified": 6
+  }
+}

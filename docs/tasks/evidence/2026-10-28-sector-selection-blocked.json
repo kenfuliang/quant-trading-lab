@@ -1,0 +1,60 @@
+{
+  "schema": "sector-selection-blocked-audit-v1",
+  "utc": "2026-10-28T21:32:32.213300+00:00",
+  "consecutive_goal_turns_same_blocker": 3,
+  "turns": [
+    {
+      "turn": 1,
+      "classification": "progress",
+      "evidence": "three-team review, new mechanism and bounds; missing local panel already identified"
+    },
+    {
+      "turn": 2,
+      "classification": "progress",
+      "evidence": "actual bounded input inventory and source-preservation audit; same missing panel"
+    },
+    {
+      "turn": 3,
+      "classification": "no_progress_on_financial_objective",
+      "evidence": "same two manifests, zero sector symbols, absent qualified bundle and no new input supplied; sources reverified"
+    }
+  ],
+  "blocker": "permission-qualified local ten-sector daily price and corporate-action panel missing",
+  "verified_current_manifests": [
+    "data/manifests/alpaca-us-stock-pilot-v1.json",
+    "data/manifests/spy-equities-2016-2025-v1.json"
+  ],
+  "preserved_source_artifacts_verified": 22,
+  "required_symbols_missing": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "financial_attempts": 0,
+  "financial_runs": 0,
+  "financial_results": "none; full comparison not achieved",
+  "conditional_attempt_cap": 8,
+  "unused_slots_not_executable": 8,
+  "qualification_deadline_utc": "2026-10-28T22:30:00Z",
+  "absolute_deadline_utc": "2026-10-29T00:30:00Z",
+  "resume_condition": "Provide an authorized existing local panel path/source; requalify all mandatory gates and original deadline before any freeze or execution. Expired deadlines require a separately scoped new goal, not an automatic reset.",
+  "why_no_safe_alternative": "Downloads/cloud access outside scope; stock cache lacks sectors/actions/financial eligibility; SPY substitution would change the objective. Synthetic selector or capture work cannot establish missing historical inputs.",
+  "original_audit_sha256": "4ebe13a19569fb7e855074950471b4752e3fd4f5598652b548deaf0568ff27fb",
+  "checks": {
+    "docs": {
+      "exit": 0,
+      "files": 159
+    },
+    "scoped_whitespace": {
+      "exit": 0
+    }
+  },
+  "goal_tool_returned_status": "blocked"
+}

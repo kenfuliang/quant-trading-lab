@@ -1,0 +1,141 @@
+{
+  "schema_version": "qc-component-intake-v1",
+  "review_id": "2026-10-28-qc-market-components",
+  "updated": "2026-10-28",
+  "created_utc": "2026-10-28T16:36:38.366974+00:00",
+  "scope": "market conditions, four representative ideas from existing622-record inventory; not exhaustive strategy verification",
+  "bounds": {
+    "max_minutes": 25,
+    "max_ideas": 4,
+    "max_web_tool_calls": 8,
+    "actual_web_tool_calls": 3,
+    "financial_runs": 0,
+    "dataset_downloads": 0,
+    "source_exports": 0,
+    "broker_operations": 0,
+    "subagents": 0
+  },
+  "inputs": [
+    {
+      "path": "research/catalogs/qc-inventory-v1/catalog.json",
+      "sha256": "cb091a59b7368b2e3ed117ea5369534a09684316104d53a8eb9719970c6c6a01"
+    },
+    {
+      "path": "research/catalogs/qc-stage-fit-v1/mapping.csv",
+      "sha256": "ec4779e1075f8633499658b8dd910a523f5f3c14a959f8104d9b06d970e185fa"
+    },
+    {
+      "path": "research/catalogs/qc-tutorial-packages-v1/review.json",
+      "sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543"
+    },
+    {
+      "path": ".local/qc-detail-rights-v1/Tutorials-LICENSE",
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    }
+  ],
+  "verified_local_method_fragments": [
+    {
+      "id": "QC-T-15310",
+      "repository": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "upstream_path": "04 Strategy Library/36 Sentiment and Style Rotation Effect in Stocks/02 Method.html",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/36%20Sentiment%20and%20Style%20Rotation%20Effect%20in%20Stocks/02%20Method.html",
+      "local_path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/a29b63853ae6a39f3d48f7e9535dc53439b9731b.html",
+      "sha256": "adc23714da6c1afe7126321332616f9e256cffec35a727c9d6cdabbcd5d76c99",
+      "hash_verified": true,
+      "complete_source_package_qualified": false
+    },
+    {
+      "id": "QC-T-15357",
+      "repository": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "upstream_path": "04 Strategy Library/37 Momentum and State of Market Filters/02 Method.html",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/37%20Momentum%20and%20State%20of%20Market%20Filters/02%20Method.html",
+      "local_path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/31414d9f44635d29331fa1bd89b6c59cf0f96d59.html",
+      "sha256": "7a977c7e68d0e6cc90affada1e19b6ad45b7af7d87d1fe7a8ba0185bc1b00f3e",
+      "hash_verified": true,
+      "complete_source_package_qualified": false
+    },
+    {
+      "id": "QC-T-15270",
+      "repository": "QuantConnect/Tutorials",
+      "revision": "4a341890296f7e79e095508f06170c72ccaa629c",
+      "upstream_path": "04 Strategy Library/1033 Gradient Boosting Model/03 Method.html",
+      "url": "https://github.com/QuantConnect/Tutorials/blob/4a341890296f7e79e095508f06170c72ccaa629c/04%20Strategy%20Library/1033%20Gradient%20Boosting%20Model/03%20Method.html",
+      "local_path": ".local/qc-detail-rights-v1/licensed-tutorial-evidence/7e88ae2fdbeb9225203a45b487e231a0cc3fb13a.html",
+      "sha256": "dacb4b6a1b9bfcf8be09e48e0c30a74fa5884f2bf08ee3804e16a213b317f18f",
+      "hash_verified": true,
+      "complete_source_package_qualified": false
+    }
+  ],
+  "public_sources_revision": "Mutable official pages observed2026-10-28; exact live revision unknown; no source code exported",
+  "components": [
+    {
+      "id": "QC-T-15357",
+      "title": "Momentum and State of Market Filters",
+      "role": "market_conditions_optional",
+      "scope": "broad US market proxy; not every market",
+      "source_url": "https://www.quantconnect.com/research/15357/momentum-and-state-of-market-filters/",
+      "mechanism": "Prior252-session broad-index return gates a stock momentum policy.",
+      "causal_input": "Completed broad-index observations with available_at; qualify publication and corporate-action conventions.",
+      "output": "as_of, available_at, proxy_id, prior252_return, eligible_market_state, missing_or_stale; no direct orders",
+      "free_local_blocker": "Original current-page Wilshire/FRED series discontinued; pinned legacy method instead uses Yahoo-origin Dropbox CSV. Neither exact input is qualified locally. SPY substitution is a named large-cap adaptation.",
+      "overlap": "Overlaps existing trend gating economically; code equivalence unverified.",
+      "simple_control": "Same fixed position policy with no market filter; existing EMA filter and signal-independent exposure control.",
+      "disposition": "screened_best_simple_contract_candidate_not_execution_ready"
+    },
+    {
+      "id": "QC-C-86",
+      "title": "HMM Intraday Regime Detection (inventory title only)",
+      "role": "market_conditions_optional_unverified_identity",
+      "scope": "Official supporting example fits one SPX/SPY proxy; not cross-market breadth",
+      "source_url": "https://www.quantconnect.com/strategies/86/",
+      "supporting_source_url": "https://www.quantconnect.com/docs/v2/research-environment/applying-research/hidden-markov-models",
+      "identity_limit": "Official HMM documentation is a separate example, not verified source or mechanism identity for community86.",
+      "mechanism": "Supporting documentation demonstrates two variance regimes in returns.",
+      "causal_input": "Trailing returns ending before decision; versioned past-only fit and variance-ordered state identities; convergence flag",
+      "output": "as_of, fit_cutoff, training_window, model_id, p_high_variance, state_order, convergence, missing_or_stale",
+      "free_local_blocker": "Daily SPY adaptation may use saved inputs after qualification, but original intraday source/data and complete licensed package unverified; statsmodels/runtime pin not verified.",
+      "overlap": "Community399 and765 are title-level related leads, not proven duplicates.",
+      "simple_control": "Fixed realized-volatility threshold with same policy, turnover schedule and exposure control.",
+      "disposition": "screened_research_hypothesis_causal_repair_required"
+    },
+    {
+      "id": "QC-T-15310",
+      "title": "Sentiment and Style Rotation Effect in Stocks",
+      "role": "market_context_plus_conditional_style_policy",
+      "scope": "US equity option-market sentiment applied to style portfolios",
+      "source_url": "https://www.quantconnect.com/research/15310/sentiment-and-style-rotation-effect-in-stocks/",
+      "mechanism": "VIX and put/call moving-average relationships select value/style positions.",
+      "causal_input": "VIX and specifically defined put/call series with availability timestamps; point-in-time style membership if reproducing full strategy",
+      "output": "as_of, available_at, vix_relative_state, put_call_relative_state, conditional_style_preference, missing_or_stale; not calibrated loss probability",
+      "free_local_blocker": "Current-page custom URL names totalpc.csv despite equity-ratio prose; legacy licensed method names equitypc.csv. Series identity, historical coverage, rights, publication lags and fundamental universes not qualified.",
+      "overlap": "Concept overlaps volatility state; style allocation differs from generic cash gate; no complete-code deduplication.",
+      "simple_control": "Static style allocation, VIX-only condition and fixed exposure control.",
+      "disposition": "hold_data_identity_and_point_in_time_inputs"
+    },
+    {
+      "id": "QC-T-15270",
+      "title": "Gradient Boosting Model",
+      "role": "position_proposal_not_market_regime",
+      "scope": "SPY10-minute future return, instrument specific",
+      "source_url": "https://www.quantconnect.com/research/15270/gradient-boosting-model/",
+      "mechanism": "Technical-indicator regression predicts10-minute returns and applies a trade-cost threshold.",
+      "causal_input": "Past minute features; mature10-minute labels; past-only training; no labels crossing training cutoff",
+      "output": "as_of, available_at, symbol, horizon, predicted_return, model_id, cost_threshold; no risk-color claim",
+      "free_local_blocker": "Daily saved data cannot reproduce minute target; full training logic absent from method fragment; exact package/runtime/entitlement unqualified.",
+      "overlap": "Other ML predictor titles are not proven same model; not interchangeable with HMM risk state.",
+      "simple_control": "Zero/mean-return predictor and simple indicator proposal under identical execution and costs.",
+      "disposition": "route_to_position_proposal_hold_for_current_daily_market_context_lane"
+    }
+  ],
+  "cross_cutting_findings": [
+    "HMM historical smoothed probabilities use later observations inside fitted window; do not treat historical chart as causal signal. Endpoint probabilities in a truly trailing fit are not automatically future-leaking; fit cutoff and state ordering still require audit.",
+    "Low volatility does not imply positive return or low forward loss probability.",
+    "Market-context classifier, conditional policy and instrument return predictor require distinct output contracts.",
+    "No new profitability or performance reproduction claim."
+  ],
+  "next_question": "Can a single frozen past-only broad-index trend context add explanatory value beyond the existing EMA/volatility gate, before any new financial test? First compare causal state overlap and log missed rebounds/false warnings on saved viewed history, zero financial runs. A SPY-only study must say large-cap proxy adaptation, not whole-market reproduction.",
+  "outcome": "screened_with_blockers",
+  "report_path": "docs/tasks/2026-10-28-qc-market-components.md"
+}

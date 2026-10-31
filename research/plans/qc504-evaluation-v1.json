@@ -1,0 +1,23 @@
+{
+  "study_id":"qc504-evaluation-v1",
+  "status":"frozen-before-runs",
+  "source":"https://www.quantconnect.com/strategies/504/Multi-Model-Tactical-ETF-Rotation",
+  "source_version":"1.1.0 submitted 2026-05-25",
+  "project_id":38484741,
+  "cases":[
+    {"case":"recent","start":"2020-01-01","end":"2025-12-31","capital":10000,"slippage":"upstream native default"},
+    {"case":"long","start":"2010-01-01","end":"2025-12-31","capital":10000,"slippage":"upstream native default"},
+    {"case":"cost25","start":"2020-01-01","end":"2025-12-31","capital":10000,"slippage":0.0025}
+  ],
+  "max_financial_attempts":5,
+  "technical_repair_slots":2,
+  "max_successful_cases":3,
+  "execution_checkpoint_minutes":45,
+  "trading_rules":"Original four sleeves, weights, readiness, universe and order sizing retained. IB margin and fee defaults retained. No guard, parameter tuning or order-policy repair.",
+  "permitted_edits":"Explicit historical dates (upstream end2026-12-31 is future); replace raw/debug logging with aggregate diagnostics; instrument NAV, exposure, fees, rejects and asset P&L. Cost25 changes only declared slippage.",
+  "metrics":["annual/full return, DD, zero-RF daily Sharpe, Calmar, underwater time","gross exposure, cash, order status/type","native asset P&L and reconciliation residual","sleeve intended target selection counts, not attributed realized sleeve P&L"],
+  "interpretation":"Own hosted historical rerun on QC data/engine; not independent implementation or exact rolling-five-year leaderboard reproduction. Same10k capital as displayed code; not approval to invest300k.",
+  "stops":["attempt cap or deadline","source identity mismatch","technical runtime failure; only fix instrumentation within repair slots","nonfinite/nonpositive NAV"],
+  "order_errors":"Count/preserve; conditional diagnostics if any rejected order. No silent fill repairs.",
+  "exports":"Summary statistics and portfolio P&L aggregates only. No raw prices, daily NAV or order-level market data; no packages, API keys, broker operations, upgrades or public code redistribution."
+}

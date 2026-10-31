@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-10-30T06:58:46.343895+00:00",
+  "task": "next-algorithm-screen",
+  "user_direction": "Explore algorithms before paper deployment",
+  "status": "residual_momentum_selected_for_readiness_only",
+  "financial_runs": 0,
+  "orders": 0,
+  "downloads": 0,
+  "services_started": 0,
+  "hosting_purchased": false,
+  "selected_family": "residual_momentum",
+  "screened_families": [
+    "residual_momentum",
+    "quality_selection",
+    "statistical_outlier_momentum"
+  ],
+  "existing_family_reference": "multi_asset_trend",
+  "prior_catalog": "research/catalogs/qc-tutorial-packages-v1/review.json",
+  "prior_catalog_sha256": "af892f74ebc6ab37400af943dc94505df957997c31734e8227a098a4cf876543",
+  "source_implementation_qualified": false,
+  "data_qualified": false,
+  "next_slice_bounds": {
+    "licensed_source_candidates": 2,
+    "factor_source_reviews": 1,
+    "financial_runs": 0,
+    "data_downloads": 0,
+    "new_dependencies": 0
+  },
+  "failed_source_access": [
+    {
+      "source": "CBS quality-paper file",
+      "status": "403; used AQR primary page instead"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-27",
-  "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials.",
+  "updated": "2026-10-31",
+  "scope": "Published-plan coverage plus explicitly named legacy studies/diagnostics and the known local-only C001 pointer. Unpublished later research is not silently imported. The registry is a curated navigation map, not a complete reconstruction of historical trials. Includes preserved local checkpoint plans; unmatched results/failures/lessons are explicitly unavailable.",
   "studies": [
     {
       "id": "spy-fixture",
@@ -610,6 +610,1572 @@
           "path": "docs/tasks/2026-10-27-rsi-integration.md#lesson",
           "kind": "narrative",
           "note": "Read-only dependencies and integration claims require their own proof."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-calmar-epoch3-c1-frozen",
+      "title": "calmar-epoch3-c1.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/calmar-epoch3-c1.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-calmar-epoch3.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-calmar-epoch3-c2-frozen",
+      "title": "calmar-epoch3-c2.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/calmar-epoch3-c2.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-calmar-epoch3-program",
+      "title": "calmar-epoch3.program",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/calmar-epoch3.program.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-calmar-epoch3.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-calmar-epoch3.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-capm-ablation-v1",
+      "title": "capm-ablation-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/capm-ablation-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-cost-stop-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-cost-stop-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-capm-cost-stop-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-capm-spy-v1-accounting-retest",
+      "title": "capm-spy-v1.accounting-retest",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/capm-spy-v1.accounting-retest.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-capm-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-capm-spy-v1",
+      "title": "capm-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/capm-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-capm-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-capm-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-dual-thrust-spy-v1",
+      "title": "dual-thrust-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/dual-thrust-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-dual-thrust-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-dual-thrust-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-dual-thrust-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-grs-c001-continuous-sizing-v1",
+      "title": "grs-c001-continuous-sizing-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/grs-c001-continuous-sizing-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-grs-c001-continuous-sizing.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-grs-c001-continuous-sizing.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-gscore-spy-v1",
+      "title": "gscore-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/gscore-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-gscore-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-gscore-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-gscore-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-multi-asset-unlock-v1-design",
+      "title": "multi-asset-unlock-v1.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/multi-asset-unlock-v1.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-multi-asset-unlock-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-multi-asset-unlock-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc-breadth-v1",
+      "title": "qc-breadth-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc-breadth-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc-selection-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc-selection-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc-selection-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-ablation-v1-frozen",
+      "title": "qc504-ablation-v1.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-ablation-v1.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-sleeve-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-ablation-v1",
+      "title": "qc504-ablation-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-ablation-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-sleeve-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-sleeve-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-evaluation-v1",
+      "title": "qc504-evaluation-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-evaluation-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-evaluation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-evaluation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-evaluation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-funded-v1",
+      "title": "qc504-funded-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-funded-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-funded-execution.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-funded-execution.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-funded-execution.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-qc504-t11-gate-v1",
+      "title": "qc504-t11-gate-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/qc504-t11-gate-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-t11-reproduction-rsi-goal.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-t11-gate.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-t11-reproduction-rsi-goal.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-qc504-t11-gate.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-t11-reproduction-rsi-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-qc504-t11-gate.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-residual-momentum-rsi-v1",
+      "title": "residual-momentum-rsi-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/residual-momentum-rsi-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-comparison-issuer-v2-frozen",
+      "title": "sector-comparison-issuer-v2.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-comparison-issuer-v2.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-sector-comparison-issuer-v2.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-28-sector-comparison-issuer-v2.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-comparison-issuer-v2.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-selection-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-gate-v1-frozen",
+      "title": "sector-gate-v1.frozen",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-gate-v1.frozen.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-gate-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-28-sector-gate-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-matched-v1-classifications",
+      "title": "sector-matched-v1.classifications",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-matched-v1.classifications.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-sector-matched.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-matched-v1",
+      "title": "sector-matched-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-matched-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-sector-matched.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-sector-matched.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-momentum-v1-execution-repair",
+      "title": "sector-momentum-v1-execution-repair",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-momentum-v1-execution-repair.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-sector-momentum-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-sector-momentum-v1",
+      "title": "sector-momentum-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/sector-momentum-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-25-sector-momentum-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-sector-momentum-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-selection-completion-v1-design",
+      "title": "selection-completion-v1.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/selection-completion-v1.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-research-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-research-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-selection-completion-v1",
+      "title": "selection-completion-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/selection-completion-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-selection-completion.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-selection-completion.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-completion.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-selection-research-goal.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-spy-gate-robustness-v1",
+      "title": "spy-gate-robustness-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/spy-gate-robustness-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-gate-robustness-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-ema-volatility-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-25-rsi-gate-robustness-review.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-27-ema-volatility-experience-report.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-stock-pairs-spy-v1",
+      "title": "stock-pairs-spy-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/stock-pairs-spy-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-pairs-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-pairs-spy-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-stock-pairs-spy-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-stock-risk-v1",
+      "title": "stock-risk-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/stock-risk-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-risk-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-26-stock-risk-ablation.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-26-stock-risk-ablation.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-long-equity-universe-v1-design",
+      "title": "t11-long-equity-universe-v1.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-long-equity-universe-v1.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-long-equity-universe.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-long-equity-universe.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-long-equity-universe-v2-design",
+      "title": "t11-long-equity-universe-v2.design",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-long-equity-universe-v2.design.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-research.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-research.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        },
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-parallel-research-20261030",
+      "title": "t11-parallel-research-20261030",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-parallel-research-20261030.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-parallel-research-20261030-launch",
+      "title": "t11-parallel-research-20261030.launch",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-parallel-research-20261030.launch.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-parallel-research.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-reproduction-rsi-v1-program",
+      "title": "t11-reproduction-rsi-v1.program",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-reproduction-rsi-v1.program.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-soxl-cash-v1",
+      "title": "t11-soxl-cash-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-soxl-cash-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-soxl-cash.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-soxl-cash.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-capture-v1",
+      "title": "t11-universe-capture-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-capture-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-capture-v2",
+      "title": "t11-universe-capture-v2",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-capture-v2.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-capture-v3",
+      "title": "t11-universe-capture-v3",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-capture-v3.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-execution-v1",
+      "title": "t11-universe-execution-v1",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-execution-v1.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "not_recorded",
+          "note": "No published result record matched; private or missing evidence remains unavailable."
+        }
+      ],
+      "failures": [
+        {
+          "state": "not_recorded",
+          "note": "No separate published failure receipt matched; this does not establish zero failures."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "not_recorded",
+          "note": "No matched published lesson; not inferred from plan."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-execution-v2",
+      "title": "t11-universe-execution-v2",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-execution-v2.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
+        }
+      ]
+    },
+    {
+      "id": "checkpoint-t11-universe-execution-v3",
+      "title": "t11-universe-execution-v3",
+      "family": "checkpoint-research",
+      "reported_state": "published plan; follow linked source disposition",
+      "note": "Imported from preserved local checkpoint. No new run, success or complete historical coverage inferred.",
+      "plans": [
+        {
+          "state": "present",
+          "path": "research/plans/t11-universe-execution-v3.json",
+          "kind": "plan",
+          "note": "Frozen published plan; original rules unchanged."
+        }
+      ],
+      "results": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "failures": [
+        {
+          "state": "present",
+          "path": "docs/tasks/evidence/2026-10-30-t11-universe-comparison.json",
+          "kind": "receipt",
+          "note": "Original receipt; status and missing evidence are authoritative."
+        }
+      ],
+      "lessons": [
+        {
+          "state": "present",
+          "path": "docs/tasks/2026-10-30-t11-universe-comparison.md",
+          "kind": "report",
+          "note": "Source record references this plan; see its result and limitation statements."
         }
       ]
     }

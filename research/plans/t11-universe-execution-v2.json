@@ -1,0 +1,28 @@
+{
+  "schema": "t11-universe-execution-amendment/v2",
+  "created_utc": "2026-10-31T03:56:40.428221+00:00",
+  "design_parent": "research/plans/t11-long-equity-universe-v2.design.json",
+  "source_plan": ".local/t11-universe-cloud-v6/frozen-plan.json",
+  "aggregate_limit": 10,
+  "used_before_amendment": 3,
+  "deadline_utc": "2026-10-31T06:48:18.856919+00:00",
+  "planned_remaining": [
+    "rs125",
+    "full25",
+    "equal25",
+    "restricted25",
+    "rs150",
+    "full50",
+    "equal50"
+  ],
+  "omitted": [
+    "half25",
+    "half50",
+    "restricted50"
+  ],
+  "feature_availability": "Original current-session requirement; explicit range history430calendar days, latest253common completed, no stale/future/imputed bars.",
+  "reason": "Data-onlyQuantBookexplicit-rangequery verified allsevenfunds andSPYhave matching completedNov29 13:00bars; count-basedrequestroute fails duringbacktest.",
+  "unchanged": "252/63score, gate, reserve, controller, capital, dates, costs, financing, criteria",
+  "financial_evidence": "Provisional native-engine summaries; independentledgeranddailyexport verification remain requiredforadoption. Fullboth-cost primaryguardcannotbeassessedwithrestricted50omitted.",
+  "preparation_note": "v5notlaunched;v6adds explicit standard timedelta import, no implicit wildcard reliance."
+}

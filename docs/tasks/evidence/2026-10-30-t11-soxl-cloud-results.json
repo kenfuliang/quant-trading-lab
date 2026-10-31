@@ -1,0 +1,383 @@
+{
+  "schema": "experiment-receipt/v1",
+  "cycle_id": "T11-SOXL-CLOUD-20261030-01",
+  "status": "incomplete",
+  "outcome_reason": "All eight authorized financial cases completed once on own QuantConnect project38676621. Native summary comparison captured; official exports, immutable cloud input snapshot and full daily equity/account/decision audits remain unavailable. Prior blocked upload receipt is preserved. No strategy promoted.",
+  "missing_evidence": {
+    "cases.0.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.1.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.2.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.3.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.4.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.5.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.6.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance.",
+    "cases.7.data": "Hosted provider snapshot/version/hash and official result export were not captured; native subscription/source identity alone is not immutable input provenance."
+  },
+  "cases": [
+    {
+      "case_id": "gated_t11_25bp",
+      "name": "Energetic Red Orange Dragonfly",
+      "run_id": "fc3d3b9e7ae1113206c1569697089e77",
+      "source": "b575762f59ed562795df41e723968e9aa2efd46cf8cc031fbdeafda88825703e",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build abec79-7d30e3; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;25bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_ungated_25bp",
+      "name": "Logical Green Dinosaur",
+      "run_id": "1610a0fe8dc5cb215ee3caf870d31505",
+      "source": "36818bf6da3654b2033c63d26987cf2ec2d4e357ec5ed507ab6ed766e2f038dd",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build efc97c-c10c92; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;25bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_gated_25bp",
+      "name": "Crying Brown Chicken",
+      "run_id": "8e39b1060fe307ad6264ee29485d85a9",
+      "source": "aaabf1e1aa3221413834650e0719eadaffa77f89371c2cdad869017f53eaba67",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build 5c7092-f09620; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;25bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_buy_hold_25bp",
+      "name": "Emotional Yellow Armadillo",
+      "run_id": "2236f43037cb45fffa5c1b765c16f983",
+      "source": "e35c79dc7eb0a6abde82a1e2b3c31b05cb11ebd15eae58c7cb47c865e1bbc761",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build f5d23d-c8fc25; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;25bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "gated_t11_50bp",
+      "name": "Calm Violet Wolf",
+      "run_id": "30d6446a9132abfe19c9c42c0ada7850",
+      "source": "7538df9a3fed63dd9633c2ccdfc0c3098a298583f7ff14f1f1a621f1e7c480d7",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build 8c4af2-78c5c1; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;50bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_ungated_50bp",
+      "name": "Dancing Red Dog",
+      "run_id": "64e51ef56cfd4574b56476ade6fef7bc",
+      "source": "ac07d0165f63177245b44e52129ff3f1ade41adf2d6ea2fc89566ecd71619186",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build 296f52-49dac7; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;50bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_cash_gated_50bp",
+      "name": "Retrospective Fluorescent Pink Fish",
+      "run_id": "84989b064aadf96a823fd15414a9f78d",
+      "source": "325b4153e7fdc2ef63fd45cc6746e216fbcca7ff1bc1b5397a485d13efb7c809",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build 138a67-02febd; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;50bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    },
+    {
+      "case_id": "soxl_buy_hold_50bp",
+      "name": "Hipster Fluorescent Pink Bee",
+      "run_id": "06274120a77ba109461e5530fdedfa09",
+      "source": "5dbda9d70957f3776439be50d6599bf7171787cc01d94d91d38cbb7bfc74a055",
+      "build": "Observed LEAN 2.5.0.0.18217; UI short build ce15a5-b64785; binary digest not independently pinned",
+      "plan": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "data": null,
+      "date_range": {
+        "start": "2020-01-02",
+        "end": "2025-12-31"
+      },
+      "accounting": "USD10000; staged signal-change MOO;90% target;50bp adverse fill and matching cash reservation; original IB margin/fees;6% debit ACT360 prior cash. Native engine accounting not independently reconciled.",
+      "metric_conventions": "Native Overview CAGR/DD/Sharpe; derived Calmar from rounded native CAGR/DD. Custom close-based partial observations and legacy underwater kept separate; no temporal-v1.2 reconstruction.",
+      "attempts": {
+        "used": 1,
+        "limit": 1
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".local/t11-soxl-cloud-v1/frozen-plan.json",
+      "sha256": "ee4a094734c520543d4e8951f80134a7592b694266a2493779c0c6b1144be9bc",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/journal.json",
+      "sha256": "ac98db24b4c564bc2a616a406f636c886219f0f41df472d5fe2e6c4435401e60",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/upload-authorization.json",
+      "sha256": "67852111b99aba6d4dadde44fe8a37f09c05b801f9f11d2c2cdda21451390d9e",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/source-checks.json",
+      "sha256": "3cdb85ab1fecd35f06297832f13fce68468dbce4a040b7d4c5bb79bfd06874f9",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/analysis.json",
+      "sha256": "1d3981ba260aeda56dcee67303efcd4d93dab16e6eb63dcb5cb5036b832cf466",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": "reporting/soxl_review.py",
+      "sha256": "9c94d3a66f8b7565b1e45bdbd83e85aa3210d19f4ced627765893729d3aef460",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": "scripts/review_t11_soxl_cloud.py",
+      "sha256": "9aa4b68fd4cffcb46e340b0aebd0798f0f48211ec4fc0cf440a0d94a7869ce11",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": "tests/test_soxl_review.py",
+      "sha256": "91bb8e4c7cadf01f2d3df00ebfd70b653b50429eed0eedbfdf9273b434788f0b",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_25bp/main.py",
+      "sha256": "b575762f59ed562795df41e723968e9aa2efd46cf8cc031fbdeafda88825703e",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_25bp/manual-ui-observation.json",
+      "sha256": "c47a06a1e7d3693dd46ca40f271e0f37242959e5a80a5a12e2460cacefa5dcfd",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_25bp/rendered-audit-text.json",
+      "sha256": "2864daf607a96c04a229f049662aad4a9fd6ac65b3c2ba563d24aa9e8f503b3b",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_25bp/main.py",
+      "sha256": "36818bf6da3654b2033c63d26987cf2ec2d4e357ec5ed507ab6ed766e2f038dd",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_25bp/observed-ax.txt",
+      "sha256": "5e6b5edfef4a919c514ea435cab4f36b28c335fe6c05bb62609fa5221e5860f1",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_25bp/result.jpg",
+      "sha256": "01954929e54629f7b8a098fcc21b9201c5757b36a56455a68f54ea495395cdc1",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_25bp/main.py",
+      "sha256": "aaabf1e1aa3221413834650e0719eadaffa77f89371c2cdad869017f53eaba67",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_25bp/observed-ax.txt",
+      "sha256": "94aa0a01886da75b4bbbc573f4b7b55c623c95e39a854d704246b1624a87101b",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_25bp/result.jpg",
+      "sha256": "ecb3094645163aba73adae1255438753af2de8c35f54a005cf20f2b740c25336",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_25bp/main.py",
+      "sha256": "e35c79dc7eb0a6abde82a1e2b3c31b05cb11ebd15eae58c7cb47c865e1bbc761",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_25bp/observed-ax.txt",
+      "sha256": "e52f6ed0b0917ea8671ecfbfc5797afc5d8f1c44788f9c73a9c5fe7a2aae0b2d",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_25bp/result.jpg",
+      "sha256": "fd91e0c849e783ac68aced0c71b26076373fa961b4ac99140cf1ff82270b63c7",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_50bp/main.py",
+      "sha256": "7538df9a3fed63dd9633c2ccdfc0c3098a298583f7ff14f1f1a621f1e7c480d7",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_50bp/observed-ax.txt",
+      "sha256": "680e600a0504942aee146ad44d58d89334e13ba8dde4828fdb95bf1a3aecc9a9",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/gated_t11_50bp/result.jpg",
+      "sha256": "3c24f58382f4271f0c34ebb9dbf9af4ac1ee34d3d6318213744dae40ac677d2e",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_50bp/main.py",
+      "sha256": "ac07d0165f63177245b44e52129ff3f1ade41adf2d6ea2fc89566ecd71619186",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_50bp/observed-ax.txt",
+      "sha256": "0b242d73dc3c8c1fbc4cd4175c12fb773408e61ab49dda1d52b40999f12ecdd8",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_ungated_50bp/result.jpg",
+      "sha256": "a5fdfaaca7dc395186c3bd51558d3f6557c718e4bc8006d360771fa9ff46f718",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_50bp/main.py",
+      "sha256": "325b4153e7fdc2ef63fd45cc6746e216fbcca7ff1bc1b5397a485d13efb7c809",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_50bp/observed-ax.txt",
+      "sha256": "e00f2f33ba7073511c0992a354f36a2a9c62434d24a7941434e68b184917c883",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_cash_gated_50bp/result.jpg",
+      "sha256": "c709e088588ef75fda141e6ac857f4ffe0d8c5e9d1efbac0b99a33ba16d0e180",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_50bp/main.py",
+      "sha256": "5dbda9d70957f3776439be50d6599bf7171787cc01d94d91d38cbb7bfc74a055",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_50bp/observed-ax.txt",
+      "sha256": "072cb1c9270f99d82b3c0e76e6d81cda91396d6373659f17dce2f1d3c340ad70",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/soxl_buy_hold_50bp/result.jpg",
+      "sha256": "4638abdd177887b0b38a031fd504a905b54d31b7dd5c048ea5151d59342c5366",
+      "role": "Bounded source, preserved observation or engineering evidence; no daily account audit inferred."
+    },
+    {
+      "path": ".local/t11-soxl-cloud-v1/analysis-ui.jpg",
+      "sha256": "de64ce805108928ebd8e27ffb2c7147e55a8032c44530cc3e8f437b53c683e2b",
+      "role": "Verified local analysis UI; provisional evidence label and readable cases visible."
+    }
+  ],
+  "comparison_groups": [
+    [
+      "gated_t11_25bp",
+      "soxl_cash_ungated_25bp",
+      "soxl_cash_gated_25bp",
+      "soxl_buy_hold_25bp"
+    ],
+    [
+      "gated_t11_50bp",
+      "soxl_cash_ungated_50bp",
+      "soxl_cash_gated_50bp",
+      "soxl_buy_hold_50bp"
+    ]
+  ],
+  "execution": {
+    "max": 8,
+    "used": 8,
+    "completed": 8,
+    "remaining": 0,
+    "retries": 0,
+    "broker_connections": 0,
+    "orders": 0,
+    "original_project_source_modified": false
+  },
+  "findings": {
+    "native_calmar_leader_both_costs": "gated_t11",
+    "soxl_gate_improves_vs_same_soxl_without_gate_both_costs": true,
+    "soxl_gate_meets_30pct_drawdown": false,
+    "annual_rows_captured": 43,
+    "annual_rows_expected": 48,
+    "missing_annual_rows": "soxl_buy_hold_25bp:2021\u20132025",
+    "daily_temporal_v1_2_comparison": "unavailable",
+    "official_export_downloads_verified": 0,
+    "native_source_build_daily_accounting_independently_reproduced": false
+  },
+  "validation": {
+    "make_check_exit": 0,
+    "offline_tests": 586,
+    "docs_check_exit": 0,
+    "receipt_validator_exit": 0,
+    "ui_cost_filter_verified": true,
+    "ui_rendered_and_inspected": true,
+    "ui_url": "http://127.0.0.1:8765/t11-soxl-cloud-v1/index.html",
+    "financial_case_count": 8,
+    "full_export_audit_completed": false
+  }
+}
