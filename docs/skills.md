@@ -272,6 +272,8 @@ workflow warrants its own instructions.
 | Validate structured data | analyze-data-quality or validate-data | Dataset contract, source rights and provenance receipts |
 | Statistical investigation | data:statistical-analysis | Predeclared question, trial history, chronological splits and costs |
 | Build charts/reports | visualize-data or build-report | Native reports first; preserved run evidence and metric definitions |
+| Plan tests for an infrastructure slice | engineering:testing-strategy | Workflow acceptance, offline-only fixtures and the failure case under test |
+| Debug a failing check or run | engineering:debug | Exact command output; follow the incident SOP for broker or external state |
 | Maintain skill instructions | skill-creator and writing-for-agents | This hierarchy and canonical SOPs; avoid duplicated policy |
 
 These are environment-provided helpers, not repository dependencies. If absent in
