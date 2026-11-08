@@ -71,6 +71,7 @@ Level 2: Task workflows — trade-project selects the applicable procedure
 │   ├── trade-research-design         study specification and trial budget
 │   ├── trade-data-audit              frozen-input fitness and provenance
 │   ├── trade-feature-engineering     causal features, redundancy and label diagnostics
+│   ├── trade-leakage-audit           lookahead, fit and selection leakage in code
 │   ├── trade-experiment              bounded offline execution/cache verification
 │   ├── trade-performance-diagnosis   explain observed gains/losses
 │   ├── trade-candidate-evolution     evidence-driven next hypotheses
@@ -95,7 +96,9 @@ advisers, not Jane Street representatives. An adviser can discuss a planned
 workflow without making its execution tools ready.
 
 The hierarchy is conceptual, not inheritance or automatic delegation. Actual skill
-folders stay flat under `.agents/skills/<name>/SKILL.md` for discovery. The entrypoint
+folders stay flat under `.agents/skills/<name>/SKILL.md` for discovery; the
+`.claude/skills` symlink points Claude Code at the same folder (checked by
+`tests/test_skill_discovery.py`). The entrypoint
 selects the narrowest applicable workflow; a specialist can be invoked directly.
 Selection does not authorize external actions or launch other agents.
 
@@ -131,6 +134,7 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 | [trade-research-design](../.agents/skills/trade-research-design/SKILL.md) | New/amended study → falsifiable control/treatment, metric/split/trial specification and open decisions |
 | [trade-data-audit](../.agents/skills/trade-data-audit/SKILL.md) | Saved input fitness → actual hashes/quality/availability checks and named-experiment eligibility |
 | [trade-feature-engineering](../.agents/skills/trade-feature-engineering/SKILL.md) | Define/test causal features or bounded LLM proposals → registry, leakage/quality/redundancy evidence and target-specific saved-data diagnosis; [contract](feature-engineering.md) |
+| [trade-leakage-audit](../.agents/skills/trade-leakage-audit/SKILL.md) | Review strategy/feature/evaluation code before trusting a result → timing, fit, selection and trial-count findings per code line; manual reading only, no installed lint |
 | [trade-experiment](../.agents/skills/trade-experiment/SKILL.md) | Requested bounded offline run or cache preflight → actual execution/reuse/audit receipt or precise blocker |
 | [trade-performance-diagnosis](../.agents/skills/trade-performance-diagnosis/SKILL.md) | Explain saved performance → supported attribution, adverse episodes and testable uncertainties |
 | [trade-candidate-evolution](../.agents/skills/trade-candidate-evolution/SKILL.md) | Next iteration after diagnosis → bounded rule deltas, controls, falsifiers and expected harms |
