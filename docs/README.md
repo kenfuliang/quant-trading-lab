@@ -32,7 +32,7 @@ runtime timestamps use UTC.
 | What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
 | How does independent historical data become reusable research input? | [Local data library](data-library.md); distinguishes the implemented price pilot from planned qualification |
 | What is next and what proves completion? | [Roadmap](roadmap.md) |
-| What gates stand between research and a real-money pilot, and which broker is targeted? | [Live-readiness plan](live-readiness.md); [broker decision](decisions/0004-ibkr-target-broker.md) |
+| What gates stand between research and a real-money pilot, and which broker is a candidate? | [Live-readiness plan](live-readiness.md); [broker decision](decisions/0004-ibkr-candidate-broker.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |

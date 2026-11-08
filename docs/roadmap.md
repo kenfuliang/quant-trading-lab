@@ -41,8 +41,8 @@ stay incomplete while required external evidence is missing. Live deployment
 needs a separately scoped readiness decision; paper success is not profitability proof.
 
 The proposed [live-readiness plan](live-readiness.md) maps these milestones to
-the gates between research and a real-money pilot, with IBKR as the
-[proposed target broker](decisions/0004-ibkr-target-broker.md). It does not
+the gates between research and a real-money pilot, with IBKR as a candidate broker in the
+[comparison-spike decision](decisions/0004-ibkr-candidate-broker.md). It does not
 change milestone order or authorize any broker action.
 
 ## What changed and why
