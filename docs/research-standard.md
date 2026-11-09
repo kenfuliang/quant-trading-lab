@@ -123,6 +123,17 @@ remains required. Referenced files are local and explicitly scoped to the suppli
 artifact root, with hashes checked offline. Validation must never fetch URLs or
 follow a path outside that root.
 
+Optional `trial_ledger_ref` (relative ledger directory under the artifact root) and
+`holdout_seal_hash` (the ledger seal payload hash, when the cycle reads a sealed
+holdout) let `scripts/check_experiment_receipt.py` and `scripts/check_trial_ledger.py`
+run the leakage audit: a case window may not overlap a sealed holdout unless the
+receipt declares that seal and the append-only trial ledger holds a matching `open`
+event for the cycle, and the receipt's total attempts must equal the ledger's trial
+count for the cycle. A receipt with no ledger reference still validates. The ledger
+([trial ledger](../research/control/trial_ledger.py)) refuses holdout reads until the
+holdout is frozen and logs every granted read; it is local tamper evidence, not proof
+the data was unread.
+
 Existing receipts remain immutable under their original protocols. Run a separate
 compatibility review and name missing fields instead of silently migrating them.
 A summary match or hash match is not daily-decision reproduction. The

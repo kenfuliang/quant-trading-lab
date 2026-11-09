@@ -1,6 +1,8 @@
 {
   "schema": "experiment-receipt/v1",
   "cycle_id": null,
+  "trial_ledger_ref": null,
+  "holdout_seal_hash": null,
   "status": "blocked",
   "outcome_reason": "Unfilled template; no execution or readiness claim.",
   "missing_evidence": {
