@@ -70,7 +70,8 @@ def build_dataset(name, close_path, export):
                 last[symbol] = [price, day]
             pos[day] = {s: [shares[s], last[s][0], last[s][1]] for s in shares if abs(shares[s]) > 1e-9}
     return {"name": name, "dates": sessions, "nav": nav, "expo": expo, "turn": turn,
-            "orders": orders, "decided": decided, "trades": trades, "pos": pos, "unmatched_orders": unmatched}
+            "orders": orders, "decided": decided, "trades": trades, "pos": pos, "unmatched_orders": unmatched,
+            "note": "Reconstructed from the cloud export's filled orders; the export's own position ledger was not reconciled."}
 
 
 def positions_on(dataset, day):
@@ -94,7 +95,7 @@ main{max-width:1100px;margin:0 auto;padding:20px 16px 60px}h1{font-size:22px;mar
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line)}th{color:var(--mute);font-weight:600;font-size:12px}td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
 .pos{color:var(--up)}.neg{color:var(--down)}input,select,button{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
 button{cursor:pointer}input[type=range]{flex:1;min-width:200px;padding:0}canvas{width:100%;display:block;border-radius:6px;cursor:crosshair}
-.chg{background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.chg{background:color-mix(in srgb,var(--accent) 14%,transparent)}tr.sel{background:color-mix(in srgb,var(--accent) 22%,transparent);outline:1px solid var(--accent)}
 </style></head><body><main>
 <h1>Per-day holdings</h1><p class=n>Pick any session. Descriptive history from saved exports; not a signal, a forecast or advice.</p>
 <section class="card warn"><b>How far to trust the holdings.</b><ul class=n>
@@ -102,16 +103,19 @@ button{cursor:pointer}input[type=range]{flex:1;min-width:200px;padding:0}canvas{
 <li>Shares are rebuilt from the export's filled orders. The repo's audit found the export's cash and position ledger <b>not reconciled</b> and no official daily decision trace, so treat them as reconstructed.</li>
 <li>Values use each symbol's <b>last fill price</b>, stale between trades. They are approximate and not marked to market; compare with the export's own long exposure shown above.</li>
 <li>This is a past backtest from a cloud run that cannot be reproduced locally. It does not tell you what to hold today.</li></ul></section>
-<section class=card><div class=row><label>Strategy <select id=sel></select></label><label>Date <input type=date id=date></label>
+<section class=card><h2>Period <span class=n id=pinfo></span></h2><div class=row id=presets></div>
+<div class=row style="margin-top:8px"><label>From <input type=date id=from></label><label>To <input type=date id=to></label></div></section>
+<section class=card><div class=row><label>Strategy <select id=sel></select></label><span class=n id=snote style="flex-basis:100%"></span><label>Date <input type=date id=date></label>
 <button id=prev>&larr; Prev</button><button id=next>Next &rarr;</button><input type=range id=slide min=0 value=0></div></section>
 <div class=grid id=kpis></div>
-<section class=card><h2>Equity and the selected day</h2><canvas id=eq height=170></canvas><p class=n>Log scale. Click anywhere on a chart to jump to that day; arrow keys also step.</p></section>
+<section class=card><h2>Days in this period <span class=n>(click a row)</span></h2><div class=row style="margin-bottom:6px"><label style="flex-direction:row;align-items:center;gap:6px"><input type=checkbox id=onlytrades style="width:auto"> only days with fills or decisions</label><label>Symbol<input id=symf placeholder="e.g. SQQQ" style="width:110px"></label></div><div id=days style="max-height:300px;overflow:auto"></div></section>
+<section class=card><h2>Equity and the selected day</h2><canvas id=eq height=170></canvas><p class=n>Log scale, zoomed to the period. Click a chart to jump to that day; arrow keys also step.</p></section>
 <section class=card><h2>Holdings timeline <span class=n>(every session; a coloured cell means held after that close)</span></h2><canvas id=tl></canvas><div class=n id=tllegend></div></section>
 <section class=card><h2>Held through this session <span class=n>(after the fills below)</span></h2><div id=hold></div></section>
 <section class=card><h2>Decided at this close <span class=n>(filled at the next session's start)</span></h2><div id=dec></div></section>
 <section class=card><h2>Filled at the start of this session <span class=n>(decided at the previous close)</span></h2><div id=ord></div></section>
 <section class=card><h2>Trades closed today</h2><div id=trd></div></section>
-<section class=card><h2>Best and worst days</h2><div class=row id=bw style="align-items:flex-start"></div></section>
+<section class=card><h2>Best and worst days in this period</h2><div class=row id=bw style="align-items:flex-start"></div></section>
 </main><script>
 const DATA=__DATA__;
 const LONGS=new Set(["TQQQ","SOXL","TECL","SPXL","QLD","QQQ","UPRO","TNA"]),INV=new Set(["SQQQ","SOXS","TECS","PSQ","UVXY","SPXS"]);
@@ -145,29 +149,54 @@ function draw(){const s=S,d=s.dates[i],snap=s.snap[i],prev=i?s.snap[i-1]:{};
  $("dec").innerHTML=table(["Symbol","Quantity","Expected fill price","Tag"],(s.decided[d]||[]).map(ordRow));
  $("ord").innerHTML=table(["Symbol","Quantity","Fill price","Tag"],(s.orders[d]||[]).map(o=>`<tr><td><b style="color:${tag(o[0])}">${o[0]}</b></td><td class="r ${cls(o[1])}">${o[1]>0?"+":""}${fmt(o[1])}</td><td class=r>${fmt(o[2],2)}</td><td>${o[3]}</td></tr>`));
  $("trd").innerHTML=table(["Symbol","Opened","Quantity","Entry","Exit","P&L","Fees"],(s.trades[d]||[]).map(t=>`<tr><td><b style="color:${tag(t[0])}">${t[0]}</b></td><td>${t[1]}</td><td class=r>${fmt(t[2])}</td><td class=r>${fmt(t[3],2)}</td><td class=r>${fmt(t[4],2)}</td><td class="r ${cls(t[5])}">${fmt(t[5],2)}</td><td class=r>${fmt(t[6],2)}</td></tr>`));
- paint()}
+ markRow();paint()}
 function setup(c,h){const w=c.clientWidth,r=window.devicePixelRatio||1;c.width=w*r;c.height=h*r;c.style.height=h+"px";const x=c.getContext("2d");x.scale(r,r);return [x,w,h]}
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-function paint(){const s=S,n=s.dates.length;
- let [x,w,h]=setup($("eq"),170),lo=Math.log10(Math.min(...s.nav)),hi=Math.log10(Math.max(...s.nav)),L=8,B=8;
+let lo=0,hi=0,preset="All";
+function paint(){const s=S,m=hi-lo+1;
+ let [x,w,h]=setup($("eq"),170),mn=Infinity,mx=-Infinity;for(let k=lo;k<=hi;k++){mn=Math.min(mn,s.nav[k]);mx=Math.max(mx,s.nav[k])}
+ const a=Math.log10(mn),b=Math.log10(mx)||1,rng=(b-a)||1,L=8,B=8,den=Math.max(m-1,1);
  x.clearRect(0,0,w,h);x.strokeStyle=css("--line");x.beginPath();x.moveTo(L,h-B);x.lineTo(w,h-B);x.stroke();
- x.strokeStyle=css("--accent");x.lineWidth=1.5;x.beginPath();s.nav.forEach((v,k)=>{const px=L+k/(n-1)*(w-L),py=B+(hi-Math.log10(v))/(hi-lo)*(h-2*B);k?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
- const sx=L+i/(n-1)*(w-L);x.strokeStyle=css("--down");x.lineWidth=1;x.beginPath();x.moveTo(sx,0);x.lineTo(sx,h);x.stroke();
- const n2=s.syms.length,rh=Math.max(10,Math.min(16,220/n2)),tc=$("tl");[x,w,h]=setup(tc,n2*rh+16);x.clearRect(0,0,w,h);const lab=64,cw=(w-lab)/n;
+ x.strokeStyle=css("--accent");x.lineWidth=1.5;x.beginPath();for(let k=lo;k<=hi;k++){const px=L+(k-lo)/den*(w-L),py=B+(b-Math.log10(s.nav[k]))/rng*(h-2*B);k===lo?x.moveTo(px,py):x.lineTo(px,py)}x.stroke();
+ const sx=L+(i-lo)/den*(w-L);x.strokeStyle=css("--down");x.lineWidth=1;x.beginPath();x.moveTo(sx,0);x.lineTo(sx,h);x.stroke();
+ x.fillStyle=css("--mute");x.font="11px system-ui";x.fillText("$"+fmt(mn),L+2,h-12);x.fillText("$"+fmt(mx),L+2,12);
+ const n2=s.syms.length,rh=Math.max(10,Math.min(16,220/n2)),tc=$("tl");[x,w,h]=setup(tc,n2*rh+16);x.clearRect(0,0,w,h);const lab=64,cw=(w-lab)/m;
  x.font="11px system-ui";s.syms.forEach((sym,row)=>{x.fillStyle=css("--mute");x.fillText(sym,2,row*rh+rh-3);x.fillStyle=tag(sym);
-  s.snap.forEach((c,k)=>{if(c[sym]&&Math.abs(c[sym][0])>1e-9)x.fillRect(lab+k*cw,row*rh+1,Math.max(cw,1),rh-2)})});
- x.strokeStyle=css("--ink");x.beginPath();x.moveTo(lab+i*cw,0);x.lineTo(lab+i*cw,n2*rh);x.stroke();
- const yr={};s.dates.forEach((d,k)=>{const y=d.slice(0,4);if(!(y in yr))yr[y]=k});x.fillStyle=css("--mute");Object.entries(yr).forEach(([y,k])=>x.fillText(y,lab+k*cw,n2*rh+12));
+  for(let k=lo;k<=hi;k++){const c=s.snap[k];if(c[sym]&&Math.abs(c[sym][0])>1e-9)x.fillRect(lab+(k-lo)*cw,row*rh+1,Math.max(cw,1),rh-2)}});
+ x.strokeStyle=css("--ink");x.beginPath();x.moveTo(lab+(i-lo)*cw,0);x.lineTo(lab+(i-lo)*cw,n2*rh);x.stroke();
+ const mark={};for(let k=lo;k<=hi;k++){const key=m>400?s.dates[k].slice(0,4):s.dates[k].slice(0,7);if(!(key in mark))mark[key]=k}
+ x.fillStyle=css("--mute");let lastx=-99;Object.entries(mark).forEach(([key,k])=>{const px=lab+(k-lo)*cw;if(px-lastx>46){x.fillText(key,px,n2*rh+12);lastx=px}});
  $("tllegend").innerHTML='<span style="color:#1f8a4c">■</span> leveraged long &nbsp;<span style="color:#c43d3d">■</span> inverse or volatility &nbsp;<span style="color:#7a8696">■</span> defensive or other'}
-function jump(e,el,lab){const r=el.getBoundingClientRect(),n=S.dates.length;const f=(e.clientX-r.left-lab)/(r.width-lab);i=Math.max(0,Math.min(n-1,Math.round(f*(n-1))));draw()}
+function jump(e,el,lab){const r=el.getBoundingClientRect(),f=(e.clientX-r.left-lab)/(r.width-lab);i=Math.max(lo,Math.min(hi,lo+Math.round(f*(hi-lo))));draw()}
 $("eq").onclick=e=>jump(e,$("eq"),8);$("tl").onclick=e=>jump(e,$("tl"),64);
-function lists(){const s=S,mk=(ks)=>table(["Date","Return","Equity"],ks.map(k=>`<tr style="cursor:pointer" onclick="i=${k};draw()"><td>${s.dates[k]}</td><td class="r ${cls(s.ret[k])}">${pct(s.ret[k])}</td><td class=r>$${fmt(s.nav[k])}</td></tr>`));
- $("bw").innerHTML=`<div style="flex:1;min-width:260px"><b>Best 10</b>${mk(s.rank.slice(-10).reverse())}</div><div style="flex:1;min-width:260px"><b>Worst 10</b>${mk(s.rank.slice(0,10))}</div>`}
-function choose(k){S=DATA[k];i=S.dates.length-1;$("date").min=S.dates[0];$("date").max=S.dates[S.dates.length-1];$("slide").max=S.dates.length-1;lists();draw()}
+function held(k){return Object.entries(S.snap[k]).filter(([a,b])=>Math.abs(b[0])>1e-9).map(([a])=>a)}
+function rowsFor(){const s=S,only=$("onlytrades").checked,f=$("symf").value.trim().toUpperCase(),out=[];
+ for(let k=lo;k<=hi;k++){const act=(s.orders[s.dates[k]]||[]).length+(s.decided[s.dates[k]]||[]).length;if(only&&!act)continue;
+  const hs=held(k);if(f&&!hs.includes(f)&&!(s.orders[s.dates[k]]||[]).some(o=>o[0]===f)&&!(s.decided[s.dates[k]]||[]).some(o=>o[0]===f))continue;out.push(k)}return out}
+function days(){const s=S,ks=rowsFor();$("days").innerHTML=table(["Date","Return","Equity","Drawdown","Held through the session","Fills / decisions"],ks.map(k=>`<tr data-k="${k}" style="cursor:pointer" onclick="i=${k};draw()"><td>${s.dates[k]}</td><td class="r ${cls(s.ret[k])}">${pct(s.ret[k])}</td><td class=r>$${fmt(s.nav[k])}</td><td class="r ${cls(s.dd[k])}">${pct(s.dd[k],1)}</td><td class=r>${held(k).map(x=>`<b style="color:${tag(x)}">${x}</b>`).join(" ")||"cash"}</td><td class=r>${(s.orders[s.dates[k]]||[]).length} / ${(s.decided[s.dates[k]]||[]).length}</td></tr>`))}
+function markRow(){document.querySelectorAll("#days tr.sel").forEach(r=>r.classList.remove("sel"));const r=document.querySelector(`#days tr[data-k="${i}"]`);if(r){r.classList.add("sel");const box=$("days");const top=r.offsetTop-box.offsetTop;if(top<box.scrollTop||top>box.scrollTop+box.clientHeight-30)box.scrollTop=top-60}}
+function lists(){const s=S,ks=[];for(let k=Math.max(lo,1);k<=hi;k++)ks.push(k);ks.sort((a,b)=>s.ret[a]-s.ret[b]);
+ const mk=(arr)=>table(["Date","Return","Equity"],arr.map(k=>`<tr style="cursor:pointer" onclick="i=${k};draw()"><td>${s.dates[k]}</td><td class="r ${cls(s.ret[k])}">${pct(s.ret[k])}</td><td class=r>$${fmt(s.nav[k])}</td></tr>`));
+ $("bw").innerHTML=`<div style="flex:1;min-width:260px"><b>Best 10</b>${mk(ks.slice(-10).reverse())}</div><div style="flex:1;min-width:260px"><b>Worst 10</b>${mk(ks.slice(0,10))}</div>`}
+function setPeriod(a,b,name){const s=S,n=s.dates.length;lo=Math.max(0,Math.min(a,n-1));hi=Math.max(lo,Math.min(b,n-1));preset=name||"Custom";
+ i=Math.max(lo,Math.min(hi,i));$("from").min=$("to").min=s.dates[0];$("from").max=$("to").max=s.dates[n-1];$("from").value=s.dates[lo];$("to").value=s.dates[hi];
+ $("slide").min=lo;$("slide").max=hi;let mdd=0;for(let k=lo;k<=hi;k++){mdd=Math.min(mdd,s.nav[k]/Math.max(...s.nav.slice(lo,k+1))-1)}
+ $("pinfo").textContent=`${hi-lo+1} sessions, ${s.dates[lo]} to ${s.dates[hi]}; equity ${pct(s.nav[hi]/s.nav[lo]-1,1)}; worst drawdown inside the period ${pct(mdd,1)}`;
+ $("presets").innerHTML="";presetsList().forEach(([label,x,y])=>{const bt=document.createElement("button");bt.textContent=label;bt.style.fontWeight=label===preset?"700":"400";bt.onclick=()=>setPeriod(x,y,label);$("presets").appendChild(bt)});
+ lists();days();draw()}
+function presetsList(){const s=S,n=s.dates.length,out=[["All",0,n-1]],years=[...new Set(s.dates.map(d=>d.slice(0,4)))];
+ years.forEach(y=>{const a=s.dates.findIndex(d=>d.startsWith(y)),b=s.dates.length-1-[...s.dates].reverse().findIndex(d=>d.startsWith(y));out.push([y,a,b])});
+ [["Last 12 months",252],["Last 6 months",126],["Last 3 months",63],["Last month",21]].forEach(([l,c])=>out.push([l,Math.max(0,n-1-c),n-1]));
+ let mi=0;for(let k=0;k<n;k++)if(s.dd[k]<s.dd[mi])mi=k;let rec=n-1;for(let k=mi+1;k<n;k++)if(s.dd[k]>=0){rec=k;break}
+ out.push(["Deepest drawdown",mi-s.since[mi],rec]);return out}
+function choose(k){S=DATA[k];$("snote").textContent=S.note||"";i=S.dates.length-1;setPeriod(0,S.dates.length-1,"All")}
 DATA.forEach((d,k)=>$("sel").add(new Option(d.name,k)));$("sel").onchange=e=>choose(+e.target.value);
-$("date").onchange=e=>{const k=S.dates.indexOf(e.target.value);if(k>=0){i=k;draw()}else{const near=S.dates.findIndex(d=>d>=e.target.value);i=near<0?S.dates.length-1:near;draw()}};
-$("slide").oninput=e=>{i=+e.target.value;draw()};$("prev").onclick=()=>{i=Math.max(0,i-1);draw()};$("next").onclick=()=>{i=Math.min(S.dates.length-1,i+1);draw()};
-addEventListener("keydown",e=>{if(e.target.tagName==="INPUT"&&e.target.type!=="range")return;if(e.key==="ArrowLeft"){i=Math.max(0,i-1);draw()}if(e.key==="ArrowRight"){i=Math.min(S.dates.length-1,i+1);draw()}});
+function nearest(v,up){const n=S.dates.length;if(up){let k=S.dates.length-1;while(k>=0&&S.dates[k]>v)k--;return Math.max(k,0)}const k=S.dates.findIndex(d=>d>=v);return k<0?n-1:k}
+$("from").onchange=e=>setPeriod(nearest(e.target.value,false),hi,"Custom");$("to").onchange=e=>setPeriod(lo,nearest(e.target.value,true),"Custom");
+$("date").onchange=e=>{const k=nearest(e.target.value,false);if(k<lo||k>hi)setPeriod(Math.min(lo,k),Math.max(hi,k),"Custom");i=k;draw()};
+$("slide").oninput=e=>{i=+e.target.value;draw()};$("prev").onclick=()=>{i=Math.max(lo,i-1);draw()};$("next").onclick=()=>{i=Math.min(hi,i+1);draw()};
+$("onlytrades").onchange=days;$("symf").oninput=()=>{days();markRow()};
+addEventListener("keydown",e=>{if(e.target.tagName==="INPUT"&&e.target.type!=="range"&&e.target.type!=="checkbox")return;if(e.key==="ArrowLeft"){i=Math.max(lo,i-1);draw()}if(e.key==="ArrowRight"){i=Math.min(hi,i+1);draw()}});
 addEventListener("resize",()=>paint());choose(0);
 </script></body></html>"""
 
@@ -179,7 +208,8 @@ def render(datasets):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--strategy", action="append", required=True, metavar="NAME=CLOSE_PATH,EXPORT")
+    parser.add_argument("--strategy", action="append", default=[], metavar="NAME=CLOSE_PATH,EXPORT")
+    parser.add_argument("--dataset", action="append", default=[], metavar="NAME=PATH", help="prebuilt dataset JSON (e.g. a replay)")
     parser.add_argument("--out", type=Path, default=ROOT / ".local/progress/holdings.html")
     args = parser.parse_args(argv)
     datasets = []
@@ -189,6 +219,15 @@ def main(argv=None):
         if not sep or not comma:
             parser.error("--strategy needs NAME=CLOSE_PATH,EXPORT")
         datasets.append(build_dataset(name, json.loads(Path(close_path).read_text()), json.loads(Path(export).read_text())))
+    for item in args.dataset:
+        name, sep, path = item.partition("=")
+        if not sep:
+            parser.error("--dataset needs NAME=PATH")
+        data = json.loads(Path(path).read_text())
+        data["name"] = name
+        datasets.append(data)
+    if not datasets:
+        parser.error("Give at least one --strategy or --dataset.")
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(render(datasets))
     for d in datasets:
