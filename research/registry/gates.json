@@ -1,0 +1,483 @@
+{
+  "schema": "gates/v1",
+  "updated": "2026-11-09",
+  "gates": [
+    {
+      "id": "G0",
+      "name": "Mandate and risk budget",
+      "items": [
+        {
+          "id": "G0.1",
+          "text": "Objective, drawdown tolerance and scenario capital set",
+          "status": "met",
+          "owner": "user",
+          "evidence": [
+            "docs/goals.md"
+          ],
+          "note": "+100% a year aspiration, ~30% drawdown reassessment, USD 300,000."
+        },
+        {
+          "id": "G0.2",
+          "text": "Capital at risk and pilot size",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        },
+        {
+          "id": "G0.3",
+          "text": "Allowed instruments, leverage and concentration limits",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/goals.md"
+          ]
+        },
+        {
+          "id": "G0.4",
+          "text": "Daily and weekly loss budgets",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/live-readiness.md"
+          ],
+          "note": "The USD 25 daily-loss default in the risk gate is a placeholder."
+        },
+        {
+          "id": "G0.5",
+          "text": "Rule when growth and drawdown conflict",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/goals.md"
+          ]
+        },
+        {
+          "id": "G0.6",
+          "text": "Start date and tax treatment",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/goals.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "Data parity",
+      "items": [
+        {
+          "id": "G1.1",
+          "text": "Free daily bars stored with hashes and a catalog round-trip pilot",
+          "status": "partial",
+          "owner": "agent",
+          "evidence": [
+            "docs/data-library.md"
+          ],
+          "note": "Conditional pilot only."
+        },
+        {
+          "id": "G1.2",
+          "text": "Corporate actions complete for the chosen universe",
+          "status": "blocked",
+          "owner": "agent",
+          "evidence": [
+            "docs/data-library.md"
+          ],
+          "note": "160 missing payment dates in the sector ETF set."
+        },
+        {
+          "id": "G1.3",
+          "text": "Research and live bars audited to agree",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/operations/alpaca-paper.md"
+          ],
+          "note": "History is SIP and live quotes are IEX."
+        },
+        {
+          "id": "G1.4",
+          "text": "Native catalog behaviour verified beyond the pilot",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/roadmap.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "Strategy evidence",
+      "items": [
+        {
+          "id": "G2.1",
+          "text": "Trial ledger and sealed-holdout read gate",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "research/control/trial_ledger.py",
+            "tests/test_trial_ledger.py"
+          ]
+        },
+        {
+          "id": "G2.2",
+          "text": "Leakage audit of receipts against the ledger",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "research/control/leakage_audit.py",
+            "tests/test_leakage_audit.py"
+          ]
+        },
+        {
+          "id": "G2.3",
+          "text": "Forward window sealed and plan frozen",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "docs/tasks/2026-11-09-forward-spy-ema.md",
+            "research/registry/trial-ledger/ledger.jsonl"
+          ],
+          "note": "FWD-SPY-EMA-1, 2026-11-10 to 2027-11-09."
+        },
+        {
+          "id": "G2.4",
+          "text": "Forward window completed and read once",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/tasks/2026-11-09-forward-spy-ema.md"
+          ],
+          "note": "On or after 2027-11-10."
+        },
+        {
+          "id": "G2.5",
+          "text": "A candidate respects the drawdown tolerance on forward data",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/leaderboard.md"
+          ]
+        },
+        {
+          "id": "G2.6",
+          "text": "Leading historical candidate (T11) reproduced locally",
+          "status": "blocked",
+          "owner": "agent",
+          "evidence": [
+            "docs/leaderboard.md"
+          ],
+          "note": "Original references missing; its recorded drawdown is 36.9%."
+        }
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Execution parity",
+      "items": [
+        {
+          "id": "G3.1",
+          "text": "Fake-broker fault fixtures (reject, expire, timeout, poll failure, cancel failure, slow ack)",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "tests/test_native_failure_modes.py"
+          ]
+        },
+        {
+          "id": "G3.2",
+          "text": "Shared signal pinned to the backtest by a parity test",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "tests/test_spy_signal_parity.py"
+          ]
+        },
+        {
+          "id": "G3.3",
+          "text": "Strategy runs through a real broker execution client",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/decisions/0004-ibkr-candidate-broker.md"
+          ]
+        },
+        {
+          "id": "G3.4",
+          "text": "Replay matches shadow orders on real data",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/tasks/2026-11-09-forward-spy-ema.md"
+          ],
+          "note": "Forward evaluation glue not yet written."
+        }
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "Risk controls and kill switch",
+      "items": [
+        {
+          "id": "G4.1",
+          "text": "Pre-submit risk gate",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/risk_gate.py",
+            "tests/test_pretrade_gate.py"
+          ]
+        },
+        {
+          "id": "G4.2",
+          "text": "Kill switch with operator CLI",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/kill_switch.py",
+            "tests/test_kill_switch.py"
+          ]
+        },
+        {
+          "id": "G4.3",
+          "text": "Tested flatten procedure",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/operations/incidents.md"
+          ],
+          "note": "A halt blocks exits today."
+        },
+        {
+          "id": "G4.4",
+          "text": "Unrealized-loss and portfolio drawdown stop",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/risk_gate.py"
+          ]
+        },
+        {
+          "id": "G4.5",
+          "text": "Broker-side verification of limits",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "Persistence and recovery",
+      "items": [
+        {
+          "id": "G5.1",
+          "text": "Crash-safe journal writes",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/durable_journal.py",
+            "tests/test_durable_journal.py"
+          ]
+        },
+        {
+          "id": "G5.2",
+          "text": "Journal recovery by client id against a fake broker",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/recovery.py",
+            "tests/test_native_recovery.py"
+          ]
+        },
+        {
+          "id": "G5.3",
+          "text": "Recovery wired into the session command",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/operations/alpaca-paper.md"
+          ]
+        },
+        {
+          "id": "G5.4",
+          "text": "Nautilus cache and general position recovery",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/roadmap.md"
+          ]
+        },
+        {
+          "id": "G5.5",
+          "text": "Broker-verified restart drill",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6",
+      "name": "Monitoring and alerts",
+      "items": [
+        {
+          "id": "G6.1",
+          "text": "Health view and alert sinks reading real artifacts",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/health.py",
+            "tests/test_health_producers.py"
+          ]
+        },
+        {
+          "id": "G6.2",
+          "text": "Daily scheduled shadow run and status check",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/operations/incidents.md"
+          ],
+          "note": "Approved by you; not yet created."
+        },
+        {
+          "id": "G6.3",
+          "text": "Tested remote alert path",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/alerts.py"
+          ]
+        },
+        {
+          "id": "G6.4",
+          "text": "Dead-worker detection",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/health.py"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Paper operation",
+      "items": [
+        {
+          "id": "G7.1",
+          "text": "Shadow runner and tracking error offline",
+          "status": "met",
+          "owner": "agent",
+          "evidence": [
+            "paper_trading/shadow.py",
+            "tests/test_spy_shadow.py"
+          ]
+        },
+        {
+          "id": "G7.2",
+          "text": "Live read-only fetch exercised",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "scripts/spy_shadow_run.py"
+          ]
+        },
+        {
+          "id": "G7.3",
+          "text": "Broker choice (IBKR or Alpaca)",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/decisions/0004-ibkr-candidate-broker.md"
+          ]
+        },
+        {
+          "id": "G7.4",
+          "text": "Paper account working",
+          "status": "blocked",
+          "owner": "user",
+          "evidence": [
+            "docs/operations/paper-connection.md"
+          ],
+          "note": "IBKR paper access never enabled; Alpaca has a preflight only."
+        },
+        {
+          "id": "G7.5",
+          "text": "Supervised multi-week paper run with receipts",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G8",
+      "name": "Small live pilot",
+      "items": [
+        {
+          "id": "G8.1",
+          "text": "Separate live authorization from you",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        },
+        {
+          "id": "G8.2",
+          "text": "Key custody, two-factor, tax and legal review",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        },
+        {
+          "id": "G8.3",
+          "text": "Stop rules fixed before the pilot",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G9",
+      "name": "Scale or retire",
+      "items": [
+        {
+          "id": "G9.1",
+          "text": "Rules for scaling fixed from live evidence",
+          "status": "open",
+          "owner": "user",
+          "evidence": [
+            "docs/live-readiness.md"
+          ]
+        },
+        {
+          "id": "G9.2",
+          "text": "Live versus paper versus backtest comparison",
+          "status": "open",
+          "owner": "agent",
+          "evidence": [
+            "docs/learning-curve.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

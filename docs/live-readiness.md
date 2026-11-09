@@ -14,6 +14,9 @@ owns research cycles, [scoring](research-scoring.md) owns metric meaning, and th
 [incident SOP](operations/incidents.md) owns failure handling. Broker candidates:
 [0004](decisions/0004-ibkr-candidate-broker.md).
 
+Gate status is owned by the structured file `research/registry/gates.json` (checked by
+`make check`) and viewed with `make progress`; the table below is narrative.
+
 **This plan authorizes nothing.** Orders, paper sessions and live access each need
 their own scoped request. Passing a gate is evidence for a decision, not the
 decision. Statuses below were taken from repository records on 2026-11-08;

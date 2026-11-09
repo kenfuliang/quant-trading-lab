@@ -31,7 +31,7 @@ runtime timestamps use UTC.
 | What folder/content/report foundations have been adopted? | [Foundation adoption task and remaining checklist](tasks/2026-10-27-project-foundation-adoption.md); folder ownership remains in architecture |
 | What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
 | How does independent historical data become reusable research input? | [Local data library](data-library.md); distinguishes the implemented price pilot from planned qualification |
-| What is next and what proves completion? | [Roadmap](roadmap.md) |
+| What is next and what proves completion? | [Roadmap](roadmap.md); gate status in `research/registry/gates.json`, viewed with `make progress` (local page under `.local/progress/`) |
 | What gates stand between research and a real-money pilot, and which broker is a candidate? | [Live-readiness plan](live-readiness.md); [broker decision](decisions/0004-ibkr-candidate-broker.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
