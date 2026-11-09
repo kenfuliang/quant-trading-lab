@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the local progress page, or check the structured gates file. Offline and read-only.
 
-  build   write .local/progress/index.html (not tracked: it depends on today's date).
+  build   write .local/progress/progress.html (not tracked: it depends on today's date).
           Serve only that folder; evidence paths are links only with --links (file:// use).
   check   validate research/registry/gates.json and that every evidence path exists
 """
@@ -54,7 +54,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", choices=("build", "check"))
     parser.add_argument("--local", type=Path, default=ROOT / ".local")
-    parser.add_argument("--out", type=Path, default=ROOT / ".local/progress/index.html")
+    parser.add_argument("--out", type=Path, default=ROOT / ".local/progress/progress.html")
     parser.add_argument("--links", action="store_true", help="link evidence paths relative to the repo (for file:// viewing only)")
     args = parser.parse_args(argv)
     gates = json.loads(GATES.read_text())

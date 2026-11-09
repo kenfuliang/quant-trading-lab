@@ -60,3 +60,7 @@ symlinks to the main checkout's ignored files, so results accumulate in one plac
 - Not yet observed firing on its own: first scheduled run is Monday 2026-11-09 at 18:30 Pacific.
 - No tested remote alert path. Alerts go to local files unless `QTL_ALERT_*` variables are set for the job.
 - The target-log page is not rebuilt automatically; run `scripts/t11_target_view.py` to refresh it.
+
+## Single entry page
+
+`scripts/dashboard.py` writes `.local/progress/index.html`, one tab bar over the progress, holdings, profile and target pages that exist in that folder, with each page's build time. Open `http://localhost:8780/` (serve only `.local/progress`). It does not build the pages; run it last, after the page scripts. `scripts/progress.py build` now writes `progress.html`.
