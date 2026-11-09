@@ -11,6 +11,7 @@ from nautilus_trader.model.objects import Price, Quantity
 from research.studies.spy.spy_backtest import BAR_TYPE, INSTRUMENT_ID
 from paper_trading.alpaca import check_quote, validate_order, PaperError
 from paper_trading.alpaca_native import Context, started_node, stop_node
+from paper_trading.kill_switch import KillSwitch
 
 
 class FakePaper:
@@ -46,8 +47,12 @@ async def wait_until(predicate):
     raise AssertionError("native event did not complete")
 
 
-async def native_fixture(root, *, timeout=False, closed=False, partial=False, saved_spy=False):
-    ctx = Context(FakePaper(timeout=timeout, closed=closed, partial=partial), root, fake=True)
+async def native_fixture(root, *, timeout=False, closed=False, partial=False, saved_spy=False,
+                         halted=False, denied=False, limits=None, kill_switch=None):
+    switch = kill_switch or KillSwitch(Path(root) / "HALT")
+    halted = halted or switch.engaged()
+    ctx = Context(FakePaper(timeout=timeout, closed=closed, partial=partial), root, fake=True,
+                  kill_switch=switch, limits=limits)
     node, strategy, task = await started_node(ctx)
     try:
         # Native Strategy.on_bar is the existing ComparisonStrategy method.
@@ -67,8 +72,16 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
         await wait_until(lambda: strategy.slow.initialized)
         assert strategy.want_long
         ctx.armed = True
+        if halted:
+            switch.engage("test", actor="test")
         ctx.data.feed(quote())
-        if closed:
+        if halted:
+            await wait_until(lambda: ctx.halted)
+            await asyncio.sleep(.1)
+        elif denied:
+            await wait_until(lambda: any(e["type"] == "gate_denied" for e in ctx.events))
+            await asyncio.sleep(.1)
+        elif closed:
             await wait_until(lambda: bool(ctx.events))
             await asyncio.sleep(.1)
         elif timeout or partial:
@@ -92,6 +105,7 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
             await asyncio.sleep(.1)
             assert Decimal(str(strategy.portfolio.net_position(INSTRUMENT_ID))) == 0
         result = {"kind": "offline_native_with_fake_alpaca", "submissions": ctx.submissions,
+                  "risk_engine_state": node.kernel.risk_engine.trading_state.name,
                   "native_fills": ctx.fills, "unknown": ctx.unknown,
                   "broker_post_count": len(ctx.api.posts), "events": ctx.events,
                   "ending_native_position": str(strategy.portfolio.net_position(INSTRUMENT_ID)),

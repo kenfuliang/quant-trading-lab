@@ -19,13 +19,15 @@ from nautilus_trader.live.execution_client import LiveExecutionClient
 from nautilus_trader.live.factories import LiveDataClientFactory, LiveExecClientFactory
 from nautilus_trader.live.node import TradingNode
 from nautilus_trader.model.data import Bar, QuoteTick
-from nautilus_trader.model.enums import AccountType, OmsType, OrderSide, OrderType, TimeInForce, LiquiditySide
+from nautilus_trader.model.enums import AccountType, OmsType, OrderSide, OrderType, TimeInForce, LiquiditySide, TradingState
 from nautilus_trader.model.identifiers import AccountId, ClientId, TradeId, VenueOrderId
 from nautilus_trader.model.objects import AccountBalance, Money, Price, Quantity
 from nautilus_trader.model.currencies import USD
 
 from research.studies.spy.spy_backtest import ComparisonStrategy, ComparisonConfig, INSTRUMENT_ID, BAR_TYPE, VENUE, instrument
 from .alpaca import PaperError, MAX_NOTIONAL, validate_order, save
+from .kill_switch import KillSwitch
+from .risk_gate import GateState, RiskLimits, check as gate_check
 
 
 class BoundedSPY(ComparisonStrategy):
@@ -36,6 +38,14 @@ class BoundedSPY(ComparisonStrategy):
 
     def on_quote_tick(self, tick):
         ctx = self.context
+        halt = ctx.kill_switch.status()
+        if halt["engaged"]:
+            if not ctx.halted:
+                ctx.halted, ctx.armed = True, False
+                ctx.events.append({"type": "halt", "reason": halt.get("reason", "unknown")})
+                if ctx.halt_hook:
+                    ctx.halt_hook()
+            return
         if not ctx.armed or ctx.unknown or ctx.pending or not self.slow.initialized:
             return
         desired = self.want_long
@@ -57,8 +67,12 @@ class BoundedSPY(ComparisonStrategy):
 
 
 class Context:
-    def __init__(self, api, root, cash="100000", fake=False):
+    def __init__(self, api, root, cash="100000", fake=False, kill_switch=None, limits=None):
         self.api, self.root, self.cash, self.fake = api, Path(root), cash, fake
+        self.kill_switch = kill_switch or KillSwitch()
+        self.limits = limits or RiskLimits()
+        self.halted, self.halt_hook = False, None
+        self.realized, self.entry_px = Decimal(0), None
         self.root.mkdir(parents=True, exist_ok=True)
         self.armed = self.pending = self.unknown = False
         self.submissions = self.fills = 0
@@ -141,8 +155,13 @@ class BoundedExecution(LiveExecutionClient):
             if order.instrument_id != INSTRUMENT_ID or order.order_type != OrderType.LIMIT or order.time_in_force != TimeInForce.DAY:
                 raise PaperError("Unsupported native order.")
             validate_order(body, ctx.position)
-            if ctx.submissions >= 2 or ctx.unknown or not ctx.armed:
-                raise PaperError("Submission bound reached.")
+            decision = gate_check(ctx.limits, body["side"], body["qty"], body["limit_price"],
+                GateState(ctx.submissions, ctx.position, ctx.realized, ctx.kill_switch.engaged()))
+            if decision.trip:
+                ctx.kill_switch.engage("daily_loss_limit", actor="risk_gate")
+            if not decision.allowed or ctx.unknown or not ctx.armed:
+                ctx.events.append({"type": "gate_denied", "reasons": list(decision.reasons)})
+                raise PaperError("Submission bound reached or risk gate denied.")
             clock = await asyncio.to_thread(ctx.api.request, "GET", "/v2/clock")
             if clock.get("is_open") is not True:
                 raise PaperError("Market closed; order not sent.")
@@ -184,6 +203,10 @@ class BoundedExecution(LiveExecutionClient):
                         Quantity.from_int(1), Price.from_str(str(px)), USD,
                         Money(0, USD), LiquiditySide.NO_LIQUIDITY_SIDE, self._clock.timestamp_ns())
                     ctx.position += 1 if order.side == OrderSide.BUY else -1
+                    if order.side == OrderSide.BUY:
+                        ctx.entry_px = px
+                    elif ctx.entry_px is not None:
+                        ctx.realized += px - ctx.entry_px
                     ctx.fills += 1
                     filled_before = filled
                     ctx.events.append({"type": "native_fill", "side": body["side"], "quantity": 1})
@@ -251,6 +274,7 @@ def build_node(ctx):
     strategy = BoundedSPY(ctx)
     node.trader.add_strategy(strategy)
     node.build()
+    ctx.halt_hook = lambda: node.kernel.risk_engine.set_trading_state(TradingState.HALTED)
     return node, strategy
 
 
