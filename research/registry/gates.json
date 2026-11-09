@@ -19,48 +19,54 @@
         {
           "id": "G0.2",
           "text": "Capital at risk and pilot size",
-          "status": "open",
+          "status": "met",
           "owner": "user",
           "evidence": [
-            "docs/live-readiness.md"
-          ]
+            "docs/goals.md"
+          ],
+          "note": "USD 15,000 pilot (5% of USD 300,000); decided 2026-11-09."
         },
         {
           "id": "G0.3",
           "text": "Allowed instruments, leverage and concentration limits",
-          "status": "open",
+          "status": "met",
           "owner": "user",
           "evidence": [
             "docs/goals.md"
-          ]
+          ],
+          "note": "Plain US stocks and unleveraged ETFs, cash account, no per-position cap; decided 2026-11-09."
         },
         {
           "id": "G0.4",
           "text": "Daily and weekly loss budgets",
-          "status": "open",
+          "status": "met",
           "owner": "user",
           "evidence": [
-            "docs/live-readiness.md"
+            "docs/goals.md",
+            "paper_trading/risk_gate.py",
+            "tests/test_pilot_limits.py"
           ],
-          "note": "The USD 25 daily-loss default in the risk gate is a placeholder."
+          "note": "2% daily and 5% weekly of pilot capital, warn at 20% and halt at 30% drawdown. Implemented as PilotLimits/check_pilot (offline, tested); not wired into a session."
         },
         {
           "id": "G0.5",
           "text": "Rule when growth and drawdown conflict",
-          "status": "open",
+          "status": "met",
           "owner": "user",
           "evidence": [
             "docs/goals.md"
-          ]
+          ],
+          "note": "Drawdown wins: development max drawdown above 30% cannot clear G2."
         },
         {
           "id": "G0.6",
           "text": "Start date and tax treatment",
-          "status": "open",
+          "status": "partial",
           "owner": "user",
           "evidence": [
             "docs/goals.md"
-          ]
+          ],
+          "note": "Tax decided (pre-tax after costs). Start date unset until the 3-month paper period ends with no incident; funding and withdrawal rules decided then."
         }
       ]
     },
