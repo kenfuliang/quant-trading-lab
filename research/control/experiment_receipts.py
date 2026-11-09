@@ -54,6 +54,14 @@ def validate_receipt(receipt, root):
         text_field(receipt.get('outcome_reason'), 'outcome_reason')
     if status == 'success' and missing:
         errors.append('success: missing evidence is not allowed; use incomplete/blocked/failed')
+    ledger_ref = receipt.get('trial_ledger_ref')
+    if ledger_ref is not None and (not isinstance(ledger_ref, str) or not ledger_ref.strip()
+                                   or Path(ledger_ref).is_absolute() or ':' in ledger_ref
+                                   or '..' in Path(ledger_ref).parts):
+        errors.append('trial_ledger_ref: optional; expected null or relative local ledger directory (audited by leakage_audit)')
+    seal_hash = receipt.get('holdout_seal_hash')
+    if seal_hash is not None and (not isinstance(seal_hash, str) or not SHA256.fullmatch(seal_hash)):
+        errors.append('holdout_seal_hash: optional; expected null or lowercase SHA256 of the ledger seal payload')
     cases = receipt.get('cases')
     if not isinstance(cases, list) or not cases:
         errors.append('cases: expected nonempty array (use a named unexecuted case for blocked work)')
