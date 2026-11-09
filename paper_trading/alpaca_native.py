@@ -220,6 +220,10 @@ class BoundedExecution(LiveExecutionClient):
                         else:
                             self.generate_order_canceled(order.strategy_id, order.instrument_id, order.client_order_id, venue_id, self._clock.timestamp_ns())
                     entry["status"] = state
+                    if state != "filled":
+                        # No fill after a terminal state: stop for human review, never retry.
+                        ctx.armed = False
+                        ctx.events.append({"type": "terminal_halt", "state": state})
                     break
                 await asyncio.sleep(0.1 if ctx.fake else 1)
                 result = await asyncio.to_thread(ctx.api.by_client_id, client_id)
