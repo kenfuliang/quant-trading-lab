@@ -1,6 +1,7 @@
 """Single-session native extension, deliberately not a general Alpaca adapter.
 
-Flat-account start, one SPY position, at most two DAY limits, no restart recovery.
+Flat-account start, one SPY position, at most two DAY limits. Restart recovery covers
+the session journal only (`recovery.py`), not the Nautilus cache or general positions.
 Native reconciliation is disabled for this scoped client; independent broker
 checks/journal gates are mandatory. Unsupported report/recovery calls fail closed.
 """
