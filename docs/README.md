@@ -15,7 +15,7 @@ runtime timestamps use UTC.
 | Question | Owner |
 | --- | --- |
 | What works now and how do I start? | [Root README](../README.md) |
-| Which strategies lead our saved comparisons, and what are their tradeoffs? | [Canonical research leaderboard](leaderboard.md); original studies retain metric/evidence ownership |
+| Which strategies lead our saved comparisons, what failed, and are we learning? | Generated from `research/registry/experiments.jsonl`: [leaderboard](leaderboard.md), [dead ends](dead-ends.md), [learning curve](learning-curve.md); original studies retain metric/evidence ownership. Record with `scripts/experiments.py log` |
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
 | What is the golden pipeline and rule for research evidence, stage adoption and paper-style lessons? | [GRS-1.0 research standard](research-standard.md); [cycle register](research-cycles.md) |

@@ -23,3 +23,6 @@ reports/leverage/
 reports/strategy-suite/
 
 reports/bounded-study/
+
+# Registry writer lock
+research/registry/*.lock

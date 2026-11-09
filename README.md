@@ -39,7 +39,7 @@ database, tracking-store and disaster recovery remain unverified.
 - [Project foundation and report formats](docs/tasks/2026-10-27-project-foundation-adoption.md)
 - [Golden research standard and cycle register](docs/research-standard.md)
 - [Teams, skills, routing and readiness](docs/skills.md)
-- [Canonical research leaderboard](docs/leaderboard.md) — saved results grouped by comparable context, with risk and temporal metrics
+- [Research leaderboard](docs/leaderboard.md) — generated from the experiment registry: CAGR-versus-drawdown frontier per context and evidence class, with [dead ends](docs/dead-ends.md) and a [learning curve](docs/learning-curve.md)
 - [Parallel RSI diagnosis and readiness](docs/tasks/2026-10-28-rsi-readiness-wave.md) — saved SPY attribution, blocked selector reconstruction and isolated synthetic execution-record audit; zero new financial runs
 - [Sector issuer reconciliation](docs/tasks/2026-10-28-sector-issuer-qualification.md) — payment dates and omissions resolved; scoped accounting and eight-case replay audits passed
 - [Sector comparison results](docs/tasks/2026-10-28-sector-selection-experience-report.md) — eight audited cases; Calmar improves about18%, but the strict joint drawdown screen fails at10bp; no adoption

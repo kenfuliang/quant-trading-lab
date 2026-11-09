@@ -66,7 +66,7 @@ Level 2: Task workflows — trade-project selects the applicable procedure
 ├── trade-research-intake            AVAILABLE
 ├── trade-local-ops                  AVAILABLE
 ├── Research development — AVAILABLE instructions; evaluation receipt below
-│   ├── trade-research-management     cycle closure and leaderboard disposition
+│   ├── trade-research-management     cycle closure and registry disposition
 │   ├── trade-stage-development       one-stage implementation and conformance
 │   ├── trade-research-design         study specification and trial budget
 │   ├── trade-data-audit              frozen-input fitness and provenance
@@ -129,7 +129,7 @@ behavioral evidence and limitations; the later [feature-engineering receipt](htt
 
 | Skill | Trigger and observable output |
 | --- | --- |
-| [trade-research-management](../.agents/skills/trade-research-management/SKILL.md) | Close a requested cycle → attempt/evidence reconciliation, lesson, single-leaderboard disposition and next prerequisite; [procedure](operations/recursive-research.md#research-management) |
+| [trade-research-management](../.agents/skills/trade-research-management/SKILL.md) | Close a requested cycle → attempt/evidence reconciliation, lesson, experiment-registry disposition and next prerequisite; [procedure](operations/recursive-research.md#research-management) |
 | [trade-stage-development](../.agents/skills/trade-stage-development/SKILL.md) | Implement one frozen stage → input/output/timing contract, offline conformance and evidence; financial execution separately scoped; [procedure](research-development.md#individual-stage-development) |
 | [trade-research-design](../.agents/skills/trade-research-design/SKILL.md) | New/amended study → falsifiable control/treatment, metric/split/trial specification and open decisions |
 | [trade-data-audit](../.agents/skills/trade-data-audit/SKILL.md) | Saved input fitness → actual hashes/quality/availability checks and named-experiment eligibility |

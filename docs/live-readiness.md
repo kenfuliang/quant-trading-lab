@@ -85,6 +85,11 @@ flowchart TD
     D --> L
 ```
 
+Every cycle and every shadow, paper or live comparison is recorded in the experiment registry
+(`scripts/experiments.py log`), which generates the [leaderboard](leaderboard.md),
+[dead ends](dead-ends.md) and [learning curve](learning-curve.md). Only the non-development
+classes show learning that is not hindsight.
+
 Added metrics, in addition to those in [scoring](research-scoring.md): tracking
 error of paper and live versus replay, realized versus modeled slippage and cost,
 reconciliation breaks, halts and their causes, and feed uptime. They measure the

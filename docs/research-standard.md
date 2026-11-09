@@ -115,7 +115,10 @@ must have a specific missing-evidence reason. Success requires complete identity
 and required evidence; failed, blocked and incomplete outcomes do not fabricate
 identities or performance.
 
-Validate before cycle closure or proposing leaderboard promotion. Preserve the
+Validate before cycle closure or proposing leaderboard promotion, then log each case with
+`scripts/experiments.py log --receipt RECEIPT`: the registry record, not the receipt,
+carries metrics, evidence class, disposition and lesson (see the
+[closure contract](operations/recursive-research.md#leaderboard-closure-contract)). Preserve the
 validator exit and errors. A valid failure receipt means the failure was recorded
 properly, not that its strategy passed. Validation cannot establish data rights,
 causality, independence, accounting truth or profitability; scientific review

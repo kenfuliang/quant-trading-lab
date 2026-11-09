@@ -52,5 +52,5 @@ receipts and disclose incomplete history instead of inferring completeness from 
 
 For new-cycle closure, use the [versioned receipt contract](../../../docs/research-standard.md#experiment-receipt-contract)
 and [management handoff](../../../docs/operations/recursive-research.md#research-management).
-Record validation outcome and single-leaderboard disposition; preserve older
+Record validation outcome and the experiment-registry record (`scripts/experiments.py log`); preserve older
 receipts rather than retroactively inserting unavailable identities.

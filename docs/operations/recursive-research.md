@@ -126,17 +126,24 @@ not after the browser session or source version has been lost.
 
 ## Leaderboard closure contract
 
-Every completed research cycle records a disposition in the
-[single leaderboard](../leaderboard.md), whose table remains first and unique.
-Update the existing matching study/case row with evidence status, tags, failures
-and lessons, or add a new measured case in its comparison context. Keep Calmar,
-CAGR, drawdown and time underwater visible using the
-[scoring definitions](../research-scoring.md). Do not treat another period, exposure
-or accounting convention as a comparable rank.
+Every completed research cycle records its cases in the experiment registry
+(`research/registry/experiments.jsonl`) with `scripts/experiments.py log`. The generated
+[leaderboard](../leaderboard.md), [dead ends](../dead-ends.md) and
+[learning curve](../learning-curve.md) are views of it and are never edited by hand;
+run `scripts/experiments.py render` after logging. Log one record per measured case in
+its comparison context: net CAGR, max drawdown, underwater time, Calmar and Sharpe as
+measured, with fractions for ratios and null (never a guess) for anything undefined.
+Failed, blocked and inconclusive cases get a record and a lesson too, so dead ends stay
+visible. Use the evidence class honestly: viewed history is `development`; only a sealed
+forward window, shadow run, paper or live result is a different class. Do not treat
+another period, exposure or accounting convention as a comparable rank, and do not use
+the [scoring definitions](../research-scoring.md) as a blended score.
 
-For a workflow-only, blocked or invalid cycle with no new performance measurement,
-record an explicit **no metric-row change** disposition in its task/receipt and
-link that closure from the explanation below the existing leaderboard table.
-Do not manufacture a zero-return row, duplicate an incumbent, or overwrite saved
-metrics. Research-version decisions remain subject to GRS; broker readiness is a
-separate review under the applicable paper SOP.
+For a workflow-only or invalid cycle that tested no idea and has no new measurement,
+record a verified **no registry change** disposition in its task/receipt and list the
+receipt in `research/registry/receipt-exemptions.json` with a reason. Do not manufacture
+a zero-return record, duplicate an incumbent, or overwrite saved metrics. `make check`
+fails if a generated view is stale or a v1 receipt has neither a record nor an exemption.
+Research-version decisions remain subject to GRS; broker readiness is a separate review
+under the applicable paper SOP. The retired hand-edited table is archived as
+[history](../history/2026-11-09-hand-edited-leaderboard.md).
