@@ -72,6 +72,7 @@ class Context:
         self.kill_switch = kill_switch or KillSwitch()
         self.limits = limits or RiskLimits()
         self.halted, self.halt_hook = False, None
+        self.recovery = None
         self.realized, self.entry_px = Decimal(0), None
         self.root.mkdir(parents=True, exist_ok=True)
         self.armed = self.pending = self.unknown = False
@@ -80,6 +81,14 @@ class Context:
         self.events, self.journal = [], []
         self.data = self.execution = None
         self.tasks = []
+
+    def apply_recovery(self, report):
+        """Adopt a restart-recovery result. Unresolved entries keep the session disarmed."""
+        self.recovery = report
+        self.submissions, self.position, self.journal = report.submissions, report.position, list(report.journal)
+        if report.halt:
+            self.unknown, self.armed = True, False
+            self.events.append({"type": "recovery_halt", "unresolved": len(report.unresolved)})
 
 
 class BoundedData(LiveMarketDataClient):
@@ -239,6 +248,7 @@ class BoundedExecution(LiveExecutionClient):
                 entry["status"] = "reconciliation_required"
                 save(ctx.root / "journal.json", ctx.journal)
             else:
+                ctx.events.append({"type": "policy_rejected", "error": str(error)})
                 self.generate_order_rejected(order.strategy_id, order.instrument_id, order.client_order_id, "Paper policy rejected", self._clock.timestamp_ns())
             ctx.events.append({"type": "execution_error", "error_type": type(error).__name__})
             if ctx.fake:

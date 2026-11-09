@@ -77,7 +77,7 @@ async def wait_until(predicate):
 
 
 async def native_fixture(root, *, timeout=False, closed=False, partial=False, saved_spy=False,
-                         halted=False, denied=False, mode=None, limits=None, kill_switch=None):
+                         halted=False, denied=False, mode=None, recovery=None, limits=None, kill_switch=None):
     switch = kill_switch or KillSwitch(Path(root) / "HALT")
     halted = halted or switch.engaged()
     ctx = Context(FakePaper(timeout=timeout, closed=closed, partial=partial, mode=mode), root, fake=True,
@@ -101,14 +101,18 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
         await wait_until(lambda: strategy.slow.initialized)
         assert strategy.want_long
         ctx.armed = True
+        if recovery is not None:
+            ctx.apply_recovery(recovery)
         if halted:
             switch.engage("test", actor="test")
         ctx.data.feed(quote())
         if halted:
             await wait_until(lambda: ctx.halted)
             await asyncio.sleep(.1)
+        elif recovery is not None and recovery.halt:
+            await asyncio.sleep(.3)
         elif denied:
-            await wait_until(lambda: any(e["type"] == "gate_denied" for e in ctx.events))
+            await wait_until(lambda: any(e["type"] in ("gate_denied", "policy_rejected") for e in ctx.events))
             await asyncio.sleep(.1)
         elif mode in ("reject", "expire"):
             await wait_until(lambda: any(e["status"] in ("rejected", "expired") for e in ctx.journal))
