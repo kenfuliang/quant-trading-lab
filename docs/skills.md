@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-31
+updated: 2026-11-09
 owner: project-maintainers
 ---
 
@@ -116,6 +116,30 @@ new skills can be read by path if the current session has not refreshed discover
 | [trade-data-acquisition](../.agents/skills/trade-data-acquisition/SKILL.md) | Requested bounded historical-data download using existing supported collectors | Immutable source/normalized/catalog paths, resource receipt, coverage and limitations; no automatic financial eligibility | [Acquisition procedure](data-library.md#bounded-acquisition-procedure), fixed pilot/current-holdings collectors |
 | [trade-research-intake](../.agents/skills/trade-research-intake/SKILL.md) | Find/screen an online repo, paper or reported strategy result | Source/goal-fit/rights/data/claim record and justified next action; unknowns explicit | Research intake SOP, mandate and intake template |
 | [trade-local-ops](../.agents/skills/trade-local-ops/SKILL.md) | Environment check, failed-run diagnosis, requested paper observation | Actual command outcomes, redacted evidence, unresolved uncertainty and next action | Local/paper/incident SOPs, make checks and paper CLI |
+
+## Imported general-purpose skills
+
+Copied unmodified (no scripts were run) from [mattpocock/skills](https://github.com/mattpocock/skills)
+at commit `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d` (MIT; notice in
+[third-party-LICENSE-mattpocock-skills.txt](third-party-LICENSE-mattpocock-skills.txt)), and
+`daydream` and `writing-for-agents` from the maintainer's ERP-2026 repository. They are general
+process skills, not trading skills: they do not change research adoption rules, and the research
+standard and gates still apply. Skills that need a project issue tracker (`to-spec`) are not
+configured for one here. Codex-specific `agents/` metadata was not copied.
+
+| Skill | Trigger | Output / done condition |
+| --- | --- | --- |
+| [grill-me](../.agents/skills/grill-me/SKILL.md) | Stress-test a plan or design by being interviewed (user-invoked; calls `grilling`) | Shared understanding; no open branch of the decision tree |
+| [grilling](../.agents/skills/grilling/SKILL.md) | The interview procedure itself: rounds of numbered questions with a recommended answer each | Empty frontier; nothing acted on before confirmation |
+| [grill-with-docs](../.agents/skills/grill-with-docs/SKILL.md) | Grill a plan and write a glossary and decision records as terms settle (calls `grilling`, `domain-modeling`) | Resolved plan plus `GLOSSARY.md` and ADR entries created lazily |
+| [domain-modeling](../.agents/skills/domain-modeling/SKILL.md) | Sharpen terminology, write a glossary or an ADR | Glossary or ADR text; ADRs only when hard to reverse, surprising and a real trade-off |
+| [handoff](../.agents/skills/handoff/SKILL.md) | Compact the conversation into a handoff document for a fresh agent | Document in the OS temp folder, secrets redacted, suggested skills listed |
+| [to-spec](../.agents/skills/to-spec/SKILL.md) | Turn the current discussion into a spec for an issue tracker; no interview | Spec text; publishing needs a configured tracker, which this repo does not have |
+| [diagnosing-bugs](../.agents/skills/diagnosing-bugs/SKILL.md) | A hard bug or regression: build a red-capable feedback loop first | One named command that reproduces the exact symptom, then hypotheses, fix and regression test |
+| [tdd](../.agents/skills/tdd/SKILL.md) | Build or fix test-first, one seam and one slice at a time | Failing test, minimal pass, seams agreed with the user beforehand |
+| [codebase-design](../.agents/skills/codebase-design/SKILL.md) | Vocabulary for module depth, seams and adapters (reference, referenced by `tdd`) | Shared terms; not a session |
+| [daydream](../.agents/skills/daydream/SKILL.md) | Premortem: rehearse a workflow through time and challenge it with evidence | Each concern classified as defect, covered risk, uncovered hazard, unknown or accepted tradeoff |
+| [writing-for-agents](../.agents/skills/writing-for-agents/SKILL.md) | Writing or editing a skill, AGENTS.md or CLAUDE.md | Document with clear triggers and disclosed reference |
 
 ## Available research workflows
 
