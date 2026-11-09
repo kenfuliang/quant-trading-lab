@@ -26,3 +26,4 @@ reports/bounded-study/
 
 # Registry writer lock
 research/registry/*.lock
+research/registry/trial-ledger/.writer.lock

@@ -1,0 +1,65 @@
+{
+  "accounting": {
+    "capital_usd": 300000,
+    "costs_bp_per_position_change": [
+      5,
+      10
+    ],
+    "dividends": "as the engine handles them for the saved fixture",
+    "evaluation_engine": "research.studies.spy.spy_backtest.run_engine extended with the window's bars"
+  },
+  "budget": {
+    "reads": 1,
+    "retuning_on_this_window": false,
+    "trials": 1
+  },
+  "candidate": {
+    "fast": 50,
+    "instrument": "SPY",
+    "leverage": 1,
+    "no_volatility_gate": true,
+    "rule": "long SPY when EMA50 > EMA200 of completed daily closes, else flat; target applies to the next session open; flat until 200 bars exist",
+    "signal": "spy-ema50-200-v1",
+    "slow": 200
+  },
+  "control": {
+    "name": "SPY buy and hold",
+    "rule": "fully invested over the same window"
+  },
+  "created": "2026-11-09",
+  "criteria": {
+    "claim_limit": "One year and a handful of position changes cannot establish an edge. Any outcome is descriptive.",
+    "integrity": "shadow tracking-error status ok on every comparable day; at most 2 missing days, each explained by a recorded data outage",
+    "keep": "candidate is not dominated by the control on net CAGR versus max drawdown at both 5bp and 10bp, AND its max drawdown is at most 30%, AND integrity holds",
+    "otherwise": "inconclusive",
+    "performance_materiality": "differences under 1.0 percentage point of net CAGR or of max drawdown count as ties",
+    "retire": "candidate is dominated by the control at both 5bp and 10bp"
+  },
+  "data": {
+    "adjustment_and_feed": "as configured by the runner at freeze time; any change voids the plan",
+    "source": "alpaca_data_get via scripts/spy_shadow_run.py (completed daily bars, read-only)"
+  },
+  "frozen_code_sha256": {
+    "paper_trading/shadow.py": "348ce666f5bd6e4b834c1760915bd76315a7577a087493318ebe03af3add12d1",
+    "paper_trading/spy_signal.py": "69fd0430751e05ff3b2abb09d54eabd3c6e282f4bb1603aff8f06f195a9c8bfd",
+    "paper_trading/tracking_error.py": "49e1aa976c867ce4d81ce58a7b07d07164a293312bff6a40693597470db5690e",
+    "research/studies/spy/spy_backtest.py": "50a75c94c40fe8c8ecc19d9f8e0cc075c706e4f67a0cdc7ac115e8cf99e34f35",
+    "scripts/current/shadow_replay.py": "fe0a39b91fa0d44e64196ea6213f2b6ae161db1387a6afc59d16ced1546d9aa3",
+    "scripts/spy_shadow_run.py": "bf9ce4e77c1cc8e99c4ec7856f707eb66f58be18ff9d901c275c3254db98bfdb"
+  },
+  "holdout_id": "SPY-FWD-1",
+  "known_limits": [
+    "Evaluation glue that extends the engine with forward bars is not yet written and is not hash-frozen; it may not change the signal, costs or criteria.",
+    "Shadow records are hypothetical positions, not fills; slippage and fill quality are not measured by this cycle."
+  ],
+  "plan_id": "FWD-SPY-EMA-1",
+  "purpose": "First sealed forward test of the pipeline and of a simple trend rule. Not a claim of edge.",
+  "schema": "forward-plan/v1",
+  "window": {
+    "end": "2027-11-09",
+    "inclusive": true,
+    "may_be_opened_on_or_after": "2027-11-10",
+    "reads_allowed": 1,
+    "start": "2026-11-10"
+  }
+}

@@ -15,6 +15,7 @@ all prior trials and never resets evaluation-data exposure.
 | Cycle | Change / question | Authoritative task and evidence |
 | --- | --- | --- |
 | GRS-C001 | Improve sizing: continuous volatility cap versus discrete gate and simpler EMA controls | [Task](tasks/2026-10-27-grs-c001-continuous-sizing.md), [receipt](tasks/evidence/2026-10-27-grs-c001.json) |
+| FWD-SPY-EMA-1 | Sealed 12-month forward test of the SPY EMA50/200 rule against buy and hold; pipeline and learning-curve start | [Task](tasks/2026-11-09-forward-spy-ema.md); receipt at closure |
 
 ## Experience reports
 
