@@ -91,29 +91,36 @@ class PilotDecision:
     trip: bool = False  # caller should engage the kill switch; release stays manual
 
 
-def check_pilot(limits, symbol, side, qty, price, state):
-    qty, price = Decimal(qty), Decimal(price)
+def account_check(limits, state):
+    """Account-level part of the pilot policy: (reasons, warnings, trip). Equity must include unrealized loss."""
     reasons, warnings, trip = [], [], False
     if state.halted:
         reasons.append("halt_engaged")
-    for name, value in (("equity", state.equity), ("peak_equity", state.peak_equity),
-                        ("day_start_equity", state.day_start_equity), ("week_start_equity", state.week_start_equity)):
-        if not value.is_finite() or value <= 0:
-            reasons.append(f"invalid_state_{name}")
-            trip = True
-    if not reasons or reasons == ["halt_engaged"]:
-        drawdown = 1 - state.equity / state.peak_equity
-        if drawdown >= limits.drawdown_halt:
-            reasons.append("drawdown_halt")
-            trip = True
-        elif drawdown >= limits.drawdown_warn:
-            warnings.append("drawdown_warning")
-        if state.day_start_equity - state.equity >= limits.daily_loss * limits.capital:
-            reasons.append("daily_loss_limit")
-            trip = True
-        if state.week_start_equity - state.equity >= limits.weekly_loss * limits.capital:
-            reasons.append("weekly_loss_limit")
-            trip = True
+    bad = [name for name, value in (("equity", state.equity), ("peak_equity", state.peak_equity),
+                                    ("day_start_equity", state.day_start_equity),
+                                    ("week_start_equity", state.week_start_equity))
+           if not value.is_finite() or value <= 0]
+    if bad:
+        reasons.extend(f"invalid_state_{name}" for name in bad)
+        return reasons, warnings, True
+    drawdown = 1 - state.equity / state.peak_equity
+    if drawdown >= limits.drawdown_halt:
+        reasons.append("drawdown_halt")
+        trip = True
+    elif drawdown >= limits.drawdown_warn:
+        warnings.append("drawdown_warning")
+    if state.day_start_equity - state.equity >= limits.daily_loss * limits.capital:
+        reasons.append("daily_loss_limit")
+        trip = True
+    if state.week_start_equity - state.equity >= limits.weekly_loss * limits.capital:
+        reasons.append("weekly_loss_limit")
+        trip = True
+    return reasons, warnings, trip
+
+
+def check_pilot(limits, symbol, side, qty, price, state):
+    qty, price = Decimal(qty), Decimal(price)
+    reasons, warnings, trip = account_check(limits, state)
     if side not in ("buy", "sell") or qty <= 0 or not price.is_finite() or price <= 0:
         reasons.append("invalid_order")
     else:
