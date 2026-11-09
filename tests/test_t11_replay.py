@@ -99,6 +99,19 @@ class SimulateTests(unittest.TestCase):
         self.assertEqual(sim["expo"][-1], 0.0)
 
 
+class CutTests(unittest.TestCase):
+    def test_sessions_after_the_last_completed_one_are_dropped(self):
+        bars = {"SPY": {"2026-11-05": (1, 1, 1, 1), "2026-11-06": (1, 1, 1, 1), "2026-11-09": (1, 1, 1, 1)}}
+        raw = {"2026-11-06": 1.0, "2026-11-09": 1.0}
+        cut_bars, cut_raw = tr.cut_to_completed(bars, raw, "2026-11-06")
+        self.assertEqual(sorted(cut_bars["SPY"]), ["2026-11-05", "2026-11-06"])
+        self.assertEqual(sorted(cut_raw), ["2026-11-06"])
+
+    def test_a_fetch_without_a_completed_session_is_refused(self):
+        with self.assertRaises(ValueError):
+            tr.cut_to_completed({}, {}, None)
+
+
 class ParityTests(unittest.TestCase):
     def test_identical_datasets_agree_fully(self):
         bars, days = synthetic_bars(n=30)

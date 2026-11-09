@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT))
 
 from paper_trading.t11_pilot import SYMBOLS
 from paper_trading.t11_preview import pinned_policy
-from paper_trading.t11_replay import decisions, parity, parse_bars, simulate
+from paper_trading.t11_replay import cut_to_completed, decisions, parity, parse_bars, simulate
 
 NY = ZoneInfo("America/New_York")
 ROUTES = {("https://paper-api.alpaca.markets", "/v2/calendar"), ("https://data.alpaca.markets", "/v2/stocks/bars")}
@@ -123,6 +123,8 @@ def replay(args, run):
     # The adjusted request contains SPY too; raw SPY comes from its own pages.
     bars = parse_bars(adj_pages, SYMBOLS)
     raw_spy = {d: v[3] for d, v in parse_bars(raw_pages, {"SPY"})["SPY"].items()}
+    latest = json.loads((run / "summary.json").read_text()).get("latest_completed_session")
+    bars, raw_spy = cut_to_completed(bars, raw_spy, latest)
     policy = load_policy(args.policy)
     decided = decisions(bars, raw_spy, policy, args.start)
     dataset = simulate(decided, bars, args.capital, args.deployment, args.cost_bp)

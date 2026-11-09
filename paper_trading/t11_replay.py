@@ -44,6 +44,15 @@ def parse_bars(payloads, allowed):
     return out
 
 
+def cut_to_completed(bars, raw_spy, latest):
+    """Drop every session after `latest` (the last completed session): a daily bar fetched during the
+    trading day is partial and must never feed a decision."""
+    if not latest:
+        raise ValueError("No completed session recorded for this fetch.")
+    return ({s: {d: v for d, v in days.items() if d <= latest} for s, days in bars.items()},
+            {d: v for d, v in raw_spy.items() if d <= latest})
+
+
 def gate_series(raw_spy):
     """Per-day gate (state, cap) for every raw SPY session; same calculation as t11_preview.gate_preview."""
     items = sorted(raw_spy.items())
