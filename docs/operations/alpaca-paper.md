@@ -126,6 +126,20 @@ Do not delete a journal/lock or generate a new run ID to evade an unresolved sta
 No automatic restart, partial-fill recovery, general external-order import or
 position adoption is implemented. General risk/persistence milestones stay open.
 
+### Kill switch and journal recovery (offline-tested, broker-agnostic)
+
+- Every native `Context` reads a kill-switch sentinel (default `.local/kill-switch/HALT`,
+  or `QTL_KILL_SWITCH`). Engage or release it from any shell with
+  `.venv/bin/python scripts/kill_switch.py engage --reason TEXT`, `status`, or
+  `release --actor NAME --note TEXT`. An unreadable sentinel counts as engaged. Engaging
+  blocks all new orders, including exits; flattening an open position is a manual
+  broker action. A pre-submit risk gate also stops on realized daily loss, notional,
+  position and order-count limits.
+- `paper_trading/recovery.py` reconciles a session journal against the broker by client
+  id after a restart. It is tested only against a fake broker and is **not yet called by
+  the `session` command**, which still rejects any non-terminal prior journal. It does
+  not restore the Nautilus cache or adopt existing positions.
+
 Primary references: [Alpaca paper specification](https://docs.alpaca.markets/us/docs/paper-trading),
 [client order identity](https://docs.alpaca.markets/us/docs/working-with-orders),
 and installed NautilusTrader v1.231.0 adapter base classes/factories.

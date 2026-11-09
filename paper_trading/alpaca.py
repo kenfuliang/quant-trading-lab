@@ -9,6 +9,7 @@ import urllib.parse
 import urllib.request
 
 from research.studies.checkpoint_20261031.alpaca_pilot import NoRedirect, credentials
+from paper_trading.durable_journal import atomic_write_json
 
 PAPER = "https://paper-api.alpaca.markets"
 DATA = "https://data.alpaca.markets"
@@ -106,4 +107,4 @@ def validate_order(body, position):
 
 
 def save(path, obj):
-    Path(path).write_text(json.dumps(obj, indent=2, allow_nan=False) + "\n")
+    atomic_write_json(path, obj)

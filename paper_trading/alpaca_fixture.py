@@ -11,13 +11,34 @@ from nautilus_trader.model.objects import Price, Quantity
 from research.studies.spy.spy_backtest import BAR_TYPE, INSTRUMENT_ID
 from paper_trading.alpaca import check_quote, validate_order, PaperError
 from paper_trading.alpaca_native import Context, started_node, stop_node
+from paper_trading.kill_switch import KillSwitch
 
 
 class FakePaper:
-    def __init__(self, timeout=False, closed=False, partial=False):
-        self.posts = []
+    """Synthetic broker. `mode` adds one failure after acceptance:
+    reject, expire, poll_fail (status poll raises), stuck (never fills, cancel ok),
+    stuck_cancel_fails (never fills, cancel raises) or slow (acknowledged, fills on poll).
+    """
+    MODES = (None, "reject", "expire", "poll_fail", "stuck", "stuck_cancel_fails", "slow")
+
+    def __init__(self, timeout=False, closed=False, partial=False, mode=None):
+        assert mode in self.MODES, mode
+        self.posts, self.deletes = [], []
         self.timeout, self.closed = timeout, closed
-        self.partial = partial
+        self.partial, self.mode = partial, mode
+
+    @staticmethod
+    def _order(body, status, filled):
+        return {"id": "fake-1", "client_order_id": body["client_order_id"], "symbol": "SPY",
+                "side": body["side"], "status": status, "filled_qty": filled, "filled_avg_price": "100.00"}
+
+    def by_client_id(self, client_id):
+        body = {"client_order_id": client_id, "side": self.posts[-1]["side"]}
+        if self.mode == "poll_fail":
+            raise ConnectionError("disconnected after submit")
+        if self.mode == "slow":
+            return self._order(body, "filled", "1")
+        return self._order(body, "new", "0")
 
     def request(self, method, path, body=None):
         if path == "/v2/clock":
@@ -26,9 +47,18 @@ class FakePaper:
             self.posts.append(body)
             if self.timeout:
                 raise TimeoutError("unknown")
+            if self.mode in ("reject", "expire"):
+                return self._order(body, "rejected" if self.mode == "reject" else "expired", "0")
+            if self.mode in ("poll_fail", "stuck", "stuck_cancel_fails", "slow"):
+                return self._order(body, "new", "0")
             return {"id": "fake-" + str(len(self.posts)), "client_order_id": body["client_order_id"],
                     "symbol": "SPY", "side": body["side"], "status": "partially_filled" if self.partial else "filled",
                     "filled_qty": "0.5" if self.partial else "1", "filled_avg_price": "100.00"}
+        if method == "DELETE":
+            self.deletes.append(path)
+            if self.mode == "stuck_cancel_fails":
+                raise ConnectionError("cancel failed")
+            return None
         raise AssertionError((method, path))
 
 
@@ -46,8 +76,12 @@ async def wait_until(predicate):
     raise AssertionError("native event did not complete")
 
 
-async def native_fixture(root, *, timeout=False, closed=False, partial=False, saved_spy=False):
-    ctx = Context(FakePaper(timeout=timeout, closed=closed, partial=partial), root, fake=True)
+async def native_fixture(root, *, timeout=False, closed=False, partial=False, saved_spy=False,
+                         halted=False, denied=False, mode=None, recovery=None, limits=None, kill_switch=None):
+    switch = kill_switch or KillSwitch(Path(root) / "HALT")
+    halted = halted or switch.engaged()
+    ctx = Context(FakePaper(timeout=timeout, closed=closed, partial=partial, mode=mode), root, fake=True,
+                  kill_switch=switch, limits=limits)
     node, strategy, task = await started_node(ctx)
     try:
         # Native Strategy.on_bar is the existing ComparisonStrategy method.
@@ -67,8 +101,31 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
         await wait_until(lambda: strategy.slow.initialized)
         assert strategy.want_long
         ctx.armed = True
+        if recovery is not None:
+            ctx.apply_recovery(recovery)
+        if halted:
+            switch.engage("test", actor="test")
         ctx.data.feed(quote())
-        if closed:
+        if halted:
+            await wait_until(lambda: ctx.halted)
+            await asyncio.sleep(.1)
+        elif recovery is not None and recovery.halt:
+            await asyncio.sleep(.3)
+        elif denied:
+            await wait_until(lambda: any(e["type"] in ("gate_denied", "policy_rejected") for e in ctx.events))
+            await asyncio.sleep(.1)
+        elif mode in ("reject", "expire"):
+            await wait_until(lambda: any(e["status"] in ("rejected", "expired") for e in ctx.journal))
+            ctx.data.feed(quote())
+            await asyncio.sleep(.1)
+        elif mode in ("poll_fail", "stuck", "stuck_cancel_fails"):
+            await wait_until(lambda: ctx.unknown)
+            ctx.data.feed(quote())
+            await asyncio.sleep(.1)
+        elif mode == "slow":
+            await wait_until(lambda: ctx.fills == 1)
+            await asyncio.sleep(.1)
+        elif closed:
             await wait_until(lambda: bool(ctx.events))
             await asyncio.sleep(.1)
         elif timeout or partial:
@@ -92,8 +149,9 @@ async def native_fixture(root, *, timeout=False, closed=False, partial=False, sa
             await asyncio.sleep(.1)
             assert Decimal(str(strategy.portfolio.net_position(INSTRUMENT_ID))) == 0
         result = {"kind": "offline_native_with_fake_alpaca", "submissions": ctx.submissions,
+                  "risk_engine_state": node.kernel.risk_engine.trading_state.name,
                   "native_fills": ctx.fills, "unknown": ctx.unknown,
-                  "broker_post_count": len(ctx.api.posts), "events": ctx.events,
+                  "broker_post_count": len(ctx.api.posts), "broker_delete_count": len(ctx.api.deletes), "events": ctx.events,
                   "ending_native_position": str(strategy.portfolio.net_position(INSTRUMENT_ID)),
                   "signal_input": "saved_SPY_250_bars_to_2019_end_then_2020Q1" if saved_spy else "synthetic",
                   "timestamps": "synthetic_in_both_fixtures", "fake_fill_price": "fixed_100USD_not_historical_execution"}

@@ -40,6 +40,11 @@ M1–M4 and offline M5 fixtures do not require IBKR access. Integration mileston
 stay incomplete while required external evidence is missing. Live deployment
 needs a separately scoped readiness decision; paper success is not profitability proof.
 
+The proposed [live-readiness plan](live-readiness.md) maps these milestones to
+the gates between research and a real-money pilot, with IBKR as a candidate broker in the
+[comparison-spike decision](decisions/0004-ibkr-candidate-broker.md). It does not
+change milestone order or authorize any broker action.
+
 ## What changed and why
 
 The [initial roadmap](history/2026-10-25-initial-roadmap.md) assumed PostgreSQL

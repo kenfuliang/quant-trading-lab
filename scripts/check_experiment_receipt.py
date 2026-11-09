@@ -7,6 +7,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from research.control.experiment_receipts import validate_receipt
+from research.control.leakage_audit import audit_receipt
 
 
 def main():
@@ -17,6 +18,8 @@ def main():
     try:
         receipt = json.loads(args.receipt.read_text(), parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f'nonfinite JSON: {value}')))
         errors = validate_receipt(receipt, args.root)
+        if not errors:
+            errors = audit_receipt(receipt, args.root)
     except (OSError, ValueError) as exc:
         print(f'Receipt unreadable: {exc}', file=sys.stderr)
         return 1
