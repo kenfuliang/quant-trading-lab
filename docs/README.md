@@ -36,6 +36,7 @@ runtime timestamps use UTC.
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |
+| What runs automatically each trading day? | [Daily read-only schedule](operations/daily-schedule.md) |
 | How do we check IBKR paper connectivity? | [Paper observation](operations/paper-connection.md) |
 | How do we test SPY through Alpaca paper and log operational evidence? | [Bounded Alpaca integration](operations/alpaca-paper.md) |
 | How do we restore closed research evidence bundles? | [Evidence recovery SOP](operations/evidence-recovery.md); [scoped real-bundle drill](tasks/2026-10-27-evidence-recovery.md) |

@@ -342,12 +342,12 @@
         {
           "id": "G6.2",
           "text": "Daily scheduled shadow run and status check",
-          "status": "open",
-          "owner": "user",
+          "status": "partial",
+          "owner": "agent",
           "evidence": [
-            "docs/operations/incidents.md"
+            "docs/operations/daily-schedule.md"
           ],
-          "note": "Approved by you; not yet created."
+          "note": "Installed 2026-11-08 and verified loaded; first scheduled run is Mon 2026-11-09 18:30 Pacific."
         },
         {
           "id": "G6.3",
@@ -386,11 +386,13 @@
         {
           "id": "G7.2",
           "text": "Live read-only fetch exercised",
-          "status": "open",
+          "status": "met",
           "owner": "agent",
           "evidence": [
-            "scripts/spy_shadow_run.py"
-          ]
+            "scripts/spy_shadow_run.py",
+            "docs/operations/daily-schedule.md"
+          ],
+          "note": "One bounded read-only fetch ran 2026-11-08: 6-request cap, no orders."
         },
         {
           "id": "G7.3",
