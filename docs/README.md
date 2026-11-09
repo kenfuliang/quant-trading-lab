@@ -15,7 +15,7 @@ runtime timestamps use UTC.
 | Question | Owner |
 | --- | --- |
 | What works now and how do I start? | [Root README](../README.md) |
-| Which strategies lead our saved comparisons, and what are their tradeoffs? | [Canonical research leaderboard](leaderboard.md); original studies retain metric/evidence ownership |
+| Which strategies lead our saved comparisons, what failed, and are we learning? | Generated from `research/registry/experiments.jsonl`: [leaderboard](leaderboard.md), [dead ends](dead-ends.md), [learning curve](learning-curve.md); original studies retain metric/evidence ownership. Record with `scripts/experiments.py log` |
 | What objective and constraints guide strategy selection? | [Goals and mandate](goals.md) |
 | How do we reuse online research? | [Research intake and source registry](research-intake.md) |
 | What is the golden pipeline and rule for research evidence, stage adoption and paper-style lessons? | [GRS-1.0 research standard](research-standard.md); [cycle register](research-cycles.md) |
@@ -31,11 +31,12 @@ runtime timestamps use UTC.
 | What folder/content/report foundations have been adopted? | [Foundation adoption task and remaining checklist](tasks/2026-10-27-project-foundation-adoption.md); folder ownership remains in architecture |
 | What do we own versus NautilusTrader/MLflow, and when do we modify them? | [Dependency boundaries](architecture.md#project-and-dependency-boundaries) |
 | How does independent historical data become reusable research input? | [Local data library](data-library.md); distinguishes the implemented price pilot from planned qualification |
-| What is next and what proves completion? | [Roadmap](roadmap.md) |
+| What is next and what proves completion? | [Roadmap](roadmap.md); gate status in `research/registry/gates.json`, viewed with `make progress` (local page under `.local/progress/`) |
 | What gates stand between research and a real-money pilot, and which broker is a candidate? | [Live-readiness plan](live-readiness.md); [broker decision](decisions/0004-ibkr-candidate-broker.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |
+| What runs automatically each trading day? | [Daily read-only schedule](operations/daily-schedule.md) |
 | How do we check IBKR paper connectivity? | [Paper observation](operations/paper-connection.md) |
 | How do we test SPY through Alpaca paper and log operational evidence? | [Bounded Alpaca integration](operations/alpaca-paper.md) |
 | How do we restore closed research evidence bundles? | [Evidence recovery SOP](operations/evidence-recovery.md); [scoped real-bundle drill](tasks/2026-10-27-evidence-recovery.md) |

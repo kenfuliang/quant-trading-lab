@@ -27,17 +27,16 @@ priority; original plans, journals and receipts own execution truth.
 5. Close with an evidence-linked work table, missing/failed evidence, dependencies,
    budget usage, lessons and one finite next-task proposal. Record through
    trade-research-history and refresh existing navigation, retaining original files.
-6. Reconcile every completed cycle with the existing `docs/leaderboard.md` in its
-   owning research checkout under the [leaderboard closure contract](../../../docs/operations/recursive-research.md#leaderboard-closure-contract).
-   Apply the [headline display contract](../../../docs/research-scoring.md):
-   Calmar beside evidence status, CAGR, drawdown and time underwater. Preserve
-   source values, context and undefined reasons; never treat the score as adoption.
-   Follow the closure contract for a measured row versus verified no-change:
-   workflow-only, blocked or invalid work without new measurements receives a
-   below-table closure link, not a synthetic or zero-return metric row.
-   Bind the change or verified no-change to the closure receipt; preserve original
-   evidence. An unavailable owner is an explicit reconciliation blocker, not a
-   reason to create another leaderboard or reopen a closed experiment.
+6. Record every completed cycle in the experiment registry with
+   `scripts/experiments.py log`, then `render`, under the
+   [closure contract](../../../docs/operations/recursive-research.md#leaderboard-closure-contract).
+   One record per measured case, in its comparison context, with evidence class,
+   disposition and lesson; failed and blocked cases are recorded too. Never edit the
+   generated leaderboard by hand and never treat a rank as adoption. A cycle that
+   tested no idea gets a verified no-registry-change note and a receipt exemption,
+   not a synthetic zero-return record. Bind the record to the closure receipt and
+   preserve original evidence. An unavailable owner is an explicit reconciliation
+   blocker, not a reason to create another leaderboard or reopen a closed experiment.
 
 Completion requires accounting for every expected submission, or explicitly naming
 its absence. Avoid opening a competing portfolio roadmap or result store. Requested

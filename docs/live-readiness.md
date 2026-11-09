@@ -14,6 +14,9 @@ owns research cycles, [scoring](research-scoring.md) owns metric meaning, and th
 [incident SOP](operations/incidents.md) owns failure handling. Broker candidates:
 [0004](decisions/0004-ibkr-candidate-broker.md).
 
+Gate status is owned by the structured file `research/registry/gates.json` (checked by
+`make check`) and viewed with `make progress`; the table below is narrative.
+
 **This plan authorizes nothing.** Orders, paper sessions and live access each need
 their own scoped request. Passing a gate is evidence for a decision, not the
 decision. Statuses below were taken from repository records on 2026-11-08;
@@ -84,6 +87,11 @@ flowchart TD
     P --> D[Human decision to promote]
     D --> L
 ```
+
+Every cycle and every shadow, paper or live comparison is recorded in the experiment registry
+(`scripts/experiments.py log`), which generates the [leaderboard](leaderboard.md),
+[dead ends](dead-ends.md) and [learning curve](learning-curve.md). Only the non-development
+classes show learning that is not hindsight.
 
 Added metrics, in addition to those in [scoring](research-scoring.md): tracking
 error of paper and live versus replay, realized versus modeled slippage and cost,

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-28
+updated: 2026-11-09
 owner: project-maintainers
 ---
 
@@ -45,6 +45,39 @@ capital baseline. A 30% drawdown from USD 300,000 is USD 90,000; a later peak
 changes that dollar amount. Thirty percent is a reassessment tolerance, not a
 guarantee, maximum possible loss, automatic liquidation rule, or approved strategy
 risk budget. Gaps, liquidity, and execution failures can exceed planned thresholds.
+
+## Pilot mandate decisions recorded 2026-11-09
+
+Recorded from the user's answers in a structured interview in the 2026-11-09 session. They set the limits for a first real-money **pilot**
+(gate G8). They do not narrow what research may consider (see below) and they are not
+evidence that any strategy can meet them. Numbers are the user's choices for platform limits;
+none is investment advice.
+
+| Decision | Value |
+| --- | --- |
+| Pilot capital at risk | USD 15,000 (5% of the USD 300,000 scenario); the rest is not deployed until G9 |
+| Drawdown handling | Warning at 20% from the pilot account's peak; automatic halt through the kill switch at 30% |
+| Resuming after a halt | Manual release only, by the user, with a journaled review note; never automatic |
+| Pilot instruments | Plain US stocks and unleveraged ETFs. No leveraged ETFs, options, shorting or margin; cash account |
+| Concentration | No per-position cap (user decision); gross exposure is at most 100% because the account is cash |
+| Loss budgets | Halt new orders at 2% of pilot capital in a day (USD 300) or 5% in a week (USD 750) |
+| Growth versus drawdown | Drawdown wins: a candidate whose development-history maximum drawdown exceeds 30%, stress cases included, cannot clear G2 |
+| Candidate universe | All S&P 500 stocks and unleveraged ETFs. No candidate is pre-selected for the pilot; each needs its own frozen plan and forward window |
+| Survivor bias | Until point-in-time S&P 500 membership is qualified from free data (D3), stock-selection results are labeled survivor-biased and discovery-only and cannot clear G2 |
+| Paper period | At least 3 months in shadow or paper with no unresolved incident before real money; the sealed forward window stays at 12 months |
+| Benchmark | SPY total return (dividends reinvested) |
+| Tax | The +100% aspiration is judged after modeled costs and before personal tax; tax is disclosed as an omitted item |
+| Broker comparison | Deferred by the user on 2026-11-09: offline analysis only for now; no broker comparison spike until the user asks |
+| Pilot start date | Unset until the 3-month paper period ends with no unresolved incident; funding and withdrawal rules are decided then (earliest roughly mid-February 2027, since the SPY forward window starts 2026-11-10) |
+| Research baseline and selection | SPY is the baseline. The pipeline may select any combination from the candidate pool (S&P 500 stocks and unleveraged ETFs), not one ETF. Stock members of a combination inherit the survivor-bias label; a combination needs its own frozen plan and forward window, and the number of combinations tried counts as trials |
+
+Consequences, stated so they are not lost: the T11 candidate trades 3x leveraged ETFs and its recorded
+development drawdown is 36.9% (51.3% ungated), so it is **ineligible for the pilot** and fails the
+drawdown rule; it remains a research subject. `paper_trading/risk_gate.py` now has a separate pure `PilotLimits` and `check_pilot` (daily and weekly loss, 20% warning and
+30% halt from peak, no margin, no shorting, optional symbol allow-list, no per-position cap), verified offline only. The bounded paper
+session's `RiskLimits` defaults (one share, USD 25) are unchanged. The survivor-bias label, the T11 exclusion, the broker-side cash
+account and wiring `check_pilot` into a session are not enforced yet.
+Funding and withdrawal rules are still open.
 
 ## Decisions still open before strategy selection
 

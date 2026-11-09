@@ -1,7 +1,8 @@
 {
   "schema": "historical-installed-skills/v1",
   "by_sha256": {
-    "8055602baaf1efa0c80408697db04060347a1064f5e9915e25b4d8d576f762da": "docs/history/skills/trade-stage-development-8055602baaf1.txt"
+    "8055602baaf1efa0c80408697db04060347a1064f5e9915e25b4d8d576f762da": "docs/history/skills/trade-stage-development-8055602baaf1.txt",
+    "ccb841de1fe9b1393550e51034f7382e1e8024de24d83ef1ef4e20361fe9378a": "docs/history/skills/trade-research-management-ccb841de1fe9.txt"
   },
   "reason": "Prior recovery receipt binds historical installed bytes, not future current instructions. Originals unchanged."
 }

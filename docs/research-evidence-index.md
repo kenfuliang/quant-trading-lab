@@ -1347,6 +1347,7 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/2026-10-31-t11-hierarchy-headroom.md](../docs/tasks/2026-10-31-t11-hierarchy-headroom.md)
 - [docs/tasks/2026-10-31-t11-loss-decision-trace.md](../docs/tasks/2026-10-31-t11-loss-decision-trace.md)
 - [docs/tasks/2026-10-31-t11-specialist-review.md](../docs/tasks/2026-10-31-t11-specialist-review.md)
+- [docs/tasks/2026-11-09-forward-spy-ema.md](../docs/tasks/2026-11-09-forward-spy-ema.md)
 - [docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json](../docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json)
 - [docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json](../docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json)
 - [docs/tasks/evidence/2026-10-25-existing-risk-gates.json](../docs/tasks/evidence/2026-10-25-existing-risk-gates.json)

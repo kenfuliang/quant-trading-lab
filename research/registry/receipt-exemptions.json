@@ -1,0 +1,6 @@
+{
+  "tasks/evidence/2026-10-30-calmar-epoch3.json": "Aggregate receipt; its twelve cases are recorded through the c1 and c2 case receipts in the imported rows.",
+  "tasks/evidence/2026-10-30-skills-sop-repair.json": "Engineering receipt for skill and SOP repair, not a research experiment.",
+  "tasks/evidence/2026-10-30-t11-soxl-cloud.json": "Blocked plan receipt; its eight cases were run and are covered by the results receipt.",
+  "tasks/evidence/2026-10-30-t11-soxl-cloud-results.json": "Backfill pending: eight provisional cloud cases need metrics copied from docs/tasks/2026-10-30-t11-soxl-cloud-results.md; not guessed here."
+}
