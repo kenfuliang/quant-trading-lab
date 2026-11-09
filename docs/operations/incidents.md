@@ -49,3 +49,24 @@ No automated trading/execution recovery controls exist yet. Closed research file
 bundles have a separate [copy-only recovery SOP](evidence-recovery.md); this does
 not resume a failed experiment or recover external execution state. This SOP specifies operator behavior and
 requirements for later implementation; it does not establish recovery readiness.
+
+## Offline controls and alert response (implemented, fake-broker tested only)
+
+These offline controls exist now. None has been exercised against a real broker, and
+none authorizes cancelling an order or closing a position.
+
+| Signal | Meaning | Operator action |
+| --- | --- | --- |
+| `ops_status` check `kill_switch` engaged | The sentinel (`.local/kill-switch/HALT`) exists or is unreadable; all new orders are blocked, including exits | Read the reason with `scripts/kill_switch.py status`. Review broker state yourself. Release only with `release --actor NAME --note TEXT` after the cause is understood; a release is journaled |
+| `journal` unresolved | A session journal entry is `unknown_submission`, `reconciliation_required` or `cancel_requested_unconfirmed` | Treat the order as unknown. Inspect the paper account under this SOP. Do not delete the journal or lock, start a new run id, or resubmit. `paper_trading/recovery.py` can classify entries against a broker but is not yet called by `session` |
+| `journal` stuck | A `reserved` entry is older than 15 minutes | Same as unresolved: the POST may or may not have reached the broker |
+| `shadow` missing, stale or failed | No recent read-only shadow run completed | Re-run `scripts/spy_shadow_run.py`; a failed run keeps its directory for diagnosis |
+| `shadow` flagged | Shadow decisions disagree with the backtest replay | Investigate before trusting either; this is a signal-parity or data-timing question, not a trade |
+| `data` stale or missing | The latest bar is older than 96 hours or absent | Do not infer a position from old data |
+
+Run `.venv/bin/python scripts/ops_status.py` to write `.local/status.json`, print the
+table and deliver alerts. It exits 1 when anything is unhealthy. Remote alert sinks
+turn on only through `QTL_ALERT_*` environment variables. `ops_status` reads the
+kill switch under `--root`; if `QTL_KILL_SWITCH` moves the sentinel elsewhere, the
+monitor will not see it.
+
