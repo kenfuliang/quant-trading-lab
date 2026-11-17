@@ -47,6 +47,11 @@ progress:
 stages-check:
 	$(PYTHON) scripts/stages.py check
 
+.PHONY: stages
+stages:
+	$(PYTHON) scripts/stages.py build
+	$(PYTHON) scripts/dashboard.py
+
 experiments-check:
 	$(PYTHON) scripts/experiments.py check
 

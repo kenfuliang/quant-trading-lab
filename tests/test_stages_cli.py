@@ -95,6 +95,27 @@ class StagesCliTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("missing", err)
 
+    def test_build_writes_pipeline_page_and_leaves_inputs_untouched(self):
+        self.prepare()
+        inputs = [self.registry, self.stage_map, self.incumbents]
+        before = [p.read_bytes() for p in inputs]
+        out = self.dir / "pages"
+        code, stdout, err = self.run_cli("build", "--dir", str(out))
+        self.assertEqual((code, err), (0, ""))
+        page = (out / "stages.html").read_text()
+        self.assertIn("<title>Pipeline</title>", page)
+        self.assertIn("EMA/vol traffic light", page)
+        self.assertEqual([p.read_bytes() for p in inputs], before)
+
+    def test_build_fails_on_invalid_declarations_and_writes_nothing(self):
+        self.prepare()
+        self.stage_map.unlink()
+        out = self.dir / "pages"
+        code, _, err = self.run_cli("build", "--dir", str(out))
+        self.assertEqual(code, 1)
+        self.assertIn("missing", err)
+        self.assertFalse((out / "stages.html").exists())
+
     def test_render_without_declarations_fails_instead_of_guessing(self):
         code, _, err = self.run_cli("render")
         self.assertEqual(code, 1)

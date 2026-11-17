@@ -4,10 +4,12 @@
   draft-map  write an unreviewed stage-map.json from the registry (refuses to overwrite)
   render     rewrite docs/pipeline-status.md from the registry, stage map and incumbents
   check      validate both declarations against the registry and that the status document is current
+  build      write .local/progress/stages.html (the Pipeline tab; not tracked, it carries a build time)
 
 The registry, receipts and gates are only read. Offline only: no network, broker or order.
 """
 import argparse
+from datetime import datetime
 import json
 from pathlib import Path
 import sys
@@ -19,6 +21,7 @@ from research.control import experiment_registry as registry
 from research.control.experiment_registry import RegistryError
 from research.control.incumbents import IncumbentsError, load_incumbents, render_status
 from research.control.stage_map import StageMapError, draft_stage_map, load_stage_map
+from research.control.stage_page import render_page
 from research.control.stage_view import build_model
 
 REGISTRY = ROOT / "research/registry/experiments.jsonl"
@@ -75,6 +78,19 @@ def cmd_render(args):
     return 0
 
 
+def cmd_build(args):
+    records, stage_map, incumbents, errors = load_inputs(args)
+    if errors:
+        print("\n".join(f"error: {e}" for e in errors), file=sys.stderr)
+        return 1
+    Path(args.dir).mkdir(parents=True, exist_ok=True)
+    page = render_page(build_model(records, stage_map), records, incumbents,
+                       datetime.now().strftime("%Y-%m-%d %H:%M"))
+    (Path(args.dir) / "stages.html").write_text(page, encoding="utf-8")
+    print(f"Wrote {Path(args.dir) / 'stages.html'} from {len(records)} records.")
+    return 0
+
+
 def cmd_check(args):
     records, stage_map, incumbents, errors = load_inputs(args)
     if not errors:
@@ -99,6 +115,9 @@ def main(argv=None):
     draft.add_argument("--out", type=Path, help="default: the --stage-map path")
     draft.set_defaults(fn=cmd_draft)
     sub.add_parser("render").set_defaults(fn=cmd_render)
+    build = sub.add_parser("build")
+    build.add_argument("--dir", type=Path, default=ROOT / ".local/progress", help="folder for stages.html")
+    build.set_defaults(fn=cmd_build)
     sub.add_parser("check").set_defaults(fn=cmd_check)
     args = parser.parse_args(argv)
     try:
