@@ -94,8 +94,10 @@ The generated [leaderboard](../leaderboard.md), [dead ends](../dead-ends.md) and
 [learning curve](../learning-curve.md) already exist and are freshness-checked by
 `make experiments-check`; they describe history, not the current choice.
 
-Known defect to fix in scope: `leverage-latest.json` stores absolute paths from an
-old checkout, so `make performance` fails at its last step.
+Known defect, **out of scope**: untracked `.local/performance/leverage-latest.json` stores absolute
+paths from an old checkout, so `make performance` fails at its last step. The code that reads it
+(`scripts/performance.py`, `reporting/leverage.py`, `reporting/strategy_suite.py`) is byte-pinned in
+`research/compatibility.json`, so the fix is repointing that data file, not editing code.
 
 ## Approaches considered
 
@@ -246,7 +248,7 @@ Rules
    are drafted from the cycle register's prose and each is marked `unverified` until the
    owner confirms it; the builder does not infer an incumbent the prose does not state.
    Add the new owner to the [documentation map](../README.md#find-the-canonical-owner).
-2. Compare view and Trust badges; fix stale absolute paths so `make performance` passes.
+2. Compare view and Trust badges.
 3. Cycle log and open-uncertainty panel.
 4. Optional cross-checks (`quantstats`, `alphalens-reloaded`), only if a cycle needs them.
 

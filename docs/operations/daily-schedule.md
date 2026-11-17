@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-08
+updated: 2026-11-17
 owner: project-maintainers
 ---
 
@@ -64,3 +64,5 @@ symlinks to the main checkout's ignored files, so results accumulate in one plac
 ## Single entry page
 
 `scripts/dashboard.py` writes `.local/progress/index.html`, one tab bar over the progress, holdings, profile and target pages that exist in that folder, with each page's build time. Open `http://localhost:8780/` (serve only `.local/progress`). It does not build the pages; run it last, after the page scripts. `scripts/progress.py build` now writes `progress.html`.
+
+The **Pipeline** tab comes from `make stages` (`scripts/stages.py build`, then `scripts/dashboard.py`). It reads only the experiment registry, `research/registry/stage-map.json` and `research/registry/incumbents.json`, and shows stage cells, per-context comparison, run trust and the cycle log. Eligibility is `unassessed` for every run until per-run eligibility records exist, and records without a reviewed stage-map entry are `unclassified`. `docs/pipeline-status.md` is the committed, generated summary of the same data (`scripts/stages.py render`; `make check` fails when it is stale).

@@ -47,13 +47,12 @@ research/control/incumbents.py       create  load_incumbents, render_status
 research/control/stage_page.py       create  render_page (HTML)
 scripts/stages.py                    create  draft-map | render | check | build
 scripts/dashboard.py                 modify  add the Pipeline tab
-scripts/performance.py               modify  render_latest guard
 research/registry/stage-map.json     create  drafted, reviewed:false
 research/registry/incumbents.json    create  authored from cycle-register prose
 docs/pipeline-status.md              create  generated
 Makefile, docs/README.md, docs/operations/daily-schedule.md   modify
 tests/test_stage_map.py  test_stage_view.py  test_incumbents.py  test_stages_cli.py
-tests/test_stage_page.py  test_performance_render_guard.py       create; tests/test_dashboard.py modify
+tests/test_stage_page.py                                         create; tests/test_dashboard.py modify
 ```
 
 ### Task 1: Stage taxonomy and stage-map loader
@@ -191,21 +190,23 @@ tests/test_stage_page.py  test_performance_render_guard.py       create; tests/t
 - [ ] **Step 5: Smoke check.** `python3 scripts/stages.py build --dir /tmp/stages-smoke && python3 scripts/dashboard.py --dir /tmp/stages-smoke`, then open `http://localhost:<port>` after `python3 -m http.server --directory /tmp/stages-smoke --bind 127.0.0.1 <port>`; confirm the Pipeline tab shows 7 stage cards, 44 `unclassified` records and no `improved` badge. Stop the server.
 - [ ] **Step 6: Commit** `git add research/control/stage_page.py scripts/stages.py scripts/dashboard.py Makefile tests/test_stage_page.py tests/test_dashboard.py && git commit -m "Add Pipeline tab: stage view, compare, trust and cycle log"`.
 
-### Task 6: Performance render guard and operations note
+### Task 6: Operations note and evidence index (revised during execution)
+
+The original Task 6 also added a `render_latest` guard to `scripts/performance.py` so a stale
+`leverage-latest.json` source would be skipped. It was **dropped**: `scripts/performance.py`,
+`reporting/leverage.py` and `reporting/strategy_suite.py` are byte-pinned in
+`research/compatibility.json` (`protected_files`), and editing any of them fails
+`tests.test_package_compatibility` and `tests.test_dependency_boundaries`. The stale pointer is
+untracked `.local/performance/leverage-latest.json` state; repointing its `source` and
+`directory` to the current checkout is a data fix for the owner, not a code change.
 
 **Files:**
-- Modify: `scripts/performance.py` (`main`, lines ~105-114), `docs/operations/daily-schedule.md` ("Single entry page" section)
-- Test: `tests/test_performance_render_guard.py`
+- Modify: `docs/operations/daily-schedule.md` ("Single entry page"), `docs/research-evidence-index.json` and `.md` (regenerated with `scripts/current/research_index.py --write`, because two new files under `docs/tasks/` change the generated index)
 
-**Interfaces:**
-- Produces: `scripts/performance.py` `render_latest(label: str, latest: Path, render_fn) -> bool`: reads `json.loads(latest.read_text())["source"]`, calls `render_fn(source)` and returns `True`; on `FileNotFoundError` prints `warning: <label>: source <source> is missing (stale <latest.name>); skipped` to stderr and returns `False`. Other exceptions propagate.
-
-- [ ] **Step 1: Write failing tests**: `test_missing_source_warns_and_returns_false` (stderr contains `stale`); `test_existing_source_calls_renderer_once_with_source`; `test_other_errors_propagate` (`ValueError` is not swallowed).
-- [ ] **Step 2: Run** `python3 -m unittest tests.test_performance_render_guard -v`. Expected: FAIL.
-- [ ] **Step 3: Implement** `render_latest` and use it for the leverage and strategy-suite renders in `main` (keep the `if latest.exists()` guards); the final `print` of the report and MLflow URLs must still run when a render is skipped.
-- [ ] **Step 4: Document.** In `docs/operations/daily-schedule.md` "Single entry page", add: the Pipeline tab is built by `make stages` (`scripts/stages.py build`, then `scripts/dashboard.py`), reads only the registry, `stage-map.json` and `incumbents.json`, and shows eligibility as `unassessed`. Update `updated:` frontmatter.
-- [ ] **Step 5: Verify everything.** `python3 -m unittest discover -s tests` → OK; `python3 scripts/check_docs.py`, `python3 scripts/experiments.py check`, `python3 scripts/stages.py check` → all pass.
-- [ ] **Step 6: Commit** `git add scripts/performance.py docs/operations/daily-schedule.md tests/test_performance_render_guard.py && git commit -m "Skip stale leverage sources in make performance; document Pipeline tab"`.
+- [x] **Step 1: Document** the Pipeline tab (`make stages`, inputs, `unassessed`, `unclassified`, the status document) and update `updated:` frontmatter.
+- [x] **Step 2: Regenerate** the evidence index and confirm `scripts/current/research_index.py --check` passes.
+- [x] **Step 3: Verify everything** with the project interpreter: `/path/to/.venv/bin/python -m unittest discover -s tests` (the worktree has no `.venv`; plain `python3` lacks pandas and NautilusTrader and reports unrelated import errors), then `scripts/check_docs.py`, `scripts/experiments.py check`, `scripts/stages.py check`.
+- [x] **Step 4: Commit** `git add docs/operations/daily-schedule.md docs/research-evidence-index.json docs/research-evidence-index.md docs/tasks/2026-11-17-dashboard-redesign-design.md docs/tasks/2026-11-17-dashboard-redesign-plan.md && git commit -m "Document the Pipeline tab; regenerate evidence index"`.
 
 ## After the code lands (owner work, not a task)
 
