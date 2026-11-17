@@ -117,6 +117,16 @@ class RenderTests(unittest.TestCase):
         self.assertIn("A/B", row)
         self.assertEqual(len(row.split(" | ")), 6)
 
+    def test_markup_and_line_breaks_in_cells_are_neutralised(self):
+        hostile = "<img src=x> & a|b <!-- x\rnext\nline"
+        text = self.render({"sizing": inc("sizing", hostile, scope="<b>s</b>")})
+        row = [r for r in data_rows(text) if r.startswith("| sizing")][0]
+        self.assertIn("&lt;img src=x&gt; &amp; a/b &lt;!-- x next line", row)
+        self.assertIn("&lt;b&gt;s&lt;/b&gt;", row)
+        self.assertNotIn("<!-- x", text)
+        self.assertNotIn("\r", text)
+        self.assertEqual(len(row.split(" | ")), 6)
+
     def test_render_is_deterministic_and_has_frontmatter(self):
         first = self.render({"sizing": inc("sizing", "Fixed size")})
         self.assertEqual(first, self.render({"sizing": inc("sizing", "Fixed size")}))

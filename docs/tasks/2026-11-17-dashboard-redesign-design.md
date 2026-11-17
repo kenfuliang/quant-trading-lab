@@ -138,7 +138,9 @@ Data layer (one module, pure functions, unit-tested on fixtures):
    carry two stage tags). Only the sidecar's `stage_under_test` places a record in a
    stage cell. A record with no sidecar entry is `unclassified`; a record changing two
    stages is `unattributable`.
-4. Matched pair = a challenger (tag `challenger`) and the control the sidecar names,
+4. Matched pair = a challenger (tag `challenger`, or any record whose reviewed entry names a
+   control, since the registry is immutable and some challengers carry no tag) and the control
+   the sidecar names,
    in the same `code` and `period`. With no named control the pair is `ambiguous
    control`, and no delta is computed. Capital is not in the data, so it is not
    part of the match. *(Author's call.)*

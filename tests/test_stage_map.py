@@ -69,6 +69,12 @@ class StageMapTests(unittest.TestCase):
         with self.assertRaises(StageMapError):
             load_stage_map(path, {"a-1"})
 
+    def test_load_rejects_a_record_that_is_its_own_control(self):
+        path = self.write({"schema": "stage-map/v1", "entries": [entry("a-1", control="a-1")]})
+        with self.assertRaises(StageMapError) as caught:
+            load_stage_map(path, {"a-1"})
+        self.assertIn("own control", str(caught.exception))
+
     def test_load_rejects_bad_stage_and_bad_schema(self):
         bad_stage = self.write({"schema": "stage-map/v1", "entries": [entry("a-1", stage="foo")]})
         with self.assertRaises(StageMapError):

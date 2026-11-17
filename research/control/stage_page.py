@@ -57,7 +57,31 @@ def _badges(counts, kind):
                    for key, n in sorted(counts.items()))
 
 
-def _stage_view(model, incumbents):
+def _points(value):
+    return "n/a" if value is None else f"{value * 100:+.2f}"
+
+
+def _pair_line(pair, by_id):
+    challenger = by_id[pair["challenger"]]["name"]
+    control = by_id[pair["control"]]["name"] if pair["control"] in by_id else "no control named"
+    head = (f'<b>{_e(challenger)}</b> vs <b>{_e(control)}</b> '
+            f'<span class="badge" data-disposition="{_e(pair["disposition"])}">{_e(pair["disposition"])}</span>')
+    if pair["status"] != "matched":
+        return f'<div class="pair">{head} <span class="badge" data-effect="ambiguous control">ambiguous control</span></div>'
+    delta = pair["delta"]
+    return (f'<div class="pair">{head} <span class="badge" data-effect="{_e(pair["effect"])}">{_e(pair["effect"])}</span><br>'
+            f'net CAGR {_points(delta["net_cagr"])} pt, max DD {_points(delta["max_drawdown"])} pt</div>')
+
+
+def _records_detail(cell, by_id):
+    if not cell["records"]:
+        return ""
+    items = "".join(f'<li><b>{_e(by_id[i]["name"])}</b> ({_e(by_id[i]["disposition"])}): {_e(by_id[i]["lesson"])}</li>'
+                    for i in cell["records"])
+    return f'<details><summary>records and lessons</summary><ul>{items}</ul></details>'
+
+
+def _stage_view(model, incumbents, by_id):
     cards = []
     for stage in STAGES:
         cell, declared = model["stages"][stage], incumbents.get(stage)
@@ -67,7 +91,8 @@ def _stage_view(model, incumbents):
             f'{" · " + _e(declared["availability"]) if declared else ""}</div>'
             f'<div class="muted">{len(cell["records"])} records · {len(cell["pairs"])} pairs</div>'
             f'<div>{_badges(cell["effects"], "effect") or ("no matched control" if cell["records"] else "no evidence")}</div>'
-            f'<div>{_badges(cell["dispositions"], "disposition")}</div></div>')
+            f'<div>{_badges(cell["dispositions"], "disposition")}</div>'
+            f'{"".join(_pair_line(p, by_id) for p in cell["pairs"])}{_records_detail(cell, by_id)}</div>')
     summary = (f'{len(model["unclassified"])} unclassified · {len(model["unattributable"])} unattributable'
                f' · {sum(len(v) for v in model["contexts"].values())} records in total')
     return (f'<h2 id="stage-view">Stage view</h2><p class="muted">Counts are records. Effects are per matched '
@@ -134,5 +159,5 @@ def render_page(model, records, incumbents, built):
             f'the stage map and the incumbents file; nothing here is an adoption verdict.</p>'
             '<nav><a href="#stage-view">Stage view</a><a href="#compare">Compare</a><a href="#trust">Trust</a>'
             '<a href="#cycle-log">Cycle log</a></nav>'
-            f'{_stage_view(model, incumbents)}{_compare(model, by_id)}{_trust(records)}{_cycle_log(records, place)}'
+            f'{_stage_view(model, incumbents, by_id)}{_compare(model, by_id)}{_trust(records)}{_cycle_log(records, place)}'
             f'<script>{_SCRIPT}</script></body></html>')

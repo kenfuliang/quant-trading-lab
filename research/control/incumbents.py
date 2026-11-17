@@ -6,10 +6,11 @@ and each entry cites the experiment record that justified it. The status documen
 render of that file plus the registry and the stage view model, so it is deterministic and a
 stale copy is detectable by string comparison. Nothing here writes a file.
 """
+import html
 import json
 from pathlib import Path
 
-from research.control.registry_views import _cell, updated_date
+from research.control.registry_views import updated_date
 from research.control.stage_map import STAGES
 
 SCHEMA = "incumbents/v1"
@@ -60,6 +61,12 @@ def load_incumbents(path, record_ids):
         _check_last_changed(stage, item["last_changed"])
         loaded[stage] = item
     return loaded
+
+
+def _cell(text):
+    """One Markdown table cell: no line breaks, no pipe, and markup shown as text."""
+    flat = str(text).replace("\r", " ").replace("\n", " ").replace("|", "/").strip()
+    return html.escape(flat, quote=False)
 
 
 def _points(value):

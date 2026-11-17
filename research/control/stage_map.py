@@ -66,6 +66,8 @@ def load_stage_map(path, record_ids):
             raise StageMapError(f"stage map repeats record {rid}")
         if item["stage_under_test"] not in (*STAGES, MULTIPLE, None):
             raise StageMapError(f"{rid}: unknown stage_under_test {item['stage_under_test']!r}")
+        if item["control"] == rid:
+            raise StageMapError(f"{rid}: a record cannot be its own control")
         if item["control"] is not None and item["control"] not in record_ids:
             raise StageMapError(f"{rid}: stage map names unknown control {item['control']}")
         if not isinstance(item["reviewed"], bool):

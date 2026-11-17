@@ -69,6 +69,19 @@ class BuildModelTests(unittest.TestCase):
         self.assertIsNone(pair["effect"])
         self.assertEqual(cell["effects"], {"ambiguous control": 1})
 
+    def test_reviewed_control_makes_an_untagged_record_a_challenger(self):
+        control = rec("ctl", 1.1967, 0.5126, ["control"], "control")
+        gated = rec("gated", 0.9203, 0.3690, [], "inconclusive")
+        stage_map = {"ctl": entry("ctl"), "gated": entry("gated", control="ctl")}
+        (pair,) = build_model([control, gated], stage_map)["stages"]["risk gate"]["pairs"]
+        self.assertEqual((pair["challenger"], pair["control"], pair["status"], pair["effect"]),
+                         ("gated", "ctl", "matched", "tradeoff"))
+
+    def test_records_without_a_named_control_and_tag_form_no_pair(self):
+        records = [rec("ctl", tags=["control"], disp="control"), rec("plain")]
+        stage_map = {"ctl": entry("ctl"), "plain": entry("plain")}
+        self.assertEqual(build_model(records, stage_map)["stages"]["risk gate"]["pairs"], [])
+
     def test_challenger_without_named_control_is_ambiguous(self):
         records, stage_map = self.pair_fixture(control_named=False)
         (pair,) = build_model(records, stage_map)["stages"]["risk gate"]["pairs"]

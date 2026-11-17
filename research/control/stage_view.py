@@ -1,5 +1,9 @@
 """Stage view model: where each record sits in the pipeline and what each matched pair shows.
 
+A challenger is a record tagged `challenger` or a record whose reviewed stage-map entry names a
+control: the reviewed sidecar is the authority, so a record the registry could not tag (it is
+immutable) can still be paired.
+
 Pure functions over registry records and the reviewed stage map. A stage effect is only
 computed for a matched pair (a challenger and the control the stage map names, in the same
 context). Effects use Pareto dominance on the two policy objectives; Sharpe, Calmar and
@@ -76,7 +80,7 @@ def build_model(records, stage_map):
             continue
         cell = stages[place]
         cell["records"].append(rid)
-        if "challenger" in (record.get("tags") or []):
+        if "challenger" in (record.get("tags") or []) or entry["control"] is not None:
             pair = _pair(record, entry, by_id)
             cell["pairs"].append(pair)
             _bump(cell["effects"], pair["effect"] or AMBIGUOUS)

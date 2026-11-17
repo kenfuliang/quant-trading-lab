@@ -69,9 +69,29 @@ class StagePageTests(unittest.TestCase):
         self.assertIn("<td>50.00%</td><td>n/a</td>", page)
         self.assertNotIn(">0.00%<", page)
 
+    def test_stage_card_lists_each_pair_with_deltas_and_lessons(self):
+        page = page_for(self.records, self.stage_map)
+        card = page.split('data-stage="risk gate"')[1].split('data-stage="sizing"')[0]
+        self.assertIn("gate", card)
+        self.assertIn("ctl", card)
+        self.assertIn("net CAGR -27.64 pt", card)
+        self.assertIn("max DD -14.36 pt", card)
+        self.assertIn("<details", card)
+        self.assertIn("A lesson.", card)
+
+    def test_stage_card_pair_text_is_escaped(self):
+        records = [rec("c", 0.5, 0.3, ["control"], "control", name="<i>ctl</i>"),
+                   rec("x", 0.4, 0.2, ["challenger"], "retire", name="<b>x</b> & y")]
+        records[1]["lesson"] = "<u>lesson</u>"
+        page = page_for(records, {"c": entry("c"), "x": entry("x", control="c")})
+        card = page.split('data-stage="risk gate"')[1].split('data-stage="sizing"')[0]
+        self.assertIn("&lt;b&gt;x&lt;/b&gt; &amp; y", card)
+        self.assertIn("&lt;u&gt;lesson&lt;/u&gt;", card)
+        self.assertNotIn("<b>x</b>", page)
+
     def test_stage_cards_distinguish_no_evidence_from_no_matched_control(self):
         page = page_for(self.records, self.stage_map)
-        card = lambda stage: page.split(f'data-stage="{stage}"')[1].split("</div></div>")[0]
+        card = lambda stage: page.split(f'data-stage="{stage}"')[1].split("data-stage=")[0]
         self.assertIn("no evidence", card("features"))
         self.assertIn("no matched control", card("sizing"))
         self.assertNotIn("no evidence", card("risk gate"))
