@@ -1,0 +1,14 @@
+{
+  "schema": "incumbents/v1",
+  "incumbents": [
+    {
+      "stage": "risk gate",
+      "algorithm": "EMA/volatility traffic light",
+      "identity": "RAW SPY closes; EMA50/200 trend and 20-return sample volatility annualized by sqrt252; cap green 100%, yellow 50%, red 0% scaling every T11 weight; red at 40% volatility; yellow on non-positive trend or 25% volatility; recovery after five closes below 35% volatility (red to yellow), then five positive-trend closes below 20% (yellow to green); price-peak component disabled",
+      "justified_by": "legacy-002-t11-with-traffic-light-cap",
+      "availability": "unverified",
+      "last_changed": null,
+      "scope": "T11 transfer test, 2020–2025, 25bp; retained as the frozen EMA/volatility-only gate, not adopted (inconclusive: lowers drawdown, sacrifices growth and recovery time)"
+    }
+  ]
+}

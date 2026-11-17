@@ -1,0 +1,665 @@
+{
+  "schema": "stage-map/v1",
+  "entries": [
+    {
+      "record_id": "legacy-001-t11-risk-gate-25bp-six-etf-study",
+      "stage_under_test": "multiple",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-002-t11-with-traffic-light-cap",
+      "stage_under_test": "risk gate",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-003-ungated-t11",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-004-four-sleeve-ensemble",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-005-volatility-adjusted-sector-top-three-gat",
+      "stage_under_test": "market conditions",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-006-volatility-adjusted-sector-top-three-gat",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-007-gated-volatility-adjusted-sector-momentu",
+      "stage_under_test": "risk gate",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-008-volatility-adjusted-sector-top-three-gat",
+      "stage_under_test": "market conditions",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-009-volatility-adjusted-sector-top-three-gat",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-010-gated-volatility-adjusted-sector-momentu",
+      "stage_under_test": "risk gate",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-011-original-momentum",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-012-stock-momentum",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-013-original-stock-momentum",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-014-nvda-amd-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-015-sector-cap",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-016-momentum-sector-limit",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-017-target-matched-control",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-018-stock-momentum-50-bp-delay",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-019-momentum-gate",
+      "stage_under_test": "risk gate",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-020-equal-weight-sectors-gate-5bp",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-021-equal-weight-sectors-gate-10bp",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-022-momentum-both",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-023-correlation-aware-sector-top-three-gate-",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-024-correlation-aware-sector-top-three-gate-",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-025-no-buy-topups-immediate-risk-cuts",
+      "stage_under_test": "execution",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-026-original-spy-gate",
+      "stage_under_test": "risk gate",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-027-ungated-volatility-adjusted-sector-top-t",
+      "stage_under_test": "market conditions",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-028-volatility-adjusted-sector-momentum-issu",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-029-ungated-volatility-adjusted-sector-momen",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-030-discrete-ema-volatility-gate",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-031-discrete-gate-c02-replay",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-032-discrete-gate-c03-replay",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-033-discrete-gate-c04-replay",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-034-discrete-gate-c05-replay",
+      "stage_under_test": "features",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-035-discrete-gate-c06-replay",
+      "stage_under_test": "execution",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-036-monthly-buy-topups-immediate-risk-cuts",
+      "stage_under_test": "execution",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-037-no-buy-topups-immediate-risk-cuts",
+      "stage_under_test": "execution",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-038-smooth-sizing-under-discrete-ceiling",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-039-volatility-adjusted-sector-momentum-issu",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-040-ungated-volatility-adjusted-sector-momen",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-041-ungated-volatility-adjusted-sector-top-t",
+      "stage_under_test": "market conditions",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-042-monthly-buy-topups-immediate-risk-cuts",
+      "stage_under_test": "execution",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-043-discrete-ema-volatility-gate",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-044-discrete-gate-c02-replay",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-045-discrete-gate-c03-replay",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-046-discrete-gate-c04-replay",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-047-discrete-gate-c05-replay",
+      "stage_under_test": "features",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-048-discrete-gate-c06-replay",
+      "stage_under_test": "execution",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-049-half-discrete-gate-control",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-050-smooth-sizing-under-discrete-ceiling",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-051-half-discrete-gate-control",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-052-sector-breadth-gate-vol-adjusted-top-thr",
+      "stage_under_test": "market conditions",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-053-total-return-trend-eligibility-raw-gate",
+      "stage_under_test": "features",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-054-spy-holding-90-initial-target",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-055-sector-momentum",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-056-total-return-trend-eligibility-raw-gate",
+      "stage_under_test": "features",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-057-spy-holding",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-058-gate-only-spy-control",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-059-spy-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-060-spy-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-061-spy-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-062-spy-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-063-spy-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-064-total-return-features-full-transform",
+      "stage_under_test": "features",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-065-gate-only-spy-control",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-066-spy-hold",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-067-spy-buy-and-hold-issuer-v2-5bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-068-spy-hold-gate-v1-5bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-069-spy-buy-and-hold-issuer-v2-10bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-070-spy-hold-gate-v1-10bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-071-total-return-features-full-transform",
+      "stage_under_test": "features",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-072-sector-breadth-gate-vol-adjusted-top-thr",
+      "stage_under_test": "market conditions",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-073-continuous20-volatility-cap",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-074-continuous20-volatility-cap",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-075-sma200-price-proposal-fixed-gate",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-076-raw-sector-momentum-issuer-v2-5bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-077-raw-sector-momentum-issuer-v2-10bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-078-no-veto-union-eligibility-fixed-gate",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-079-sma200-price-proposal-fixed-gate",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-080-no-veto-union-eligibility-fixed-gate",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-081-ema200-price-proposal-fixed-gate",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-082-gate-rs1-selector-gate-25bp-six-etf-stud",
+      "stage_under_test": "multiple",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-083-equal-weight-stock-universe",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-084-equal-weight-stocks-50-bp-delay",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-085-ema200-price-proposal-fixed-gate",
+      "stage_under_test": "position proposal",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-086-equal-sectors",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-087-equal-weight-sectors-issuer-v2-5bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-088-equal-weight-sectors-issuer-v2-10bp",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-089-equal-weight-low-vol-universe",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-090-fixed-equal-family-gate-25bp-six-etf-stu",
+      "stage_under_test": "multiple",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-091-gate-rs1-selector-gate-50bp-six-etf-stud",
+      "stage_under_test": "multiple",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-092-half-ema-control",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-093-half-ema-control",
+      "stage_under_test": "sizing",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-094-capm-without-stop",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-095-capm-without-stop",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-096-etf-momentum",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-097-equal-weight-etfs-5",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-098-capm-1-stop",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-099-capm-1-stop",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-100-capm-without-stop",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-101-low-volatility-stocks",
+      "stage_under_test": "target selection",
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-102-capm-1-stop",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-103-causal-nvda-amd-pairs",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-104-causal-dual-thrust",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-105-spy-intraday-long",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-106-g-score",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-107-market-conditions-prototype",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-108-target-selection-prototype",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "legacy-109-risk-sizing-prototype",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    },
+    {
+      "record_id": "RM-20261030-01:residual-momentum-selector",
+      "stage_under_test": null,
+      "control": null,
+      "reviewed": false
+    }
+  ]
+}
