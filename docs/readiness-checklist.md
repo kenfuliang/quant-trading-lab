@@ -66,13 +66,13 @@ Importance H with score 2 or lower, lowest score first.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | R1 | Backtest engines | 3 | H | Screen and NautilusTrader engines agree on the CI fixture; real-data parity blocked at load | Real-data parity after the data layer | 3 | G3.2 | `research/evaluation/parity.py`, `tests/current/test_engine_parity.py`, `docs/tasks/2026-11-17-engine-parity.md` |
 | R2 | Cost and execution realism | 1.5 | H | Fixed bp plus $1 commission; no liquidity scaling | Liquidity-scaled stock costs | 5 | none | `research/evaluation/market_model.py` |
-| R3 | Interest on idle cash | 2 | M | Not modelled; disclosed in every receipt and in conventions | Revisit when gated strategies are compared to buy-and-hold | - | none | `research/evaluation/market_model.py` |
+| R3 | Interest on idle cash | 2 | M | Not modelled; disclosed in every receipt and in conventions | Revisit when gated strategies are compared to buy-and-hold | - | none | `research/evaluation/market_model.py`, `docs/conventions.md` |
 | R4 | Short selling and borrow | 3 | L | Long-only decided for the pilot | none now | - | G0.3 | `docs/goals.md` |
 | R5 | Lookahead and leakage control | 2 | H | Manual audit skill; causal history_view; no automated check | Truncate-and-compare check | 4 | G2.2 | `research/control/leakage_audit.py`, `tests/test_leakage_audit.py` |
 | R6 | Overfitting statistics | 1.5 | H | Pareto, sealed forward window, trial ledger; no deflated Sharpe or PBO | PSR, DSR, PBO and trial counts | 4 | G2.1, G2.3 | `research/control/trial_ledger.py`, `research/registry/forward-plans/FWD-SPY-EMA-1.json` |
 | R7 | Feature and signal research | 1 | M | Three-feature registry; no IC tools | Signal diagnostics | 4 | none | `research/features/feature_engineering.py` |
 | R8 | Analysis and attribution | 1 | H | Six scalar metrics per registry record; run outputs now exist | Stage waterfall from ablation runs | 4 | none | `research/evaluation/run_output.py` |
-| R9 | Benchmarks and period windows | 2.5 | M | SPY total return set in goals; windows not standardised | Conventions document | 2 | none | `docs/goals.md` |
+| R9 | Benchmarks and period windows | 2.5 | M | SPY total return set in goals; windows not standardised | Conventions document | 2 | none | `docs/goals.md`, `docs/conventions.md` |
 | R10 | Experiment governance | 4 | M | GRS cycles, registry, lessons; high process cost per idea | Keep; measure cost per cycle | - | none | `docs/research-standard.md`, `docs/research-cycles.md`, `research/control/experiment_registry.py` |
 | R11 | Reproducibility and lineage | 3.5 | H | Hash-chained registry, receipts, run-output/v1 with hashes | Registry records link run outputs | 6 | none | `research/control/experiment_receipts.py`, `research/evaluation/run_output.py`, `research/registry/experiments.jsonl` |
 

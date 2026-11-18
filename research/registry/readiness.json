@@ -131,7 +131,8 @@
       "next_action": "Revisit when gated strategies are compared to buy-and-hold",
       "roadmap_step": null,
       "evidence": [
-        "research/evaluation/market_model.py"
+        "research/evaluation/market_model.py",
+        "docs/conventions.md"
       ],
       "gates": []
     },
@@ -224,7 +225,8 @@
       "next_action": "Conventions document",
       "roadmap_step": 2,
       "evidence": [
-        "docs/goals.md"
+        "docs/goals.md",
+        "docs/conventions.md"
       ],
       "gates": []
     },
