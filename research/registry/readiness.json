@@ -223,7 +223,7 @@
       "importance": "M",
       "critique": "SPY total return set in goals; benchmark, annualisation, period and crisis windows now defined once in the conventions document; no code reads them yet",
       "next_action": "Make P2 analysis read the conventions windows and benchmark",
-      "roadmap_step": null,
+      "roadmap_step": 4,
       "evidence": [
         "docs/goals.md",
         "docs/conventions.md"
@@ -291,7 +291,7 @@
       "importance": "M",
       "critique": "Every study is one strategy",
       "next_action": "Combiner for run outputs",
-      "roadmap_step": 7,
+      "roadmap_step": 9,
       "evidence": [],
       "gates": []
     },
@@ -454,7 +454,7 @@
       "aspect": "Dependencies and environment",
       "score": 4.5,
       "importance": "M",
-      "critique": "Locked and pinned; Makefile resolves the interpreter from the worktree, the main checkout venv or PATH, so plain make check works in a worktree",
+      "critique": "Locked and pinned; Makefile resolves the interpreter from the local .venv, else the main checkout's .venv, so plain make check works in a worktree",
       "next_action": "none now",
       "roadmap_step": null,
       "evidence": [

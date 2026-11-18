@@ -40,6 +40,20 @@ class ReadinessCliTests(unittest.TestCase):
             self.assertEqual(code, 1)
             self.assertIn("is stale", err)
 
+    def test_check_fails_when_a_score_changes_after_render(self):
+        with tempfile.TemporaryDirectory() as t:
+            doc = Path(t) / "readiness-checklist.md"
+            registry = Path(t) / "readiness.json"
+            data = json.loads(REGISTRY.read_text(encoding="utf-8"))
+            registry.write_text(json.dumps(data), encoding="utf-8")
+            self.assertEqual(run("--registry", str(registry), "--doc", str(doc), "render")[0], 0)
+            self.assertEqual(run("--registry", str(registry), "--doc", str(doc), "check")[0], 0)
+            data["aspects"][0]["score"] = 0.5 if data["aspects"][0]["score"] != 0.5 else 1
+            registry.write_text(json.dumps(data), encoding="utf-8")
+            code, _, err = run("--registry", str(registry), "--doc", str(doc), "check")
+            self.assertEqual(code, 1)
+            self.assertIn("is stale", err)
+
     def test_check_fails_on_missing_evidence(self):
         with tempfile.TemporaryDirectory() as t:
             data = json.loads(REGISTRY.read_text(encoding="utf-8"))

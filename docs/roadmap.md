@@ -91,8 +91,8 @@ removes an unconditional database choice and puts proof of native behavior first
 
 The [readiness checklist](readiness-checklist.md) is the status view of this
 sequence: it scores each area and links evidence. This table owns the order and
-dependencies; the plan numbers are the master plan's order (Plan 1 is step 1,
-Plan 2 is step 2, Plan 3 is step 3, and so on).
+dependencies; the plan numbers are the master plan's order: steps 1-6 match
+Plans 1-6, step 9 is Plan 7, and steps 7-8 have no plan yet.
 
 | Step | Scope | Depends on | State |
 | --- | --- | --- | --- |

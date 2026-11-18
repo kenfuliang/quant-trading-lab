@@ -23,14 +23,24 @@ _FIELDS = {"schema_id", "name", "stage", "location", "authority", "producer", "c
 _TEXT = ("name", "producer", "retention")
 _ID = r"[a-z][a-z0-9_.-]*/v\d+"
 _ID_RE = re.compile(rf"{_ID}")
+_ID_ANY = r"[A-Za-z][A-Za-z0-9_.-]*/v\d+"
+_PATH_RE = re.compile(r"[\w./-]+\.(?:py|json|jsonl|md)\b")
+REPO_ROOT = Path(__file__).resolve().parents[2]
 _DECLARED = (
-    re.compile(rf"""\w*SCHEMA\w*\s*=\s*["']({_ID})["']"""),
-    re.compile(rf"""\bschema["']?\)?\s*(?:[:=]|[!=]=)\s*["']({_ID})["']"""),
+    re.compile(rf"""\w*SCHEMA\w*\s*(?::\s*\w+)?\s*=\s*["']({_ID_ANY})["']"""),
+    re.compile(rf"""\bschema["']?\)?\s*(?:[:=]|[!=]=)\s*["']({_ID_ANY})["']"""),
 )
 
 
 class ArtifactsError(ValueError):
     pass
+
+
+def _check_paths(item, root):
+    for text in [item["producer"], *item["consumers"]]:
+        for token in _PATH_RE.findall(text):
+            if "/" in token and not (root / token).exists():
+                raise ArtifactsError(f"{item['name']}: {token} does not exist")
 
 
 def _check_entry(item, names, ids):
@@ -72,12 +82,18 @@ def _read(path):
     return doc
 
 
-def load_artifacts(path):
-    """The validated entries. Raises ArtifactsError on any shape or vocabulary problem."""
+def load_artifacts(path, root=REPO_ROOT):
+    """The validated entries. Raises ArtifactsError on any shape, vocabulary or path problem.
+
+    Path-like tokens (containing `/`, ending .py/.json/.jsonl/.md) in `producer` and `consumers`
+    must exist under `root`; pass root=None to skip that check.
+    """
     doc = _read(path)
     names, ids = set(), set()
     for item in doc["entries"]:
         _check_entry(item, names, ids)
+        if root is not None:
+            _check_paths(item, Path(root))
         names.add(item["name"])
         if item["schema_id"] is not None:
             ids.add(item["schema_id"])
@@ -117,7 +133,9 @@ def render_markdown(entries, updated):
            f"# Artifact catalog\n\n{GENERATED}\n\n"
            "Every schema-versioned artifact the platform reads or writes, grouped by research stage "
            f"and kept in `research/registry/artifacts.json` (updated {updated}). "
-           "`scripts/artifacts.py check` fails when code declares a schema id that is not listed here.\n",
+           "`scripts/artifacts.py check` fails when code declares a schema id that is not listed here "
+           "or when a producer or consumer path does not exist. "
+           "Ids that appear only in closed-study evidence under `docs/tasks/evidence` are not catalogued.\n",
            "Authority is `authoritative` for the source of truth and `view` for a derived rendering. "
            "Status is `implemented`, `planned` (named by the plan that will build it), `template-only` "
            "(a fill-in file with no schema id) or `frozen-study-specific` (a one-study format kept only "

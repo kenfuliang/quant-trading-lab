@@ -40,6 +40,11 @@ class RunTestsTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn("Slowest", result.stdout + result.stderr)
 
+    def test_zero_tests_discovered_fails(self):
+        result = run_runner("x = 1\n")
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn("no tests discovered", result.stdout + result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -44,6 +44,8 @@ def _check_aspect(item, gate_ids, root, seen):
     for key in _TEXT:
         if not isinstance(item[key], str) or not item[key].strip():
             raise ReadinessError(f"{ident!r}: {key} must be non-empty text")
+    if not re.fullmatch(r"[A-Z]\d+", ident):
+        raise ReadinessError(f"{ident!r}: id must be one capital letter then digits, such as D1")
     if ident in seen:
         raise ReadinessError(f"aspect {ident} is declared twice")
     if item["area"] not in AREAS:
@@ -131,7 +133,7 @@ def _links(aspect):
 
 
 def render_markdown(doc):
-    """The `docs/readiness.md` text. Pure: the date is the registry's `assessed` field."""
+    """The `docs/readiness-checklist.md` text. Pure: the date is the registry's `assessed` field."""
     out = [f"---\nstatus: active\nupdated: {doc['assessed']}\nowner: {OWNER}\n---\n\n"
            f"# Readiness checklist\n\n{GENERATED}\n\n"
            "A scored view of how ready each part of the platform is, assessed "

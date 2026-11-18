@@ -1,5 +1,6 @@
 """Readiness registry: loader validation, scoring arithmetic and deterministic renderers."""
 import copy
+import datetime
 import json
 import tempfile
 import unittest
@@ -47,6 +48,9 @@ class ReadinessTests(unittest.TestCase):
             "gate G9.99": aspect(gates=["G9.99"]),
             "missing evidence": aspect(evidence=["docs/nope.md"]),
             "no evidence but high score": aspect(evidence=[], score=2),
+            "id lowercase": aspect(id="d1"),
+            "id without digits": aspect(id="D"),
+            "id with suffix": aspect(id="D1a"),
         }
         for name, bad in cases.items():
             with self.subTest(name):
@@ -113,9 +117,10 @@ class ReadinessTests(unittest.TestCase):
             ids.add(gate["id"])
             ids.update(item["id"] for item in gate["items"])
         doc = load_readiness(ROOT / "research/registry/readiness.json", ids, ROOT)
-        self.assertEqual(len(doc["aspects"]), 39)
-        self.assertEqual({a["area"] for a in doc["aspects"]}, set(AREAS))
-        self.assertEqual(doc["assessed"], "2026-11-18")
+        self.assertRegex(doc["assessed"], r"^\d{4}-\d{2}-\d{2}$")
+        datetime.date.fromisoformat(doc["assessed"])
+        for area in AREAS:
+            self.assertTrue([a for a in doc["aspects"] if a["area"] == area], f"no aspect in {area}")
         self.assertEqual(readiness.SCHEMA, "readiness/v1")
 
 

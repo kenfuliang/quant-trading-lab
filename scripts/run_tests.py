@@ -34,6 +34,9 @@ def main(argv=None):
     sys.path.insert(0, os.getcwd())  # same as `python -m unittest`: cwd is importable
 
     suite = unittest.TestLoader().discover(args.start)
+    if suite.countTestCases() == 0:
+        print(f"FAIL: no tests discovered under {args.start}", file=sys.stderr)
+        return 1
     runner = unittest.TextTestRunner(verbosity=2, resultclass=TimedResult)
     result = runner.run(suite)
 

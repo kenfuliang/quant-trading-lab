@@ -8,7 +8,7 @@
       "stage": "run",
       "location": "tracked",
       "authority": "authoritative",
-      "producer": "research/control/experiment_receipts.py, filled from docs/templates/experiment-receipt.json",
+      "producer": "hand-filled from docs/templates/experiment-receipt.json, validated by research/control/experiment_receipts.py",
       "consumers": [
         "scripts/check_experiment_receipt.py",
         "scripts/experiments.py"
@@ -77,7 +77,7 @@
     {
       "schema_id": "readiness/v1",
       "name": "Readiness registry",
-      "stage": "views",
+      "stage": "decide",
       "location": "tracked",
       "authority": "authoritative",
       "producer": "hand-maintained research/registry/readiness.json",
@@ -91,7 +91,7 @@
     {
       "schema_id": "artifacts/v1",
       "name": "Artifact catalog",
-      "stage": "views",
+      "stage": "decide",
       "location": "tracked",
       "authority": "authoritative",
       "producer": "hand-maintained research/registry/artifacts.json",
@@ -241,7 +241,7 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/incident.md",
       "consumers": [
-        "docs/README.md"
+        "docs/operations/incidents.md"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
@@ -254,7 +254,7 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/research-cycle.md",
       "consumers": [
-        "docs/README.md"
+        "docs/research-standard.md"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
@@ -267,7 +267,7 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/research-decision.md",
       "consumers": [
-        "docs/README.md"
+        "research cycle authors"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
@@ -280,7 +280,7 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/research-intake.md",
       "consumers": [
-        "docs/README.md"
+        "docs/research-intake.md"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
@@ -293,7 +293,7 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/research-paper.md",
       "consumers": [
-        "docs/README.md"
+        "docs/research-standard.md"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
@@ -306,7 +306,7 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/stage-development.md",
       "consumers": [
-        "docs/README.md"
+        "docs/research-development.md"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
@@ -319,10 +319,23 @@
       "authority": "authoritative",
       "producer": "hand-filled from docs/templates/task.md",
       "consumers": [
-        "docs/README.md"
+        "docs/workflow.md"
       ],
       "retention": "permanent once filled, tracked",
       "status": "template-only"
+    },
+    {
+      "schema_id": "forward-plan/v1",
+      "name": "Forward plan",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-maintained research/registry/forward-plans/FWD-SPY-EMA-1.json",
+      "consumers": [
+        "scripts/progress.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
     }
   ]
 }

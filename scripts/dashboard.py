@@ -17,7 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = [("progress.html", "Progress"), ("stages.html", "Pipeline"), ("readiness.html", "Readiness"),
-         ("holdings.html", "Holdings"),("profile-replay.html", "Profile (replay)"),
+         ("holdings.html", "Holdings"), ("profile-replay.html", "Profile (replay)"),
          ("profile.html", "Profile (cloud)"), ("target.html", "Target log")]
 
 _PAGE = r"""<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Quant lab dashboard</title><style>

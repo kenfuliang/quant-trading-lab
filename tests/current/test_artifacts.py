@@ -18,7 +18,7 @@ SCAN_ROOTS = [ROOT / name for name in ("research", "scripts", "paper_trading", "
 
 def entry(**over):
     base = {"schema_id": "demo-output/v1", "name": "Demo output", "stage": "run", "location": "local",
-            "authority": "authoritative", "producer": "scripts/demo.py", "consumers": ["scripts/view.py"],
+            "authority": "authoritative", "producer": "scripts/artifacts.py", "consumers": ["scripts/readiness.py"],
             "retention": "local, per worktree", "status": "implemented"}
     base.update(over)
     return base
@@ -56,7 +56,7 @@ class ArtifactsTests(unittest.TestCase):
             "null id on implemented": entry(schema_id=None),
             "id on template-only": entry(status="template-only"),
             "empty producer": entry(producer=" "),
-            "consumers not a list": entry(consumers="scripts/view.py"),
+            "consumers not a list": entry(consumers="scripts/readiness.py"),
             "extra field": entry(extra=1),
         }
         for name, bad in cases.items():
@@ -85,9 +85,26 @@ class ArtifactsTests(unittest.TestCase):
                                   'ok = d.get("schema") == "zeta/v1"\nurl = "https://x.test/api/v1"\n',
                                   encoding="utf-8")
         (pkg / "d.txt").write_text('SCHEMA = "ignored/v1"\n', encoding="utf-8")
+        (pkg / "e.py").write_text('SCHEMA: str = "eta/v1"\nOTHER_SCHEMA : Final = \'theta/v2\'\n'
+                                  'doc = {"schema": "Iota/v1"}\n', encoding="utf-8")
         found = scan_schema_ids([pkg, self.root / "missing"])
-        self.assertEqual(set(found), {"alpha/v1", "beta/v2", "gamma/v3", "delta/v1", "eps/v1", "zeta/v1"})
+        self.assertEqual(set(found), {"alpha/v1", "beta/v2", "gamma/v3", "delta/v1", "eps/v1", "zeta/v1",
+                                      "eta/v1", "theta/v2", "Iota/v1"})
         self.assertEqual(found["alpha/v1"], ["research/a.py"])
+
+    def test_missing_producer_or_consumer_path_fails_naming_entry(self):
+        cases = (("producer", "scripts/nope.py log", "nope.py"),
+                 ("consumers", ["research/gone/thing.json"], "thing.json"))
+        for field, bad, token in cases:
+            with self.subTest(field):
+                with self.assertRaisesRegex(ArtifactsError, rf"Demo output: .*{token} does not exist"):
+                    self.load(document(entry(**{field: bad})))
+        with self.subTest("cli check"):
+            registry = self.root / "artifacts.json"
+            registry.write_text(json.dumps(document(entry(producer="scripts/nope.py"))), encoding="utf-8")
+            code, _, err = run("--registry", str(registry), "--doc", str(self.root / "d.md"), "--scan", str(self.root), "check")
+            self.assertEqual(code, 1)
+            self.assertIn("Demo output: scripts/nope.py does not exist", err)
 
     def test_unregistered_schema_id_fails_naming_file(self):
         pkg = self.root / "scripts"

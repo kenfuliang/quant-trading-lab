@@ -72,7 +72,7 @@ Importance H with score 2 or lower, lowest score first.
 | R6 | Overfitting statistics | 1.5 | H | Pareto, sealed forward window, trial ledger; no deflated Sharpe or PBO | PSR, DSR, PBO and trial counts | 4 | G2.1, G2.3 | `research/control/trial_ledger.py`, `research/registry/forward-plans/FWD-SPY-EMA-1.json` |
 | R7 | Feature and signal research | 1 | M | Three-feature registry; no IC tools | Signal diagnostics | 4 | none | `research/features/feature_engineering.py` |
 | R8 | Analysis and attribution | 1 | H | Six scalar metrics per registry record; run outputs now exist | Stage waterfall from ablation runs | 4 | none | `research/evaluation/run_output.py` |
-| R9 | Benchmarks and period windows | 3 | M | SPY total return set in goals; benchmark, annualisation, period and crisis windows now defined once in the conventions document; no code reads them yet | Make P2 analysis read the conventions windows and benchmark | - | none | `docs/goals.md`, `docs/conventions.md` |
+| R9 | Benchmarks and period windows | 3 | M | SPY total return set in goals; benchmark, annualisation, period and crisis windows now defined once in the conventions document; no code reads them yet | Make P2 analysis read the conventions windows and benchmark | 4 | none | `docs/goals.md`, `docs/conventions.md` |
 | R10 | Experiment governance | 4 | M | GRS cycles, registry, lessons; high process cost per idea | Keep; measure cost per cycle | - | none | `docs/research-standard.md`, `docs/research-cycles.md`, `research/control/experiment_registry.py` |
 | R11 | Reproducibility and lineage | 3.5 | H | Hash-chained registry, receipts, run-output/v1 with hashes | Registry records link run outputs | 6 | none | `research/control/experiment_receipts.py`, `research/evaluation/run_output.py`, `research/registry/experiments.jsonl` |
 
@@ -81,7 +81,7 @@ Importance H with score 2 or lower, lowest score first.
 | Id | Aspect | Score | Imp | Critique | Next action | Step | Gates | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | P1 | Investment mandate and risk budget | 4 | H | Pilot limits, drawdown halt, benchmark and tax stance decided; funding rules open | Funding and withdrawal rules at pilot time | - | G0.1, G0.2, G0.4, G0.5, G0.6 | `docs/goals.md`, `tests/test_pilot_limits.py` |
-| P2 | Portfolio construction across strategies | 1 | M | Every study is one strategy | Combiner for run outputs | 7 | none | none |
+| P2 | Portfolio construction across strategies | 1 | M | Every study is one strategy | Combiner for run outputs | 9 | none | none |
 | P3 | Pre-trade limits and kill switch | 2.5 | M | RiskGate, PilotLimits and kill switch tested offline; not wired to a session | Wire check_pilot into a session | - | G4.1, G4.2 | `paper_trading/risk_gate.py`, `paper_trading/kill_switch.py`, `tests/test_kill_switch.py` |
 | P4 | Sizing and leverage policy | 3 | M | Cash account, no leverage for the pilot | none now | - | G0.3 | `docs/goals.md` |
 
@@ -101,7 +101,7 @@ Importance H with score 2 or lower, lowest score first.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | N1 | Testing and CI | 4.5 | H | 1,170 tests in about 40 s; CI on PRs, boundary and doc checks, parity in CI; a 30 s per-test duration guard fails the run and names the slow test | none now | - | none | `.github/workflows/ci.yml`, `scripts/check_boundaries.py`, `scripts/check_docs.py`, `scripts/run_tests.py`, `tests/current/test_run_tests.py` |
 | N2 | Code architecture | 3 | M | Layers enforced; many one-off scripts and frozen copies | Keep legacy frozen; rebuild incumbents only | - | none | `docs/architecture.md`, `tests/test_dependency_boundaries.py` |
-| N3 | Dependencies and environment | 4.5 | M | Locked and pinned; Makefile resolves the interpreter from the worktree, the main checkout venv or PATH, so plain make check works in a worktree | none now | - | none | `requirements.lock.txt`, `Makefile` |
+| N3 | Dependencies and environment | 4.5 | M | Locked and pinned; Makefile resolves the interpreter from the local .venv, else the main checkout's .venv, so plain make check works in a worktree | none now | - | none | `requirements.lock.txt`, `Makefile` |
 | N4 | Performance at scale | 1 | M | Fixture runs under a second; 500-name runtime unknown | Timing benchmark on 500 names | 5 | none | `docs/operations/performance.md` |
 | N5 | Storage and retention | 0.5 | M | Run outputs and receipts are per worktree | Shared data root and retention rule | 3 | none | none |
 | N6 | Security and secrets | 2 | M | Credentials kept out of tracked files by rule; no secret scan seen | Add a secret scan to checks | - | G8.2 | `AGENTS.md` |
