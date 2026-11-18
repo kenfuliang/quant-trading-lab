@@ -13,6 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from research.data.manifest import ManifestError
 from research.data.root import DataAbsent, data_root
 from research.data.yahoo_snapshot import SnapshotIncomplete, fetch_snapshot
 
@@ -28,6 +29,9 @@ def cmd_fetch_yahoo(args):
     except SnapshotIncomplete as error:
         print(f"error: {error}; receipt {error.snapshot_dir / 'requests.json'}", file=sys.stderr)
         print(f"manifest {root / 'manifests' / (args.snapshot_id + '.json')}", file=sys.stderr)
+        return 1
+    except (ValueError, ManifestError) as error:
+        print(f"error: {error}", file=sys.stderr)
         return 1
     except FileExistsError as error:
         print(f"error: snapshot already exists: {error.filename}", file=sys.stderr)

@@ -174,5 +174,25 @@ class YahooSnapshotTests(unittest.TestCase):
         self.assertEqual((self.root / "raw/yahoo/snap-3/response-XLB.json").read_bytes(), before)
 
 
+class FetchCliTests(unittest.TestCase):
+    def test_bad_ids_and_symbols_exit_one_with_one_line_error(self):
+        import contextlib
+        import io
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "data_cli", Path(__file__).resolve().parents[2] / "scripts" / "data.py")
+        cli = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cli)
+        with tempfile.TemporaryDirectory() as tmp:
+            for sid, syms in (("../x", "XLB"), ("ok-id", "X LB")):
+                err = io.StringIO()
+                with contextlib.redirect_stderr(err):
+                    rc = cli.main(["fetch-yahoo", "--symbols", syms, "--start", "2024-01-01",
+                                   "--end", "2024-01-31", "--snapshot-id", sid, "--root", tmp])
+                self.assertEqual(rc, 1)
+                self.assertEqual(len(err.getvalue().strip().splitlines()), 1)
+                self.assertTrue(err.getvalue().startswith("error: "))
+
+
 if __name__ == "__main__":
     unittest.main()

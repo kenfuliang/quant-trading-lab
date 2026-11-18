@@ -69,12 +69,14 @@ def read_manifest(root: Path, dataset_id: str, verify: bool = True) -> dict:
     _validate(manifest)
     if manifest["dataset_id"] != dataset_id:
         raise ManifestError(f"{path}: dataset_id mismatch")
+    entries = manifest["inputs"] + manifest["files"]
+    for entry in entries:
+        relative = Path(entry["path"])
+        if relative.is_absolute() or ".." in relative.parts:
+            raise ManifestError(f"{entry['path']}: path must be relative to the data root")
     if verify:
-        for entry in manifest["inputs"] + manifest["files"]:
-            relative = Path(entry["path"])
-            if relative.is_absolute() or ".." in relative.parts:
-                raise ManifestError(f"{entry['path']}: path must be relative to the data root")
-            target = Path(root) / relative
+        for entry in entries:
+            target = Path(root) / entry["path"]
             if not target.is_file():
                 raise ManifestError(f"{entry['path']}: missing")
             if sha256_file(target) != entry["sha256"]:
