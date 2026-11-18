@@ -22,6 +22,21 @@ flowchart LR
     P[IBKR access and permissions] --> F
 ```
 
+Offline research infrastructure inside M1 and M2
+([design](tasks/2026-11-17-offline-research-infra-design.md)):
+
+```mermaid
+flowchart LR
+    P0[P0 Run output] --> P1a[P1a ETF data layer]
+    P0 --> P1b[P1b Two engines + parity]
+    CV[Conventions: identifiers, metrics, units, schema versions] --> P2
+    P1a --> P2[P2 Analysis: tearsheet, stage waterfall, trust]
+    P1b --> P2
+    P2 --> P3[P3 S&P 500 membership + coverage]
+    P2 --> P4[P4 Enforced SOP rules]
+    P2 --> V[Views from run outputs]
+```
+
 All milestones are owned by project-maintainers; the user owns account access and
 investment-policy choices. Milestones specify order rather than committed calendar
 dates. No new platform implementation starts as part of this documentation review.
@@ -63,8 +78,26 @@ removes an unconditional database choice and puts proof of native behavior first
 - M5 reuses execution/risk/reconciliation without building another OMS.
 - DuckDB, QuantStats, additional frameworks and an always-on SQL run registry are
   deferred until a requirement justifies their maintenance cost.
+- 2026-11-17: registry views could show only six scalar metrics per run, so the
+  owner approved the offline research infrastructure design and folded it into M1
+  and M2. It names reuse candidates (for example QuantStats, empyrical-reloaded,
+  alphalens-reloaded, skfolio, pandera); each still needs a capability review and a
+  locked-dependency change before adoption, so the deferral above stands per package.
 
 ## Next work packet: M1
+
+### Offline research infrastructure sequence
+
+| Step | Scope | Depends on | State |
+| --- | --- | --- | --- |
+| 1 | P0 run output and P1b two engines with parity, per the [P0/P1b plan](tasks/2026-11-17-offline-infra-p0-p1b-plan.md) | — | In progress on branch `claude/offline-infra-p0-p1b`; acceptance per the plan |
+| 2 | Conventions document: instrument and strategy identity, metric definitions and units, annualisation, benchmarks, cost levels, period and crisis windows, trial counting, schema-version rules | — | Planned; must be accepted before P2 |
+| 3 | P1a ETF data layer: Yahoo snapshots (owner ruling: private offline use only), own adjustment, quality report | P0 | Planned; separate plan |
+| 4 | P2 analysis: tearsheet, stage waterfall, trust panel; rebuild of the incumbent SPY strategy | Steps 1–3 | Planned; reuse candidates go through capability review first |
+| 5 | P3 S&P 500 membership and coverage from free sources | Step 4 | Planned; stock research starts after it |
+| 6 | P4 enforced SOP rules and catalog updates | Step 4 | Planned |
+| 7 | Views and chart conventions read run outputs (strategy, stage, trust, data-quality pages) | Step 4 | Planned; no new chart framework |
+| 8 | Run-output storage and retention rule; policy that legacy studies stay frozen and only incumbents are rebuilt | Step 4 | Planned |
 
 The user-requested [Alpaca integration slice](tasks/2026-10-25-alpaca-paper-integration.md)
 also adds partial M5 evidence: native/fake-broker order lifecycle, saved-SPY signal
