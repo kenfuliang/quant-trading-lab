@@ -26,6 +26,11 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def check_dataset_id(dataset_id) -> None:
+    if not isinstance(dataset_id, str) or not dataset_id or "/" in dataset_id or dataset_id.startswith("."):
+        raise ManifestError("dataset_id must be a plain name")
+
+
 def _validate(manifest: dict) -> None:
     if not isinstance(manifest, dict):
         raise ManifestError("manifest must be an object")
@@ -37,9 +42,7 @@ def _validate(manifest: dict) -> None:
         raise ManifestError(f"schema must be {SCHEMA}")
     if manifest["kind"] not in KINDS:
         raise ManifestError(f"kind must be one of {KINDS}")
-    dataset_id = manifest["dataset_id"]
-    if not isinstance(dataset_id, str) or not dataset_id or "/" in dataset_id or dataset_id.startswith("."):
-        raise ManifestError("dataset_id must be a plain name")
+    check_dataset_id(manifest["dataset_id"])
     for key in ("inputs", "files"):
         if not isinstance(manifest[key], list) or any(
                 not isinstance(e, dict) or set(e) != {"path", "sha256"} for e in manifest[key]):
@@ -68,7 +71,10 @@ def read_manifest(root: Path, dataset_id: str, verify: bool = True) -> dict:
         raise ManifestError(f"{path}: dataset_id mismatch")
     if verify:
         for entry in manifest["inputs"] + manifest["files"]:
-            target = Path(root) / entry["path"]
+            relative = Path(entry["path"])
+            if relative.is_absolute() or ".." in relative.parts:
+                raise ManifestError(f"{entry['path']}: path must be relative to the data root")
+            target = Path(root) / relative
             if not target.is_file():
                 raise ManifestError(f"{entry['path']}: missing")
             if sha256_file(target) != entry["sha256"]:

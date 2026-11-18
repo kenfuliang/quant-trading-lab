@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -15,13 +16,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from research.data.manifest import SCHEMA, sha256_file, write_manifest
+from research.data.manifest import SCHEMA, ManifestError, check_dataset_id, sha256_file, write_manifest
 
 USER_AGENT = "research-snapshot/1"
 BASE_URL = "https://query1.finance.yahoo.com/v8/finance/chart/"
 RIGHTS = {"source": "yahoo", "use": "private offline research only",
           "redistribution": "not permitted", "ruling": "owner 2026-11-17"}
 TIMEOUT = 30
+SYMBOL_RE = re.compile(r"[A-Z][A-Z0-9.\-]{0,9}")
 
 
 class SnapshotIncomplete(RuntimeError):
@@ -97,6 +99,11 @@ def _utc(now: datetime) -> str:
 
 def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request.urlopen, now=None) -> Path:
     root = Path(root)
+    check_dataset_id(snapshot_id)
+    symbols = list(symbols)
+    for symbol in symbols:
+        if not isinstance(symbol, str) or not SYMBOL_RE.fullmatch(symbol):
+            raise ValueError(f"invalid symbol: {symbol!r}")
     folder = root / "raw" / "yahoo" / snapshot_id
     folder.parent.mkdir(parents=True, exist_ok=True)
     folder.mkdir(exist_ok=False)  # an existing snapshot id is refused
@@ -106,7 +113,7 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
         stamp = now if now is not None else datetime.now(timezone.utc)
         url = chart_url(symbol, start, end)
         row = {"attempt": attempt, "symbol": symbol, "url": url, "utc": _utc(stamp), "status": "reserved",
-               "http_status": None, "bytes": None, "sha256": None, "error": None}
+               "http_status": None, "bytes": None, "sha256": None, "error": None, "rejected": None}
         rows.append(row)
         _write_receipt(receipt, rows)
         try:
@@ -118,7 +125,14 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
             row["sha256"] = hashlib.sha256(body).hexdigest()
             if row["http_status"] != 200:
                 raise ValueError(f"HTTP status {row['http_status']}")
-            parse_chart(body, symbol)
+            try:
+                parse_chart(body, symbol)
+            except Exception:
+                # keep the provider's unedited body as evidence, outside the manifest files
+                with open(folder / f"rejected-{symbol}.json", "xb") as handle:
+                    handle.write(body)
+                row["rejected"] = f"raw/yahoo/{snapshot_id}/rejected-{symbol}.json"
+                raise
         except Exception as error:  # recorded, never retried
             row["status"] = "failed"
             row["http_status"] = getattr(error, "code", row["http_status"])
@@ -131,7 +145,8 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
     files = [{"path": f"raw/yahoo/{snapshot_id}/response-{r['symbol']}.json", "sha256": r["sha256"]}
              for r in rows if r["status"] == "received"]
     for entry in files:
-        assert sha256_file(root / entry["path"]) == entry["sha256"]
+        if sha256_file(root / entry["path"]) != entry["sha256"]:
+            raise ManifestError(f"{entry['path']}: sha256 mismatch after write")
     failed = [r["symbol"] for r in rows if r["status"] == "failed"]
     write_manifest(root, {
         "schema": SCHEMA, "dataset_id": snapshot_id, "kind": "raw-snapshot",

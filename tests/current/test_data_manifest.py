@@ -38,10 +38,20 @@ class ManifestTests(unittest.TestCase):
         doc["kind"] = "bogus"
         with self.assertRaises(m.ManifestError):
             m.write_manifest(self.root, doc)
-        doc = make(self.root, "ds-2") if False else dict(doc, kind="raw-snapshot")
+        doc = dict(doc, kind="raw-snapshot")
         del doc["rights"]
         with self.assertRaises(m.ManifestError):
             m.write_manifest(self.root, doc)
+
+    def test_absolute_and_parent_paths_are_refused_on_read(self):
+        for bad in ("/etc/hosts", "../outside.json"):
+            doc = make(self.root, "ds-" + str(abs(hash(bad))))
+            doc["files"] = [{"path": bad, "sha256": "0" * 64}]
+            m.write_manifest(self.root, doc)
+            with self.assertRaisesRegex(m.ManifestError, "path"):
+                m.read_manifest(self.root, doc["dataset_id"])
+            self.root.joinpath("raw", "a.json").unlink()
+            self.root.joinpath("raw").rmdir()
 
     def test_sha256_mismatch_and_missing_file_are_refused(self):
         m.write_manifest(self.root, make(self.root))

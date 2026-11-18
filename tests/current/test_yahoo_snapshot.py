@@ -132,6 +132,36 @@ class YahooSnapshotTests(unittest.TestCase):
         doc = m.read_manifest(self.root, "snap-2")
         self.assertEqual([f["path"] for f in doc["files"]], ["raw/yahoo/snap-2/response-XLF.json"])
 
+    def test_parse_failure_keeps_rejected_body_out_of_manifest(self):
+        bad = json.loads(FIXTURE.read_text())
+        bad["chart"]["result"][0]["indicators"]["quote"][0]["low"][0] = 0
+        body = json.dumps(bad).encode()
+        opener = FakeOpener(lambda s: FakeResponse(body) if s == "XLB" else good(s))
+        with self.assertRaises(y.SnapshotIncomplete):
+            y.fetch_snapshot(["XLB", "XLE"], "2024-01-01", "2024-01-31", "snap-4", self.root,
+                             opener=opener, now=NOW)
+        snap = self.root / "raw" / "yahoo" / "snap-4"
+        self.assertEqual((snap / "rejected-XLB.json").read_bytes(), body)
+        self.assertFalse((snap / "response-XLB.json").exists())
+        rows = json.loads((snap / "requests.json").read_text())
+        self.assertEqual(rows[0]["status"], "failed")
+        self.assertEqual(rows[0]["rejected"], "raw/yahoo/snap-4/rejected-XLB.json")
+        self.assertTrue(rows[0]["error"])
+        self.assertIsNone(rows[1]["rejected"])
+        doc = m.read_manifest(self.root, "snap-4")
+        self.assertEqual([f["path"] for f in doc["files"]], ["raw/yahoo/snap-4/response-XLE.json"])
+
+    def test_ids_and_symbols_are_validated_before_any_request(self):
+        opener = FakeOpener(good)
+        for sid in ("../x", "a/b", ".hidden", ""):
+            with self.assertRaises(ValueError):
+                y.fetch_snapshot(["XLB"], "2024-01-01", "2024-01-31", sid, self.root, opener=opener, now=NOW)
+        for sym in ("xlb", "XLB/../x", "X LB", "", "A" * 11):
+            with self.assertRaises(ValueError):
+                y.fetch_snapshot([sym], "2024-01-01", "2024-01-31", "snap-5", self.root, opener=opener, now=NOW)
+        self.assertEqual(opener.requests, [])
+        self.assertFalse((self.root / "raw").exists())
+
     def test_existing_snapshot_id_is_refused(self):
         y.fetch_snapshot(["XLB"], "2024-01-01", "2024-01-31", "snap-3", self.root,
                          opener=FakeOpener(good), now=NOW)
