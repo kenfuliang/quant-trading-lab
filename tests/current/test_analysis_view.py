@@ -56,12 +56,44 @@ class AnalysisViewTest(unittest.TestCase):
         self.assertIn('class="failed"', page)
         self.assertIn("n/a", page)
 
-    def test_tearsheet_link_only_when_file_exists(self):
+    def test_tearsheet_link_is_relative_and_only_for_available_safe_ids(self):
+        doc = copy.deepcopy(FIXTURE)
+        aid = doc["analysis_id"]
+        self.assertNotIn("open tearsheet", render_analysis_page([doc], "now"))
+        page = render_analysis_page([doc], "now", available={aid})
+        self.assertIn(f'href="analysis/{aid}/tearsheet.html"', page)
+        self.assertNotIn("file://", page)
+        bad = copy.deepcopy(FIXTURE)
+        bad["analysis_id"] = "../x"
+        self.assertNotIn("open tearsheet", render_analysis_page([bad], "now", available={"../x"}))
+
+    def test_build_copies_tearsheet_where_the_page_links(self):
+        from scripts import analysis as shim
+        with tempfile.TemporaryDirectory() as t, tempfile.TemporaryDirectory() as out:
+            folder = write(t, FIXTURE, FIXTURE["analysis_id"])
+            (folder / "tearsheet.html").write_text("sheet")
+            self.assertEqual(shim.main(["build", "--root", t, "--dir", out]), 0)
+            aid = FIXTURE["analysis_id"]
+            self.assertEqual((Path(out) / "analysis" / aid / "tearsheet.html").read_text(), "sheet")
+            self.assertIn(f'href="analysis/{aid}/tearsheet.html"', (Path(out) / "analysis.html").read_text())
+
+    def test_malformed_sections_are_skipped_and_do_not_crash(self):
         with tempfile.TemporaryDirectory() as t:
-            folder = write(t, FIXTURE, "a1")
-            self.assertNotIn("open tearsheet", render_analysis_page(load_analyses(t)[0], "now"))
-            (folder / "tearsheet.html").write_text("x")
-            self.assertIn("open tearsheet", render_analysis_page(load_analyses(t)[0], "now"))
+            for n, patch in enumerate(({"runs": "x"}, {"trust": []}, {"waterfall": [1]}, {"notes": "n"},
+                                       {"lookahead": {"differences": "d"}}, {"tearsheet": "s"})):
+                write(t, {**FIXTURE, **patch, "analysis_id": f"m{n}", "spec_id": f"s{n}"}, f"m{n}")
+            analyses, warnings = load_analyses(t)
+            self.assertEqual((analyses, len(warnings)), ([], 6))
+            self.assertIn("No analyses", render_analysis_page(analyses, "now"))
+
+    def test_ordering_parses_timestamps(self):
+        with tempfile.TemporaryDirectory() as t:
+            a, b = copy.deepcopy(FIXTURE), copy.deepcopy(FIXTURE)
+            a.update(analysis_id="a", created_utc="2026-01-01T10:00:00+02:00")  # 08:00 UTC
+            b.update(analysis_id="b", created_utc="2026-01-01T09:00:00+00:00")
+            for d in (a, b):
+                write(t, d, d["analysis_id"])
+            self.assertEqual(load_analyses(t)[0][0]["analysis_id"], "b")
 
     def test_stage_page_trust_panel_uses_analyses_when_present(self):
         rows = trust_rows([FIXTURE])

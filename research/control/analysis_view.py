@@ -5,6 +5,8 @@ missing numbers render as n/a, never zero.
 """
 import html
 import json
+import re
+from datetime import datetime, timezone
 from pathlib import Path
 
 SCHEMA = "analysis-output/v1"
@@ -31,6 +33,49 @@ def _fmt(value, digits=4):
     return f"{value:.{digits}f}" if isinstance(value, float) else str(value)
 
 
+_SAFE_ID = re.compile(r"^[A-Za-z0-9._-]+$")
+
+
+def safe_id(value):
+    """True for an analysis id usable as one path segment."""
+    return isinstance(value, str) and bool(_SAFE_ID.match(value)) and value not in (".", "..")
+
+
+def _validate(doc):
+    if not isinstance(doc, dict):
+        raise ValueError("not an object")
+    if doc.get("schema") != SCHEMA:
+        raise ValueError(f"schema is {doc.get('schema')!r}, not {SCHEMA}")
+    for key in ("spec_id", "analysis_id", "created_utc"):
+        if not isinstance(doc.get(key), str):
+            raise ValueError(f"missing {key}")
+    for key, inner in (("runs", "summary"), ("waterfall", "delta")):
+        items = doc.get(key)
+        if not isinstance(items, list) or not all(isinstance(i, dict) and isinstance(i.get(inner), dict) for i in items):
+            raise ValueError(f"{key} is malformed")
+    notes = doc.get("notes", [])
+    if not isinstance(notes, list) or not all(isinstance(n, str) for n in notes):
+        raise ValueError("notes is malformed")
+    for key in ("trust", "lookahead", "tearsheet"):
+        if not isinstance(doc.get(key), dict):
+            raise ValueError(f"{key} is malformed")
+    if not all(isinstance(doc["trust"].get(n, {}), dict) for n in ("psr", "dsr", "pbo")):
+        raise ValueError("trust is malformed")
+    look = doc["lookahead"]
+    if not isinstance(look.get("differences", []), list) or not isinstance(look.get("cutoffs", []), list):
+        raise ValueError("lookahead is malformed")
+
+
+def _when(doc):
+    try:
+        moment = datetime.fromisoformat(doc["created_utc"])
+        if moment.tzinfo is None:
+            moment = moment.replace(tzinfo=timezone.utc)
+        return (1, moment.timestamp(), doc["analysis_id"])
+    except ValueError:
+        return (0, 0.0, doc["created_utc"] + doc["analysis_id"])
+
+
 def load_analyses(root):
     """``(analyses, warnings)``: valid ``analysis/*/analysis.json`` documents, newest per ``spec_id``.
 
@@ -42,20 +87,15 @@ def load_analyses(root):
     for path in sorted(base.glob("*/analysis.json")) if base.is_dir() else []:
         try:
             doc = json.loads(path.read_text(encoding="utf-8"))
-            if doc.get("schema") != SCHEMA:
-                raise ValueError(f"schema is {doc.get('schema')!r}, not {SCHEMA}")
-            for key in ("spec_id", "analysis_id", "created_utc"):
-                if not isinstance(doc.get(key), str):
-                    raise ValueError(f"missing {key}")
+            _validate(doc)
         except (OSError, ValueError, AttributeError) as error:
             warnings.append(f"{path}: skipped ({error})")
             continue
         doc["_dir"] = str(path.parent)
-        key = (doc["created_utc"], doc["analysis_id"])
         held = newest.get(doc["spec_id"])
-        if held is None or key > (held["created_utc"], held["analysis_id"]):
+        if held is None or _when(doc) > _when(held):
             newest[doc["spec_id"]] = doc
-    return sorted(newest.values(), key=lambda d: (d["created_utc"], d["analysis_id"]), reverse=True), warnings
+    return sorted(newest.values(), key=_when, reverse=True), warnings
 
 
 def _stat(block):
@@ -78,19 +118,19 @@ def trust_rows(analyses):
     return rows
 
 
-def _tearsheet(doc):
+def _tearsheet(doc, base, available):
     sheet = doc.get("tearsheet") or {}
     status = sheet.get("status") or "n/a"
     cls = ' class="failed"' if status == "failed" else ""
     detail = f' — {_e(sheet["error"])}' if sheet.get("error") else ""
-    target = Path(doc.get("_dir") or "") / "tearsheet.html"
+    aid = doc.get("analysis_id")
     link = ""
-    if doc.get("_dir") and target.is_file():
-        link = f' <a href="{_e(target.resolve().as_uri())}">open tearsheet</a>'
+    if safe_id(aid) and aid in available:
+        link = f' <a href="{_e(base)}/{_e(aid)}/tearsheet.html">open tearsheet</a>'
     return f'<span{cls} data-tearsheet="{_e(status)}">{_e(status)}</span>{detail}{link}'
 
 
-def _section(doc):
+def _section(doc, base, available):
     runs = "".join(
         f'<tr><td>{_e(r.get("rung"))}</td><td>{_e(r.get("run_id"))}</td>'
         + "".join(f'<td>{_fmt((r.get("summary") or {}).get(k))}</td>' for k in _METRICS) + '</tr>'
@@ -114,7 +154,7 @@ def _section(doc):
     return (
         f'<section class="analysis" data-spec="{_e(doc.get("spec_id"))}"><h2>{_e(doc.get("title") or doc.get("spec_id"))}</h2>'
         f'<p class="muted">{_e(doc.get("analysis_id"))} · spec {_e(doc.get("spec_id"))} · created {_e(doc.get("created_utc"))}'
-        f' · code {_e(doc.get("code_commit"))}</p><p>Tearsheet: {_tearsheet(doc)}</p>'
+        f' · code {_e(doc.get("code_commit"))}</p><p>Tearsheet: {_tearsheet(doc, base, available)}</p>'
         f'<h3>Runs</h3><table><thead><tr><th>Rung</th><th>Run</th>{head}</tr></thead><tbody>{runs}</tbody></table>'
         f'<h3>Waterfall (to minus from)</h3><table><thead><tr><th>From</th><th>To</th>{head}</tr></thead>'
         f'<tbody>{waterfall}</tbody></table>'
@@ -124,8 +164,9 @@ def _section(doc):
         f'{"<h3>Notes</h3><ul>" + notes + "</ul>" if notes else ""}</section>')
 
 
-def render_analysis_page(analyses, built):
-    body = "".join(_section(d) for d in analyses) or '<p class="muted">No analyses yet. Run scripts/analysis.py run.</p>'
+def render_analysis_page(analyses, built, tearsheet_base="analysis", available=frozenset()):
+    """``available``: analysis ids whose tearsheet copy exists at ``<tearsheet_base>/<id>/tearsheet.html``."""
+    body = "".join(_section(d, tearsheet_base, available) for d in analyses) or '<p class="muted">No analyses yet. Run scripts/analysis.py run.</p>'
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width,initial-scale=1"><title>Analysis</title>'
             f'<style>{_CSS}</style></head><body><h1>Analysis</h1>'

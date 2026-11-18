@@ -20,6 +20,7 @@ import argparse
 import dataclasses
 import json
 import math
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -34,7 +35,7 @@ import pandas as pd  # noqa: E402
 
 from reporting.run_tearsheet import tearsheet_html  # noqa: E402
 from research.control import experiment_registry  # noqa: E402
-from research.control.analysis_view import load_analyses, render_analysis_page  # noqa: E402
+from research.control.analysis_view import load_analyses, render_analysis_page, safe_id  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
@@ -204,8 +205,17 @@ def cmd_build(args) -> int:
     for warning in warnings:
         print(f"warning: {warning}", file=sys.stderr)
     Path(args.dir).mkdir(parents=True, exist_ok=True)
+    available = set()
+    for doc in analyses:
+        source = Path(doc["_dir"]) / "tearsheet.html"
+        if safe_id(doc["analysis_id"]) and source.is_file():
+            copy_to = Path(args.dir) / "analysis" / doc["analysis_id"]
+            copy_to.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, copy_to / "tearsheet.html")
+            available.add(doc["analysis_id"])
     target = Path(args.dir) / "analysis.html"
-    target.write_text(render_analysis_page(analyses, datetime.now().strftime("%Y-%m-%d %H:%M")), encoding="utf-8")
+    target.write_text(render_analysis_page(analyses, datetime.now().strftime("%Y-%m-%d %H:%M"), "analysis", available),
+                      encoding="utf-8")
     print(f"Wrote {target} from {len(analyses)} analyses.")
     return 0
 
