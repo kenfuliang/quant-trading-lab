@@ -37,3 +37,27 @@ class EngineParityTests(unittest.TestCase):
         self.assertFalse(report.passed)
         day = str(a.cash.index[3])
         self.assertTrue(any(m.startswith(day) and "cash" in m for m in report.mismatches), report.mismatches)
+
+    def test_non_finite_cash_or_equity_is_a_mismatch(self):
+        data, fn, cfg = synthetic_fixture(), sma_trend_targets(), MarketConfig()
+        a = run_screen(data, fn, cfg)
+        cash = a.cash.copy().astype(float)
+        cash.iloc[2] = float("nan")
+        bad_cash = EngineResult(a.engine, a.returns, a.positions, a.signals, a.fills, cash)
+        report = compare(a, bad_cash)
+        self.assertTrue(any(m.startswith(str(a.cash.index[2])) and "cash" in m for m in report.mismatches))
+        returns = a.returns.copy()
+        returns.loc[4, "equity"] = float("nan")
+        bad_eq = EngineResult(a.engine, returns, a.positions, a.signals, a.fills, a.cash)
+        report = compare(a, bad_eq)
+        self.assertTrue(any(m.startswith(str(a.returns["date"].iloc[4])) and "equity" in m for m in report.mismatches))
+
+    def test_sub_cent_price_difference_is_a_mismatch(self):
+        data, fn, cfg = synthetic_fixture(), sma_trend_targets(), MarketConfig()
+        a = run_screen(data, fn, cfg)
+        fills = a.fills.copy()
+        fills.loc[0, "price"] = fills.loc[0, "price"] + 0.004
+        bad = EngineResult(a.engine, a.returns, a.positions, a.signals, fills, a.cash)
+        report = compare(a, bad)
+        self.assertFalse(report.passed)
+        self.assertTrue(any("price" in m for m in report.mismatches), report.mismatches)
