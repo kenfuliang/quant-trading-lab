@@ -1,4 +1,6 @@
+import tempfile
 import unittest
+from pathlib import Path
 
 from research.evaluation import screening_engine
 from research.evaluation.engine_contract import EngineError, EngineResult, check_config, checked_targets
@@ -6,6 +8,7 @@ from research.evaluation.market_model import Decision, MarketConfig, sma_trend_t
 from research.evaluation.native_engine import run_native
 from research.evaluation.parity import compare
 from research.evaluation.parity_fixture import synthetic_fixture
+from research.evaluation.run_output import COLUMNS, MANIFEST_KEYS, config_hash, read_run, write_run
 from research.evaluation.screening_engine import run_screen
 from tests.current.engine_helpers import hold_targets
 
@@ -61,6 +64,18 @@ class MarketConfigTests(unittest.TestCase):
         self.assertGreater(len(native.fills), 0)
         report = compare(screen, native)
         self.assertTrue(report.passed, report.mismatches)
+
+
+class ResultTablesTests(unittest.TestCase):
+    def test_flat_run_tables_are_typed_and_round_trip(self):
+        for engine in (run_screen, run_native):
+            result = engine(synthetic_fixture(), hold_targets({}), MarketConfig())
+            self.assertTrue(result.fills.empty)
+            manifest = {key: None for key in MANIFEST_KEYS}
+            manifest.update(schema="run-output/v1", run_id="flat", config={}, config_hash=config_hash({}))
+            with self.subTest(engine=result.engine), tempfile.TemporaryDirectory() as tmp:
+                _, tables = read_run(write_run(Path(tmp), manifest, {n: getattr(result, n) for n in COLUMNS}))
+                self.assertEqual(str(tables["fills"]["quantity"].dtype), "int64")
 
 
 if __name__ == "__main__":

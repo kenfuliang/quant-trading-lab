@@ -13,7 +13,7 @@ from dataclasses import dataclass
 import pandas as pd
 
 from research.evaluation.market_model import Decision, MarketConfig
-from research.evaluation.run_output import COLUMNS
+from research.evaluation.run_output import COLUMNS, DTYPES
 
 
 class EngineError(RuntimeError):
@@ -80,7 +80,8 @@ def mark(day: str, cash: float, qty: dict[str, int], closes: dict[str, float]) -
 
 
 def table(name: str, rows: list) -> pd.DataFrame:
-    return pd.DataFrame(rows, columns=list(COLUMNS[name]))
+    """A run-output table with the ``run_output.DTYPES`` dtypes, also when empty."""
+    return pd.DataFrame(rows, columns=list(COLUMNS[name])).astype(DTYPES[name])
 
 
 def build_result(engine: str, marks: list[dict], fills: list[tuple], signals: list[tuple],

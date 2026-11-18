@@ -1,8 +1,29 @@
-"""Standard per-run output: manifest plus four parquet tables, written once and hash-verified on read."""
+"""Standard per-run output (``run-output/v1``): manifest plus four parquet tables,
+written once and hash-verified on read. Runs live under ``.local/runs/<run_id>/``.
+
+Units and dtypes (checked by ``write_run`` and ``read_run``):
+
+- ``date``: string ``YYYY-MM-DD`` (session date) in every table.
+- ``instrument``, ``stage``, ``side``: strings; ``side`` is ``BUY`` or ``SELL``.
+- ``returns``: ``gross_return``, ``cost`` and ``net_return`` are each a fraction of the
+  previous session's equity (``initial_cash`` on the first session), not percent;
+  ``net_return = equity / previous equity - 1`` and ``gross_return = net_return + cost``.
+  ``equity`` is in USD at the session close.
+- ``positions``: ``quantity`` is an integer share count; ``weight`` is position value
+  over equity (a fraction).
+- ``signals``: ``value`` is a float in the stage's own units.
+- ``fills``: ``quantity`` is an integer share count; ``price`` is the fill price in USD
+  per share; ``cost`` is the fill's cost in USD (commission plus
+  ``|price - open| x quantity``).
+
+Numeric columns must be int or float (not bool); integer columns must be integer
+dtype. The manifest's ``config_hash`` must equal ``config_hash(manifest["config"])``.
+"""
 from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -15,6 +36,16 @@ COLUMNS: dict[str, tuple[str, ...]] = {
     "signals": ("date", "instrument", "stage", "value"),
     "fills": ("date", "instrument", "side", "quantity", "price", "cost"),
 }
+INTEGER_COLUMNS = frozenset({("positions", "quantity"), ("fills", "quantity")})
+TEXT_COLUMNS = frozenset({"instrument", "stage", "side"})
+DTYPES: dict[str, dict[str, str]] = {
+    name: {
+        col: "str" if col == "date" or col in TEXT_COLUMNS else "int64" if (name, col) in INTEGER_COLUMNS else "float64"
+        for col in cols
+    }
+    for name, cols in COLUMNS.items()
+}
+_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 MANIFEST_KEYS = (
     "schema", "run_id", "created_utc", "code_commit", "config", "config_hash",
     "engine", "engine_version", "datasets", "coverage", "parent_run",
@@ -45,6 +76,12 @@ def _check_manifest(manifest: dict) -> None:
         raise RunOutputError(f"manifest missing keys: {missing}")
     if manifest["schema"] != SCHEMA:
         raise RunOutputError(f"unsupported schema {manifest['schema']!r}, expected {SCHEMA!r}")
+    try:
+        expected = config_hash(manifest["config"])
+    except TypeError as exc:
+        raise RunOutputError(f"manifest config is not JSON-serialisable: {exc}") from exc
+    if manifest["config_hash"] != expected:
+        raise RunOutputError(f"config_hash {manifest['config_hash']!r} does not match config ({expected})")
 
 
 def _check_tables(tables: dict[str, pd.DataFrame]) -> None:
@@ -53,6 +90,23 @@ def _check_tables(tables: dict[str, pd.DataFrame]) -> None:
     for name, expected in COLUMNS.items():
         if tuple(tables[name].columns) != expected:
             raise RunOutputError(f"{name} columns {tuple(tables[name].columns)} != {expected}")
+        for col in expected:
+            _check_column(name, col, tables[name][col])
+
+
+def _check_column(name: str, col: str, series: pd.Series) -> None:
+    kind = DTYPES[name][col]
+    if kind == "str":
+        if not pd.api.types.is_string_dtype(series) or not all(isinstance(v, str) for v in series):
+            raise RunOutputError(f"{name}.{col} must be strings, got dtype {series.dtype}")
+        if col == "date" and not all(_DATE.fullmatch(v) for v in series):
+            raise RunOutputError(f"{name}.date must be YYYY-MM-DD strings")
+    elif pd.api.types.is_bool_dtype(series):
+        raise RunOutputError(f"{name}.{col} must be numeric, got bool")
+    elif kind == "int64" and not pd.api.types.is_integer_dtype(series):
+        raise RunOutputError(f"{name}.{col} must be integer dtype, got {series.dtype}")
+    elif not pd.api.types.is_numeric_dtype(series):
+        raise RunOutputError(f"{name}.{col} must be int or float, got {series.dtype}")
 
 
 def write_run(root: Path, manifest: dict, tables: dict[str, pd.DataFrame]) -> Path:
@@ -81,7 +135,7 @@ def write_run(root: Path, manifest: dict, tables: dict[str, pd.DataFrame]) -> Pa
 
 
 def read_run(path: Path) -> tuple[dict, dict[str, pd.DataFrame]]:
-    """Read a run, verifying schema, manifest keys, every file hash and table columns."""
+    """Read a run, verifying schema, manifest keys, config hash, every file hash, table columns and dtypes."""
     path = Path(path)
     manifest_path = path / "manifest.json"
     if not manifest_path.is_file():
