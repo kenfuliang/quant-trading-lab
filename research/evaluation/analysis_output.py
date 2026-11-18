@@ -21,7 +21,7 @@ def _safe(text: str) -> str:
 
 
 def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, comparison: dict | None,
-                   provenance: dict, created_utc: str) -> dict:
+                   provenance: dict, created_utc: str, tearsheet: dict | None = None) -> dict:
     """Assemble the document; ``steps`` are ladder results, ``provenance`` has ``code_commit`` and ``datasets``.
 
     ``trust`` is ``{psr, dsr, pbo}``; ``comparison`` is registry context for the report, or ``None``.
@@ -40,6 +40,7 @@ def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, 
         "trust": {key: trust[key] for key in ("psr", "dsr", "pbo")},
         "lookahead": lookahead,
         "comparison": comparison,
+        "tearsheet": tearsheet or {"status": "skipped", "error": None},
         "notes": list(spec.get("notes", [])),
     }
 
@@ -107,6 +108,10 @@ def render_report(doc: dict) -> str:
             lines.append(f"- {record['record_id']} ({record['context']['code']}, {record['context']['period']}): {metrics}")
         for missing in doc["comparison"].get("missing", []):
             lines.append(f"- missing record: {missing}")
+    sheet = doc.get("tearsheet") or {"status": "skipped", "error": None}
+    lines += ["", "## Tearsheet", "", f"- Status: {sheet['status']}"]
+    if sheet.get("error"):
+        lines.append(f"- Error: {sheet['error']}")
     if doc["notes"]:
         lines += ["", "## Notes", ""] + [f"- {note}" for note in doc["notes"]]
     return "\n".join(lines) + "\n"

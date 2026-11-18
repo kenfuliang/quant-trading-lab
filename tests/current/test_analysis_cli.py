@@ -10,6 +10,9 @@ from pathlib import Path
 from unittest import mock
 
 from research.control import experiment_registry as registry
+from research.data.root import DataAbsent
+from research.evaluation.datasets import DatasetBlocked
+from research.evaluation.parity_fixture import synthetic_fixture
 from scripts import analysis
 
 SPEC = Path(analysis.ROOT) / "research/registry/analysis-specs/fixture-ladder.json"
@@ -86,6 +89,63 @@ class AnalysisCliTests(unittest.TestCase):
             with contextlib.redirect_stderr(err), contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(analysis.main(["golden", "--file", str(target)]), 1)
             self.assertIn(str(target), err.getvalue())
+
+    def test_tearsheet_failure_is_visible(self):
+        def boom(*args, **kwargs):
+            raise RuntimeError("no chart")
+
+        err = io.StringIO()
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(err):
+            result = analysis.run_spec(json.loads(SPEC.read_text()), Path(tmp), tearsheet=boom)
+            on_disk = json.loads((result["folder"] / "analysis.json").read_text())
+            self.assertFalse((result["folder"] / "tearsheet.html").exists())
+            self.assertIn("failed", (result["folder"] / "report.md").read_text())
+        self.assertEqual(on_disk["tearsheet"], {"status": "failed", "error": "RuntimeError: no chart"})
+        self.assertIn("tearsheet failed", err.getvalue())
+
+    def test_tearsheet_status_written(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            doc = analysis.run_spec(json.loads(SPEC.read_text()), Path(tmp))["doc"]
+        self.assertEqual(doc["tearsheet"]["status"], "written")
+
+    def test_dsr_reason_when_too_few_registry_sharpes(self):
+        spec = json.loads(SPEC.read_text())
+        spec["comparison"] = {"record_ids": ["c-1"]}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "reg.jsonl"
+            registry.append(path, record("c-1", "C01-5bp", 1.0))
+            doc = analysis.run_spec(spec, Path(tmp), path)["doc"]
+        self.assertIsNone(doc["trust"]["dsr"]["value"])
+        self.assertEqual(doc["trust"]["dsr"]["reason"], "fewer than 2 registry Sharpe values for context C01-5bp")
+        self.assertEqual(doc["trust"]["dsr"]["n_trials"], 1)
+
+    def test_real_dataset_path_records_provenance(self):
+        spec = {**json.loads(SPEC.read_text()), "fixture": False, "dataset_id": "fake-ds"}
+        calls = []
+
+        def loader(dataset_id, instruments, root):
+            calls.append((dataset_id, instruments))
+            return synthetic_fixture(), {"manifest_sha256": "abc123", "quality_status": "pass"}
+
+        with tempfile.TemporaryDirectory() as tmp:
+            doc = analysis.run_spec(spec, Path(tmp), loader=loader)["doc"]
+        self.assertEqual(calls, [("fake-ds", ("AAA", "BBB", "CCC"))])
+        self.assertEqual(doc["datasets"]["dataset_id"], "fake-ds")
+        self.assertEqual(doc["datasets"]["manifest_sha256"], "abc123")
+        self.assertEqual(doc["datasets"]["quality_status"], "pass")
+
+    def test_blocked_dataset_and_absent_data_exit_cleanly(self):
+        spec = {**json.loads(SPEC.read_text()), "fixture": False, "dataset_id": "fake-ds"}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "spec.json"
+            path.write_text(json.dumps(spec))
+            for exc, code, text in ((DatasetBlocked("fake-ds: no quality report"), 1, "error: fake-ds"),
+                                    (DataAbsent("blocked: data absent: x"), 2, "blocked: data absent: x")):
+                err = io.StringIO()
+                with mock.patch.object(analysis, "load_dataset", side_effect=exc), \
+                        contextlib.redirect_stderr(err):
+                    self.assertEqual(analysis.main(["run", "--spec", str(path), "--root", tmp]), code)
+                self.assertIn(text, err.getvalue())
 
     def test_committed_golden_matches(self):
         with contextlib.redirect_stdout(io.StringIO()):

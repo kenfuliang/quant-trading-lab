@@ -34,7 +34,7 @@ from reporting.run_tearsheet import tearsheet_html  # noqa: E402
 from research.control import experiment_registry  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
-from research.evaluation.datasets import load_dataset  # noqa: E402
+from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
 from research.evaluation.ladder import Rung, run_ladder  # noqa: E402
 from research.evaluation.lookahead import check_lookahead  # noqa: E402
 from research.evaluation.market_model import MarketConfig  # noqa: E402
@@ -110,13 +110,15 @@ def _comparison(spec: dict, records: list[dict]) -> dict | None:
 
 
 def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: datetime | None = None,
-             loader=load_dataset) -> dict:
+             loader=None, tearsheet=tearsheet_html) -> dict:
     """Run a spec end to end; returns ``{"doc": ..., "folder": Path}``."""
     now = now or datetime.now(timezone.utc)
     root = Path(root)
+    commit = _code_commit()
+    loader = loader or load_dataset
     data, datasets = _load(spec, root, loader)
     rungs = _rungs(spec)
-    steps = run_ladder(data, rungs, root / "runs", {"code_commit": _code_commit(), "datasets": datasets}, now)
+    steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now)
     last, last_spec = rungs[-1], rungs[-1].strategy
     _, tables = read_run(root / "runs" / steps[-1]["run_id"])
     net = tables["returns"]["net_return"].to_numpy(dtype=float)
@@ -127,8 +129,11 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     if comparison and comparison["records"]:
         code = comparison["records"][0]["context"]["code"]
         n_trials, variance = trial_stats(records, code)
-        trust_dsr = dsr(net, n_trials, variance if variance is not None else 0.0)
-        trust_dsr.setdefault("n_trials", n_trials)
+        if variance is None:
+            trust_dsr = {"value": None, "n_trials": n_trials,
+                         "reason": f"fewer than 2 registry Sharpe values for context {code}"}
+        else:
+            trust_dsr = dsr(net, n_trials, variance)
         trust_dsr["code"] = code
     else:
         trust_dsr = {"value": None, "reason": "no comparison record; trial count undefined"}
@@ -139,14 +144,18 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
 
     spec_with_notes = {**spec, "notes": notes}
     doc = build_analysis(spec_with_notes, steps, trust, lookahead, comparison,
-                         {"code_commit": _code_commit(), "datasets": datasets}, now.isoformat())
+                         {"code_commit": commit, "datasets": datasets}, now.isoformat(),
+                         {"status": "skipped", "error": None})
     html_page = None
     try:
         series = pd.Series(net, index=pd.to_datetime(tables["returns"]["date"]))
         stats = {f"{key} (last rung)": float(value) for key, value in steps[-1]["summary"].items() if value is not None}
-        html_page = tearsheet_html(series, stats, f"{spec.get('title', spec['spec_id'])} - {last.name}")
+        html_page = tearsheet(series, stats, f"{spec.get('title', spec['spec_id'])} - {last.name}")
+        doc["tearsheet"] = {"status": "written", "error": None}
     except Exception as exc:  # the tearsheet is optional; the analysis stands without it
-        doc["notes"].append(f"tearsheet unavailable: {type(exc).__name__}: {exc}")
+        error = f"{type(exc).__name__}: {exc}"
+        doc["tearsheet"] = {"status": "failed", "error": error}
+        print(f"warning: tearsheet failed: {error}", file=sys.stderr)
     folder = write_analysis(root, doc, html_page, render_report(doc))
     return {"doc": doc, "folder": folder}
 
@@ -202,7 +211,10 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     try:
         return args.fn(args)
-    except (DataAbsent, experiment_registry.RegistryError, OSError, ValueError, KeyError) as error:
+    except DataAbsent as error:
+        print(error, file=sys.stderr)
+        return 2
+    except (DatasetBlocked, experiment_registry.RegistryError, OSError, ValueError, KeyError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 1
 

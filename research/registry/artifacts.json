@@ -192,8 +192,7 @@
       "authority": "view",
       "producer": "scripts/analysis.py run (research/evaluation/analysis_output.py)",
       "consumers": [
-        "scripts/analysis.py",
-        "reporting/run_tearsheet.py"
+        "scripts/analysis.py"
       ],
       "retention": "local, per worktree",
       "status": "implemented"
