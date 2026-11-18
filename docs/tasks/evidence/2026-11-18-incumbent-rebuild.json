@@ -1,0 +1,248 @@
+{
+  "schema_note": "Summary of one analysis folder; no price data.",
+  "analysis_id": "20261118T210433Z-incumbent-spy-gate",
+  "analysis_folder_rel_data_root": "analysis/20261118T210433Z-incumbent-spy-gate",
+  "spec": "research/registry/analysis-specs/incumbent-spy-gate.json",
+  "code_commit": "781ccd2fb7c99a46882891c979180c68cc6531cc+dirty",
+  "dataset_id": "sector-etfs-2016-2025-n1",
+  "runs": [
+    {
+      "run_id": "20261118T210433Z-6bfb985e",
+      "rung": "hold",
+      "summary": {
+        "calmar": 0.4329305455849435,
+        "longest_underwater_days": 708,
+        "longest_underwater_sessions": 487,
+        "max_drawdown": 0.3386428530691744,
+        "net_cagr": 0.14660883513767953,
+        "sharpe": 0.8657160253390002,
+        "turnover": 0.08732756828430645
+      }
+    },
+    {
+      "run_id": "20261118T210433Z-74f7652e",
+      "rung": "trend",
+      "summary": {
+        "calmar": 0.31939958720326483,
+        "longest_underwater_days": 715,
+        "longest_underwater_sessions": 492,
+        "max_drawdown": 0.3003857463353282,
+        "net_cagr": 0.09594308338124846,
+        "sharpe": 0.7232151443283324,
+        "turnover": 1.0790897704256184
+      }
+    },
+    {
+      "run_id": "20261118T210433Z-b750801b",
+      "rung": "gate",
+      "summary": {
+        "calmar": 0.5767453801478031,
+        "longest_underwater_days": 715,
+        "longest_underwater_sessions": 492,
+        "max_drawdown": 0.19819796198823414,
+        "net_cagr": 0.11430975893142392,
+        "sharpe": 0.9332548090332712,
+        "turnover": 1.1055751110858516
+      }
+    },
+    {
+      "run_id": "20261118T210433Z-de51a9d9",
+      "rung": "costs",
+      "summary": {
+        "calmar": 0.5688317258308407,
+        "longest_underwater_days": 722,
+        "longest_underwater_sessions": 496,
+        "max_drawdown": 0.19943764333906433,
+        "net_cagr": 0.11344645885619564,
+        "sharpe": 0.926901541155657,
+        "turnover": 1.1098579242456028
+      }
+    }
+  ],
+  "waterfall": [
+    {
+      "delta": {
+        "calmar": -0.11353095838167865,
+        "longest_underwater_days": 7,
+        "longest_underwater_sessions": 5,
+        "max_drawdown": -0.03825710673384619,
+        "net_cagr": -0.050665751756431066,
+        "sharpe": -0.1425008810106677,
+        "turnover": 0.9917622021413119
+      },
+      "from": "hold",
+      "to": "trend"
+    },
+    {
+      "delta": {
+        "calmar": 0.25734579294453824,
+        "longest_underwater_days": 0,
+        "longest_underwater_sessions": 0,
+        "max_drawdown": -0.10218778434709408,
+        "net_cagr": 0.01836667555017546,
+        "sharpe": 0.21003966470493873,
+        "turnover": 0.026485340660233225
+      },
+      "from": "trend",
+      "to": "gate"
+    },
+    {
+      "delta": {
+        "calmar": -0.007913654316962337,
+        "longest_underwater_days": 7,
+        "longest_underwater_sessions": 4,
+        "max_drawdown": 0.0012396813508301907,
+        "net_cagr": -0.0008633000752282793,
+        "sharpe": -0.006353267877614144,
+        "turnover": 0.004282813159751209
+      },
+      "from": "gate",
+      "to": "costs"
+    }
+  ],
+  "trust": {
+    "psr": {
+      "kurtosis": 7.677573177025011,
+      "n": 2514,
+      "sharpe": 0.058389308755723075,
+      "skew": -0.6459391468876228,
+      "value": 0.9979183392731792
+    },
+    "dsr": {
+      "code": "C01-5bp",
+      "kurtosis": 7.677573177025011,
+      "n": 2514,
+      "n_trials": 3,
+      "sharpe": 0.058389308755723075,
+      "skew": -0.6459391468876228,
+      "sr_benchmark": 0.0037124188435378367,
+      "value": 0.9963552815120288,
+      "per_period_sharpe_variance": 1.8950251322751333e-05,
+      "registry_sharpes": [
+        0.7689,
+        0.7162,
+        0.6319
+      ]
+    },
+    "pbo": {
+      "grid_size": 8,
+      "n_combinations": 12870,
+      "n_partitions": 16,
+      "reason": null,
+      "rows_used": 2512,
+      "value": 0.3923076923076923
+    }
+  },
+  "lookahead": {
+    "compared": [
+      {
+        "compared_signals": 541,
+        "cutoff": "2017-01-03"
+      },
+      {
+        "compared_signals": 2047,
+        "cutoff": "2019-01-02"
+      },
+      {
+        "compared_signals": 3556,
+        "cutoff": "2020-12-30"
+      },
+      {
+        "compared_signals": 5062,
+        "cutoff": "2022-12-28"
+      },
+      {
+        "compared_signals": 6568,
+        "cutoff": "2024-12-27"
+      }
+    ],
+    "cutoffs": [
+      "2017-01-03",
+      "2019-01-02",
+      "2020-12-30",
+      "2022-12-28",
+      "2024-12-27"
+    ],
+    "differences": [],
+    "status": "pass"
+  },
+  "tearsheet": {
+    "error": null,
+    "status": "written"
+  },
+  "comparison": [
+    {
+      "context": {
+        "code": "C01-5bp",
+        "costs_bp": 5.0,
+        "period": "2005\u20132025"
+      },
+      "metrics": {
+        "calmar": 0.491514,
+        "longest_underwater_days": 746,
+        "longest_underwater_sessions": 513,
+        "max_drawdown": 0.177701,
+        "net_cagr": 0.087343,
+        "sharpe": 0.7689
+      },
+      "name": "Discrete EMA/volatility gate",
+      "record_id": "legacy-030-discrete-ema-volatility-gate"
+    },
+    {
+      "context": {
+        "code": "C04-5bp",
+        "costs_bp": 5.0,
+        "period": "2005\u20132025"
+      },
+      "metrics": {
+        "calmar": 0.444106,
+        "longest_underwater_days": 822,
+        "longest_underwater_sessions": 567,
+        "max_drawdown": 0.218259,
+        "net_cagr": 0.09693,
+        "sharpe": 0.7961
+      },
+      "name": "Gate-only SPY control",
+      "record_id": "legacy-058-gate-only-spy-control"
+    }
+  ],
+  "costs_rung_detail": {
+    "first_fill_date": "2016-10-18",
+    "sessions": 2514,
+    "first_session": "2016-01-04",
+    "last_session": "2025-12-31",
+    "flat_sessions": 200,
+    "positions_columns": [
+      "date",
+      "instrument",
+      "quantity",
+      "weight"
+    ],
+    "fills": 406
+  },
+  "post_warmup_window": {
+    "label": "rebuild only, from first costs-rung fill to the last session; the legacy rows cannot be sliced to it",
+    "start": "2016-10-18",
+    "end": "2025-12-31",
+    "summaries": {
+      "hold": {
+        "net_cagr": 0.1523487548669682,
+        "max_drawdown": 0.3386428530691744,
+        "sharpe": 0.8824505512278987,
+        "calmar": 0.44988031929865646,
+        "turnover": 0.03930593760820635,
+        "longest_underwater_sessions": 487,
+        "longest_underwater_days": 708
+      },
+      "costs": {
+        "net_cagr": 0.12383612754461759,
+        "max_drawdown": 0.19943764333906433,
+        "sharpe": 0.9662535808218591,
+        "calmar": 0.620926548625946,
+        "turnover": 1.1629353277653385,
+        "longest_underwater_sessions": 496,
+        "longest_underwater_days": 722
+      }
+    }
+  }
+}

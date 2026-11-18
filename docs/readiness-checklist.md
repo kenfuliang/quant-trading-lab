@@ -26,12 +26,12 @@ Importance is H, M or L, weighted 3, 2 and 1 in the weighted average. Half steps
 | Area | Aspects | Simple average | Weighted average |
 | --- | --- | --- | --- |
 | Data | 6 | 1.58 | 1.77 |
-| Research and evaluation | 11 | 2.36 | 2.30 |
+| Research and evaluation | 11 | 2.64 | 2.63 |
 | Portfolio and risk | 4 | 2.62 | 2.78 |
 | Execution and operations | 5 | 1.40 | 1.38 |
 | Engineering | 6 | 2.67 | 2.81 |
 | People and process | 7 | 2.29 | 2.42 |
-| Overall | 39 | 2.18 | 2.26 |
+| Overall | 39 | 2.26 | 2.37 |
 
 ## Fix first
 
@@ -41,10 +41,8 @@ Importance H with score 2 or lower, lowest score first.
 | --- | --- | --- | --- | --- |
 | D4 | Instrument identity across ticker changes | 0.5 | Identity table with dated symbols | 5 |
 | D3 | Universe and survivorship | 1 | Point-in-time membership and coverage | 5 |
-| R8 | Analysis and attribution | 1 | Stage waterfall from ablation runs | 4 |
 | R2 | Cost and execution realism | 1.5 | Liquidity-scaled stock costs | 5 |
-| R6 | Overfitting statistics | 1.5 | PSR, DSR, PBO and trial counts | 4 |
-| R5 | Lookahead and leakage control | 2 | Truncate-and-compare check | 4 |
+| R8 | Analysis and attribution | 2 | Attribution beyond the stage waterfall; apply to further strategies | 7 |
 
 ## All aspects
 
@@ -67,10 +65,10 @@ Importance H with score 2 or lower, lowest score first.
 | R2 | Cost and execution realism | 1.5 | H | Fixed bp plus $1 commission; no liquidity scaling | Liquidity-scaled stock costs | 5 | none | `research/evaluation/market_model.py` |
 | R3 | Interest on idle cash | 2 | M | Not modelled; disclosed in every receipt and in conventions | Revisit when gated strategies are compared to buy-and-hold | - | none | `research/evaluation/market_model.py`, `docs/conventions.md` |
 | R4 | Short selling and borrow | 3 | L | Long-only decided for the pilot | none now | - | G0.3 | `docs/goals.md` |
-| R5 | Lookahead and leakage control | 2 | H | Manual audit skill; causal history_view; no automated check | Truncate-and-compare check | 4 | G2.2 | `research/control/leakage_audit.py`, `tests/test_leakage_audit.py` |
-| R6 | Overfitting statistics | 1.5 | H | Pareto, sealed forward window, trial ledger; no deflated Sharpe or PBO | PSR, DSR, PBO and trial counts | 4 | G2.1, G2.3 | `research/control/trial_ledger.py`, `research/registry/forward-plans/FWD-SPY-EMA-1.json` |
+| R5 | Lookahead and leakage control | 3 | H | Manual audit skill; causal history_view; automated truncate-and-compare check passes on the rebuilt incumbent at five cutoffs; not yet a gate in the SOP | Enforce the check as an SOP rule (step 6) | 6 | G2.2 | `research/control/leakage_audit.py`, `tests/test_leakage_audit.py`, `research/evaluation/lookahead.py`, `tests/current/test_lookahead.py`, `docs/tasks/2026-11-18-incumbent-rebuild.md` |
+| R6 | Overfitting statistics | 2.5 | H | Pareto, sealed forward window, trial ledger; PSR, DSR and PBO computed for the rebuilt incumbent, but DSR trial count comes from three registry records and the PBO grid is illustrative | Complete trial counts per family; enforce in the SOP | 6 | G2.1, G2.3 | `research/control/trial_ledger.py`, `research/registry/forward-plans/FWD-SPY-EMA-1.json`, `research/evaluation/trust.py`, `tests/current/test_trust.py`, `docs/tasks/2026-11-18-incumbent-rebuild.md` |
 | R7 | Feature and signal research | 1 | M | Three-feature registry; no IC tools | Signal diagnostics | 4 | none | `research/features/feature_engineering.py` |
-| R8 | Analysis and attribution | 1 | H | Six scalar metrics per registry record; run outputs now exist | Stage waterfall from ablation runs | 4 | none | `research/evaluation/run_output.py` |
+| R8 | Analysis and attribution | 2 | H | Metrics library, ablation ladder, waterfall and tearsheet exist and ran on the rebuilt incumbent; no per-trade or annual attribution, and only one strategy has been analysed | Attribution beyond the stage waterfall; apply to further strategies | 7 | none | `research/evaluation/run_output.py`, `research/evaluation/metrics.py`, `research/evaluation/ladder.py`, `research/evaluation/analysis_output.py`, `docs/tasks/2026-11-18-incumbent-rebuild.md` |
 | R9 | Benchmarks and period windows | 3 | M | SPY total return set in goals; benchmark, annualisation, period and crisis windows now defined once in the conventions document; no code reads them yet | Make P2 analysis read the conventions windows and benchmark | 4 | none | `docs/goals.md`, `docs/conventions.md` |
 | R10 | Experiment governance | 4 | M | GRS cycles, registry, lessons; high process cost per idea | Keep; measure cost per cycle | - | none | `docs/research-standard.md`, `docs/research-cycles.md`, `research/control/experiment_registry.py` |
 | R11 | Reproducibility and lineage | 3.5 | H | Hash-chained registry, receipts, run-output/v1 with hashes | Registry records link run outputs | 6 | none | `research/control/experiment_receipts.py`, `research/evaluation/run_output.py`, `research/registry/experiments.jsonl` |

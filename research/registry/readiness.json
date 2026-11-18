@@ -164,14 +164,17 @@
       "id": "R5",
       "area": "Research and evaluation",
       "aspect": "Lookahead and leakage control",
-      "score": 2,
+      "score": 3,
       "importance": "H",
-      "critique": "Manual audit skill; causal history_view; no automated check",
-      "next_action": "Truncate-and-compare check",
-      "roadmap_step": 4,
+      "critique": "Manual audit skill; causal history_view; automated truncate-and-compare check passes on the rebuilt incumbent at five cutoffs; not yet a gate in the SOP",
+      "next_action": "Enforce the check as an SOP rule (step 6)",
+      "roadmap_step": 6,
       "evidence": [
         "research/control/leakage_audit.py",
-        "tests/test_leakage_audit.py"
+        "tests/test_leakage_audit.py",
+        "research/evaluation/lookahead.py",
+        "tests/current/test_lookahead.py",
+        "docs/tasks/2026-11-18-incumbent-rebuild.md"
       ],
       "gates": [
         "G2.2"
@@ -181,14 +184,17 @@
       "id": "R6",
       "area": "Research and evaluation",
       "aspect": "Overfitting statistics",
-      "score": 1.5,
+      "score": 2.5,
       "importance": "H",
-      "critique": "Pareto, sealed forward window, trial ledger; no deflated Sharpe or PBO",
-      "next_action": "PSR, DSR, PBO and trial counts",
-      "roadmap_step": 4,
+      "critique": "Pareto, sealed forward window, trial ledger; PSR, DSR and PBO computed for the rebuilt incumbent, but DSR trial count comes from three registry records and the PBO grid is illustrative",
+      "next_action": "Complete trial counts per family; enforce in the SOP",
+      "roadmap_step": 6,
       "evidence": [
         "research/control/trial_ledger.py",
-        "research/registry/forward-plans/FWD-SPY-EMA-1.json"
+        "research/registry/forward-plans/FWD-SPY-EMA-1.json",
+        "research/evaluation/trust.py",
+        "tests/current/test_trust.py",
+        "docs/tasks/2026-11-18-incumbent-rebuild.md"
       ],
       "gates": [
         "G2.1",
@@ -213,13 +219,17 @@
       "id": "R8",
       "area": "Research and evaluation",
       "aspect": "Analysis and attribution",
-      "score": 1,
+      "score": 2,
       "importance": "H",
-      "critique": "Six scalar metrics per registry record; run outputs now exist",
-      "next_action": "Stage waterfall from ablation runs",
-      "roadmap_step": 4,
+      "critique": "Metrics library, ablation ladder, waterfall and tearsheet exist and ran on the rebuilt incumbent; no per-trade or annual attribution, and only one strategy has been analysed",
+      "next_action": "Attribution beyond the stage waterfall; apply to further strategies",
+      "roadmap_step": 7,
       "evidence": [
-        "research/evaluation/run_output.py"
+        "research/evaluation/run_output.py",
+        "research/evaluation/metrics.py",
+        "research/evaluation/ladder.py",
+        "research/evaluation/analysis_output.py",
+        "docs/tasks/2026-11-18-incumbent-rebuild.md"
       ],
       "gates": []
     },
