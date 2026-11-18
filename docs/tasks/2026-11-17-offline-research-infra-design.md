@@ -272,17 +272,18 @@ engine and a NautilusTrader confirmation engine behind one shared contract
 (`research/evaluation/engine_contract.py`), and a parity check on the committed
 synthetic fixture that runs in `make check`.
 
-Blocked: parity on real data. The local sector-ETF run was rejected at load for
-three reasons, recorded in the [engine parity task record](2026-11-17-engine-parity.md):
+At the end of Plan 1, parity on real data was blocked: the local sector-ETF run was
+rejected at load for three reasons, all routed to the data layer. Plan 3 (P1a)
+resolved them in data, with no engine change, and real-data parity now passes; see
+the [engine parity task record](2026-11-17-engine-parity.md).
 
-| Blocker | Detail | Routed to |
+| Former blocker | Detail | Resolution in P1a |
 | --- | --- | --- |
-| In-kind distribution | XLF on 2016-09-19 | P1a |
-| Sub-cent prices | Source prices below one cent | P1a |
-| Dividend after the window | SPY dividend paid 2026-01-30, after the data window | P1a |
+| In-kind distribution | XLF on 2016-09-19 | Cash equivalent, ratio × XLRE close on the ex-date |
+| Sub-cent prices | Source prices below one cent | Half-even rounding to the cent, counted in the quality report |
+| Dividend after the window | SPY dividend paid 2026-01-30, after the data window | Excluded and listed; total return understated by the dividend |
 
-All three belong to the data layer, so Plan 3 resolves them; no engine change is
-expected. Plan 2 added the readiness checklist, the artifact catalog and the
+Plan 2 added the readiness checklist, the artifact catalog and the
 [conventions](../conventions.md) that the later phases read.
 
 ## Left to the builder
