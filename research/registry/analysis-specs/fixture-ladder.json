@@ -1,0 +1,18 @@
+{
+  "spec_id": "fixture-ladder",
+  "title": "Fixture ablation ladder (synthetic market)",
+  "fixture": true,
+  "instruments": ["AAA", "BBB", "CCC"],
+  "rungs": [
+    {"name": "buy_hold", "strategy": {"name": "buy_hold", "gross": 0.95},
+     "market": {"cost_bps": 0, "commission_usd": 0}},
+    {"name": "sma_trend", "strategy": {"name": "sma_trend", "window": 20, "gross": 0.95},
+     "market": {"cost_bps": 0, "commission_usd": 0}},
+    {"name": "sma_trend_costs", "strategy": {"name": "sma_trend", "window": 20, "gross": 0.95},
+     "market": {"cost_bps": 5, "commission_usd": 1}}
+  ],
+  "comparison": null,
+  "pbo_grid": null,
+  "cutoffs": 3,
+  "notes": ["Synthetic deterministic market; an engineering fixture, not evidence."]
+}

@@ -15,6 +15,9 @@ Compared, with exact equality (NaN equals NaN):
   data, with the same holdings and equity (taken from the truncated run's close of c), and
   the returned targets and signals are compared (table ``decision``).
 
+``compared`` lists, per cutoff, ``compared_signals``: the signal rows before the cutoff plus
+the signals and targets of the decision at it. A pass with 0 there compared nothing.
+
 If a run or call raises, the cutoff is recorded as a difference with table ``error``
 (``first_date`` is the cutoff, ``count`` 1, ``error`` the exception text) and the status is
 "fail".
@@ -86,15 +89,18 @@ def _decision_difference(short: MarketData, full: MarketData, short_fn, full_fn,
             x, y = left.get(key), right.get(key)
             if not (x == y or (x != x and y != y)):  # NaN-aware exact equality
                 count += 1
-    return {"cutoff": cutoff, "table": "decision", "first_date": cutoff, "count": count} if count else None
+    compared = len(a.signals) + len(a.targets)
+    diff = {"cutoff": cutoff, "table": "decision", "first_date": cutoff, "count": count} if count else None
+    return diff, compared
 
 
 def check_lookahead(data: MarketData, target_fn_factory: Callable[[MarketData], TargetFn], market: MarketConfig,
                     cutoffs: int = 5) -> dict:
     """Run truncated vs full for evenly spaced cutoffs; report per-table differences."""
     chosen = _cutoff_sessions(data.sessions, cutoffs)
-    differences = []
+    differences, compared = [], []
     for cutoff in chosen:
+        count = 0
         try:
             short_data = truncate(data, cutoff)
             short_fn, full_fn = target_fn_factory(short_data), target_fn_factory(data)
@@ -105,10 +111,14 @@ def check_lookahead(data: MarketData, target_fn_factory: Callable[[MarketData], 
                 diff = _difference(getattr(short, table), getattr(full, table), keys, value, cutoff, table)
                 if diff:
                     differences.append(diff)
-            diff = _decision_difference(short_data, data, short_fn, full_fn, short, cutoff)
+            count = int((short.signals["date"] < cutoff).sum())
+            diff, at_cutoff = _decision_difference(short_data, data, short_fn, full_fn, short, cutoff)
+            count += at_cutoff
             if diff:
                 differences.append(diff)
         except Exception as exc:  # a leaking fn may index past the truncated end
             differences.append({"cutoff": cutoff, "table": "error", "first_date": cutoff, "count": 1,
                                 "error": f"{type(exc).__name__}: {exc}"})
-    return {"status": "fail" if differences else "pass", "cutoffs": chosen, "differences": differences}
+        compared.append({"cutoff": cutoff, "compared_signals": count})
+    return {"status": "fail" if differences else "pass", "cutoffs": chosen, "compared": compared,
+            "differences": differences}

@@ -32,6 +32,15 @@ def _feature_factory(feature):
 
 
 class LookaheadTests(unittest.TestCase):
+    def test_reports_compared_signals_per_cutoff(self):
+        spec = {"name": "sma_trend", "window": 20, "gross": 0.95}
+        result = check_lookahead(synthetic_fixture(), lambda d: build_target_fn(spec), CONFIG, cutoffs=3)
+        self.assertEqual([c["cutoff"] for c in result["compared"]], result["cutoffs"])
+        self.assertTrue(all(c["compared_signals"] > 0 for c in result["compared"]))
+        empty = {"name": "buy_hold", "gross": 0.9}
+        result = check_lookahead(synthetic_fixture(), lambda d: build_target_fn(empty), CONFIG, cutoffs=3)
+        self.assertTrue(all(c["compared_signals"] > 0 for c in result["compared"]))  # targets count
+
     def test_sma_trend_and_incumbent_pass_on_fixture(self):
         data = synthetic_fixture()
         for spec in ({"name": "sma_trend", "window": 20, "gross": 0.95}, SMALL_INCUMBENT):

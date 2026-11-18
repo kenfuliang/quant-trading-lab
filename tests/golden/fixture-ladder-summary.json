@@ -1,0 +1,29 @@
+{
+  "buy_hold": {
+    "calmar": 0.5006865605,
+    "longest_underwater_days": 68,
+    "longest_underwater_sessions": 48,
+    "max_drawdown": 0.1029904711,
+    "net_cagr": 0.0515659448,
+    "sharpe": 0.5215934283,
+    "turnover": 2.989936411
+  },
+  "sma_trend": {
+    "calmar": -0.4930060542,
+    "longest_underwater_days": 301,
+    "longest_underwater_sessions": 215,
+    "max_drawdown": 0.1462762025,
+    "net_cagr": -0.0721150534,
+    "sharpe": -0.4097485771,
+    "turnover": 79.8500651541
+  },
+  "sma_trend_costs": {
+    "calmar": -0.6944531819,
+    "longest_underwater_days": 301,
+    "longest_underwater_sessions": 215,
+    "max_drawdown": 0.1596933085,
+    "net_cagr": -0.1108995262,
+    "sharpe": -0.6880694601,
+    "turnover": 79.7751676908
+  }
+}

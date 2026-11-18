@@ -190,12 +190,13 @@
       "stage": "diagnose",
       "location": "local",
       "authority": "view",
-      "producer": "Plan 4 (analysis layer; not built)",
+      "producer": "scripts/analysis.py run (research/evaluation/analysis_output.py)",
       "consumers": [
-        "Plan 4 reports"
+        "scripts/analysis.py",
+        "reporting/run_tearsheet.py"
       ],
       "retention": "local, per worktree",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "schema_id": "membership/v1",
