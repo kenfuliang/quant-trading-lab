@@ -103,7 +103,9 @@ and generated bulk data. This SOP does not automatically stage or publish files.
   [research conventions](conventions.md); link them rather than restating.
 - Definition of done per plan: every task's acceptance evidence is recorded, `make check`
   passes with no `PYTHON=` override, canonical docs and generated views are
-  updated, and remaining limitations are stated.
+  updated, readiness is re-scored (aspects whose next action the plan completed;
+  other scores unchanged) and the checklist re-rendered, and remaining
+  limitations are stated.
 - Dependency adoption: capability review first, and the lock update in its own
   commit.
 - `.local/scratch/` holds exploration. It counts as evidence only once it is

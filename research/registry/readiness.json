@@ -1,6 +1,6 @@
 {
   "schema": "readiness/v1",
-  "assessed": "2026-11-17",
+  "assessed": "2026-11-18",
   "aspects": [
     {
       "id": "D1",
@@ -219,11 +219,11 @@
       "id": "R9",
       "area": "Research and evaluation",
       "aspect": "Benchmarks and period windows",
-      "score": 2.5,
+      "score": 3.0,
       "importance": "M",
-      "critique": "SPY total return set in goals; windows not standardised",
-      "next_action": "Conventions document",
-      "roadmap_step": 2,
+      "critique": "SPY total return set in goals; benchmark, annualisation, period and crisis windows now defined once in the conventions document; no code reads them yet",
+      "next_action": "Make P2 analysis read the conventions windows and benchmark",
+      "roadmap_step": null,
       "evidence": [
         "docs/goals.md",
         "docs/conventions.md"
@@ -419,15 +419,17 @@
       "id": "N1",
       "area": "Engineering",
       "aspect": "Testing and CI",
-      "score": 4,
+      "score": 4.5,
       "importance": "H",
-      "critique": "1,149 tests, CI on PRs, boundary and doc checks, parity in CI",
-      "next_action": "Test-duration guard",
-      "roadmap_step": 2,
+      "critique": "1,170 tests in about 40 s; CI on PRs, boundary and doc checks, parity in CI; a 30 s per-test duration guard fails the run and names the slow test",
+      "next_action": "none now",
+      "roadmap_step": null,
       "evidence": [
         ".github/workflows/ci.yml",
         "scripts/check_boundaries.py",
-        "scripts/check_docs.py"
+        "scripts/check_docs.py",
+        "scripts/run_tests.py",
+        "tests/current/test_run_tests.py"
       ],
       "gates": []
     },
@@ -450,11 +452,11 @@
       "id": "N3",
       "area": "Engineering",
       "aspect": "Dependencies and environment",
-      "score": 4,
+      "score": 4.5,
       "importance": "M",
-      "critique": "Locked and pinned; worktrees lack a local venv",
-      "next_action": "Makefile interpreter resolution",
-      "roadmap_step": 2,
+      "critique": "Locked and pinned; Makefile resolves the interpreter from the worktree, the main checkout venv or PATH, so plain make check works in a worktree",
+      "next_action": "none now",
+      "roadmap_step": null,
       "evidence": [
         "requirements.lock.txt",
         "Makefile"
@@ -522,14 +524,16 @@
       "id": "H2",
       "area": "People and process",
       "aspect": "Documentation and knowledge",
-      "score": 3.5,
+      "score": 4.0,
       "importance": "M",
-      "critique": "Strong ownership rules; over 230 documents hard to navigate",
-      "next_action": "This checklist as the one-page state",
-      "roadmap_step": 2,
+      "critique": "Strong ownership rules; readiness checklist and artifact catalog give a one-page generated state; over 230 documents remain",
+      "next_action": "Prune or archive superseded documents when next reviewed",
+      "roadmap_step": null,
       "evidence": [
         "docs/README.md",
-        "scripts/check_docs.py"
+        "scripts/check_docs.py",
+        "docs/readiness-checklist.md",
+        "docs/artifacts.md"
       ],
       "gates": []
     },
@@ -537,11 +541,11 @@
       "id": "H3",
       "area": "People and process",
       "aspect": "Prioritisation and review cadence",
-      "score": 3,
+      "score": 3.0,
       "importance": "M",
-      "critique": "Roadmap and advisory roles; no fixed cadence",
-      "next_action": "Plan and PR checkpoints in workflow",
-      "roadmap_step": 2,
+      "critique": "Roadmap and advisory roles; plan and PR checkpoints and the readiness re-score are now written in the workflow, but there is no calendar cadence",
+      "next_action": "Re-score at each plan close and compare with this assessment",
+      "roadmap_step": null,
       "evidence": [
         "docs/roadmap.md",
         "docs/workflow.md"

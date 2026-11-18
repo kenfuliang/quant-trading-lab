@@ -115,7 +115,7 @@ class ReadinessTests(unittest.TestCase):
         doc = load_readiness(ROOT / "research/registry/readiness.json", ids, ROOT)
         self.assertEqual(len(doc["aspects"]), 39)
         self.assertEqual({a["area"] for a in doc["aspects"]}, set(AREAS))
-        self.assertEqual(doc["assessed"], "2026-11-17")
+        self.assertEqual(doc["assessed"], "2026-11-18")
         self.assertEqual(readiness.SCHEMA, "readiness/v1")
 
 
