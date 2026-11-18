@@ -57,9 +57,11 @@ def _decimal(value, what: str) -> Decimal:
 def _bars(rows: list[dict], names: tuple[str, ...]):
     by_name: dict[str, dict[str, dict]] = {name: {} for name in names}
     for row in rows:
-        name = row["symbol"]
+        name = row.get("symbol")
         if name not in by_name:
             continue
+        if "session" not in row:
+            raise MarketDataError(f"{name}: row without session")
         if row["session"] in by_name[name]:
             raise MarketDataError(f"{name}: duplicate bar for session {row['session']}")
         by_name[name][row["session"]] = row
@@ -108,41 +110,60 @@ def _excluded(event: dict, reason: str) -> dict:
     return entry
 
 
-def _actions(actions: dict, names: tuple[str, ...], sessions: tuple[str, ...], closes):
+def _child_close(rows: list[dict], child: str, day: str, closes, label: str) -> Decimal:
+    known = closes.get(child, {}).get(day)
+    if known is not None:
+        return known
+    for row in rows:
+        if row.get("symbol") == child and row.get("session") == day:
+            cents = _decimal(row.get("c"), f"{label}: child {child} {day} close").quantize(
+                CENT, rounding=ROUND_HALF_EVEN)
+            if cents <= 0:
+                raise MarketDataError(f"{label}: child {child} {day} close non-positive after rounding")
+            return cents
+    raise MarketDataError(f"{label}: child {child} has no bar on ex_date {day}")
+
+
+def _actions(actions: dict, names: tuple[str, ...], sessions: tuple[str, ...], closes, rows):
     session_set, wanted = set(sessions), set(names)
     dividends, converted, excluded, splits = [], [], [], []
     for event in actions["cash_and_in_kind"]:
-        if event["symbol"] not in wanted:
+        if event.get("symbol") not in wanted:
             continue
-        off = [f"{label} {event[label]}" for label in ("ex_date", "pay_date") if event[label] not in session_set]
-        if off:
-            excluded.append(_excluded(event, "not a bar session: " + ", ".join(off)))
-            continue
-        symbol, label = event["symbol"], event["id"]
-        if event["kind"] == "cash":
-            per_share = _decimal(event["amount"], f"{label} amount")
-        elif event["kind"] == "in_kind":
-            child = event["child_symbol"]
-            child_close = closes.get(child, {}).get(event["ex_date"])
-            if child_close is None:
-                raise MarketDataError(
-                    f"{label}: child {child} has no bar on ex_date {event['ex_date']}")
-            ratio = _decimal(event["ratio"], f"{label} ratio")
-            per_share = (ratio * child_close).quantize(MICRO, rounding=ROUND_HALF_EVEN)
-            converted.append({"id": label, "symbol": symbol, "ex_date": event["ex_date"],
-                              "pay_date": event["pay_date"], "child_symbol": child,
-                              "ratio": str(event["ratio"]), "child_close": str(child_close),
-                              "per_share": str(per_share), "label": LABEL_IN_KIND})
-        else:
-            raise MarketDataError(f"{label}: unsupported event kind {event['kind']!r}")
+        label = event.get("id") or event["symbol"]
+        try:
+            if event["kind"] not in ("cash", "in_kind"):
+                raise MarketDataError(f"{label}: unsupported event kind {event['kind']!r}")
+            off = [f"{k} {event[k]}" for k in ("ex_date", "pay_date") if event[k] not in session_set]
+            if off:
+                excluded.append(_excluded(event, "not a bar session: " + ", ".join(off)))
+                continue
+            symbol = event["symbol"]
+            if event["kind"] == "cash":
+                per_share = _decimal(event["amount"], f"{label} amount")
+            else:
+                child = event["child_symbol"]
+                child_close = _child_close(rows, child, event["ex_date"], closes, label)
+                ratio = _decimal(event["ratio"], f"{label} ratio")
+                per_share = (ratio * child_close).quantize(MICRO, rounding=ROUND_HALF_EVEN)
+                converted.append({"id": label, "symbol": symbol, "ex_date": event["ex_date"],
+                                  "pay_date": event["pay_date"], "child_symbol": child,
+                                  "ratio": str(event["ratio"]), "child_close": str(child_close),
+                                  "per_share": str(per_share), "label": LABEL_IN_KIND})
+        except KeyError as error:
+            raise MarketDataError(f"{label}: missing field {error}") from None
         dividends.append(Dividend(symbol, event["ex_date"], event["pay_date"], float(per_share)))
     for event in actions["splits"]:
-        if event["symbol"] not in wanted:
+        if event.get("symbol") not in wanted:
             continue
-        ratio = _decimal(event["ratio"], f"{event.get('id')} ratio")
-        if ratio != int(ratio):
-            raise MarketDataError(f"split {event.get('id')} has non-integer ratio {event['ratio']}")
-        splits.append(Split(event["symbol"], event["ex_date"], int(ratio)))
+        label = event.get("id") or event["symbol"]
+        try:
+            ratio = _decimal(event["ratio"], f"{label} ratio")
+            if ratio != int(ratio):
+                raise MarketDataError(f"split {label} has non-integer ratio {event['ratio']}")
+            splits.append(Split(event["symbol"], event["ex_date"], int(ratio)))
+        except KeyError as error:
+            raise MarketDataError(f"{label}: missing field {error}") from None
     dividends.sort(key=lambda d: (d.ex_date, d.instrument))
     splits.sort(key=lambda s: (s.effective_date, s.instrument))
     return tuple(dividends), tuple(splits), tuple(converted), tuple(excluded)
@@ -153,7 +174,7 @@ def normalise(rows: list[dict], actions: dict, instruments: tuple[str, ...]) -> 
     if not names or len(set(names)) != len(names):
         raise MarketDataError(f"instruments must be non-empty and unique, got {names}")
     sessions, bars, rounding, closes = _bars(rows, names)
-    dividends, splits, converted, excluded = _actions(actions, names, sessions, closes)
+    dividends, splits, converted, excluded = _actions(actions, names, sessions, closes, rows)
     data = MarketData(sessions=sessions, bars=bars, dividends=dividends, splits=splits)
     validate(data)
     return Normalised(data=data, rounding=rounding, converted=converted, excluded=excluded)

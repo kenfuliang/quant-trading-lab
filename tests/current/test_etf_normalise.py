@@ -52,10 +52,41 @@ class NormaliseTests(unittest.TestCase):
         self.assertEqual(converted["label"], "in_kind_cash_equivalent")
         self.assertEqual(converted["child_symbol"], "KID")
 
+    def test_child_not_requested_uses_full_rows(self):
+        rows, actions = load()
+        result = n.normalise(rows, actions, ("AAA", "PAR"))
+        par = [d for d in result.data.dividends if d.instrument == "PAR"]
+        self.assertEqual(par[0].per_share, 10.005)
+
     def test_missing_child_bar_raises(self):
         rows, actions = load()
-        with self.assertRaisesRegex(MarketDataError, "child"):
-            n.normalise([r for r in rows if r["symbol"] != "KID"], actions, ("AAA", "PAR"))
+        rows = [r for r in rows if not (r["symbol"] == "KID" and r["session"] == "2024-01-04")]
+        with self.assertRaisesRegex(MarketDataError, "child KID has no bar"):
+            n.normalise(rows, actions, ("AAA", "PAR"))
+        with self.assertRaises(MarketDataError):
+            n.normalise(rows, actions, NAMES)
+
+    def test_unsupported_kind_raises_even_outside_window(self):
+        rows, actions = load()
+        actions["cash_and_in_kind"].append({"id": "AAA-odd", "symbol": "AAA", "kind": "stock",
+                                            "ex_date": "2023-01-03", "pay_date": "2023-01-04"})
+        with self.assertRaisesRegex(MarketDataError, "AAA-odd.*unsupported"):
+            n.normalise(rows, actions, NAMES)
+
+    def test_malformed_inputs_raise_market_data_error_with_identity(self):
+        rows, actions = load()
+        broken = [dict(r) for r in rows]
+        del broken[3]["c"]
+        with self.assertRaisesRegex(MarketDataError, "AAA 2024-01-05"):
+            n.normalise(broken, actions, NAMES)
+        actions["cash_and_in_kind"][0] = {"id": "AAA-bad", "symbol": "AAA", "kind": "cash",
+                                          "ex_date": "2024-01-03", "pay_date": "2024-01-04"}
+        with self.assertRaisesRegex(MarketDataError, "AAA-bad"):
+            n.normalise(rows, actions, NAMES)
+        rows2, actions2 = load()
+        actions2["cash_and_in_kind"][0]["amount"] = "abc"
+        with self.assertRaisesRegex(MarketDataError, "AAA-2024-01-03"):
+            n.normalise(rows2, actions2, NAMES)
 
     def test_event_paid_after_window_is_excluded_and_listed(self):
         rows, actions = load()
@@ -98,6 +129,24 @@ class NormaliseTests(unittest.TestCase):
         self.assertEqual(list(aaa.index), list(result.data.sessions))
         kid = adjusted["KID"]
         self.assertAlmostEqual(kid.iloc[0], 20.10, places=9)
+
+
+class TwoDividendTests(unittest.TestCase):
+    def test_cumulative_dividend_factors(self):
+        from research.evaluation.market_model import Dividend, MarketData
+        import pandas as pd
+        days = ("d1", "d2", "d3", "d4")
+        frame = pd.DataFrame({"open": [10.0] * 4, "high": [10.0] * 4, "low": [10.0] * 4,
+                              "close": [10.0, 8.0, 8.0, 5.0], "volume": [1.0] * 4},
+                             index=pd.Index(days, name="date"))
+        data = MarketData(days, {"X": frame},
+                          (Dividend("X", "d2", "d2", 1.0), Dividend("X", "d4", "d4", 0.5)), ())
+        adjusted = n.adjusted_close(data)["X"]
+        f2, f4 = 1 - 1.0 / 10.0, 1 - 0.5 / 8.0
+        self.assertAlmostEqual(adjusted.iloc[0], 10.0 * f2 * f4, places=9)
+        self.assertAlmostEqual(adjusted.iloc[1], 8.0 * f4, places=9)
+        self.assertAlmostEqual(adjusted.iloc[2], 8.0 * f4, places=9)
+        self.assertAlmostEqual(adjusted.iloc[3], 5.0, places=9)
 
 
 def load_cli():
