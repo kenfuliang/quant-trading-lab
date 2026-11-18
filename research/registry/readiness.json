@@ -166,7 +166,7 @@
       "aspect": "Lookahead and leakage control",
       "score": 3,
       "importance": "H",
-      "critique": "Manual audit skill; causal history_view; automated truncate-and-compare check passes on the rebuilt incumbent at five cutoffs; not yet a gate in the SOP",
+      "critique": "Manual audit skill; causal history_view; automated truncate-and-compare check passes on the rebuilt incumbent at five cutoffs (all sessions before each cutoff compared; a cutoff inside warm-up is not tested); not yet a gate in the SOP",
       "next_action": "Enforce the check as an SOP rule (step 6)",
       "roadmap_step": 6,
       "evidence": [
@@ -186,7 +186,7 @@
       "aspect": "Overfitting statistics",
       "score": 2.5,
       "importance": "H",
-      "critique": "Pareto, sealed forward window, trial ledger; PSR, DSR and PBO computed for the rebuilt incumbent, but DSR trial count comes from three registry records and the PBO grid is illustrative",
+      "critique": "Pareto, sealed forward window, trial ledger; PSR, DSR and PBO computed for the rebuilt incumbent with their inputs recorded, but DSR uses three C01-5bp registry trials from 2005-2025 on a 2016-2025 series, n includes 200 warm-up sessions, the benchmark is 0 (not SPY), and the PBO grid is illustrative",
       "next_action": "Complete trial counts per family; enforce in the SOP",
       "roadmap_step": 6,
       "evidence": [
@@ -221,7 +221,7 @@
       "aspect": "Analysis and attribution",
       "score": 2,
       "importance": "H",
-      "critique": "Metrics library, ablation ladder, waterfall and tearsheet exist and ran on the rebuilt incumbent; no per-trade or annual attribution, and only one strategy has been analysed",
+      "critique": "Metrics library, nested ablation ladder (order-dependent waterfall), waterfall and tearsheet exist and ran on the rebuilt incumbent; no per-trade or annual attribution, and only one strategy has been analysed",
       "next_action": "Attribution beyond the stage waterfall; apply to further strategies",
       "roadmap_step": 7,
       "evidence": [
