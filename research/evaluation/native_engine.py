@@ -24,8 +24,11 @@ Dividends: a ``SimulationModule`` records holdings at the first event of the ex-
 (the holding at the previous close) and credits ``round(per_share * shares, 2)`` with
 ``adjust_account`` at the first event of the pay date.
 
-``config.commission_usd`` must be > 0: NautilusTrader's ``FixedFeeModel`` rejects a
-zero commission, so ``run_native`` raises ``EngineError`` for it.
+``config`` is checked by ``engine_contract.check_config`` (shared with the screening
+engine). A positive ``commission_usd`` uses NautilusTrader's ``FixedFeeModel``, which
+rejects zero; a zero commission omits the fee model, so the venue's default
+maker/taker model applies with the instruments' maker and taker fees set to 0.
+Targets pass ``engine_contract.checked_targets`` and buys ``engine_contract.check_buy``.
 
 Exceptions raised inside strategy callbacks are re-raised unchanged after the run.
 Denied/rejected orders and a run that stops early (NautilusTrader stops the backtest
@@ -38,6 +41,7 @@ from __future__ import annotations
 
 import warnings
 from dataclasses import dataclass
+from decimal import Decimal
 
 import pandas as pd
 
@@ -54,9 +58,16 @@ from nautilus_trader.model.instruments import Equity
 from nautilus_trader.model.objects import Money, Price, Quantity
 from nautilus_trader.trading.strategy import Strategy
 
+from research.evaluation.engine_contract import (
+    EngineError,
+    EngineResult,
+    build_result,
+    check_buy,
+    check_config,
+    checked_targets,
+    mark,
+)
 from research.evaluation.market_model import MarketConfig, MarketData, TargetFn, execution_price, validate
-from research.evaluation.run_output import COLUMNS
-from research.evaluation.screening_engine import EngineError, EngineResult
 
 VENUE = Venue("SIM")
 TZ = "America/New_York"
@@ -219,7 +230,8 @@ class _ScreenStrategy(Strategy):
 
     def _submit_split(self, name: str, side: OrderSide, quantity: int):
         # Credit the expected commission first so the cash account never goes negative.
-        self.refund(Money(self.market.commission_usd, USD))
+        if self.market.commission_usd > 0:
+            self.refund(Money(self.market.commission_usd, USD))
         self._submit(name, side, quantity, tags=[SPLIT_TAG])
 
     # ------------------------------------------------------------- callbacks
@@ -284,12 +296,10 @@ class _ScreenStrategy(Strategy):
         buys, self.queued_buys = self.queued_buys, []
         cash = self._cash()
         commission = self.market.commission_usd
+        day = self.ts_info[self.clock.timestamp_ns()][0]
         for name, q in buys:
             price = self.cache.quote_tick(_iid(name)).ask_price.as_double()
-            if cash - (price * q + commission) < 0:
-                day = self.ts_info[self.clock.timestamp_ns()][0]
-                raise EngineError(f"{day}: buy {q} {name} @ {price} overspends cash {cash:.2f}")
-            cash -= price * q + commission
+            cash = check_buy(day, name, q, price, cash, commission)
             self._submit(name, OrderSide.BUY, q)
 
     def _on_filled(self, event):
@@ -317,23 +327,18 @@ class _ScreenStrategy(Strategy):
     def _mark_and_decide(self, day: str):
         if self.open_sells or self.queued_buys or self.split_qty:
             raise EngineError(f"{day}: orders still outstanding at the close")
-        closes = self.closes[day]
-        cash = self._cash()
         qty = {n: self._qty(n) for n in self.names}
-        equity = cash + sum(qty[n] * closes[n] for n in self.names)
-        self.marks.append({"date": day, "cash": cash, "qty": qty, "closes": closes, "equity": equity})
+        self.marks.append(mark(day, self._cash(), qty, {n: self.closes[day][n] for n in self.names}))
         i = self.sessions.index(day)
         if i == len(self.sessions) - 1:
             self.pending = None
             return
         bars = {n: self.data.bars[n].iloc[: i + 1] for n in self.names}
-        decision = self.target_fn(day, bars, dict(qty), equity)
-        for n, shares in decision.targets.items():
-            if n not in self.data.bars:
-                raise EngineError(f"{day}: target for unknown instrument {n!r}")
-            if shares < 0:
-                raise EngineError(f"{day}: negative target {shares} for {n}")
-        self.pending = {n: int(s) for n, s in decision.targets.items()}
+        decision = self.target_fn(day, bars, dict(qty), self.marks[-1]["equity"])
+        try:
+            self.pending = checked_targets(decision, self.names)
+        except EngineError as exc:
+            raise EngineError(f"{day}: {exc}") from None
         for (n, stage), value in decision.signals.items():
             self.signals.append((day, n, stage, float(value)))
 
@@ -379,8 +384,7 @@ def _fill_rows(report: pd.DataFrame, data: MarketData, sequence: dict[str, int])
 
 def run_native(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> EngineResult:
     validate(data)
-    if config.commission_usd <= 0:
-        raise EngineError("native engine requires a positive commission_usd (FixedFeeModel)")
+    check_config(config)
     names = sorted(data.bars)
     plans = _split_plans(data)
     events, ts_info = _events(data, names, plans, config.cost_bps)
@@ -388,14 +392,15 @@ def run_native(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
     engine = BacktestEngine(BacktestEngineConfig(logging=LoggingConfig(log_level="ERROR", bypass_logging=True)))
     try:
         module = _DividendModule(data, ts_info)
+        fee_model = FixedFeeModel(Money(config.commission_usd, USD)) if config.commission_usd > 0 else None
         engine.add_venue(
             VENUE, OmsType.NETTING, AccountType.CASH, [Money(config.initial_cash, USD)],
-            base_currency=USD, modules=[module], fee_model=FixedFeeModel(Money(config.commission_usd, USD)),
+            base_currency=USD, modules=[module], fee_model=fee_model,
             bar_execution=False, allow_cash_borrowing=False,
         )
         for name in names:
             engine.add_instrument(Equity(_iid(name), Symbol(name), USD, 2, Price.from_str("0.01"),
-                                         Quantity.from_int(1), 0, 0))
+                                         Quantity.from_int(1), 0, 0, maker_fee=Decimal(0), taker_fee=Decimal(0)))
         engine.add_data(events)
         strategy = _ScreenStrategy(data, target_fn, config, plans, ts_info,
                                    refund=lambda money: module.exchange.adjust_account(money))
@@ -412,31 +417,4 @@ def run_native(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
     finally:
         engine.dispose()
 
-    session_cost: dict[str, float] = {}
-    for day, _n, _s, _q, _p, cost in fills:
-        session_cost[day] = session_cost.get(day, 0.0) + cost
-    returns, positions = [], []
-    prev_equity = float(config.initial_cash)
-    for mark in strategy.marks:
-        day, equity = mark["date"], mark["equity"]
-        net = equity / prev_equity - 1
-        cost_frac = session_cost.get(day, 0.0) / prev_equity
-        returns.append((day, net + cost_frac, cost_frac, net, equity))
-        for n in names:
-            q = mark["qty"][n]
-            if q != 0:
-                positions.append((day, n, q, q * mark["closes"][n] / equity))
-        prev_equity = equity
-
-    def frame(name: str, rows: list) -> pd.DataFrame:
-        return pd.DataFrame(rows, columns=list(COLUMNS[name]))
-
-    return EngineResult(
-        engine="nautilus",
-        returns=frame("returns", returns),
-        positions=frame("positions", positions),
-        signals=frame("signals", strategy.signals),
-        fills=frame("fills", fills),
-        cash=pd.Series([m["cash"] for m in strategy.marks],
-                       index=pd.Index([m["date"] for m in strategy.marks], name="date"), name="cash", dtype=float),
-    )
+    return build_result("nautilus", strategy.marks, fills, strategy.signals, config.initial_cash)

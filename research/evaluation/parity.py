@@ -9,7 +9,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from research.evaluation.screening_engine import EngineResult
+from research.evaluation.engine_contract import EngineResult
 
 
 @dataclass(frozen=True)
