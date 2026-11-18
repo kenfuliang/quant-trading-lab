@@ -260,6 +260,12 @@ def test_engines_agree_on_synthetic_fixture(self):
     report = compare(run_screen(data, fn, cfg), run_native(data, fn, cfg))
     self.assertTrue(report.passed, report.mismatches)
 
+def test_engines_agree_when_holding_through_split_and_dividends(self):   # added 2026-11-17
+    data, cfg = synthetic_fixture(), MarketConfig()
+    fn = hold_targets({"AAA": 50, "BBB": 10, "CCC": 20})
+    report = compare(run_screen(data, fn, cfg), run_native(data, fn, cfg))
+    self.assertTrue(report.passed, report.mismatches)
+
 def test_comparator_reports_a_real_difference(self):
     data, fn = synthetic_fixture(), sma_trend_targets()
     report = compare(run_screen(data, fn, MarketConfig()), run_native(data, fn, MarketConfig(cost_bps=6.0)))
@@ -284,7 +290,7 @@ def test_comparator_reports_a_real_difference(self):
 - Produces:
   - `load_sector_derivative(bars_path: Path, actions_path: Path, instruments: tuple[str, ...]) -> MarketData`
   - `scripts/current/engine_parity.py run --bars PATH --actions PATH --instruments SPY,XLB,XLE,XLF --out DIR` — runs both engines with `sma_trend_targets()` over 2016–2025, writes two run outputs with Task 1 (the native run's `parent_run` is the screening run), writes `receipt.json` next to them with both run IDs, input file hashes and the `ParityReport`, and exits non-zero on a mismatch.
-  - Receipt fields added 2026-11-17 (owner-approved): `calendar` — `{"sessions": n, "first": date, "last": date, "identical_across_instruments": bool, "half_days": [dates]}`, where half-days are taken from the derivative's own data if it marks them and are otherwise an empty list stating `"not marked by source"`; the loader rejects instruments whose session lists differ. `timing` — wall-clock seconds per engine and `projected_seconds_500_names` = native seconds × 500 / instruments. `cash_interest: "not modelled"`.
+  - Receipt fields added 2026-11-17 (owner-approved): `calendar` — `{"sessions": n, "first": date, "last": date, "identical_across_instruments": bool, "half_days": [dates]}`, where half-days are taken from the derivative's own data if it marks them and are otherwise an empty list stating `"not marked by source"`; the loader rejects instruments whose session lists differ. `timing` — wall-clock seconds per engine and `projected_seconds_500_names` = native seconds × 500 / instruments. `cash_interest: "not modelled"`. The receipt carries `"schema": "parity-receipt/v1"`.
 
 - [ ] **Step 1:** Read `docs/tasks/2026-10-28-sector-issuer-qualification.md` and its JSON receipt; record the derivative's bar and action file paths and column names in the execution ledger. If the derivative is not present locally, stop and report it as blocked.
 - [ ] **Step 2: Write the failing tests** — `test_loader_maps_recorded_columns` on a three-session sample built from the recorded columns (one dividend with ex and pay dates); `test_cli_writes_two_runs_and_receipt` on the synthetic fixture through an injectable loader, asserting two readable run directories, a receipt with `passed: true`, the `calendar`, `timing` and `cash_interest` fields, and exit code 0; `test_loader_rejects_mismatched_sessions`.
