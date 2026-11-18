@@ -7,6 +7,7 @@ exists. All text is HTML-escaped; missing metrics render as n/a, never zero.
 """
 import html
 
+from research.control.analysis_view import trust_rows
 from research.control.registry_views import _num, _pct, _underwater
 from research.control.stage_map import STAGES
 
@@ -126,7 +127,20 @@ def _compare(model, by_id):
             + ("".join(sections) or '<p class="muted">No records.</p>'))
 
 
-def _trust(records):
+def _analysis_trust(analyses):
+    rows = "".join(
+        f'<tr data-analysis="{_e(r["analysis_id"])}"><td>{_e(r["spec_id"])}</td><td>{_e(r["analysis_id"])}</td>'
+        f'<td>{_e(r["psr"])}<br><span class="muted">{_e(r["psr_reason"])}</span></td>'
+        f'<td>{_e(r["dsr"])}<br><span class="muted">{_e(r["dsr_reason"])}</span></td>'
+        f'<td>{_e(r["pbo"])}<br><span class="muted">{_e(r["pbo_reason"])}</span></td>'
+        f'<td>{_e(r["lookahead"])}</td><td>{_e(r["tearsheet"])}</td></tr>' for r in trust_rows(analyses))
+    return ('<h3>Analysis trust statistics</h3><p class="muted">From the latest analysis per spec; a null statistic '
+            'shows its reason. These describe an analysis, not a registry run, so run eligibility stays unassessed.</p>'
+            '<table><thead><tr><th>Spec</th><th>Analysis</th><th>PSR</th><th>DSR</th><th>PBO</th><th>Lookahead</th>'
+            f'<th>Tearsheet</th></tr></thead><tbody>{rows}</tbody></table>')
+
+
+def _trust(records, analyses=None):
     rows = "".join(
         f'<tr><td>{_e(r["name"])}</td><td>{_e(r["evidence_class"])}</td>'
         f'<td>{_e(r.get("evidence_status") or "-")}</td><td>{_e((r.get("refs") or {}).get("receipt") or "none")}</td>'
@@ -134,7 +148,8 @@ def _trust(records):
     return ('<h2 id="trust">Trust</h2><p class="muted">No per-run eligibility record exists yet, so every run is '
             'unassessed; evidence status is shown verbatim and is not mapped to pass or fail.</p>'
             '<table><thead><tr><th>Run</th><th>Evidence class</th><th>Evidence status</th><th>Receipt</th>'
-            f'<th>Eligibility</th></tr></thead><tbody>{rows}</tbody></table>')
+            f'<th>Eligibility</th></tr></thead><tbody>{rows}</tbody></table>'
+            + (_analysis_trust(analyses) if analyses else ""))
 
 
 def _cycle_log(records, place):
@@ -147,7 +162,7 @@ def _cycle_log(records, place):
             f'<th>Disposition</th><th>Outcome</th><th>Lesson</th></tr></thead><tbody>{rows}</tbody></table>')
 
 
-def render_page(model, records, incumbents, built):
+def render_page(model, records, incumbents, built, analyses=None):
     by_id = {r["record_id"]: r for r in records}
     place = _places(model)
     for r in records:
@@ -159,5 +174,5 @@ def render_page(model, records, incumbents, built):
             f'the stage map and the incumbents file; nothing here is an adoption verdict.</p>'
             '<nav><a href="#stage-view">Stage view</a><a href="#compare">Compare</a><a href="#trust">Trust</a>'
             '<a href="#cycle-log">Cycle log</a></nav>'
-            f'{_stage_view(model, incumbents, by_id)}{_compare(model, by_id)}{_trust(records)}{_cycle_log(records, place)}'
+            f'{_stage_view(model, incumbents, by_id)}{_compare(model, by_id)}{_trust(records, analyses)}{_cycle_log(records, place)}'
             f'<script>{_SCRIPT}</script></body></html>')

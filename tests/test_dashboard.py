@@ -39,6 +39,17 @@ class DashboardTests(unittest.TestCase):
             self.assertIn("readiness.html", page)
             self.assertLess(page.index("Pipeline</button>"), page.index("Readiness</button>"))
 
+    def test_analysis_tab_appears_only_when_page_exists(self):
+        with tempfile.TemporaryDirectory() as t:
+            self.assertEqual(db.main(["--dir", t]), 0)
+            self.assertNotIn("Analysis", (Path(t) / "index.html").read_text())
+            (Path(t) / "readiness.html").write_text("r")
+            (Path(t) / "analysis.html").write_text("a")
+            self.assertEqual(db.main(["--dir", t]), 0)
+            page = (Path(t) / "index.html").read_text()
+            self.assertIn("analysis.html", page)
+            self.assertLess(page.index("Readiness</button>"), page.index("Analysis</button>"))
+
     def test_empty_folder_still_writes_a_page(self):
         with tempfile.TemporaryDirectory() as t:
             self.assertEqual(db.main(["--dir", t]), 0)

@@ -17,6 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = [("progress.html", "Progress"), ("stages.html", "Pipeline"), ("readiness.html", "Readiness"),
+         ("analysis.html", "Analysis"),
          ("holdings.html", "Holdings"), ("profile-replay.html", "Profile (replay)"),
          ("profile.html", "Profile (cloud)"), ("target.html", "Target log")]
 

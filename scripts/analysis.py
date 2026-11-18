@@ -7,6 +7,8 @@
                                      per-rung summaries (rounded to 10 dp) with
                                      tests/golden/fixture-ladder-summary.json; exit 1 naming
                                      the file on a difference, or rewrite it with --update
+  build [--root] [--dir <folder>]    write <folder>/analysis.html (default .local/progress; the
+                                     Analysis tab; not tracked, it carries a build time)
 
 The registry (comparison metrics, DSR trial counts) is read here, because evaluation code may
 not import the control layer, and is passed to the evaluation functions as plain values.
@@ -32,6 +34,7 @@ import pandas as pd  # noqa: E402
 
 from reporting.run_tearsheet import tearsheet_html  # noqa: E402
 from research.control import experiment_registry  # noqa: E402
+from research.control.analysis_view import load_analyses, render_analysis_page  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
@@ -196,6 +199,17 @@ def cmd_golden(args) -> int:
     return 0
 
 
+def cmd_build(args) -> int:
+    analyses, warnings = load_analyses(args.root or data_root())
+    for warning in warnings:
+        print(f"warning: {warning}", file=sys.stderr)
+    Path(args.dir).mkdir(parents=True, exist_ok=True)
+    target = Path(args.dir) / "analysis.html"
+    target.write_text(render_analysis_page(analyses, datetime.now().strftime("%Y-%m-%d %H:%M")), encoding="utf-8")
+    print(f"Wrote {target} from {len(analyses)} analyses.")
+    return 0
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -208,6 +222,10 @@ def main(argv=None) -> int:
     golden.add_argument("--update", action="store_true")
     golden.add_argument("--file", type=Path, default=GOLDEN)
     golden.set_defaults(fn=cmd_golden)
+    build = sub.add_parser("build")
+    build.add_argument("--root", type=Path)
+    build.add_argument("--dir", type=Path, default=ROOT / ".local/progress", help="folder for analysis.html")
+    build.set_defaults(fn=cmd_build)
     args = parser.parse_args(argv)
     try:
         return args.fn(args)

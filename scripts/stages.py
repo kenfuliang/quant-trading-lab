@@ -18,11 +18,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from research.control import experiment_registry as registry
+from research.control.analysis_view import load_analyses
 from research.control.experiment_registry import RegistryError
 from research.control.incumbents import IncumbentsError, load_incumbents, render_status
 from research.control.stage_map import StageMapError, draft_stage_map, load_stage_map
 from research.control.stage_page import render_page
 from research.control.stage_view import build_model
+from research.data.root import DataAbsent, data_root
 
 REGISTRY = ROOT / "research/registry/experiments.jsonl"
 STAGE_MAP = ROOT / "research/registry/stage-map.json"
@@ -84,8 +86,14 @@ def cmd_build(args):
         print("\n".join(f"error: {e}" for e in errors), file=sys.stderr)
         return 1
     Path(args.dir).mkdir(parents=True, exist_ok=True)
+    try:
+        analyses, warnings = load_analyses(data_root())
+    except (DataAbsent, OSError) as error:
+        analyses, warnings = [], [f"analyses unavailable: {error}"]
+    for warning in warnings:
+        print(f"warning: {warning}", file=sys.stderr)
     page = render_page(build_model(records, stage_map), records, incumbents,
-                       datetime.now().strftime("%Y-%m-%d %H:%M"))
+                       datetime.now().strftime("%Y-%m-%d %H:%M"), analyses)
     (Path(args.dir) / "stages.html").write_text(page, encoding="utf-8")
     print(f"Wrote {Path(args.dir) / 'stages.html'} from {len(records)} records.")
     return 0
