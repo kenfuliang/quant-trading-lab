@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-27
+updated: 2026-11-18
 owner: project-maintainers
 ---
 
@@ -86,6 +86,40 @@ and generated bulk data. This SOP does not automatically stage or publish files.
   expanding operation.
 - When capabilities change: review roadmap sequence and affected SOPs. Add a new
   skill only for a repeatable workflow that the existing skills do not cover.
+
+## Plans, branches and review
+
+- One PR per plan. Plans are stacked and a plan's PR is merged before the plan
+  after next starts.
+- One implementer at a time per branch.
+- Plan edits during execution happen only through ledger rulings, committed
+  between tasks.
+- The user is a checkpoint at the start of each plan and at each PR.
+- Generated-file conflicts: take either side, re-run the generator, never
+  hand-merge. Generated views and their owners are listed in the
+  [artifact catalog](artifacts.md); readiness is in the
+  [readiness checklist](readiness-checklist.md).
+- Shared identity, units, metric, cost, window and trial rules are owned by
+  [research conventions](conventions.md); link them rather than restating.
+- Definition of done per plan: every task's acceptance evidence is recorded, `make check`
+  passes with no `PYTHON=` override, canonical docs and generated views are
+  updated, and remaining limitations are stated.
+- Dependency adoption: capability review first, and the lock update in its own
+  commit.
+- `.local/scratch/` holds exploration. It counts as evidence only once it is
+  reproduced through the harness (a committed test or script with a receipt).
+
+## Test budget and interpreter
+
+`make test` runs `scripts/run_tests.py`, which discovers `tests/`, times each
+test and prints the slowest ten. It fails, naming the test, if any single test
+exceeds 30 s. The CI budget is a whole suite of at most 5 minutes and any single
+test at most 30 s. Real-data runs are local targets with receipts, not CI tests.
+
+`PYTHON` defaults to `.venv/bin/python` when it exists (CI and the main checkout),
+otherwise to the main checkout's `.venv/bin/python`, derived from the Git common
+directory (`rev-parse --git-common-dir`), so a worktree needs no virtualenv of its
+own. Override with `make PYTHON=<interpreter> ...`.
 
 ## Continuous integration
 
