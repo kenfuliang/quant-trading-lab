@@ -26,7 +26,7 @@
       "aspect": "Data quality and corporate actions",
       "score": 3,
       "importance": "H",
-      "critique": "etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and every dataset gets a quality report; loader refuses a failed or missing report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending",
+      "critique": "etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and a quality report is written on request (`scripts/data.py quality`), not for every dataset automatically; the loader refuses a missing, malformed, failed, stale or foreign report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending",
       "next_action": "Resolve or accept the listed cross-source breaches; owner acceptance of the report",
       "roadmap_step": 3,
       "evidence": [

@@ -8,8 +8,8 @@ owner: project-maintainers
 
 - Work status: complete for the synthetic CI fixture. Local sector-ETF parity
   **passed** on 2026-11-18 on the frozen dataset `sector-etfs-2016-2025-n1`: 0 mismatches
-  (attempt 3 below). The two earlier attempts, rejected at load on 2026-11-18, are kept
-  as history. [JSON receipt of the earlier blocked run](evidence/2026-11-17-engine-parity.json).
+  on a clean tree (attempt 4 below, the current result). Attempts 1 and 2 were rejected
+  at load and attempt 3 ran on a dirty tree; all are kept as history. [JSON receipt of the earlier blocked run](evidence/2026-11-17-engine-parity.json).
 - Quality status of the dataset: `pass-with-exceptions` (not yet accepted by the owner);
   see the [data library](../data-library.md).
 - Roadmap and owners: P0 and P1b of the
@@ -63,8 +63,9 @@ Both hashes match `data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inpu
   `code_commit` gains `+dirty` when the tree has uncommitted changes.
 - `--dataset <id>` (mutually exclusive with `--bars`/`--actions`) loads a dataset
   through `research/evaluation/datasets.py`: it verifies the manifest's input hashes,
-  refuses a dataset with no quality report or a `fail` report, and re-applies
-  `etf-normalise/v1`. The receipt's `inputs` then holds `dataset_id`, `manifest_sha256`,
+  refuses a dataset with no quality report, a malformed one, one whose recorded
+  dataset id, recipe or manifest hash does not match the current manifest, or one whose
+  status is not `pass` or `pass-with-exceptions`, and re-applies `etf-normalise/v1`. The receipt's `inputs` then holds `dataset_id`, `manifest_sha256`,
   the quality report path (relative to the data root) and status, plus the bars and
   actions hashes from the manifest. `calendar.half_days` is the report's half-day
   list. A missing manifest exits 2 with `blocked: data absent: <path>`.
@@ -94,22 +95,27 @@ tests.
 | --- | --- | --- | --- | --- |
 | 1, 2026-11-18T03:19:45Z | `35465c6` working tree with the uncommitted loader | `.local/parity/20261118T031945Z-30d7c8ba/receipt.json` | make 2 | Rejected at load: `XLF-2016-09-19 (in_kind)` |
 | 2, 2026-11-18T03:22:04Z | `1b47a82` (clean) | `.local/parity/20261118T032204Z-2e0b1c4e/receipt.json` | make 2 | Rejected at load: `XLF-2016-09-19 (in_kind)` |
-| 3, 2026-11-18T20:02:29Z | `9beafe7` plus the uncommitted dataset loader (receipt `code_commit` ends `+dirty`) | `parity/20261118T200229Z-e4c79908/receipt.json` under the data root | make 0 | **Passed**: status `passed`, 0 mismatches |
+| 3, 2026-11-18T20:02:29Z | `9beafe7` plus the uncommitted dataset loader (receipt `code_commit` ends `+dirty`) | `parity/20261118T200229Z-e4c79908/receipt.json` under the data root | make 0 | Passed, 0 mismatches, but on a dirty tree: history |
+| 4, 2026-11-18T20:16:16Z | `eb536a9` (clean) | `parity/20261118T201616Z-50df1675/receipt.json` under the data root | make 0 | **Passed**: status `passed`, 0 mismatches |
 
-Attempt 3 is the current result. Attempts 1 and 2 were rejected at load. The XLF 2016-09-19 distribution paid 0.139146 XLRE
-shares per XLF share, not cash. `MarketData` cannot represent it. No run IDs, parity
-report or timing exist because no engine ran. The receipt's `calendar` is null because
-loading failed.
+Attempt 4 is the current result. Attempts 1 and 2 were rejected at load: the XLF
+2016-09-19 distribution paid 0.139146 XLRE shares per XLF share, not cash, and
+`MarketData` cannot represent it. No run IDs, parity report or timing exist for them
+because no engine ran, and their receipts' `calendar` is null because loading failed.
+Attempt 3 ran both engines on the then-uncommitted loader; its receipt ends `+dirty`, so
+it does not identify its code and attempt 4 replaces it. Its quality report
+(`20261118T195816Z`) predates the report fields the loader now requires.
 
-Attempt 3 details (`make parity-local`, dataset `sector-etfs-2016-2025-n1`, instruments
+Attempt 4 details (`make parity-local`, dataset `sector-etfs-2016-2025-n1`, instruments
 SPY, XLB, XLE, XLF, default `MarketConfig`, `sma_trend_targets` window 20, gross 0.95):
 
 - Inputs: manifest sha256 `ddfa944c…efced`; quality report
-  `quality/sector-etfs-2016-2025-n1/20261118T195816Z/report.json` (status
-  `pass-with-exceptions`; 21 half-day sessions listed in the receipt).
+  `quality/sector-etfs-2016-2025-n1/20261118T201607Z/report.json` (status
+  `pass-with-exceptions`, built at `eb536a9` against Yahoo snapshot
+  `yahoo-sector-etfs-2016-2025-20261118b`; 21 half-day sessions listed in the receipt).
 - Calendar: 2,514 sessions, 2016-01-04 to 2025-12-31, identical across the four instruments.
-- Timing: screening 1.01 s, native engine 3.15 s; projected 394 s for 500 names.
-- Runs: screen `20261118T200229Z-5a4e7475`, nautilus `20261118T200229Z-6a40d447`, both
+- Timing: screening 1.26 s, native engine 4.06 s; projected 507 s for 500 names.
+- Runs: screen `20261118T201616Z-5a4e7475`, nautilus `20261118T201616Z-6a40d447`, both
   under the data root's `runs/`.
 - Not shown: the code both engines share (`execution_price`, dividend and split rules,
   `validate`, `history_view`) is outside what parity can catch. One run on four
@@ -142,10 +148,10 @@ running on the synthetic fixture. `make check` passed: 1,130 tests, 6 skipped.
 ## Limitations and next action
 
 - Attempts 1 and 2 left parity blocked: the data was not rounded or altered then, and
-  `validate` was not relaxed. Attempt 3 unblocked it through the data layer's recorded
-  normalisation recipe, not by changing tolerances or engines.
+  `validate` was not relaxed. Attempts 3 and 4 unblocked it through the data layer's
+  recorded normalisation recipe, not by changing tolerances or engines.
 - The dataset's quality status is `pass-with-exceptions` and the owner has not accepted
-  the report. Cross-source Alpaca-Yahoo breaches (799 of 27,654 closes) are listed in
+  the report. Cross-source Alpaca-Yahoo breaches (623 of 27,654 closes) are listed in
   the [data library](../data-library.md), not resolved.
 - Receipts and runs now live in the shared data root, so removing a worktree no longer
   deletes them. The data root itself has no backup rule yet.
