@@ -26,6 +26,11 @@ from research.evaluation.etf_normalise import RECIPE, normalise
 from research.evaluation.market_model import MarketDataError
 
 
+# Acquisition manifests written before manifests carried a `source` field.
+LEGACY_SOURCES = {"sector-etf-acquisition-v1": "alpaca", "current-spy-stock-library-v1": "alpaca",
+                  "alpaca-pilot-v1": "alpaca"}
+
+
 def cmd_fetch_yahoo(args):
     root = Path(args.root) if args.root else data_root()
     symbols = [s.strip().upper() for s in args.symbols.split(",") if s.strip()]
@@ -67,9 +72,10 @@ def cmd_normalise(args):
         actions = json.loads(actions_path.read_text(encoding="utf-8"))
         instruments = tuple(sorted({row["symbol"] for row in rows}))
         result = normalise(rows, actions, instruments)
-        provider = source.get("source")
+        provider = source.get("source") or LEGACY_SOURCES.get(source.get("schema"))
         if not provider:
-            raise ValueError(f"{source_path}: source manifest has no 'source' field")
+            raise ValueError(f"{source_path}: source manifest has no 'source' field "
+                             f"and an unknown schema {source.get('schema')!r}")
         rights = {"source": provider, "redistribution": "not_qualified", "source_manifest": bars_path.stem}
         for key in ("feed", "adjustment", "personal_use_review"):
             if key in source:

@@ -248,6 +248,24 @@ class NormaliseCommandTests(unittest.TestCase):
         self.assertEqual(doc["rights"]["source"], "tiingo")
         self.assertTrue(doc["source"].startswith("tiingo, normalised"))
 
+    def test_legacy_alpaca_schema_without_source_resolves_to_alpaca(self):
+        bars = self.root / "normalized" / "src-v1.json"
+        actions = self.root / "normalized" / "src-v1-actions.json"
+        bars.parent.mkdir(parents=True)
+        shutil.copy(FIXTURES / "etf-bars.json", bars)
+        shutil.copy(FIXTURES / "etf-actions.json", actions)
+        (self.root / "manifests").mkdir()
+        (self.root / "manifests" / "src-v1.json").write_text(
+            json.dumps({"schema": "sector-etf-acquisition-v1", "feed": "sip"}))
+        rc, _, err = self.run_cli("normalise", "--bars", str(bars), "--actions", str(actions),
+                                  "--dataset-id", "src-n1", "--root", str(self.root))
+        self.assertEqual(rc, 0, err)
+        doc = m.read_manifest(self.root, "src-n1")
+        self.assertEqual(doc["rights"]["source"], "alpaca")
+        self.assertEqual(self.cli.LEGACY_SOURCES, {
+            "sector-etf-acquisition-v1": "alpaca", "current-spy-stock-library-v1": "alpaca",
+            "alpaca-pilot-v1": "alpaca"})
+
     def test_inputs_outside_data_root_are_refused(self):
         rc, _, err = self.run_cli("normalise", "--bars", str(FIXTURES / "etf-bars.json"),
                                   "--actions", str(FIXTURES / "etf-actions.json"),
