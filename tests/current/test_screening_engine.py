@@ -1,6 +1,7 @@
 import unittest
+from dataclasses import replace
 
-from research.evaluation.market_model import MarketConfig, sma_trend_targets
+from research.evaluation.market_model import Dividend, MarketConfig, sma_trend_targets
 from research.evaluation.parity_fixture import synthetic_fixture
 from research.evaluation.run_output import COLUMNS
 from research.evaluation.screening_engine import EngineError, run_screen
@@ -49,6 +50,14 @@ class ScreeningEngineTests(unittest.TestCase):
         div = data.dividends[0]
         before = result.cash[data.sessions[data.sessions.index(div.pay_date) - 1]]
         self.assertAlmostEqual(result.cash[div.pay_date] - before, 0.40 * 10)
+
+    def test_dividend_credit_is_rounded_to_cents(self):
+        data = synthetic_fixture()
+        div = Dividend("AAA", data.sessions[30], data.sessions[35], 0.1234)
+        data = replace(data, dividends=(div,))
+        result = run_screen(data, hold_targets({"AAA": 7}), MarketConfig())
+        before = result.cash[data.sessions[34]]
+        self.assertEqual(round(result.cash[div.pay_date] - before, 6), 0.86)
 
 
 if __name__ == "__main__":

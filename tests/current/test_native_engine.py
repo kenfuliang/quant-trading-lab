@@ -1,10 +1,16 @@
 import unittest
+from dataclasses import replace
+from unittest import mock
 
-from research.evaluation.market_model import MarketConfig, sma_trend_targets
+from nautilus_trader.model.currencies import USD
+from nautilus_trader.model.objects import Money
+
+from research.evaluation import native_engine
+from research.evaluation.market_model import Dividend, MarketConfig, execution_price, sma_trend_targets
 from research.evaluation.native_engine import run_native
 from research.evaluation.parity_fixture import synthetic_fixture
 from research.evaluation.run_output import COLUMNS
-from research.evaluation.screening_engine import EngineError
+from research.evaluation.screening_engine import EngineError, run_screen
 from tests.current.engine_helpers import hold_targets
 
 
@@ -56,6 +62,51 @@ class NativeEngineTests(unittest.TestCase):
         div = data.dividends[0]
         before = result.cash[data.sessions[data.sessions.index(div.pay_date) - 1]]
         self.assertAlmostEqual(result.cash[div.pay_date] - before, 0.40 * 10)
+
+    def test_split_with_less_cash_than_one_commission_completes(self):
+        data = synthetic_fixture()
+        day = data.splits[0].effective_date
+        ask = execution_price(float(data.bars["BBB"]["open"].iloc[1]), "BUY", MarketConfig().cost_bps)
+        for leftover in (0.50, 0.00):
+            config = MarketConfig(initial_cash=10 * ask + MarketConfig().commission_usd + leftover)
+            with self.subTest(leftover=leftover):
+                native = run_native(data, hold_targets({"BBB": 10}), config)
+                screen = run_screen(data, hold_targets({"BBB": 10}), config)
+                self.assertEqual(len(native.returns), 250)
+                self.assertAlmostEqual(native.cash[day], screen.cash[day], delta=0.01)
+                self.assertAlmostEqual(native.cash[day], leftover, delta=0.01)
+
+    def test_denied_order_and_early_stop_surface_their_cause(self):
+        data = synthetic_fixture()
+        ask = execution_price(float(data.bars["BBB"]["open"].iloc[1]), "BUY", MarketConfig().cost_bps)
+        config = MarketConfig(initial_cash=10 * ask + 1.0)
+
+        def no_credit(self, name, side, quantity):
+            self._submit(name, side, quantity, tags=[native_engine.SPLIT_TAG])
+
+        original_filled = native_engine._ScreenStrategy._on_filled
+
+        def refund_after_fill(self, event):
+            order = self.cache.order(event.client_order_id)
+            if native_engine.SPLIT_TAG in (order.tags or []):
+                self.refund(Money(event.commission.as_double(), USD))
+                return
+            original_filled(self, event)
+
+        with mock.patch.object(native_engine._ScreenStrategy, "_submit_split", no_credit):
+            with self.assertRaisesRegex(EngineError, "not accepted"):
+                run_native(data, hold_targets({"BBB": 10}), config)
+            with mock.patch.object(native_engine._ScreenStrategy, "_on_filled", refund_after_fill):
+                with self.assertRaisesRegex(EngineError, r"stopped the run early.*last order .*\[split\]"):
+                    run_native(data, hold_targets({"BBB": 10}), replace(config, initial_cash=config.initial_cash + 0.5))
+
+    def test_dividend_credit_is_rounded_to_cents(self):
+        data = synthetic_fixture()
+        div = Dividend("AAA", data.sessions[30], data.sessions[35], 0.1234)
+        data = replace(data, dividends=(div,))
+        result = run_native(data, hold_targets({"AAA": 7}), MarketConfig())
+        before = result.cash[data.sessions[34]]
+        self.assertEqual(round(result.cash[div.pay_date] - before, 6), 0.86)
 
 
 if __name__ == "__main__":

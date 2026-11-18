@@ -7,8 +7,8 @@ Per-session order (a contract; the NautilusTrader engine reproduces it exactly):
 1. Split effective on d: held quantity x ratio; cash in lieu
    ``q * prev_close - q * ratio * round(prev_close / ratio, 2)`` (only when q > 0);
    any pending target for that instrument is scaled by the ratio. No fill is recorded.
-2. Dividends with ``pay_date == d``: credit ``per_share`` x shares held at the close of
-   the session before ``ex_date``.
+2. Dividends with ``pay_date == d``: credit ``round(per_share * shares, 2)`` where shares
+   are those held at the close of the session before ``ex_date``.
 3. Orders from the decision made at close d-1: the order is target minus current holding
    (zero means no order). Sells first, then buys, each sorted by instrument name. Fill
    price ``execution_price(open, side, cost_bps)``; commission per fill; fill
@@ -83,7 +83,7 @@ def run_screen(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
                 continue
             ex_idx = sessions.index(div.ex_date)
             held = close_qty[ex_idx - 1][div.instrument] if ex_idx > 0 else 0
-            cash += div.per_share * held
+            cash += round(div.per_share * held, 2)
         # 3. orders
         session_cost = 0.0
         if pending is not None:

@@ -8,9 +8,10 @@ Event layout per session d (America/New_York):
 
 - 09:28 / 09:29, split instruments only: zero-spread quotes at the previous close and
   at ``round(prev_close / ratio, 2)``. A held quantity q is sold at 09:28 and q x ratio
-  bought at 09:29; both orders carry the tag ``split``, their commissions are refunded
-  with ``adjust_account`` and they are excluded from ``fills``. Pending targets for the
-  instrument are scaled by the ratio.
+  bought at 09:29; both orders carry the tag ``split`` and are excluded from ``fills``.
+  Each split order's commission is credited with ``adjust_account`` *before* it is
+  submitted, so net cash is unchanged and the cash account never dips below zero.
+  Pending targets for the instrument are scaled by the ratio.
 - 09:30: quote per instrument with bid ``execution_price(open, "SELL")`` and ask
   ``execution_price(open, "BUY")``. Once every instrument's quote has arrived, the
   orders from the decision at close d-1 are submitted: sells first; after all sells
@@ -20,8 +21,16 @@ Event layout per session d (America/New_York):
   (equity = account cash + sum(quantity x close)) and ``target_fn`` is called.
 
 Dividends: a ``SimulationModule`` records holdings at the first event of the ex-date
-(the holding at the previous close) and credits cash with ``adjust_account`` at the
-first event of the pay date.
+(the holding at the previous close) and credits ``round(per_share * shares, 2)`` with
+``adjust_account`` at the first event of the pay date.
+
+``config.commission_usd`` must be > 0: NautilusTrader's ``FixedFeeModel`` rejects a
+zero commission, so ``run_native`` raises ``EngineError`` for it.
+
+Exceptions raised inside strategy callbacks are re-raised unchanged after the run.
+Denied/rejected orders and a run that stops early (NautilusTrader stops the backtest
+on an ``AccountError``, which bypassed logging would hide) raise ``EngineError`` naming
+the cause, the unfilled orders and the account balance.
 
 Synthetic quotes implement the modelled cost; they are not historical quotes.
 """
@@ -147,7 +156,7 @@ class _DividendModule(SimulationModule):
             if div.pay_date == day:
                 shares = self.entitled.get(k, 0)
                 if shares:
-                    credit = Money(div.per_share * shares, USD)
+                    credit = Money(round(div.per_share * shares, 2), USD)
                     self.exchange.adjust_account(credit)
                     self.credits.append((day, div.instrument, shares, credit.as_double()))
 
@@ -193,7 +202,7 @@ class _ScreenStrategy(Strategy):
             return
         try:
             fn(*args)
-        except BaseException as exc:  # surfaced after the run; NautilusTrader must not swallow it
+        except Exception as exc:  # surfaced after the run; NautilusTrader must not swallow it
             self.error = exc
 
     def _cash(self) -> float:
@@ -207,6 +216,11 @@ class _ScreenStrategy(Strategy):
         self.sequence[order.client_order_id.value] = len(self.sequence)
         self.submit_order(order)
         return order
+
+    def _submit_split(self, name: str, side: OrderSide, quantity: int):
+        # Credit the expected commission first so the cash account never goes negative.
+        self.refund(Money(self.market.commission_usd, USD))
+        self._submit(name, side, quantity, tags=[SPLIT_TAG])
 
     # ------------------------------------------------------------- callbacks
     def on_start(self):
@@ -243,12 +257,12 @@ class _ScreenStrategy(Strategy):
             q = self._qty(name)
             self.split_qty[name] = q
             if q > 0:
-                self._submit(name, OrderSide.SELL, q, tags=[SPLIT_TAG])
+                self._submit_split(name, OrderSide.SELL, q)
         elif kind == SPLIT_BUY:
             plan = next(p for p in self.plans[day] if p.instrument == name)
             q = self.split_qty.pop(name, 0)
             if q > 0:
-                self._submit(name, OrderSide.BUY, q * plan.ratio, tags=[SPLIT_TAG])
+                self._submit_split(name, OrderSide.BUY, q * plan.ratio)
         elif kind == OPEN:
             self.open_count[day] = self.open_count.get(day, 0) + 1
             if self.open_count[day] == len(self.names):
@@ -281,7 +295,12 @@ class _ScreenStrategy(Strategy):
     def _on_filled(self, event):
         order = self.cache.order(event.client_order_id)
         if SPLIT_TAG in (order.tags or []):
-            self.refund(Money(event.commission.as_double(), USD))
+            # The commission was credited before submission; it must match what was charged.
+            if order.is_closed:
+                charged = sum(c.as_double() for c in order.commissions())
+                if abs(charged - self.market.commission_usd) > 1e-9:
+                    raise EngineError(f"split order {event.client_order_id} charged {charged}, "
+                                      f"expected {self.market.commission_usd}")
             return
         if event.client_order_id in self.open_sells and order.is_closed:
             self.open_sells.discard(event.client_order_id)
@@ -317,6 +336,24 @@ class _ScreenStrategy(Strategy):
         self.pending = {n: int(s) for n, s in decision.targets.items()}
         for (n, stage), value in decision.signals.items():
             self.signals.append((day, n, stage, float(value)))
+
+
+def _early_stop_message(engine: BacktestEngine, strategy: _ScreenStrategy, sessions: int) -> str:
+    def describe(o) -> str:
+        split = " [split]" if SPLIT_TAG in (o.tags or []) else ""
+        return f"{o.client_order_id} {o.side_string()} {o.quantity} {o.instrument_id} {o.status_string()}{split}"
+
+    last = strategy.marks[-1]["date"] if strategy.marks else "none"
+    orders = sorted(engine.cache.orders(), key=lambda o: o.ts_init)
+    unfilled = [describe(o) for o in orders if o.filled_qty < o.quantity]
+    account = engine.cache.account_for_venue(VENUE)
+    balance = account.balance_total(USD) if account is not None else None
+    return (
+        f"NautilusTrader stopped the run early: marked {len(strategy.marks)} of {sessions} sessions "
+        f"(last marked {last}); account balance {balance}; last order "
+        f"{describe(orders[-1]) if orders else 'none'}; unfilled orders {unfilled or 'none'}. "
+        "A cash account stops the backtest on an AccountError, e.g. a fill that would make cash negative."
+    )
 
 
 def _fill_rows(report: pd.DataFrame, data: MarketData, sequence: dict[str, int]) -> list[tuple]:
@@ -370,7 +407,7 @@ def run_native(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
         if strategy.error is not None:
             raise strategy.error
         if len(strategy.marks) != len(data.sessions):
-            raise EngineError(f"marked {len(strategy.marks)} of {len(data.sessions)} sessions")
+            raise EngineError(_early_stop_message(engine, strategy, len(data.sessions)))
         fills = _fill_rows(engine.trader.generate_order_fills_report(), data, strategy.sequence)
     finally:
         engine.dispose()

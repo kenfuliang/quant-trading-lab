@@ -1,7 +1,8 @@
 """Shared market data model for the offline backtest engines.
 
 Both the pandas screening engine and the NautilusTrader engine consume
-``MarketData`` (raw, unadjusted prices) and call the same ``TargetFn``.
+``MarketData`` (raw, unadjusted prices on the cent grid, enforced by ``validate``)
+and call the same ``TargetFn``.
 Signals use data up to the close of day t; orders fill at the open of t+1.
 """
 from __future__ import annotations
@@ -117,6 +118,9 @@ def _validate_bars(name: str, frame: pd.DataFrame, sessions: list[str]) -> None:
         raise MarketDataError(f"{name}: NaN values")
     if (frame[["open", "high", "low", "close"]] <= 0).any().any():
         raise MarketDataError(f"{name}: non-positive price")
+    prices = frame[["open", "high", "low", "close"]].to_numpy(dtype=float) * 100
+    if (abs(prices - prices.round()) > 1e-6).any():
+        raise MarketDataError(f"{name}: price not on the cent grid")
     top = frame[["open", "close", "low"]].max(axis=1)
     bottom = frame[["open", "close", "high"]].min(axis=1)
     if (frame["high"] < top).any() or (frame["low"] > bottom).any():

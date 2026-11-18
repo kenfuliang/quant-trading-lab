@@ -65,6 +65,15 @@ class MarketModelTests(unittest.TestCase):
             with self.assertRaises(MarketDataError):
                 validate(replace(data, bars=dict(data.bars, AAA=frame)))
 
+    def test_rejects_prices_off_the_cent_grid(self):
+        data = synthetic_fixture()
+        for col in ("open", "high", "low", "close"):
+            frame = data.bars["AAA"].copy()
+            frame.iloc[5, frame.columns.get_loc(col)] += 0.003
+            with self.subTest(col=col), self.assertRaises(MarketDataError) as caught:
+                validate(replace(data, bars=dict(data.bars, AAA=frame)))
+            self.assertIn("cent", str(caught.exception))
+
     def test_rejects_unsorted_or_duplicate_sessions(self):
         data = synthetic_fixture()
         swapped = (data.sessions[1], data.sessions[0]) + data.sessions[2:]
