@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-28
+updated: 2026-11-18
 owner: project-maintainers
 ---
 
@@ -256,6 +256,56 @@ The [500-stock receipt](tasks/2026-10-25-sp500-stock-library.md) demonstrates th
 procedure for its fixed scope. Generic resumable ingestion, scheduled refresh,
 action qualification and historical-universe reconstruction remain unimplemented
 unless a later receipt establishes them.
+
+## Shared data root, Yahoo snapshot and normalised datasets (2026-11-18)
+
+Implemented in Plan 3 (ETF data layer). Paths below are relative to the data root:
+`QTL_DATA_ROOT` if set, otherwise `data/` in the main checkout, so every worktree
+shares one ignored folder. A real-data command whose inputs are missing prints
+`blocked: data absent: <path>` and exits 2.
+
+```mermaid
+flowchart LR
+    A["normalized/ Alpaca bars + issuer actions"] --> M["manifests/ID.json: input sha256, recipe etf-normalise/v1"]
+    Y["raw/yahoo/ID/ responses + requests.json + rejected-*"] --> Q
+    M --> N[normalise on load] --> Q["quality/ID/UTC stamp/report.json + report.md"]
+    Q -->|status fail or no report| X[DatasetBlocked]
+    Q -->|pass or pass-with-exceptions| L[load_dataset: verified MarketData]
+    L --> P["parity/ and runs/ receipts"]
+```
+
+```text
+<data root>/
+├── normalized/                          Alpaca raw bars and issuer actions (never edited)
+├── raw/yahoo/<id>/                      Yahoo snapshot: responses, requests.json (every
+│                                        request receipted), rejected-* kept bodies
+├── manifests/<id>.json                  dataset-manifest/v1: inputs with SHA-256, recipe, rights
+├── quality/<id>/<YYYYMMDDTHHMMSSZ>/     quality-report/v1: report.json, report.md
+├── parity/<parity_id>/receipt.json      parity receipts (earlier ones under legacy-worktree/)
+└── runs/<run_id>/                       run outputs
+```
+
+- **Normalised manifest.** `sector-etfs-2016-2025-n1` names the Alpaca bars and
+  issuer-action files by hash and the recipe `etf-normalise/v1`. No derived price file is
+  written; the recipe is applied on load. Rounding changed 10,280 prices to the cent, one
+  in-kind distribution (XLF 2016-09-19, 4.486067 per share) became a cash equivalent,
+  and one cash event outside the bar window (SPY, paid 2026-01-30) was excluded and listed.
+- **Quality reports.** Each check is `pass`, `fail`, `exception` or `blocked`; the report
+  is `fail`, `pass-with-exceptions` or `pass`. `load_dataset` refuses a missing or failed
+  report. Acceptance by the owner is left blank until given. The latest report for
+  `sector-etfs-2016-2025-n1` is `pass-with-exceptions`.
+- **Cross-source finding.** Comparing Alpaca closes with Yahoo (un-adjusted for splits;
+  tolerance the larger of $0.01 or 5 bp): 799 of 27,654 closes breach. XLF's breaches come
+  from Yahoo's own in-kind adjustment; the rest are genuine source disagreement. The
+  largest is SPY on 2020-03-12: Alpaca 255.24 against Yahoo 248.11. The breaches are
+  recorded as an exception, not resolved.
+- **Yahoo rights ruling (owner, 2026-11-17).** Yahoo data is for private offline research
+  only and is not redistributed. The rights block is carried in the snapshot manifest.
+- **Loader.** `research/evaluation/datasets.py` `load_dataset(id, instruments)` verifies
+  every manifest hash, requires a non-failed quality report, re-applies the recipe and
+  returns the data with the manifest sha256 and the quality report path and status.
+  Restricting to fewer instruments keeps a converted in-kind value because it is computed
+  from the full rows.
 
 ## Sector issuer-qualified derivative:2026-10-28
 

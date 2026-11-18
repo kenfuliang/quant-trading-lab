@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Run the screening and NautilusTrader engines on the same data and record a parity receipt.
 
-``run`` loads the bars and actions, runs ``sma_trend_targets()`` through both engines
+``run`` loads the bars and actions (or, with ``--dataset <id>``, a verified, quality-gated
+dataset from the data root; the receipt's inputs then carry the manifest sha256 and the
+quality report path and status, and ``calendar.half_days`` comes from the quality report), runs ``sma_trend_targets()`` through both engines
 with the default ``MarketConfig``, writes both run outputs to ``<runs>/<run_id>/`` (the
 native run's parent is the screening run) and ``receipt.json`` to
 ``<out>/<parity_id>/receipt.json``; the receipt references each run by id and
@@ -28,7 +30,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from research.data.root import DataAbsent, parity_root, require, runs_root  # noqa: E402
+from research.data.root import DataAbsent, data_root, parity_root, require, runs_root  # noqa: E402
+from research.data.manifest import ManifestError  # noqa: E402
+from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
 from research.evaluation.market_model import MarketConfig, MarketDataError, sma_trend_targets, validate  # noqa: E402
 from research.evaluation.native_engine import run_native  # noqa: E402
 from research.evaluation.parity import compare  # noqa: E402
@@ -70,15 +74,15 @@ def _engine_version(engine: str) -> str:
     return "screening_engine (project)"
 
 
-def _calendar(data) -> dict:
+def _calendar(data, half_days=None) -> dict:
     # The loader rejects instruments whose session lists differ, so loaded data is identical.
     return {
         "sessions": len(data.sessions),
         "first": data.sessions[0],
         "last": data.sessions[-1],
         "identical_across_instruments": True,
-        "half_days": [],
-        "half_days_note": HALF_DAYS_NOTE,
+        "half_days": [] if half_days is None else list(half_days),
+        "half_days_note": HALF_DAYS_NOTE if half_days is None else "from the quality report",
     }
 
 
@@ -107,19 +111,26 @@ def _write(runs: Path, result: EngineResult, base: dict, parent: str | None, now
     return {"run_id": run_id, "manifest_sha256": _sha256(path / "manifest.json")}
 
 
-def run(args, argv: list[str], loader) -> int:
+def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
     try:
-        require(args.bars)
-        require(args.actions)
+        if args.dataset:
+            require(data_root() / "manifests" / f"{args.dataset}.json")
+        else:
+            require(args.bars)
+            require(args.actions)
     except DataAbsent as exc:
         print(exc, file=sys.stderr)
         return 2
     now = datetime.now(timezone.utc)
     instruments = tuple(name.strip() for name in args.instruments.split(",") if name.strip())
-    inputs = {
-        "bars": {"path": str(args.bars), "sha256": _sha256(args.bars)},
-        "actions": {"path": str(args.actions), "sha256": _sha256(args.actions)},
-    }
+    if args.dataset:
+        inputs = {"dataset_id": args.dataset}  # completed from the loader's provenance
+    else:
+        inputs = {
+            "bars": {"path": str(args.bars), "sha256": _sha256(args.bars)},
+            "actions": {"path": str(args.actions), "sha256": _sha256(args.actions)},
+        }
+    half_days = None
     market = MarketConfig()
     base = {
         "strategy": STRATEGY,
@@ -154,9 +165,19 @@ def run(args, argv: list[str], loader) -> int:
     }
     stage = "load"
     try:
-        data = loader(args.bars, args.actions, instruments)
+        if args.dataset:
+            data, provenance = dataset_loader(args.dataset, instruments)
+            bars_input, actions_input = provenance["inputs"]
+            inputs.update(
+                manifest_sha256=provenance["manifest_sha256"],
+                quality_report=provenance["quality_report"],
+                quality_status=provenance["quality_status"],
+                bars=bars_input, actions=actions_input)
+            half_days = provenance["half_days"]
+        else:
+            data = loader(args.bars, args.actions, instruments)
         stage = "validate"
-        receipt["calendar"] = _calendar(data)
+        receipt["calendar"] = _calendar(data, half_days)
         validate(data)
         target_fn = sma_trend_targets(window=STRATEGY["window"], gross=STRATEGY["gross"])
         stage = "screening"
@@ -167,7 +188,7 @@ def run(args, argv: list[str], loader) -> int:
         started = time.perf_counter()
         native = run_native(data, target_fn, market)
         native_seconds = time.perf_counter() - started
-    except (MarketDataError, EngineError) as exc:
+    except (MarketDataError, EngineError, DatasetBlocked, ManifestError) as exc:
         receipt.update(status="rejected", error={"stage": stage, "type": type(exc).__name__, "message": str(exc)})
         _write_receipt(folder, receipt)
         print(f"parity rejected at {stage}: {exc}", file=sys.stderr)
@@ -200,20 +221,25 @@ def _write_receipt(folder: Path, receipt: dict) -> None:
         stream.write("\n")
 
 
-def main(argv=None, loader=load_sector_derivative) -> int:
+def main(argv=None, loader=load_sector_derivative, dataset_loader=load_dataset) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     cmd = commands.add_parser("run", help="run both engines and write a parity receipt")
-    cmd.add_argument("--bars", type=Path, required=True)
-    cmd.add_argument("--actions", type=Path, required=True)
+    cmd.add_argument("--dataset", default=None, help="dataset id under <data root>/manifests (not with --bars/--actions)")
+    cmd.add_argument("--bars", type=Path, default=None)
+    cmd.add_argument("--actions", type=Path, default=None)
     cmd.add_argument("--instruments", required=True, help="comma-separated, e.g. SPY,XLB,XLE,XLF")
     cmd.add_argument("--out", type=Path, default=None, help="parity receipts root (default <data root>/parity)")
     cmd.add_argument("--runs", type=Path, default=None, help="run outputs root (default <data root>/runs)")
     argv = list(sys.argv[1:] if argv is None else argv)
     args = parser.parse_args(argv)
+    if args.dataset and (args.bars or args.actions):
+        parser.error("--dataset cannot be combined with --bars/--actions")
+    if not args.dataset and not (args.bars and args.actions):
+        parser.error("give --dataset, or both --bars and --actions")
     args.out = args.out if args.out is not None else parity_root()
     args.runs = args.runs if args.runs is not None else runs_root()
-    return run(args, argv, loader)
+    return run(args, argv, loader, dataset_loader)
 
 
 if __name__ == "__main__":

@@ -31,8 +31,8 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Data quality report | `quality-report/v1` | local | authoritative | implemented | research/evaluation/data_quality.py, scripts/data.py | scripts/data.py | local, per dataset |
-| Dataset manifest | `dataset-manifest/v1` | local | authoritative | implemented | research/data/manifest.py, scripts/data.py | research/data/yahoo_snapshot.py | local, per dataset |
+| Data quality report | `quality-report/v1` | local | authoritative | implemented | research/evaluation/data_quality.py, scripts/data.py | scripts/data.py, research/evaluation/datasets.py | local, per dataset |
+| Dataset manifest | `dataset-manifest/v1` | local | authoritative | implemented | research/data/manifest.py, scripts/data.py | research/data/yahoo_snapshot.py, research/evaluation/datasets.py, scripts/current/engine_parity.py | local, per dataset |
 | Instrument identity map | `instrument-identity/v1` | tracked | authoritative | planned | Plan 5 (instrument identity; not built) | Plan 5 universe loaders | permanent, tracked |
 | Universe membership history | `membership/v1` | tracked | authoritative | planned | Plan 5 (universe membership; not built) | Plan 5 universe loaders | permanent, tracked |
 
@@ -49,7 +49,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Engine parity receipt | `parity-receipt/v1` | local | authoritative | implemented | scripts/current/engine_parity.py run (make parity-local) | docs/tasks/2026-11-17-engine-parity.md evidence | local, per worktree under .local/parity |
+| Engine parity receipt | `parity-receipt/v1` | local | authoritative | implemented | scripts/current/engine_parity.py run (make parity-local) | docs/tasks/2026-11-17-engine-parity.md evidence | local, shared data root under parity/ |
 
 ## diagnose
 

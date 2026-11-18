@@ -125,7 +125,7 @@
       "consumers": [
         "docs/tasks/2026-11-17-engine-parity.md evidence"
       ],
-      "retention": "local, per worktree under .local/parity",
+      "retention": "local, shared data root under parity/",
       "status": "implemented"
     },
     {
@@ -163,7 +163,9 @@
       "authority": "authoritative",
       "producer": "research/data/manifest.py, scripts/data.py",
       "consumers": [
-        "research/data/yahoo_snapshot.py"
+        "research/data/yahoo_snapshot.py",
+        "research/evaluation/datasets.py",
+        "scripts/current/engine_parity.py"
       ],
       "retention": "local, per dataset",
       "status": "implemented"
@@ -176,7 +178,8 @@
       "authority": "authoritative",
       "producer": "research/evaluation/data_quality.py, scripts/data.py",
       "consumers": [
-        "scripts/data.py"
+        "scripts/data.py",
+        "research/evaluation/datasets.py"
       ],
       "retention": "local, per dataset",
       "status": "implemented"
