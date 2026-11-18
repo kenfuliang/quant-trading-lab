@@ -1350,6 +1350,7 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/2026-11-09-forward-spy-ema.md](../docs/tasks/2026-11-09-forward-spy-ema.md)
 - [docs/tasks/2026-11-17-dashboard-redesign-design.md](../docs/tasks/2026-11-17-dashboard-redesign-design.md)
 - [docs/tasks/2026-11-17-dashboard-redesign-plan.md](../docs/tasks/2026-11-17-dashboard-redesign-plan.md)
+- [docs/tasks/2026-11-17-engine-parity.md](../docs/tasks/2026-11-17-engine-parity.md)
 - [docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md](../docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md)
 - [docs/tasks/2026-11-17-offline-research-infra-design.md](../docs/tasks/2026-11-17-offline-research-infra-design.md)
 - [docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json](../docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json)
@@ -1461,3 +1462,4 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/evidence/2026-10-31-t11-hierarchy-headroom.json](../docs/tasks/evidence/2026-10-31-t11-hierarchy-headroom.json)
 - [docs/tasks/evidence/2026-10-31-t11-loss-decision-trace.json](../docs/tasks/evidence/2026-10-31-t11-loss-decision-trace.json)
 - [docs/tasks/evidence/2026-10-31-t11-specialist-review.json](../docs/tasks/evidence/2026-10-31-t11-specialist-review.json)
+- [docs/tasks/evidence/2026-11-17-engine-parity.json](../docs/tasks/evidence/2026-11-17-engine-parity.json)

@@ -1,6 +1,6 @@
 # Local trading platform
 
-Updated 2026-10-30 (America/Los_Angeles). This file owns current capability status
+Updated 2026-11-17 (America/Los_Angeles). This file owns current capability status
 and project entrypoints. The active priority is infrastructure, using Python and
 NautilusTrader locally without QuantConnect.
 
@@ -83,6 +83,7 @@ Define outcome → implement one slice → verify offline → record evidence
 | Offline regression checks | `make check`; tests use fixtures and build observer configuration without connecting |
 | IBKR observation tools | Implemented in `paper_trading/`; `scripts/paper.py` exposes doctor, probe, observe; no execution client |
 | Broker verification | Blocked by paper-account access in the last observed session on 2026-10-24; no successful engine-to-broker connection recorded |
+| Run output and engine parity | Implemented on the synthetic CI fixture; local sector-ETF parity per receipt. Run output writer/reader, screening and NautilusTrader engines and parity comparator under `research/evaluation/`; CI parity passes in `make check`. The local `make parity-local` run on SPY/XLB/XLE/XLF was rejected at load (XLF 2016 in-kind event; sub-cent source prices), so real-data parity is blocked; [task record](docs/tasks/2026-11-17-engine-parity.md), [receipt](docs/tasks/evidence/2026-11-17-engine-parity.json) |
 | Historical SPY fixture | Completed and independently reconciled; [report](reports/spy/20261024-235746-728801/report.md), [methodology](research/README.md) |
 | Upstream capabilities | Native catalog, risk, reports, persistence and reconciliation assessed in the capability matrix; availability differs by runtime |
 | Native reports and local MLflow | Saved SPY reports rendered via native precomputed-statistics interface; two audited portfolios imported for browser comparison, including overall/annual Calmar and Sharpe rankings, charts and CSV; see performance SOP |

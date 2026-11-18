@@ -9,8 +9,11 @@ owner: project-maintainers
 Proposed design for the infrastructure that daily offline research needs before more
 views are worth building: a qualified free-data layer, one run harness with two engines,
 a standard per-run output and analysis computed from that output. It also maps the
-existing teams, skills and SOPs onto that infrastructure and names the gaps. Nothing
-here is implemented; every component below is **planned**. The [roadmap](../roadmap.md)
+existing teams, skills and SOPs onto that infrastructure and names the gaps. P0 and
+P1b are **implemented** on the synthetic CI fixture. Local sector-ETF parity is
+**blocked**: the run was rejected at load
+([task record](2026-11-17-engine-parity.md)). Every other component below is still
+**planned**. See the status column under [Phasing](#phasing). The [roadmap](../roadmap.md)
 keeps sequencing authority. The owner approved this design on 2026-11-17 and folded it
 into M1 (data layer, harness, parity) and M2 (run output, analysis, enforced rules).
 
@@ -246,14 +249,14 @@ Three rules become tool-enforced rather than documented only:
 
 ## Phasing
 
-| Phase | Deliverable | Acceptance |
-| --- | --- | --- |
-| P0 | Run output schema and writer | Schema test; a fixture run writes and re-reads every file with matching hashes |
-| P1a | ETF data layer: Yahoo snapshot, own adjustment, quality report | ETF quality report passes or lists every exception; Alpaca–Yahoo close disagreement measured |
-| P1b | Screening engine and NautilusTrader confirmation on the fixture | Parity check passes in `make check` |
-| P2 | Analysis: tearsheet, stage waterfall, trust panel | The incumbent SPY EMA/volatility traffic-light strategy is rebuilt through the harness; its waterfall and trust panel are computed; a reconciliation report compares it with the existing registry numbers and explains every difference (a difference is reported, not a gate) |
-| P3 | S&P 500 membership and coverage | Membership table from `fja05680/sp500` (MIT), cross-checked against `index-constitution` and `hanshof/sp500_constituents`, spot-checked on known changes; coverage measured against the existing 500-name archive. Acquiring former members' prices is out of scope |
-| P4 | SOP and catalog updates; registry `refs` link | The three enforced rules each have a failing-then-passing test |
+| Phase | Deliverable | Acceptance | Status |
+| --- | --- | --- | --- |
+| P0 | Run output schema and writer | Schema test; a fixture run writes and re-reads every file with matching hashes | Implemented: `research/evaluation/run_output.py`, `tests/current/test_run_output.py` ([plan](2026-11-17-offline-infra-p0-p1b-plan.md) Task 1) |
+| P1a | ETF data layer: Yahoo snapshot, own adjustment, quality report | ETF quality report passes or lists every exception; Alpaca–Yahoo close disagreement measured | Planned |
+| P1b | Screening engine and NautilusTrader confirmation on the fixture | Parity check passes in `make check` | Implemented: synthetic CI parity passes in `make check` ([plan](2026-11-17-offline-infra-p0-p1b-plan.md) Tasks 2–5). Local sector-ETF parity is blocked: the run was rejected at load on the XLF 2016 in-kind event, and the source has sub-cent prices ([task record](2026-11-17-engine-parity.md), [receipt](evidence/2026-11-17-engine-parity.json)) |
+| P2 | Analysis: tearsheet, stage waterfall, trust panel | The incumbent SPY EMA/volatility traffic-light strategy is rebuilt through the harness; its waterfall and trust panel are computed; a reconciliation report compares it with the existing registry numbers and explains every difference (a difference is reported, not a gate) | Planned |
+| P3 | S&P 500 membership and coverage | Membership table from `fja05680/sp500` (MIT), cross-checked against `index-constitution` and `hanshof/sp500_constituents`, spot-checked on known changes; coverage measured against the existing 500-name archive. Acquiring former members' prices is out of scope | Planned |
+| P4 | SOP and catalog updates; registry `refs` link | The three enforced rules each have a failing-then-passing test | Planned |
 
 P1a and P1b run in parallel after P0: P1b uses the synthetic fixture and the existing
 issuer-qualified ETF derivative, so it does not wait for P1a's adjustment recipe.
