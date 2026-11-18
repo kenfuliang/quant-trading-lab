@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
+from research.data import root as root_module
 from research.data.root import DataAbsent, data_root, parity_root, require, runs_root
 
 
@@ -46,6 +47,29 @@ class DataRootTests(unittest.TestCase):
         main.mkdir()
         _git(main, "init", "-q")
         self.assertEqual(data_root(main), main / "data")
+
+    def test_default_cwd_is_repo_not_process_cwd(self):
+        outside = self.tmp / "outside"
+        outside.mkdir()
+        expected = data_root(root_module.REPO_ROOT)
+        old = os.getcwd()
+        os.chdir(outside)
+        try:
+            self.assertEqual(data_root(), expected)
+        finally:
+            os.chdir(old)
+        self.assertNotEqual(expected, outside / "data")
+
+    def test_relative_env_is_made_absolute_and_empty_is_unset(self):
+        old = os.getcwd()
+        os.chdir(self.tmp)
+        try:
+            os.environ["QTL_DATA_ROOT"] = "rel"
+            self.assertEqual(data_root(), self.tmp / "rel")
+            os.environ["QTL_DATA_ROOT"] = ""
+            self.assertEqual(data_root(), data_root(root_module.REPO_ROOT))
+        finally:
+            os.chdir(old)
 
     def test_require_raises_blocked_message(self):
         missing = self.tmp / "absent.json"

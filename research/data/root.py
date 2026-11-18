@@ -31,8 +31,8 @@ def _main_checkout(cwd: Path) -> Path | None:
 def data_root(cwd: Path | None = None) -> Path:
     env = os.environ.get("QTL_DATA_ROOT")
     if env:
-        return Path(env)
-    base = Path(os.path.abspath(cwd if cwd is not None else Path.cwd()))
+        return Path(os.path.abspath(env))
+    base = Path(os.path.abspath(cwd if cwd is not None else REPO_ROOT))
     main = _main_checkout(base)
     return (main if main is not None else REPO_ROOT) / "data"
 

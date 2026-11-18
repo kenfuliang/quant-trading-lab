@@ -114,7 +114,7 @@ def run(args, argv: list[str], loader) -> int:
     except DataAbsent as exc:
         print(exc, file=sys.stderr)
         return 2
-    now =datetime.now(timezone.utc)
+    now = datetime.now(timezone.utc)
     instruments = tuple(name.strip() for name in args.instruments.split(",") if name.strip())
     inputs = {
         "bars": {"path": str(args.bars), "sha256": _sha256(args.bars)},
