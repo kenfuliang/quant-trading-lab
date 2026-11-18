@@ -10,6 +10,7 @@ from research.evaluation.market_model import (
     MarketDataError,
     Split,
     execution_price,
+    history_view,
     sma_trend_targets,
     validate,
 )
@@ -120,13 +121,13 @@ class MarketModelTests(unittest.TestCase):
         data = synthetic_fixture()
         fn = sma_trend_targets(window=20, gross=0.95)
         early = data.sessions[18]
-        bars = {k: v.loc[:early] for k, v in data.bars.items()}
+        bars = history_view(data, 18)
         d = fn(early, bars, {}, 100_000.0)
         self.assertIsInstance(d, Decision)
         self.assertEqual(set(d.targets), {"AAA", "BBB", "CCC"})
         self.assertTrue(all(v == 0 for v in d.targets.values()))
         t = data.sessions[60]
-        bars = {k: v.loc[:t] for k, v in data.bars.items()}
+        bars = history_view(data, 60)
         d = fn(t, bars, {}, 100_000.0)
         up = [k for k in bars if bars[k]["close"].iloc[-1] > bars[k]["close"].iloc[-20:].mean()]
         for k in bars:
@@ -134,6 +135,43 @@ class MarketModelTests(unittest.TestCase):
             expected = int(0.95 / len(up) * 100_000.0 / close) if k in up else 0
             self.assertEqual(d.targets[k], expected)
             self.assertAlmostEqual(d.signals[(k, "trend")], close / bars[k]["close"].iloc[-20:].mean() - 1)
+
+
+class HistoryViewTests(unittest.TestCase):
+    def test_split_factor_around_the_bbb_split(self):
+        data = synthetic_fixture()
+        k = data.sessions.index(data.splits[0].effective_date)
+        view = history_view(data, k + 5)
+        self.assertEqual(set(view), set(data.bars))
+        self.assertEqual(list(view["BBB"].index), list(data.sessions[: k + 6]))
+        factor = view["BBB"]["split_factor"]
+        self.assertTrue((factor.iloc[:k] == 2.0).all())
+        self.assertTrue((factor.iloc[k:] == 1.0).all())
+        self.assertTrue((view["AAA"]["split_factor"] == 1.0).all())
+        pd.testing.assert_frame_equal(view["BBB"][list(data.bars["BBB"].columns)], data.bars["BBB"].iloc[: k + 6])
+
+    def test_no_future_split_leaks_into_earlier_history(self):
+        data = synthetic_fixture()
+        k = data.sessions.index(data.splits[0].effective_date)
+        view = history_view(data, k - 1)
+        self.assertEqual(len(view["BBB"]), k)
+        self.assertTrue((view["BBB"]["split_factor"] == 1.0).all())
+
+    def test_view_does_not_alter_market_data(self):
+        data = synthetic_fixture()
+        history_view(data, 200)
+        self.assertNotIn("split_factor", data.bars["BBB"].columns)
+
+    def test_sma_on_bbb_is_not_distorted_by_the_split(self):
+        data = synthetic_fixture()
+        k = data.sessions.index(data.splits[0].effective_date)
+        view = history_view(data, k + 2)
+        d = sma_trend_targets(window=20)(data.sessions[k + 2], view, {}, 100_000.0)
+        frame = view["BBB"]
+        adjusted = frame["close"] / frame["split_factor"]
+        expected = frame["close"].iloc[-1] / adjusted.iloc[-20:].mean() - 1
+        self.assertAlmostEqual(d.signals[("BBB", "trend")], expected)
+        self.assertLess(abs(d.signals[("BBB", "trend")]), 0.1)   # raw closes would give about -0.45
 
 
 if __name__ == "__main__":

@@ -21,7 +21,8 @@ Event layout per session d (America/New_York):
   fill, buys in instrument order, each checked against the account cash with the known
   ask (overspend raises ``EngineError`` before submission).
 - 16:00: daily bar per instrument. Once every bar has arrived, the close is marked
-  (equity = account cash + sum(quantity x close)) and ``target_fn`` is called.
+  (equity = account cash + sum(quantity x close)) and ``target_fn`` is called with
+  ``history_view(data, i)``, the same view the screening engine passes.
 
 Dividends: a ``SimulationModule`` records holdings at the first event of the ex-date
 (the holding at the previous close) and credits ``round(per_share * shares, 2)`` with
@@ -70,7 +71,14 @@ from research.evaluation.engine_contract import (
     checked_targets,
     mark,
 )
-from research.evaluation.market_model import MarketConfig, MarketData, TargetFn, execution_price, validate
+from research.evaluation.market_model import (
+    MarketConfig,
+    MarketData,
+    TargetFn,
+    execution_price,
+    history_view,
+    validate,
+)
 
 VENUE = Venue("SIM")
 TZ = "America/New_York"
@@ -340,8 +348,7 @@ class _ScreenStrategy(Strategy):
         if i == len(self.sessions) - 1:
             self.pending = None
             return
-        bars = {n: self.data.bars[n].iloc[: i + 1] for n in self.names}
-        decision = self.target_fn(day, bars, dict(qty), self.marks[-1]["equity"])
+        decision = self.target_fn(day, history_view(self.data, i), dict(qty), self.marks[-1]["equity"])
         try:
             self.pending = checked_targets(decision, self.names)
         except EngineError as exc:

@@ -21,8 +21,8 @@ Per-session order (a contract; the NautilusTrader engine reproduces it exactly):
    ``cost = session fill costs / previous equity``, ``gross_return = net_return + cost``.
    Positions: one row per (session, instrument held with non-zero quantity), weight =
    value / equity. Cash is recorded per session.
-5. Decision for d+1 (not on the last session): ``target_fn(d, bars up to and including d,
-   holdings, equity)`` where holdings maps every instrument to its integer quantity
+5. Decision for d+1 (not on the last session): ``target_fn(d, history_view(data, d),
+   holdings, equity)`` (bars up to and including d with a causal ``split_factor``) where holdings maps every instrument to its integer quantity
    (zeros included). Targets pass ``engine_contract.checked_targets``: unknown
    instruments, negative, bool, non-finite or non-integral share counts raise
    ``EngineError`` (never truncated). Signals are recorded with date d. Instruments absent
@@ -43,7 +43,14 @@ from research.evaluation.engine_contract import (
     checked_targets,
     mark,
 )
-from research.evaluation.market_model import MarketConfig, MarketData, TargetFn, execution_price, validate
+from research.evaluation.market_model import (
+    MarketConfig,
+    MarketData,
+    TargetFn,
+    execution_price,
+    history_view,
+    validate,
+)
 
 __all__ = ["EngineError", "EngineResult", "run_screen"]  # EngineError/EngineResult re-exported for callers
 
@@ -97,8 +104,7 @@ def run_screen(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
         close_qty.append(dict(qty))
         # 5. decision
         if i < len(sessions) - 1:
-            bars = {n: data.bars[n].iloc[: i + 1] for n in names}
-            decision = target_fn(day, bars, dict(qty), marks[-1]["equity"])
+            decision = target_fn(day, history_view(data, i), dict(qty), marks[-1]["equity"])
             try:
                 pending = checked_targets(decision, names)
             except EngineError as exc:

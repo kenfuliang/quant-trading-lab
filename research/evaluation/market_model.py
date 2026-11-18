@@ -2,7 +2,7 @@
 
 Both the pandas screening engine and the NautilusTrader engine consume
 ``MarketData`` (raw, unadjusted prices on the cent grid, enforced by ``validate``)
-and call the same ``TargetFn``.
+and call the same ``TargetFn`` on the same ``history_view``.
 Signals use data up to the close of day t; orders fill at the open of t+1.
 """
 from __future__ import annotations
@@ -11,6 +11,7 @@ import math
 from dataclasses import dataclass
 from typing import Callable
 
+import numpy as np
 import pandas as pd
 
 BAR_COLUMNS = ("open", "high", "low", "close", "volume")
@@ -58,8 +59,31 @@ class Decision:
     signals: dict[tuple[str, str], float]
 
 
-# (session date t, bars up to and including t, current holdings, equity at close t)
+# (session date t, history_view(data, t): bars up to and including t with a causal
+# ``split_factor`` column, current holdings, equity at close t)
 TargetFn = Callable[[str, dict[str, pd.DataFrame], dict[str, int], float], Decision]
+
+
+def history_view(data: MarketData, i: int) -> dict[str, pd.DataFrame]:
+    """What both engines pass to ``TargetFn`` after the close of session ``i``.
+
+    Bars up to and including session ``i`` (raw prices, copies) with an added
+    ``split_factor`` column: the product of the ratios of splits effective after that row
+    and on or before session ``i`` (1.0 otherwise). ``close / split_factor`` is the close
+    on session ``i``'s share basis. Splits after session ``i`` never affect the view.
+    """
+    effective = {}
+    for split in data.splits:
+        k = data.sessions.index(split.effective_date)
+        if k <= i:
+            effective.setdefault(split.instrument, []).append((k, split.ratio))
+    view = {}
+    for name, frame in data.bars.items():
+        factor = np.ones(i + 1)
+        for k, ratio in effective.get(name, ()):
+            factor[:k] *= ratio
+        view[name] = frame.iloc[: i + 1].assign(split_factor=factor)
+    return view
 
 
 def execution_price(open_px: float, side: str, cost_bps: float) -> float:
@@ -128,7 +152,11 @@ def _validate_bars(name: str, frame: pd.DataFrame, sessions: list[str]) -> None:
 
 
 def sma_trend_targets(window: int = 20, gross: float = 0.95) -> TargetFn:
-    """Equal weight across instruments whose close is above their ``window``-session mean."""
+    """Equal weight across instruments whose close is above their ``window``-session mean.
+
+    Mean and signal use ``close / split_factor`` (``history_view``), so a split inside the
+    window does not distort them; share counts use the raw last close.
+    """
 
     def target_fn(session: str, bars: dict[str, pd.DataFrame], holdings: dict[str, int], equity: float) -> Decision:
         targets = {name: 0 for name in bars}
@@ -138,9 +166,10 @@ def sma_trend_targets(window: int = 20, gross: float = 0.95) -> TargetFn:
         for name, frame in bars.items():
             if len(frame) < window:
                 continue
-            close = float(frame["close"].iloc[-1])
-            mean = float(frame["close"].iloc[-window:].mean())
-            last_close[name] = close
+            adjusted = frame["close"] / frame["split_factor"]
+            close = float(adjusted.iloc[-1])  # split_factor is 1.0 on the last row
+            mean = float(adjusted.iloc[-window:].mean())
+            last_close[name] = float(frame["close"].iloc[-1])
             signals[(name, "trend")] = close / mean - 1
             if close > mean:
                 above.append(name)
