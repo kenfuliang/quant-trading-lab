@@ -70,9 +70,25 @@ class PboTests(unittest.TestCase):
         self.assertEqual(out["value"], 0.0)
         self.assertEqual(out["n_combinations"], 70)
         self.assertEqual(len(out["logits"]), 70)
+        # The 0.2-0.8 band for pure noise depends on this fixed seed (seed 7).
         pure = trust.pbo(pd.DataFrame(noise), n_partitions=8)
         self.assertGreater(pure["value"], 0.2)
         self.assertLess(pure["value"], 0.8)
+
+    def test_constant_nonzero_column_is_never_chosen(self):
+        noise = np.random.default_rng(13).normal(0, 0.01, (2500, 7))
+        base = trust.pbo(pd.DataFrame(noise), n_partitions=16)
+        with_const = np.column_stack([noise, np.full(2500, 0.05)])
+        out = trust.pbo(pd.DataFrame(with_const), n_partitions=16)
+        self.assertEqual(out["value"], base["value"])
+        self.assertGreater(out["value"], 0.2)
+
+    def test_guards_for_benchmark_and_expected_max_sharpe(self):
+        self.assertIsNone(trust.psr(_series(), sr_benchmark=float("nan"))["value"])
+        with self.assertRaises(ValueError):
+            trust.expected_max_sharpe(1, 0.01)
+        with self.assertRaises(ValueError):
+            trust.expected_max_sharpe(5, -0.1)
 
     def test_pbo_default_partitions_runs_fast(self):
         perf = pd.DataFrame(np.random.default_rng(11).normal(0, 0.01, (2500, 8)))

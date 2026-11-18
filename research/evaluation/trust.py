@@ -51,6 +51,8 @@ def psr(returns, sr_benchmark: float = 0.0) -> dict:
     """
     r = _clean(returns)
     n = int(r.size)
+    if not math.isfinite(sr_benchmark):
+        return _none("sr_benchmark is not finite", n=n)
     if n < 3:
         return _none("fewer than 3 observations", n=n)
     sr = sharpe_per_period(r)
@@ -72,6 +74,10 @@ def expected_max_sharpe(n_trials: int, sr_variance: float) -> float:
     cross-trial Sharpe variance ``sr_variance``:
     sqrt(V) * ((1-g) * Phi^-1(1 - 1/N) + g * Phi^-1(1 - 1/(N e))), g = Euler-Mascheroni."""
     n = int(n_trials)
+    if n < 2:
+        raise ValueError("expected_max_sharpe needs n_trials >= 2")
+    if not sr_variance >= 0 or not math.isfinite(sr_variance):
+        raise ValueError("expected_max_sharpe needs a finite sr_variance >= 0")
     g = EULER_GAMMA
     return math.sqrt(sr_variance) * (
         (1 - g) * _ND.inv_cdf(1 - 1 / n) + g * _ND.inv_cdf(1 - 1 / (n * math.e))
@@ -115,6 +121,16 @@ def pbo(perf: pd.DataFrame, n_partitions: int = 16) -> dict:
     if m < 2:
         return _none("fewer than 2 rows per partition", logits=[], n_combinations=0)
     blocks = x[: m * s].reshape(s, m, n)
+    # Constant columns (any non-zero level) have zero true variance; the sums-of-squares route
+    # would leave rounding noise there and a huge spurious Sharpe, so exclude them exactly.
+    # They are dropped as configurations (they would only inflate N in the rank).
+    keep = np.ptp(x[: m * s], axis=0) > 0
+    if keep.sum() < 2:
+        return _none("fewer than 2 non-constant columns", logits=[], n_combinations=0)
+    x = x[:, keep]
+    n = x.shape[1]
+    constant = np.zeros(n, dtype=bool)
+    blocks = x[: m * s].reshape(s, m, n)
     p_sum = blocks.sum(axis=1)
     p_sq = (blocks ** 2).sum(axis=1)
     combos = np.array(list(itertools.combinations(range(s), s // 2)))
@@ -124,9 +140,11 @@ def pbo(perf: pd.DataFrame, n_partitions: int = 16) -> dict:
     def sharpe(sums, sqs, cnt):
         mean = sums / cnt
         var = (sqs - cnt * mean ** 2) / (cnt - 1)
+        scale = np.maximum(np.maximum(mean ** 2, sqs / cnt), 1e-300)
+        ok = (var > 1e-12 * scale) & ~constant
         with np.errstate(divide="ignore", invalid="ignore"):
-            sr = mean / np.sqrt(var)
-        return np.where(var > 1e-18, sr, -np.inf)
+            sr = mean / np.sqrt(np.where(ok, var, 1.0))
+        return np.where(ok, sr, -np.inf)
 
     is_sum = p_sum[combos].sum(axis=1)
     is_sq = p_sq[combos].sum(axis=1)
