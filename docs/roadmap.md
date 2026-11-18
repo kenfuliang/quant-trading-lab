@@ -90,7 +90,7 @@ removes an unconditional database choice and puts proof of native behavior first
 
 | Step | Scope | Depends on | State |
 | --- | --- | --- | --- |
-| 1 | P0 run output and P1b two engines with parity, per the [P0/P1b plan](tasks/2026-11-17-offline-infra-p0-p1b-plan.md) | — | In progress on branch `claude/offline-infra-p0-p1b`; acceptance per the plan |
+| 1 | P0 run output and P1b two engines with parity, per the [P0/P1b plan](tasks/2026-11-17-offline-infra-p0-p1b-plan.md) | — | Implemented on the synthetic CI fixture (branch `claude/offline-infra-p0-p1b`). Real-data parity is blocked at load; see the [engine parity task record](tasks/2026-11-17-engine-parity.md). Its blockers (sub-cent source prices, in-kind distributions, payments after the data window) are routed to the step 3 data-layer plan |
 | 2 | Conventions document: instrument and strategy identity, metric definitions and units, annualisation, benchmarks, cost levels, period and crisis windows, trial counting, schema-version rules | — | Planned; must be accepted before P2 |
 | 3 | P1a ETF data layer: Yahoo snapshots (owner ruling: private offline use only), own adjustment, quality report | P0 | Planned; separate plan |
 | 4 | P2 analysis: tearsheet, stage waterfall, trust panel; rebuild of the incumbent SPY strategy | Steps 1–3 | Planned; reuse candidates go through capability review first |

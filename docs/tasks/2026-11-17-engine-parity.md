@@ -26,7 +26,8 @@ flowchart LR
     V -->|MarketDataError| R
     V --> S[run_screen] --> C[compare]
     V --> N[run_native] --> C
-    C --> W[two run outputs + receipt.json]
+    C --> W["two run outputs in .local/runs/run_id/"]
+    C --> P["receipt.json in .local/parity/parity_id/: run ids + manifest sha256"]
 ```
 
 ## Inputs and contracts
@@ -44,17 +45,34 @@ Both hashes match `data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inpu
   them. It rejects a missing instrument, duplicate rows, differing session lists,
   non-integer split ratios and any non-cash distribution. Dropping an in-kind
   distribution would misstate a holder's equity.
-- `scripts/current/engine_parity.py run --bars --actions --instruments --out`. It runs
-  `sma_trend_targets()` with the default `MarketConfig` (5 bps, $1 commission,
-  $100,000) through both engines and writes `<out>/<parity_id>/` with both run outputs.
-  The native run's `parent_run` is the screening run. The `parity-receipt/v1`
-  `receipt.json` records `calendar`, `timing`, `cash_interest: "not modelled"`, input
-  hashes and the `ParityReport`. Rejection or mismatch exits 1. `code_commit` gains
-  `+dirty` when the tree has uncommitted changes.
-- `make parity-local` passes the recorded paths and `--out .local/parity`. It is not
+- `scripts/current/engine_parity.py run --bars --actions --instruments --out --runs`.
+  It runs `sma_trend_targets()` with the default `MarketConfig` (5 bps, $1 commission,
+  $100,000) through both engines. Both run outputs go to `<runs>/<run_id>/`; the
+  native run's `parent_run` is the screening run. Each manifest's `engine` is `screen`
+  or `nautilus`, and its `config` holds only strategy, market, instruments and engine,
+  so `config_hash` identifies the configuration. The `parity-receipt/v1` receipt is
+  written to `<out>/<parity_id>/receipt.json`. It records `calendar`, `timing`,
+  `cash_interest: "not modelled"`, input hashes, `runs_root`, each run's id and
+  `manifest.json` sha256, and the `ParityReport`. Rejection or mismatch exits 1.
+  `code_commit` gains `+dirty` when the tree has uncommitted changes.
+- `make parity-local` passes the recorded paths, `--out .local/parity` and
+  `--runs .local/runs`. Override `PARITY_DATA` (the folder holding both JSON files) or
+  `PARITY_BARS`/`PARITY_ACTIONS` when the derivative lives elsewhere. The target is not
   part of `make check`.
 - Tolerances: share quantities and fill dates are identical; cash and equity match within
-  $0.01 per session. This task changed neither the tolerances nor the engines.
+  $0.01 per session. This task changed neither the tolerances nor the engines. The later
+  whole-branch review changed the engines: splits move no cash, `TargetFn` receives the
+  shared `history_view`, and targets and `MarketConfig` are checked by shared code.
+  The recorded attempts below predate those changes. They were rejected at load, so no
+  engine ran.
+
+## What parity proves
+
+Parity shows that NautilusTrader's order, commission, position and cash accounting of
+harness-scripted quotes matches the pandas engine. It cannot catch defects in code both
+engines share: `execution_price`, the dividend entitlement rule, the split rule,
+`validate`, `history_view`, and lookahead inside a `TargetFn`. Those need their own
+tests.
 
 ## Actual results
 
