@@ -1,10 +1,23 @@
 """Truncate-and-compare lookahead check.
 
 A causal strategy's decisions at session t depend only on data up to t. For each cutoff
-session c the strategy is run on the data truncated at c and on the full data; signals and
-positions for sessions strictly before c must be identical (exact equality). The truncated
-run's own last session is excluded because its orders cannot fill, so the comparison stops
-one session earlier.
+session c the strategy is built (``target_fn_factory(data)``) and run on the data truncated
+at c and on the full data. The factory receives the data of the run it serves, so features
+precomputed from that data (a forward-looking indicator, a full-sample normalisation) are
+rebuilt per run and a leak shows up as a difference.
+
+Compared, with exact equality (NaN equals NaN):
+
+* signals and positions for sessions strictly before c, from the two ``run_screen`` runs;
+* the decision at c itself. ``run_screen`` makes no decision on its last session (nothing
+  could fill), so the truncated run records none there; to catch one-step-ahead leaks the
+  target fn is called directly at c with ``history_view`` of the truncated and of the full
+  data, with the same holdings and equity (taken from the truncated run's close of c), and
+  the returned targets and signals are compared (table ``decision``).
+
+If a run or call raises, the cutoff is recorded as a difference with table ``error``
+(``first_date`` is the cutoff, ``count`` 1, ``error`` the exception text) and the status is
+"fail".
 
 ``truncate`` drops dividends whose pay date is after ``last``. A dividend with
 ``ex_date <= last < pay_date`` is therefore dropped as well (this also keeps ``validate``
@@ -17,7 +30,7 @@ from typing import Callable
 
 import pandas as pd
 
-from research.evaluation.market_model import MarketConfig, MarketData, TargetFn
+from research.evaluation.market_model import MarketConfig, MarketData, TargetFn, history_view
 from research.evaluation.screening_engine import run_screen
 
 __all__ = ["check_lookahead", "truncate"]
@@ -59,17 +72,43 @@ def _difference(truncated: pd.DataFrame, full: pd.DataFrame, keys: list[str], va
             "count": int(bad.sum())}
 
 
-def check_lookahead(data: MarketData, target_fn_factory: Callable[[], TargetFn], market: MarketConfig,
+def _decision_difference(short: MarketData, full: MarketData, short_fn, full_fn, result, cutoff: str) -> dict | None:
+    i = short.sessions.index(cutoff)
+    held = result.positions[result.positions["date"] == cutoff].set_index("instrument")["quantity"]
+    holdings = {name: int(held.get(name, 0)) for name in sorted(short.bars)}
+    equity = float(result.cash.loc[cutoff]) + sum(
+        q * float(short.bars[name]["close"].iloc[i]) for name, q in holdings.items())
+    a = short_fn(cutoff, history_view(short, i), dict(holdings), equity)
+    b = full_fn(cutoff, history_view(full, i), dict(holdings), equity)
+    count = 0
+    for left, right in ((a.signals, b.signals), (a.targets, b.targets)):
+        for key in set(left) | set(right):
+            x, y = left.get(key), right.get(key)
+            if not (x == y or (x != x and y != y)):  # NaN-aware exact equality
+                count += 1
+    return {"cutoff": cutoff, "table": "decision", "first_date": cutoff, "count": count} if count else None
+
+
+def check_lookahead(data: MarketData, target_fn_factory: Callable[[MarketData], TargetFn], market: MarketConfig,
                     cutoffs: int = 5) -> dict:
     """Run truncated vs full for evenly spaced cutoffs; report per-table differences."""
     chosen = _cutoff_sessions(data.sessions, cutoffs)
-    full = run_screen(data, target_fn_factory(), market)
     differences = []
     for cutoff in chosen:
-        short = run_screen(truncate(data, cutoff), target_fn_factory(), market)
-        for table, keys, value in (("signals", ["date", "instrument", "stage"], "value"),
-                                   ("positions", ["date", "instrument"], "quantity")):
-            diff = _difference(getattr(short, table), getattr(full, table), keys, value, cutoff, table)
+        try:
+            short_data = truncate(data, cutoff)
+            short_fn, full_fn = target_fn_factory(short_data), target_fn_factory(data)
+            short = run_screen(short_data, target_fn_factory(short_data), market)
+            full = run_screen(data, target_fn_factory(data), market)
+            for table, keys, value in (("signals", ["date", "instrument", "stage"], "value"),
+                                       ("positions", ["date", "instrument"], "quantity")):
+                diff = _difference(getattr(short, table), getattr(full, table), keys, value, cutoff, table)
+                if diff:
+                    differences.append(diff)
+            diff = _decision_difference(short_data, data, short_fn, full_fn, short, cutoff)
             if diff:
                 differences.append(diff)
+        except Exception as exc:  # a leaking fn may index past the truncated end
+            differences.append({"cutoff": cutoff, "table": "error", "first_date": cutoff, "count": 1,
+                                "error": f"{type(exc).__name__}: {exc}"})
     return {"status": "fail" if differences else "pass", "cutoffs": chosen, "differences": differences}

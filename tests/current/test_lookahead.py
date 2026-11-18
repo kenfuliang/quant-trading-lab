@@ -1,8 +1,6 @@
 """Offline tests of the truncate-and-compare lookahead check."""
 import unittest
-from unittest import mock
 
-from research.evaluation import lookahead
 from research.evaluation.lookahead import check_lookahead, truncate
 from research.evaluation.market_model import Decision, MarketConfig, validate
 from research.evaluation.parity_fixture import synthetic_fixture
@@ -13,50 +11,72 @@ CONFIG = MarketConfig()
 SMALL_INCUMBENT = {**INCUMBENT_SPEC, "fast": 5, "slow": 20, "vol_window": 5}
 
 
+def _feature_factory(feature):
+    """Factory whose target fn trades AAA on a feature precomputed from the data it receives."""
+
+    def factory(data):
+        series = feature(data.bars["AAA"]["close"])
+        by_session = dict(zip(data.sessions, series))
+
+        def target_fn(session, history, holdings, equity):
+            value = float(by_session[session])
+            close = float(history["AAA"]["close"].iloc[-1])
+            targets = {name: 0 for name in history}
+            if value > 0:
+                targets["AAA"] = int(0.9 * equity / close)
+            return Decision(targets=targets, signals={("AAA", "trend"): value})
+
+        return target_fn
+
+    return factory
+
+
 class LookaheadTests(unittest.TestCase):
     def test_sma_trend_and_incumbent_pass_on_fixture(self):
         data = synthetic_fixture()
         for spec in ({"name": "sma_trend", "window": 20, "gross": 0.95}, SMALL_INCUMBENT):
-            result = check_lookahead(data, lambda spec=spec: build_target_fn(spec), CONFIG, cutoffs=4)
+            result = check_lookahead(data, lambda d, spec=spec: build_target_fn(spec), CONFIG, cutoffs=4)
             self.assertEqual(result["status"], "pass", result["differences"])
             self.assertEqual(len(result["cutoffs"]), 4)
             self.assertNotIn(data.sessions[-1], result["cutoffs"])
             self.assertEqual(result["differences"], [])
 
-    def test_planted_leak_fails(self):
-        # The leak is a target function closed over the MarketData of the run it serves
-        # (the harness records it), reading the close 5 sessions ahead. A closure over one
-        # fixed full dataset leaks identically into both runs and cannot be detected by
-        # truncation; a one-step leak is invisible because the truncated run's last
-        # session is excluded.
-        data = synthetic_fixture()
-        holder = {}
-        real_run = lookahead.run_screen
+    def test_one_step_lookahead_feature_fails(self):
+        # next session's close, from the data the run receives (shift(-1)); the truncated
+        # run's last decision has no next close (NaN), so only the cutoff decision differs
+        factory = _feature_factory(lambda close: close.shift(-1) / close - 1)
+        result = check_lookahead(synthetic_fixture(), factory, CONFIG, cutoffs=4)
+        self.assertEqual(result["status"], "fail")
+        self.assertTrue(all(d["first_date"] == d["cutoff"] for d in result["differences"]
+                            if d["table"] == "decision"), result["differences"])
+        self.assertIn("decision", {d["table"] for d in result["differences"]})
 
-        def recording_run(run_data, target_fn, market):
-            holder["data"] = run_data
-            return real_run(run_data, target_fn, market)
-
-        def factory():
-            def leaky(session, history, holdings, equity):
-                run_data = holder["data"]
-                i = run_data.sessions.index(session)
-                close = run_data.bars["AAA"]["close"]
-                ahead = float(close.iloc[min(i + 5, len(close) - 1)])
-                now = float(close.iloc[i])
-                targets = {name: 0 for name in history}
-                if ahead > now:
-                    targets["AAA"] = int(0.9 * equity / now)
-                return Decision(targets=targets, signals={("AAA", "trend"): ahead / now - 1})
-            return leaky
-
-        with mock.patch.object(lookahead, "run_screen", recording_run):
-            result = check_lookahead(data, factory, CONFIG, cutoffs=4)
+    def test_multi_step_lookahead_feature_fails(self):
+        factory = _feature_factory(lambda close: close.shift(-5).fillna(close) / close - 1)
+        result = check_lookahead(synthetic_fixture(), factory, CONFIG, cutoffs=4)
         self.assertEqual(result["status"], "fail")
         self.assertIn("signals", {d["table"] for d in result["differences"]})
         for diff in result["differences"]:
             self.assertGreater(diff["count"], 0)
-            self.assertLess(diff["first_date"], diff["cutoff"])
+            self.assertLessEqual(diff["first_date"], diff["cutoff"])
+
+    def test_full_sample_normalisation_fails(self):
+        factory = _feature_factory(lambda close: close / close.mean() - 1)
+        result = check_lookahead(synthetic_fixture(), factory, CONFIG, cutoffs=4)
+        self.assertEqual(result["status"], "fail")
+        self.assertTrue(result["differences"])
+
+    def test_raising_target_fn_is_a_failure(self):
+        def factory(data):
+            def target_fn(session, history, holdings, equity):
+                i = data.sessions.index(session)
+                _ = data.bars["AAA"]["close"].iloc[i + 1]  # past the end on the last session
+                return Decision(targets={name: 0 for name in history}, signals={})
+            return target_fn
+
+        result = check_lookahead(synthetic_fixture(), factory, CONFIG, cutoffs=3)
+        self.assertEqual(result["status"], "fail")
+        self.assertTrue(all(d["table"] == "error" for d in result["differences"]))
 
     def test_truncate_drops_future_actions(self):
         data = synthetic_fixture()
