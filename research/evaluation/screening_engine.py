@@ -4,9 +4,9 @@ Timing: the decision made at the close of session t fills at the open of t+1.
 
 Per-session order (a contract; the NautilusTrader engine reproduces it exactly):
 
-1. Split effective on d: held quantity x ratio; cash in lieu
-   ``q * prev_close - q * ratio * round(prev_close / ratio, 2)`` (only when q > 0);
-   any pending target for that instrument is scaled by the ratio. No fill is recorded.
+1. Split effective on d: held quantity x ratio and no cash moves (a whole-share forward
+   split creates no fractional share, so there is no cash in lieu); any pending target
+   for that instrument is scaled by the ratio. No fill is recorded.
 2. Dividends with ``pay_date == d``: credit ``round(per_share * shares, 2)`` where shares
    are those held at the close of the session before ``ex_date``.
 3. Orders from the decision made at close d-1: the order is target minus current holding
@@ -66,11 +66,7 @@ def run_screen(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
             if split.effective_date != day:
                 continue
             n, ratio = split.instrument, split.ratio
-            q = qty[n]
-            if q > 0:
-                prev_close = float(cols[n]["close"][i - 1]) if i > 0 else float(cols[n]["open"][i])
-                cash += q * prev_close - q * ratio * round(prev_close / ratio, 2)
-            qty[n] = q * ratio
+            qty[n] = qty[n] * ratio  # a whole-share forward split moves no cash
             if pending is not None and n in pending:
                 pending[n] = pending[n] * ratio
         # 2. dividends

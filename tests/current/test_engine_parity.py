@@ -20,6 +20,25 @@ class EngineParityTests(unittest.TestCase):
         report = compare(run_screen(data, fn, cfg), run_native(data, fn, cfg))
         self.assertTrue(report.passed, report.mismatches)
 
+    def test_split_with_indivisible_close_moves_no_cash(self):
+        # 3:1 split whose pre-split close is not divisible by 3 cents: the R11 rule says a
+        # whole-share forward split moves no cash in either engine.
+        data, cfg = synthetic_fixture(split_ratio=3, divisible_split_close=False), MarketConfig()
+        split = data.splits[0]
+        i = data.sessions.index(split.effective_date)
+        self.assertEqual(split.ratio, 3)
+        self.assertNotEqual(round(data.bars["BBB"]["close"].iloc[i - 1] * 100) % 3, 0)
+        fn = hold_targets({"AAA": 50, "BBB": 10, "CCC": 20})
+        screen, native = run_screen(data, fn, cfg), run_native(data, fn, cfg)
+        report = compare(screen, native)
+        self.assertTrue(report.passed, report.mismatches)
+        day, before = split.effective_date, data.sessions[i - 1]
+        for result in (screen, native):
+            with self.subTest(engine=result.engine):
+                pos = result.positions.set_index(["date", "instrument"]).quantity
+                self.assertEqual(pos[(day, "BBB")], 30)
+                self.assertEqual(result.cash[day], result.cash[before])
+
     def test_comparator_reports_a_real_difference(self):
         data, fn = synthetic_fixture(), sma_trend_targets()
         report = compare(run_screen(data, fn, MarketConfig()), run_native(data, fn, MarketConfig(cost_bps=6.0)))

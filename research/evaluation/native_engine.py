@@ -10,7 +10,10 @@ Event layout per session d (America/New_York):
   at ``round(prev_close / ratio, 2)``. A held quantity q is sold at 09:28 and q x ratio
   bought at 09:29; both orders carry the tag ``split`` and are excluded from ``fills``.
   Each split order's commission is credited with ``adjust_account`` *before* it is
-  submitted, so net cash is unchanged and the cash account never dips below zero.
+  submitted. Before the buy, the rounding residual
+  ``q * prev_close - q * ratio * round(prev_close / ratio, 2)`` is cancelled with
+  ``adjust_account`` (in exact cents), so the split moves no cash net, as in the
+  screening engine, and the cash account never dips below zero.
   Pending targets for the instrument are scaled by the ratio.
 - 09:30: quote per instrument with bid ``execution_price(open, "SELL")`` and ask
   ``execution_price(open, "BUY")``. Once every instrument's quote has arrived, the
@@ -274,6 +277,10 @@ class _ScreenStrategy(Strategy):
             plan = next(p for p in self.plans[day] if p.instrument == name)
             q = self.split_qty.pop(name, 0)
             if q > 0:
+                # Cancel the sell/rebuy rounding residual so the split moves no cash.
+                residual_cents = q * round(plan.prev_close * 100) - q * plan.ratio * round(plan.new_price * 100)
+                if residual_cents:
+                    self.refund(Money(-residual_cents / 100, USD))
                 self._submit_split(name, OrderSide.BUY, q * plan.ratio)
         elif kind == OPEN:
             self.open_count[day] = self.open_count.get(day, 0) + 1

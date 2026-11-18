@@ -38,6 +38,19 @@ class MarketModelTests(unittest.TestCase):
         self.assertEqual(sorted({d.instrument for d in data.dividends}), ["AAA", "CCC"])
         self.assertNotEqual(synthetic_fixture(8).bars["AAA"].iloc[5, 0], data.bars["AAA"].iloc[5, 0])
 
+    def test_fixture_split_options(self):
+        default = synthetic_fixture()
+        explicit = synthetic_fixture(split_ratio=2, divisible_split_close=True)
+        for name in default.bars:
+            pd.testing.assert_frame_equal(default.bars[name], explicit.bars[name])
+        data = synthetic_fixture(split_ratio=3, divisible_split_close=False)
+        validate(data)
+        idx = data.sessions.index(data.splits[0].effective_date)
+        prev_close = data.bars["BBB"]["close"].iloc[idx - 1]
+        self.assertEqual(data.splits[0].ratio, 3)
+        self.assertNotEqual(round(prev_close * 100) % 3, 0)
+        self.assertEqual(data.bars["BBB"]["open"].iloc[idx], round(prev_close / 3, 2))
+
     def test_rejects_missing_session(self):
         data = synthetic_fixture()
         bars = dict(data.bars, AAA=data.bars["AAA"].drop(data.sessions[10]))
