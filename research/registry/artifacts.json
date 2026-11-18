@@ -174,12 +174,12 @@
       "stage": "data",
       "location": "local",
       "authority": "authoritative",
-      "producer": "Plan 3 (data qualification; not built)",
+      "producer": "research/evaluation/data_quality.py, scripts/data.py",
       "consumers": [
-        "Plan 3 and later data readers"
+        "scripts/data.py"
       ],
       "retention": "local, per dataset",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "schema_id": "analysis-output/v1",

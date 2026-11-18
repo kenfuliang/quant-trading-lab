@@ -3,6 +3,7 @@
 
   fetch-yahoo   take one receipted raw Yahoo chart snapshot under <data root>/raw/yahoo/<snapshot-id>/
   normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair and write a manifest
+  quality       write a quality-report/v1 for a normalised dataset (optionally cross-checked to Yahoo)
 
 The only command that uses the network is fetch-yahoo; every request is receipted.
 Exit codes: 0 ok, 1 failure or incomplete snapshot, 2 data absent.
@@ -17,9 +18,10 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from research.data.manifest import ManifestError, sha256_file, write_manifest
+from research.data.manifest import ManifestError, read_manifest, sha256_file, write_manifest
 from research.data.root import DataAbsent, data_root, require
-from research.data.yahoo_snapshot import SnapshotIncomplete, fetch_snapshot
+from research.data.yahoo_snapshot import SnapshotIncomplete, fetch_snapshot, parse_chart
+from research.evaluation.data_quality import build_report, write_report
 from research.evaluation.etf_normalise import RECIPE, normalise
 from research.evaluation.market_model import MarketDataError
 
@@ -100,6 +102,53 @@ def cmd_normalise(args):
     return 0
 
 
+def _load_yahoo(root: Path, snapshot_id: str) -> dict:
+    manifest = read_manifest(root, snapshot_id)
+    frames = {}
+    for entry in manifest["files"]:
+        name = Path(entry["path"]).name
+        if name.startswith("response-") and name.endswith(".json"):
+            symbol = name[len("response-"):-len(".json")]
+            frame, _dividends, _splits = parse_chart((root / entry["path"]).read_bytes(), symbol)
+            frames[symbol] = frame
+    if not frames:
+        raise ManifestError(f"{snapshot_id}: no response files")
+    return frames
+
+
+def cmd_quality(args):
+    root = Path(args.root) if args.root else data_root()
+    require(root / "manifests" / (args.dataset_id + ".json"))
+    if args.yahoo:
+        require(root / "manifests" / (args.yahoo + ".json"))
+    try:
+        manifest = read_manifest(root, args.dataset_id)
+        if manifest["kind"] != "normalised" or len(manifest["inputs"]) != 2:
+            raise ManifestError(f"{args.dataset_id}: not a normalised dataset with bars and actions inputs")
+        bars_path, actions_path = (require(root / e["path"]) for e in manifest["inputs"])
+        rows = json.loads(bars_path.read_text(encoding="utf-8"))
+        actions = json.loads(actions_path.read_text(encoding="utf-8"))
+        instruments = tuple(sorted({row["symbol"] for row in rows}))
+        result = normalise(rows, actions, instruments)
+        yahoo = _load_yahoo(root, args.yahoo) if args.yahoo else None
+        created = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        report = build_report(args.dataset_id, rows, result, yahoo, result.data.splits, created_utc=created)
+        folder = write_report(root, report)
+    except FileExistsError as error:
+        print(f"error: report already exists: {error.filename}", file=sys.stderr)
+        return 1
+    except (ValueError, ManifestError, MarketDataError, KeyError, OSError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    print(f"Quality {args.dataset_id}: {report['status']}")
+    for check in report["checks"]:
+        print(f"  {check['name']}: {check['status']} ({check['count']})")
+        if check["name"] == "cross_source" and "stats" in check:
+            print(f"    {check['detail']}")
+    print(f"report {folder / 'report.json'}")
+    return 0
+
+
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -116,6 +165,11 @@ def build_parser():
     nm.add_argument("--dataset-id", required=True)
     nm.add_argument("--root", help="data root (default: shared data root)")
     nm.set_defaults(func=cmd_normalise)
+    ql = sub.add_parser("quality", help="write a quality-report/v1 for a normalised dataset")
+    ql.add_argument("--dataset-id", required=True, help="normalised dataset manifest id")
+    ql.add_argument("--yahoo", help="Yahoo snapshot id for the cross-source check (default: blocked)")
+    ql.add_argument("--root", help="data root (default: shared data root)")
+    ql.set_defaults(func=cmd_quality)
     return parser
 
 
