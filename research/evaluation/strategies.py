@@ -11,7 +11,11 @@ volatility >= ``yellow_vol``; green otherwise. Downgrades are immediate. Upgrade
 gated: red -> yellow after ``recover_sessions`` consecutive closes with volatility below
 ``recover_red_vol``; yellow -> green after ``recover_sessions`` consecutive closes with a
 positive trend and volatility below ``recover_green_vol``. Until the slow EMA and the
-volatility window exist the state is red. ``state`` signal: red 0, yellow 1, green 2.
+volatility window exist there is no position (state red, signals omitted). At the first
+assessed session the state is classified directly, as in the legacy gate (unassessed ->
+yellow): red if volatility >= ``red_vol``, else yellow. Recovery counters follow the legacy
+``risk_gate.states``: ``calm`` counts only while red, ``good`` only while yellow, ``good``
+resets on red -> yellow, so the two recovery stages never share a confirmation close. ``state`` signal: red 0, yellow 1, green 2.
 """
 from __future__ import annotations
 
@@ -52,7 +56,7 @@ def build_target_fn(spec: dict) -> TargetFn:
 
 
 def _shares(gross: float, cap: float, count: int, equity: float, close: float) -> int:
-    return max(0, math.floor(gross * cap / count * equity / close))
+    return 0 if not close > 0 else max(0, math.floor(gross * cap / count * equity / close))
 
 
 def _buy_hold(gross: float) -> TargetFn:
@@ -98,22 +102,28 @@ def _traffic_light(spec: dict) -> TargetFn:
         vol = close.pct_change().rolling(window, min_periods=window).std(ddof=1) * math.sqrt(252)
         trend = (ema_fast - ema_slow).to_numpy()
         vols = vol.to_numpy()
-        state, calm, good = RED, 0, 0
+        state, calm, good, assessed = RED, 0, 0, False
         for t in range(len(close)):
             if np.isnan(trend[t]) or np.isnan(vols[t]):
-                state, calm, good = RED, 0, 0
+                state, calm, good, assessed = RED, 0, 0, False
                 continue
             positive, v = trend[t] > 0, vols[t]
-            calm = calm + 1 if v < spec["recover_red_vol"] else 0
-            good = good + 1 if positive and v < spec["recover_green_vol"] else 0
+            if not assessed:  # first assessed session classifies directly: yellow, or red below
+                state, assessed = YELLOW, True
             if v >= spec["red_vol"]:
-                state = RED
-            elif state == GREEN and (not positive or v >= spec["yellow_vol"]):
-                state = YELLOW
-            elif state == RED and calm >= need:
-                state = YELLOW
-            elif state == YELLOW and good >= need:
-                state = GREEN
+                state, calm, good = RED, 0, 0
+            elif state == RED:
+                calm = calm + 1 if v < spec["recover_red_vol"] else 0
+                good = 0
+                if calm >= need:
+                    state, calm = YELLOW, 0
+            else:
+                if state == GREEN and (not positive or v >= spec["yellow_vol"]):
+                    state, good = YELLOW, 0
+                if state == YELLOW:
+                    good = good + 1 if positive and v < spec["recover_green_vol"] else 0
+                    if good >= need:
+                        state, good = GREEN, 0
         return state, float(vols[-1]), float(ema_fast.iloc[-1] / ema_slow.iloc[-1] - 1)
 
     def target_fn(session, history, holdings, equity):

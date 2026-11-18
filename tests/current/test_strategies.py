@@ -36,26 +36,26 @@ class TrafficLightTests(unittest.TestCase):
     def test_traffic_light_states_on_constructed_series(self):
         decisions = _decisions(SMALL, _closes(RETURNS))
         states = [d.signals[("X", "state")] for d in decisions]
-        # warm-up red; 5 calm closes (idx 3..7) -> yellow; good closes -> green at 8
-        self.assertEqual(states[:7], [RED] * 7)
-        self.assertEqual(states[7], YELLOW)
-        self.assertEqual(states[8:13], [GREEN] * 5)
+        # warm-up: no position until the first assessed close (idx 3), which classifies yellow
+        self.assertEqual(states[:3], [RED] * 3)
+        self.assertEqual(states[3:7], [YELLOW] * 4)
+        # 5 good closes (idx 3..7) -> green
+        self.assertEqual(states[7:13], [GREEN] * 6)
         # trend turns non-positive (vol 0.19 < 0.25): green -> yellow
         self.assertEqual(states[13:16], [YELLOW] * 3)
         # volatility >= 0.40: yellow -> red
         vols = [d.signals.get(("X", "vol")) for d in decisions]
         self.assertGreaterEqual(vols[16], 0.40)
-        self.assertEqual(states[16], RED)
         # red stays red until 5 consecutive closes below 0.35 (idx 20..24)
         self.assertEqual(states[16:24], [RED] * 8)
         self.assertEqual(states[24], YELLOW)
-        # yellow -> green after 5 good closes (trend > 0, vol < 0.20; idx 21..25)
-        self.assertEqual(states[25], GREEN)
-        self.assertTrue(all(s == GREEN for s in states[25:]))
+        # the red -> yellow close does not count toward green: 5 further good closes (idx 25..29)
+        self.assertEqual(states[24:29], [YELLOW] * 5)
+        self.assertTrue(all(s == GREEN for s in states[29:]))
         # sizing follows the cap: red 0, yellow half, green full
         self.assertEqual(decisions[16].targets["X"], 0)
         self.assertEqual(decisions[24].targets["X"], int(0.5 * 100_000 / _closes(RETURNS)[24]))
-        self.assertEqual(decisions[25].targets["X"], int(100_000 / _closes(RETURNS)[25]))
+        self.assertEqual(decisions[29].targets["X"], int(100_000 / _closes(RETURNS)[29]))
 
     def test_warmup_is_red_until_slow_ema_exists(self):
         spec = dict(INCUMBENT_SPEC)
@@ -66,8 +66,40 @@ class TrafficLightTests(unittest.TestCase):
             self.assertEqual(decisions[i].targets["X"], 0)
         self.assertNotIn(("X", "trend"), decisions[198].signals)
         self.assertIn(("X", "trend"), decisions[199].signals)
-        self.assertEqual(decisions[199].signals[("X", "state")], RED)  # still in recovery
-        self.assertGreater(decisions[-1].targets["X"], 0)  # calm uptrend eventually invests
+        # first assessed session classifies directly (legacy unassessed -> yellow), not red
+        self.assertEqual(decisions[199].signals[("X", "state")], YELLOW)
+        self.assertGreater(decisions[199].targets["X"], 0)
+        self.assertGreater(decisions[-1].targets["X"], 0)
+
+    def test_first_assessed_session_in_high_vol_is_red(self):
+        closes = [100.0 * (1.05 if i % 2 else 0.95) for i in range(8)]
+        decisions = _decisions(SMALL, closes)
+        self.assertEqual(decisions[4].signals[("X", "state")], RED)
+        self.assertEqual(decisions[4].targets["X"], 0)
+
+    def test_recovery_stages_do_not_share_a_confirmation_close(self):
+        # after a spike, calm uptrend meets both criteria: yellow at t, green no earlier than t+5
+        decisions = _decisions(SMALL, _closes(RETURNS))
+        states = [d.signals[("X", "state")] for d in decisions]
+        t = states.index(YELLOW, 17)
+        self.assertEqual(states[t:t + 5], [YELLOW] * 5)
+        self.assertEqual(states[t + 5], GREEN)
+
+    def test_multi_instrument_equal_split(self):
+        fn = build_target_fn({"name": "buy_hold", "gross": 0.9})
+        frames = {}
+        for name, px in (("A", 10.0), ("B", 30.0)):
+            frame = pd.DataFrame({"close": [px, px]})
+            frame["split_factor"] = 1.0
+            frames[name] = frame
+        d = fn("d", frames, {}, 1000.0)
+        self.assertEqual(d.targets, {"A": 45, "B": 15})
+
+    def test_zero_close_gives_zero_shares(self):
+        fn = build_target_fn({"name": "buy_hold", "gross": 0.9})
+        frame = pd.DataFrame({"close": [0.0, float("nan")]})
+        frame["split_factor"] = 1.0
+        self.assertEqual(fn("d", {"A": frame}, {}, 1000.0).targets, {"A": 0})
 
     def test_causal_prefix_independence(self):
         closes = _closes(RETURNS)
