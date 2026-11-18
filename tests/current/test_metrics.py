@@ -54,6 +54,16 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(out["longest_underwater_sessions"], 0)
         self.assertEqual(out["longest_underwater_days"], 0)
 
+    def test_rounding_noise_std_gives_none_sharpe_like_trust(self):
+        from research.evaluation import trust
+        net = [0.1] * 3  # np.std(ddof=1) is ~1.7e-17, not 0
+        equity = [100.0 * 1.1 ** (i + 1) for i in range(3)]
+        returns = pd.DataFrame({"date": DATES[:3], "gross_return": net, "cost": 0.0, "net_return": net,
+                                "equity": equity})
+        self.assertIsNone(metrics.summarize(returns, _fills(), 100.0)["sharpe"])
+        self.assertIsNone(trust.sharpe_per_period(net))
+        self.assertIs(trust.ZERO_STD, metrics.ZERO_STD)
+
     def test_turnover_from_fills(self):
         fills = _fills([("2024-01-02", "AAA", "BUY", 10, 50.0, 0.1),
                         ("2024-01-04", "AAA", "SELL", 4, 25.0, 0.1)])

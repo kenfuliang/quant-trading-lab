@@ -61,6 +61,65 @@ class AnalysisCliTests(unittest.TestCase):
         self.assertIn("illustrative grid", " ".join(doc["notes"]))
         self.assertIn("value", doc["trust"]["pbo"])
 
+    def _registry(self, tmp, records):
+        path = Path(tmp) / "reg.jsonl"
+        for rec in records:
+            registry.append(path, rec)
+        return path
+
+    def test_dsr_records_its_inputs_and_period_note(self):
+        spec = json.loads(SPEC.read_text())
+        spec["comparison"] = {"record_ids": ["c-1"], "trial_code": "C01-5bp"}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._registry(tmp, (record("c-1", "C01-5bp", 1.0), record("c-2", "C01-5bp", 0.5),
+                                        record("c-3", "C01-5bp", 0.8), record("o-1", "OTHER", 9.0)))
+            result = analysis.run_spec(spec, Path(tmp), path)
+            report = (result["folder"] / "report.md").read_text()
+        dsr = result["doc"]["trust"]["dsr"]
+        self.assertEqual(dsr["code"], "C01-5bp")
+        self.assertEqual(dsr["trial_record_ids"], ["c-1", "c-2", "c-3"])
+        self.assertEqual(dsr["trial_sharpes"], [1.0, 0.5, 0.8])
+        per = [s / math.sqrt(252) for s in (1.0, 0.5, 0.8)]
+        mean = sum(per) / 3
+        self.assertAlmostEqual(dsr["sr_variance"], sum((x - mean) ** 2 for x in per) / 2)
+        sessions = synthetic_fixture().sessions
+        self.assertEqual(dsr["period_note"], f"trial Sharpes are 2005-2025 registry results applied to a "
+                                             f"{sessions[0]}–{sessions[-1]} series")
+        for text in ("sr_variance", "c-1, c-2, c-3", "2005-2025 registry results", "warm-up"):
+            self.assertIn(text, report)
+
+    def test_trial_code_fixes_dsr_regardless_of_record_order(self):
+        spec = json.loads(SPEC.read_text())
+        regs = (record("c-1", "C01-5bp", 1.0), record("c-2", "C01-5bp", 0.5), record("o-1", "OTHER", 9.0),
+                record("o-2", "OTHER", 2.0))
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._registry(tmp, regs)
+            spec["comparison"] = {"record_ids": ["o-1", "c-1"], "trial_code": "C01-5bp"}
+            explicit = analysis.run_spec(spec, Path(tmp) / "a", path)["doc"]
+            spec["comparison"] = {"record_ids": ["o-1", "c-1"]}
+            fallback = analysis.run_spec(spec, Path(tmp) / "b", path)["doc"]
+        self.assertEqual(explicit["trust"]["dsr"]["code"], "C01-5bp")
+        self.assertEqual(fallback["trust"]["dsr"]["code"], "OTHER")
+        self.assertTrue(any("trial_code" in note and "OTHER" in note for note in fallback["notes"]))
+        self.assertFalse(any("trial_code" in note for note in explicit["notes"]))
+
+    def test_warmup_sessions_are_counted_and_noted(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            doc = analysis.run_spec(json.loads(SPEC.read_text()), Path(tmp))["doc"]
+            run_dir = Path(tmp) / "runs" / doc["runs"][-1]["run_id"]
+            from research.evaluation.run_output import read_run
+            _, tables = read_run(run_dir)
+        held = set(tables["positions"]["date"])
+        expected = 0
+        for day, net in zip(tables["returns"]["date"], tables["returns"]["net_return"]):
+            if net != 0 or day in held:
+                break
+            expected += 1
+        self.assertGreater(expected, 0)
+        for name in ("psr", "dsr"):
+            self.assertEqual(doc["trust"][name]["warmup_sessions"], expected)
+            self.assertIn("inflates n", doc["trust"][name]["warmup_note"])
+
     def test_dsr_counts_registry_records_by_context(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "reg.jsonl"
@@ -83,6 +142,10 @@ class AnalysisCliTests(unittest.TestCase):
                 self.assertEqual(analysis.main(["golden", "--update", "--file", str(target)]), 0)
                 self.assertEqual(analysis.main(["golden", "--file", str(target)]), 0)
             data = json.loads(target.read_text())
+            data["sma_trend"]["sharpe"] += 1e-11  # within abs_tol 1e-9: still passes
+            target.write_text(json.dumps(data))
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(analysis.main(["golden", "--file", str(target)]), 0)
             data["sma_trend"]["sharpe"] += 0.5
             target.write_text(json.dumps(data))
             err = io.StringIO()

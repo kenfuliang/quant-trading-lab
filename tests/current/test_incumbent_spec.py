@@ -13,17 +13,20 @@ class IncumbentSpecTests(unittest.TestCase):
         spec = json.loads(SPEC.read_text())
         self.assertEqual(spec["dataset_id"], "sector-etfs-2016-2025-n1")
         self.assertEqual(spec["instruments"], ["SPY"])
-        self.assertEqual([r["name"] for r in spec["rungs"]], ["hold", "trend", "gate", "costs"])
-        hold, trend, gate, costs = spec["rungs"]
+        # nested ladder: each rung adds one thing to the previous one (legacy-030 structure at the end)
+        self.assertEqual([r["name"] for r in spec["rungs"]], ["hold", "trend", "trend_gate", "costs"])
+        hold, trend, trend_gate, costs = spec["rungs"]
         self.assertEqual(hold["strategy"], {"name": "buy_hold", "gross": 0.99})
         self.assertEqual(trend["strategy"], {"name": "ema_trend", "fast": 50, "slow": 200, "gross": 0.99})
-        self.assertEqual(gate["strategy"], INCUMBENT_SPEC)
+        self.assertEqual(INCUMBENT_SPEC["proposal"], "ema")
+        self.assertEqual(trend_gate["strategy"], INCUMBENT_SPEC)
         self.assertEqual(costs["strategy"], INCUMBENT_SPEC)
-        for rung in (hold, trend, gate):
+        for rung in (hold, trend, trend_gate):
             self.assertEqual(rung["market"], {"cost_bps": 0, "commission_usd": 0})
         self.assertEqual(costs["market"], {"cost_bps": 5, "commission_usd": 1})
         self.assertEqual(spec["comparison"], {"record_ids": ["legacy-030-discrete-ema-volatility-gate",
-                                                              "legacy-058-gate-only-spy-control"]})
+                                                              "legacy-058-gate-only-spy-control"],
+                                              "trial_code": "C01-5bp"})
         self.assertEqual(spec["cutoffs"], 5)
         grid = spec["pbo_grid"]
         self.assertEqual(len(grid), 8)
@@ -31,6 +34,7 @@ class IncumbentSpecTests(unittest.TestCase):
                          {(f, s, v) for f in (20, 50) for s in (100, 200) for v in (0.35, 0.40)})
         for item in grid:
             self.assertEqual(item["name"], "traffic_light")
+            self.assertEqual(item["proposal"], "ema")  # the grid varies the last rung's structure
             build_target_fn(item)
 
 

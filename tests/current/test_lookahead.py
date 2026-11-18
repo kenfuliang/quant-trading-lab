@@ -50,6 +50,35 @@ class LookaheadTests(unittest.TestCase):
             self.assertNotIn(data.sessions[-1], result["cutoffs"])
             self.assertEqual(result["differences"], [])
 
+    def test_full_data_run_is_computed_once(self):
+        data = synthetic_fixture()
+        calls = {"full": 0, "short": 0}
+
+        def factory(d):
+            calls["full" if len(d.sessions) == len(data.sessions) else "short"] += 1
+            return build_target_fn({"name": "sma_trend", "window": 20, "gross": 0.95})
+
+        result = check_lookahead(data, factory, CONFIG, cutoffs=4)
+        self.assertEqual(result["status"], "pass")
+        # one full-data run, plus one full-data fn per cutoff for the direct decision
+        self.assertEqual(calls["full"], 1 + 4)
+        self.assertEqual(calls["short"], 2 * 4)
+
+    def test_failing_full_run_is_an_error_at_every_cutoff(self):
+        data = synthetic_fixture()
+
+        def factory(d):
+            def target_fn(session, history, holdings, equity):
+                if len(d.sessions) == len(data.sessions) and session == d.sessions[-2]:
+                    raise RuntimeError("late failure")
+                return Decision(targets={name: 0 for name in history}, signals={})
+            return target_fn
+
+        result = check_lookahead(data, factory, CONFIG, cutoffs=3)
+        self.assertEqual(result["status"], "fail")
+        self.assertEqual([d["table"] for d in result["differences"]], ["error"] * 3)
+        self.assertIn("late failure", result["differences"][0]["error"])
+
     def test_one_step_lookahead_feature_fails(self):
         # next session's close, from the data the run receives (shift(-1)); the truncated
         # run's last decision has no next close (NaN), so only the cutoff decision differs

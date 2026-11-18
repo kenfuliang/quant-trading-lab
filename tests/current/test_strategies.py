@@ -1,12 +1,15 @@
 """Offline tests of the strategy specs and the traffic-light state machine."""
+import math
 import unittest
 
+import numpy as np
 import pandas as pd
 
-from research.evaluation.market_model import MarketConfig
+from research.evaluation.market_model import MarketConfig, MarketData
 from research.evaluation.parity_fixture import synthetic_fixture
+from research.evaluation import strategies
 from research.evaluation.screening_engine import run_screen
-from research.evaluation.strategies import INCUMBENT_SPEC, build_target_fn
+from research.evaluation.strategies import INCUMBENT_SPEC, build_target_fn, traffic_light_states
 
 SMALL = dict(name="traffic_light", fast=2, slow=4, vol_window=3, red_vol=0.40, yellow_vol=0.25,
              recover_red_vol=0.35, recover_green_vol=0.20, recover_sessions=5,
@@ -107,6 +110,108 @@ class TrafficLightTests(unittest.TestCase):
         short = _decisions(SMALL, closes[:20])
         for a, b in zip(short, full):
             self.assertEqual(a, b)
+
+    def test_ema_proposal_is_zero_when_trend_is_negative(self):
+        closes = _closes(RETURNS)
+        hold = _decisions(SMALL, closes)
+        ema = _decisions({**SMALL, "proposal": "ema"}, closes)
+        default = _decisions({**SMALL, "proposal": "hold"}, closes)
+        self.assertEqual(hold, default)  # "hold" is the default (gate-only structure)
+        checked = 0
+        for h, e in zip(hold, ema):
+            self.assertEqual(h.signals, e.signals)
+            state, trend = h.signals[("X", "state")], h.signals.get(("X", "trend"))
+            if trend is not None and trend <= 0:
+                self.assertEqual(e.targets["X"], 0)  # trend off: zero even in yellow
+                if state == YELLOW:
+                    self.assertGreater(h.targets["X"], 0)
+                    checked += 1
+            else:
+                self.assertEqual(e.targets["X"], h.targets["X"])  # trend on: capped by the gate
+        self.assertGreater(checked, 0)
+
+    def test_unknown_proposal_raises(self):
+        with self.assertRaises(ValueError):
+            build_target_fn({**SMALL, "proposal": "nope"})
+
+    def test_incremental_matches_from_scratch_on_long_series(self):
+        rng = np.random.default_rng(11)
+        n = 1500
+        vol = np.select([(np.arange(n) // 150) % 4 == 1, (np.arange(n) // 150) % 4 == 3], [0.035, 0.02], 0.007)
+        drift = np.where((np.arange(n) // 300) % 2 == 1, -0.0015, 0.0008)
+        closes = list(np.round(100 * np.cumprod(1 + rng.normal(drift, vol)), 2))
+        spec = {**INCUMBENT_SPEC, "fast": 20, "slow": 60}
+        self.assertIsNotNone(strategies._modes())  # exact recurrences found: the incremental path is used
+        fn = build_target_fn(spec)
+        states, vols, trends = traffic_light_states(np.array(closes), spec)
+        self.assertGreaterEqual(len({(a, b) for a, b in zip(states, states[1:]) if a != b}), 4)
+        for i in range(n):
+            frame = pd.DataFrame({"close": closes[: i + 1]})
+            frame["split_factor"] = 1.0
+            d = fn(f"d{i}", {"X": frame}, {}, 100_000.0)
+            self.assertEqual(d.signals[("X", "state")], float(states[i]), i)
+            self.assertEqual(d.signals.get(("X", "vol")), None if math.isnan(vols[i]) else vols[i], i)
+            self.assertEqual(d.signals.get(("X", "trend")), None if math.isnan(trends[i]) else trends[i], i)
+        # a shorter prefix, a changed earlier value and a split all recompute from scratch
+        for altered in (closes[:700], closes[:300] + [closes[300] + 1.0] + closes[301:900]):
+            frame = pd.DataFrame({"close": altered})
+            frame["split_factor"] = 1.0
+            fresh = build_target_fn(spec)("d", {"X": frame}, {}, 100_000.0)
+            self.assertEqual(fn("d", {"X": frame}, {}, 100_000.0), fresh)
+        frame = pd.DataFrame({"close": closes[:900]})
+        frame["split_factor"] = [2.0] * 500 + [1.0] * 400
+        self.assertEqual(fn("d", {"X": frame}, {}, 100_000.0), build_target_fn(spec)("d", {"X": frame}, {}, 100_000.0))
+
+    def test_constant_window_falls_back_to_reference(self):
+        closes = [100.0 + 0.01 * (i % 7) for i in range(60)] + [101.0] * 30 + [101.0 + 0.5 * i for i in range(40)]
+        spec = {**SMALL, "fast": 3, "slow": 10, "vol_window": 5}
+        fn = build_target_fn(spec)
+        states, vols, _ = traffic_light_states(np.array(closes), spec)
+        for i in range(len(closes)):
+            frame = pd.DataFrame({"close": closes[: i + 1]})
+            frame["split_factor"] = 1.0
+            d = fn(f"d{i}", {"X": frame}, {}, 100_000.0)
+            self.assertEqual(d.signals[("X", "state")], float(states[i]))
+            self.assertEqual(d.signals.get(("X", "vol")), None if math.isnan(vols[i]) else vols[i])
+
+    def test_rebalance_band_keeps_holdings_for_small_drift(self):
+        fn = build_target_fn({"name": "buy_hold", "gross": 1.0})
+        frame = pd.DataFrame({"close": [10.0, 10.0]})
+        frame["split_factor"] = 1.0
+        # target 100; 99 held is within 2% -> keep; 97 held is not -> trade
+        self.assertEqual(fn("d", {"A": frame}, {"A": 99}, 1000.0).targets, {"A": 99})
+        self.assertEqual(fn("d", {"A": frame}, {"A": 97}, 1000.0).targets, {"A": 100})
+        # first session: no earlier decision, so trade to target
+        self.assertEqual(fn("d", {"A": frame.iloc[:1]}, {"A": 99}, 1000.0).targets, {"A": 100})
+
+    def test_rebalance_band_trades_when_state_changes(self):
+        closes = _closes(RETURNS)
+        fn = build_target_fn(SMALL)
+        decisions = _decisions(SMALL, closes)
+        states = [d.signals[("X", "state")] for d in decisions]
+        for i in range(1, len(closes)):
+            frame = pd.DataFrame({"close": closes[: i + 1]})
+            frame["split_factor"] = 1.0
+            full = decisions[i].targets["X"]
+            near = max(full - 1, 0)
+            got = fn(f"d{i}", {"X": frame}, {"X": near}, 100_000.0).targets["X"]
+            if states[i] != states[i - 1]:
+                self.assertEqual(got, full, i)  # state changed: trade to target
+            elif full > 0:
+                self.assertEqual(got, near, i)  # unchanged and within 2%: keep
+
+    def test_hold_rung_trades_only_initially_and_for_dividends(self):
+        data = synthetic_fixture()
+        single = MarketData(sessions=data.sessions, bars={"AAA": data.bars["AAA"]},
+                            dividends=tuple(d for d in data.dividends if d.instrument == "AAA"), splits=())
+        result = run_screen(single, build_target_fn({"name": "buy_hold", "gross": 0.99}),
+                            MarketConfig(cost_bps=0, commission_usd=0))
+        pays = sorted(d.pay_date for d in single.dividends)
+        dates = list(result.fills["date"])
+        self.assertEqual(dates[0], single.sessions[1])
+        self.assertLessEqual(len(dates), 1 + len(pays))
+        for day in dates[1:]:
+            self.assertTrue(any(p < day for p in pays), day)
 
     def test_unknown_strategy_raises(self):
         with self.assertRaises(ValueError):

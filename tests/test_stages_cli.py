@@ -1,9 +1,11 @@
 import contextlib
 import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from research.control import experiment_registry as reg
 from scripts import stages as cli
@@ -35,7 +37,9 @@ class StagesCliTests(unittest.TestCase):
 
     def run_cli(self, *args):
         out, err = io.StringIO(), io.StringIO()
-        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+        # build reads analyses from the data root: keep it in the temp dir, never the real one
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(self.dir / "data")}), \
+                contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
             code = cli.main(["--registry", str(self.registry), "--stage-map", str(self.stage_map),
                              "--incumbents", str(self.incumbents), "--status-doc", str(self.status), *args])
         return code, out.getvalue(), err.getvalue()

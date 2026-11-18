@@ -1,8 +1,8 @@
 """Truncate-and-compare lookahead check.
 
-A causal strategy's decisions at session t depend only on data up to t. For each cutoff
-session c the strategy is built (``target_fn_factory(data)``) and run on the data truncated
-at c and on the full data. The factory receives the data of the run it serves, so features
+A causal strategy's decisions at session t depend only on data up to t. The strategy is
+built (``target_fn_factory(data)``) and run once on the full data and, for each cutoff
+session c, on the data truncated at c. The factory receives the data of the run it serves, so features
 precomputed from that data (a forward-looking indicator, a full-sample normalisation) are
 rebuilt per run and a leak shows up as a difference.
 
@@ -99,13 +99,19 @@ def check_lookahead(data: MarketData, target_fn_factory: Callable[[MarketData], 
     """Run truncated vs full for evenly spaced cutoffs; report per-table differences."""
     chosen = _cutoff_sessions(data.sessions, cutoffs)
     differences, compared = [], []
+    full, full_error = None, None
+    try:  # the full-data run does not depend on the cutoff: run it once
+        full = run_screen(data, target_fn_factory(data), market)
+    except Exception as exc:  # recorded at every cutoff below
+        full_error = exc
     for cutoff in chosen:
         count = 0
         try:
+            if full_error is not None:
+                raise full_error
             short_data = truncate(data, cutoff)
             short_fn, full_fn = target_fn_factory(short_data), target_fn_factory(data)
             short = run_screen(short_data, target_fn_factory(short_data), market)
-            full = run_screen(data, target_fn_factory(data), market)
             for table, keys, value in (("signals", ["date", "instrument", "stage"], "value"),
                                        ("positions", ["date", "instrument"], "quantity")):
                 diff = _difference(getattr(short, table), getattr(full, table), keys, value, cutoff, table)

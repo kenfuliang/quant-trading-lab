@@ -18,7 +18,9 @@ from statistics import NormalDist
 import numpy as np
 import pandas as pd
 
-__all__ = ["dsr", "expected_max_sharpe", "pbo", "psr", "sharpe_per_period"]
+from research.evaluation.metrics import ZERO_STD
+
+__all__ = ["ZERO_STD", "dsr", "expected_max_sharpe", "pbo", "psr", "sharpe_per_period"]
 
 _ND = NormalDist()
 EULER_GAMMA = 0.5772156649
@@ -29,12 +31,12 @@ def _clean(returns) -> np.ndarray:
 
 
 def sharpe_per_period(returns) -> float | None:
-    """Mean / sample std (ddof 1) of ``returns``; ``None`` if n < 2 or std is 0."""
+    """Mean / sample std (ddof 1) of ``returns``; ``None`` if n < 2 or std <= ``ZERO_STD``."""
     r = _clean(returns)
     if r.size < 2 or not np.all(np.isfinite(r)):
         return None
     std = r.std(ddof=1)
-    if not std > 1e-15:
+    if not std > ZERO_STD:
         return None
     return float(r.mean() / std)
 

@@ -128,14 +128,18 @@ def _compare(model, by_id):
 
 
 def _analysis_trust(analyses):
+    found = trust_rows(analyses)
+    if not found:
+        return ""
     rows = "".join(
         f'<tr data-analysis="{_e(r["analysis_id"])}"><td>{_e(r["spec_id"])}</td><td>{_e(r["analysis_id"])}</td>'
-        f'<td>{_e(r["psr"])}<br><span class="muted">{_e(r["psr_reason"])}</span></td>'
-        f'<td>{_e(r["dsr"])}<br><span class="muted">{_e(r["dsr_reason"])}</span></td>'
+        f'<td>{_e(r["psr"])}<br><span class="muted">{_e(r["psr_reason"])} {_e(r["psr_inputs"])}</span></td>'
+        f'<td>{_e(r["dsr"])}<br><span class="muted">{_e(r["dsr_reason"])} {_e(r["dsr_inputs"])}</span></td>'
         f'<td>{_e(r["pbo"])}<br><span class="muted">{_e(r["pbo_reason"])}</span></td>'
-        f'<td>{_e(r["lookahead"])}</td><td>{_e(r["tearsheet"])}</td></tr>' for r in trust_rows(analyses))
-    return ('<h3>Analysis trust statistics</h3><p class="muted">From the latest analysis per spec; a null statistic '
-            'shows its reason. These describe an analysis, not a registry run, so run eligibility stays unassessed.</p>'
+        f'<td>{_e(r["lookahead"])}</td><td>{_e(r["tearsheet"])}</td></tr>' for r in found)
+    return ('<h3>Analysis trust statistics</h3><p class="muted">From the latest analysis per spec; synthetic-fixture '
+            'analyses are left out. A null statistic shows its reason. These describe an analysis, not a registry '
+            'run, so run eligibility stays unassessed.</p>'
             '<table><thead><tr><th>Spec</th><th>Analysis</th><th>PSR</th><th>DSR</th><th>PBO</th><th>Lookahead</th>'
             f'<th>Tearsheet</th></tr></thead><tbody>{rows}</tbody></table>')
 

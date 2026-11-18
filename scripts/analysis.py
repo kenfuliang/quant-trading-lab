@@ -4,8 +4,8 @@
   run --spec <path> [--root <dir>]   run a spec and write <root>/analysis/<analysis_id>/
                                      (default root: the data root); prints the folder
   golden [--update] [--file <path>]  run the fixture ladder in a temp root and compare the
-                                     per-rung summaries (rounded to 10 dp) with
-                                     tests/golden/fixture-ladder-summary.json; exit 1 naming
+                                     per-rung summaries (rounded to 10 dp; numbers match within
+                                     abs 1e-9) with tests/golden/fixture-ladder-summary.json; exit 1 naming
                                      the file on a difference, or rewrite it with --update
   build [--root] [--dir <folder>]    write <folder>/analysis.html (default .local/progress; the
                                      Analysis tab; not tracked, it carries a build time)
@@ -53,7 +53,8 @@ FIXTURE_SPEC = ROOT / "research/registry/analysis-specs/fixture-ladder.json"
 GOLDEN = ROOT / "tests/golden/fixture-ladder-summary.json"
 GOLDEN_NOW = datetime(2026, 1, 1, tzinfo=timezone.utc)
 SQRT_252 = math.sqrt(252)
-GRID_NOTE = "PBO grid is an illustrative grid; not registry trials."
+GOLDEN_ABS_TOL = 1e-9
+GRID_NOTE ="PBO grid is an illustrative grid; not registry trials."
 
 
 def _code_commit() -> str:
@@ -77,6 +78,36 @@ def trial_stats(records: list[dict], code: str) -> tuple[int, float | None]:
     sharpes = [r["metrics"]["sharpe"] / SQRT_252 for r in matching if r["metrics"].get("sharpe") is not None]
     variance = float(np.var(sharpes, ddof=1)) if len(sharpes) >= 2 else None
     return len(matching), variance
+
+
+def trial_inputs(records: list[dict], code: str) -> dict:
+    """The registry trials behind DSR: ids, registry (annualised) Sharpes and periods, in registry order."""
+    matching = [r for r in records if r["context"]["code"] == code]
+    with_sharpe = [r for r in matching if r["metrics"].get("sharpe") is not None]
+    return {"trial_record_ids": [r["record_id"] for r in matching],
+            "trial_sharpes": [r["metrics"]["sharpe"] for r in with_sharpe],
+            "periods": sorted({str(r["context"].get("period")) for r in matching})}
+
+
+def warmup_sessions(tables: dict) -> int:
+    """Leading sessions with zero net return and no position (a warm-up that adds to n)."""
+    held = set(tables["positions"]["date"])
+    count = 0
+    for day, net in zip(tables["returns"]["date"], tables["returns"]["net_return"]):
+        if net != 0 or day in held:
+            break
+        count += 1
+    return count
+
+
+def _trial_code(spec: dict, comparison: dict, notes: list[str]) -> str:
+    code = (spec.get("comparison") or {}).get("trial_code")
+    if code:
+        return code
+    code = comparison["records"][0]["context"]["code"]
+    notes.append(f"comparison.trial_code not set; DSR trials use the first comparison record's code {code}, "
+                 "so the record order decides the trial set.")
+    return code
 
 
 def _rungs(spec: dict) -> list[Rung]:
@@ -131,17 +162,27 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     records = experiment_registry.load(registry_path) if spec.get("comparison") else []
     comparison = _comparison(spec, records)
     if comparison and comparison["records"]:
-        code = comparison["records"][0]["context"]["code"]
+        code = _trial_code(spec, comparison, notes)
         n_trials, variance = trial_stats(records, code)
         if variance is None:
             trust_dsr = {"value": None, "n_trials": n_trials,
                          "reason": f"fewer than 2 registry Sharpe values for context {code}"}
         else:
             trust_dsr = dsr(net, n_trials, variance)
-        trust_dsr["code"] = code
+        inputs = trial_inputs(records, code)
+        dates = tables["returns"]["date"]
+        trust_dsr.update(code=code, sr_variance=variance, trial_record_ids=inputs["trial_record_ids"],
+                         trial_sharpes=inputs["trial_sharpes"],
+                         period_note=f"trial Sharpes are {', '.join(inputs['periods'])} registry results "
+                                     f"applied to a {dates.iloc[0]}–{dates.iloc[-1]} series")
     else:
         trust_dsr = {"value": None, "reason": "no comparison record; trial count undefined"}
-    trust = {"psr": psr(net), "dsr": trust_dsr, "pbo": _pbo(spec, data, last.market)}
+    warmup = warmup_sessions(tables)
+    warmup_note = (f"n includes {warmup} leading warm-up sessions with zero net return and no position; "
+                   "this inflates n")
+    trust = {"psr": {**psr(net), "warmup_sessions": warmup, "warmup_note": warmup_note},
+             "dsr": {**trust_dsr, "warmup_sessions": warmup, "warmup_note": warmup_note},
+             "pbo": _pbo(spec, data, last.market)}
     if spec.get("pbo_grid"):
         notes.append(GRID_NOTE)
     lookahead = check_lookahead(data, lambda d: build_target_fn(last_spec), last.market, cutoffs=spec.get("cutoffs", 5))
@@ -177,6 +218,17 @@ def golden_summary(spec: dict) -> dict:
     return {s["rung"]: {k: _round(v) for k, v in s["summary"].items()} for s in steps}
 
 
+def golden_matches(expected, actual) -> bool:
+    """Same keys and values; numbers compare with ``math.isclose(abs_tol=1e-9)``, ``None`` only to ``None``."""
+    if isinstance(expected, dict) and isinstance(actual, dict):
+        return expected.keys() == actual.keys() and all(golden_matches(expected[k], actual[k]) for k in expected)
+    numbers = (int, float)
+    if isinstance(expected, numbers) and isinstance(actual, numbers) and not isinstance(expected, bool) \
+            and not isinstance(actual, bool):
+        return math.isclose(expected, actual, rel_tol=0.0, abs_tol=GOLDEN_ABS_TOL)
+    return expected == actual
+
+
 def cmd_run(args) -> int:
     spec = json.loads(args.spec.read_text(encoding="utf-8"))
     root = args.root or data_root()
@@ -192,7 +244,7 @@ def cmd_golden(args) -> int:
         args.file.write_text(text, encoding="utf-8")
         print(f"Updated {args.file}")
         return 0
-    if not args.file.is_file() or json.loads(args.file.read_text(encoding="utf-8")) != json.loads(text):
+    if not args.file.is_file() or not golden_matches(json.loads(args.file.read_text(encoding="utf-8")), summary):
         print(f"error: golden summary {args.file} differs from the fixture ladder; "
               "review the change and run scripts/analysis.py golden --update", file=sys.stderr)
         return 1

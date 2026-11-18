@@ -31,9 +31,10 @@
       }
     },
     {
-      "name": "gate",
+      "name": "trend_gate",
       "strategy": {
         "name": "traffic_light",
+        "proposal": "ema",
         "fast": 50,
         "slow": 200,
         "vol_window": 20,
@@ -58,6 +59,7 @@
       "name": "costs",
       "strategy": {
         "name": "traffic_light",
+        "proposal": "ema",
         "fast": 50,
         "slow": 200,
         "vol_window": 20,
@@ -83,11 +85,13 @@
     "record_ids": [
       "legacy-030-discrete-ema-volatility-gate",
       "legacy-058-gate-only-spy-control"
-    ]
+    ],
+    "trial_code": "C01-5bp"
   },
   "pbo_grid": [
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 20,
       "slow": 100,
       "vol_window": 20,
@@ -105,6 +109,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 20,
       "slow": 100,
       "vol_window": 20,
@@ -122,6 +127,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 20,
       "slow": 200,
       "vol_window": 20,
@@ -139,6 +145,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 20,
       "slow": 200,
       "vol_window": 20,
@@ -156,6 +163,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 50,
       "slow": 100,
       "vol_window": 20,
@@ -173,6 +181,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 50,
       "slow": 100,
       "vol_window": 20,
@@ -190,6 +199,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 50,
       "slow": 200,
       "vol_window": 20,
@@ -207,6 +217,7 @@
     },
     {
       "name": "traffic_light",
+      "proposal": "ema",
       "fast": 50,
       "slow": 200,
       "vol_window": 20,
@@ -225,7 +236,8 @@
   ],
   "cutoffs": 5,
   "notes": [
-    "Price-peak drawdown component disabled; SPY only on the quality-checked 2016-2025 dataset; whole shares, 0.99 gross.",
-    "Differences from the registry rows are reported, not gated."
+    "Nested ladder: hold -> EMA50/200 trend -> trend capped by the traffic-light gate (legacy-030 gate_ema structure) -> costs. The waterfall depends on this rung order.",
+    "Price-peak drawdown component disabled; SPY only on the quality-checked 2016-2025 dataset; whole shares, 0.99 gross; 2% rebalance band.",
+    "Differences from the registry rows are reported, not gated. legacy-058 is the gate-only (gate_hold) structure, not this ladder's last rung."
   ]
 }

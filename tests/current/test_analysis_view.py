@@ -96,7 +96,9 @@ class AnalysisViewTest(unittest.TestCase):
             self.assertEqual(load_analyses(t)[0][0]["analysis_id"], "b")
 
     def test_stage_page_trust_panel_uses_analyses_when_present(self):
-        rows = trust_rows([FIXTURE])
+        real = copy.deepcopy(FIXTURE)
+        real["datasets"] = {"dataset_id": "sector-etfs-2016-2025-n1"}
+        rows = trust_rows([real])
         self.assertEqual(rows[0]["dsr"], "n/a")
         self.assertEqual(rows[0]["dsr_reason"], "no comparison record; trial count undefined")
         self.assertEqual(rows[0]["lookahead"], "pass")
@@ -104,13 +106,51 @@ class AnalysisViewTest(unittest.TestCase):
         from research.control.stage_map import STAGES
         empty["stages"] = {s: {"records": [], "pairs": [], "effects": {}, "dispositions": {}} for s in STAGES}
         plain = render_page(empty, [], {}, "now")
-        shown = render_page(empty, [], {}, "now", [FIXTURE])
+        shown = render_page(empty, [], {}, "now", [real])
         self.assertNotIn("Analysis trust statistics", plain)
         self.assertIn("Analysis trust statistics", shown)
         self.assertIn("no comparison record", shown)
-        evil = copy.deepcopy(FIXTURE)
+        evil = copy.deepcopy(real)
         evil["spec_id"] = "<b>x</b>"
         self.assertNotIn("<b>x</b>", render_page(empty, [], {}, "now", [evil]))
+
+    def test_fixture_analyses_are_tagged_and_kept_out_of_the_pipeline_panel(self):
+        self.assertEqual(trust_rows([FIXTURE]), [])
+        empty = {"stages": {}, "contexts": {}, "unclassified": [], "unattributable": []}
+        from research.control.stage_map import STAGES
+        empty["stages"] = {s: {"records": [], "pairs": [], "effects": {}, "dispositions": {}} for s in STAGES}
+        self.assertNotIn("Analysis trust statistics", render_page(empty, [], {}, "now", [FIXTURE]))
+        page = render_analysis_page([FIXTURE], "now")
+        self.assertIn('data-fixture="true"', page)
+        self.assertIn(">fixture<", page)
+        real = copy.deepcopy(FIXTURE)
+        real["datasets"] = {"dataset_id": "sector-etfs-2016-2025-n1"}
+        self.assertNotIn('data-fixture="true"', render_analysis_page([real], "now"))
+
+    def test_dsr_inputs_and_warmup_are_shown_and_escaped(self):
+        evil = "<i>x</i>"
+        doc = copy.deepcopy(FIXTURE)
+        doc["datasets"] = {"dataset_id": "sector-etfs-2016-2025-n1"}
+        doc["trust"]["dsr"] = {"value": 0.97, "n_trials": 34, "code": "C01-5bp", "sr_variance": 0.000123,
+                               "trial_record_ids": ["legacy-030", evil], "trial_sharpes": [0.7689, 0.5],
+                               "period_note": f"trial Sharpes are 2005–2025 registry results {evil}",
+                               "warmup_sessions": 200, "warmup_note": f"n includes 200 {evil}; this inflates n"}
+        doc["trust"]["psr"]["warmup_sessions"] = 200
+        doc["trust"]["psr"]["warmup_note"] = "n includes 200 warm-up sessions; this inflates n"
+        page = render_analysis_page([doc], "now")
+        self.assertNotIn(evil, page)
+        for text in ("n_trials 34", "sr_variance 0.000123", "legacy-030", "0.7689", "2005–2025", "inflates n"):
+            self.assertIn(text, page)
+        row = trust_rows([doc])[0]
+        self.assertIn("n_trials 34", row["dsr_inputs"])
+        self.assertIn("2005–2025", row["dsr_inputs"])
+        self.assertIn("inflates n", row["psr_inputs"])
+        empty = {"stages": {}, "contexts": {}, "unclassified": [], "unattributable": []}
+        from research.control.stage_map import STAGES
+        empty["stages"] = {s: {"records": [], "pairs": [], "effects": {}, "dispositions": {}} for s in STAGES}
+        pipeline = render_page(empty, [], {}, "now", [doc])
+        self.assertNotIn(evil, pipeline)
+        self.assertIn("sr_variance 0.000123", pipeline)
 
 
 if __name__ == "__main__":

@@ -98,15 +98,56 @@ def load_analyses(root):
     return sorted(newest.values(), key=_when, reverse=True), warnings
 
 
+FIXTURE_DATASET = "synthetic-fixture"
+
+
+def is_fixture(doc):
+    """True when the analysis ran on the synthetic engineering fixture (not evidence)."""
+    datasets = doc.get("datasets") if isinstance(doc, dict) else None
+    return isinstance(datasets, dict) and datasets.get("dataset_id") == FIXTURE_DATASET
+
+
 def _stat(block):
     block = block if isinstance(block, dict) else {}
     return _fmt(block.get("value")), block.get("reason") or ""
 
 
+def _small(value):
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return "n/a"
+    return f"{value:.6g}"
+
+
+def stat_inputs(block):
+    """Plain-text inputs of a PSR/DSR block (unescaped): trials, variance, records, period, warm-up."""
+    block = block if isinstance(block, dict) else {}
+    parts = []
+    if block.get("n") is not None:
+        parts.append(f"n {block['n']}")
+    if block.get("n_trials") is not None:
+        parts.append(f"n_trials {block['n_trials']}" + (f" ({block['code']})" if block.get("code") else ""))
+    if "sr_variance" in block:
+        parts.append(f"sr_variance {_small(block.get('sr_variance'))}")
+    ids, sharpes = block.get("trial_record_ids"), block.get("trial_sharpes")
+    if isinstance(ids, list):
+        parts.append("trials " + (", ".join(map(str, ids)) or "none"))
+    if isinstance(sharpes, list):
+        parts.append("trial Sharpes " + ", ".join(_fmt(s) for s in sharpes))
+    for key in ("period_note", "warmup_note"):
+        if block.get(key):
+            parts.append(str(block[key]))
+    return "; ".join(parts)
+
+
 def trust_rows(analyses):
-    """Plain-text rows for the Pipeline trust panel (unescaped; the renderer escapes)."""
+    """Plain-text rows for the Pipeline trust panel (unescaped; the renderer escapes).
+
+    Analyses on the synthetic fixture are engineering checks, not evidence, and are left out.
+    """
     rows = []
     for doc in analyses or []:
+        if is_fixture(doc):
+            continue
         trust = doc.get("trust") or {}
         look = doc.get("lookahead") or {}
         sheet = doc.get("tearsheet") or {}
@@ -114,6 +155,7 @@ def trust_rows(analyses):
                "lookahead": look.get("status") or "n/a", "tearsheet": sheet.get("status") or "n/a"}
         for name in ("psr", "dsr", "pbo"):
             row[name], row[f"{name}_reason"] = _stat(trust.get(name))
+            row[f"{name}_inputs"] = stat_inputs(trust.get(name)) if name != "pbo" else ""
         rows.append(row)
     return rows
 
@@ -144,21 +186,27 @@ def _section(doc, base, available):
     trows = ""
     for name in ("psr", "dsr", "pbo"):
         value, reason = _stat(trust.get(name))
-        trows += f'<tr><td>{name.upper()}</td><td>{_e(value)}</td><td>{_e(reason)}</td></tr>'
+        inputs = stat_inputs(trust.get(name)) if name != "pbo" else ""
+        trows += (f'<tr><td>{name.upper()}</td><td>{_e(value)}</td><td>{_e(reason)}</td>'
+                  f'<td>{_e(inputs)}</td></tr>')
     look = doc.get("lookahead") or {}
     diffs = look.get("differences") or []
     diff_text = (f'{len(diffs)} difference(s): ' + _e("; ".join(str(d) for d in diffs[:5]))) if diffs else "no differences"
     notes = "".join(f"<li>{_e(n)}</li>" for n in doc.get("notes") or [])
     status = look.get("status") or "n/a"
     cutoffs = ", ".join(map(str, look.get("cutoffs") or [])) or "none"
+    fixture = is_fixture(doc)
+    tag = ' <span class="badge">fixture</span>' if fixture else ""
     return (
-        f'<section class="analysis" data-spec="{_e(doc.get("spec_id"))}"><h2>{_e(doc.get("title") or doc.get("spec_id"))}</h2>'
+        f'<section class="analysis" data-spec="{_e(doc.get("spec_id"))}" data-fixture="{str(fixture).lower()}">'
+        f'<h2>{_e(doc.get("title") or doc.get("spec_id"))}{tag}</h2>'
         f'<p class="muted">{_e(doc.get("analysis_id"))} · spec {_e(doc.get("spec_id"))} · created {_e(doc.get("created_utc"))}'
         f' · code {_e(doc.get("code_commit"))}</p><p>Tearsheet: {_tearsheet(doc, base, available)}</p>'
         f'<h3>Runs</h3><table><thead><tr><th>Rung</th><th>Run</th>{head}</tr></thead><tbody>{runs}</tbody></table>'
         f'<h3>Waterfall (to minus from)</h3><table><thead><tr><th>From</th><th>To</th>{head}</tr></thead>'
         f'<tbody>{waterfall}</tbody></table>'
-        f'<h3>Trust</h3><table><thead><tr><th>Statistic</th><th>Value</th><th>Reason</th></tr></thead><tbody>{trows}</tbody></table>'
+        f'<h3>Trust</h3><table><thead><tr><th>Statistic</th><th>Value</th><th>Reason</th><th>Inputs</th></tr></thead>'
+        f'<tbody>{trows}</tbody></table>'
         f'<h3>Lookahead</h3><p><span class="badge" data-lookahead="{_e(status)}">{_e(status)}</span> '
         f'{diff_text} · cutoffs {_e(cutoffs)}</p>'
         f'{"<h3>Notes</h3><ul>" + notes + "</ul>" if notes else ""}</section>')

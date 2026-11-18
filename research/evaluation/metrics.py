@@ -12,7 +12,11 @@ import math
 import numpy as np
 import pandas as pd
 
-__all__ = ["METRIC_KEYS", "summarize", "summarize_window", "window"]
+__all__ = ["METRIC_KEYS", "ZERO_STD", "summarize", "summarize_window", "window"]
+
+# A return standard deviation at or below this is rounding noise: Sharpe is undefined (None).
+# Shared with research.evaluation.trust so both report the same Sharpe definedness.
+ZERO_STD = 1e-15
 
 METRIC_KEYS = (
     "net_cagr",
@@ -32,7 +36,7 @@ def summarize(returns: pd.DataFrame, fills: pd.DataFrame, initial_cash: float) -
     - ``net_cagr``: ``(final equity / initial_cash) ** (252 / sessions) - 1`` (-1.0 if final equity <= 0).
     - ``max_drawdown``: largest ``1 - equity / running peak``; the peak starts at ``initial_cash``.
     - ``sharpe``: mean / std (ddof 1) of ``net_return`` times sqrt(252), zero risk-free rate;
-      ``None`` when std is 0.
+      ``None`` when std <= ``ZERO_STD`` (rounding noise).
     - ``calmar``: ``net_cagr / max_drawdown``; ``None`` when max drawdown is 0.
     - ``turnover``: sum of ``|quantity * price|`` over fills / mean equity / years (sessions / 252).
     - ``longest_underwater_sessions``: longest run of consecutive sessions with equity below the
@@ -58,7 +62,7 @@ def summarize(returns: pd.DataFrame, fills: pd.DataFrame, initial_cash: float) -
 
     net = returns["net_return"].to_numpy(dtype=float)
     std = float(np.std(net, ddof=1)) if n > 1 else 0.0
-    sharpe = float(np.mean(net) / std * math.sqrt(SESSIONS_PER_YEAR)) if std > 0 else None
+    sharpe = float(np.mean(net) / std * math.sqrt(SESSIONS_PER_YEAR)) if std > ZERO_STD else None
     calmar = cagr / max_dd if max_dd > 0 else None
 
     traded = float((fills["quantity"].astype(float) * fills["price"].astype(float)).abs().sum()) if len(fills) else 0.0

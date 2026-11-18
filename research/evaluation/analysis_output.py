@@ -72,6 +72,25 @@ def _trust_line(label: str, item: dict) -> str:
     return f"- {label}: {item['value']:.4f}"
 
 
+def _dsr_input_lines(item: dict) -> list[str]:
+    lines = []
+    if item.get("n_trials") is not None:
+        lines.append(f"- DSR trials: {item['n_trials']} (context {item.get('code', 'n/a')})")
+    if "sr_variance" in item:
+        lines.append(f"- DSR sr_variance (per period): {_fmt_small(item['sr_variance'])}")
+    if item.get("trial_record_ids") is not None:
+        lines.append(f"- DSR trial records: {', '.join(item['trial_record_ids']) or 'none'}")
+    if item.get("trial_sharpes") is not None:
+        lines.append(f"- DSR trial Sharpes (registry, annualised): {', '.join(_fmt(s) for s in item['trial_sharpes'])}")
+    if item.get("period_note"):
+        lines.append(f"- DSR period: {item['period_note']}")
+    return lines
+
+
+def _fmt_small(value) -> str:
+    return "n/a" if value is None else f"{value:.6g}"
+
+
 def render_report(doc: dict) -> str:
     lines = [f"# Analysis: {doc.get('title', doc['spec_id'])}", "",
              f"- Spec: `{doc['spec_id']}`", f"- Created (UTC): {doc['created_utc']}",
@@ -93,8 +112,10 @@ def render_report(doc: dict) -> str:
               _trust_line("PSR (last rung, benchmark 0)", trust["psr"]),
               _trust_line("DSR", trust["dsr"]),
               _trust_line("PBO (illustrative grid; not registry trials)", trust["pbo"])]
-    if trust["dsr"].get("n_trials") is not None:
-        lines.append(f"- DSR trials: {trust['dsr']['n_trials']}")
+    lines += _dsr_input_lines(trust["dsr"])
+    warmup = trust["psr"].get("warmup_note")
+    if warmup:
+        lines.append(f"- PSR/DSR warm-up: {warmup}")
     look = doc["lookahead"]
     lines += ["", "## Lookahead", "", f"- Status: {look['status']}", f"- Cutoffs: {', '.join(look['cutoffs'])}"]
     for item in look.get("compared", []):
