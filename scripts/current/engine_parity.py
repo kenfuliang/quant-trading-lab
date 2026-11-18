@@ -2,9 +2,15 @@
 """Run the screening and NautilusTrader engines on the same data and record a parity receipt.
 
 ``run`` loads the bars and actions, runs ``sma_trend_targets()`` through both engines
-with the default ``MarketConfig``, writes both run outputs (the native run's parent is
-the screening run) and ``receipt.json`` into ``<out>/<parity_id>/``, and exits 0 only
-when the comparator passes. Rejected input or a mismatch is recorded and exits 1.
+with the default ``MarketConfig``, writes both run outputs to ``<runs>/<run_id>/`` (the
+native run's parent is the screening run) and ``receipt.json`` to
+``<out>/<parity_id>/receipt.json``; the receipt references each run by id and
+``manifest.json`` sha256. It exits 0 only when the comparator passes. Rejected input or
+a mismatch is recorded and exits 1.
+
+Each manifest's ``engine`` is ``EngineResult.engine`` (``screen`` or ``nautilus``) and its
+``config`` holds only strategy, market, instruments and engine, so ``config_hash``
+identifies the configuration; code and inputs are in ``code_commit`` and ``datasets``.
 Offline and order-free: engineering evidence, not financial use.
 """
 from __future__ import annotations
@@ -56,7 +62,7 @@ def _code_commit() -> str:
 
 
 def _engine_version(engine: str) -> str:
-    if engine == "native":
+    if engine == "nautilus":
         import nautilus_trader
 
         return f"nautilus_trader {nautilus_trader.__version__}"
@@ -75,8 +81,13 @@ def _calendar(data) -> dict:
     }
 
 
-def _write(out: Path, result: EngineResult, base: dict, engine: str, parent: str | None, now: datetime) -> str:
-    config = dict(base, engine=engine)
+def _write(runs: Path, result: EngineResult, base: dict, parent: str | None, now: datetime) -> dict:
+    config = {
+        "strategy": base["strategy"],
+        "market": base["market"],
+        "instruments": base["instruments"],
+        "engine": result.engine,
+    }
     run_id = new_run_id(config, now)
     manifest = {
         "run_id": run_id,
@@ -84,15 +95,15 @@ def _write(out: Path, result: EngineResult, base: dict, engine: str, parent: str
         "code_commit": base["code_commit"],
         "config": config,
         "config_hash": config_hash(config),
-        "engine": engine,
-        "engine_version": _engine_version(engine),
+        "engine": result.engine,
+        "engine_version": _engine_version(result.engine),
         "datasets": base["inputs"],
         "coverage": {"instruments": base["instruments"], "sessions": len(result.returns)},
         "parent_run": parent,
     }
     tables = {name: getattr(result, name)[list(cols)] for name, cols in COLUMNS.items()}
-    write_run(out, manifest, tables)
-    return run_id
+    path = write_run(runs, manifest, tables)
+    return {"run_id": run_id, "manifest_sha256": _sha256(path / "manifest.json")}
 
 
 def run(args, argv: list[str], loader) -> int:
@@ -124,6 +135,7 @@ def run(args, argv: list[str], loader) -> int:
         "market": base["market"],
         "tolerances": TOLERANCES,
         "cash_interest": CASH_INTEREST,
+        "runs_root": str(args.runs),
         "calendar": None,
         "timing": None,
         "runs": None,
@@ -155,15 +167,15 @@ def run(args, argv: list[str], loader) -> int:
         print(folder / "receipt.json")
         return 1
     report = compare(screen, native)
-    screen_id = _write(folder, screen, base, "screening", None, now)
-    native_id = _write(folder, native, base, "native", screen_id, now)
+    screen_run = _write(Path(args.runs), screen, base, None, now)
+    native_run = _write(Path(args.runs), native, base, screen_run["run_id"], now)
     receipt.update(
         timing={
             "screening_seconds": screen_seconds,
             "native_seconds": native_seconds,
             "projected_seconds_500_names": native_seconds * 500 / len(instruments),
         },
-        runs={"screening": screen_id, "native": native_id},
+        runs={screen.engine: screen_run, native.engine: native_run},
         status="passed" if report.passed else "mismatch",
         passed=report.passed,
         mismatch_count=len(report.mismatches),
@@ -188,7 +200,8 @@ def main(argv=None, loader=load_sector_derivative) -> int:
     cmd.add_argument("--bars", type=Path, required=True)
     cmd.add_argument("--actions", type=Path, required=True)
     cmd.add_argument("--instruments", required=True, help="comma-separated, e.g. SPY,XLB,XLE,XLF")
-    cmd.add_argument("--out", type=Path, required=True)
+    cmd.add_argument("--out", type=Path, required=True, help="parity receipts root, e.g. .local/parity")
+    cmd.add_argument("--runs", type=Path, required=True, help="run outputs root, e.g. .local/runs")
     argv = list(sys.argv[1:] if argv is None else argv)
     args = parser.parse_args(argv)
     return run(args, argv, loader)

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import tempfile
 import unittest
@@ -5,7 +6,7 @@ from pathlib import Path
 
 from research.evaluation.market_model import MarketDataError
 from research.evaluation.parity_fixture import synthetic_fixture
-from research.evaluation.run_output import read_run
+from research.evaluation.run_output import config_hash, read_run
 from scripts.current import engine_parity
 
 
@@ -19,10 +20,11 @@ class EngineParityCliTests(unittest.TestCase):
         self.bars.write_text("[]", encoding="utf-8")
         self.actions.write_text("{}", encoding="utf-8")
         self.out = self.root / "parity"
+        self.runs = self.root / "runs"
 
     def _argv(self):
         return ["run", "--bars", str(self.bars), "--actions", str(self.actions),
-                "--instruments", "AAA,BBB,CCC", "--out", str(self.out)]
+                "--instruments", "AAA,BBB,CCC", "--out", str(self.out), "--runs", str(self.runs)]
 
     def _receipt(self):
         receipts = sorted(self.out.glob("*/receipt.json"))
@@ -37,12 +39,30 @@ class EngineParityCliTests(unittest.TestCase):
         self.assertTrue(receipt["passed"])
         self.assertEqual(receipt["mismatches"], [])
 
-        screen_manifest, screen_tables = read_run(folder / receipt["runs"]["screening"])
-        native_manifest, _ = read_run(folder / receipt["runs"]["native"])
+        # Runs live under the runs root (.local/runs/<run_id>/), not inside the parity folder.
+        self.assertEqual(sorted(p.name for p in folder.iterdir()), ["receipt.json"])
+        self.assertEqual(receipt["runs_root"], str(self.runs))
+        self.assertEqual(set(receipt["runs"]), {"screen", "nautilus"})
+        for engine, entry in receipt["runs"].items():
+            manifest_path = self.runs / entry["run_id"] / "manifest.json"
+            self.assertEqual(entry["manifest_sha256"], hashlib.sha256(manifest_path.read_bytes()).hexdigest())
+        screen_manifest, screen_tables = read_run(self.runs / receipt["runs"]["screen"]["run_id"])
+        native_manifest, _ = read_run(self.runs / receipt["runs"]["nautilus"]["run_id"])
         self.assertIsNone(screen_manifest["parent_run"])
         self.assertEqual(native_manifest["parent_run"], screen_manifest["run_id"])
         self.assertNotEqual(screen_manifest["run_id"], native_manifest["run_id"])
         self.assertFalse(screen_tables["fills"].empty)
+
+        # Manifest identity: engine names match EngineResult.engine; config holds only the
+        # configuration, so config_hash identifies it (code and inputs have their own keys).
+        self.assertEqual((screen_manifest["engine"], native_manifest["engine"]), ("screen", "nautilus"))
+        for manifest in (screen_manifest, native_manifest):
+            self.assertEqual(set(manifest["config"]), {"strategy", "market", "instruments", "engine"})
+            self.assertEqual(manifest["config"]["engine"], manifest["engine"])
+            self.assertEqual(manifest["config_hash"], config_hash(manifest["config"]))
+            self.assertEqual(manifest["datasets"], receipt["inputs"])
+            self.assertEqual(manifest["code_commit"], receipt["code_commit"])
+        self.assertTrue(native_manifest["engine_version"].startswith("nautilus_trader "))
 
         fixture = synthetic_fixture()
         self.assertEqual(receipt["calendar"], {
@@ -69,6 +89,7 @@ class EngineParityCliTests(unittest.TestCase):
         self.assertEqual(receipt["error"]["stage"], "load")
         self.assertIn("cent grid", receipt["error"]["message"])
         self.assertIsNone(receipt["runs"])
+        self.assertFalse(self.runs.exists())
         self.assertEqual(receipt["cash_interest"], "not modelled")
 
 

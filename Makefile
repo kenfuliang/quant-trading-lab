@@ -31,7 +31,7 @@ PARITY_ACTIONS ?= $(PARITY_DATA)/alpaca-sector-etfs-2016-2025-v1-issuer-actions-
 
 .PHONY: parity-local
 parity-local:
-	$(PYTHON) scripts/current/engine_parity.py run --bars $(PARITY_BARS) --actions $(PARITY_ACTIONS) --instruments SPY,XLB,XLE,XLF --out .local/parity
+	$(PYTHON) scripts/current/engine_parity.py run --bars $(PARITY_BARS) --actions $(PARITY_ACTIONS) --instruments SPY,XLB,XLE,XLF --out .local/parity --runs .local/runs
 
 .PHONY: performance performance-stop
 performance:
