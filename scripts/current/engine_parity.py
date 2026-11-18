@@ -28,6 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+from research.data.root import DataAbsent, parity_root, require, runs_root  # noqa: E402
 from research.evaluation.market_model import MarketConfig, MarketDataError, sma_trend_targets, validate  # noqa: E402
 from research.evaluation.native_engine import run_native  # noqa: E402
 from research.evaluation.parity import compare  # noqa: E402
@@ -107,7 +108,13 @@ def _write(runs: Path, result: EngineResult, base: dict, parent: str | None, now
 
 
 def run(args, argv: list[str], loader) -> int:
-    now = datetime.now(timezone.utc)
+    try:
+        require(args.bars)
+        require(args.actions)
+    except DataAbsent as exc:
+        print(exc, file=sys.stderr)
+        return 2
+    now =datetime.now(timezone.utc)
     instruments = tuple(name.strip() for name in args.instruments.split(",") if name.strip())
     inputs = {
         "bars": {"path": str(args.bars), "sha256": _sha256(args.bars)},
@@ -200,10 +207,12 @@ def main(argv=None, loader=load_sector_derivative) -> int:
     cmd.add_argument("--bars", type=Path, required=True)
     cmd.add_argument("--actions", type=Path, required=True)
     cmd.add_argument("--instruments", required=True, help="comma-separated, e.g. SPY,XLB,XLE,XLF")
-    cmd.add_argument("--out", type=Path, required=True, help="parity receipts root, e.g. .local/parity")
-    cmd.add_argument("--runs", type=Path, required=True, help="run outputs root, e.g. .local/runs")
+    cmd.add_argument("--out", type=Path, default=None, help="parity receipts root (default <data root>/parity)")
+    cmd.add_argument("--runs", type=Path, default=None, help="run outputs root (default <data root>/runs)")
     argv = list(sys.argv[1:] if argv is None else argv)
     args = parser.parse_args(argv)
+    args.out = args.out if args.out is not None else parity_root()
+    args.runs = args.runs if args.runs is not None else runs_root()
     return run(args, argv, loader)
 
 

@@ -1,8 +1,12 @@
+import contextlib
 import hashlib
+import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from research.evaluation.market_model import MarketDataError
 from research.evaluation.parity_fixture import synthetic_fixture
@@ -91,6 +95,27 @@ class EngineParityCliTests(unittest.TestCase):
         self.assertIsNone(receipt["runs"])
         self.assertFalse(self.runs.exists())
         self.assertEqual(receipt["cash_interest"], "not modelled")
+
+    def test_engine_parity_defaults_to_data_root(self):
+        data = self.root / "dataroot"
+        argv = ["run", "--bars", str(self.bars), "--actions", str(self.actions), "--instruments", "AAA,BBB,CCC"]
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}):
+            code = engine_parity.main(argv, loader=lambda bars, actions, names: synthetic_fixture())
+        self.assertEqual(code, 0)
+        self.assertEqual(len(list((data / "parity").glob("*/receipt.json"))), 1)
+        self.assertEqual(len(list((data / "runs").glob("*/manifest.json"))), 2)
+
+    def test_missing_inputs_exit_2_with_blocked_message(self):
+        data = self.root / "dataroot"
+        missing = self.root / "nope.json"
+        argv = ["run", "--bars", str(missing), "--actions", str(self.actions), "--instruments", "AAA"]
+        stderr = io.StringIO()
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}), contextlib.redirect_stderr(stderr):
+            code = engine_parity.main(argv, loader=lambda *a: synthetic_fixture())
+        self.assertEqual(code, 2)
+        self.assertIn(f"blocked: data absent: {missing}", stderr.getvalue())
+        self.assertFalse((data / "parity").exists())
+        self.assertFalse((data / "runs").exists())
 
 
 if __name__ == "__main__":
