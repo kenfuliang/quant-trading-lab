@@ -174,6 +174,25 @@ class YahooSnapshotTests(unittest.TestCase):
         self.assertEqual((self.root / "raw/yahoo/snap-3/response-XLB.json").read_bytes(), before)
 
 
+    def test_existing_manifest_is_refused_before_any_request_or_folder(self):
+        (self.root / "manifests").mkdir()
+        (self.root / "manifests" / "snap-m.json").write_text("{}")
+        opener = FakeOpener(good)
+        with self.assertRaises(FileExistsError):
+            y.fetch_snapshot(["XLB"], "2024-01-01", "2024-01-31", "snap-m", self.root,
+                             opener=opener, now=NOW)
+        self.assertEqual(opener.requests, [])
+        self.assertFalse((self.root / "raw").exists())
+
+    def test_duplicate_symbols_are_refused_up_front(self):
+        opener = FakeOpener(good)
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            y.fetch_snapshot(["XLB", "XLE", "XLB"], "2024-01-01", "2024-01-31", "snap-d", self.root,
+                             opener=opener, now=NOW)
+        self.assertEqual(opener.requests, [])
+        self.assertFalse((self.root / "raw").exists())
+
+
 class FetchCliTests(unittest.TestCase):
     def test_bad_ids_and_symbols_exit_one_with_one_line_error(self):
         import contextlib

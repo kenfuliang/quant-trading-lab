@@ -16,6 +16,9 @@ from research.evaluation.etf_normalise import RECIPE, normalise
 from research.evaluation.market_model import MarketData
 
 
+LOADABLE_STATUSES = ("pass", "pass-with-exceptions")
+
+
 class DatasetBlocked(RuntimeError):
     """The dataset has no quality report, or its latest report failed."""
 
@@ -47,9 +50,25 @@ def load_dataset(dataset_id: str, instruments: tuple[str, ...],
     folder = _latest_folder(base, dataset_id)
     if folder is None:
         raise DatasetBlocked(f"{dataset_id}: no quality report; run scripts/data.py quality first")
-    report = json.loads((folder / "report.json").read_text(encoding="utf-8"))
-    if report["status"] == "fail":
-        raise DatasetBlocked(f"{dataset_id}: latest quality report failed ({folder / 'report.json'})")
+    path = folder / "report.json"
+    try:
+        report = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError) as error:
+        raise DatasetBlocked(f"{dataset_id}: malformed quality report {path}: {error}") from None
+    if not isinstance(report, dict):
+        raise DatasetBlocked(f"{dataset_id}: malformed quality report {path}: not a JSON object")
+    manifest_sha = sha256_file(base / "manifests" / f"{dataset_id}.json")
+    inputs = report.get("inputs")
+    recorded = inputs.get("manifest_sha256") if isinstance(inputs, dict) else None
+    for field, found, expected in (("dataset_id", report.get("dataset_id"), dataset_id),
+                                   ("recipe", report.get("recipe"), RECIPE),
+                                   ("inputs.manifest_sha256", recorded, manifest_sha)):
+        if found != expected:
+            raise DatasetBlocked(f"{dataset_id}: latest quality report {path} has {field} {found!r}, "
+                                 f"expected {expected!r}; rerun scripts/data.py quality")
+    status = report.get("status")
+    if status not in LOADABLE_STATUSES:
+        raise DatasetBlocked(f"{dataset_id}: latest quality report status {status!r} is not loadable ({path})")
     bars_path, actions_path = (require(base / entry["path"]) for entry in manifest["inputs"])
     rows = json.loads(bars_path.read_text(encoding="utf-8"))
     actions = json.loads(actions_path.read_text(encoding="utf-8"))
@@ -57,8 +76,9 @@ def load_dataset(dataset_id: str, instruments: tuple[str, ...],
     # when its child instrument is not requested.
     result = normalise(rows, actions, tuple(instruments))
     provenance = {
-        "manifest_sha256": sha256_file(base / "manifests" / f"{dataset_id}.json"),
-        "quality_status": report["status"],
+        "manifest_sha256": manifest_sha,
+        "quality_status": status,
+        "acceptance": report.get("acceptance"),
         "quality_report": (folder / "report.json").relative_to(base).as_posix(),
         "inputs": [dict(entry) for entry in manifest["inputs"]],
         "half_days": [item["session"] for check in report["checks"] if check["name"] == "half_days"

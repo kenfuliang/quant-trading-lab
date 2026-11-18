@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT))
 from research.data.manifest import ManifestError, read_manifest, sha256_file, write_manifest
 from research.data.root import DataAbsent, data_root, require
 from research.data.yahoo_snapshot import SnapshotIncomplete, fetch_snapshot, parse_chart
-from research.evaluation.data_quality import build_report, write_report
+from research.evaluation.data_quality import build_failure_report, build_report, write_report
 from research.evaluation.etf_normalise import RECIPE, normalise
 from research.evaluation.market_model import MarketDataError
 
@@ -67,7 +67,10 @@ def cmd_normalise(args):
         actions = json.loads(actions_path.read_text(encoding="utf-8"))
         instruments = tuple(sorted({row["symbol"] for row in rows}))
         result = normalise(rows, actions, instruments)
-        rights = {"source": "alpaca", "redistribution": "not_qualified", "source_manifest": bars_path.stem}
+        provider = source.get("source")
+        if not provider:
+            raise ValueError(f"{source_path}: source manifest has no 'source' field")
+        rights = {"source": provider, "redistribution": "not_qualified", "source_manifest": bars_path.stem}
         for key in ("feed", "adjustment", "personal_use_review"):
             if key in source:
                 rights[key] = source[key]
@@ -77,7 +80,7 @@ def cmd_normalise(args):
         manifest = {
             "schema": "dataset-manifest/v1", "dataset_id": args.dataset_id, "kind": "normalised",
             "created_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "source": f"alpaca, normalised on load from {bars_path.stem}",
+            "source": f"{provider}, normalised on load from {bars_path.stem}",
             "inputs": inputs, "recipe": RECIPE, "rights": rights, "files": [], "notes": notes,
         }
         path = write_manifest(root, manifest)
@@ -104,16 +107,17 @@ def cmd_normalise(args):
 
 def _load_yahoo(root: Path, snapshot_id: str) -> dict:
     manifest = read_manifest(root, snapshot_id)
-    frames = {}
+    frames, splits = {}, {}
     for entry in manifest["files"]:
         name = Path(entry["path"]).name
         if name.startswith("response-") and name.endswith(".json"):
             symbol = name[len("response-"):-len(".json")]
-            frame, _dividends, _splits = parse_chart((root / entry["path"]).read_bytes(), symbol)
+            frame, _dividends, yahoo_splits = parse_chart((root / entry["path"]).read_bytes(), symbol)
             frames[symbol] = frame
+            splits[symbol] = yahoo_splits
     if not frames:
         raise ManifestError(f"{snapshot_id}: no response files")
-    return frames
+    return frames, splits
 
 
 def cmd_quality(args):
@@ -129,10 +133,23 @@ def cmd_quality(args):
         rows = json.loads(bars_path.read_text(encoding="utf-8"))
         actions = json.loads(actions_path.read_text(encoding="utf-8"))
         instruments = tuple(sorted({row["symbol"] for row in rows}))
-        result = normalise(rows, actions, instruments)
-        yahoo = _load_yahoo(root, args.yahoo) if args.yahoo else None
         created = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        report = build_report(args.dataset_id, rows, result, yahoo, result.data.splits, created_utc=created)
+        inputs = {"manifest_sha256": sha256_file(root / "manifests" / (args.dataset_id + ".json")),
+                  "yahoo_snapshot_id": args.yahoo,
+                  "yahoo_manifest_sha256": (sha256_file(root / "manifests" / (args.yahoo + ".json"))
+                                            if args.yahoo else None)}
+        try:
+            result = normalise(rows, actions, instruments)
+        except MarketDataError as error:
+            report = build_failure_report(args.dataset_id, manifest["recipe"], str(error),
+                                          created_utc=created, inputs=inputs)
+            folder = write_report(root, report)
+            print(f"Quality {args.dataset_id}: fail (normalise: {error})")
+            print(f"report {folder / 'report.json'}")
+            return 1
+        yahoo, yahoo_splits = _load_yahoo(root, args.yahoo) if args.yahoo else (None, None)
+        report = build_report(args.dataset_id, rows, result, yahoo, result.data.splits, created_utc=created,
+                              yahoo_splits=yahoo_splits, inputs=inputs)
         folder = write_report(root, report)
     except FileExistsError as error:
         print(f"error: report already exists: {error.filename}", file=sys.stderr)

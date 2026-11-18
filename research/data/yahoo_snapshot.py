@@ -5,6 +5,7 @@ but are reimplemented here so the data layer imports nothing outside research/da
 """
 from __future__ import annotations
 
+import errno
 import hashlib
 import json
 import os
@@ -104,6 +105,11 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
     for symbol in symbols:
         if not isinstance(symbol, str) or not SYMBOL_RE.fullmatch(symbol):
             raise ValueError(f"invalid symbol: {symbol!r}")
+    if len(set(symbols)) != len(symbols):
+        raise ValueError(f"duplicate symbols: {sorted({s for s in symbols if symbols.count(s) > 1})}")
+    manifest_path = root / "manifests" / f"{snapshot_id}.json"
+    if manifest_path.exists():
+        raise FileExistsError(errno.EEXIST, "manifest already exists", str(manifest_path))
     folder = root / "raw" / "yahoo" / snapshot_id
     folder.parent.mkdir(parents=True, exist_ok=True)
     folder.mkdir(exist_ok=False)  # an existing snapshot id is refused

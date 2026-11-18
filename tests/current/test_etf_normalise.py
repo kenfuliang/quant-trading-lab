@@ -93,9 +93,29 @@ class NormaliseTests(unittest.TestCase):
         result = n.normalise(rows, actions, NAMES)
         self.assertEqual([e["id"] for e in result.excluded], ["AAA-2024-01-09"])
         self.assertEqual(result.excluded[0]["pay_date"], "2024-02-01")
-        self.assertIn("pay_date", result.excluded[0]["reason"])
+        self.assertIn("paid after window end; total return understated by the dividend",
+                      result.excluded[0]["reason"])
         aaa = [d for d in result.data.dividends if d.instrument == "AAA"]
         self.assertEqual([(d.ex_date, d.per_share) for d in aaa], [("2024-01-03", 0.10)])
+
+    def test_event_before_window_start_has_its_own_reason(self):
+        rows, actions = load()
+        actions["cash_and_in_kind"].append({"id": "AAA-early", "symbol": "AAA", "kind": "cash",
+                                            "ex_date": "2023-12-28", "pay_date": "2023-12-29", "amount": "0.1"})
+        result = n.normalise(rows, actions, NAMES)
+        early = next(e for e in result.excluded if e["id"] == "AAA-early")
+        self.assertIn("before window start", early["reason"])
+        self.assertNotIn("understated", early["reason"])
+
+    def test_event_on_non_session_inside_bar_range_is_a_data_error(self):
+        rows, actions = load()
+        actions["cash_and_in_kind"].append({"id": "AAA-sat", "symbol": "AAA", "kind": "cash",
+                                            "ex_date": "2024-01-06", "pay_date": "2024-01-08", "amount": "0.1"})
+        with self.assertRaisesRegex(MarketDataError, "AAA-sat.*2024-01-06"):
+            n.normalise(rows, actions, NAMES)
+        actions["cash_and_in_kind"][-1].update(ex_date="2024-01-05", pay_date="2024-01-07")
+        with self.assertRaisesRegex(MarketDataError, "AAA-sat.*2024-01-07"):
+            n.normalise(rows, actions, NAMES)
 
     def test_result_passes_market_model_validate(self):
         rows, actions = load()
@@ -183,7 +203,7 @@ class NormaliseCommandTests(unittest.TestCase):
         bars.parent.mkdir(parents=True)
         shutil.copy(FIXTURES / "etf-bars.json", bars)
         shutil.copy(FIXTURES / "etf-actions.json", actions)
-        source = {"schema": "sector-etf-acquisition-v1", "dataset_id": "src-v1", "feed": "sip",
+        source = {"schema": "sector-etf-acquisition-v1", "dataset_id": "src-v1", "source": "alpaca", "feed": "sip",
                   "redistribution": "not_qualified", "personal_use_review": "terms retained"}
         (self.root / "manifests").mkdir()
         (self.root / "manifests" / "src-v1.json").write_text(json.dumps(source))
@@ -205,6 +225,28 @@ class NormaliseCommandTests(unittest.TestCase):
         rc, _, err = self.run_cli(*args)  # exclusive create: second run refuses
         self.assertEqual(rc, 1)
         self.assertTrue(err.startswith("error: "))
+
+    def test_source_comes_from_the_source_manifest(self):
+        bars = self.root / "normalized" / "src-v1.json"
+        actions = self.root / "normalized" / "src-v1-actions.json"
+        bars.parent.mkdir(parents=True)
+        shutil.copy(FIXTURES / "etf-bars.json", bars)
+        shutil.copy(FIXTURES / "etf-actions.json", actions)
+        (self.root / "manifests").mkdir()
+        args = ["normalise", "--bars", str(bars), "--actions", str(actions),
+                "--dataset-id", "src-n1", "--root", str(self.root)]
+        source = self.root / "manifests" / "src-v1.json"
+        source.write_text(json.dumps({"schema": "x", "feed": "sip"}))
+        rc, _, err = self.run_cli(*args)
+        self.assertEqual(rc, 1)
+        self.assertIn("source", err)
+        self.assertFalse((self.root / "manifests" / "src-n1.json").exists())
+        source.write_text(json.dumps({"schema": "x", "source": "tiingo"}))
+        rc, _, err = self.run_cli(*args)
+        self.assertEqual(rc, 0, err)
+        doc = m.read_manifest(self.root, "src-n1")
+        self.assertEqual(doc["rights"]["source"], "tiingo")
+        self.assertTrue(doc["source"].startswith("tiingo, normalised"))
 
     def test_inputs_outside_data_root_are_refused(self):
         rc, _, err = self.run_cli("normalise", "--bars", str(FIXTURES / "etf-bars.json"),

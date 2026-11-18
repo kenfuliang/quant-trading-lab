@@ -10,8 +10,9 @@ Recipe:
   bars, and differing session lists raise ``MarketDataError``.
 - OHLC are rounded half-even to the cent with ``decimal``; every changed value is counted
   per instrument and field. Volume is unchanged. A price that rounds to <= 0 is an error.
-- Cash events whose ``ex_date`` or ``pay_date`` is not a bar session are excluded and
-  listed, not loaded.
+- Cash events whose ``ex_date`` or ``pay_date`` falls outside the bar range are excluded and
+  listed with a reason (paid after window end, before window start, after window end); a
+  date inside the range that is not a session is a data error.
 - An in-kind event on a requested instrument becomes a cash-equivalent dividend:
   ``per_share = round(ratio * child close on ex_date, 6)``, paid on its pay date and
   labelled ``in_kind_cash_equivalent``. A child with no bar on the ex-date is an error.
@@ -124,6 +125,34 @@ def _child_close(rows: list[dict], child: str, day: str, closes, label: str) -> 
     raise MarketDataError(f"{label}: child {child} has no bar on ex_date {day}")
 
 
+def _window_reason(event: dict, sessions: tuple[str, ...], session_set: set, label: str) -> str | None:
+    """Why an event cannot be loaded, or None when both dates are bar sessions.
+
+    A date inside the bar range that is not a session is a data error; dates outside the
+    range are window effects and are listed with a reason that says which side.
+    """
+    first, last = sessions[0], sessions[-1]
+    where = {}
+    for key in ("ex_date", "pay_date"):
+        day = event[key]
+        if day in session_set:
+            where[key] = "in"
+        elif day < first:
+            where[key] = "before"
+        elif day > last:
+            where[key] = "after"
+        else:
+            raise MarketDataError(f"{label}: {key} {day} is inside the bar range but not a session")
+    if set(where.values()) == {"in"}:
+        return None
+    if where["ex_date"] == "in" and where["pay_date"] == "after":
+        return "paid after window end; total return understated by the dividend"
+    detail = ", ".join(f"{k} {event[k]}" for k in ("ex_date", "pay_date") if where[k] != "in")
+    if "before" in where.values():
+        return f"before window start: {detail}"
+    return f"after window end: {detail}"
+
+
 def _actions(actions: dict, names: tuple[str, ...], sessions: tuple[str, ...], closes, rows):
     session_set, wanted = set(sessions), set(names)
     dividends, converted, excluded, splits = [], [], [], []
@@ -134,9 +163,9 @@ def _actions(actions: dict, names: tuple[str, ...], sessions: tuple[str, ...], c
         try:
             if event["kind"] not in ("cash", "in_kind"):
                 raise MarketDataError(f"{label}: unsupported event kind {event['kind']!r}")
-            off = [f"{k} {event[k]}" for k in ("ex_date", "pay_date") if event[k] not in session_set]
-            if off:
-                excluded.append(_excluded(event, "not a bar session: " + ", ".join(off)))
+            reason = _window_reason(event, sessions, session_set, label)
+            if reason:
+                excluded.append(_excluded(event, reason))
                 continue
             symbol = event["symbol"]
             if event["kind"] == "cash":

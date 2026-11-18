@@ -12,7 +12,9 @@ from __future__ import annotations
 
 import json
 import math
+import subprocess
 from datetime import datetime, timezone
+from fractions import Fraction
 from pathlib import Path
 
 import numpy as np
@@ -24,18 +26,20 @@ from research.data.calendar import is_half_day, sessions as calendar_sessions
 
 SCHEMA = "quality-report/v1"
 CHECKS = ("sessions", "half_days", "duplicates", "non_finite", "non_positive", "zero_volume",
-          "ohlc", "gaps", "cent_rounding", "actions_converted", "actions_excluded", "cross_source")
+          "ohlc", "gaps", "cent_rounding", "actions_converted", "actions_excluded", "cross_source",
+          "split_events")
 MAX_ITEMS = 50
 GAP_LIMIT = 0.25
 ABS_TOLERANCE = 0.01
 REL_TOLERANCE = 5e-4  # 5 bp
 PRICE_KEYS = ("o", "h", "l", "c")
 ALL_KEYS = PRICE_KEYS + ("v",)
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def _check(name: str, status: str, items: list, detail: str, count: int | None = None, **extra) -> dict:
     entry = {"name": name, "status": status, "count": len(items) if count is None else count,
-             "detail": detail, "items": items[:MAX_ITEMS]}
+             "detail": detail, "items": items[:MAX_ITEMS], "omitted": max(0, len(items) - MAX_ITEMS)}
     entry.update(extra)
     return entry
 
@@ -152,15 +156,15 @@ def _check_events(name: str, events, detail: str) -> dict:
     return _check(name, "exception" if items else "pass", items, detail)
 
 
-def _unadjusted(frame: pd.DataFrame, symbol: str, splits: tuple[Split, ...]) -> pd.Series:
+def _unadjusted(frame: pd.DataFrame, yahoo_splits: list[dict]) -> pd.Series:
+    """Yahoo closes as traded: scale closes before each Yahoo split by numerator/denominator."""
     close = frame["close"].astype(float).copy()
-    for split in splits:
-        if split.instrument == symbol:
-            close[close.index < split.effective_date] *= split.ratio
+    for split in yahoo_splits:
+        close[close.index < split["date"]] *= split["numerator"] / split["denominator"]
     return close
 
 
-def _check_cross_source(norm: Normalised, yahoo, splits: tuple[Split, ...]) -> dict:
+def _check_cross_source(norm: Normalised, yahoo, yahoo_splits: dict) -> dict:
     if yahoo is None:
         return _check("cross_source", "blocked", [], "no Yahoo snapshot supplied")
     diffs, items, notes, per_symbol = [], [], [], {}
@@ -168,7 +172,7 @@ def _check_cross_source(norm: Normalised, yahoo, splits: tuple[Split, ...]) -> d
         if name not in yahoo:
             notes.append(f"{name}: not in snapshot")
             continue
-        theirs = _unadjusted(yahoo[name], name, splits)
+        theirs = _unadjusted(yahoo[name], yahoo_splits.get(name, []))
         ours = frame["close"].astype(float)
         for missing in ours.index.difference(theirs.index):
             notes.append(f"{name} {missing}: not in snapshot")
@@ -194,11 +198,71 @@ def _check_cross_source(norm: Normalised, yahoo, splits: tuple[Split, ...]) -> d
              "not_compared": notes[:MAX_ITEMS], "not_compared_count": len(notes)}
     summary = "; ".join(f"{s} {v['breaches']}/{v['compared']} max {v['max_abs_diff']} p99 {v['p99_abs_diff']}"
                         for s, v in per_symbol.items())
-    detail = (f"compared {stats['compared']} closes; breaches {len(items)}; "
-              f"max {stats['max_abs_diff']}; p99 {stats['p99_abs_diff']}; "
+    detail = (f"compared {stats['compared']} closes (Yahoo un-adjusted with Yahoo's own splits); "
+              f"breaches {len(items)}; max {stats['max_abs_diff']}; p99 {stats['p99_abs_diff']}; "
               f"tolerance max({ABS_TOLERANCE}, 5 bp of close); not compared {len(notes)}. "
               f"Per symbol (breaches/compared): {summary}")
-    return _check("cross_source", "exception" if items else "pass", items, detail, stats=stats)
+    if not diffs:
+        status = "blocked"
+        detail = "nothing compared: " + detail
+    else:
+        status = "exception" if items or notes else "pass"
+    return _check("cross_source", status, items, detail, stats=stats)
+
+
+def _ratio_text(numerator, denominator) -> str:
+    return f"{numerator:g}:{denominator:g}"
+
+
+def _fraction(numerator, denominator) -> Fraction:
+    """Yahoo carries split terms as floats; go through their decimal text for an exact ratio."""
+    return Fraction(str(numerator)) / Fraction(str(denominator))
+
+
+def _check_split_events(norm: Normalised, yahoo, splits: tuple[Split, ...], yahoo_splits: dict) -> dict:
+    if yahoo is None:
+        return _check("split_events", "blocked", [], "no Yahoo snapshot supplied")
+    sessions = norm.data.sessions
+    first, last = sessions[0], sessions[-1]
+    in_kind = {(e["symbol"], e["ex_date"]): e for e in norm.converted}
+    symbols = [name for name in norm.data.bars if name in yahoo]
+    items = []
+    for name in symbols:
+        theirs = {}
+        for event in yahoo_splits.get(name, []):
+            if first <= event["date"] <= last:
+                key = (event["date"], _fraction(event["numerator"], event["denominator"]))
+                theirs[key] = event
+        ours = {(s.effective_date, Fraction(s.ratio, 1)): s for s in splits if s.instrument == name}
+        for key in sorted(set(theirs) - set(ours)):
+            event = theirs[key]
+            note = "Yahoo split event not in our split records"
+            converted = in_kind.get((name, event["date"]))
+            if converted:
+                note = (f"corresponds to our in-kind event {converted['id']}, which we load as a "
+                        "cash-equivalent dividend, not a split")
+            items.append({"symbol": name, "date": event["date"], "source": "yahoo_only",
+                          "ratio": _ratio_text(event["numerator"], event["denominator"]), "note": note})
+        for key in sorted(set(ours) - set(theirs)):
+            split = ours[key]
+            items.append({"symbol": name, "date": split.effective_date, "source": "ours_only",
+                          "ratio": _ratio_text(split.ratio, 1), "note": "our split record not in Yahoo's events"})
+    items.sort(key=lambda i: (i["symbol"], i["date"], i["source"]))
+    return _check("split_events", "exception" if items else "pass", items,
+                  f"our split records vs Yahoo split events for {len(symbols)} symbols in {first}..{last}")
+
+
+def _code_commit() -> str:
+    """Git HEAD of the code that built the report, ``+dirty`` when the tree has changes."""
+    def git(*args):
+        try:
+            out = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=True)
+            return out.stdout.strip()
+        except (OSError, subprocess.CalledProcessError):
+            return None
+    commit = git("rev-parse", "HEAD") or "unknown"
+    dirty = git("status", "--porcelain", "--untracked-files=normal")
+    return commit if dirty == "" else f"{commit}+dirty"
 
 
 def _status(checks: list[dict]) -> str:
@@ -208,9 +272,18 @@ def _status(checks: list[dict]) -> str:
     return "pass-with-exceptions" if statuses & {"exception", "blocked"} else "pass"
 
 
+def _inputs(inputs: dict | None) -> dict:
+    base = {"manifest_sha256": None, "yahoo_snapshot_id": None, "yahoo_manifest_sha256": None}
+    base.update(inputs or {})
+    return base
+
+
 def build_report(dataset_id: str, rows: list[dict], norm: Normalised, yahoo, splits: tuple[Split, ...],
-                 created_utc: str | None = None) -> dict:
+                 created_utc: str | None = None, yahoo_splits: dict | None = None,
+                 inputs: dict | None = None, code_commit: str | None = None) -> dict:
+    """``splits`` are our split records; ``yahoo_splits`` maps symbol to Yahoo's split events."""
     created = created_utc or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    yahoo_splits = yahoo_splits or {}
     built = {
         "sessions": _check_sessions(rows),
         "half_days": _check_half_days(rows),
@@ -225,11 +298,24 @@ def build_report(dataset_id: str, rows: list[dict], norm: Normalised, yahoo, spl
                                            "in-kind distributions converted to cash equivalents"),
         "actions_excluded": _check_events("actions_excluded", norm.excluded,
                                           "cash events outside the bar sessions"),
-        "cross_source": _check_cross_source(norm, yahoo, splits),
+        "cross_source": _check_cross_source(norm, yahoo, yahoo_splits),
+        "split_events": _check_split_events(norm, yahoo, splits, yahoo_splits),
     }
     checks = [built[name] for name in CHECKS]
     return {"schema": SCHEMA, "dataset_id": dataset_id, "recipe": RECIPE, "created_utc": created,
-            "status": _status(checks), "checks": checks,
+            "status": _status(checks), "checks": checks, "inputs": _inputs(inputs),
+            "code_commit": code_commit or _code_commit(),
+            "acceptance": {"accepted_by": None, "accepted_utc": None}}
+
+
+def build_failure_report(dataset_id: str, recipe: str, error: str, created_utc: str | None = None,
+                         inputs: dict | None = None, code_commit: str | None = None) -> dict:
+    """A ``fail`` report for a dataset the recipe could not normalise at all."""
+    created = created_utc or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    check = _check("normalise", "fail", [{"error": error}], "the normalisation recipe raised an error")
+    return {"schema": SCHEMA, "dataset_id": dataset_id, "recipe": recipe, "created_utc": created,
+            "status": "fail", "checks": [check], "inputs": _inputs(inputs),
+            "code_commit": code_commit or _code_commit(),
             "acceptance": {"accepted_by": None, "accepted_utc": None}}
 
 
@@ -245,8 +331,8 @@ def render_report(report: dict) -> str:
             continue
         lines += ["", f"## {c['name']} ({c['status']})", "", c["detail"], ""]
         lines += [f"- {item}" for item in c["items"]]
-        if c["count"] > len(c["items"]):
-            lines.append(f"- ... {c['count'] - len(c['items'])} more in report.json")
+        if c.get("omitted", 0) > 0:
+            lines.append(f"- ... {c['omitted']} more in report.json")
     return "\n".join(lines) + "\n"
 
 

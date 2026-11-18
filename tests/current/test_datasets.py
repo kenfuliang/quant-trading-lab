@@ -13,7 +13,7 @@ FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "data"
 ID = "fixture-n1"
 
 
-def make_root(tmp: Path, report: str | None = "pass") -> Path:
+def make_root(tmp: Path, report: str | None = "pass", edit=None) -> Path:
     """A data root holding the fixture dataset, a manifest and (optionally) a quality report."""
     (tmp / "normalized").mkdir()
     bars, actions = tmp / "normalized" / "bars.json", tmp / "normalized" / "actions.json"
@@ -29,9 +29,17 @@ def make_root(tmp: Path, report: str | None = "pass") -> Path:
     if report is not None:
         rows, acts = json.loads(bars.read_text()), json.loads(actions.read_text())
         norm = normalise(rows, acts, ("AAA", "KID", "PAR"))
-        built = q.build_report(ID, rows, norm, None, norm.data.splits, created_utc="2026-01-01T00:00:00Z")
+        inputs = {"manifest_sha256": sha256_file(tmp / "manifests" / f"{ID}.json"),
+                  "yahoo_snapshot_id": None, "yahoo_manifest_sha256": None}
+        built = q.build_report(ID, rows, norm, None, norm.data.splits, created_utc="2026-01-01T00:00:00Z",
+                               inputs=inputs, code_commit="test")
         built["status"] = report
-        q.write_report(tmp, built)
+        folder = q.write_report(tmp, built)
+        if edit:
+            path = folder / "report.json"
+            edited = json.loads(path.read_text())
+            edit(edited)
+            path.write_text(json.dumps(edited), encoding="utf-8")
     return tmp
 
 
@@ -55,7 +63,49 @@ class DatasetTests(unittest.TestCase):
         root = make_root(self.tmp)
         path = root / "normalized" / "bars.json"
         path.write_text(path.read_text() + " ", encoding="utf-8")
-        with self.assertRaises(ManifestError):
+        with self.assertRaisesRegex(ManifestError, "bars.json"):
+            load_dataset(ID, ("AAA",), root)
+
+    def test_load_refuses_report_for_other_manifest_recipe_or_dataset(self):
+        def other_hash(r):
+            r["inputs"]["manifest_sha256"] = "0" * 64
+
+        def other_recipe(r):
+            r["recipe"] = "etf-normalise/v0"
+
+        def other_id(r):
+            r["dataset_id"] = "someone-else"
+
+        for edit, word in ((other_hash, "manifest_sha256"), (other_recipe, "recipe"), (other_id, "dataset_id")):
+            root = make_root(Path(tempfile.mkdtemp(dir=self.tmp)), edit=edit)
+            with self.assertRaisesRegex(DatasetBlocked, word):
+                load_dataset(ID, ("AAA",), root)
+
+    def test_load_refuses_report_without_inputs(self):
+        def drop(r):
+            del r["inputs"]
+
+        root = make_root(self.tmp, edit=drop)
+        with self.assertRaises(DatasetBlocked):
+            load_dataset(ID, ("AAA",), root)
+
+    def test_load_allowlists_statuses(self):
+        for status in ("pass", "pass-with-exceptions"):
+            root = make_root(Path(tempfile.mkdtemp(dir=self.tmp)), report=status)
+            self.assertEqual(load_dataset(ID, ("AAA",), root)[1]["quality_status"], status)
+        for status in ("blocked", "unknown", "", "fail"):
+            root = make_root(Path(tempfile.mkdtemp(dir=self.tmp)), report=status)
+            with self.assertRaisesRegex(DatasetBlocked, "status"):
+                load_dataset(ID, ("AAA",), root)
+
+    def test_load_refuses_malformed_report_naming_path(self):
+        root = make_root(self.tmp)
+        report = root / "quality" / ID / "20260101T000000Z" / "report.json"
+        report.write_text("{not json", encoding="utf-8")
+        with self.assertRaisesRegex(DatasetBlocked, "report.json"):
+            load_dataset(ID, ("AAA",), root)
+        report.write_text("[1]", encoding="utf-8")
+        with self.assertRaisesRegex(DatasetBlocked, "report.json"):
             load_dataset(ID, ("AAA",), root)
 
     def test_load_returns_validated_market_data_and_provenance(self):
@@ -66,6 +116,7 @@ class DatasetTests(unittest.TestCase):
         self.assertEqual(provenance["quality_status"], "pass-with-exceptions")
         self.assertEqual(provenance["quality_report"], f"quality/{ID}/20260101T000000Z/report.json")
         self.assertEqual(len(provenance["inputs"]), 2)
+        self.assertEqual(provenance["acceptance"], {"accepted_by": None, "accepted_utc": None})
 
     def test_latest_report_picks_newest(self):
         root = make_root(self.tmp)
