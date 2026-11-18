@@ -23,6 +23,8 @@ database, tracking-store and disaster recovery remain unverified.
 
 ## Start here
 
+- [Readiness checklist](docs/readiness-checklist.md) — one-page current state: scored readiness by area, what to fix first and the evidence per aspect; generated from `research/registry/readiness.json`
+
 - [Six-ETF T11 selector comparison](docs/tasks/2026-10-30-t11-universe-comparison.md) — four provisional result rows; selector trails fresh gated T11, bounded budget closed, missing audits and comparisons preserved
 
 - [T11 on SOXL or cash: eight cloud tests](docs/tasks/2026-10-30-t11-soxl-cloud-results.md) — provisional native summaries favor full gated T11 at both costs; analysis UI available, official exports and daily audits remain incomplete

@@ -3,7 +3,7 @@
 
 Writes .local/progress/index.html: one tab bar over the pages that exist in the folder, each shown
 in a frame, with the time each page was last built. Serve only that folder. The pages themselves
-come from scripts/progress.py, stages.py, profile_strategy.py, daily_holdings.py and t11_target_view.py; this
+come from scripts/progress.py, stages.py, readiness.py, profile_strategy.py, daily_holdings.py and t11_target_view.py; this
 script does not build them and cannot trade.
 
   --dir PATH    folder holding the pages (default .local/progress)
@@ -16,7 +16,8 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = [("progress.html", "Progress"), ("stages.html", "Pipeline"), ("holdings.html", "Holdings"), ("profile-replay.html", "Profile (replay)"),
+PAGES = [("progress.html", "Progress"), ("stages.html", "Pipeline"), ("readiness.html", "Readiness"),
+         ("holdings.html", "Holdings"),("profile-replay.html", "Profile (replay)"),
          ("profile.html", "Profile (cloud)"), ("target.html", "Target log")]
 
 _PAGE = r"""<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Quant lab dashboard</title><style>
