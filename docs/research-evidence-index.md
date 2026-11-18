@@ -1352,6 +1352,7 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/2026-11-17-dashboard-redesign-plan.md](../docs/tasks/2026-11-17-dashboard-redesign-plan.md)
 - [docs/tasks/2026-11-17-engine-parity.md](../docs/tasks/2026-11-17-engine-parity.md)
 - [docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md](../docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md)
+- [docs/tasks/2026-11-17-offline-infra-plan2-checklist-plan.md](../docs/tasks/2026-11-17-offline-infra-plan2-checklist-plan.md)
 - [docs/tasks/2026-11-17-offline-research-infra-design.md](../docs/tasks/2026-11-17-offline-research-infra-design.md)
 - [docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json](../docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json)
 - [docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json](../docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json)
