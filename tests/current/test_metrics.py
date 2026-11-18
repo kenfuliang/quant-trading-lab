@@ -66,14 +66,38 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(out["longest_underwater_sessions"], 3)
         self.assertEqual(out["longest_underwater_days"], 6)
 
-    def test_window_rebases(self):
+    def test_window_keeps_usd_and_returns_base(self):
         ret = _returns([110.0, 121.0, 108.9, 120.0, 132.0])
-        w = metrics.window(ret, "2024-01-04", "2024-01-08")
+        w, base = metrics.window(ret, "2024-01-04", "2024-01-08", 100.0)
         self.assertEqual(list(w["date"]), ["2024-01-04", "2024-01-08"])
-        self.assertAlmostEqual(w["equity"].iloc[0], 108.9 / 121.0)
-        self.assertAlmostEqual(w["equity"].iloc[1], 120.0 / 121.0)
-        self.assertAlmostEqual(w["net_return"].iloc[0], 108.9 / 121.0 - 1)
+        self.assertEqual(list(w["equity"]), [108.9, 120.0])
+        self.assertEqual(base, 121.0)
+        _, first_base = metrics.window(ret, "2024-01-02", "2024-01-03", 100.0)
+        self.assertEqual(first_base, 100.0)
         self.assertEqual(ret["equity"].iloc[2], 108.9)  # input untouched
+
+    def test_window_base_with_zero_net_return_row(self):
+        ret = _returns([100.0] * 5)
+        _, base = metrics.window(ret, "2024-01-04", "2024-01-09", 100.0)
+        self.assertEqual(base, 100.0)
+
+    def test_summarize_window_composes_hand_values(self):
+        ret = _returns([110.0, 121.0, 108.9, 120.0, 132.0])
+        fills = _fills([("2024-01-02", "AAA", "BUY", 1, 999.0, 0.0),
+                        ("2024-01-04", "AAA", "BUY", 2, 10.0, 0.0),
+                        ("2024-01-09", "AAA", "SELL", 1, 30.0, 0.0),
+                        ("2024-01-10", "AAA", "SELL", 5, 99.0, 0.0)])
+        out = metrics.summarize_window(ret, fills, 100.0, "2024-01-04", "2024-01-09")
+        # base 121; equity 108.9, 120, 132 over 3 sessions
+        self.assertAlmostEqual(out["max_drawdown"], 1 - 108.9 / 121.0)
+        self.assertAlmostEqual(out["net_cagr"], (132 / 121) ** (252 / 3) - 1)
+        self.assertAlmostEqual(out["turnover"], 50.0 / ((108.9 + 120 + 132) / 3) / (3 / 252))
+        self.assertEqual(out["longest_underwater_sessions"], 2)
+
+    def test_turnover_with_fills_on_non_flat_equity(self):
+        fills = _fills([("2024-01-02", "AAA", "BUY", 10, 5.0, 0.0)])
+        out = metrics.summarize(_returns([110.0, 105.0, 100.0, 112.0, 108.0]), fills, 100.0)
+        self.assertAlmostEqual(out["turnover"], 50.0 / (535.0 / 5) / (5 / 252))
 
     def test_matches_registry_definitions_on_synthetic_fixture_run(self):
         cfg = MarketConfig()

@@ -12,7 +12,7 @@ import math
 import numpy as np
 import pandas as pd
 
-__all__ = ["METRIC_KEYS", "summarize", "window"]
+__all__ = ["METRIC_KEYS", "summarize", "summarize_window", "window"]
 
 METRIC_KEYS = (
     "net_cagr",
@@ -105,19 +105,25 @@ def _better(sessions: int, days: int, new_sessions: int, new_days: int) -> tuple
     return sessions, days
 
 
-def window(returns: pd.DataFrame, start: str, end: str) -> pd.DataFrame:
-    """Slice ``returns`` to ``start <= date <= end`` and rebase equity.
+def window(returns: pd.DataFrame, start: str, end: str, initial_cash: float) -> tuple[pd.DataFrame, float]:
+    """Slice ``returns`` to ``start <= date <= end``, keeping equity in USD.
 
-    Equity is divided by the slice's first previous equity (``equity / (1 + net_return)`` of
-    the first row), so the slice starts from 1.0; pass ``initial_cash=1.0`` to ``summarize``.
-    Returns are unchanged. ``fills`` are not sliced here (filter them by date and rescale
-    their prices yourself if you need windowed turnover).
+    Returns ``(sliced_returns, base_equity)``: ``base_equity`` is the equity at the close of the
+    session before the slice (``initial_cash`` when the slice starts at the first row). Pass it as
+    ``initial_cash`` to ``summarize`` (or use ``summarize_window``). The input is not mutated.
     """
-    dates = returns["date"]
-    sliced = returns[(dates >= start) & (dates <= end)].reset_index(drop=True)
-    if len(sliced) == 0:
+    mask = ((returns["date"] >= start) & (returns["date"] <= end)).to_numpy()
+    if not mask.any():
         raise ValueError(f"no sessions between {start} and {end}")
-    base = float(sliced["equity"].iloc[0]) / (1.0 + float(sliced["net_return"].iloc[0]))
-    sliced = sliced.copy()
-    sliced["equity"] = sliced["equity"].astype(float) / base
-    return sliced
+    first = int(np.argmax(mask))
+    base = float(returns["equity"].iloc[first - 1]) if first > 0 else float(initial_cash)
+    return returns[mask].reset_index(drop=True), base
+
+
+def summarize_window(returns: pd.DataFrame, fills: pd.DataFrame, initial_cash: float,
+                     start: str, end: str) -> dict[str, float | int | None]:
+    """``summarize`` over ``start..end`` (inclusive): returns and fills are sliced by the same
+    dates and the drawdown/CAGR baseline is the equity before the window."""
+    sliced, base = window(returns, start, end, initial_cash)
+    in_window = fills[(fills["date"] >= start) & (fills["date"] <= end)]
+    return summarize(sliced, in_window, base)
