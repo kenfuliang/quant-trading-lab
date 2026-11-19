@@ -134,6 +134,10 @@ def _universe(spec: dict, data, root: Path):
         raise ValueError("spec names membership but no identity id; masking needs the identity map")
     membership = read_membership(root, membership_id)
     identity = read_identity(root, spec["identity"])
+    built_for = (identity.get("inputs") or {}).get("membership_id")
+    if built_for != membership_id:
+        raise ValueError(f"identity {spec['identity']} was built for membership {built_for!r}, "
+                         f"but the spec names membership {membership_id!r}")
     symbols = list(data.bars)
     intervals = intervals_for_dataset(membership, identity, symbols)
     summary = coverage(membership, identity, symbols, data.sessions)["summary"]
@@ -173,6 +177,9 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     commit = _code_commit()
     loader = loader or load_dataset
     data, datasets = _load(spec, root, loader)
+    if len(datasets.get("inputs") or ()) > 2 and not datasets.get("universe_kind"):
+        raise ValueError(f"dataset {datasets.get('dataset_id')} has many per-symbol input files (a stock archive) "
+                         "but its manifest has no universe_kind; refusing an unlabelled stock analysis")
     rungs = _rungs(spec)
     wrap, universe = _universe(spec, data, root)
     steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now,

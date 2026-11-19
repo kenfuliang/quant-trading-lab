@@ -122,6 +122,19 @@ class IdentityTests(unittest.TestCase):
         self.assertNotIn("FB", spans)
         self.assertEqual(set(spans), {"META", "AAPL"})
 
+    def test_intervals_for_dataset_fails_loudly_on_an_unresolvable_span(self):
+        broken = copy.deepcopy(MEMBERSHIP)
+        broken["intervals"]["META"] = [{"start": "2021-01-04", "end": None}]  # before the META symbol exists
+        with self.assertRaises(ValueError) as caught:
+            intervals_for_dataset(broken, built(), ["META"])
+        self.assertIn("META", str(caught.exception))
+        self.assertIn("2021-01-04", str(caught.exception))
+        # consistent data does not raise
+        intervals_for_dataset(MEMBERSHIP, built(), ["AAPL"])
+
+    def test_coverage_notes_state_the_full_window_assumption(self):
+        self.assertIn("full-window", coverage(MEMBERSHIP, built(), ["AAPL"], ["2020-01-02"])["notes"])
+
     def test_cross_check_resolved_removes_a_rename_difference(self):
         ident = built()
         # the other source calls the company META throughout; this table lists FB until 2022-06-08

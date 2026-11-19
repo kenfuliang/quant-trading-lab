@@ -226,6 +226,10 @@ def cmd_identity(args):
     return 0
 
 
+def _share(value):
+    return "n/a" if value is None else f"{value:.4f}"
+
+
 def cmd_coverage(args):
     root = Path(args.root) if args.root else data_root()
     try:
@@ -246,9 +250,10 @@ def cmd_coverage(args):
         return 1
     summary = doc["summary"]
     print(f"Coverage {args.coverage_id}: {summary['sessions']} sessions, {doc['dataset_symbols']} dataset symbols; "
-          f"share of index members with data: min {summary['min_share']:.4f}, median {summary['median_share']:.4f}")
+          f"share of index members with data: min {_share(summary['min_share'])}, "
+          f"median {_share(summary['median_share'])}")
     for item in summary["worst_dates"]:
-        print(f"  worst {item['date']}: {item['with_data']} of {item['in_index']} ({item['share']:.4f})")
+        print(f"  worst {item['date']}: {item['with_data']} of {item['in_index']} ({_share(item['share'])})")
     print(f"coverage {path}")
     return 0
 
@@ -284,6 +289,10 @@ def cmd_normalise(args):
         return 1
     if stock and not (args.symbols_from and args.status):
         print("error: --bars-dir needs --symbols-from and --status", file=sys.stderr)
+        return 1
+    if stock and not args.universe_kind:
+        print("error: --bars-dir needs --universe-kind (e.g. current-holdings-proxy); stock results are "
+              "labelled from it", file=sys.stderr)
         return 1
     actions_path = require(root / args.actions) if stock else require(Path(args.actions))
     try:

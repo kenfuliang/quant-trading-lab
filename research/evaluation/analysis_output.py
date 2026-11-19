@@ -24,10 +24,11 @@ def _safe(text: str) -> str:
 STOCK_UNIVERSE_KIND = "current-holdings-proxy"
 
 
-def stock_labels(datasets: dict | None) -> list[str]:
-    """The survivor-bias labels for a dataset on the current-holdings proxy; ETF datasets carry none."""
+def stock_labels(datasets: dict | None, masked: bool = False) -> list[str]:
+    """The survivor-bias labels: the dataset is on the current-holdings proxy, or the analysis applies
+    membership masking (still a survivor dataset). Never taken from spec author input."""
     kind = datasets.get("universe_kind") if isinstance(datasets, dict) else None
-    return list(LABELS) if kind == STOCK_UNIVERSE_KIND else []
+    return list(LABELS) if kind == STOCK_UNIVERSE_KIND or masked else []
 
 
 def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, comparison: dict | None,
@@ -48,7 +49,7 @@ def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, 
         "created_utc": created_utc,
         "code_commit": provenance["code_commit"],
         "datasets": provenance["datasets"],
-        "labels": stock_labels(provenance["datasets"]),
+        "labels": stock_labels(provenance["datasets"], bool((universe or {}).get("membership_id"))),
         "membership_id": (universe or {}).get("membership_id"),
         "identity_id": (universe or {}).get("identity_id"),
         "coverage_summary": (universe or {}).get("coverage_summary"),

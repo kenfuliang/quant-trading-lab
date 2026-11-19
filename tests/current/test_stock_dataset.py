@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import shutil
 import tempfile
@@ -198,6 +200,16 @@ class StockDatasetTests(unittest.TestCase):
         self.assertEqual(manifest["universe_kind"], "current-holdings-proxy")
         self.assertIn("ZZZ", manifest["notes"])
         self.assertIn("reverse split", manifest["notes"])
+
+    def test_bars_dir_without_universe_kind_fails_loudly(self):
+        root = make_root(Path(self.tmp))
+        argv = ["normalise", "--root", str(root), "--bars-dir", "normalized/stocks-v1",
+                "--symbols-from", "normalized/stocks-v1-coverage.csv", "--status", "structural_full_window",
+                "--actions", "normalized/stocks-actions.json", "--dataset-id", "no-kind"]
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err):
+            self.assertEqual(data_cli.main(argv), 1)
+        self.assertIn("--universe-kind", err.getvalue())
 
 
 if __name__ == "__main__":

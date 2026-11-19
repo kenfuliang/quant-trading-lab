@@ -228,6 +228,43 @@ class AnalysisCliTests(unittest.TestCase):
         pipeline = render_page(empty, [], {}, "now", analyses)
         self.assertIn('data-label="survivor-biased"', pipeline)
 
+    def test_stock_class_dataset_without_universe_kind_is_refused(self):
+        def loader(dataset_id, instruments, root):  # many per-symbol bar files + actions: a stock archive
+            return synthetic_fixture(), {"universe_kind": None, "inputs": [{"path": f"b{i}"} for i in range(4)]}
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(ValueError) as caught:
+                analysis.run_spec(self._stock_spec(), Path(tmp), loader=loader)
+            self.assertFalse((Path(tmp) / "analysis").exists())
+        self.assertIn("universe_kind", str(caught.exception))
+
+    def test_masked_spec_is_labelled_even_without_universe_kind(self):
+        doc = self._masked(universe_kind=None)["doc"]
+        self.assertEqual(doc["labels"], ["survivor-biased", "discovery-only"])
+
+    def _masked(self, universe_kind="current-holdings-proxy", identity_membership="mem1"):
+        from research.data.identity import build_identity
+        archive = {"dataset_id": "arch", "universe": {"equities": [
+            {"symbol": s, "name": s, "issuer_identifier": f"id-{s}", "currency": "USD"} for s in ("AAA", "BBB", "CCC")]}}
+        sessions = synthetic_fixture().sessions
+        membership = {"schema": "membership/v1", "membership_id": "mem1", "intervals": {
+            s: [{"start": sessions[0], "end": None}] for s in ("AAA", "BBB", "CCC")}}
+        ident = build_identity(archive, {**membership, "membership_id": identity_membership}, [])
+        ident.update(identity_id="idn1", created_utc="2026-11-18T00:00:00Z")
+        spec = self._stock_spec(membership="mem1", identity="idn1")
+        spec["rungs"] = spec["rungs"][:1]
+        with tempfile.TemporaryDirectory() as tmp:
+            for folder, name, doc in (("membership", "mem1", membership), ("identity", "idn1", ident)):
+                (Path(tmp) / folder).mkdir()
+                (Path(tmp) / folder / f"{name}.json").write_text(json.dumps(doc))
+            return analysis.run_spec(spec, Path(tmp), loader=self._loader(universe_kind))
+
+    def test_identity_built_for_another_membership_is_refused(self):
+        with self.assertRaises(ValueError) as caught:
+            self._masked(identity_membership="other-mem")
+        self.assertIn("mem1", str(caught.exception))
+        self.assertIn("other-mem", str(caught.exception))
+
     def test_etf_analysis_has_no_stock_labels(self):
         with tempfile.TemporaryDirectory() as tmp:
             etf = analysis.run_spec(self._stock_spec(), Path(tmp), loader=self._loader(None))

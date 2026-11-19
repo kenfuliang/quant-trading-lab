@@ -20,6 +20,9 @@ def members_only(target_fn: TargetFn, intervals_by_symbol: dict) -> TargetFn:
     ``intervals_by_symbol`` is ``{symbol: [{start, end|None}]}`` keyed by the names in the market
     data (see ``research.data.identity.intervals_for_dataset``). The wrapper adds the signal
     ``("*", "universe")`` = the number of names whose non-zero target it zeroed that session.
+
+    Masking runs after the strategy has selected: a top-N strategy that picked a non-member leaves
+    that slot empty (cash) rather than promoting the next candidate.
     """
 
     def masked(session: str, bars, holdings, equity) -> Decision:

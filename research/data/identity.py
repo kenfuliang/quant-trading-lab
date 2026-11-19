@@ -209,7 +209,9 @@ def coverage(membership: dict, identity: dict, dataset_symbols, sessions) -> dic
                                     "with_data": per_date[day]["with_data"]} for share, day in worst]}
     return {"schema": COVERAGE_SCHEMA, "membership_id": membership.get("membership_id"),
             "identity_id": identity.get("identity_id"), "dataset_symbols": len(set(dataset_symbols)),
-            "per_date": per_date, "summary": summary}
+            "per_date": per_date, "summary": summary,
+            "notes": "with_data assumes every dataset symbol has full-window bars (the stock dataset keeps "
+                     "structural_full_window names only); it counts instruments, not bars present on the date."}
 
 
 def intervals_for_dataset(membership: dict, identity: dict, dataset_symbols) -> dict:
@@ -223,6 +225,9 @@ def intervals_for_dataset(membership: dict, identity: dict, dataset_symbols) -> 
     for raw, spans in membership["intervals"].items():
         for span in spans:
             instrument_id = resolve(identity, raw, span["start"])
+            if instrument_id is None:
+                raise ValueError(f"identity {identity.get('identity_id')} cannot resolve membership symbol {raw} "
+                                 f"on {span['start']} (span {span}); the identity does not match this membership")
             for symbol in by_id.get(instrument_id, ()):
                 spans_by_symbol.setdefault(symbol, []).append(dict(span))
     merged = {}
