@@ -171,6 +171,19 @@
       "status": "implemented"
     },
     {
+      "schema_id": "normalised-cache/v1",
+      "name": "Normalised dataset cache",
+      "stage": "data",
+      "location": "local",
+      "authority": "view",
+      "producer": "research/evaluation/datasets.py",
+      "consumers": [
+        "research/evaluation/datasets.py"
+      ],
+      "retention": "local, per manifest hash; rebuilt when any hash differs",
+      "status": "implemented"
+    },
+    {
       "schema_id": "quality-report/v1",
       "name": "Data quality report",
       "stage": "data",

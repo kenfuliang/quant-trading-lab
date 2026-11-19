@@ -3,13 +3,15 @@
 
   fetch-yahoo   take one receipted raw Yahoo chart snapshot under <data root>/raw/yahoo/<snapshot-id>/
   stock-actions write etf-normalise-format stock actions from a Yahoo stock snapshot (no network)
-  normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair and write a manifest
+  normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair (or a per-symbol
+                bars directory) and write a manifest
   quality       write a quality-report/v1 for a normalised dataset (optionally cross-checked to Yahoo)
 
 The only command that uses the network is fetch-yahoo; every request is receipted.
 Exit codes: 0 ok, 1 failure or incomplete snapshot, 2 data absent.
 """
 import argparse
+import csv
 import json
 import os
 from datetime import datetime, timezone
@@ -24,6 +26,7 @@ from research.data.root import DataAbsent, data_root, require
 from research.data.stock_actions import build_stock_actions, read_symbols_file, write_actions, yahoo_symbol
 from research.data.yahoo_snapshot import STOCK_RIGHTS, SnapshotIncomplete, fetch_snapshot, parse_chart
 from research.evaluation.data_quality import build_failure_report, build_report, write_report
+from research.evaluation.datasets import read_inputs
 from research.evaluation.etf_normalise import RECIPE, normalise
 from research.evaluation.market_model import MarketDataError
 
@@ -100,14 +103,45 @@ def _relative(root: Path, path: Path) -> str:
     return Path(os.path.relpath(absolute, base)).as_posix()
 
 
+def _stock_inputs(root: Path, args):
+    """Per-symbol bar files for the coverage-listed symbols, minus the actions file's excluded symbols."""
+    bars_dir = require(root / args.bars_dir)
+    coverage = require(root / args.symbols_from)
+    with open(coverage, newline="", encoding="utf-8") as handle:
+        listed = [row["symbol"] for row in csv.DictReader(handle) if row["status"] == args.status]
+    if not listed:
+        raise ValueError(f"{args.symbols_from}: no symbols with status {args.status!r}")
+    actions = json.loads(require(root / args.actions).read_text(encoding="utf-8"))
+    excluded = actions.get("excluded_symbols", []) if args.exclude_from_actions else []
+    dropped = {item["symbol"] for item in excluded}
+    symbols = [symbol for symbol in listed if symbol not in dropped]
+    paths = [require(bars_dir / f"{symbol}.json") for symbol in symbols]
+    return symbols, paths, excluded, len(listed)
+
+
 def cmd_normalise(args):
     root = Path(args.root) if args.root else data_root()
-    bars_path, actions_path = require(Path(args.bars)), require(Path(args.actions))
+    stock = bool(args.bars_dir)
+    if stock == bool(args.bars):
+        print("error: give exactly one of --bars or --bars-dir", file=sys.stderr)
+        return 1
+    if stock and not (args.symbols_from and args.status):
+        print("error: --bars-dir needs --symbols-from and --status", file=sys.stderr)
+        return 1
+    actions_path = require(root / args.actions) if stock else require(Path(args.actions))
     try:
-        inputs = [{"path": _relative(root, p), "sha256": sha256_file(p)} for p in (bars_path, actions_path)]
-        source_path = require(root / "manifests" / (bars_path.stem + ".json"))
+        if stock:
+            symbols, bar_paths, excluded, listed = _stock_inputs(root, args)
+            bars_stem = Path(args.bars_dir).name
+        else:
+            bar_paths, excluded, listed = [require(Path(args.bars))], [], 0
+            bars_stem = bar_paths[0].stem
+        inputs = [{"path": _relative(root, p), "sha256": sha256_file(p)} for p in (*bar_paths, actions_path)]
+        source_path = require(root / "manifests" / (bars_stem + ".json"))
         source = json.loads(source_path.read_text(encoding="utf-8"))
-        rows = json.loads(bars_path.read_text(encoding="utf-8"))
+        rows = []
+        for path in bar_paths:
+            rows.extend(json.loads(path.read_text(encoding="utf-8")))
         actions = json.loads(actions_path.read_text(encoding="utf-8"))
         instruments = tuple(sorted({row["symbol"] for row in rows}))
         result = normalise(rows, actions, instruments)
@@ -115,19 +149,25 @@ def cmd_normalise(args):
         if not provider:
             raise ValueError(f"{source_path}: source manifest has no 'source' field "
                              f"and an unknown schema {source.get('schema')!r}")
-        rights = {"source": provider, "redistribution": "not_qualified", "source_manifest": bars_path.stem}
+        rights = {"source": provider, "redistribution": "not_qualified", "source_manifest": bars_stem}
         for key in ("feed", "adjustment", "personal_use_review"):
             if key in source:
                 rights[key] = source[key]
         changed = sum(sum(counts.values()) for counts in result.rounding.values())
         notes = (f"rounding changed {changed} values; converted {len(result.converted)}; "
                  f"excluded {len(result.excluded)}")
+        if stock:
+            notes += (f"; universe {len(symbols)} of {listed} {args.status} symbols; "
+                      f"excluded symbols ({len(excluded)}): "
+                      + "; ".join(f"{item['symbol']}: {item['reason']}" for item in excluded))
         manifest = {
             "schema": "dataset-manifest/v1", "dataset_id": args.dataset_id, "kind": "normalised",
             "created_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "source": f"{provider}, normalised on load from {bars_path.stem}",
+            "source": f"{provider}, normalised on load from {bars_stem}",
             "inputs": inputs, "recipe": RECIPE, "rights": rights, "files": [], "notes": notes,
         }
+        if args.universe_kind:
+            manifest["universe_kind"] = args.universe_kind
         path = write_manifest(root, manifest)
     except FileExistsError as error:
         print(f"error: manifest already exists: {error.filename}", file=sys.stderr)
@@ -141,6 +181,8 @@ def cmd_normalise(args):
         if any(counts.values()):
             print(f"  {symbol}: " + ", ".join(f"{k} {v}" for k, v in counts.items() if v))
     print(f"converted {len(result.converted)}")
+    for item in excluded:
+        print(f"  universe-excluded {item['symbol']}: {item['reason']}")
     for event in result.converted:
         print(f"  {event['id']}: per share {event['per_share']} ({event['label']})")
     print(f"excluded {len(result.excluded)}")
@@ -157,7 +199,8 @@ def _load_yahoo(root: Path, snapshot_id: str) -> dict:
         name = Path(entry["path"]).name
         if name.startswith("response-") and name.endswith(".json"):
             symbol = name[len("response-"):-len(".json")]
-            frame, _dividends, yahoo_splits = parse_chart((root / entry["path"]).read_bytes(), symbol)
+            frame, _dividends, yahoo_splits = parse_chart((root / entry["path"]).read_bytes(),
+                                                          yahoo_symbol(symbol))
             frames[symbol] = frame
             splits[symbol] = yahoo_splits
     if not frames:
@@ -172,11 +215,7 @@ def cmd_quality(args):
         require(root / "manifests" / (args.yahoo + ".json"))
     try:
         manifest = read_manifest(root, args.dataset_id)
-        if manifest["kind"] != "normalised" or len(manifest["inputs"]) != 2:
-            raise ManifestError(f"{args.dataset_id}: not a normalised dataset with bars and actions inputs")
-        bars_path, actions_path = (require(root / e["path"]) for e in manifest["inputs"])
-        rows = json.loads(bars_path.read_text(encoding="utf-8"))
-        actions = json.loads(actions_path.read_text(encoding="utf-8"))
+        rows, actions = read_inputs(root, manifest)
         instruments = tuple(sorted({row["symbol"] for row in rows}))
         created = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         inputs = {"manifest_sha256": sha256_file(root / "manifests" / (args.dataset_id + ".json")),
@@ -193,8 +232,11 @@ def cmd_quality(args):
             print(f"report {folder / 'report.json'}")
             return 1
         yahoo, yahoo_splits = _load_yahoo(root, args.yahoo) if args.yahoo else (None, None)
+        extra = {}
+        if manifest.get("universe_kind"):
+            extra = {"excluded_symbols": actions.get("excluded_symbols", []), "actions": actions}
         report = build_report(args.dataset_id, rows, result, yahoo, result.data.splits, created_utc=created,
-                              yahoo_splits=yahoo_splits, inputs=inputs)
+                              yahoo_splits=yahoo_splits, inputs=inputs, **extra)
         folder = write_report(root, report)
     except FileExistsError as error:
         print(f"error: report already exists: {error.filename}", file=sys.stderr)
@@ -230,8 +272,15 @@ def build_parser():
     sa.add_argument("--root", help="data root (default: shared data root)")
     sa.set_defaults(func=cmd_stock_actions)
     nm = sub.add_parser("normalise", help="apply etf-normalise/v1 and write a normalised manifest")
-    nm.add_argument("--bars", required=True, help="source bars JSON inside the data root")
-    nm.add_argument("--actions", required=True, help="source issuer-actions JSON inside the data root")
+    nm.add_argument("--bars", help="source bars JSON inside the data root")
+    nm.add_argument("--bars-dir", help="stock set: directory (relative to the data root) of <SYMBOL>.json bar files")
+    nm.add_argument("--symbols-from", help="with --bars-dir: coverage CSV (relative to the data root)")
+    nm.add_argument("--status", help="with --bars-dir: coverage status to include, e.g. structural_full_window")
+    nm.add_argument("--exclude-from-actions", action="store_true",
+                    help="drop the symbols the actions file lists under excluded_symbols")
+    nm.add_argument("--universe-kind", help="e.g. current-holdings-proxy; recorded in the manifest")
+    nm.add_argument("--actions", required=True,
+                    help="issuer-actions JSON (with --bars-dir: relative to the data root)")
     nm.add_argument("--dataset-id", required=True)
     nm.add_argument("--root", help="data root (default: shared data root)")
     nm.set_defaults(func=cmd_normalise)
