@@ -7,6 +7,7 @@ Signals use data up to the close of day t; orders fill at the open of t+1.
 """
 from __future__ import annotations
 
+import dataclasses
 import math
 from dataclasses import dataclass
 from typing import Callable
@@ -46,11 +47,81 @@ class MarketDataError(ValueError):
     pass
 
 
+ADV_WINDOW = 20
+DEFAULT_ADV_TIERS = ((1e9, 2.0), (1e8, 5.0), (2e7, 10.0), (0.0, 25.0))
+
+
 @dataclass(frozen=True)
 class MarketConfig:
+    """Cost configuration shared by both engines.
+
+    ``cost_model="flat"`` charges ``cost_bps`` on every fill. ``"adv"`` charges the tier bp
+    of the instrument's average daily dollar volume (see ``cost_bps``); ``adv_tiers`` are
+    ``(minimum ADV in USD, bp)`` pairs, checked in order (descending minimums, last is 0).
+    """
+
     initial_cash: float = 100_000.0
     cost_bps: float = 5.0
     commission_usd: float = 1.0
+    cost_model: str = "flat"
+    adv_tiers: tuple[tuple[float, float], ...] = DEFAULT_ADV_TIERS
+
+
+def market_config_dict(config: MarketConfig) -> dict:
+    """The config as recorded in manifests, receipts and hashes.
+
+    The liquidity fields are left out under the default ``flat`` model, so the recorded
+    dict (and every run id / ``config_hash`` built from it) is exactly what it was before
+    ``cost_model`` existed. With ``adv`` they are included.
+    """
+    out = dataclasses.asdict(config)
+    if config.cost_model == "flat":
+        del out["cost_model"], out["adv_tiers"]
+    return out
+
+
+def _tier_bps(adv: float, config: MarketConfig) -> float:
+    """Tier bp for an average daily dollar volume; NaN (short history) gets the last tier."""
+    if adv == adv:
+        for minimum, bp in config.adv_tiers:
+            if adv >= minimum:
+                return float(bp)
+    return float(config.adv_tiers[-1][1])
+
+
+def cost_bps(data: MarketData, instrument: str, i: int, config: MarketConfig) -> float:
+    """Slippage in bp for a fill at the open of session ``i + 1``, decided at the close of ``i``.
+
+    ``flat``: ``config.cost_bps``. ``adv``: the tier of the median of ``close * volume`` over
+    sessions ``i - 20 .. i - 1`` (the 20 sessions strictly before decision session ``i``;
+    neither ``i`` nor the fill session ``i + 1`` contribute). Fewer than 20 prior sessions
+    gives the lowest-liquidity (last) tier. The screening engine passes ``j - 1`` for a
+    fill at session ``j``; the NautilusTrader engine builds the quote for session ``j``
+    from the same index. Raw (unadjusted) close and volume are used, and a split inside
+    the window can distort ADV for up to 20 sessions (documented, applied identically in
+    both engines).
+    """
+    if config.cost_model == "flat":
+        return float(config.cost_bps)
+    if i < ADV_WINDOW:
+        return _tier_bps(float("nan"), config)
+    frame = data.bars[instrument].iloc[i - ADV_WINDOW: i]
+    return _tier_bps(float((frame["close"] * frame["volume"]).median()), config)
+
+
+def cost_table(data: MarketData, config: MarketConfig) -> dict[str, np.ndarray]:
+    """``cost_bps(data, name, i, config)`` for every instrument and ``i``, vectorised.
+
+    Entry ``i`` is the bp for the fill at session ``i + 1`` (the last entry is unused).
+    """
+    table = {}
+    for name, frame in data.bars.items():
+        if config.cost_model == "flat":
+            table[name] = np.full(len(frame), float(config.cost_bps))
+            continue
+        adv = (frame["close"] * frame["volume"]).rolling(ADV_WINDOW).median().shift(1).to_numpy(dtype=float)
+        table[name] = np.array([_tier_bps(float(v), config) for v in adv])
+    return table
 
 
 @dataclass(frozen=True)

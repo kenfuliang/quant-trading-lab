@@ -15,7 +15,8 @@ Event layout per session d (America/New_York):
   ``adjust_account`` (in exact cents), so the split moves no cash net, as in the
   screening engine, and the cash account never dips below zero.
   Pending targets for the instrument are scaled by the ratio.
-- 09:30: quote per instrument with bid ``execution_price(open, "SELL")`` and ask
+- 09:30: quote per instrument (bp from ``cost_bps(data, name, i - 1, config)``, the tier at the
+  decision session) with bid ``execution_price(open, "SELL")`` and ask
   ``execution_price(open, "BUY")``. Once every instrument's quote has arrived, the
   orders from the decision at close d-1 are submitted: sells first; after all sells
   fill, buys in instrument order, each checked against the account cash with the known
@@ -75,6 +76,7 @@ from research.evaluation.market_model import (
     MarketConfig,
     MarketData,
     TargetFn,
+    cost_table,
     execution_price,
     history_view,
     validate,
@@ -124,7 +126,8 @@ def _split_plans(data: MarketData) -> dict[str, list[_SplitPlan]]:
     return plans
 
 
-def _events(data: MarketData, names: list[str], plans: dict[str, list[_SplitPlan]], cost_bps: float):
+def _events(data: MarketData, names: list[str], plans: dict[str, list[_SplitPlan]], config: MarketConfig):
+    bps = cost_table(data, config)  # bps[n][i - 1]: tier at the decision session i - 1, for the quote at i
     size = Quantity.from_int(QUOTE_SIZE)
     events, ts_info = [], {}
     for i, day in enumerate(data.sessions):
@@ -140,8 +143,8 @@ def _events(data: MarketData, names: list[str], plans: dict[str, list[_SplitPlan
             open_px = float(row["open"])
             events.append(QuoteTick(
                 _iid(name),
-                _price(execution_price(open_px, "SELL", cost_bps)),
-                _price(execution_price(open_px, "BUY", cost_bps)),
+                _price(execution_price(open_px, "SELL", float(bps[name][max(i - 1, 0)]))),
+                _price(execution_price(open_px, "BUY", float(bps[name][max(i - 1, 0)]))),
                 size, size, opened, opened,
             ))
             events.append(Bar(
@@ -401,7 +404,7 @@ def run_native(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
     check_config(config)
     names = sorted(data.bars)
     plans = _split_plans(data)
-    events, ts_info = _events(data, names, plans, config.cost_bps)
+    events, ts_info = _events(data, names, plans, config)
 
     engine = BacktestEngine(BacktestEngineConfig(logging=LoggingConfig(log_level="ERROR", bypass_logging=True)))
     try:

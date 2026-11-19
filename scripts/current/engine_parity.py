@@ -33,7 +33,8 @@ sys.path.insert(0, str(ROOT))
 from research.data.root import DataAbsent, data_root, parity_root, require, runs_root  # noqa: E402
 from research.data.manifest import ManifestError  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
-from research.evaluation.market_model import MarketConfig, MarketDataError, sma_trend_targets, validate  # noqa: E402
+from research.evaluation.market_model import (  # noqa: E402
+    MarketConfig, MarketDataError, market_config_dict, sma_trend_targets, validate)
 from research.evaluation.native_engine import run_native  # noqa: E402
 from research.evaluation.parity import compare  # noqa: E402
 from research.evaluation.run_output import COLUMNS, config_hash, new_run_id, write_run  # noqa: E402
@@ -134,7 +135,7 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
     market = MarketConfig()
     base = {
         "strategy": STRATEGY,
-        "market": dataclasses.asdict(market),
+        "market": market_config_dict(market),
         "instruments": list(instruments),
         "inputs": inputs,
         "code_commit": _code_commit(),

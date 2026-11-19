@@ -9,7 +9,7 @@ import dataclasses
 from datetime import datetime
 from pathlib import Path
 
-from research.evaluation.market_model import MarketConfig, MarketData
+from research.evaluation.market_model import MarketConfig, MarketData, market_config_dict
 from research.evaluation.metrics import METRIC_KEYS, summarize
 from research.evaluation.run_output import COLUMNS, config_hash, new_run_id, write_run
 from research.evaluation.screening_engine import run_screen
@@ -33,11 +33,11 @@ def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict,
     its plain-data description, recorded in the run config so the run id and hash reflect the mask.
     """
     instruments = list(data.bars)
-    ladder_id = config_hash([{"rung": r.name, "strategy": r.strategy, "market": dataclasses.asdict(r.market)}
+    ladder_id = config_hash([{"rung": r.name, "strategy": r.strategy, "market": market_config_dict(r.market)}
                              for r in rungs] + ([universe] if wrap is not None and universe else []))[:12]
     results, parent = [], None
     for index, rung in enumerate(rungs):
-        market = dataclasses.asdict(rung.market)
+        market = market_config_dict(rung.market)
         config = {
             "strategy": rung.strategy,
             "market": market,
