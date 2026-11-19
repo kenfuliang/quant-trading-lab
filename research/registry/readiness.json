@@ -6,14 +6,15 @@
       "id": "D1",
       "area": "Data",
       "aspect": "Data acquisition and rights",
-      "score": 2.5,
+      "score": 3,
       "importance": "H",
-      "critique": "Alpaca and issuer files; rights tracked per source; Yahoo private-use ruling recorded; no automated refresh",
-      "next_action": "Yahoo snapshot collector with receipts",
+      "critique": "Alpaca and issuer files; rights tracked per source; Yahoo private-use ruling recorded; Yahoo snapshot collector writes receipted, hash-checked raw responses; no automated refresh",
+      "next_action": "Scheduled refresh and an owner acceptance of the first quality report",
       "roadmap_step": 3,
       "evidence": [
-        "docs/data-library.md",
-        "research/free_source_fetch.py"
+        "research/data/yahoo_snapshot.py",
+        "research/data/manifest.py",
+        "tests/current/test_yahoo_snapshot.py"
       ],
       "gates": [
         "G1.1"
@@ -23,15 +24,18 @@
       "id": "D2",
       "area": "Data",
       "aspect": "Data quality and corporate actions",
-      "score": 2,
+      "score": 3,
       "importance": "H",
-      "critique": "ETF actions have known gaps; issuer-qualified derivative exists; real-data parity blocked by in-kind, sub-cent, after-window dividend",
-      "next_action": "Quality report per dataset version",
+      "critique": "etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and a quality report is written on request (`scripts/data.py quality`), not for every dataset automatically; the loader refuses a missing, malformed, failed, stale or foreign report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending",
+      "next_action": "Resolve or accept the listed cross-source breaches; owner acceptance of the report",
       "roadmap_step": 3,
       "evidence": [
-        "research/issuer_actions.py",
-        "research/etf_input_audit.py",
-        "docs/tasks/2026-11-17-engine-parity.md"
+        "research/evaluation/etf_normalise.py",
+        "research/evaluation/data_quality.py",
+        "research/evaluation/datasets.py",
+        "tests/current/test_etf_normalise.py",
+        "tests/current/test_data_quality.py",
+        "tests/current/test_datasets.py"
       ],
       "gates": [
         "G1.2"
@@ -67,13 +71,15 @@
       "id": "D5",
       "area": "Data",
       "aspect": "Exchange calendar and half-days",
-      "score": 1.5,
+      "score": 2,
       "importance": "M",
-      "critique": "Parity receipt checks identical sessions; half-days not marked by source",
-      "next_action": "Calendar check in quality report",
+      "critique": "Quality report checks bar sessions against the calendar and lists half-days; the parity receipt takes its half-day list from the report; no early-close modelling in engines",
+      "next_action": "Model early closes in the engines only if a study needs intraday timing",
       "roadmap_step": 3,
       "evidence": [
-        "research/us_etf_calendar.py"
+        "research/data/calendar.py",
+        "tests/current/test_data_calendar.py",
+        "research/evaluation/data_quality.py"
       ],
       "gates": []
     },
@@ -93,14 +99,16 @@
       "id": "R1",
       "area": "Research and evaluation",
       "aspect": "Backtest engines",
-      "score": 3,
+      "score": 3.5,
       "importance": "H",
-      "critique": "Screen and NautilusTrader engines agree on the CI fixture; real-data parity blocked at load",
-      "next_action": "Real-data parity after the data layer",
+      "critique": "Screen and NautilusTrader engines agree on the CI fixture and on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches); code shared by both engines is not covered by parity; one run",
+      "next_action": "Repeat on a wider instrument set; test shared-code rules independently",
       "roadmap_step": 3,
       "evidence": [
         "research/evaluation/parity.py",
         "tests/current/test_engine_parity.py",
+        "tests/current/test_engine_parity_cli.py",
+        "scripts/current/engine_parity.py",
         "docs/tasks/2026-11-17-engine-parity.md"
       ],
       "gates": [
@@ -481,12 +489,16 @@
       "id": "N5",
       "area": "Engineering",
       "aspect": "Storage and retention",
-      "score": 0.5,
+      "score": 1,
       "importance": "M",
-      "critique": "Run outputs and receipts are per worktree",
-      "next_action": "Shared data root and retention rule",
+      "critique": "Run outputs, receipts, quality reports and manifests live under one shared data root (QTL_DATA_ROOT, default main checkout data/); no retention rule yet",
+      "next_action": "Write the retention rule",
       "roadmap_step": 3,
-      "evidence": [],
+      "evidence": [
+        "research/data/root.py",
+        "tests/current/test_data_root.py",
+        "docs/data-library.md"
+      ],
       "gates": []
     },
     {
@@ -588,13 +600,15 @@
       "id": "H6",
       "area": "People and process",
       "aspect": "Continuity and backups",
-      "score": 1.5,
+      "score": 2,
       "importance": "M",
-      "critique": "Evidence bundles recoverable; receipts live only in one worktree",
-      "next_action": "Shared data root; backup rule",
+      "critique": "Parity receipts and runs are in the shared data root, and the two earlier worktree receipts were copied there; no backup of that root yet",
+      "next_action": "Backup rule for the data root",
       "roadmap_step": 3,
       "evidence": [
-        "docs/operations/evidence-recovery.md"
+        "research/data/root.py",
+        "docs/operations/evidence-recovery.md",
+        "docs/tasks/2026-11-17-engine-parity.md"
       ],
       "gates": []
     },

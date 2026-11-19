@@ -26,15 +26,13 @@ test:
 doctor:
 	$(PYTHON) scripts/paper.py doctor
 
-# Local only (not part of check): the issuer-qualified sector-ETF derivative is private
-# data in the main checkout; see docs/tasks/2026-11-17-engine-parity.md.
-PARITY_DATA ?= /Users/kenfuliang/git/quant-trading-lab/data/normalized
-PARITY_BARS ?= $(PARITY_DATA)/alpaca-sector-etfs-2016-2025-v1.json
-PARITY_ACTIONS ?= $(PARITY_DATA)/alpaca-sector-etfs-2016-2025-v1-issuer-actions-v2.json
+# Local only (not part of check): runs on the frozen, quality-gated dataset in the shared
+# data root (QTL_DATA_ROOT, default <main checkout>/data); see docs/tasks/2026-11-17-engine-parity.md.
+PARITY_DATASET ?= sector-etfs-2016-2025-n1
 
 .PHONY: parity-local
 parity-local:
-	$(PYTHON) scripts/current/engine_parity.py run --bars $(PARITY_BARS) --actions $(PARITY_ACTIONS) --instruments SPY,XLB,XLE,XLF --out .local/parity --runs .local/runs
+	$(PYTHON) scripts/current/engine_parity.py run --dataset $(PARITY_DATASET) --instruments SPY,XLB,XLE,XLF
 
 .PHONY: performance performance-stop
 performance:

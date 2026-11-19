@@ -1,13 +1,18 @@
+import contextlib
 import hashlib
+import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from research.evaluation.market_model import MarketDataError
 from research.evaluation.parity_fixture import synthetic_fixture
 from research.evaluation.run_output import config_hash, read_run
 from scripts.current import engine_parity
+from tests.current.test_datasets import ID, make_root
 
 
 class EngineParityCliTests(unittest.TestCase):
@@ -91,6 +96,75 @@ class EngineParityCliTests(unittest.TestCase):
         self.assertIsNone(receipt["runs"])
         self.assertFalse(self.runs.exists())
         self.assertEqual(receipt["cash_interest"], "not modelled")
+
+    def test_engine_parity_defaults_to_data_root(self):
+        data = self.root / "dataroot"
+        argv = ["run", "--bars", str(self.bars), "--actions", str(self.actions), "--instruments", "AAA,BBB,CCC"]
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}):
+            code = engine_parity.main(argv, loader=lambda bars, actions, names: synthetic_fixture())
+        self.assertEqual(code, 0)
+        self.assertEqual(len(list((data / "parity").glob("*/receipt.json"))), 1)
+        self.assertEqual(len(list((data / "runs").glob("*/manifest.json"))), 2)
+
+    def test_missing_inputs_exit_2_with_blocked_message(self):
+        data = self.root / "dataroot"
+        missing = self.root / "nope.json"
+        argv = ["run", "--bars", str(missing), "--actions", str(self.actions), "--instruments", "AAA"]
+        stderr = io.StringIO()
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}), contextlib.redirect_stderr(stderr):
+            code = engine_parity.main(argv, loader=lambda *a: synthetic_fixture())
+        self.assertEqual(code, 2)
+        self.assertIn(f"blocked: data absent: {missing}", stderr.getvalue())
+        self.assertFalse((data / "parity").exists())
+        self.assertFalse((data / "runs").exists())
+
+    def test_engine_parity_dataset_mode_records_manifest_and_quality(self):
+        data = self.root / "dataroot"
+        data.mkdir()
+        make_root(data, report="pass-with-exceptions")
+        argv = ["run", "--dataset", ID, "--instruments", "AAA,PAR"]
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}):
+            code = engine_parity.main(argv)
+        self.assertEqual(code, 0)
+        receipts = list((data / "parity").glob("*/receipt.json"))
+        self.assertEqual(len(receipts), 1)
+        receipt = json.loads(receipts[0].read_text(encoding="utf-8"))
+        inputs = receipt["inputs"]
+        self.assertEqual(inputs["dataset_id"], ID)
+        self.assertEqual(inputs["manifest_sha256"], hashlib.sha256((data / "manifests" / f"{ID}.json").read_bytes()).hexdigest())
+        self.assertEqual(inputs["quality_status"], "pass-with-exceptions")
+        self.assertEqual(inputs["quality_report"], f"quality/{ID}/20260101T000000Z/report.json")
+        self.assertEqual(len(inputs["bars"]["sha256"]), 64)
+        self.assertEqual(receipt["calendar"]["half_days"], [])
+        self.assertTrue(receipt["passed"])
+        manifest, _ = read_run(data / "runs" / receipt["runs"]["screen"]["run_id"])
+        self.assertEqual(manifest["datasets"], inputs)
+
+    def test_dataset_mode_blocked_without_quality_report_is_recorded(self):
+        data = self.root / "dataroot"
+        data.mkdir()
+        make_root(data, report=None)
+        argv = ["run", "--dataset", ID, "--instruments", "AAA"]
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}), contextlib.redirect_stderr(io.StringIO()):
+            code = engine_parity.main(argv)
+        self.assertEqual(code, 1)
+        receipt = json.loads(next((data / "parity").glob("*/receipt.json")).read_text(encoding="utf-8"))
+        self.assertEqual(receipt["status"], "rejected")
+        self.assertEqual(receipt["error"]["type"], "DatasetBlocked")
+
+    def test_dataset_and_bars_are_mutually_exclusive(self):
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            engine_parity.main(["run", "--dataset", ID, "--bars", str(self.bars), "--instruments", "AAA"])
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            engine_parity.main(["run", "--instruments", "AAA"])
+
+    def test_missing_dataset_manifest_exits_2(self):
+        data = self.root / "dataroot"
+        stderr = io.StringIO()
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}), contextlib.redirect_stderr(stderr):
+            code = engine_parity.main(["run", "--dataset", "nope", "--instruments", "AAA"])
+        self.assertEqual(code, 2)
+        self.assertIn("blocked: data absent:", stderr.getvalue())
 
 
 if __name__ == "__main__":

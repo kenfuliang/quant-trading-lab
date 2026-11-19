@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-28
+updated: 2026-11-18
 owner: project-maintainers
 ---
 
@@ -256,6 +256,72 @@ The [500-stock receipt](tasks/2026-10-25-sp500-stock-library.md) demonstrates th
 procedure for its fixed scope. Generic resumable ingestion, scheduled refresh,
 action qualification and historical-universe reconstruction remain unimplemented
 unless a later receipt establishes them.
+
+## Shared data root, Yahoo snapshot and normalised datasets (2026-11-18)
+
+Implemented in Plan 3 (ETF data layer). Paths below are relative to the data root:
+`QTL_DATA_ROOT` if set, otherwise `data/` in the main checkout, so every worktree
+shares one ignored folder. A real-data command whose inputs are missing prints
+`blocked: data absent: <path>` and exits 2.
+
+```mermaid
+flowchart LR
+    A["normalized/ Alpaca bars + issuer actions"] --> M["manifests/ID.json: input sha256, recipe etf-normalise/v1"]
+    Y["raw/yahoo/ID/ responses + requests.json + rejected-*"] --> Q
+    M --> N[normalise on load] --> Q["quality/ID/UTC stamp/report.json + report.md"]
+    Q -->|status fail or no report| X[DatasetBlocked]
+    Q -->|pass or pass-with-exceptions| L[load_dataset: verified MarketData]
+    L --> P["parity/ and runs/ receipts"]
+```
+
+```text
+<data root>/
+├── normalized/                          Alpaca raw bars and issuer actions (never edited)
+├── raw/yahoo/<id>/                      Yahoo snapshot: responses, requests.json (every
+│                                        request receipted), rejected-* kept bodies
+├── manifests/<id>.json                  dataset-manifest/v1: inputs with SHA-256, recipe, rights
+├── quality/<id>/<YYYYMMDDTHHMMSSZ>/     quality-report/v1: report.json, report.md
+├── parity/<parity_id>/receipt.json      parity receipts (earlier ones under legacy-worktree/)
+└── runs/<run_id>/                       run outputs
+```
+
+- **Normalised manifest.** `sector-etfs-2016-2025-n1` names the Alpaca bars and
+  issuer-action files by hash and the recipe `etf-normalise/v1`. No derived price file is
+  written; the recipe is applied on load. Rounding changed 10,280 prices to the cent, one
+  in-kind distribution (XLF 2016-09-19, 4.486067 per share) became a cash equivalent,
+  and one cash event outside the bar window (SPY: ex-date in window, paid 2026-01-30 after it;
+  return understated by the dividend) was excluded and listed.
+- **Quality reports.** Each check is `pass`, `fail`, `exception` or `blocked`; the report
+  is `fail`, `pass-with-exceptions` or `pass`. A report is written when
+  `scripts/data.py quality` is run for a dataset, not automatically for every dataset. It
+  records the inputs it judged (manifest hash, Yahoo snapshot id and manifest hash) and
+  the code commit. `load_dataset` refuses a missing or malformed report, one whose
+  dataset id, recipe or manifest hash does not match the current manifest, and any status
+  other than `pass` or `pass-with-exceptions`. Acceptance by the owner is left blank until
+  given. The latest report for `sector-etfs-2016-2025-n1`
+  (`quality/sector-etfs-2016-2025-n1/20261118T201607Z/`, code `eb536a9`) is
+  `pass-with-exceptions`.
+- **Cross-source finding.** Yahoo closes are un-adjusted with Yahoo's own split events,
+  then compared with Alpaca closes (tolerance the larger of $0.01 or 5 bp): 623 of 27,654
+  closes breach (maximum 7.13, p99 0.09). Per symbol, breaches of 2,514 closes: SPY 81,
+  XLB 61, XLE 107, XLF 145, XLI 40, XLK 32, XLP 33, XLRE 17, XLU 38, XLV 56, XLY 13. An
+  earlier run that un-adjusted with our own splits counted 799, 176 of them XLF closes
+  before the 2016-09-19 spin-off; that distribution no longer counts as close breaches.
+  It appears instead under the `split_events` check, which compares our split records
+  with Yahoo's: one exception, a Yahoo-only 1231:1000 XLF split on 2016-09-19 that
+  corresponds to our in-kind event loaded as a cash-equivalent dividend. The remaining
+  breaches are genuine source disagreement. The largest is SPY on 2020-03-12: Alpaca
+  255.24 against Yahoo 248.11. The breaches are recorded as an exception, not resolved. A
+  cross-source check with nothing compared is `blocked`, and any symbol or session missing
+  from the snapshot makes it an `exception`.
+- **Yahoo rights ruling (owner, 2026-11-17).** Yahoo data is for private offline research
+  only and is not redistributed. The rights block is carried in the snapshot manifest.
+- **Loader.** `research/evaluation/datasets.py` `load_dataset(id, instruments)` verifies
+  every manifest hash, requires a loadable quality report for this manifest (see above),
+  re-applies the recipe and returns the data with the manifest sha256 and the quality
+  report path, status and acceptance.
+  Restricting to fewer instruments keeps a converted in-kind value because it is computed
+  from the full rows.
 
 ## Sector issuer-qualified derivative:2026-10-28
 

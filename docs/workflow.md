@@ -92,6 +92,10 @@ and generated bulk data. This SOP does not automatically stage or publish files.
 - One PR per plan. Plans are stacked and a plan's PR is merged before the plan
   after next starts.
 - One implementer at a time per branch.
+- The owner may authorise a continuous multi-plan run; while it stands, the per-plan
+  checkpoint is replaced by a per-plan report (PR link, rulings, deferred minors,
+  score changes). Stops for destructive actions, credentials, new dependencies and
+  refused external sources still apply.
 - Plan edits during execution happen only through ledger rulings, committed
   between tasks.
 - The user is a checkpoint at the start of each plan and at each PR.

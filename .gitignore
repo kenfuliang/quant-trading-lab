@@ -1,6 +1,6 @@
 lean.json
 lean.json.tmp
-data/
+/data/
 .lean/
 .private/
 .env*

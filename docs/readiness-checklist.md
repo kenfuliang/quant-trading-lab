@@ -25,13 +25,13 @@ Importance is H, M or L, weighted 3, 2 and 1 in the weighted average. Half steps
 
 | Area | Aspects | Simple average | Weighted average |
 | --- | --- | --- | --- |
-| Data | 6 | 1.25 | 1.40 |
-| Research and evaluation | 11 | 2.32 | 2.24 |
+| Data | 6 | 1.58 | 1.77 |
+| Research and evaluation | 11 | 2.36 | 2.30 |
 | Portfolio and risk | 4 | 2.62 | 2.78 |
 | Execution and operations | 5 | 1.40 | 1.38 |
-| Engineering | 6 | 2.58 | 2.73 |
-| People and process | 7 | 2.21 | 2.33 |
-| Overall | 39 | 2.09 | 2.15 |
+| Engineering | 6 | 2.67 | 2.81 |
+| People and process | 7 | 2.29 | 2.42 |
+| Overall | 39 | 2.18 | 2.26 |
 
 ## Fix first
 
@@ -44,7 +44,6 @@ Importance H with score 2 or lower, lowest score first.
 | R8 | Analysis and attribution | 1 | Stage waterfall from ablation runs | 4 |
 | R2 | Cost and execution realism | 1.5 | Liquidity-scaled stock costs | 5 |
 | R6 | Overfitting statistics | 1.5 | PSR, DSR, PBO and trial counts | 4 |
-| D2 | Data quality and corporate actions | 2 | Quality report per dataset version | 3 |
 | R5 | Lookahead and leakage control | 2 | Truncate-and-compare check | 4 |
 
 ## All aspects
@@ -53,18 +52,18 @@ Importance H with score 2 or lower, lowest score first.
 
 | Id | Aspect | Score | Imp | Critique | Next action | Step | Gates | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| D1 | Data acquisition and rights | 2.5 | H | Alpaca and issuer files; rights tracked per source; Yahoo private-use ruling recorded; no automated refresh | Yahoo snapshot collector with receipts | 3 | G1.1 | `docs/data-library.md`, `research/free_source_fetch.py` |
-| D2 | Data quality and corporate actions | 2 | H | ETF actions have known gaps; issuer-qualified derivative exists; real-data parity blocked by in-kind, sub-cent, after-window dividend | Quality report per dataset version | 3 | G1.2 | `research/issuer_actions.py`, `research/etf_input_audit.py`, `docs/tasks/2026-11-17-engine-parity.md` |
+| D1 | Data acquisition and rights | 3 | H | Alpaca and issuer files; rights tracked per source; Yahoo private-use ruling recorded; Yahoo snapshot collector writes receipted, hash-checked raw responses; no automated refresh | Scheduled refresh and an owner acceptance of the first quality report | 3 | G1.1 | `research/data/yahoo_snapshot.py`, `research/data/manifest.py`, `tests/current/test_yahoo_snapshot.py` |
+| D2 | Data quality and corporate actions | 3 | H | etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and a quality report is written on request (`scripts/data.py quality`), not for every dataset automatically; the loader refuses a missing, malformed, failed, stale or foreign report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending | Resolve or accept the listed cross-source breaches; owner acceptance of the report | 3 | G1.2 | `research/evaluation/etf_normalise.py`, `research/evaluation/data_quality.py`, `research/evaluation/datasets.py`, `tests/current/test_etf_normalise.py`, `tests/current/test_data_quality.py`, `tests/current/test_datasets.py` |
 | D3 | Universe and survivorship | 1 | H | 500 current members only; survivor-bias label rule in goals | Point-in-time membership and coverage | 5 | none | `docs/goals.md` |
 | D4 | Instrument identity across ticker changes | 0.5 | H | No stable id or symbol history | Identity table with dated symbols | 5 | none | none |
-| D5 | Exchange calendar and half-days | 1.5 | M | Parity receipt checks identical sessions; half-days not marked by source | Calendar check in quality report | 3 | none | `research/us_etf_calendar.py` |
+| D5 | Exchange calendar and half-days | 2 | M | Quality report checks bar sessions against the calendar and lists half-days; the parity receipt takes its half-day list from the report; no early-close modelling in engines | Model early closes in the engines only if a study needs intraday timing | 3 | none | `research/data/calendar.py`, `tests/current/test_data_calendar.py`, `research/evaluation/data_quality.py` |
 | D6 | Fundamentals and alternative data | 0 | L | Deferred by design | none now | - | none | none |
 
 ### Research and evaluation
 
 | Id | Aspect | Score | Imp | Critique | Next action | Step | Gates | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| R1 | Backtest engines | 3 | H | Screen and NautilusTrader engines agree on the CI fixture; real-data parity blocked at load | Real-data parity after the data layer | 3 | G3.2 | `research/evaluation/parity.py`, `tests/current/test_engine_parity.py`, `docs/tasks/2026-11-17-engine-parity.md` |
+| R1 | Backtest engines | 3.5 | H | Screen and NautilusTrader engines agree on the CI fixture and on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches); code shared by both engines is not covered by parity; one run | Repeat on a wider instrument set; test shared-code rules independently | 3 | G3.2 | `research/evaluation/parity.py`, `tests/current/test_engine_parity.py`, `tests/current/test_engine_parity_cli.py`, `scripts/current/engine_parity.py`, `docs/tasks/2026-11-17-engine-parity.md` |
 | R2 | Cost and execution realism | 1.5 | H | Fixed bp plus $1 commission; no liquidity scaling | Liquidity-scaled stock costs | 5 | none | `research/evaluation/market_model.py` |
 | R3 | Interest on idle cash | 2 | M | Not modelled; disclosed in every receipt and in conventions | Revisit when gated strategies are compared to buy-and-hold | - | none | `research/evaluation/market_model.py`, `docs/conventions.md` |
 | R4 | Short selling and borrow | 3 | L | Long-only decided for the pilot | none now | - | G0.3 | `docs/goals.md` |
@@ -103,7 +102,7 @@ Importance H with score 2 or lower, lowest score first.
 | N2 | Code architecture | 3 | M | Layers enforced; many one-off scripts and frozen copies | Keep legacy frozen; rebuild incumbents only | - | none | `docs/architecture.md`, `tests/test_dependency_boundaries.py` |
 | N3 | Dependencies and environment | 4.5 | M | Locked and pinned; Makefile resolves the interpreter from the local .venv, else the main checkout's .venv, so plain make check works in a worktree | none now | - | none | `requirements.lock.txt`, `Makefile` |
 | N4 | Performance at scale | 1 | M | Fixture runs under a second; 500-name runtime unknown | Timing benchmark on 500 names | 5 | none | `docs/operations/performance.md` |
-| N5 | Storage and retention | 0.5 | M | Run outputs and receipts are per worktree | Shared data root and retention rule | 3 | none | none |
+| N5 | Storage and retention | 1 | M | Run outputs, receipts, quality reports and manifests live under one shared data root (QTL_DATA_ROOT, default main checkout data/); no retention rule yet | Write the retention rule | 3 | none | `research/data/root.py`, `tests/current/test_data_root.py`, `docs/data-library.md` |
 | N6 | Security and secrets | 2 | M | Credentials kept out of tracked files by rule; no secret scan seen | Add a secret scan to checks | - | G8.2 | `AGENTS.md` |
 
 ### People and process
@@ -115,5 +114,5 @@ Importance H with score 2 or lower, lowest score first.
 | H3 | Prioritisation and review cadence | 3 | M | Roadmap and advisory roles; plan and PR checkpoints and the readiness re-score are now written in the workflow, but there is no calendar cadence | Re-score at each plan close and compare with this assessment | - | none | `docs/roadmap.md`, `docs/workflow.md` |
 | H4 | Accounting, tax and record keeping | 2.5 | L | Pre-tax stance decided and disclosed; no tax-lot tracking | Before live money | - | G0.6 | `docs/goals.md` |
 | H5 | Legal and compliance | 1 | M | Data rights tracked; broker terms and records not reviewed | Before paper trading | - | G8.2 | `docs/data-library.md` |
-| H6 | Continuity and backups | 1.5 | M | Evidence bundles recoverable; receipts live only in one worktree | Shared data root; backup rule | 3 | none | `docs/operations/evidence-recovery.md` |
+| H6 | Continuity and backups | 2 | M | Parity receipts and runs are in the shared data root, and the two earlier worktree receipts were copied there; no backup of that root yet | Backup rule for the data root | 3 | none | `research/data/root.py`, `docs/operations/evidence-recovery.md`, `docs/tasks/2026-11-17-engine-parity.md` |
 | H7 | ML infrastructure | 0.5 | L | Advisory only | none now | - | none | `docs/advisory-team.md` |

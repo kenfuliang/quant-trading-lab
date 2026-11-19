@@ -13,11 +13,12 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT_ROOTS = frozenset({'research', 'reporting', 'paper_trading', 'scripts', 'tests'})
-RESEARCH_LAYERS = frozenset({'features', 'policies', 'evaluation', 'control', 'studies'})
+RESEARCH_LAYERS = frozenset({'data', 'features', 'policies', 'evaluation', 'control', 'studies'})
 ALLOWED = {
+    'data': {'data'},
     'features': {'features'},
     'policies': {'features', 'policies'},
-    'evaluation': {'features', 'policies', 'evaluation', 'reporting'},
+    'evaluation': {'data', 'features', 'policies', 'evaluation', 'reporting'},
     'control': {'control'},
     'studies': set(RESEARCH_LAYERS) | {'reporting'},
     'reporting': {'reporting'},

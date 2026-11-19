@@ -1,0 +1,10 @@
+{"chart": {"result": [{"meta": {"symbol": "XLB", "exchangeTimezoneName": "America/New_York"},
+ "timestamp": [1704205800, 1704292200, 1704378600, 1704465000, 1704724200],
+ "events": {"dividends": {"1704378600": {"amount": 0.25, "date": 1704378600}},
+            "splits": {"1704465000": {"date": 1704465000, "numerator": 2, "denominator": 1, "splitRatio": "2:1"}}},
+ "indicators": {"quote": [{"open": [50.0, 50.5, 51.0, 25.8, 26.0],
+                           "high": [51.0, 51.5, 52.0, 26.5, 26.4],
+                           "low": [49.5, 50.0, 50.5, 25.5, 25.7],
+                           "close": [50.5, 51.0, 51.5, 26.0, 26.2],
+                           "volume": [1000, 1100, 1200, 2400, 2500]}]}}],
+ "error": null}}
