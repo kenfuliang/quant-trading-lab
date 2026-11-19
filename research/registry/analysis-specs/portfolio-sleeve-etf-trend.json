@@ -1,0 +1,38 @@
+{
+  "spec_id": "portfolio-sleeve-etf-trend",
+  "title": "Portfolio sleeve: SMA20 trend on sector ETFs",
+  "dataset_id": "sector-etfs-2016-2025-n1",
+  "instruments": [
+    "SPY",
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "rungs": [
+    {
+      "name": "sma_trend",
+      "strategy": {
+        "name": "sma_trend",
+        "window": 20,
+        "gross": 0.95
+      },
+      "market": {
+        "cost_bps": 5,
+        "commission_usd": 1
+      }
+    }
+  ],
+  "comparison": null,
+  "pbo_grid": null,
+  "cutoffs": 3,
+  "notes": [
+    "Sleeve for the Plan 7 combiner demonstration; engineering use, not a research finding."
+  ]
+}
