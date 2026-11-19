@@ -1,0 +1,128 @@
+{
+  "analysis_id": "20261118T205541Z-fixture-ladder",
+  "code_commit": "de3c5bbe7cafba9ba002d418b8f3fbf781acd089",
+  "comparison": null,
+  "created_utc": "2026-11-18T20:55:41.355668+00:00",
+  "datasets": {
+    "dataset_id": "synthetic-fixture"
+  },
+  "lookahead": {
+    "compared": [
+      {
+        "compared_signals": 75,
+        "cutoff": "2024-02-29"
+      },
+      {
+        "compared_signals": 324,
+        "cutoff": "2024-06-25"
+      },
+      {
+        "compared_signals": 570,
+        "cutoff": "2024-10-17"
+      }
+    ],
+    "cutoffs": [
+      "2024-02-29",
+      "2024-06-25",
+      "2024-10-17"
+    ],
+    "differences": [],
+    "status": "pass"
+  },
+  "notes": [
+    "Synthetic deterministic market; an engineering fixture, not evidence."
+  ],
+  "runs": [
+    {
+      "run_id": "20261118T205541Z-8892a603",
+      "rung": "buy_hold",
+      "summary": {
+        "calmar": 0.5006865605441867,
+        "longest_underwater_days": 68,
+        "longest_underwater_sessions": 48,
+        "max_drawdown": 0.10299047111715087,
+        "net_cagr": 0.05156594475247167,
+        "sharpe": 0.5215934282918594,
+        "turnover": 2.9899364109859503
+      }
+    },
+    {
+      "run_id": "20261118T205541Z-2ac5ad35",
+      "rung": "sma_trend",
+      "summary": {
+        "calmar": -0.4930060542383739,
+        "longest_underwater_days": 301,
+        "longest_underwater_sessions": 215,
+        "max_drawdown": 0.14627620250453266,
+        "net_cagr": -0.07211505342573299,
+        "sharpe": -0.40974857707803225,
+        "turnover": 79.85006515406656
+      }
+    },
+    {
+      "run_id": "20261118T205541Z-c68be47a",
+      "rung": "sma_trend_costs",
+      "summary": {
+        "calmar": -0.6944531819192831,
+        "longest_underwater_days": 301,
+        "longest_underwater_sessions": 215,
+        "max_drawdown": 0.15969330852907615,
+        "net_cagr": -0.11089952623923471,
+        "sharpe": -0.6880694600635349,
+        "turnover": 79.77516769082965
+      }
+    }
+  ],
+  "schema": "analysis-output/v1",
+  "spec_id": "fixture-ladder",
+  "tearsheet": {
+    "error": null,
+    "status": "written"
+  },
+  "title": "Fixture ablation ladder (synthetic market)",
+  "trust": {
+    "dsr": {
+      "reason": "no comparison record; trial count undefined",
+      "value": null
+    },
+    "pbo": {
+      "reason": "no pbo_grid in spec",
+      "value": null
+    },
+    "psr": {
+      "kurtosis": 4.179961401871294,
+      "n": 250,
+      "sharpe": -0.04334430181110958,
+      "skew": 0.4472699507495081,
+      "value": 0.24922491792538498
+    }
+  },
+  "waterfall": [
+    {
+      "delta": {
+        "calmar": -0.9936926147825607,
+        "longest_underwater_days": 233,
+        "longest_underwater_sessions": 167,
+        "max_drawdown": 0.04328573138738179,
+        "net_cagr": -0.12368099817820466,
+        "sharpe": -0.9313420053698916,
+        "turnover": 76.86012874308061
+      },
+      "from": "buy_hold",
+      "to": "sma_trend"
+    },
+    {
+      "delta": {
+        "calmar": -0.20144712768090917,
+        "longest_underwater_days": 0,
+        "longest_underwater_sessions": 0,
+        "max_drawdown": 0.01341710602454349,
+        "net_cagr": -0.038784472813501725,
+        "sharpe": -0.2783208829855026,
+        "turnover": -0.07489746323690838
+      },
+      "from": "sma_trend",
+      "to": "sma_trend_costs"
+    }
+  ]
+}

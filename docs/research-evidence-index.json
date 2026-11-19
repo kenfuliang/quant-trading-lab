@@ -9,7 +9,7 @@
     "studies": 54,
     "published_plans": 52,
     "unowned_plans": 0,
-    "supporting_records_unassigned": 224
+    "supporting_records_unassigned": 227
   },
   "studies": [
     {
@@ -2498,7 +2498,9 @@
     "docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md",
     "docs/tasks/2026-11-17-offline-infra-plan2-checklist-plan.md",
     "docs/tasks/2026-11-17-offline-research-infra-design.md",
+    "docs/tasks/2026-11-18-incumbent-rebuild.md",
     "docs/tasks/2026-11-18-offline-infra-plan3-data-layer-plan.md",
+    "docs/tasks/2026-11-18-offline-infra-plan4-analysis-plan.md",
     "docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json",
     "docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json",
     "docs/tasks/evidence/2026-10-25-existing-risk-gates.json",
@@ -2608,6 +2610,7 @@
     "docs/tasks/evidence/2026-10-31-t11-hierarchy-headroom.json",
     "docs/tasks/evidence/2026-10-31-t11-loss-decision-trace.json",
     "docs/tasks/evidence/2026-10-31-t11-specialist-review.json",
-    "docs/tasks/evidence/2026-11-17-engine-parity.json"
+    "docs/tasks/evidence/2026-11-17-engine-parity.json",
+    "docs/tasks/evidence/2026-11-18-incumbent-rebuild.json"
   ]
 }

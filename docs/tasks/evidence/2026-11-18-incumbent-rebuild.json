@@ -1,0 +1,282 @@
+{
+  "schema_note": "Summary of one analysis folder; no price data.",
+  "analysis_id": "20261118T213357Z-incumbent-spy-gate",
+  "analysis_folder_rel_data_root": "analysis/20261118T213357Z-incumbent-spy-gate",
+  "supersedes_analysis_id": "20261118T210433Z-incumbent-spy-gate",
+  "supersedes_note": "Earlier run: gate-only third rung (legacy-058 structure), no rebalance band, code commit 781ccd2+dirty; kept on disk, not cited for results.",
+  "spec": "research/registry/analysis-specs/incumbent-spy-gate.json",
+  "code_commit": "c05e9a020083ebcad598bc04120f3c79e54979bd",
+  "dataset_id": "sector-etfs-2016-2025-n1",
+  "run_wall_seconds": 8.04,
+  "ladder_order": [
+    "hold",
+    "trend",
+    "trend_gate",
+    "costs"
+  ],
+  "ladder_note": "Nested: each rung adds one element to the previous; the waterfall depends on this order. Waterfall deltas are to minus from; max_drawdown is a positive magnitude, so a negative max_drawdown delta is an improvement.",
+  "runs": [
+    {
+      "run_id": "20261118T213357Z-fef5dc7f",
+      "rung": "hold",
+      "summary": {
+        "calmar": 0.4291573599393904,
+        "longest_underwater_days": 708,
+        "longest_underwater_sessions": 487,
+        "max_drawdown": 0.33838686931197126,
+        "net_cagr": 0.1452212154720811,
+        "sharpe": 0.8634029178950365,
+        "turnover": 0.06087014187073507
+      }
+    },
+    {
+      "run_id": "20261118T213357Z-d1389ece",
+      "rung": "trend",
+      "summary": {
+        "calmar": 0.32154092620251823,
+        "longest_underwater_days": 710,
+        "longest_underwater_sessions": 489,
+        "max_drawdown": 0.29862832543933404,
+        "net_cagr": 0.0960212283520705,
+        "sharpe": 0.7280806144732388,
+        "turnover": 1.0646242998308846
+      }
+    },
+    {
+      "run_id": "20261118T213357Z-3a33fdf7",
+      "rung": "trend_gate",
+      "summary": {
+        "calmar": 0.6578416616252124,
+        "longest_underwater_days": 746,
+        "longest_underwater_sessions": 512,
+        "max_drawdown": 0.16418164768785648,
+        "net_cagr": 0.10800552792334472,
+        "sharpe": 0.9359075897612736,
+        "turnover": 1.2609941931257993
+      }
+    },
+    {
+      "run_id": "20261118T213357Z-ea1330dc",
+      "rung": "costs",
+      "summary": {
+        "calmar": 0.6544268793439556,
+        "longest_underwater_days": 746,
+        "longest_underwater_sessions": 512,
+        "max_drawdown": 0.16419580637261255,
+        "net_cagr": 0.10745414916579321,
+        "sharpe": 0.9311672067051961,
+        "turnover": 1.2637766907641268
+      }
+    }
+  ],
+  "waterfall": [
+    {
+      "delta": {
+        "calmar": -0.10761643373687219,
+        "longest_underwater_days": 2,
+        "longest_underwater_sessions": 2,
+        "max_drawdown": -0.03975854387263722,
+        "net_cagr": -0.04919998712001061,
+        "sharpe": -0.13532230342179774,
+        "turnover": 1.0037541579601494
+      },
+      "from": "hold",
+      "to": "trend"
+    },
+    {
+      "delta": {
+        "calmar": 0.3363007354226942,
+        "longest_underwater_days": 36,
+        "longest_underwater_sessions": 23,
+        "max_drawdown": -0.13444667775147756,
+        "net_cagr": 0.011984299571274226,
+        "sharpe": 0.20782697528803484,
+        "turnover": 0.19636989329491472
+      },
+      "from": "trend",
+      "to": "trend_gate"
+    },
+    {
+      "delta": {
+        "calmar": -0.0034147822812568007,
+        "longest_underwater_days": 0,
+        "longest_underwater_sessions": 0,
+        "max_drawdown": 1.4158684756071516e-05,
+        "net_cagr": -0.0005513787575515128,
+        "sharpe": -0.004740383056077491,
+        "turnover": 0.002782497638327497
+      },
+      "from": "trend_gate",
+      "to": "costs"
+    }
+  ],
+  "trust": {
+    "psr": {
+      "kurtosis": 8.96457835037779,
+      "n": 2514,
+      "sharpe": 0.05865802042763393,
+      "skew": -0.7112637801745308,
+      "value": 0.9979580234026973,
+      "warmup_note": "n includes 200 leading warm-up sessions with zero net return and no position; this inflates n",
+      "warmup_sessions": 200
+    },
+    "dsr": {
+      "code": "C01-5bp",
+      "kurtosis": 8.96457835037779,
+      "n": 2514,
+      "n_trials": 3,
+      "period_note": "trial Sharpes are 2005–2025 registry results applied to a 2016-01-04–2025-12-31 series",
+      "sharpe": 0.05865802042763393,
+      "skew": -0.7112637801745308,
+      "sr_benchmark": 0.0037124188435378367,
+      "sr_variance": 1.8950251322751333e-05,
+      "trial_record_ids": [
+        "legacy-030-discrete-ema-volatility-gate",
+        "legacy-073-continuous20-volatility-cap",
+        "legacy-092-half-ema-control"
+      ],
+      "trial_sharpes": [
+        0.7689,
+        0.7162,
+        0.6319
+      ],
+      "value": 0.9964259193999708,
+      "warmup_note": "n includes 200 leading warm-up sessions with zero net return and no position; this inflates n",
+      "warmup_sessions": 200
+    },
+    "pbo": {
+      "grid_size": 8,
+      "n_combinations": 12870,
+      "n_partitions": 16,
+      "reason": null,
+      "rows_used": 2512,
+      "value": 0.4243978243978244
+    },
+    "adoption_note": "High PSR/DSR here is not an adoption signal: the benchmark Sharpe is 0, not SPY buy-and-hold; screening signal only."
+  },
+  "lookahead": {
+    "compared": [
+      {
+        "compared_signals": 541,
+        "cutoff": "2017-01-03"
+      },
+      {
+        "compared_signals": 2047,
+        "cutoff": "2019-01-02"
+      },
+      {
+        "compared_signals": 3556,
+        "cutoff": "2020-12-30"
+      },
+      {
+        "compared_signals": 5062,
+        "cutoff": "2022-12-28"
+      },
+      {
+        "compared_signals": 6568,
+        "cutoff": "2024-12-27"
+      }
+    ],
+    "cutoffs": [
+      "2017-01-03",
+      "2019-01-02",
+      "2020-12-30",
+      "2022-12-28",
+      "2024-12-27"
+    ],
+    "differences": [],
+    "status": "pass"
+  },
+  "tearsheet": {
+    "error": null,
+    "status": "written"
+  },
+  "comparison": [
+    {
+      "context": {
+        "code": "C01-5bp",
+        "costs_bp": 5.0,
+        "period": "2005–2025"
+      },
+      "metrics": {
+        "calmar": 0.491514,
+        "longest_underwater_days": 746,
+        "longest_underwater_sessions": 513,
+        "max_drawdown": 0.177701,
+        "net_cagr": 0.087343,
+        "sharpe": 0.7689
+      },
+      "name": "Discrete EMA/volatility gate",
+      "record_id": "legacy-030-discrete-ema-volatility-gate"
+    },
+    {
+      "context": {
+        "code": "C04-5bp",
+        "costs_bp": 5.0,
+        "period": "2005–2025"
+      },
+      "metrics": {
+        "calmar": 0.444106,
+        "longest_underwater_days": 822,
+        "longest_underwater_sessions": 567,
+        "max_drawdown": 0.218259,
+        "net_cagr": 0.09693,
+        "sharpe": 0.7961
+      },
+      "name": "Gate-only SPY control",
+      "record_id": "legacy-058-gate-only-spy-control"
+    }
+  ],
+  "reconciliation_structure": {
+    "status": "VERIFIED from research/policies/risk_gate.py frames",
+    "gate_ema": "min(EMA50>EMA200 proposal, cap): the legacy-030 incumbent structure = this ladder's trend_gate and costs rungs",
+    "gate_hold": "min(1, cap): the gate-only control structure of legacy-058; not a rung of this ladder"
+  },
+  "fills_per_rung": {
+    "hold": 7,
+    "trend": 16,
+    "trend_gate": 27,
+    "costs": 29
+  },
+  "costs_rung_detail": {
+    "first_fill_date": "2016-10-18",
+    "sessions": 2514,
+    "first_session": "2016-01-04",
+    "last_session": "2025-12-31",
+    "flat_sessions": 200,
+    "fills": 29
+  },
+  "post_warmup_window": {
+    "label": "rebuild only, from first costs-rung fill to the last session; the legacy rows cannot be sliced to it",
+    "start": "2016-10-18",
+    "end": "2025-12-31",
+    "summaries": {
+      "hold": {
+        "net_cagr": 0.15083334667406012,
+        "max_drawdown": 0.33838686931197126,
+        "sharpe": 0.8799650014672056,
+        "calmar": 0.4457423155358943,
+        "turnover": 0.012572206665241201,
+        "longest_underwater_sessions": 487,
+        "longest_underwater_days": 708
+      },
+      "costs": {
+        "net_cagr": 0.11726668322355738,
+        "max_drawdown": 0.16419580637261255,
+        "sharpe": 0.9707016674998292,
+        "calmar": 0.7141880527535639,
+        "turnover": 1.3261280653426317,
+        "longest_underwater_sessions": 512,
+        "longest_underwater_days": 746
+      }
+    }
+  },
+  "validation": {
+    "make_check": "exit 0 after Part A (1,335 tests, 6 skipped) and after the records commit",
+    "page_builds": [
+      "scripts/analysis.py build: analysis.html from 1 analysis",
+      "scripts/stages.py build: stages.html from 110 records",
+      "scripts/dashboard.py: index.html with Pipeline, Readiness, Analysis"
+    ]
+  }
+}

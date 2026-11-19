@@ -36,7 +36,8 @@ sessions per year: owner [research development](research-development.md).
 - Sharpe at a zero risk-free rate (convention from
   [research development](research-development.md)); always labelled as such.
 - Calmar (CAGR over absolute max drawdown); defined here.
-- Turnover (traded value over average equity); defined here.
+- Turnover per year (traded value over average equity, divided by years of 252
+  sessions); defined here.
 - Longest underwater (sessions from a peak until equity regains it); defined here.
 
 The benchmark is SPY total return, dividends reinvested ([goals](goals.md)).
@@ -48,6 +49,11 @@ Reports show results at 5, 10 and 25 bp; these report levels are defined here. T
 $1 commission default (`commission_usd`) and the per-side cost applied to a fill
 (`execution_price`) are owned by the
 [market model](../research/evaluation/market_model.py).
+
+Analysis strategies keep the current holding when the decision inputs (gate state and
+proposal) are unchanged since the previous session and the target is within 2% of the
+current shares, so constant-weight positions do not trade for one-share drift; the rule
+is owned by [strategies](../research/evaluation/strategies.py).
 
 ## Windows
 

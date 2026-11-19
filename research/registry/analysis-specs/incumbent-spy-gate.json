@@ -1,0 +1,243 @@
+{
+  "spec_id": "incumbent-spy-gate",
+  "title": "Incumbent SPY EMA/volatility gate rebuilt through the harness",
+  "dataset_id": "sector-etfs-2016-2025-n1",
+  "instruments": [
+    "SPY"
+  ],
+  "rungs": [
+    {
+      "name": "hold",
+      "strategy": {
+        "name": "buy_hold",
+        "gross": 0.99
+      },
+      "market": {
+        "cost_bps": 0,
+        "commission_usd": 0
+      }
+    },
+    {
+      "name": "trend",
+      "strategy": {
+        "name": "ema_trend",
+        "fast": 50,
+        "slow": 200,
+        "gross": 0.99
+      },
+      "market": {
+        "cost_bps": 0,
+        "commission_usd": 0
+      }
+    },
+    {
+      "name": "trend_gate",
+      "strategy": {
+        "name": "traffic_light",
+        "proposal": "ema",
+        "fast": 50,
+        "slow": 200,
+        "vol_window": 20,
+        "red_vol": 0.4,
+        "yellow_vol": 0.25,
+        "recover_red_vol": 0.35,
+        "recover_green_vol": 0.2,
+        "recover_sessions": 5,
+        "caps": {
+          "green": 1.0,
+          "yellow": 0.5,
+          "red": 0.0
+        },
+        "gross": 0.99
+      },
+      "market": {
+        "cost_bps": 0,
+        "commission_usd": 0
+      }
+    },
+    {
+      "name": "costs",
+      "strategy": {
+        "name": "traffic_light",
+        "proposal": "ema",
+        "fast": 50,
+        "slow": 200,
+        "vol_window": 20,
+        "red_vol": 0.4,
+        "yellow_vol": 0.25,
+        "recover_red_vol": 0.35,
+        "recover_green_vol": 0.2,
+        "recover_sessions": 5,
+        "caps": {
+          "green": 1.0,
+          "yellow": 0.5,
+          "red": 0.0
+        },
+        "gross": 0.99
+      },
+      "market": {
+        "cost_bps": 5,
+        "commission_usd": 1
+      }
+    }
+  ],
+  "comparison": {
+    "record_ids": [
+      "legacy-030-discrete-ema-volatility-gate",
+      "legacy-058-gate-only-spy-control"
+    ],
+    "trial_code": "C01-5bp"
+  },
+  "pbo_grid": [
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 20,
+      "slow": 100,
+      "vol_window": 20,
+      "red_vol": 0.35,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 20,
+      "slow": 100,
+      "vol_window": 20,
+      "red_vol": 0.4,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 20,
+      "slow": 200,
+      "vol_window": 20,
+      "red_vol": 0.35,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 20,
+      "slow": 200,
+      "vol_window": 20,
+      "red_vol": 0.4,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 50,
+      "slow": 100,
+      "vol_window": 20,
+      "red_vol": 0.35,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 50,
+      "slow": 100,
+      "vol_window": 20,
+      "red_vol": 0.4,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 50,
+      "slow": 200,
+      "vol_window": 20,
+      "red_vol": 0.35,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    },
+    {
+      "name": "traffic_light",
+      "proposal": "ema",
+      "fast": 50,
+      "slow": 200,
+      "vol_window": 20,
+      "red_vol": 0.4,
+      "yellow_vol": 0.25,
+      "recover_red_vol": 0.35,
+      "recover_green_vol": 0.2,
+      "recover_sessions": 5,
+      "caps": {
+        "green": 1.0,
+        "yellow": 0.5,
+        "red": 0.0
+      },
+      "gross": 0.99
+    }
+  ],
+  "cutoffs": 5,
+  "notes": [
+    "Nested ladder: hold -> EMA50/200 trend -> trend capped by the traffic-light gate (legacy-030 gate_ema structure) -> costs. The waterfall depends on this rung order.",
+    "Price-peak drawdown component disabled; SPY only on the quality-checked 2016-2025 dataset; whole shares, 0.99 gross; 2% rebalance band.",
+    "Differences from the registry rows are reported, not gated. legacy-058 is the gate-only (gate_hold) structure, not this ladder's last rung."
+  ]
+}

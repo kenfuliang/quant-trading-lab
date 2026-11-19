@@ -55,7 +55,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Analysis output | `analysis-output/v1` | local | view | planned | Plan 4 (analysis layer; not built) | Plan 4 reports | local, per worktree |
+| Analysis output | `analysis-output/v1` | local | view | implemented | scripts/analysis.py run (research/evaluation/analysis_output.py) | scripts/analysis.py | local, per worktree |
 
 ## validate
 
