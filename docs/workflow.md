@@ -116,6 +116,61 @@ and generated bulk data. This SOP does not automatically stage or publish files.
 - `.local/scratch/` holds exploration. It counts as evidence only once it is
   reproduced through the harness (a committed test or script with a receipt).
 
+## Enforced research rules
+
+Three research rules are enforced by tools, not by habit. Each has a failing-then-passing
+test; [the end-to-end scenario](../tests/current/test_enforced_rules.py) walks all three on
+temporary roots.
+
+```mermaid
+flowchart LR
+    Q[Quality report] -->|owner runs data.py accept| A[Acceptance, hash-bound]
+    A --> F[Financial run: use financial]
+    F -->|rule 2: log with run id| C[Completed record]
+    C -->|rule 3: keep only with 3 refs| K[Promoting record]
+    N[Nautilus run] --> K
+    P[Passing parity receipt] --> K
+    V[Validation receipt] --> K
+```
+
+1. **Financial use needs an accepted quality report.**
+   - A run is financial when its spec or command says `use: financial`; everything else is
+     `engineering` (the default, and what screening and parity runs are).
+   - A `pass` report needs nothing. A `pass-with-exceptions` report needs an acceptance
+     covering every check that is not `pass`. A `fail` report is never loadable.
+   - **Only the owner accepts.** Agents never run `scripts/data.py accept`, and no other
+     code path records an acceptance. The acceptance names one report by SHA-256, so a
+     changed report or dataset invalidates it.
+2. **A completed record needs a run output.** A new record (not `imported`) that is not
+   `blocked` needs `refs.run_id` and the run manifest's SHA-256, and that run must be
+   `use: financial` with a passing or accepted quality status. The optional `attempt` field
+   (`completed` by default, `failed`, `abandoned`) lets an attempt that never produced a run
+   be logged honestly; those need no run output.
+3. **Promotion needs a NautilusTrader run, a passing parity receipt and an independent
+   validation receipt.** The registry disposition that promotes is `keep`; retire, control
+   and inconclusive do not. The nautilus run, a clean passing parity receipt and a tracked
+   [validation receipt](skills.md) are all required.
+
+Where each is enforced:
+
+| Rule | At `scripts/experiments.py log` (reads local files) | In `make check` (tracked material only) |
+| --- | --- | --- |
+| 1 financial gate | `scripts/analysis.py run` refuses before writing anything | not checked (local data is absent in CI) |
+| 2 run output | manifest exists, SHA-256 matches, `use: financial`, quality pass or accepted | record shape: `run_id` and hash present |
+| 3 promotion | nautilus engine, parity receipt clean and passing, engine files unchanged between the receipt and run commits, validation receipt valid | record shape, plus the tracked validation receipt (hash, allowed validator, `pass`, run ids) |
+
+The 110 records logged before these rules (`imported`) are exempt and validate unchanged.
+
+Limits, stated plainly:
+
+- A parity receipt vouches for the **engine code** (engine-file identity between commits),
+  not for the candidate strategy.
+- Roles in a validation receipt are **self-reported**. The tool enforces separation of
+  recorded roles, not the independence of the model or session that produced the work.
+- Acceptance is bound to a report hash, not to what the owner understood when accepting.
+- No `keep` is possible yet: no command produces a candidate's nautilus run (see the
+  [design](tasks/2026-11-17-offline-research-infra-design.md#three-rules)).
+
 ## Test budget and interpreter
 
 `make test` runs `scripts/run_tests.py`, which discovers `tests/`, times each

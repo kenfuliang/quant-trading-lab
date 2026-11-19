@@ -9,7 +9,7 @@
     "studies": 54,
     "published_plans": 52,
     "unowned_plans": 0,
-    "supporting_records_unassigned": 231
+    "supporting_records_unassigned": 233
   },
   "studies": [
     {
@@ -2498,6 +2498,7 @@
     "docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md",
     "docs/tasks/2026-11-17-offline-infra-plan2-checklist-plan.md",
     "docs/tasks/2026-11-17-offline-research-infra-design.md",
+    "docs/tasks/2026-11-18-enforced-rules.md",
     "docs/tasks/2026-11-18-incumbent-rebuild.md",
     "docs/tasks/2026-11-18-offline-infra-plan3-data-layer-plan.md",
     "docs/tasks/2026-11-18-offline-infra-plan4-analysis-plan.md",
@@ -2614,6 +2615,7 @@
     "docs/tasks/evidence/2026-10-31-t11-loss-decision-trace.json",
     "docs/tasks/evidence/2026-10-31-t11-specialist-review.json",
     "docs/tasks/evidence/2026-11-17-engine-parity.json",
+    "docs/tasks/evidence/2026-11-18-enforced-rules.json",
     "docs/tasks/evidence/2026-11-18-incumbent-rebuild.json",
     "docs/tasks/evidence/2026-11-18-stock-layer.json"
   ]

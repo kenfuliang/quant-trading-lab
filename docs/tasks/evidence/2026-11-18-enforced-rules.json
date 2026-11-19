@@ -1,0 +1,51 @@
+{
+  "schema_note": "Summary of the enforced research rules (Plan 6, phase P4). No price data. Describes tool behaviour and offline test evidence only.",
+  "rules": [
+    {
+      "id": "1-financial-use-needs-accepted-quality",
+      "rule": "A run with use: financial needs a pass report, or a pass-with-exceptions report with an owner-written acceptance covering every non-pass check; a fail report is never loadable.",
+      "enforced_at": ["scripts/analysis.py run (before any output is written)", "research/evaluation/acceptance.py verify_for_financial_use"],
+      "not_in_make_check": "local data is absent in CI"
+    },
+    {
+      "id": "2-completed-record-needs-run-output",
+      "rule": "A new (not imported) record that is not blocked and not attempt failed/abandoned needs refs.run_id and refs.run_manifest_sha256; the run must be use: financial with a passing or accepted quality status.",
+      "enforced_at": ["research/control/experiment_registry.py validate (shape, log time and make check)", "scripts/experiments.py log (reads and hashes the manifest)"]
+    },
+    {
+      "id": "3-keep-needs-nautilus-parity-validation",
+      "rule": "A keep record needs a nautilus run, a clean passing parity receipt with engine files unchanged between the receipt and run commits, and a tracked validation receipt from a Validation skill that is not a researcher skill.",
+      "enforced_at": ["research/control/experiment_registry.py validate (shape)", "scripts/experiments.py log (files, engine identity by git)", "scripts/experiments.py check (tracked validation receipt, no local files)", "scripts/validation.py check via make validation-check"],
+      "promoting_disposition": "keep"
+    }
+  ],
+  "limits": [
+    "Acceptance is bound to one report by SHA-256; it does not prove the owner understood the exceptions.",
+    "Parity receipts vouch for engine code (engine-file identity), not for the candidate.",
+    "Validation roles are self-reported; the tool enforces separation of recorded roles, not independence.",
+    "No CLI produces a candidate's nautilus run, so no keep record can be logged yet."
+  ],
+  "tests": {
+    "scenario": "tests/current/test_enforced_rules.py (test_end_to_end_rules, temporary roots, fake git)",
+    "unit": [
+      "tests/current/test_acceptance.py",
+      "tests/current/test_engine_identity.py",
+      "tests/current/test_run_refs.py",
+      "tests/current/test_validation_receipts.py",
+      "tests/test_experiment_registry.py"
+    ]
+  },
+  "real_data_observation": {
+    "task": "Task 1, financial run attempted on the real dataset to observe the refusal; nothing was written",
+    "dataset_id": "sector-etfs-2016-2025-n1",
+    "report_status": "pass-with-exceptions",
+    "refusal": "financial use needs an accepted quality report: uncovered checks ['zero_volume', 'cent_rounding', 'actions_converted', 'actions_excluded', 'cross_source', 'split_events'] (no acceptance.json in the report folder); the owner accepts with scripts/data.py accept",
+    "uncovered_check_count": 6
+  },
+  "created_in_this_plan": {
+    "acceptances": 0,
+    "registry_records": 0,
+    "validation_receipts": 0,
+    "statement": "No acceptance, no registry record and no validation receipt were created in this plan; tests used temporary roots only and the 110 existing records are unchanged."
+  }
+}

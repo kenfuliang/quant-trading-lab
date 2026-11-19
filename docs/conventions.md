@@ -75,6 +75,16 @@ An additive change is a minor change and keeps the same id. A breaking change is
 major version with a new id. Readers keep every old major so saved evidence stays
 readable. The list of ids is the [artifact catalog](artifacts.md).
 
+## Use
+
+A run's `use` is `engineering` (the default: screening, parity, development) or
+`financial` (`use: financial` in the spec or `--use financial`). Financial use needs a
+passing quality report, or a `pass-with-exceptions` report with an owner-written
+[acceptance](../research/evaluation/acceptance.py) covering every exception; engineering
+manifests carry no `use` key. The acceptance (`quality-acceptance/v1`, see the
+[artifact catalog](artifacts.md)) is bound to one report by SHA-256. Rules and limits:
+[workflow](workflow.md#enforced-research-rules).
+
 ## Stances
 
 Each stance is disclosed, not hidden:

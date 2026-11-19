@@ -26,7 +26,7 @@
       "aspect": "Data quality and corporate actions",
       "score": 3,
       "importance": "H",
-      "critique": "etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and a quality report is written on request (`scripts/data.py quality`), not for every dataset automatically; the loader refuses a missing, malformed, failed, stale or foreign report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending",
+      "critique": "etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and a quality report is written on request (`scripts/data.py quality`), not for every dataset automatically; the loader refuses a missing, malformed, failed, stale or foreign report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending (the acceptance command and the financial-use gate exist, tested on temporary data only; none recorded)",
       "next_action": "Resolve or accept the listed cross-source breaches; owner acceptance of the report",
       "roadmap_step": 3,
       "evidence": [
@@ -35,7 +35,8 @@
         "research/evaluation/datasets.py",
         "tests/current/test_etf_normalise.py",
         "tests/current/test_data_quality.py",
-        "tests/current/test_datasets.py"
+        "tests/current/test_datasets.py",
+        "research/evaluation/acceptance.py"
       ],
       "gates": [
         "G1.2"
@@ -278,15 +279,17 @@
       "id": "R11",
       "area": "Research and evaluation",
       "aspect": "Reproducibility and lineage",
-      "score": 3.5,
+      "score": 4,
       "importance": "H",
-      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes",
-      "next_action": "Registry records link run outputs",
+      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads and verifies it), and keep records the nautilus run, parity receipt and tracked validation receipt hashes; but no completed record has used these links yet (the 110 existing records are exempt imports) and no command yet produces a candidate nautilus run",
+      "next_action": "Log the first completed record with run hashes; add a candidate confirmation command",
       "roadmap_step": 6,
       "evidence": [
         "research/control/experiment_receipts.py",
         "research/evaluation/run_output.py",
-        "research/registry/experiments.jsonl"
+        "research/registry/experiments.jsonl",
+        "research/control/run_refs.py",
+        "tests/current/test_enforced_rules.py"
       ],
       "gates": []
     },
@@ -543,14 +546,17 @@
       "id": "H1",
       "area": "People and process",
       "aspect": "Roles and separation of duties",
-      "score": 3,
+      "score": 3.5,
       "importance": "M",
-      "critique": "Skill catalog; separation is convention",
-      "next_action": "Enforced validation rule",
+      "critique": "Skill catalog; a keep record now needs a tracked validation receipt whose validator is a Validation skill outside the researcher skills, checked at log time and by make check; roles are self-reported, so separation of recorded roles is enforced, independence of the model or session is not proven, and no receipt has been created",
+      "next_action": "Use the first real validation receipt; consider an external check of who ran what",
       "roadmap_step": 6,
       "evidence": [
         "docs/skills.md",
-        "docs/advisory-team.md"
+        "docs/advisory-team.md",
+        "research/control/validation_receipts.py",
+        "tests/current/test_validation_receipts.py",
+        "tests/current/test_enforced_rules.py"
       ],
       "gates": []
     },
