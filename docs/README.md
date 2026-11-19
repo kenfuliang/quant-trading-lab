@@ -33,7 +33,10 @@ runtime timestamps use UTC.
 | How does independent historical data become reusable research input? | [Local data library](data-library.md); distinguishes the implemented price pilot from planned qualification |
 | What is next and what proves completion? | [Roadmap](roadmap.md); gate status in `research/registry/gates.json`, viewed with `make progress` (local page under `.local/progress/`) |
 | What gates stand between research and a real-money pilot, and which broker is a candidate? | [Live-readiness plan](live-readiness.md); [broker decision](decisions/0004-ibkr-candidate-broker.md) |
+| Which shared conventions (identity, units, metrics, costs, windows, trials, schema versions, stances) apply to every run? | [Research conventions](conventions.md) |
 | How do we develop and review a change? | [Development workflow](workflow.md) |
+| Which schema-versioned artifacts exist, who writes and reads each, and how long it is kept? | [Artifact catalog](artifacts.md), generated from `research/registry/artifacts.json`; `make artifacts-check` fails on an uncatalogued schema id |
+| How ready is each area of the platform, and what should be fixed first? | [Readiness checklist](readiness-checklist.md), generated from `research/registry/readiness.json`; scores cite evidence files and gates |
 | Which algorithm is in use at each pipeline stage, and what does the evidence say? | [Pipeline status](pipeline-status.md), generated from `research/registry/incumbents.json`, `research/registry/stage-map.json` and the registry; [design](tasks/2026-11-17-dashboard-redesign-design.md) |
 | Where can I browse saved strategy performance? | [Performance browser SOP](operations/performance.md) |
 | How do we operate the local environment? | [Local operations](operations/local.md) |

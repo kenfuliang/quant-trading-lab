@@ -1,0 +1,616 @@
+{
+  "schema": "readiness/v1",
+  "assessed": "2026-11-18",
+  "aspects": [
+    {
+      "id": "D1",
+      "area": "Data",
+      "aspect": "Data acquisition and rights",
+      "score": 2.5,
+      "importance": "H",
+      "critique": "Alpaca and issuer files; rights tracked per source; Yahoo private-use ruling recorded; no automated refresh",
+      "next_action": "Yahoo snapshot collector with receipts",
+      "roadmap_step": 3,
+      "evidence": [
+        "docs/data-library.md",
+        "research/free_source_fetch.py"
+      ],
+      "gates": [
+        "G1.1"
+      ]
+    },
+    {
+      "id": "D2",
+      "area": "Data",
+      "aspect": "Data quality and corporate actions",
+      "score": 2,
+      "importance": "H",
+      "critique": "ETF actions have known gaps; issuer-qualified derivative exists; real-data parity blocked by in-kind, sub-cent, after-window dividend",
+      "next_action": "Quality report per dataset version",
+      "roadmap_step": 3,
+      "evidence": [
+        "research/issuer_actions.py",
+        "research/etf_input_audit.py",
+        "docs/tasks/2026-11-17-engine-parity.md"
+      ],
+      "gates": [
+        "G1.2"
+      ]
+    },
+    {
+      "id": "D3",
+      "area": "Data",
+      "aspect": "Universe and survivorship",
+      "score": 1,
+      "importance": "H",
+      "critique": "500 current members only; survivor-bias label rule in goals",
+      "next_action": "Point-in-time membership and coverage",
+      "roadmap_step": 5,
+      "evidence": [
+        "docs/goals.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "D4",
+      "area": "Data",
+      "aspect": "Instrument identity across ticker changes",
+      "score": 0.5,
+      "importance": "H",
+      "critique": "No stable id or symbol history",
+      "next_action": "Identity table with dated symbols",
+      "roadmap_step": 5,
+      "evidence": [],
+      "gates": []
+    },
+    {
+      "id": "D5",
+      "area": "Data",
+      "aspect": "Exchange calendar and half-days",
+      "score": 1.5,
+      "importance": "M",
+      "critique": "Parity receipt checks identical sessions; half-days not marked by source",
+      "next_action": "Calendar check in quality report",
+      "roadmap_step": 3,
+      "evidence": [
+        "research/us_etf_calendar.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "D6",
+      "area": "Data",
+      "aspect": "Fundamentals and alternative data",
+      "score": 0,
+      "importance": "L",
+      "critique": "Deferred by design",
+      "next_action": "none now",
+      "roadmap_step": null,
+      "evidence": [],
+      "gates": []
+    },
+    {
+      "id": "R1",
+      "area": "Research and evaluation",
+      "aspect": "Backtest engines",
+      "score": 3,
+      "importance": "H",
+      "critique": "Screen and NautilusTrader engines agree on the CI fixture; real-data parity blocked at load",
+      "next_action": "Real-data parity after the data layer",
+      "roadmap_step": 3,
+      "evidence": [
+        "research/evaluation/parity.py",
+        "tests/current/test_engine_parity.py",
+        "docs/tasks/2026-11-17-engine-parity.md"
+      ],
+      "gates": [
+        "G3.2"
+      ]
+    },
+    {
+      "id": "R2",
+      "area": "Research and evaluation",
+      "aspect": "Cost and execution realism",
+      "score": 1.5,
+      "importance": "H",
+      "critique": "Fixed bp plus $1 commission; no liquidity scaling",
+      "next_action": "Liquidity-scaled stock costs",
+      "roadmap_step": 5,
+      "evidence": [
+        "research/evaluation/market_model.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "R3",
+      "area": "Research and evaluation",
+      "aspect": "Interest on idle cash",
+      "score": 2,
+      "importance": "M",
+      "critique": "Not modelled; disclosed in every receipt and in conventions",
+      "next_action": "Revisit when gated strategies are compared to buy-and-hold",
+      "roadmap_step": null,
+      "evidence": [
+        "research/evaluation/market_model.py",
+        "docs/conventions.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "R4",
+      "area": "Research and evaluation",
+      "aspect": "Short selling and borrow",
+      "score": 3,
+      "importance": "L",
+      "critique": "Long-only decided for the pilot",
+      "next_action": "none now",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/goals.md"
+      ],
+      "gates": [
+        "G0.3"
+      ]
+    },
+    {
+      "id": "R5",
+      "area": "Research and evaluation",
+      "aspect": "Lookahead and leakage control",
+      "score": 2,
+      "importance": "H",
+      "critique": "Manual audit skill; causal history_view; no automated check",
+      "next_action": "Truncate-and-compare check",
+      "roadmap_step": 4,
+      "evidence": [
+        "research/control/leakage_audit.py",
+        "tests/test_leakage_audit.py"
+      ],
+      "gates": [
+        "G2.2"
+      ]
+    },
+    {
+      "id": "R6",
+      "area": "Research and evaluation",
+      "aspect": "Overfitting statistics",
+      "score": 1.5,
+      "importance": "H",
+      "critique": "Pareto, sealed forward window, trial ledger; no deflated Sharpe or PBO",
+      "next_action": "PSR, DSR, PBO and trial counts",
+      "roadmap_step": 4,
+      "evidence": [
+        "research/control/trial_ledger.py",
+        "research/registry/forward-plans/FWD-SPY-EMA-1.json"
+      ],
+      "gates": [
+        "G2.1",
+        "G2.3"
+      ]
+    },
+    {
+      "id": "R7",
+      "area": "Research and evaluation",
+      "aspect": "Feature and signal research",
+      "score": 1,
+      "importance": "M",
+      "critique": "Three-feature registry; no IC tools",
+      "next_action": "Signal diagnostics",
+      "roadmap_step": 4,
+      "evidence": [
+        "research/features/feature_engineering.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "R8",
+      "area": "Research and evaluation",
+      "aspect": "Analysis and attribution",
+      "score": 1,
+      "importance": "H",
+      "critique": "Six scalar metrics per registry record; run outputs now exist",
+      "next_action": "Stage waterfall from ablation runs",
+      "roadmap_step": 4,
+      "evidence": [
+        "research/evaluation/run_output.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "R9",
+      "area": "Research and evaluation",
+      "aspect": "Benchmarks and period windows",
+      "score": 3.0,
+      "importance": "M",
+      "critique": "SPY total return set in goals; benchmark, annualisation, period and crisis windows now defined once in the conventions document; no code reads them yet",
+      "next_action": "Make P2 analysis read the conventions windows and benchmark",
+      "roadmap_step": 4,
+      "evidence": [
+        "docs/goals.md",
+        "docs/conventions.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "R10",
+      "area": "Research and evaluation",
+      "aspect": "Experiment governance",
+      "score": 4,
+      "importance": "M",
+      "critique": "GRS cycles, registry, lessons; high process cost per idea",
+      "next_action": "Keep; measure cost per cycle",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/research-standard.md",
+        "docs/research-cycles.md",
+        "research/control/experiment_registry.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "R11",
+      "area": "Research and evaluation",
+      "aspect": "Reproducibility and lineage",
+      "score": 3.5,
+      "importance": "H",
+      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes",
+      "next_action": "Registry records link run outputs",
+      "roadmap_step": 6,
+      "evidence": [
+        "research/control/experiment_receipts.py",
+        "research/evaluation/run_output.py",
+        "research/registry/experiments.jsonl"
+      ],
+      "gates": []
+    },
+    {
+      "id": "P1",
+      "area": "Portfolio and risk",
+      "aspect": "Investment mandate and risk budget",
+      "score": 4,
+      "importance": "H",
+      "critique": "Pilot limits, drawdown halt, benchmark and tax stance decided; funding rules open",
+      "next_action": "Funding and withdrawal rules at pilot time",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/goals.md",
+        "tests/test_pilot_limits.py"
+      ],
+      "gates": [
+        "G0.1",
+        "G0.2",
+        "G0.4",
+        "G0.5",
+        "G0.6"
+      ]
+    },
+    {
+      "id": "P2",
+      "area": "Portfolio and risk",
+      "aspect": "Portfolio construction across strategies",
+      "score": 1,
+      "importance": "M",
+      "critique": "Every study is one strategy",
+      "next_action": "Combiner for run outputs",
+      "roadmap_step": 9,
+      "evidence": [],
+      "gates": []
+    },
+    {
+      "id": "P3",
+      "area": "Portfolio and risk",
+      "aspect": "Pre-trade limits and kill switch",
+      "score": 2.5,
+      "importance": "M",
+      "critique": "RiskGate, PilotLimits and kill switch tested offline; not wired to a session",
+      "next_action": "Wire check_pilot into a session",
+      "roadmap_step": null,
+      "evidence": [
+        "paper_trading/risk_gate.py",
+        "paper_trading/kill_switch.py",
+        "tests/test_kill_switch.py"
+      ],
+      "gates": [
+        "G4.1",
+        "G4.2"
+      ]
+    },
+    {
+      "id": "P4",
+      "area": "Portfolio and risk",
+      "aspect": "Sizing and leverage policy",
+      "score": 3,
+      "importance": "M",
+      "critique": "Cash account, no leverage for the pilot",
+      "next_action": "none now",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/goals.md"
+      ],
+      "gates": [
+        "G0.3"
+      ]
+    },
+    {
+      "id": "E1",
+      "area": "Execution and operations",
+      "aspect": "Broker connection and paper trading",
+      "score": 1.5,
+      "importance": "M",
+      "critique": "IBKR paper access blocked; Alpaca read-only preflight; zero orders",
+      "next_action": "Owner resolves broker access",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/operations/paper-connection.md",
+        "paper_trading/alpaca.py"
+      ],
+      "gates": [
+        "G7.2",
+        "G7.3"
+      ]
+    },
+    {
+      "id": "E2",
+      "area": "Execution and operations",
+      "aspect": "Backtest versus live tracking",
+      "score": 1,
+      "importance": "M",
+      "critique": "Shadow tracking error only",
+      "next_action": "Slippage and fill comparison",
+      "roadmap_step": null,
+      "evidence": [
+        "paper_trading/tracking_error.py"
+      ],
+      "gates": [
+        "G7.1"
+      ]
+    },
+    {
+      "id": "E3",
+      "area": "Execution and operations",
+      "aspect": "Persistence and recovery",
+      "score": 1.5,
+      "importance": "L",
+      "critique": "Journal recovery offline; no node persistence",
+      "next_action": "Roadmap M3",
+      "roadmap_step": null,
+      "evidence": [
+        "paper_trading/durable_journal.py",
+        "paper_trading/recovery.py"
+      ],
+      "gates": [
+        "G5.1",
+        "G5.2"
+      ]
+    },
+    {
+      "id": "E4",
+      "area": "Execution and operations",
+      "aspect": "Monitoring and alerting",
+      "score": 1.5,
+      "importance": "L",
+      "critique": "Health view and alert sinks offline; no scheduled run",
+      "next_action": "Roadmap M4",
+      "roadmap_step": null,
+      "evidence": [
+        "paper_trading/health.py",
+        "paper_trading/alerts.py"
+      ],
+      "gates": [
+        "G6.1"
+      ]
+    },
+    {
+      "id": "E5",
+      "area": "Execution and operations",
+      "aspect": "Scheduling and orchestration",
+      "score": 1.5,
+      "importance": "M",
+      "critique": "Daily read-only schedule; no data refresh or sweeps",
+      "next_action": "Schedule data refresh after the data layer",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/operations/daily-schedule.md"
+      ],
+      "gates": [
+        "G6.2"
+      ]
+    },
+    {
+      "id": "N1",
+      "area": "Engineering",
+      "aspect": "Testing and CI",
+      "score": 4.5,
+      "importance": "H",
+      "critique": "1,170 tests in about 40 s; CI on PRs, boundary and doc checks, parity in CI; a 30 s per-test duration guard fails the run and names the slow test",
+      "next_action": "none now",
+      "roadmap_step": null,
+      "evidence": [
+        ".github/workflows/ci.yml",
+        "scripts/check_boundaries.py",
+        "scripts/check_docs.py",
+        "scripts/run_tests.py",
+        "tests/current/test_run_tests.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "N2",
+      "area": "Engineering",
+      "aspect": "Code architecture",
+      "score": 3,
+      "importance": "M",
+      "critique": "Layers enforced; many one-off scripts and frozen copies",
+      "next_action": "Keep legacy frozen; rebuild incumbents only",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/architecture.md",
+        "tests/test_dependency_boundaries.py"
+      ],
+      "gates": []
+    },
+    {
+      "id": "N3",
+      "area": "Engineering",
+      "aspect": "Dependencies and environment",
+      "score": 4.5,
+      "importance": "M",
+      "critique": "Locked and pinned; Makefile resolves the interpreter from the local .venv, else the main checkout's .venv, so plain make check works in a worktree",
+      "next_action": "none now",
+      "roadmap_step": null,
+      "evidence": [
+        "requirements.lock.txt",
+        "Makefile"
+      ],
+      "gates": []
+    },
+    {
+      "id": "N4",
+      "area": "Engineering",
+      "aspect": "Performance at scale",
+      "score": 1,
+      "importance": "M",
+      "critique": "Fixture runs under a second; 500-name runtime unknown",
+      "next_action": "Timing benchmark on 500 names",
+      "roadmap_step": 5,
+      "evidence": [
+        "docs/operations/performance.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "N5",
+      "area": "Engineering",
+      "aspect": "Storage and retention",
+      "score": 0.5,
+      "importance": "M",
+      "critique": "Run outputs and receipts are per worktree",
+      "next_action": "Shared data root and retention rule",
+      "roadmap_step": 3,
+      "evidence": [],
+      "gates": []
+    },
+    {
+      "id": "N6",
+      "area": "Engineering",
+      "aspect": "Security and secrets",
+      "score": 2,
+      "importance": "M",
+      "critique": "Credentials kept out of tracked files by rule; no secret scan seen",
+      "next_action": "Add a secret scan to checks",
+      "roadmap_step": null,
+      "evidence": [
+        "AGENTS.md"
+      ],
+      "gates": [
+        "G8.2"
+      ]
+    },
+    {
+      "id": "H1",
+      "area": "People and process",
+      "aspect": "Roles and separation of duties",
+      "score": 3,
+      "importance": "M",
+      "critique": "Skill catalog; separation is convention",
+      "next_action": "Enforced validation rule",
+      "roadmap_step": 6,
+      "evidence": [
+        "docs/skills.md",
+        "docs/advisory-team.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "H2",
+      "area": "People and process",
+      "aspect": "Documentation and knowledge",
+      "score": 4.0,
+      "importance": "M",
+      "critique": "Strong ownership rules; readiness checklist and artifact catalog give a one-page generated state; over 230 documents remain",
+      "next_action": "Prune or archive superseded documents when next reviewed",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/README.md",
+        "scripts/check_docs.py",
+        "docs/readiness-checklist.md",
+        "docs/artifacts.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "H3",
+      "area": "People and process",
+      "aspect": "Prioritisation and review cadence",
+      "score": 3.0,
+      "importance": "M",
+      "critique": "Roadmap and advisory roles; plan and PR checkpoints and the readiness re-score are now written in the workflow, but there is no calendar cadence",
+      "next_action": "Re-score at each plan close and compare with this assessment",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/roadmap.md",
+        "docs/workflow.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "H4",
+      "area": "People and process",
+      "aspect": "Accounting, tax and record keeping",
+      "score": 2.5,
+      "importance": "L",
+      "critique": "Pre-tax stance decided and disclosed; no tax-lot tracking",
+      "next_action": "Before live money",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/goals.md"
+      ],
+      "gates": [
+        "G0.6"
+      ]
+    },
+    {
+      "id": "H5",
+      "area": "People and process",
+      "aspect": "Legal and compliance",
+      "score": 1,
+      "importance": "M",
+      "critique": "Data rights tracked; broker terms and records not reviewed",
+      "next_action": "Before paper trading",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/data-library.md"
+      ],
+      "gates": [
+        "G8.2"
+      ]
+    },
+    {
+      "id": "H6",
+      "area": "People and process",
+      "aspect": "Continuity and backups",
+      "score": 1.5,
+      "importance": "M",
+      "critique": "Evidence bundles recoverable; receipts live only in one worktree",
+      "next_action": "Shared data root; backup rule",
+      "roadmap_step": 3,
+      "evidence": [
+        "docs/operations/evidence-recovery.md"
+      ],
+      "gates": []
+    },
+    {
+      "id": "H7",
+      "area": "People and process",
+      "aspect": "ML infrastructure",
+      "score": 0.5,
+      "importance": "L",
+      "critique": "Advisory only",
+      "next_action": "none now",
+      "roadmap_step": null,
+      "evidence": [
+        "docs/advisory-team.md"
+      ],
+      "gates": []
+    }
+  ]
+}

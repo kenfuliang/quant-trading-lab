@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-17
+updated: 2026-11-18
 owner: project-maintainers
 ---
 
@@ -32,8 +32,9 @@ flowchart LR
     CV[Conventions: identifiers, metrics, units, schema versions] --> P2
     P1a --> P2[P2 Analysis: tearsheet, stage waterfall, trust]
     P1b --> P2
-    P2 --> P3[P3 S&P 500 membership + coverage]
+    P2 --> P3[P3 S&P 500 membership, identity, stock costs]
     P2 --> P4[P4 Enforced SOP rules]
+    P2 --> P5[P5 Portfolio construction]
     P2 --> V[Views from run outputs]
 ```
 
@@ -88,16 +89,22 @@ removes an unconditional database choice and puts proof of native behavior first
 
 ### Offline research infrastructure sequence
 
+The [readiness checklist](readiness-checklist.md) is the status view of this
+sequence: it scores each area and links evidence. This table owns the order and
+dependencies; the plan numbers are the master plan's order: steps 1-6 match
+Plans 1-6, step 9 is Plan 7, and steps 7-8 have no plan yet.
+
 | Step | Scope | Depends on | State |
 | --- | --- | --- | --- |
 | 1 | P0 run output and P1b two engines with parity, per the [P0/P1b plan](tasks/2026-11-17-offline-infra-p0-p1b-plan.md) | — | Implemented on the synthetic CI fixture (branch `claude/offline-infra-p0-p1b`). Real-data parity is blocked at load; see the [engine parity task record](tasks/2026-11-17-engine-parity.md). Its blockers (sub-cent source prices, in-kind distributions, payments after the data window) are routed to the step 3 data-layer plan |
-| 2 | Conventions document: instrument and strategy identity, metric definitions and units, annualisation, benchmarks, cost levels, period and crisis windows, trial counting, schema-version rules | — | Planned; must be accepted before P2 |
-| 3 | P1a ETF data layer: Yahoo snapshots (owner ruling: private offline use only), own adjustment, quality report | P0 | Planned; separate plan |
-| 4 | P2 analysis: tearsheet, stage waterfall, trust panel; rebuild of the incumbent SPY strategy | Steps 1–3 | Planned; reuse candidates go through capability review first |
-| 5 | P3 S&P 500 membership and coverage from free sources | Step 4 | Planned; stock research starts after it |
-| 6 | P4 enforced SOP rules and catalog updates | Step 4 | Planned |
+| 2 | Conventions document: instrument and strategy identity, metric definitions and units, annualisation, benchmarks, cost levels, period and crisis windows, trial counting, schema-version rules; with the artifact catalog, readiness checklist and workflow rules | — | Done: [research conventions](conventions.md), [artifact catalog](artifacts.md), [readiness checklist](readiness-checklist.md), [workflow](workflow.md) (Plan 2) |
+| 3 | P1a ETF data layer: Yahoo snapshots (owner ruling: private offline use only), own adjustment, quality report; shared data root `QTL_DATA_ROOT` and receipt relocation | P0 | Planned; Plan 3 |
+| 4 | P2 analysis: tearsheet, stage waterfall, trust panel; rebuild of the incumbent SPY strategy | Steps 1–3 | Planned; Plan 4; reuse candidates go through capability review first |
+| 5 | P3 S&P 500 membership and coverage from free sources; instrument identity; liquidity-scaled stock costs; 500-name timing | Step 4 | Planned; Plan 5; stock research starts after it |
+| 6 | P4 enforced SOP rules and catalog updates | Step 4 | Planned; Plan 6 |
 | 7 | Views and chart conventions read run outputs (strategy, stage, trust, data-quality pages) | Step 4 | Planned; no new chart framework |
 | 8 | Run-output storage and retention rule; policy that legacy studies stay frozen and only incumbents are rebuilt | Step 4 | Planned |
+| 9 | P5 portfolio construction: combiner of run outputs; equal-weight and inverse-volatility weighting, cash account, no leverage; combinations count as trials per [goals](goals.md) | Step 4 | Planned; Plan 7 |
 
 The user-requested [Alpaca integration slice](tasks/2026-10-25-alpaca-paper-integration.md)
 also adds partial M5 evidence: native/fake-broker order lifecycle, saved-SPY signal

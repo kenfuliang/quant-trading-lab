@@ -1,12 +1,15 @@
-PYTHON ?= .venv/bin/python
+# Interpreter: the local .venv when present (CI, main checkout), otherwise the main
+# checkout's .venv (git worktrees). Override with `make PYTHON=...`.
+MAIN_CHECKOUT := $(abspath $(dir $(abspath $(shell git rev-parse --git-common-dir 2>/dev/null))))
+PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,$(MAIN_CHECKOUT)/.venv/bin/python)
 
-.PHONY: help check docs-check boundaries-check evidence-index-check experiments-check stages-check progress progress-check research-index test dependencies doctor
+.PHONY: help check docs-check boundaries-check evidence-index-check experiments-check stages-check readiness-check artifacts-check progress progress-check research-index test dependencies doctor
 
 help:
 	@echo "check: offline documentation, dependency, and behavior checks"
 	@echo "doctor: local engine and observer configuration check"
 
-check: docs-check boundaries-check evidence-index-check experiments-check stages-check progress-check dependencies test
+check: docs-check boundaries-check evidence-index-check experiments-check stages-check readiness-check artifacts-check progress-check dependencies test
 
 boundaries-check:
 	$(PYTHON) scripts/check_boundaries.py
@@ -18,7 +21,7 @@ dependencies:
 	$(PYTHON) -m pip check
 
 test:
-	$(PYTHON) -m unittest discover -s tests -v
+	$(PYTHON) scripts/run_tests.py --max-seconds 30 --start tests
 
 doctor:
 	$(PYTHON) scripts/paper.py doctor
@@ -60,6 +63,23 @@ stages-check:
 .PHONY: stages
 stages:
 	$(PYTHON) scripts/stages.py build
+	$(PYTHON) scripts/dashboard.py
+
+readiness-check:
+	$(PYTHON) scripts/readiness.py check
+
+.PHONY: artifacts-check
+artifacts-check:
+	$(PYTHON) scripts/artifacts.py check
+
+.PHONY: artifacts
+artifacts:
+	$(PYTHON) scripts/artifacts.py render
+
+.PHONY: readiness
+readiness:
+	$(PYTHON) scripts/readiness.py render
+	$(PYTHON) scripts/readiness.py build
 	$(PYTHON) scripts/dashboard.py
 
 experiments-check:

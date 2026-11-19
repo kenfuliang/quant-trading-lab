@@ -1,0 +1,341 @@
+{
+  "schema": "artifacts/v1",
+  "updated": "2026-11-18",
+  "entries": [
+    {
+      "schema_id": "experiment-receipt/v1",
+      "name": "Experiment receipt",
+      "stage": "run",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/experiment-receipt.json, validated by research/control/experiment_receipts.py",
+      "consumers": [
+        "scripts/check_experiment_receipt.py",
+        "scripts/experiments.py"
+      ],
+      "retention": "permanent, tracked under docs/tasks/evidence",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "experiment-record/v1",
+      "name": "Experiment record",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "scripts/experiments.py log",
+      "consumers": [
+        "scripts/experiments.py",
+        "scripts/stages.py",
+        "scripts/progress.py",
+        "research/control/registry_views.py"
+      ],
+      "retention": "permanent, append-only research/registry/experiments.jsonl",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "incumbents/v1",
+      "name": "Incumbent registry",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-maintained research/registry/incumbents.json",
+      "consumers": [
+        "scripts/stages.py",
+        "research/control/stage_view.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "stage-map/v1",
+      "name": "Stage map",
+      "stage": "design",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "scripts/stages.py draft-map, then reviewed by hand",
+      "consumers": [
+        "scripts/stages.py",
+        "research/control/stage_view.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "gates/v1",
+      "name": "Live-readiness gates",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-maintained research/registry/gates.json",
+      "consumers": [
+        "scripts/progress.py",
+        "scripts/readiness.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "readiness/v1",
+      "name": "Readiness registry",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-maintained research/registry/readiness.json",
+      "consumers": [
+        "scripts/readiness.py",
+        "scripts/dashboard.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "artifacts/v1",
+      "name": "Artifact catalog",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-maintained research/registry/artifacts.json",
+      "consumers": [
+        "scripts/artifacts.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "run-output/v1",
+      "name": "Run output",
+      "stage": "run",
+      "location": "local",
+      "authority": "authoritative",
+      "producer": "research/evaluation/run_output.py write_run (via scripts/current/engine_parity.py)",
+      "consumers": [
+        "research/evaluation/run_output.py read_run",
+        "research/evaluation/engine_contract.py"
+      ],
+      "retention": "local, per worktree under .local/runs",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "parity-receipt/v1",
+      "name": "Engine parity receipt",
+      "stage": "confirm",
+      "location": "local",
+      "authority": "authoritative",
+      "producer": "scripts/current/engine_parity.py run (make parity-local)",
+      "consumers": [
+        "docs/tasks/2026-11-17-engine-parity.md evidence"
+      ],
+      "retention": "local, per worktree under .local/parity",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "t11-universe-cloud/v1",
+      "name": "T11 universe cloud plan",
+      "stage": "run",
+      "location": "local",
+      "authority": "authoritative",
+      "producer": "scripts/prepare_t11_universe.py",
+      "consumers": [
+        "scripts/capture_t11_universe.py"
+      ],
+      "retention": "local, per worktree; closed study",
+      "status": "frozen-study-specific"
+    },
+    {
+      "schema_id": "sector-rsi-epoch3-execution/v1",
+      "name": "Sector RSI epoch 3 execution plan",
+      "stage": "run",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "scripts/freeze_calmar_epoch3.py",
+      "consumers": [
+        "research/plans/calmar-epoch3-c1.frozen.json",
+        "research/plans/calmar-epoch3-c2.frozen.json"
+      ],
+      "retention": "permanent, frozen plan under research/plans",
+      "status": "frozen-study-specific"
+    },
+    {
+      "schema_id": "dataset-manifest/v1",
+      "name": "Dataset manifest",
+      "stage": "data",
+      "location": "local",
+      "authority": "authoritative",
+      "producer": "Plan 3 (local data library; not built)",
+      "consumers": [
+        "Plan 3 and later data readers"
+      ],
+      "retention": "local, per dataset",
+      "status": "planned"
+    },
+    {
+      "schema_id": "quality-report/v1",
+      "name": "Data quality report",
+      "stage": "data",
+      "location": "local",
+      "authority": "authoritative",
+      "producer": "Plan 3 (data qualification; not built)",
+      "consumers": [
+        "Plan 3 and later data readers"
+      ],
+      "retention": "local, per dataset",
+      "status": "planned"
+    },
+    {
+      "schema_id": "analysis-output/v1",
+      "name": "Analysis output",
+      "stage": "diagnose",
+      "location": "local",
+      "authority": "view",
+      "producer": "Plan 4 (analysis layer; not built)",
+      "consumers": [
+        "Plan 4 reports"
+      ],
+      "retention": "local, per worktree",
+      "status": "planned"
+    },
+    {
+      "schema_id": "membership/v1",
+      "name": "Universe membership history",
+      "stage": "data",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "Plan 5 (universe membership; not built)",
+      "consumers": [
+        "Plan 5 universe loaders"
+      ],
+      "retention": "permanent, tracked",
+      "status": "planned"
+    },
+    {
+      "schema_id": "instrument-identity/v1",
+      "name": "Instrument identity map",
+      "stage": "data",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "Plan 5 (instrument identity; not built)",
+      "consumers": [
+        "Plan 5 universe loaders"
+      ],
+      "retention": "permanent, tracked",
+      "status": "planned"
+    },
+    {
+      "schema_id": "validation-receipt/v1",
+      "name": "Validation receipt",
+      "stage": "validate",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "Plan 6 (validation gate; not built)",
+      "consumers": [
+        "Plan 6 decision records"
+      ],
+      "retention": "permanent, tracked",
+      "status": "planned"
+    },
+    {
+      "schema_id": null,
+      "name": "Incident record template",
+      "stage": "paper",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/incident.md",
+      "consumers": [
+        "docs/operations/incidents.md"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": null,
+      "name": "Research cycle template",
+      "stage": "design",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/research-cycle.md",
+      "consumers": [
+        "docs/research-standard.md"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": null,
+      "name": "Research decision template",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/research-decision.md",
+      "consumers": [
+        "research cycle authors"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": null,
+      "name": "Research intake template",
+      "stage": "intake",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/research-intake.md",
+      "consumers": [
+        "docs/research-intake.md"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": null,
+      "name": "Research paper template",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/research-paper.md",
+      "consumers": [
+        "docs/research-standard.md"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": null,
+      "name": "Stage development template",
+      "stage": "design",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/stage-development.md",
+      "consumers": [
+        "docs/research-development.md"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": null,
+      "name": "Task record template",
+      "stage": "intake",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-filled from docs/templates/task.md",
+      "consumers": [
+        "docs/workflow.md"
+      ],
+      "retention": "permanent once filled, tracked",
+      "status": "template-only"
+    },
+    {
+      "schema_id": "forward-plan/v1",
+      "name": "Forward plan",
+      "stage": "decide",
+      "location": "tracked",
+      "authority": "authoritative",
+      "producer": "hand-maintained research/registry/forward-plans/FWD-SPY-EMA-1.json",
+      "consumers": [
+        "scripts/progress.py"
+      ],
+      "retention": "until superseded, tracked",
+      "status": "implemented"
+    }
+  ]
+}

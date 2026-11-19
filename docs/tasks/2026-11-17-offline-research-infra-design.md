@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-17
+updated: 2026-11-18
 owner: project-maintainers
 ---
 
@@ -252,15 +252,38 @@ Three rules become tool-enforced rather than documented only:
 | Phase | Deliverable | Acceptance | Status |
 | --- | --- | --- | --- |
 | P0 | Run output schema and writer | Schema test; a fixture run writes and re-reads every file with matching hashes | Implemented: `research/evaluation/run_output.py`, `tests/current/test_run_output.py` ([plan](2026-11-17-offline-infra-p0-p1b-plan.md) Task 1) |
-| P1a | ETF data layer: Yahoo snapshot, own adjustment, quality report | ETF quality report passes or lists every exception; Alpaca–Yahoo close disagreement measured | Planned |
+| P1a | ETF data layer: Yahoo snapshot, own adjustment, quality report; shared data root `QTL_DATA_ROOT` and relocation of receipts; resolves the real-data parity blockers (sub-cent source prices, the XLF in-kind distribution on 2016-09-19, the SPY dividend paid 2026-01-30 after the window) | ETF quality report passes or lists every exception; Alpaca–Yahoo close disagreement measured; the local sector-ETF parity run loads and its receipt is regenerated | Planned: Plan 3 |
 | P1b | Screening engine and NautilusTrader confirmation on the fixture | Parity check passes in `make check` | Implemented: synthetic CI parity passes in `make check` ([plan](2026-11-17-offline-infra-p0-p1b-plan.md) Tasks 2–5). Local sector-ETF parity is blocked: the run was rejected at load on the XLF 2016 in-kind event, and the source has sub-cent prices ([task record](2026-11-17-engine-parity.md), [receipt](evidence/2026-11-17-engine-parity.json)) |
 | P2 | Analysis: tearsheet, stage waterfall, trust panel | The incumbent SPY EMA/volatility traffic-light strategy is rebuilt through the harness; its waterfall and trust panel are computed; a reconciliation report compares it with the existing registry numbers and explains every difference (a difference is reported, not a gate) | Planned |
-| P3 | S&P 500 membership and coverage | Membership table from `fja05680/sp500` (MIT), cross-checked against `index-constitution` and `hanshof/sp500_constituents`, spot-checked on known changes; coverage measured against the existing 500-name archive. Acquiring former members' prices is out of scope | Planned |
-| P4 | SOP and catalog updates; registry `refs` link | The three enforced rules each have a failing-then-passing test | Planned |
+| P3 | S&P 500 membership and coverage; instrument identity across ticker changes; liquidity-scaled stock costs; timing of a 500-name screening run | Membership table from `fja05680/sp500` (MIT), cross-checked against `index-constitution` and `hanshof/sp500_constituents`, spot-checked on known changes; coverage measured against the existing 500-name archive; one instrument identity per issuer across ticker changes; a stock cost model that scales with liquidity (average daily dollar volume) in place of a flat basis-point cost; a measured 500-name screening time. Acquiring former members' prices is out of scope | Planned: Plan 5 |
+| P4 | SOP and catalog updates; registry `refs` link | The three enforced rules each have a failing-then-passing test | Planned: Plan 6 |
+| P5 | Portfolio construction: a combiner that reads run outputs and writes a new run output. Equal-weight and inverse-volatility weighting, one cash account, no leverage | A combined run reproduces from its component run ids; weights, cash and costs reconcile to the component outputs; every combination counts as a trial in the trial count under [goals](../goals.md) | Planned: Plan 7 |
 
 P1a and P1b run in parallel after P0: P1b uses the synthetic fixture and the existing
 issuer-qualified ETF derivative, so it does not wait for P1a's adjustment recipe.
-Stock research starts after P3.
+Stock research starts after P3. P5 starts after P2 and reads only run outputs, so it
+needs no change to the engines. Plan numbers follow the master plan sequence; the
+[roadmap](../roadmap.md) keeps the order.
+
+## Outcome of Plan 1 (P0 and P1b), 2026-11-18
+
+Implemented: the run-output schema `run-output/v1` and writer, a pandas screening
+engine and a NautilusTrader confirmation engine behind one shared contract
+(`research/evaluation/engine_contract.py`), and a parity check on the committed
+synthetic fixture that runs in `make check`.
+
+Blocked: parity on real data. The local sector-ETF run was rejected at load for
+three reasons, recorded in the [engine parity task record](2026-11-17-engine-parity.md):
+
+| Blocker | Detail | Routed to |
+| --- | --- | --- |
+| In-kind distribution | XLF on 2016-09-19 | P1a |
+| Sub-cent prices | Source prices below one cent | P1a |
+| Dividend after the window | SPY dividend paid 2026-01-30, after the data window | P1a |
+
+All three belong to the data layer, so Plan 3 resolves them; no engine change is
+expected. Plan 2 added the readiness checklist, the artifact catalog and the
+[conventions](../conventions.md) that the later phases read.
 
 ## Left to the builder
 
