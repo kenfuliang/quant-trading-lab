@@ -27,11 +27,11 @@ Importance is H, M or L, weighted 3, 2 and 1 in the weighted average. Half steps
 | --- | --- | --- | --- |
 | Data | 6 | 1.92 | 2.17 |
 | Research and evaluation | 11 | 2.77 | 2.80 |
-| Portfolio and risk | 4 | 2.62 | 2.78 |
+| Portfolio and risk | 4 | 2.88 | 3.00 |
 | Execution and operations | 5 | 1.40 | 1.38 |
 | Engineering | 6 | 2.83 | 2.96 |
 | People and process | 7 | 2.36 | 2.50 |
-| Overall | 39 | 2.38 | 2.53 |
+| Overall | 39 | 2.41 | 2.55 |
 
 ## Fix first
 
@@ -77,7 +77,7 @@ Importance H with score 2 or lower, lowest score first.
 | Id | Aspect | Score | Imp | Critique | Next action | Step | Gates | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | P1 | Investment mandate and risk budget | 4 | H | Pilot limits, drawdown halt, benchmark and tax stance decided; funding rules open | Funding and withdrawal rules at pilot time | - | G0.1, G0.2, G0.4, G0.5, G0.6 | `docs/goals.md`, `tests/test_pilot_limits.py` |
-| P2 | Portfolio construction across strategies | 1 | M | Every study is one strategy | Combiner for run outputs | 9 | none | none |
+| P2 | Portfolio construction across strategies | 2 | M | Combiner of run outputs (equal and inverse-volatility, long-only, no leverage, cash earns zero) reproduces byte for byte and reconciles to its components; counts as a trial and inherits survivor-bias labels. Sleeve-level model only, one demonstration on engineering data that is not a finding, no share-level portfolio, no optimiser | Combine strategies from a frozen plan with a forward window; share-level portfolio construction | 9 | none | `research/evaluation/portfolio.py`, `scripts/portfolio.py`, `tests/current/test_portfolio.py`, `tests/current/test_portfolio_cli.py`, `docs/tasks/2026-11-18-portfolio.md`, `docs/tasks/evidence/2026-11-18-portfolio.json` |
 | P3 | Pre-trade limits and kill switch | 2.5 | M | RiskGate, PilotLimits and kill switch tested offline; not wired to a session | Wire check_pilot into a session | - | G4.1, G4.2 | `paper_trading/risk_gate.py`, `paper_trading/kill_switch.py`, `tests/test_kill_switch.py` |
 | P4 | Sizing and leverage policy | 3 | M | Cash account, no leverage for the pilot | none now | - | G0.3 | `docs/goals.md` |
 

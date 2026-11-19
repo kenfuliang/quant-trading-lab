@@ -195,6 +195,12 @@ Limits, stated plainly:
   run. Parity runs are engineering runs and are now rejected as the nautilus run (see the
   [design](tasks/2026-11-17-offline-research-infra-design.md#three-rules)).
 
+## Combining run outputs
+
+To combine runs, use `scripts/portfolio.py combine` then `report`: a real combination needs
+`--cycle-id` (it counts as a trial), a demonstration uses `--exploratory`. Rules:
+[combinations](conventions.md#combinations); example: [portfolio record](tasks/2026-11-18-portfolio.md).
+
 ## Test budget and interpreter
 
 `make test` runs `scripts/run_tests.py`, which discovers `tests/`, times each

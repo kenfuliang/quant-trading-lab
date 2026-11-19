@@ -1,0 +1,323 @@
+{
+  "combinations": [
+    {
+      "code_commit": "d34954bb158f1315f9f397dd1d98b3052c5bc9fb",
+      "combined_metrics": {
+        "calmar": -0.11321321615404517,
+        "longest_underwater_days": 3561,
+        "longest_underwater_sessions": 2452,
+        "max_drawdown": 0.527778859906529,
+        "net_cagr": -0.059751542148133385,
+        "sharpe": -0.6366596153421413,
+        "turnover": 0.0
+      },
+      "components": [
+        "20261118T213357Z-ea1330dc",
+        "20261119T074013Z-badfe854",
+        "20261119T074024Z-2579c05f"
+      ],
+      "config_hash": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
+      "correlation": {
+        "instruments": [
+          "20261118T213357Z-ea1330dc",
+          "20261119T074013Z-badfe854",
+          "20261119T074024Z-2579c05f"
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.5416149907810662,
+            0.3285615262275677
+          ],
+          [
+            0.5416149907810662,
+            1.0,
+            0.3684579088847745
+          ],
+          [
+            0.3285615262275677,
+            0.3684579088847745,
+            1.0
+          ]
+        ]
+      },
+      "diversification": {
+        "diversification_ratio": 1.2686844473363026,
+        "portfolio_sigma": 0.005690501556240522,
+        "risk_contribution_share": [
+          0.3510203334436693,
+          0.4213973480793581,
+          0.227887399938553
+        ],
+        "risk_contribution_sum": 1.0003050814615804,
+        "sleeve_sigma": [
+          0.007370479356819996,
+          0.008414230705177078,
+          0.005873642403839058
+        ],
+        "weights": [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ]
+      },
+      "exploratory": true,
+      "labels": [
+        "discovery-only",
+        "survivor-biased"
+      ],
+      "method": "equal",
+      "note": "three sleeves, defaults (monthly, 5 bp rebalance cost, gross 1.0)",
+      "reconciliation": {
+        "cash_min": -8.881784197001252e-16,
+        "cost_total": 0.0016564229406426153,
+        "max_abs_return_error": 0.0,
+        "status": "PASS",
+        "tolerance": 1e-12,
+        "weights_sum_max": 1.0000000000000009
+      },
+      "report_rel_data_root": "portfolio/20261119T074500Z-524435d5/report.json",
+      "run_id": "20261119T074500Z-524435d5",
+      "sessions": 2514,
+      "sleeve_metrics": {
+        "20261118T213357Z-ea1330dc": {
+          "calmar": 0.6544268793439556,
+          "longest_underwater_days": 746,
+          "longest_underwater_sessions": 512,
+          "max_drawdown": 0.16419580637261255,
+          "net_cagr": 0.10745414916579321,
+          "sharpe": 0.9311672067051961,
+          "turnover": 0.0
+        },
+        "20261119T074013Z-badfe854": {
+          "calmar": 0.2094634716116581,
+          "longest_underwater_days": 1097,
+          "longest_underwater_sessions": 753,
+          "max_drawdown": 0.22254997501539509,
+          "net_cagr": 0.046616090373812424,
+          "sharpe": 0.40823857103027783,
+          "turnover": 0.0
+        },
+        "20261119T074024Z-2579c05f": {
+          "calmar": -0.2998551071214318,
+          "longest_underwater_days": 3575,
+          "longest_underwater_sessions": 2461,
+          "max_drawdown": 0.9678751525401533,
+          "net_cagr": -0.2902223075450998,
+          "sharpe": -3.627761739297286,
+          "turnover": 0.0
+        }
+      },
+      "trial": null,
+      "universe_kind": "current-holdings-proxy",
+      "use": "engineering",
+      "weights_first_rebalance": {
+        "20261118T213357Z-ea1330dc": 0.3333333333333333,
+        "20261119T074013Z-badfe854": 0.3333333333333333,
+        "20261119T074024Z-2579c05f": 0.3333333333333333
+      }
+    },
+    {
+      "code_commit": "d34954bb158f1315f9f397dd1d98b3052c5bc9fb",
+      "combined_metrics": {
+        "calmar": -0.2088212532584343,
+        "longest_underwater_days": 3561,
+        "longest_underwater_sessions": 2452,
+        "max_drawdown": 0.8697888763029451,
+        "net_cagr": -0.18163040321982626,
+        "sharpe": -2.3215411375038104,
+        "turnover": 0.0
+      },
+      "components": [
+        "20261119T074013Z-badfe854",
+        "20261119T074024Z-2579c05f"
+      ],
+      "config_hash": "032c4c17fcaa3b4d1c037769433d043cb0b2a573f442e0636c84567ff4733383",
+      "correlation": {
+        "instruments": [
+          "20261119T074013Z-badfe854",
+          "20261119T074024Z-2579c05f"
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.3684579088847745
+          ],
+          [
+            0.3684579088847745,
+            1.0
+          ]
+        ]
+      },
+      "diversification": {
+        "diversification_ratio": 1.3380248875575556,
+        "portfolio_sigma": 0.005339165676917029,
+        "risk_contribution_share": [
+          0.5752844205151004,
+          0.46612196186580485
+        ],
+        "risk_contribution_sum": 1.0414063823809052,
+        "sleeve_sigma": [
+          0.008414230705177078,
+          0.005873642403839058
+        ],
+        "weights": [
+          0.5,
+          0.5
+        ]
+      },
+      "exploratory": true,
+      "labels": [
+        "discovery-only",
+        "survivor-biased"
+      ],
+      "method": "inverse_vol",
+      "note": "two sleeves only: the incumbent has no position and zero volatility for its first 200 sessions (EMA200 warm-up), so inverse_vol over 60 sessions is refused for it, correctly: 'component 20261118T213357Z-ea1330dc has zero or non-finite volatility over the 60 sessions before 61'",
+      "reconciliation": {
+        "cash_min": -4.440892098500626e-16,
+        "cost_total": 0.0048816443821867,
+        "max_abs_return_error": 8.673617379884035e-19,
+        "status": "PASS",
+        "tolerance": 1e-12,
+        "weights_sum_max": 1.0000000000000004
+      },
+      "report_rel_data_root": "portfolio/20261119T074508Z-032c4c17/report.json",
+      "run_id": "20261119T074508Z-032c4c17",
+      "sessions": 2514,
+      "sleeve_metrics": {
+        "20261119T074013Z-badfe854": {
+          "calmar": 0.2094634716116581,
+          "longest_underwater_days": 1097,
+          "longest_underwater_sessions": 753,
+          "max_drawdown": 0.22254997501539509,
+          "net_cagr": 0.046616090373812424,
+          "sharpe": 0.40823857103027783,
+          "turnover": 0.0
+        },
+        "20261119T074024Z-2579c05f": {
+          "calmar": -0.2998551071214318,
+          "longest_underwater_days": 3575,
+          "longest_underwater_sessions": 2461,
+          "max_drawdown": 0.9678751525401533,
+          "net_cagr": -0.2902223075450998,
+          "sharpe": -3.627761739297286,
+          "turnover": 0.0
+        }
+      },
+      "trial": null,
+      "universe_kind": "current-holdings-proxy",
+      "use": "engineering",
+      "weights_first_rebalance": {
+        "20261119T074013Z-badfe854": 0.5,
+        "20261119T074024Z-2579c05f": 0.5
+      }
+    }
+  ],
+  "data_root_rel": "data (the QTL data root); every path below is relative to it",
+  "date_alignment": {
+    "first": "2016-01-04",
+    "last": "2025-12-31",
+    "result": "identical date sets for all three sleeves",
+    "sessions": 2514
+  },
+  "exploratory": true,
+  "refused": [
+    {
+      "components": [
+        "20261118T213357Z-ea1330dc",
+        "20261119T074013Z-badfe854",
+        "20261119T074024Z-2579c05f"
+      ],
+      "error": "component 20261118T213357Z-ea1330dc has zero or non-finite volatility over the 60 sessions before 61",
+      "method": "inverse_vol"
+    }
+  ],
+  "reproducibility": {
+    "all_identical": true,
+    "config_hash_new": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
+    "config_hash_orig": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
+    "file_sha_equal": {
+      "fills": true,
+      "positions": true,
+      "returns": true,
+      "signals": true
+    },
+    "files": [
+      "fills.parquet",
+      "manifest.json",
+      "positions.parquet",
+      "returns.parquet",
+      "signals.parquet"
+    ],
+    "orig_run": "20261119T074500Z-524435d5",
+    "parquet_sha256_orig": {
+      "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
+      "positions": "4964cceff63c00219099f2b5e026ce5a40036362bf8d52c0dc9b2a6f546a8084",
+      "returns": "38e40f5dda7899366d69d6e4408836b283373482c39f5c07630d2b4fdd62f064",
+      "signals": "a26be63f25cb1131d5fb7e8b9208ae069a35207d8706809641dd10d7e35608e6"
+    },
+    "roundtrip_frame_equal": {
+      "fills": true,
+      "positions": true,
+      "returns": true,
+      "signals": true
+    },
+    "tables": {
+      "fills": {
+        "equal_frame": true,
+        "new": "001f67c455dee934b44cc0c2f7576b08608411e725989499f7ef46f8ad2afd36",
+        "orig": "001f67c455dee934b44cc0c2f7576b08608411e725989499f7ef46f8ad2afd36"
+      },
+      "positions": {
+        "equal_frame": false,
+        "new": "8e0a1a05352cb2c5c1690fda60f0a9153776b1afc8d031f33733c9717287eddd",
+        "orig": "8e0a1a05352cb2c5c1690fda60f0a9153776b1afc8d031f33733c9717287eddd"
+      },
+      "returns": {
+        "equal_frame": false,
+        "new": "126fe88e21ddde7a6fa77d56832e9b6cbef5b97f18c0a9c34314b4d17c747f33",
+        "orig": "126fe88e21ddde7a6fa77d56832e9b6cbef5b97f18c0a9c34314b4d17c747f33"
+      },
+      "signals": {
+        "equal_frame": false,
+        "new": "d5af972f51e37b6af21fbd13bd75fa0bfe0bdd02dfb515910011d9939005795b",
+        "orig": "d5af972f51e37b6af21fbd13bd75fa0bfe0bdd02dfb515910011d9939005795b"
+      }
+    },
+    "tmp_run_id": "20261119T074608Z-524435d5"
+  },
+  "runs_root_rel": "runs",
+  "schema_note": "Summary of the Plan 7 portfolio demonstration; no price data. Numbers demonstrate the mechanism and are not a research finding.",
+  "sleeve_analyses": {
+    "etf_trend": "analysis/20261119T074013Z-portfolio-sleeve-etf-trend",
+    "stock_trend": "analysis/20261119T074024Z-portfolio-sleeve-stock-trend"
+  },
+  "sleeve_code_commit": "d34954bb158f1315f9f397dd1d98b3052c5bc9fb (clean tree)",
+  "sleeves": {
+    "20261118T213357Z-ea1330dc": {
+      "dataset_id": "sector-etfs-2016-2025-n1",
+      "name": "incumbent",
+      "source": "costs rung of analysis 20261118T213357Z-incumbent-spy-gate (SPY, traffic-light gate, 5 bp + $1)"
+    },
+    "20261119T074013Z-badfe854": {
+      "dataset_id": "sector-etfs-2016-2025-n1",
+      "name": "etf_trend",
+      "source": "analysis/20261119T074013Z-portfolio-sleeve-etf-trend (sma_trend window 20, gross 0.95, 11 ETFs, 5 bp + $1)"
+    },
+    "20261119T074024Z-2579c05f": {
+      "dataset_id": "spy-equities-2016-2025-n2",
+      "labels": [
+        "survivor-biased",
+        "discovery-only"
+      ],
+      "name": "stock_trend",
+      "source": "analysis/20261119T074024Z-portfolio-sleeve-stock-trend (sma_trend window 20, gross 0.95, 409 stocks, 5 bp + $1)"
+    }
+  },
+  "specs": [
+    "research/registry/analysis-specs/portfolio-sleeve-etf-trend.json",
+    "research/registry/analysis-specs/portfolio-sleeve-stock-trend.json"
+  ],
+  "tracked_ledger_trials_written": 0,
+  "use": "engineering"
+}

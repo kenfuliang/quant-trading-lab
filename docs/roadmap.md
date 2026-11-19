@@ -104,7 +104,7 @@ Plans 1-6, step 9 is Plan 7, and steps 7-8 have no plan yet.
 | 6 | P4 enforced SOP rules and catalog updates | Step 4 | Implemented (Plan 6): quality acceptance gate for `use: financial`, run-output refs for completed records, `keep` needs a nautilus run, parity receipt and validation receipt; limits: roles self-reported, no candidate confirmation command so no `keep` is possible yet. See the [task record](tasks/2026-11-18-enforced-rules.md) |
 | 7 | Views and chart conventions read run outputs (strategy, stage, trust, data-quality pages) | Step 4 | Planned; no new chart framework |
 | 8 | Run-output storage and retention rule; policy that legacy studies stay frozen and only incumbents are rebuilt | Step 4 | Planned |
-| 9 | P5 portfolio construction: combiner of run outputs; equal-weight and inverse-volatility weighting, cash account, no leverage; combinations count as trials per [goals](goals.md) | Step 4 | Planned; Plan 7 |
+| 9 | P5 portfolio construction: combiner of run outputs; equal-weight and inverse-volatility weighting, cash account, no leverage; combinations count as trials per [goals](goals.md) | Step 4 | Implemented (Plan 7), with limits: sleeve-level model, one demonstration, no research finding ([record](tasks/2026-11-18-portfolio.md)) |
 
 The user-requested [Alpaca integration slice](tasks/2026-10-25-alpaca-paper-integration.md)
 also adds partial M5 evidence: native/fake-broker order lifecycle, saved-SPY signal
