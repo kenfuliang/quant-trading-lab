@@ -64,7 +64,7 @@ class EnforcedRulesScenario(unittest.TestCase):
         spec.pop("fixture", None)
         spec.update(dataset_id="ds-1", instruments=["SPY"], use="financial")
         loader = lambda dataset_id, instruments, root: (synthetic_fixture(), {  # noqa: E731
-            "quality_status": "pass-with-exceptions", "quality_report": f"quality/ds-1/{STAMP}/report.json"})
+            "manifest_sha256": "e" * 64, "quality_status": "pass-with-exceptions", "quality_report": f"quality/ds-1/{STAMP}/report.json"})
         return analysis.run_spec(spec, self.data, now=NOW, loader=loader, tearsheet=lambda *a: "<html/>")
 
     def log(self, rid, disposition, *extra):
@@ -120,11 +120,13 @@ class EnforcedRulesScenario(unittest.TestCase):
         # Rule 3: keep needs a nautilus run, a passing parity receipt and a validation receipt, in turn.
         keep = ("k-1", "keep", "--run-id", self.run_id)
         self.rejected("nautilus_run_id", *keep)
-        self.write_json(self.runs / "N1" / "manifest.json", {"run_id": "N1", "engine": "nautilus", "code_commit": "ccc333"})
+        bound = {**manifest, "run_id": "N1", "engine": "nautilus", "code_commit": "c" * 40,
+                 "config": {**manifest["config"], "engine": "nautilus"}}
+        self.write_json(self.runs / "N1" / "manifest.json", bound)
         keep += ("--nautilus-run-id", "N1")
         self.rejected("parity_receipt_id", *keep)
         self.write_json(self.parity / "P1" / "receipt.json", {
-            "parity_id": "P1", "status": "passed", "passed": True, "mismatch_count": 0, "code_commit": "bbb222",
+            "parity_id": "P1", "status": "passed", "passed": True, "mismatch_count": 0, "code_commit": "b" * 40,
             "run_id": "N1"})
         keep += ("--parity-receipt", "P1")
         self.rejected("validation_receipt", *keep)
@@ -143,6 +145,18 @@ class EnforcedRulesScenario(unittest.TestCase):
         self.rejected("Validation skill", *keep)
         (self.receipts / "VR1.json").unlink()
         self.assertEqual(self.validation("trade-leakage-audit"), (0, ""))
+        # The nautilus run must be a financial run bound to the candidate (an engineering parity run is not).
+        engineering = {"run_id": "N1", "engine": "nautilus", "code_commit": "c" * 40,
+                       "datasets": {"dataset_id": "synthetic-fixture"}}
+        self.write_json(self.runs / "N1" / "manifest.json", engineering)
+        self.rejected("not a financial-use run", *keep)
+        self.write_json(self.runs / "N1" / "manifest.json", {
+            **bound, "datasets": {**manifest["datasets"], "manifest_sha256": "f" * 64}})
+        self.rejected("not bound", *keep)
+        self.write_json(self.runs / "N1" / "manifest.json", {
+            **bound, "config": {**bound["config"], "strategy": {"kind": "other"}}})
+        self.rejected("not bound", *keep)
+        self.write_json(self.runs / "N1" / "manifest.json", bound)
         self.assertEqual(self.log(*keep)[0], 0)
         refs = reg.load(self.registry)[1]["refs"]
         self.assertEqual(refs["validation_receipt_sha256"], sha(self.receipts / "VR1.json"))

@@ -42,6 +42,22 @@ Enforced where: file reads at `scripts/experiments.py log` and in `scripts/analy
 `make check` verifies only tracked material (record shape and the tracked validation
 receipts), so it needs no local data.
 
+| Check | At `log` | In `make check` |
+| --- | --- | --- |
+| Quality gate of the run (and the nautilus run) | re-verified from the report and acceptance on disk inside the data root; unreadable report rejected | not checked |
+| Nautilus run financial and bound to the candidate (dataset hash, strategy, market, instruments) | yes | not checked |
+| `keep` never `imported`, `failed` or `abandoned` | yes | yes (record shape) |
+| Engine identity between full-SHA commits (engine modules, `run_output.py`, `requirements.lock.txt`) | yes (git diff) | not checked |
+| Validation receipt: Validation-role skill, `pass`, a passing check, run ids, same parity receipt id | yes, and the file must be tracked in the tracked directory | yes (hash and content) |
+
+Final review fixes (after the adversarial review): `keep` with a failed or abandoned
+attempt and any imported `keep` are rejected; the nautilus run must meet the financial
+requirement and be bound to the candidate; waived-only receipts and receipts naming another
+parity receipt are rejected; engine identity takes full SHAs only and passes
+`--end-of-options` to git; log-time gate re-verification; `--receipts-dir` outside the
+tracked directory needs `--allow-untracked-receipts` (tests only); `write_acceptance`
+validates its path segments.
+
 ## Validation performed
 
 - `tests/current/test_enforced_rules.py::test_end_to_end_rules`: one scenario on temporary
@@ -61,9 +77,12 @@ receipts), so it needs no local data.
 
 - No acceptance, no registry record and no validation receipt were created in this plan.
   The owner has not accepted the real dataset's exceptions.
-- **No `keep` is possible yet**: no CLI produces a candidate's nautilus run (analyses are
-  screening runs; parity runs the fixed parity strategy). A candidate confirmation command
+- **A `keep` still cannot be logged in practice**: no CLI produces a candidate's nautilus
+  run (analyses are screening runs; parity runs the fixed parity strategy, and a parity run
+  is an engineering run, now rejected as the nautilus run). A candidate confirmation command
   is the next gap.
+- The registry is append-only and local: a self-consistent hand-forged chain is outside
+  what it can prevent.
 - Parity receipts vouch for engine code, not the candidate. Validator roles are
   self-reported; independence is not proven.
 - Acceptance is hash-bound to a report, not a proof of understanding.

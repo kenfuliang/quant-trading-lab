@@ -60,13 +60,23 @@ class ReceiptTests(unittest.TestCase):
                "naive time": {**base, "created_utc": "2026-11-18T00:00:00"},
                "pass without checks": {**base, "checks": []},
                "pass with failed check": {**base, "checks": [{"name": "a", "status": "fail", "detail": "d"}]},
-               "pass with empty detail": {**base, "checks": [{"name": "a", "status": "waived", "detail": " "}]},
+               "pass with empty detail": {**base, "checks": [{"name": "a", "status": "pass", "detail": " "}]},
+               "pass with only waived checks": {**base, "checks": [{"name": "a", "status": "waived", "detail": "skipped"}]},
                "bad result": {**base, "result": "maybe"}}
         for label, doc in bad.items():
             with self.subTest(label), self.assertRaises(vr.ValidationReceiptError):
                 vr.load_receipt(self.write(doc))
+        mixed = {**base, "checks": [{"name": "a", "status": "waived", "detail": "n/a"},
+                                    {"name": "b", "status": "pass", "detail": "ok"}]}
+        vr.load_receipt(self.write(mixed))
         failed = {**base, "result": "fail", "checks": [{"name": "a", "status": "fail", "detail": ""}]}
         vr.load_receipt(self.write(failed))
+
+    def test_receipt_parity_id_must_match_the_records(self):
+        self.write(good())
+        run_refs.read_validation_receipt(self.dir, "VR1", None, ["R1", "N1"], parity_id="P1")
+        with self.assertRaisesRegex(RegistryError, "parity receipt"):
+            run_refs.read_validation_receipt(self.dir, "VR1", None, ["R1", "N1"], parity_id="OTHER")
 
     def test_receipt_must_list_the_records_run_ids(self):
         self.write(good())

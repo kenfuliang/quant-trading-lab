@@ -86,7 +86,8 @@ def check_validation_refs(records):
             continue
         try:
             run_refs.read_validation_receipt(VALIDATION_RECEIPTS, receipt_id,
-                                             refs.get("validation_receipt_sha256"), run_ids)
+                                             refs.get("validation_receipt_sha256"), run_ids,
+                                             parity_id=refs.get("parity_receipt_id"))
         except RegistryError as error:
             errors.append(f"record {record.get('record_id')}: {error}")
     return errors
@@ -102,6 +103,55 @@ def parse_metrics(value):
     return data
 
 
+def reverify_quality_gate(manifest, data_root):
+    """Rule 2 at log time: do not trust the gate fields a manifest records; re-run the gate on the
+    quality report folder the manifest names (inside the data root) and compare the result."""
+    from research.evaluation.acceptance import verify_for_financial_use
+    run_id = manifest.get("run_id")
+    datasets = manifest.get("datasets") or {}
+    cannot = f"cannot verify the quality gate at log time for run {run_id}"
+    relative = datasets.get("quality_report")
+    if not isinstance(relative, str) or not relative:
+        raise RegistryError(f"{cannot}: the manifest names no quality_report")
+    base = Path(data_root).resolve()
+    path = (base / relative).resolve()
+    if not path.is_relative_to(base):
+        raise RegistryError(f"{cannot}: quality_report {relative!r} is outside the data root")
+    try:
+        report = json.loads(path.read_text(encoding="utf-8"))
+        gate = verify_for_financial_use(base, path.parent, report)
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as error:  # AcceptanceError is a ValueError
+        raise RegistryError(f"{cannot}: {error}") from None
+    if report.get("status") != datasets.get("quality_status"):
+        raise RegistryError(f"run {run_id} claims quality status {datasets.get('quality_status')!r} but its "
+                            f"report says {report.get('status')!r}")
+    claimed = datasets.get("acceptance")
+    claimed_sha = claimed.get("acceptance_sha256") if isinstance(claimed, dict) else None
+    if gate["acceptance_sha256"] != claimed_sha:
+        raise RegistryError(f"run {run_id} acceptance_sha256 {claimed_sha!r} does not match the acceptance "
+                            f"on disk ({gate['acceptance_sha256']!r})")
+
+
+def receipts_dir_for(args):
+    """The validation-receipts directory for a real log: only the tracked one, unless the explicit
+    test-only flag is given (then it prints a warning and the tracked-file check is skipped)."""
+    if not args.receipts_dir:
+        return VALIDATION_RECEIPTS
+    chosen = Path(args.receipts_dir)
+    if chosen.resolve() == VALIDATION_RECEIPTS.resolve():
+        return chosen
+    if not args.allow_untracked_receipts:
+        raise RegistryError(f"--receipts-dir {chosen} is not the tracked {VALIDATION_RECEIPTS}; a real log "
+                            "must use a committed receipt (--allow-untracked-receipts is for tests only)")
+    return chosen
+
+
+def require_tracked(path):
+    code, _ = run_git(["ls-files", "--error-unmatch", "--", str(path)])
+    if code != 0:
+        raise RegistryError(f"validation receipt {path} is not tracked by git; commit it before logging")
+
+
 def verify_run_refs(record, args):
     """Log-time file checks for rules 2 and 3; fills the sha256 refs from the files read.
 
@@ -111,8 +161,14 @@ def verify_run_refs(record, args):
     refs = record["refs"]
     runs = Path(args.runs_root) if args.runs_root else default_root("runs_root")
     parity = Path(args.parity_root) if args.parity_root else default_root("parity_root")
-    receipts = Path(args.receipts_dir) if args.receipts_dir else VALIDATION_RECEIPTS
     run = nautilus = receipt = None
+    if record["disposition"] == "keep" and record.get("attempt") in registry.NO_RUN_ATTEMPTS:
+        raise RegistryError(f"a keep record cannot have attempt {record['attempt']!r}")
+    receipts = receipts_dir_for(args)
+    untracked_ok = bool(args.receipts_dir) and receipts.resolve() != VALIDATION_RECEIPTS.resolve()
+    if untracked_ok:
+        print("warning: --allow-untracked-receipts: the validation receipt is not the tracked one; "
+              "test use only", file=sys.stderr)
     if args.run_id:
         run, sha = run_refs.read_run_manifest(runs, args.run_id)
         refs.update(run_id=args.run_id, run_manifest_sha256=sha)
@@ -124,14 +180,19 @@ def verify_run_refs(record, args):
         refs.update(parity_receipt_id=args.parity_receipt, parity_receipt_sha256=sha)
     if args.validation_receipt:
         covered = [i for i in (args.run_id, args.nautilus_run_id) if i]
-        _, sha = run_refs.read_validation_receipt(receipts, args.validation_receipt, None, covered)
+        _, sha = run_refs.read_validation_receipt(receipts, args.validation_receipt, None, covered,
+                                                  parity_id=args.parity_receipt)
+        if not untracked_ok:
+            require_tracked(receipts / f"{args.validation_receipt}.json")
         refs.update(validation_receipt=args.validation_receipt, validation_receipt_sha256=sha)
     registry.validate(record)  # shape first: names every missing ref
     if run is not None and record["disposition"] != "blocked" and record.get("attempt") not in registry.NO_RUN_ATTEMPTS:
         run_refs.require_financial_run(run)
+        reverify_quality_gate(run, runs.parent)
     if record["disposition"] != "keep":
         return
-    run_refs.require_nautilus_run(nautilus)
+    run_refs.require_nautilus_run(nautilus, candidate=run)
+    reverify_quality_gate(nautilus, runs.parent)
     run_refs.require_passed_parity(receipt)
     changed = engine_files_changed(run_git, receipt["code_commit"], nautilus.get("code_commit") or "")
     if changed:
@@ -250,7 +311,9 @@ def main(argv=None):
     log.add_argument("--validation-receipt", help="id of a tracked validation receipt (keep records)")
     log.add_argument("--runs-root", help="override the runs root (default: the data root's runs/)")
     log.add_argument("--parity-root", help="override the parity root (default: the data root's parity/)")
-    log.add_argument("--receipts-dir", help="override research/registry/validation-receipts")
+    log.add_argument("--receipts-dir", help="override research/registry/validation-receipts (tests only)")
+    log.add_argument("--allow-untracked-receipts", action="store_true",
+                     help="TEST ONLY: accept a --receipts-dir outside the tracked directory, untracked files")
     log.add_argument("--dry-run", action="store_true")
     log.set_defaults(fn=cmd_log)
     sub.add_parser("render").set_defaults(fn=cmd_render)

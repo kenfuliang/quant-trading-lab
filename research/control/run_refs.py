@@ -62,11 +62,12 @@ def read_parity_receipt(parity_root, parity_id, expected_sha=None):
     return receipt, sha
 
 
-def read_validation_receipt(receipts_dir, receipt_id, expected_sha, run_ids):
+def read_validation_receipt(receipts_dir, receipt_id, expected_sha, run_ids, parity_id=None):
     """Read a tracked validation receipt with the full `validation-receipt/v1` validation.
 
     Verified: file exists, sha256 matches (when given), the whole shape, the validator
-    allowlist and role separation, `result == "pass"`, and `run_ids` covers every given id.
+    allowlist and role separation, `result == "pass"`, `run_ids` covers every given id, and
+    (when given) `parity_receipt_id` equals `parity_id`.
     """
     safe_segment(receipt_id, "validation receipt id")
     path = Path(receipts_dir) / f"{receipt_id}.json"
@@ -81,6 +82,9 @@ def read_validation_receipt(receipts_dir, receipt_id, expected_sha, run_ids):
     missing = [r for r in run_ids if r not in listed]
     if missing:
         raise RegistryError(f"validation receipt {receipt_id} does not cover run ids {missing}")
+    if parity_id is not None and receipt["parity_receipt_id"] != parity_id:
+        raise RegistryError(f"validation receipt {receipt_id} covers parity receipt "
+                            f"{receipt['parity_receipt_id']!r}, the record names {parity_id!r}")
     return receipt, sha
 
 
@@ -102,10 +106,31 @@ def require_financial_run(manifest):
     raise RegistryError(f"run {run_id} quality status {status!r} is neither pass nor accepted pass-with-exceptions")
 
 
-def require_nautilus_run(manifest):
+BOUND_CONFIG_KEYS = ("strategy", "market", "instruments")  # the engine differs by design; these must not
+
+
+def require_nautilus_run(manifest, candidate=None):
+    """Rule 3: the NautilusTrader run is a financial-use run (same gate as the candidate run) and,
+    when `candidate` (the `refs.run_id` manifest) is given, is bound to it: same dataset hash and the
+    same strategy, market and instruments."""
+    run_id = manifest.get("run_id")
     if manifest.get("engine") != "nautilus":
-        raise RegistryError(f"run {manifest.get('run_id')} engine is {manifest.get('engine')!r}, "
-                            "a keep record needs a nautilus run")
+        raise RegistryError(f"run {run_id} engine is {manifest.get('engine')!r}, a keep record needs a nautilus run")
+    require_financial_run(manifest)
+    if candidate is None:
+        return
+    mine = (manifest.get("datasets") or {}).get("manifest_sha256")
+    theirs = (candidate.get("datasets") or {}).get("manifest_sha256")
+    if not is_sha256(mine) or mine != theirs:
+        raise RegistryError(f"nautilus run {run_id} is not bound to candidate run {candidate.get('run_id')}: "
+                            f"dataset manifest_sha256 {mine!r} differs from {theirs!r}")
+    config, other = manifest.get("config"), candidate.get("config")
+    if not isinstance(config, dict) or not isinstance(other, dict):
+        raise RegistryError(f"nautilus run {run_id} or candidate run {candidate.get('run_id')} has no config")
+    for key in BOUND_CONFIG_KEYS:
+        if key not in config or key not in other or config[key] != other[key]:
+            raise RegistryError(f"nautilus run {run_id} is not bound to candidate run {candidate.get('run_id')}: "
+                                f"config {key} differs")
 
 
 def require_passed_parity(receipt):

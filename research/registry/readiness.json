@@ -281,7 +281,7 @@
       "aspect": "Reproducibility and lineage",
       "score": 4,
       "importance": "H",
-      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads and verifies it), and keep records the nautilus run, parity receipt and tracked validation receipt hashes; but no completed record has used these links yet (the 110 existing records are exempt imports) and no command yet produces a candidate nautilus run",
+      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads it and re-verifies the quality gate), and keep records a financial nautilus run bound to the candidate, the parity receipt and tracked validation receipt hashes; but no completed record has used these links yet (the 110 existing records are exempt imports) and no command yet produces a candidate nautilus run",
       "next_action": "Log the first completed record with run hashes; add a candidate confirmation command",
       "roadmap_step": 6,
       "evidence": [

@@ -9,11 +9,13 @@ owner: project-maintainers
 Proposed design for the infrastructure that daily offline research needs before more
 views are worth building: a qualified free-data layer, one run harness with two engines,
 a standard per-run output and analysis computed from that output. It also maps the
-existing teams, skills and SOPs onto that infrastructure and names the gaps. P0 and
-P1a (the ETF data layer) and P1b are **implemented**. Real-data sector-ETF parity
+existing teams, skills and SOPs onto that infrastructure and names the gaps. P0, P1a
+(the ETF data layer), P1b, P2, P3 and P4 are **implemented**; only P5 (portfolio
+construction) is **planned**. Real-data sector-ETF parity
 **passed** with 0 mismatches on the frozen dataset `sector-etfs-2016-2025-n1`
-([task record](2026-11-17-engine-parity.md)). Every other component below is still
-**planned**. See the status column under [Phasing](#phasing). The [roadmap](../roadmap.md)
+([task record](2026-11-17-engine-parity.md)). Known open gaps are under
+[Not yet](#not-yet), for example no command yet produces a candidate's NautilusTrader run.
+See the status column under [Phasing](#phasing). The [roadmap](../roadmap.md)
 keeps sequencing authority. The owner approved this design on 2026-11-17 and folded it
 into M1 (data layer, harness, parity) and M2 (run output, analysis, enforced rules).
 
@@ -252,8 +254,12 @@ tool-enforced rather than documented only:
 
 How they are enforced: `use: financial` marks a financial run, and `scripts/analysis.py run`
 refuses one without a covering acceptance (`scripts/data.py accept`, owner only).
-`scripts/experiments.py log` reads and hashes the run, parity and validation files; `make
-check` re-verifies only tracked material. The promoting disposition is `keep`. Details:
+`scripts/experiments.py log` reads and hashes the run, parity and validation files,
+re-verifies the quality gate from the report on disk, requires the nautilus run to be a
+financial run bound to the candidate (same dataset hash, strategy, market, instruments) and
+compares engine files between full-SHA commits; `make check` re-verifies only tracked
+material (record shape and the tracked validation receipt). The promoting disposition is
+`keep`, never `imported`, `failed` or `abandoned`. Details:
 [workflow](../workflow.md#enforced-research-rules) and the [task record](2026-11-18-enforced-rules.md).
 
 Design call: a parity receipt vouches for the **engine code** (engine-file identity
@@ -269,9 +275,12 @@ Limits:
 
 ### Not yet
 
-- **No `keep` is possible.** No CLI produces a nautilus run for a candidate: today's
-  analyses are screening-engine runs only, and parity runs the fixed parity strategy. A
+- **No `keep` can be logged in practice.** No CLI produces a nautilus run for a candidate:
+  today's analyses are screening-engine runs only, and parity runs the fixed parity
+  strategy; parity runs are engineering runs and are rejected as the nautilus run. A
   candidate confirmation command must exist before any record can promote.
+- The registry is an append-only local file; a self-consistent hand-forged chain is outside
+  what it can prevent.
 - No acceptance has been recorded for any real dataset; the owner has not accepted
   the `sector-etfs-2016-2025-n1` exceptions.
 

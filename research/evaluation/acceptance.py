@@ -11,11 +11,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
 SCHEMA = "quality-acceptance/v1"
 FILE = "acceptance.json"
+_SEGMENT = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,199}$")
 
 
 class AcceptanceError(ValueError):
@@ -26,6 +28,12 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _segment(value, label: str) -> str:
+    if not isinstance(value, str) or not _SEGMENT.match(value) or ".." in value:
+        raise AcceptanceError(f"{label} {value!r} is not a safe path segment")
+    return value
+
+
 def uncovered_checks(report: dict) -> list[str]:
     """Names of the checks that did not pass."""
     return [c["name"] for c in report.get("checks", []) if c.get("status") != "pass"]
@@ -34,6 +42,8 @@ def uncovered_checks(report: dict) -> list[str]:
 def write_acceptance(root: Path, dataset_id: str, report_stamp: str, accepted_by: str, accepts: list[str],
                      note: str, now: datetime) -> Path:
     """Record the owner's acceptance of the named report; exclusive create."""
+    _segment(dataset_id, "dataset_id")
+    _segment(report_stamp, "report_stamp")
     if not isinstance(accepted_by, str) or not accepted_by.strip():
         raise AcceptanceError("accepted_by must be a non-empty name")
     accepts = [a for a in (accepts or []) if isinstance(a, str) and a.strip()]

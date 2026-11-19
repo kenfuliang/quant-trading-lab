@@ -104,6 +104,15 @@ class AcceptanceTests(unittest.TestCase):
         with self.assertRaises(FileExistsError):
             self.accept()
 
+    def test_dataset_id_and_stamp_must_be_safe_path_segments(self):
+        make_report(self.root)
+        for bad in ("../x", "a/b", "..", "", ".hidden", "a..b", None):
+            with self.subTest(bad=bad):
+                with self.assertRaisesRegex(AcceptanceError, "safe path segment"):
+                    acceptance.write_acceptance(self.root, bad, STAMP, "owner", ["all"], "n", NOW)
+                with self.assertRaisesRegex(AcceptanceError, "safe path segment"):
+                    acceptance.write_acceptance(self.root, "ds-1", bad, "owner", ["all"], "n", NOW)
+
     def test_cli_accept(self):
         folder, _ = make_report(self.root)
         base = ["accept", "--dataset-id", "ds-1", "--report-stamp", STAMP, "--by", "owner",

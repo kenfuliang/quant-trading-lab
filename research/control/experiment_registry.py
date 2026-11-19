@@ -98,6 +98,12 @@ def validate(record):
         raise RegistryError("imported must be true or false")
     if "attempt" in record and record["attempt"] not in ATTEMPTS:
         raise RegistryError("attempt must be one of " + ", ".join(ATTEMPTS))
+    if record["disposition"] == "keep":
+        if record.get("imported") is True:
+            raise RegistryError("an imported record cannot be a keep: promotion needs the rule 3 evidence chain")
+        if record.get("attempt") in NO_RUN_ATTEMPTS:
+            raise RegistryError(f"a keep record cannot have attempt {record['attempt']!r}: "
+                                "a promoted candidate needs completed runs")
     if record.get("imported") is not True:  # historical records predate the rules
         _require_run_refs(record)
     canonical_hash(record)  # strict JSON only

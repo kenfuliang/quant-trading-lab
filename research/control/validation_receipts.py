@@ -82,8 +82,6 @@ def validate_receipt(doc, filename_stem=None):
     if unknown:
         raise ValidationReceiptError(
             f"unknown researcher skills {unknown}; allowed: {', '.join(RESEARCH_SKILLS)}")
-    if skill in skills:
-        raise ValidationReceiptError(f"validator skill {skill!r} must not be among the researcher skills")
     checks = doc["checks"]
     if not isinstance(checks, list):
         raise ValidationReceiptError("checks must be a list")
@@ -106,6 +104,9 @@ def validate_receipt(doc, filename_stem=None):
             if check["status"] == "fail":
                 raise ValidationReceiptError(f"a passing receipt cannot contain failed check {check['name']!r}")
             _text(check["detail"], f"detail of check {check['name']!r}")
+        if not any(check["status"] == "pass" for check in checks):
+            raise ValidationReceiptError("a passing receipt needs at least one check with status 'pass' "
+                                         "(waived checks alone are not evidence)")
     return doc
 
 

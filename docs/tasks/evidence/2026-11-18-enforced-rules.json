@@ -9,13 +9,13 @@
     },
     {
       "id": "2-completed-record-needs-run-output",
-      "rule": "A new (not imported) record that is not blocked and not attempt failed/abandoned needs refs.run_id and refs.run_manifest_sha256; the run must be use: financial with a passing or accepted quality status.",
-      "enforced_at": ["research/control/experiment_registry.py validate (shape, log time and make check)", "scripts/experiments.py log (reads and hashes the manifest)"]
+      "rule": "A new (not imported) record that is not blocked and not attempt failed/abandoned needs refs.run_id and refs.run_manifest_sha256; the run must be use: financial with a passing or accepted quality status, re-verified at log time from the quality report and acceptance on disk (not from the gate fields in the manifest).",
+      "enforced_at": ["research/control/experiment_registry.py validate (shape, log time and make check)", "scripts/experiments.py log (reads and hashes the manifest; re-runs verify_for_financial_use inside the data root)"]
     },
     {
       "id": "3-keep-needs-nautilus-parity-validation",
-      "rule": "A keep record needs a nautilus run, a clean passing parity receipt with engine files unchanged between the receipt and run commits, and a tracked validation receipt from a Validation skill that is not a researcher skill.",
-      "enforced_at": ["research/control/experiment_registry.py validate (shape)", "scripts/experiments.py log (files, engine identity by git)", "scripts/experiments.py check (tracked validation receipt, no local files)", "scripts/validation.py check via make validation-check"],
+      "rule": "A keep record is never imported, failed or abandoned. It needs a nautilus run that meets the same financial requirement as the candidate run and is bound to it (same datasets.manifest_sha256, same config strategy, market and instruments), a clean passing parity receipt with engine files unchanged between full-SHA commits, and a tracked validation receipt from a Validation skill that is not a researcher skill, with at least one passing check, covering both run ids and naming the same parity receipt.",
+      "enforced_at": ["research/control/experiment_registry.py validate (shape; keep never imported/failed/abandoned)", "scripts/experiments.py log (files, binding, engine identity by git, receipt tracked by git)", "scripts/experiments.py check (tracked validation receipt incl. parity receipt id, no local files)", "scripts/validation.py check via make validation-check"],
       "promoting_disposition": "keep"
     }
   ],
@@ -23,7 +23,8 @@
     "Acceptance is bound to one report by SHA-256; it does not prove the owner understood the exceptions.",
     "Parity receipts vouch for engine code (engine-file identity), not for the candidate.",
     "Validation roles are self-reported; the tool enforces separation of recorded roles, not independence.",
-    "No CLI produces a candidate's nautilus run, so no keep record can be logged yet."
+    "No CLI produces a candidate's nautilus run (parity runs are engineering runs and are rejected as the nautilus run), so no keep record can be logged in practice yet.",
+    "The registry is an append-only local file; a self-consistent hand-forged chain is outside what it can prevent."
   ],
   "tests": {
     "scenario": "tests/current/test_enforced_rules.py (test_end_to_end_rules, temporary roots, fake git)",

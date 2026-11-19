@@ -94,8 +94,23 @@ class RegistryCoreTests(unittest.TestCase):
 
     def test_imported_records_are_exempt(self):
         reg.validate(rec(imported=True))
-        reg.validate(rec(imported=True, disp="keep"))
         reg.validate(rec())  # rec() defaults to imported
+
+    def test_imported_keep_is_rejected(self):
+        for cls in ("development", "live"):
+            with self.subTest(cls=cls), self.assertRaisesRegex(reg.RegistryError, "imported"):
+                reg.validate(rec(imported=True, disp="keep", cls=cls))
+
+    def test_keep_with_failed_or_abandoned_attempt_is_rejected(self):
+        full = {"run_id": "R1", "run_manifest_sha256": "a" * 64,
+                "nautilus_run_id": "N1", "nautilus_run_manifest_sha256": "b" * 64,
+                "parity_receipt_id": "P1", "parity_receipt_sha256": "c" * 64,
+                "validation_receipt": "VR1", "validation_receipt_sha256": "d" * 64}
+        for attempt in ("failed", "abandoned"):
+            for refs in ({}, dict(full)):
+                with self.subTest(attempt=attempt, refs=bool(refs)), self.assertRaisesRegex(reg.RegistryError, attempt):
+                    reg.validate(rec(imported=False, disp="keep", attempt=attempt, refs=refs))
+        reg.validate(rec(imported=False, disp="keep", attempt="completed", refs=dict(full)))
 
     def test_existing_registry_still_validates(self):
         records = reg.load(ROOT / "research/registry/experiments.jsonl")
@@ -247,14 +262,36 @@ class CliTests(unittest.TestCase):
         path.write_text(json.dumps(doc, sort_keys=True))
         return hashlib.sha256(path.read_bytes()).hexdigest()
 
+    def make_quality(self, status="pass", accept=False):
+        """A real quality report under the temp data root; returns the manifest `datasets` block for it."""
+        from datetime import datetime, timezone
+        from research.evaluation import acceptance
+        folder = self.root / "quality/ds-1" / f"{status}-{int(accept)}"
+        folder.mkdir(parents=True, exist_ok=True)
+        checks = [{"name": "a", "status": "pass", "count": 0}]
+        if status == "pass-with-exceptions":
+            checks.append({"name": "b", "status": "exception", "count": 1})
+        (folder / "report.json").write_text(json.dumps(
+            {"schema": "quality-report/v1", "dataset_id": "ds-1", "status": status, "checks": checks}))
+        gate = {"status": "pass", "acceptance_sha256": None}
+        if accept:
+            path = acceptance.write_acceptance(self.root, "ds-1", folder.name, "owner", ["all"], "n",
+                                               datetime(2026, 11, 18, tzinfo=timezone.utc))
+            gate = {"status": "accepted", "acceptance_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+        return {"dataset_id": "ds-1", "manifest_sha256": "e" * 64, "quality_status": status,
+                "quality_report": f"quality/ds-1/{folder.name}/report.json", "acceptance": gate}
+
     def make_run(self, run_id, **fields):
-        doc = {"run_id": run_id, "engine": "screen", "code_commit": "aaa111", "use": "financial",
-               "datasets": {"quality_status": "pass"}, **fields}
+        if "datasets" not in fields:
+            fields["datasets"] = self.make_quality()
+        doc = {"run_id": run_id, "engine": "screen", "code_commit": "a" * 40, "use": "financial",
+               "config": {"strategy": {"kind": "s"}, "market": {"cost_bps": 5}, "instruments": ["SPY"], "engine": "screen"},
+               **fields}
         return self.write_json(self.runs / run_id / "manifest.json", doc)
 
     def make_parity(self, parity_id="P1", **fields):
         doc = {"parity_id": parity_id, "status": "passed", "passed": True, "mismatch_count": 0,
-               "code_commit": "bbb222", "runs": {"nautilus": {"run_id": "N1"}}, **fields}
+               "code_commit": "b" * 40, "runs": {"nautilus": {"run_id": "N1"}}, **fields}
         return self.write_json(self.parity / parity_id / "receipt.json", doc)
 
     def make_validation(self, receipt_id="VR1", **fields):
@@ -266,12 +303,14 @@ class CliTests(unittest.TestCase):
         return ("log", "--id", rid, "--name", "Promote", "--context", "C1", "--period", "2020-2025",
                 "--disposition", "keep", "--lesson", "Held up.",
                 "--metrics", json.dumps({"net_cagr": 0.2, "max_drawdown": 0.1}),
-                "--runs-root", str(self.runs), "--parity-root", str(self.parity), "--receipts-dir", str(self.receipts),
+                "--runs-root", str(self.runs), "--parity-root", str(self.parity), "--receipts-dir", str(self.receipts), "--allow-untracked-receipts",
                 "--run-id", "R1", "--nautilus-run-id", "N1", "--parity-receipt", "P1",
                 "--validation-receipt", "VR1", *extra)
 
     def setup_keep(self):
-        self.make_run("N1", engine="nautilus", use="engineering", code_commit="ccc333")
+        self.make_run("N1", engine="nautilus", code_commit="c" * 40,
+                      config={"strategy": {"kind": "s"}, "market": {"cost_bps": 5}, "instruments": ["SPY"],
+                              "engine": "nautilus"})
         self.make_parity()
         self.make_validation()
         patcher = mock.patch.object(cli, "run_git", lambda args: (0, ""))
@@ -328,7 +367,7 @@ class CliTests(unittest.TestCase):
         self.assertIn("not found", err)
         self.make_run("R2", use="engineering")
         self.assertEqual(self.log("t-2", "--run-id", "R2")[0], 1)
-        self.make_run("R3", datasets={"quality_status": "pass-with-exceptions"})
+        self.make_run("R3", datasets={**self.make_quality("pass-with-exceptions"), "acceptance": {}})
         code, _, err = self.log("t-3", "--run-id", "R3")
         self.assertEqual(code, 1)
         self.assertIn("acceptance", err)
@@ -350,9 +389,7 @@ class CliTests(unittest.TestCase):
         self.assertIn("run_manifest_sha256", err)
 
     def test_log_accepts_pass_with_exceptions_when_accepted(self):
-        accepted = {"quality_status": "pass-with-exceptions",
-                    "acceptance": {"status": "accepted", "acceptance_sha256": "a" * 64}}
-        self.make_run("R2", datasets=accepted)
+        self.make_run("R2", datasets=self.make_quality("pass-with-exceptions", accept=True))
         self.assertEqual(self.log("t-1", "--run-id", "R2")[0], 0)
 
     def test_failed_and_blocked_records_log_without_a_run(self):
@@ -370,7 +407,7 @@ class CliTests(unittest.TestCase):
 
     def test_log_rejects_dirty_or_mismatched_parity_receipt(self):
         self.setup_keep()
-        for fields in ({"code_commit": "bbb222+dirty"}, {"status": "failed", "passed": False},
+        for fields in ({"code_commit": "b" * 40 + "+dirty"}, {"status": "failed", "passed": False},
                        {"mismatch_count": 3}):
             with self.subTest(fields=fields):
                 self.make_parity(**fields)
@@ -396,13 +433,13 @@ class CliTests(unittest.TestCase):
             code, _, err = self.run_cli(*self.keep_args())
         self.assertEqual(code, 1)
         self.assertIn("native_engine.py", err)
-        self.assertIn("bbb222", calls[0])
-        self.assertIn("ccc333", calls[0])
+        self.assertIn("b" * 40, calls[0])
+        self.assertIn("c" * 40, calls[0])
         self.assertFalse(self.registry.exists())
 
     def test_log_rejects_dirty_run_commit_for_keep(self):
         self.setup_keep()
-        self.make_run("N1", engine="nautilus", code_commit="ccc333+dirty")
+        self.make_run("N1", engine="nautilus", code_commit="c" * 40 + "+dirty")
         self.assertEqual(self.run_cli(*self.keep_args())[0], 1)
 
     def test_log_rejects_bad_validation_receipt(self):
@@ -477,6 +514,128 @@ class CliTests(unittest.TestCase):
                           ("parity_receipt_sha256", self.parity / "P1/receipt.json"),
                           ("validation_receipt_sha256", self.receipts / "VR1.json")):
             self.assertEqual(refs[key], hashlib.sha256(path.read_bytes()).hexdigest())
+
+    def keep_refused(self, text, *extra):
+        code, _, err = self.run_cli(*self.keep_args("k-1", *extra))
+        self.assertEqual(code, 1, err)
+        self.assertIn(text, err)
+        self.assertFalse(self.registry.exists())
+
+    def test_keep_with_failed_or_abandoned_attempt_is_rejected_at_log_time(self):
+        self.setup_keep()
+        for attempt in ("failed", "abandoned"):
+            with self.subTest(attempt=attempt):
+                self.keep_refused(attempt, "--attempt", attempt)
+                self.keep_refused(attempt, "--attempt", attempt, "--dry-run")
+
+    def test_keep_needs_a_financial_nautilus_run(self):
+        self.setup_keep()
+        nautilus = {"strategy": {"kind": "s"}, "market": {"cost_bps": 5}, "instruments": ["SPY"], "engine": "nautilus"}
+        self.make_run("N1", engine="nautilus", use="engineering", code_commit="c" * 40, config=nautilus)
+        self.keep_refused("N1")  # parity runs are engineering runs: not a candidate run
+        self.make_run("N1", engine="nautilus", code_commit="c" * 40, config=nautilus,
+                      datasets={**self.make_quality(), "quality_status": "fail"})
+        self.keep_refused("N1")
+
+    def test_keep_nautilus_run_must_be_bound_to_the_candidate(self):
+        self.setup_keep()
+        base = {"strategy": {"kind": "s"}, "market": {"cost_bps": 5}, "instruments": ["SPY"], "engine": "nautilus"}
+        datasets = self.make_quality()
+        cases = {"different dataset hash": {"datasets": {**datasets, "manifest_sha256": "f" * 64}},
+                 "no dataset hash": {"datasets": {k: v for k, v in datasets.items() if k != "manifest_sha256"}},
+                 "different strategy": {"config": {**base, "strategy": {"kind": "other"}}},
+                 "different market": {"config": {**base, "market": {"cost_bps": 50}}},
+                 "different instruments": {"config": {**base, "instruments": ["QQQ"]}},
+                 "no config": {"config": None}}
+        for label, change in cases.items():
+            with self.subTest(label):
+                fields = {"engine": "nautilus", "code_commit": "c" * 40, "config": base, **change}
+                self.make_run("N1", **fields)
+                self.keep_refused("N1")
+
+    def test_keep_logs_with_matching_financial_nautilus_run(self):
+        self.setup_keep()
+        self.assertEqual(self.run_cli(*self.keep_args())[0], 0)
+
+    def test_validation_receipt_must_name_the_records_parity_receipt(self):
+        self.setup_keep()
+        self.make_validation(parity_receipt_id="OTHER")
+        self.keep_refused("parity receipt")
+        patcher = mock.patch.object(cli, "VALIDATION_RECEIPTS", self.receipts)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.make_validation()
+        self.assertEqual(self.run_cli(*self.keep_args())[0], 0)
+        doc = json.loads((self.receipts / "VR1.json").read_text())
+        sha = self.write_json(self.receipts / "VR1.json", {**doc, "parity_receipt_id": "OTHER"})
+        records = reg.load(self.registry)
+        records[0]["refs"]["validation_receipt_sha256"] = sha
+        errors = cli.check_validation_refs(records)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("parity receipt", errors[0])
+
+    def test_log_reverifies_the_quality_gate_instead_of_trusting_the_manifest(self):
+        data = self.make_quality("fail")  # the report says fail; the manifest lies that it passed
+        self.make_run("R2", datasets={**data, "quality_status": "pass", "acceptance": {"status": "pass", "acceptance_sha256": None}})
+        code, _, err = self.log("t-1", "--run-id", "R2")
+        self.assertEqual(code, 1)
+        self.assertIn("quality", err)
+        self.assertFalse(self.registry.exists())
+        accepted = self.make_quality("pass-with-exceptions", accept=True)
+        self.make_run("R3", datasets={**accepted, "acceptance": {"status": "accepted", "acceptance_sha256": "9" * 64}})
+        code, _, err = self.log("t-2", "--run-id", "R3")
+        self.assertEqual(code, 1)
+        self.assertIn("acceptance", err)
+        self.make_run("R4", datasets={**accepted, "quality_status": "pass"})  # report is not a pass
+        self.assertEqual(self.log("t-3", "--run-id", "R4")[0], 1)
+        self.assertFalse(self.registry.exists())
+
+    def test_log_rejects_a_quality_report_that_cannot_be_read_or_is_outside_the_data_root(self):
+        good = self.make_quality()
+        cases = {"missing report": {**good, "quality_report": "quality/ds-1/nope/report.json"},
+                 "no report named": {k: v for k, v in good.items() if k != "quality_report"},
+                 "parent escape": {**good, "quality_report": "../outside/report.json"},
+                 "absolute path": {**good, "quality_report": str(self.root.parent / "x/report.json")}}
+        outside = self.root.parent / "outside"
+        outside.mkdir(exist_ok=True)
+        self.addCleanup(lambda: shutil.rmtree(outside, ignore_errors=True))
+        (outside / "report.json").write_text(json.dumps({"status": "pass", "checks": []}))
+        for label, datasets in cases.items():
+            with self.subTest(label):
+                self.make_run("R2", datasets=datasets)
+                code, _, err = self.log("t-1", "--run-id", "R2")
+                self.assertEqual(code, 1)
+                self.assertIn("cannot verify the quality gate", err)
+        self.assertFalse(self.registry.exists())
+
+    def test_receipts_dir_outside_the_tracked_directory_needs_the_explicit_flag(self):
+        self.setup_keep()
+        args = [a for a in self.keep_args() if a != "--allow-untracked-receipts"]
+        code, _, err = self.run_cli(*args)
+        self.assertEqual(code, 1)
+        self.assertIn("allow-untracked-receipts", err)
+        self.assertFalse(self.registry.exists())
+        code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 0, err)
+        self.assertIn("warning", err.lower())
+
+    def test_untracked_receipt_file_is_rejected_at_log_time(self):
+        self.setup_keep()
+        patcher = mock.patch.object(cli, "VALIDATION_RECEIPTS", self.receipts)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        args = [a for a in self.keep_args() if a != "--allow-untracked-receipts"]
+        calls = []
+
+        def untracked(argv):
+            calls.append(argv)
+            return (1, "") if argv[0] == "ls-files" else (0, "")
+        with mock.patch.object(cli, "run_git", untracked):
+            code, _, err = self.run_cli(*args)
+        self.assertEqual(code, 1)
+        self.assertIn("not tracked", err)
+        self.assertEqual(calls[0][:2], ["ls-files", "--error-unmatch"])
+        self.assertEqual(self.run_cli(*args)[0], 0)  # tracked (git faked as clean)
 
     def test_dry_run_also_verifies_files(self):
         self.assertEqual(self.log("t-1", "--run-id", "NOPE", "--dry-run")[0], 1)
