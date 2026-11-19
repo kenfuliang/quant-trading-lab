@@ -25,13 +25,13 @@ Importance is H, M or L, weighted 3, 2 and 1 in the weighted average. Half steps
 
 | Area | Aspects | Simple average | Weighted average |
 | --- | --- | --- | --- |
-| Data | 6 | 1.58 | 1.77 |
-| Research and evaluation | 11 | 2.64 | 2.63 |
+| Data | 6 | 1.92 | 2.17 |
+| Research and evaluation | 11 | 2.73 | 2.74 |
 | Portfolio and risk | 4 | 2.62 | 2.78 |
 | Execution and operations | 5 | 1.40 | 1.38 |
-| Engineering | 6 | 2.67 | 2.81 |
+| Engineering | 6 | 2.83 | 2.96 |
 | People and process | 7 | 2.29 | 2.42 |
-| Overall | 39 | 2.26 | 2.37 |
+| Overall | 39 | 2.36 | 2.50 |
 
 ## Fix first
 
@@ -39,9 +39,8 @@ Importance H with score 2 or lower, lowest score first.
 
 | Id | Aspect | Score | Next action | Roadmap step |
 | --- | --- | --- | --- | --- |
-| D4 | Instrument identity across ticker changes | 0.5 | Identity table with dated symbols | 5 |
-| D3 | Universe and survivorship | 1 | Point-in-time membership and coverage | 5 |
-| R2 | Cost and execution realism | 1.5 | Liquidity-scaled stock costs | 5 |
+| D4 | Instrument identity across ticker changes | 1.5 | Cite sources for ticker changes and resolve the candidates | 5 |
+| D3 | Universe and survivorship | 2 | Former members' prices and sourced ticker changes before any G2 claim | 5 |
 | R8 | Analysis and attribution | 2 | Attribution beyond the stage waterfall; apply to further strategies | 7 |
 
 ## All aspects
@@ -52,8 +51,8 @@ Importance H with score 2 or lower, lowest score first.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | D1 | Data acquisition and rights | 3 | H | Alpaca and issuer files; rights tracked per source; Yahoo private-use ruling recorded; Yahoo snapshot collector writes receipted, hash-checked raw responses; no automated refresh | Scheduled refresh and an owner acceptance of the first quality report | 3 | G1.1 | `research/data/yahoo_snapshot.py`, `research/data/manifest.py`, `tests/current/test_yahoo_snapshot.py` |
 | D2 | Data quality and corporate actions | 3 | H | etf-normalise/v1 makes the issuer-qualified derivative loadable (cent rounding counted, in-kind converted, after-window dividend excluded) and a quality report is written on request (`scripts/data.py quality`), not for every dataset automatically; the loader refuses a missing, malformed, failed, stale or foreign report; cross-source Alpaca-Yahoo breaches are listed, not resolved; owner acceptance pending | Resolve or accept the listed cross-source breaches; owner acceptance of the report | 3 | G1.2 | `research/evaluation/etf_normalise.py`, `research/evaluation/data_quality.py`, `research/evaluation/datasets.py`, `tests/current/test_etf_normalise.py`, `tests/current/test_data_quality.py`, `tests/current/test_datasets.py` |
-| D3 | Universe and survivorship | 1 | H | 500 current members only; survivor-bias label rule in goals | Point-in-time membership and coverage | 5 | none | `docs/goals.md` |
-| D4 | Instrument identity across ticker changes | 0.5 | H | No stable id or symbol history | Identity table with dated symbols | 5 | none | none |
+| D3 | Universe and survivorship | 2 | H | Point-in-time S&amp;P 500 membership from fja05680 (MIT) with spot checks and listed cross-check differences, coverage per date (57.5% to 80.7% of members have data) and masking in runs; universe is still the current-holdings proxy, former members' prices are out of scope, every stock result stays survivor-biased and discovery-only | Former members' prices and sourced ticker changes before any G2 claim | 5 | none | `docs/goals.md`, `research/data/membership.py`, `research/evaluation/universe.py`, `docs/tasks/2026-11-18-stock-layer.md` |
+| D4 | Instrument identity across ticker changes | 1.5 | H | Identity table with dated symbols and issuer ids for current members; one ticker change applied (FB to META) and it is unverified (no source URL); 458 rename candidates unresolved | Cite sources for ticker changes and resolve the candidates | 5 | none | `research/data/identity.py`, `research/registry/ticker-changes.json`, `tests/current/test_identity.py`, `docs/tasks/2026-11-18-stock-layer.md` |
 | D5 | Exchange calendar and half-days | 2 | M | Quality report checks bar sessions against the calendar and lists half-days; the parity receipt takes its half-day list from the report; no early-close modelling in engines | Model early closes in the engines only if a study needs intraday timing | 3 | none | `research/data/calendar.py`, `tests/current/test_data_calendar.py`, `research/evaluation/data_quality.py` |
 | D6 | Fundamentals and alternative data | 0 | L | Deferred by design | none now | - | none | none |
 
@@ -62,7 +61,7 @@ Importance H with score 2 or lower, lowest score first.
 | Id | Aspect | Score | Imp | Critique | Next action | Step | Gates | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | R1 | Backtest engines | 3.5 | H | Screen and NautilusTrader engines agree on the CI fixture and on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches); code shared by both engines is not covered by parity; one run | Repeat on a wider instrument set; test shared-code rules independently | 3 | G3.2 | `research/evaluation/parity.py`, `tests/current/test_engine_parity.py`, `tests/current/test_engine_parity_cli.py`, `scripts/current/engine_parity.py`, `docs/tasks/2026-11-17-engine-parity.md` |
-| R2 | Cost and execution realism | 1.5 | H | Fixed bp plus $1 commission; no liquidity scaling | Liquidity-scaled stock costs | 5 | none | `research/evaluation/market_model.py` |
+| R2 | Cost and execution realism | 2.5 | H | Flat bp or a liquidity-scaled tier (median 20-session dollar volume before the decision) plus $1 commission, shared by both engines with parity and lookahead tests; tiers are modelled, not calibrated to quotes; no market impact or borrow | Calibrate the tiers against observed spreads before a financial claim | 5 | none | `research/evaluation/market_model.py`, `tests/current/test_cost_model.py`, `docs/tasks/2026-11-18-stock-layer.md` |
 | R3 | Interest on idle cash | 2 | M | Not modelled; disclosed in every receipt and in conventions | Revisit when gated strategies are compared to buy-and-hold | - | none | `research/evaluation/market_model.py`, `docs/conventions.md` |
 | R4 | Short selling and borrow | 3 | L | Long-only decided for the pilot | none now | - | G0.3 | `docs/goals.md` |
 | R5 | Lookahead and leakage control | 3 | H | Manual audit skill; causal history_view; automated truncate-and-compare check passes on the rebuilt incumbent at five cutoffs (all sessions before each cutoff compared; a cutoff inside warm-up is not tested); not yet a gate in the SOP | Enforce the check as an SOP rule (step 6) | 6 | G2.2 | `research/control/leakage_audit.py`, `tests/test_leakage_audit.py`, `research/evaluation/lookahead.py`, `tests/current/test_lookahead.py`, `docs/tasks/2026-11-18-incumbent-rebuild.md` |
@@ -99,7 +98,7 @@ Importance H with score 2 or lower, lowest score first.
 | N1 | Testing and CI | 4.5 | H | 1,170 tests in about 40 s; CI on PRs, boundary and doc checks, parity in CI; a 30 s per-test duration guard fails the run and names the slow test | none now | - | none | `.github/workflows/ci.yml`, `scripts/check_boundaries.py`, `scripts/check_docs.py`, `scripts/run_tests.py`, `tests/current/test_run_tests.py` |
 | N2 | Code architecture | 3 | M | Layers enforced; many one-off scripts and frozen copies | Keep legacy frozen; rebuild incumbents only | - | none | `docs/architecture.md`, `tests/test_dependency_boundaries.py` |
 | N3 | Dependencies and environment | 4.5 | M | Locked and pinned; Makefile resolves the interpreter from the local .venv, else the main checkout's .venv, so plain make check works in a worktree | none now | - | none | `requirements.lock.txt`, `Makefile` |
-| N4 | Performance at scale | 1 | M | Fixture runs under a second; 500-name runtime unknown | Timing benchmark on 500 names | 5 | none | `docs/operations/performance.md` |
+| N4 | Performance at scale | 2 | M | Screening on all 416 stock names takes about 83 s (was 179 s), bit-identical results; native engine extrapolated to about 413 s from 20 measured names; single runs on a shared machine | Measure native on all names if a study needs it | 5 | none | `docs/operations/performance.md`, `docs/tasks/evidence/2026-11-18-stock-layer.json`, `tests/current/test_market_model.py` |
 | N5 | Storage and retention | 1 | M | Run outputs, receipts, quality reports and manifests live under one shared data root (QTL_DATA_ROOT, default main checkout data/); no retention rule yet | Write the retention rule | 3 | none | `research/data/root.py`, `tests/current/test_data_root.py`, `docs/data-library.md` |
 | N6 | Security and secrets | 2 | M | Credentials kept out of tracked files by rule; no secret scan seen | Add a secret scan to checks | - | G8.2 | `AGENTS.md` |
 

@@ -1,0 +1,132 @@
+{
+  "schema_note": "Summary of the S&P 500 stock layer (Plan 5, phase P3); no price data. Paths are relative to the data root unless stated.",
+  "labels": ["survivor-biased", "discovery-only"],
+  "universe_kind": "current-holdings-proxy",
+  "survivor_bias_statement": "The universe is the issuer's current SPY equity holdings (a current-holdings proxy). Former members' prices are out of scope, so the dataset cannot represent names that left the index. Point-in-time membership masks the proxy names by date but cannot add the missing names. Share of S&P 500 members with data per date: minimum 0.5754 (2016-01-04, 290 of 504), median 0.6990, 0.807 on 2025-12-31 (406 of 503). Every stock analysis and receipt carries the two labels; results are discovery-only and cannot clear G2.",
+  "dataset": {
+    "dataset_id": "spy-equities-2016-2025-n1",
+    "manifest_sha256": "6422c7d668518e0b0b01c91ccd1aa914c6944387c3c6d7f9b934217e299c0a98",
+    "recipe": "etf-normalise/v1",
+    "symbols": 416,
+    "sessions": 2514,
+    "first_session": "2016-01-04",
+    "last_session": "2025-12-31",
+    "structural_full_window_symbols": 459,
+    "excluded_symbols": 52,
+    "quality_report": "quality/spy-equities-2016-2025-n1/20261119T004900Z/report.json",
+    "quality_status": "pass-with-exceptions",
+    "owner_acceptance": "none recorded",
+    "load_seconds": {"cold_normalise_and_cache": 5.3, "cached": 0.4}
+  },
+  "actions": {
+    "source": "Yahoo chart endpoint, snapshot yahoo-spy-equities-2016-2025-20261118",
+    "file": "normalized/spy-equities-2016-2025-actions-yahoo-yahoo-spy-equities-2016-2025-20261118.json",
+    "requested_symbols": 503,
+    "received_symbols": 498,
+    "failed_fetches": ["FDXF", "HONA", "HUBB", "KVUE", "VYLR"],
+    "splits": 65,
+    "dividends": 13254,
+    "dividend_unadjustment": "each Yahoo amount multiplied by the product of the ratios of that symbol's splits dated after the ex-date",
+    "pay_date": "not provided; pay_date = ex_date, credited on the ex-date (pay_date_unknown_credited_on_ex_date)",
+    "excluded_split_symbols": 47,
+    "excluded_reason": "any split that is not an integer forward ratio >= 2 (reverse or non-integer) excludes the symbol; most of these are spin-off or merger adjustments that Yahoo encodes as ratios near 1 (for example 1.046:1 for IBM), not stock splits",
+    "excluded_large_caps_examples": ["GE", "IBM", "MMM", "PFE", "MRK", "T", "HON", "RTX", "DD", "DHR", "EXC", "MET", "OXY", "YUM", "DELL", "HPE"],
+    "true_fractional_splits_excluded": ["BF.B 5:4", "ODFL 3:2", "PCAR 3:2", "RJF 3:2", "ROL 3:2", "WRB 3:2"],
+    "disclosure": "Large caps are missing from the stock dataset because of the exclusion rule, so the dataset is not representative of the index's largest names."
+  },
+  "quality_report_summary": {
+    "pass": {"sessions": 0, "half_days_info": 21, "duplicates": 0, "non_finite": 0, "non_positive": 0, "ohlc": 0, "actions_converted": 0, "split_events": 0},
+    "exceptions": {"zero_volume": 904, "gaps": 165, "cent_rounding": 317041, "actions_excluded": 2, "cross_source": 21504, "universe": 52, "pay_date_assumed": 12791},
+    "gaps_on_split_dates": "every one of the 65 split records has a raw close ratio matching its split ratio; no big move adjacent to a split date; the 165 gaps are real moves above 25 percent on non-split days",
+    "cross_source_note": "Alpaca vs Yahoo: 1,042,129 compared, 3,695 not compared; seven full-window names (APH, BKNG, CMCSA, FDX, KLAC, MNST, SPGI) breach on every session because the Yahoo snapshot is adjusted for splits after the window end that the actions list does not hold"
+  },
+  "membership": {
+    "membership_id": "sp500-membership-20261118",
+    "source": "fja05680/sp500, S&P 500 Historical Components & Changes (Updated).csv, MIT licence text kept with the snapshot",
+    "intervals": 1262,
+    "symbols": 1209,
+    "members_2016_01_04": 504,
+    "members_2025_12_31": 503,
+    "spot_checks": [
+      {"name": "TSLA member from 2020-12-21", "result": "pass"},
+      {"name": "AAPL member throughout 2016-2025", "result": "pass"},
+      {"name": "FB present until 2022-06-08, META from 2022-06-09", "result": "pass", "note": "the source carries two symbols; identity maps them to one issuer"}
+    ],
+    "cross_checks": {
+      "dates": "first trading day of each year 2016-2025",
+      "hanshof_sp500_constituents": {"status": "one-sided", "note": "current list only (as of 2025-08-23); names listed only there per date 18, 20, 22, 22, 17, 13, 13, 8, 4, 1 before identity resolution; 0 differences on 2025-08-23; total only_other 138 before and 131 after identity resolution", "only_primary_total": 0},
+      "unliftedq_index_constitution": {"status": "performed", "note": "differences are mostly ticker renames and the opt-out date convention; totals over the ten dates 198 primary-only and 177 other-only before identity resolution, 191 and 170 after; not tuned"}
+    }
+  },
+  "identity": {
+    "identity_id": "sp500-identity-20261118",
+    "symbols": 1214,
+    "current_ids": 503,
+    "historical_only_ids": 710,
+    "aliases": 1,
+    "ticker_changes_applied": 1,
+    "ticker_changes_unapplied": 0,
+    "unresolved_candidates": 458,
+    "unverified": "FB to META 2022-06-09 comes from research/registry/ticker-changes.json with source_url null and verified false; no URL could be checked offline. Other renames (ABC to COR, ANTM to ELV, BLL to BALL, BK to BNY and so on) are not applied because no source is cited."
+  },
+  "coverage": {
+    "coverage_id": "sp500-coverage-spy-equities-n1-20261118",
+    "min_share": 0.5753968253968254,
+    "min_share_date": "2016-01-04",
+    "min_share_members_with_data": "290 of 504",
+    "median_share": 0.699009900990099,
+    "share_2025_12_31": "406 of 503"
+  },
+  "cost_model": {
+    "config": "MarketConfig(cost_model=\"adv\")",
+    "tiers_min_adv_usd_to_bp": [[1000000000, 2.0], [100000000, 5.0], [20000000, 10.0], [0, 25.0]],
+    "adv": "median of close times volume over the 20 sessions strictly before the decision session; fewer than 20 sessions use the 25 bp tier",
+    "convention": "cost_bps(data, instrument, i, config) with i the decision session; the fill is at the open of i+1; raw close and volume; a split inside the window can distort ADV for up to 20 sessions; identical in both engines",
+    "flat_unchanged": "flat keeps the existing behaviour, hashes and goldens"
+  },
+  "performance": {
+    "machine_note": "Local machine shared with other sessions: load average 10 to 18 during every measurement, so timings are noisy. Same machine and dataset for before and after; single runs.",
+    "strategy": "sma_trend_targets(window=20, gross=0.95), all 416 names, 2,514 sessions",
+    "code_before": "b3fdf82 (tests-only change)",
+    "code_after": "016d9f6",
+    "optimisations": [
+      "history_view slices per-instrument frames that carry split_factor, precomputed once per set of effective splits, instead of copying every frame each session",
+      "screening engine: splits and dividend pay dates looked up by date; session index map instead of list.index",
+      "native engine: bar columns read from arrays instead of per-row iloc; dividend ex and pay dates looked up by date; session index maps"
+    ],
+    "seconds": {
+      "screening_416_flat": {"before": 178.8, "after": 83.3},
+      "screening_416_adv": {"before": 122.4, "after": 83.6},
+      "screening_416_members_only_flat": {"before": 150.7, "after": 86.6},
+      "screening_50_flat": {"before": 18.7, "after": 11.4},
+      "native_20_adv": {"before": 36.0, "after": 19.8}
+    },
+    "native_416_adv_extrapolated_seconds": {"before": 749, "after": 413, "method": "native seconds for 20 names multiplied by 416/20 (linear in names; not measured on 416)"},
+    "target": "screening all names under 5 minutes: met before and after",
+    "remaining_cost": "most of the remaining screening time is pandas work inside the strategy callback, not the engine; native time is mostly NautilusTrader itself"
+  },
+  "bit_identity": {
+    "method": "pandas row hashes of the returns, positions, signals and fills tables plus the cash series, same data and strategy before and after",
+    "screening_416_flat": {"returns": "ae6bc48fd851ed21", "positions": "f561668d5a0b21ef", "signals": "7ffc45667693499c", "fills": "4c765d528fc9cf6a", "cash": "a4359dddd7ae0317", "identical": true},
+    "screening_416_adv": {"returns": "88186cae6d91eae3", "positions": "72f8b230487e139d", "signals": "7ffc45667693499c", "fills": "95357c67689f8687", "cash": "c5f36bbb01d0fe84", "identical": true},
+    "screening_416_members_only": {"returns": "4168f464fa3eb937", "positions": "1b7971c6bfad462c", "signals": "73f44c85114c20e4", "fills": "191ba0550e198b0b", "cash": "1b8bfcb585e77193", "identical": true},
+    "native_20_adv": {"returns": "434775796d4ea68a", "positions": "946c34c6d321fb96", "signals": "6e3b0f21f7cec862", "fills": "d982c7f270fa2589", "cash": "4ed7bf0d4360753d", "identical": true},
+    "screening_50_flat_identical": true,
+    "incumbent_spec_rebuild": "scripts/analysis.py run with research/registry/analysis-specs/incumbent-spy-gate.json in two temp roots, HEAD before the change and after: 16 run table files identical, analysis.json identical after normalising ids and timestamps",
+    "guard_test": "tests/current/test_market_model.py::HistoryViewTests::test_history_view_matches_reference compares the view with a copy of the original construction at every session of the fixture, two split ratios",
+    "golden": "make golden-check passed unchanged"
+  },
+  "parity": {
+    "receipt": "parity/20261119T013649Z-a9e75a25/receipt.json",
+    "command": "scripts/current/engine_parity.py run --dataset spy-equities-2016-2025-n1 --max-instruments 20 --cost-model adv",
+    "instruments": "first 20 symbols alphabetically (A through ALB); includes AFL 2:1, ACGL 3:1 and AAPL 4:1 splits and 631 dividends",
+    "status": "passed",
+    "mismatch_count": 0,
+    "manifest_sha256": "6422c7d668518e0b0b01c91ccd1aa914c6944387c3c6d7f9b934217e299c0a98",
+    "quality_status": "pass-with-exceptions",
+    "code_commit": "016d9f6ff10b6efcedf39879bda928a33f6e5385",
+    "timing_seconds": {"screening": 2.7, "native": 19.5},
+    "labels": ["survivor-biased", "discovery-only"],
+    "scope": "engineering evidence on 20 of 416 names; says nothing about the other names or about financial results"
+  }
+}

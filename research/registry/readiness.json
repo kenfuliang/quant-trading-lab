@@ -45,13 +45,16 @@
       "id": "D3",
       "area": "Data",
       "aspect": "Universe and survivorship",
-      "score": 1,
+      "score": 2,
       "importance": "H",
-      "critique": "500 current members only; survivor-bias label rule in goals",
-      "next_action": "Point-in-time membership and coverage",
+      "critique": "Point-in-time S&P 500 membership from fja05680 (MIT) with spot checks and listed cross-check differences, coverage per date (57.5% to 80.7% of members have data) and masking in runs; universe is still the current-holdings proxy, former members' prices are out of scope, every stock result stays survivor-biased and discovery-only",
+      "next_action": "Former members' prices and sourced ticker changes before any G2 claim",
       "roadmap_step": 5,
       "evidence": [
-        "docs/goals.md"
+        "docs/goals.md",
+        "research/data/membership.py",
+        "research/evaluation/universe.py",
+        "docs/tasks/2026-11-18-stock-layer.md"
       ],
       "gates": []
     },
@@ -59,12 +62,17 @@
       "id": "D4",
       "area": "Data",
       "aspect": "Instrument identity across ticker changes",
-      "score": 0.5,
+      "score": 1.5,
       "importance": "H",
-      "critique": "No stable id or symbol history",
-      "next_action": "Identity table with dated symbols",
+      "critique": "Identity table with dated symbols and issuer ids for current members; one ticker change applied (FB to META) and it is unverified (no source URL); 458 rename candidates unresolved",
+      "next_action": "Cite sources for ticker changes and resolve the candidates",
       "roadmap_step": 5,
-      "evidence": [],
+      "evidence": [
+        "research/data/identity.py",
+        "research/registry/ticker-changes.json",
+        "tests/current/test_identity.py",
+        "docs/tasks/2026-11-18-stock-layer.md"
+      ],
       "gates": []
     },
     {
@@ -119,13 +127,15 @@
       "id": "R2",
       "area": "Research and evaluation",
       "aspect": "Cost and execution realism",
-      "score": 1.5,
+      "score": 2.5,
       "importance": "H",
-      "critique": "Fixed bp plus $1 commission; no liquidity scaling",
-      "next_action": "Liquidity-scaled stock costs",
+      "critique": "Flat bp or a liquidity-scaled tier (median 20-session dollar volume before the decision) plus $1 commission, shared by both engines with parity and lookahead tests; tiers are modelled, not calibrated to quotes; no market impact or borrow",
+      "next_action": "Calibrate the tiers against observed spreads before a financial claim",
       "roadmap_step": 5,
       "evidence": [
-        "research/evaluation/market_model.py"
+        "research/evaluation/market_model.py",
+        "tests/current/test_cost_model.py",
+        "docs/tasks/2026-11-18-stock-layer.md"
       ],
       "gates": []
     },
@@ -485,13 +495,15 @@
       "id": "N4",
       "area": "Engineering",
       "aspect": "Performance at scale",
-      "score": 1,
+      "score": 2,
       "importance": "M",
-      "critique": "Fixture runs under a second; 500-name runtime unknown",
-      "next_action": "Timing benchmark on 500 names",
+      "critique": "Screening on all 416 stock names takes about 83 s (was 179 s), bit-identical results; native engine extrapolated to about 413 s from 20 measured names; single runs on a shared machine",
+      "next_action": "Measure native on all names if a study needs it",
       "roadmap_step": 5,
       "evidence": [
-        "docs/operations/performance.md"
+        "docs/operations/performance.md",
+        "docs/tasks/evidence/2026-11-18-stock-layer.json",
+        "tests/current/test_market_model.py"
       ],
       "gates": []
     },
