@@ -1,0 +1,194 @@
+"""Instrument identity: ids, dated symbols, ticker changes, coverage and the resolved cross-check."""
+import contextlib
+import copy
+import io
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+from research.data import identity
+from research.data.identity import (build_identity, coverage, cross_check_resolved, current_id, intervals_for_dataset,
+                                    resolve, write_coverage, write_identity)
+
+ARCHIVE = {"dataset_id": "arch", "universe": {"equities": [
+    {"symbol": "META", "name": "META PLATFORMS", "issuer_identifier": "30303M102", "currency": "USD"},
+    {"symbol": "AAPL", "name": "APPLE INC", "issuer_identifier": "037833100", "currency": "USD"},
+    {"symbol": "BRK.B", "name": "BERKSHIRE", "issuer_identifier": "084670702", "currency": "USD"},
+    {"symbol": "NEWCO", "name": "NEW CO", "issuer_identifier": "111111111", "currency": "USD"}]}}
+
+MEMBERSHIP = {"schema": "membership/v1", "membership_id": "m1", "intervals": {
+    "FB": [{"start": "2013-12-23", "end": "2022-06-08"}],
+    "META": [{"start": "2022-06-09", "end": None}],
+    "AAPL": [{"start": "2000-01-03", "end": None}],
+    "BRK.B": [{"start": "2010-02-16", "end": None}],
+    "OLDCO-201905": [{"start": "2016-01-04", "end": "2019-04-30"}],
+    "GONE": [{"start": "2016-01-04", "end": "2018-03-14"}],
+    "NEWCO": [{"start": "2018-03-15", "end": None}]}}
+
+CHANGES = [{"old": "FB", "new": "META", "date": "2022-06-09", "source_url": "https://example.test/meta",
+            "verified": False}]
+
+
+def built(changes=CHANGES):
+    return build_identity(ARCHIVE, MEMBERSHIP, copy.deepcopy(changes))
+
+
+class IdentityTests(unittest.TestCase):
+    def test_fb_meta_one_identity(self):
+        ident = built()
+        self.assertEqual(resolve(ident, "FB", "2020-01-02"), "30303M102")
+        self.assertEqual(resolve(ident, "META", "2023-01-03"), "30303M102")
+        self.assertEqual(ident["instruments"]["30303M102"]["symbols"], ["FB", "META"])
+        self.assertNotIn("sym:FB", ident["instruments"])
+        self.assertEqual(ident["ticker_changes"]["applied"][0]["old"], "FB")
+        self.assertEqual(ident["unresolved_candidates"] and [c["old"] for c in ident["unresolved_candidates"]], ["GONE"])
+
+    def test_without_the_change_fb_is_its_own_instrument(self):
+        ident = built([])
+        self.assertEqual(resolve(ident, "FB", "2020-01-02"), "sym:FB")
+        self.assertNotEqual(resolve(ident, "FB", "2020-01-02"), resolve(ident, "META", "2023-01-03"))
+
+    def test_resolve_by_date(self):
+        ident = built()
+        self.assertIsNone(resolve(ident, "META", "2022-06-08"))
+        self.assertIsNone(resolve(ident, "FB", "2022-06-09"))
+        self.assertEqual(resolve(ident, "FB", "2022-06-08"), "30303M102")
+        self.assertEqual(resolve(ident, "META", "2022-06-09"), "30303M102")
+        self.assertIsNone(resolve(ident, "NOSUCH", "2020-01-02"))
+        self.assertEqual(resolve(ident, "aapl", "1999-01-01"), "037833100")
+
+    def test_ids_historical_current_and_alias(self):
+        ident = built()
+        counts = ident["counts"]
+        self.assertEqual((counts["current_ids"], counts["historical_only_ids"]), (4, 2))
+        self.assertEqual(resolve(ident, "GONE", "2017-01-03"), "sym:GONE")
+        self.assertEqual(resolve(ident, "NEWCO", "2018-03-15"), "111111111")
+        self.assertEqual(resolve(ident, "OLDCO-201905", "2017-01-03"), "sym:OLDCO")
+        self.assertEqual(ident["instruments"]["sym:OLDCO"]["aliases"], ["OLDCO-201905"])
+        self.assertEqual(resolve(ident, "OLDCO", "2017-01-03"), "sym:OLDCO")  # normalised fallback
+        self.assertEqual(resolve(ident, "BRK-B", "2017-01-03"), "084670702")  # class-share separator
+        self.assertEqual(counts["aliases"], 2)  # the suffixed raw string and the renamed FB
+
+    def test_unresolved_candidates_are_listed_not_applied(self):
+        ident = built()
+        pair = ident["unresolved_candidates"][0]
+        self.assertEqual((pair["old"], pair["new"]), ("GONE", "NEWCO"))
+        self.assertNotEqual(resolve(ident, "GONE", "2017-01-03"), resolve(ident, "NEWCO", "2018-03-15"))
+
+    def test_every_ticker_change_needs_a_cited_source(self):
+        for bad in ({"old": "A", "new": "B", "date": "2020-01-01"},
+                    {"old": "A", "new": "B", "date": "2020-01-01", "source_url": None},
+                    {"old": "A", "new": "B", "date": "2020-01-01", "source_url": None, "verified": False},
+                    {"old": "A", "new": "B", "date": "2020-01-01", "source_url": "not a url"}):
+            with self.assertRaises(ValueError):
+                build_identity(ARCHIVE, MEMBERSHIP, [bad])
+        ok = {"old": "FB", "new": "META", "date": "2022-06-09", "source_url": None, "verified": False,
+              "source_note": "plain statement"}
+        self.assertEqual(len(built([ok])["ticker_changes"]["applied"]), 1)
+
+    def test_unknown_symbols_in_a_change_are_unapplied(self):
+        ident = built([{"old": "NOPE", "new": "META", "date": "2022-06-09", "source_url": "https://example.test/x"}])
+        self.assertEqual(len(ident["ticker_changes"]["unapplied"]), 1)
+        self.assertEqual(resolve(ident, "FB", "2022-06-09"), "sym:FB")  # unchanged: still its own instrument
+        self.assertEqual(resolve(ident, "FB", "2020-01-02"), "sym:FB")
+
+    def test_committed_ticker_changes_are_valid_and_start_with_fb_meta(self):
+        changes = identity.load_ticker_changes(Path(identity.__file__).resolve().parents[1] / "registry/ticker-changes.json")
+        self.assertEqual((changes[0]["old"], changes[0]["new"], changes[0]["date"]), ("FB", "META", "2022-06-09"))
+
+    def test_coverage_per_date(self):
+        ident = built()
+        sessions = ["2016-01-04", "2018-03-14", "2018-03-15", "2022-06-08", "2022-06-09"]
+        cov = coverage(MEMBERSHIP, ident, ["META", "AAPL", "NEWCO", "BRK.B"], sessions)
+        per = cov["per_date"]
+        # 2016-01-04: FB (=META id), AAPL, BRK.B, OLDCO, GONE; data for FB/META, AAPL, BRK.B
+        self.assertEqual(per["2016-01-04"], {"in_index": 5, "with_data": 3, "share": 3 / 5})
+        self.assertEqual(per["2018-03-14"]["in_index"], 5)
+        self.assertEqual(per["2018-03-15"]["in_index"], 5)  # NEWCO in, GONE out
+        self.assertEqual(per["2018-03-15"]["with_data"], 4)
+        # the rename does not double count nor lose the instrument on either side of the change
+        self.assertEqual(per["2022-06-08"]["with_data"], per["2022-06-09"]["with_data"] + 0)
+        self.assertEqual(per["2022-06-09"], {"in_index": 4, "with_data": 4, "share": 1.0})
+        summary = cov["summary"]
+        self.assertAlmostEqual(summary["min_share"], 3 / 5)
+        self.assertEqual(summary["worst_dates"][0]["date"], "2016-01-04")
+        self.assertAlmostEqual(summary["median_share"], sorted(p["share"] for p in per.values())[2])
+
+    def test_intervals_for_dataset_fold_aliases_into_the_dataset_symbol(self):
+        ident = built()
+        spans = intervals_for_dataset(MEMBERSHIP, ident, ["META", "AAPL"])
+        self.assertEqual(spans["META"], [{"start": "2013-12-23", "end": None}])
+        self.assertNotIn("FB", spans)
+        self.assertEqual(set(spans), {"META", "AAPL"})
+
+    def test_cross_check_resolved_removes_a_rename_difference(self):
+        ident = built()
+        # the other source calls the company META throughout; this table lists FB until 2022-06-08
+        other = {"2020-01-02": {"META", "AAPL", "BRK.B", "NEWCO"},"2023-01-03": {"META", "AAPL", "BRK.B", "NEWCO"}}
+        plain = cross_check_resolved(MEMBERSHIP, built([]), other)
+        resolved = cross_check_resolved(MEMBERSHIP, ident, other)
+        self.assertEqual((plain["2020-01-02"]["only_primary_count"], plain["2020-01-02"]["only_other_count"]), (1, 1))
+        self.assertEqual((resolved["2020-01-02"]["only_primary_count"], resolved["2020-01-02"]["only_other_count"]),
+                         (0, 0))
+        self.assertEqual(resolved["2023-01-03"]["only_other_count"], 0)
+        # real differences stay: a member the other source lacks, and a name this table lacks
+        diff = cross_check_resolved(MEMBERSHIP, ident, {"2023-01-03": {"META", "AAPL", "BRK.B", "ZZZ"}})
+        self.assertEqual((diff["2023-01-03"]["only_primary"], diff["2023-01-03"]["only_other"]),
+                         (["111111111"], ["ZZZ"]))
+
+    def test_cross_check_resolved_one_sided(self):
+        ident = built()
+        result = cross_check_resolved(MEMBERSHIP, ident, {}, one_sided={"2020-01-02": ["META", "AAPL", "MISSING"]})
+        self.assertEqual(result["2020-01-02"]["only_other"], ["MISSING"])
+        self.assertTrue(result["2020-01-02"]["one_sided"])
+
+    def test_writers_use_exclusive_create(self):
+        ident = built()
+        ident.update(identity_id="id1", created_utc="2026-11-18T00:00:00Z")
+        with tempfile.TemporaryDirectory() as tmp:
+            path = write_identity(tmp, ident)
+            self.assertEqual(path, Path(tmp) / "identity/id1.json")
+            self.assertEqual(json.loads(path.read_text())["schema"], "instrument-identity/v1")
+            with self.assertRaises(FileExistsError):
+                write_identity(tmp, ident)
+            self.assertEqual(identity.read_identity(tmp, "id1")["identity_id"], "id1")
+            cov = coverage(MEMBERSHIP, ident, ["META"], ["2020-01-02"])
+            write_coverage(tmp, cov, "cov1")
+            with self.assertRaises(FileExistsError):
+                write_coverage(tmp, cov, "cov1")
+
+    def test_current_id_of_a_dataset_symbol_ignores_the_date(self):
+        self.assertEqual(current_id(built(), "META"), "30303M102")
+        self.assertIsNone(current_id(built(), "NOSUCH"))
+
+
+class IdentityCommandTests(unittest.TestCase):
+    def test_identity_command_writes_once_and_reports_blocked_cross_checks(self):
+        from scripts import data as data_cli
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "manifests").mkdir()
+            (root / "manifests/arch.json").write_text(json.dumps(ARCHIVE))
+            (root / "membership").mkdir()
+            membership = {**MEMBERSHIP, "cross_checks": []}
+            (root / "membership/m1.json").write_text(json.dumps(membership))
+            changes = root / "changes.json"
+            changes.write_text(json.dumps(CHANGES))
+            argv = ["identity", "--root", str(root), "--archive", "arch", "--membership-id", "m1",
+                    "--identity-id", "id1", "--ticker-changes", str(changes)]
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(data_cli.main(argv), 0)
+            doc = json.loads((root / "identity/id1.json").read_text())
+            self.assertEqual(doc["counts"]["current_ids"], 4)
+            self.assertEqual(doc["cross_checks"][0]["status"], "blocked")
+            self.assertIn("4 current ids, 2 historical-only ids, 2 aliases", out.getvalue())
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                self.assertEqual(data_cli.main(argv), 1)
+            self.assertIn("refusing to overwrite", err.getvalue())
+
+
+if __name__ == "__main__":
+    unittest.main()

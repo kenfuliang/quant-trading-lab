@@ -12,6 +12,7 @@ from pathlib import Path
 
 from research.evaluation.ladder import waterfall
 from research.evaluation.metrics import METRIC_KEYS
+from research.evaluation.universe import LABELS
 
 SCHEMA = "analysis-output/v1"
 
@@ -20,11 +21,23 @@ def _safe(text: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]+", "-", str(text)).strip("-") or "analysis"
 
 
+STOCK_UNIVERSE_KIND = "current-holdings-proxy"
+
+
+def stock_labels(datasets: dict | None) -> list[str]:
+    """The survivor-bias labels for a dataset on the current-holdings proxy; ETF datasets carry none."""
+    kind = datasets.get("universe_kind") if isinstance(datasets, dict) else None
+    return list(LABELS) if kind == STOCK_UNIVERSE_KIND else []
+
+
 def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, comparison: dict | None,
-                   provenance: dict, created_utc: str, tearsheet: dict | None = None) -> dict:
+                   provenance: dict, created_utc: str, tearsheet: dict | None = None,
+                   universe: dict | None = None) -> dict:
     """Assemble the document; ``steps`` are ladder results, ``provenance`` has ``code_commit`` and ``datasets``.
 
     ``trust`` is ``{psr, dsr, pbo}``; ``comparison`` is registry context for the report, or ``None``.
+    ``labels`` come from the dataset provenance ``universe_kind`` (never from coverage). ``universe`` is
+    ``{membership_id, identity_id, coverage_summary}`` when point-in-time masking was applied, else ``None``.
     """
     stamp = datetime.fromisoformat(created_utc).strftime("%Y%m%dT%H%M%SZ")
     return {
@@ -35,6 +48,10 @@ def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, 
         "created_utc": created_utc,
         "code_commit": provenance["code_commit"],
         "datasets": provenance["datasets"],
+        "labels": stock_labels(provenance["datasets"]),
+        "membership_id": (universe or {}).get("membership_id"),
+        "identity_id": (universe or {}).get("identity_id"),
+        "coverage_summary": (universe or {}).get("coverage_summary"),
         "runs": [dict(step) for step in steps],
         "waterfall": waterfall(steps),
         "trust": {key: trust[key] for key in ("psr", "dsr", "pbo")},
@@ -91,12 +108,27 @@ def _fmt_small(value) -> str:
     return "n/a" if value is None else f"{value:.6g}"
 
 
+def _universe_lines(doc: dict) -> list[str]:
+    summary = doc.get("coverage_summary") or {}
+    worst = (summary.get("worst_dates") or [{}])[0]
+    return [f"Universe: point-in-time membership `{doc['membership_id']}` (identity `{doc.get('identity_id')}`); "
+            f"non-members are held at zero on each decision date. Index members with data: min "
+            f"{_fmt(summary.get('min_share'))}, median {_fmt(summary.get('median_share'))}, worst date "
+            f"{worst.get('date', 'n/a')}.", ""]
+
+
 def render_report(doc: dict) -> str:
     lines = [f"# Analysis: {doc.get('title', doc['spec_id'])}", "",
              f"- Spec: `{doc['spec_id']}`", f"- Created (UTC): {doc['created_utc']}",
              f"- Code commit: `{doc['code_commit']}`", "",
              "Sharpe is at a zero risk-free rate; fractions, 252 sessions a year; "
-             "max drawdown is a positive magnitude.", "", "## Runs", "",
+             "max drawdown is a positive magnitude.", ""]
+    if doc.get("labels"):
+        lines += ["**Labels: " + ", ".join(doc["labels"]) + ".** Stock results use today's index holdings "
+                  "(a survivor-biased proxy): discovery only, they cannot clear G2.", ""]
+    if doc.get("membership_id"):
+        lines += _universe_lines(doc)
+    lines += ["## Runs", "",
              "| Rung | Run | " + " | ".join(METRIC_KEYS) + " |",
              "|---|---|" + "---|" * len(METRIC_KEYS)]
     for run in doc["runs"]:

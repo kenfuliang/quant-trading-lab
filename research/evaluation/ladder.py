@@ -25,11 +25,16 @@ class Rung:
     market: MarketConfig
 
 
-def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict, now: datetime) -> list[dict]:
-    """Run each rung in order; ``base`` carries ``code_commit`` and ``datasets``."""
+def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict, now: datetime,
+               wrap=None, universe: dict | None = None) -> list[dict]:
+    """Run each rung in order; ``base`` carries ``code_commit`` and ``datasets``.
+
+    ``wrap`` (optional) maps each rung's ``TargetFn`` to another (e.g. ``members_only``); ``universe`` is
+    its plain-data description, recorded in the run config so the run id and hash reflect the mask.
+    """
     instruments = list(data.bars)
     ladder_id = config_hash([{"rung": r.name, "strategy": r.strategy, "market": dataclasses.asdict(r.market)}
-                             for r in rungs])[:12]
+                             for r in rungs] + ([universe] if wrap is not None and universe else []))[:12]
     results, parent = [], None
     for index, rung in enumerate(rungs):
         market = dataclasses.asdict(rung.market)
@@ -40,7 +45,11 @@ def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict,
             "engine": "screen",
             "ladder": {"id": ladder_id, "rung": rung.name, "index": index},
         }
-        result = run_screen(data, build_target_fn(rung.strategy), rung.market)
+        target_fn = build_target_fn(rung.strategy)
+        if wrap is not None:
+            target_fn = wrap(target_fn)
+            config["universe"] = universe or {"masked": True}
+        result = run_screen(data, target_fn, rung.market)
         run_id = new_run_id(config, now)
         manifest = {
             "run_id": run_id,

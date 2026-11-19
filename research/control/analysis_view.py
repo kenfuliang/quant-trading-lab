@@ -107,6 +107,16 @@ def is_fixture(doc):
     return isinstance(datasets, dict) and datasets.get("dataset_id") == FIXTURE_DATASET
 
 
+def labels_of(doc):
+    """Plain-text labels of an analysis (e.g. survivor-biased); malformed values are dropped."""
+    labels = doc.get("labels") if isinstance(doc, dict) else None
+    return [label for label in labels if isinstance(label, str)] if isinstance(labels, list) else []
+
+
+def _label_badges(doc):
+    return "".join(f'<span class="badge failed" data-label="{_e(label)}">{_e(label)}</span>' for label in labels_of(doc))
+
+
 def _stat(block):
     block = block if isinstance(block, dict) else {}
     return _fmt(block.get("value")), block.get("reason") or ""
@@ -152,7 +162,8 @@ def trust_rows(analyses):
         look = doc.get("lookahead") or {}
         sheet = doc.get("tearsheet") or {}
         row = {"spec_id": doc.get("spec_id"), "analysis_id": doc.get("analysis_id"),
-               "lookahead": look.get("status") or "n/a", "tearsheet": sheet.get("status") or "n/a"}
+               "lookahead": look.get("status") or "n/a", "tearsheet": sheet.get("status") or "n/a",
+               "labels": labels_of(doc)}
         for name in ("psr", "dsr", "pbo"):
             row[name], row[f"{name}_reason"] = _stat(trust.get(name))
             row[f"{name}_inputs"] = stat_inputs(trust.get(name)) if name != "pbo" else ""
@@ -200,6 +211,7 @@ def _section(doc, base, available):
     return (
         f'<section class="analysis" data-spec="{_e(doc.get("spec_id"))}" data-fixture="{str(fixture).lower()}">'
         f'<h2>{_e(doc.get("title") or doc.get("spec_id"))}{tag}</h2>'
+        f'{"<p>" + _label_badges(doc) + "</p>" if labels_of(doc) else ""}'
         f'<p class="muted">{_e(doc.get("analysis_id"))} · spec {_e(doc.get("spec_id"))} · created {_e(doc.get("created_utc"))}'
         f' · code {_e(doc.get("code_commit"))}</p><p>Tearsheet: {_tearsheet(doc, base, available)}</p>'
         f'<h3>Runs</h3><table><thead><tr><th>Rung</th><th>Run</th>{head}</tr></thead><tbody>{runs}</tbody></table>'

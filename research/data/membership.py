@@ -119,6 +119,14 @@ def spot_checks(intervals: dict) -> list:
     ]
 
 
+def read_membership(root, membership_id: str) -> dict:
+    check_dataset_id(membership_id)
+    doc = json.loads((Path(root) / "membership" / f"{membership_id}.json").read_text(encoding="utf-8"))
+    if doc.get("schema") != SCHEMA:
+        raise ManifestError(f"{membership_id}: schema is {doc.get('schema')!r}, not {SCHEMA}")
+    return doc
+
+
 def write_membership(root, doc: dict) -> Path:
     if not isinstance(doc, dict) or set(doc) != set(KEYS):
         raise ManifestError(f"membership keys must be {KEYS}")

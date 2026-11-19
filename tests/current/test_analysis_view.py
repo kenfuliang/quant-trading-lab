@@ -127,6 +127,21 @@ class AnalysisViewTest(unittest.TestCase):
         real["datasets"] = {"dataset_id": "sector-etfs-2016-2025-n1"}
         self.assertNotIn('data-fixture="true"', render_analysis_page([real], "now"))
 
+    def test_labels_are_shown_escaped_and_absent_when_none(self):
+        evil = "<b>x</b>"
+        doc = copy.deepcopy(FIXTURE)
+        doc["datasets"] = {"dataset_id": "stock-ds"}
+        doc["labels"] = ["survivor-biased", evil, 7]
+        page = render_analysis_page([doc], "now")
+        self.assertNotIn(evil, page)
+        self.assertIn('data-label="survivor-biased"', page)
+        self.assertIn("&lt;b&gt;x&lt;/b&gt;", page)
+        self.assertEqual(trust_rows([doc])[0]["labels"], ["survivor-biased", evil])
+        plain = copy.deepcopy(FIXTURE)
+        self.assertNotIn("data-label=", render_analysis_page([plain], "now"))
+        plain["labels"] = "survivor-biased"  # malformed: ignored, not iterated as characters
+        self.assertNotIn("data-label=", render_analysis_page([plain], "now"))
+
     def test_dsr_inputs_and_warmup_are_shown_and_escaped(self):
         evil = "<i>x</i>"
         doc = copy.deepcopy(FIXTURE)

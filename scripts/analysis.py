@@ -36,6 +36,8 @@ import pandas as pd  # noqa: E402
 from reporting.run_tearsheet import tearsheet_html  # noqa: E402
 from research.control import experiment_registry  # noqa: E402
 from research.control.analysis_view import load_analyses, render_analysis_page, safe_id  # noqa: E402
+from research.data.identity import coverage, intervals_for_dataset, read_identity  # noqa: E402
+from research.data.membership import read_membership  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
@@ -47,6 +49,7 @@ from research.evaluation.run_output import read_run  # noqa: E402
 from research.evaluation.screening_engine import run_screen  # noqa: E402
 from research.evaluation.strategies import build_target_fn  # noqa: E402
 from research.evaluation.trust import dsr, pbo, psr  # noqa: E402
+from research.evaluation.universe import members_only  # noqa: E402
 
 REGISTRY = ROOT / "research/registry/experiments.jsonl"
 FIXTURE_SPEC = ROOT / "research/registry/analysis-specs/fixture-ladder.json"
@@ -121,12 +124,30 @@ def _load(spec: dict, root: Path, loader):
     return data, {"dataset_id": spec["dataset_id"], **provenance}
 
 
-def _pbo(spec: dict, data, market: MarketConfig) -> dict:
+def _universe(spec: dict, data, root: Path):
+    """``(wrap, universe)`` for a spec that names ``membership`` (and the ``identity`` that maps its
+    symbols to the dataset), else ``(None, None)``. ``universe`` is the plain-data record for the output."""
+    membership_id = spec.get("membership")
+    if not membership_id:
+        return None, None
+    if not spec.get("identity"):
+        raise ValueError("spec names membership but no identity id; masking needs the identity map")
+    membership = read_membership(root, membership_id)
+    identity = read_identity(root, spec["identity"])
+    symbols = list(data.bars)
+    intervals = intervals_for_dataset(membership, identity, symbols)
+    summary = coverage(membership, identity, symbols, data.sessions)["summary"]
+    return (lambda fn: members_only(fn, intervals),
+            {"membership_id": membership_id, "identity_id": spec["identity"], "coverage_summary": summary})
+
+
+def _pbo(spec: dict, data, market: MarketConfig, wrap=None) -> dict:
     grid = spec.get("pbo_grid")
     if not grid:
         return {"value": None, "reason": "no pbo_grid in spec"}
     zero = dataclasses.replace(market, cost_bps=0.0, commission_usd=0.0)
-    columns = {json.dumps(item, sort_keys=True): run_screen(data, build_target_fn(item), zero).returns["net_return"].to_numpy()
+    wrap = wrap or (lambda fn: fn)
+    columns = {json.dumps(item, sort_keys=True): run_screen(data, wrap(build_target_fn(item)), zero).returns["net_return"].to_numpy()
                for item in grid}
     out = pbo(pd.DataFrame(columns))
     out["grid_size"] = len(grid)
@@ -153,7 +174,10 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     loader = loader or load_dataset
     data, datasets = _load(spec, root, loader)
     rungs = _rungs(spec)
-    steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now)
+    wrap, universe = _universe(spec, data, root)
+    steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now,
+                       wrap=wrap, universe=None if universe is None else
+                       {k: universe[k] for k in ("membership_id", "identity_id")})
     last, last_spec = rungs[-1], rungs[-1].strategy
     _, tables = read_run(root / "runs" / steps[-1]["run_id"])
     net = tables["returns"]["net_return"].to_numpy(dtype=float)
@@ -182,15 +206,16 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
                    "this inflates n")
     trust = {"psr": {**psr(net), "warmup_sessions": warmup, "warmup_note": warmup_note},
              "dsr": {**trust_dsr, "warmup_sessions": warmup, "warmup_note": warmup_note},
-             "pbo": _pbo(spec, data, last.market)}
+             "pbo": _pbo(spec, data, last.market, wrap)}
     if spec.get("pbo_grid"):
         notes.append(GRID_NOTE)
-    lookahead = check_lookahead(data, lambda d: build_target_fn(last_spec), last.market, cutoffs=spec.get("cutoffs", 5))
+    lookahead = check_lookahead(data, lambda d: (wrap or (lambda fn: fn))(build_target_fn(last_spec)), last.market,
+                                cutoffs=spec.get("cutoffs", 5))
 
     spec_with_notes = {**spec, "notes": notes}
     doc = build_analysis(spec_with_notes, steps, trust, lookahead, comparison,
                          {"code_commit": commit, "datasets": datasets}, now.isoformat(),
-                         {"status": "skipped", "error": None})
+                         {"status": "skipped", "error": None}, universe)
     html_page = None
     try:
         series = pd.Series(net, index=pd.to_datetime(tables["returns"]["date"]))

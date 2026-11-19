@@ -197,6 +197,83 @@ class AnalysisCliTests(unittest.TestCase):
         self.assertEqual(doc["datasets"]["manifest_sha256"], "abc123")
         self.assertEqual(doc["datasets"]["quality_status"], "pass")
 
+    def _stock_spec(self, **extra):
+        return {**json.loads(SPEC.read_text()), "fixture": False, "dataset_id": "stock-ds", **extra}
+
+    @staticmethod
+    def _loader(kind):
+        def loader(dataset_id, instruments, root):
+            return synthetic_fixture(), {"universe_kind": kind, "quality_status": "pass"}
+        return loader
+
+    def test_stock_analysis_carries_labels_in_json_report_and_page(self):
+        from research.control.analysis_view import load_analyses, render_analysis_page, trust_rows
+        from research.control.stage_page import render_page
+        from research.control.stage_map import STAGES
+        with tempfile.TemporaryDirectory() as tmp:
+            result = analysis.run_spec(self._stock_spec(), Path(tmp), loader=self._loader("current-holdings-proxy"))
+            on_disk = json.loads((result["folder"] / "analysis.json").read_text())
+            report = (result["folder"] / "report.md").read_text()
+            analyses, _ = load_analyses(tmp)
+        self.assertEqual(on_disk["labels"], ["survivor-biased", "discovery-only"])
+        self.assertIsNone(on_disk["membership_id"])
+        self.assertIn("survivor-biased", report)
+        self.assertIn("discovery-only", report)
+        page = render_analysis_page(analyses, "now")
+        self.assertIn('data-label="survivor-biased"', page)
+        self.assertIn('data-label="discovery-only"', page)
+        self.assertEqual(trust_rows(analyses)[0]["labels"], ["survivor-biased", "discovery-only"])
+        empty = {"stages": {s: {"records": [], "pairs": [], "effects": {}, "dispositions": {}} for s in STAGES},
+                 "contexts": {}, "unclassified": [], "unattributable": []}
+        pipeline = render_page(empty, [], {}, "now", analyses)
+        self.assertIn('data-label="survivor-biased"', pipeline)
+
+    def test_etf_analysis_has_no_stock_labels(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            etf = analysis.run_spec(self._stock_spec(), Path(tmp), loader=self._loader(None))
+            fixture = analysis.run_spec(json.loads(SPEC.read_text()), Path(tmp) / "f")
+            etf_report = (etf["folder"] / "report.md").read_text()
+        self.assertEqual(etf["doc"]["labels"], [])
+        self.assertEqual(fixture["doc"]["labels"], [])
+        self.assertNotIn("survivor-biased", etf_report)
+        self.assertNotIn("Labels:", etf_report)
+
+    def test_membership_spec_masks_and_records_the_coverage_summary(self):
+        from research.data.identity import build_identity
+        archive = {"dataset_id": "arch", "universe": {"equities": [
+            {"symbol": s, "name": s, "issuer_identifier": f"id-{s}", "currency": "USD"} for s in ("AAA", "BBB", "CCC")]}}
+        sessions = synthetic_fixture().sessions
+        membership = {"schema": "membership/v1", "membership_id": "mem1", "intervals": {
+            "AAA": [{"start": sessions[0], "end": None}], "BBB": [{"start": sessions[0], "end": sessions[100]}],
+            "CCC": [{"start": sessions[200], "end": None}], "ZZZ": [{"start": sessions[0], "end": None}]}}
+        ident = build_identity(archive, membership, [])
+        ident.update(identity_id="idn1", created_utc="2026-11-18T00:00:00Z")
+        spec = self._stock_spec(membership="mem1", identity="idn1")
+        spec["rungs"] = spec["rungs"][:1]
+        with tempfile.TemporaryDirectory() as tmp:
+            for folder, name, doc in (("membership", "mem1", membership), ("identity", "idn1", ident)):
+                (Path(tmp) / folder).mkdir()
+                (Path(tmp) / folder / f"{name}.json").write_text(json.dumps(doc))
+            result = analysis.run_spec(spec, Path(tmp), loader=self._loader("current-holdings-proxy"))
+            run = Path(tmp) / "runs" / result["doc"]["runs"][0]["run_id"]
+            from research.evaluation.run_output import read_run
+            manifest, tables = read_run(run)
+            report = (result["folder"] / "report.md").read_text()
+            with self.assertRaises(ValueError):
+                analysis.run_spec(self._stock_spec(membership="mem1"), Path(tmp), loader=self._loader(None))
+        doc = result["doc"]
+        self.assertEqual((doc["membership_id"], doc["identity_id"]), ("mem1", "idn1"))
+        summary = doc["coverage_summary"]
+        self.assertEqual(summary["sessions"], len(sessions))
+        self.assertAlmostEqual(summary["min_share"], 1 / 2)  # ZZZ is a member with no data; BBB left, CCC not in yet
+        self.assertEqual(manifest["config"]["universe"], {"membership_id": "mem1", "identity_id": "idn1"})
+        self.assertEqual(set(tables["positions"]["instrument"]), {"AAA", "BBB", "CCC"})
+        self.assertEqual(doc["lookahead"]["status"], "pass")
+        self.assertIn("point-in-time membership `mem1`", report)
+        held_late = tables["positions"][(tables["positions"]["date"] > sessions[102])
+                                        & (tables["positions"]["date"] < sessions[200])]
+        self.assertEqual(set(held_late["instrument"]), {"AAA"})  # BBB left, CCC not yet in
+
     def test_blocked_dataset_and_absent_data_exit_cleanly(self):
         spec = {**json.loads(SPEC.read_text()), "fixture": False, "dataset_id": "fake-ds"}
         with tempfile.TemporaryDirectory() as tmp:

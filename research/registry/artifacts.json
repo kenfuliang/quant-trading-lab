@@ -228,14 +228,29 @@
       "schema_id": "instrument-identity/v1",
       "name": "Instrument identity map",
       "stage": "data",
-      "location": "tracked",
+      "location": "local",
       "authority": "authoritative",
-      "producer": "Plan 5 (instrument identity; not built)",
+      "producer": "research/data/identity.py, scripts/data.py identity",
       "consumers": [
-        "Plan 5 universe loaders"
+        "scripts/analysis.py",
+        "scripts/data.py",
+        "tests/current/test_identity.py"
       ],
-      "retention": "permanent, tracked",
-      "status": "planned"
+      "retention": "local, per identity id; the sourced research/registry/ticker-changes.json is tracked",
+      "status": "implemented"
+    },
+    {
+      "schema_id": "membership-coverage/v1",
+      "name": "Index membership coverage per session",
+      "stage": "data",
+      "location": "local",
+      "authority": "view",
+      "producer": "research/data/identity.py, scripts/data.py coverage",
+      "consumers": [
+        "tests/current/test_identity.py"
+      ],
+      "retention": "local, per coverage id",
+      "status": "implemented"
     },
     {
       "schema_id": "validation-receipt/v1",
