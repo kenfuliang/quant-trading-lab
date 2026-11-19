@@ -37,6 +37,13 @@ class Split:
 
 @dataclass(frozen=True)
 class MarketData:
+    """Sessions, per-instrument bar frames, dividends and splits.
+
+    The frames must be treated as immutable after construction: ``history_view`` and both engines
+    cache views and derived arrays per ``MarketData``, keyed on the identity of the frame objects, so
+    an in-place edit of a frame would not invalidate them and results would silently go stale.
+    """
+
     sessions: tuple[str, ...]
     bars: dict[str, pd.DataFrame]
     dividends: tuple[Dividend, ...]
@@ -97,9 +104,11 @@ def cost_bps(data: MarketData, instrument: str, i: int, config: MarketConfig) ->
     neither ``i`` nor the fill session ``i + 1`` contribute). Fewer than 20 prior sessions
     gives the lowest-liquidity (last) tier. The screening engine passes ``j - 1`` for a
     fill at session ``j``; the NautilusTrader engine builds the quote for session ``j``
-    from the same index. Raw (unadjusted) close and volume are used, and a split inside
-    the window can distort ADV for up to 20 sessions (documented, applied identically in
-    both engines).
+    from the same index. Raw (unadjusted) close and volume are used. The Alpaca archive's
+    volume is raw too (AAPL's 4:1 split of 2020-08-31 shows volume about 4.6x the previous
+    session with the close down about 3.9x), so close times volume is split-invariant and a
+    split inside the window does not distort ADV; only a real volume change does. Applied
+    identically in both engines.
     """
     if config.cost_model == "flat":
         return float(config.cost_bps)
@@ -138,7 +147,8 @@ TargetFn = Callable[[str, dict[str, pd.DataFrame], dict[str, int], float], Decis
 def history_view(data: MarketData, i: int) -> dict[str, pd.DataFrame]:
     """What both engines pass to ``TargetFn`` after the close of session ``i``.
 
-    Bars up to and including session ``i`` (raw prices, copies) with an added
+    Bars up to and including session ``i`` (raw prices; slices of cached per-``MarketData`` frames,
+    not copies, so a strategy must not modify them) with an added
     ``split_factor`` column: the product of the ratios of splits effective after that row
     and on or before session ``i`` (1.0 otherwise). ``close / split_factor`` is the close
     on session ``i``'s share basis. Splits after session ``i`` never affect the view.

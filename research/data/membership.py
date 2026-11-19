@@ -127,6 +127,23 @@ def read_membership(root, membership_id: str) -> dict:
     return doc
 
 
+def membership_file_sha256(root, membership_id: str) -> tuple[str, bool]:
+    """``(sha256 of the membership document, verified)``. With a manifest the document must match the
+    hash the manifest records (and the manifest's own inputs must verify): a mismatch raises
+    ``ManifestError``. Without a manifest ``verified`` is False."""
+    check_dataset_id(membership_id)
+    path = Path(root) / "membership" / f"{membership_id}.json"
+    digest = sha256_file(path)
+    if not (Path(root) / "manifests" / f"{membership_id}.json").is_file():
+        return digest, False
+    manifest = read_manifest(root, membership_id)  # verifies every file and input hash it lists
+    recorded = {e["path"]: e["sha256"] for e in manifest["files"]}.get(f"membership/{membership_id}.json")
+    if recorded != digest:
+        raise ManifestError(f"membership/{membership_id}.json: sha256 {digest} does not match its manifest "
+                            f"({recorded})")
+    return digest, True
+
+
 def write_membership(root, doc: dict) -> Path:
     if not isinstance(doc, dict) or set(doc) != set(KEYS):
         raise ManifestError(f"membership keys must be {KEYS}")
@@ -252,8 +269,13 @@ def build_from_snapshot(root, snapshot_ids, membership_id, now=None):
 
 
 def membership_manifest(root, doc, path, inputs, rights) -> dict:
+    """The manifest of a membership document; its notes name the snapshot each input file came from,
+    i.e. which snapshots define the membership id."""
+    sources = "; ".join(f"{Path(i['path']).name} from snapshot {Path(i['path']).parts[2]}" for i in inputs
+                        if len(Path(i["path"]).parts) > 2)
     return {"schema": MANIFEST_SCHEMA, "dataset_id": doc["membership_id"], "kind": "normalised",
             "created_utc": doc["created_utc"], "source": f"{doc['source']['repo']}, per-symbol intervals",
             "inputs": inputs, "recipe": "membership/v1: fja05680 historical components rows to intervals",
             "rights": rights, "files": [{"path": Path(path).relative_to(root).as_posix(), "sha256": sha256_file(path)}],
-            "notes": "point-in-time S&P 500 membership; cross_checks and spot_checks are inside the document"}
+            "notes": "point-in-time S&P 500 membership; cross_checks and spot_checks are inside the document; "
+                     f"snapshots defining this membership id: {sources or 'none recorded'}"}

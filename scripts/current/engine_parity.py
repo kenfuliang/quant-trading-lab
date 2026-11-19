@@ -109,6 +109,9 @@ def _write(runs: Path, result: EngineResult, base: dict, parent: str | None, now
         "coverage": {"instruments": base["instruments"], "sessions": len(result.returns)},
         "parent_run": parent,
     }
+    if base.get("labels"):  # stock-class datasets only; ETF manifests keep exactly the old keys
+        manifest["labels"] = base["labels"]
+        manifest["universe_kind"] = base["universe_kind"]
     tables = {name: getattr(result, name)[list(cols)] for name, cols in COLUMNS.items()}
     path = write_run(runs, manifest, tables)
     return {"run_id": run_id, "manifest_sha256": _sha256(path / "manifest.json")}
@@ -189,6 +192,8 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
             if provenance.get("universe_kind") == "current-holdings-proxy":
                 receipt["labels"] = list(LABELS)
                 receipt["universe_kind"] = "current-holdings-proxy"
+                base["labels"] = list(LABELS)
+                base["universe_kind"] = "current-holdings-proxy"
             files = provenance["inputs"]
             inputs.update(
                 manifest_sha256=provenance["manifest_sha256"],

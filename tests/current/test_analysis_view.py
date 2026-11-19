@@ -142,6 +142,20 @@ class AnalysisViewTest(unittest.TestCase):
         plain["labels"] = "survivor-biased"  # malformed: ignored, not iterated as characters
         self.assertNotIn("data-label=", render_analysis_page([plain], "now"))
 
+    def test_labels_are_derived_from_the_dataset_universe_kind(self):
+        doc = copy.deepcopy(FIXTURE)
+        doc["datasets"] = {"dataset_id": "stock-ds", "universe_kind": "current-holdings-proxy"}
+        doc["labels"] = []  # an analysis written without labels is still shown labelled
+        page = render_analysis_page([doc], "now")
+        self.assertIn('data-label="survivor-biased"', page)
+        self.assertIn('data-label="discovery-only"', page)
+        self.assertEqual(trust_rows([doc])[0]["labels"], ["survivor-biased", "discovery-only"])
+        doc["labels"] = ["discovery-only"]
+        self.assertEqual(trust_rows([doc])[0]["labels"], ["discovery-only", "survivor-biased"])
+        other = copy.deepcopy(FIXTURE)
+        other["datasets"] = {"dataset_id": "x", "universe_kind": "something-else"}
+        self.assertEqual(trust_rows([other])[0]["labels"], [])
+
     def test_dsr_inputs_and_warmup_are_shown_and_escaped(self):
         evil = "<i>x</i>"
         doc = copy.deepcopy(FIXTURE)

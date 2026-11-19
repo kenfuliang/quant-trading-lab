@@ -33,6 +33,7 @@ TOP_BREACHES_PER_SYMBOL = 10
 LARGE_UNIVERSE = 20  # above this the cross-source detail text lists only the worst symbols
 LABEL_PAY_DATE = "pay_date_unknown_credited_on_ex_date"
 GAP_LIMIT = 0.25
+SPLIT_CONSISTENCY_TOLERANCE = 0.15  # raw close x ratio vs the previous close, each split session
 ABS_TOLERANCE = 0.01
 REL_TOLERANCE = 5e-4  # 5 bp
 PRICE_KEYS = ("o", "h", "l", "c")
@@ -264,6 +265,36 @@ def _check_split_events(norm: Normalised, yahoo, splits: tuple[Split, ...], yaho
                   f"our split records vs Yahoo split events for {len(symbols)} symbols in {first}..{last}")
 
 
+def _check_split_consistency(norm: Normalised) -> dict:
+    """On each split session the raw close times the ratio must be within 15% of the previous close."""
+    items = []
+    for split in norm.data.splits:
+        close = norm.data.bars[split.instrument]["close"].astype(float)
+        day = split.effective_date
+        if day not in close.index or close.index.get_loc(day) == 0:
+            items.append({"symbol": split.instrument, "date": day, "ratio": split.ratio,
+                          "problem": "no bar on the split session or no previous session"})
+            continue
+        before = float(close.iloc[close.index.get_loc(day) - 1])
+        implied = float(close[day]) * split.ratio / before
+        if abs(implied - 1) > SPLIT_CONSISTENCY_TOLERANCE:
+            items.append({"symbol": split.instrument, "date": day, "ratio": split.ratio,
+                          "implied_move": round(implied, 6), "problem": "raw close x ratio is not within "
+                          f"{SPLIT_CONSISTENCY_TOLERANCE:.0%} of the previous close"})
+    return _check("split_consistency", "fail" if items else "pass", items,
+                  f"{len(norm.data.splits)} split sessions: raw close x ratio vs the previous close, "
+                  f"tolerance {SPLIT_CONSISTENCY_TOLERANCE:.0%}")
+
+
+def _check_post_window_adjustment(info: dict) -> dict:
+    items = [dict(item) for item in info.get("excluded", [])]
+    return _check("actions_post_window_adjustment", "exception" if items else "pass", items,
+                  f"symbols left out because Yahoo closes and dividends are adjusted for events after the "
+                  f"window (median archive/Yahoo close ratio over the last {info.get('window_sessions')} sessions "
+                  f"differs from 1 by more than {info.get('tolerance')}); checked {info.get('checked')}, "
+                  f"unchecked {len(info.get('unchecked', []))}; items are the measured ratios")
+
+
 def _check_universe(excluded_symbols: list[dict]) -> dict:
     items = [{"symbol": e["symbol"], "reason": e["reason"]} for e in excluded_symbols]
     return _check("universe", "exception" if items else "pass", items,
@@ -338,8 +369,12 @@ def build_report(dataset_id: str, rows: list[dict], norm: Normalised, yahoo, spl
         "split_events": _check_split_events(norm, yahoo, splits, yahoo_splits),
     }
     checks = [built[name] for name in CHECKS]
+    if norm.data.splits:
+        checks.append(_check_split_consistency(norm))
     if excluded_symbols is not None:
         checks.append(_check_universe(excluded_symbols))
+    if actions is not None and "post_window_adjustment" in actions:
+        checks.append(_check_post_window_adjustment(actions["post_window_adjustment"]))
     if actions is not None and any(e.get("pay_date_label") == LABEL_PAY_DATE
                                    for e in actions.get("cash_and_in_kind", [])):
         checks.append(_check_pay_date_assumed(norm, actions))

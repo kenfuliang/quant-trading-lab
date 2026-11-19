@@ -7,8 +7,10 @@ provenance. Lives under ``research/evaluation`` because it consumes ``normalise`
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -23,6 +25,30 @@ LOADABLE_STATUSES = ("pass", "pass-with-exceptions")
 CACHE_SCHEMA = "normalised-cache/v1"
 CACHE_MANIFEST = "cache-manifest.json"
 ACTIONS_FILE = "corporate-actions.json"
+
+
+def _code_version() -> str:
+    """Hash of the sources that decide what a normalised result is; a change there invalidates the cache."""
+    from research.evaluation import etf_normalise, market_model
+    digest = hashlib.sha256()
+    for module in (etf_normalise, market_model):
+        digest.update(Path(module.__file__).read_bytes())
+    return digest.hexdigest()[:16]
+
+
+CODE_VERSION = _code_version()
+
+
+_EXCLUDED_NOTE = re.compile(r"excluded symbols \((\d+)(?::[^)]*)?\): (.*)$")
+_ENTRY_NAME = re.compile(r"(?:^|; )([A-Z][A-Z0-9.\-]{0,9}): ")
+
+
+def excluded_from_notes(notes: str) -> dict | None:
+    """``{count, names}`` of the symbols a stock manifest's notes list as excluded, else None."""
+    found = _EXCLUDED_NOTE.search(notes or "")
+    if not found:
+        return None
+    return {"count": int(found.group(1)), "names": _ENTRY_NAME.findall(found.group(2))}
 
 
 class DatasetBlocked(RuntimeError):
@@ -81,7 +107,7 @@ def _write_cache(folder: Path, manifest_sha: str, data: MarketData) -> None:
     _write_atomic(path, json.dumps(actions, sort_keys=True).encode("utf-8"))
     files.append({"path": path.name, "sha256": sha256_file(path)})
     info = {"schema": CACHE_SCHEMA, "manifest_sha256": manifest_sha, "recipe": RECIPE,
-            "symbols": sorted(data.bars), "files": files}
+            "code_version": CODE_VERSION, "symbols": sorted(data.bars), "files": files}
     _write_atomic(folder / CACHE_MANIFEST, (json.dumps(info, indent=2, sort_keys=True) + "\n").encode("utf-8"))
 
 
@@ -89,7 +115,8 @@ def _read_cache(folder: Path, manifest_sha: str) -> MarketData | None:
     """The cached full-universe ``MarketData`` if every hash verifies, else None (never trusted)."""
     try:
         info = json.loads((folder / CACHE_MANIFEST).read_text(encoding="utf-8"))
-        if (info["schema"], info["manifest_sha256"], info["recipe"]) != (CACHE_SCHEMA, manifest_sha, RECIPE):
+        if (info["schema"], info["manifest_sha256"], info["recipe"], info["code_version"]) != (
+                CACHE_SCHEMA, manifest_sha, RECIPE, CODE_VERSION):
             return None
         paths = {}
         for entry in info["files"]:
@@ -197,6 +224,9 @@ def load_dataset(dataset_id: str, instruments: tuple[str, ...] | None,
         "half_days": [item["session"] for check in report["checks"] if check["name"] == "half_days"
                       for item in check["items"]],
     }
+    excluded = excluded_from_notes(manifest["notes"]) if manifest.get("universe_kind") else None
+    if excluded:
+        provenance["universe_excluded"] = excluded
     if cache_state is not None:
         provenance["cache"] = cache_state
     return market, provenance

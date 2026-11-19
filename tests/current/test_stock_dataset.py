@@ -125,6 +125,47 @@ class StockDatasetTests(unittest.TestCase):
         _data, again = load_dataset(ID, NAMES, root)
         self.assertEqual(again["cache"], "rebuilt")
 
+    def test_cache_from_other_code_is_rebuilt(self):
+        root = make_root(self.tmp)
+        _data, first = load_dataset(ID, NAMES, root)
+        cache = root / "cache" / first["manifest_sha256"]
+        info = json.loads((cache / "cache-manifest.json").read_text())
+        self.assertEqual(info["code_version"], datasets.CODE_VERSION)
+        info["code_version"] = "0" * 16  # the normalise code changed since the cache was written
+        (cache / "cache-manifest.json").write_text(json.dumps(info), encoding="utf-8")
+        self.assertEqual(load_dataset(ID, NAMES, root)[1]["cache"], "rebuilt")
+        self.assertEqual(load_dataset(ID, NAMES, root)[1]["cache"], "hit")
+        info.pop("code_version")  # an old cache without the field is never trusted
+        (cache / "cache-manifest.json").write_text(json.dumps(info), encoding="utf-8")
+        self.assertEqual(load_dataset(ID, NAMES, root)[1]["cache"], "rebuilt")
+
+    def test_excluded_symbols_are_parsed_from_the_manifest_notes(self):
+        notes = ("rounding changed 2 values; universe 3 of 4 structural_full_window symbols; excluded symbols "
+                 "(3: 2 of the structural_full_window list + 1 not in it): APD: non-integer or unit split ratio "
+                 "1081.0:1000.0 on 2016-10-03; BKNG: post-window adjustment: median ratio 25.0000; "
+                 "GONE: fetch failed: HTTPError: 400")
+        self.assertEqual(datasets.excluded_from_notes(notes), {"count": 3, "names": ["APD", "BKNG", "GONE"]})
+        old = "excluded symbols (2): APD: reverse split 1:2; MMM: x"
+        self.assertEqual(datasets.excluded_from_notes(old), {"count": 2, "names": ["APD", "MMM"]})
+        self.assertIsNone(datasets.excluded_from_notes("excluded 2"))
+        root = make_root(self.tmp)
+        path = root / "manifests" / f"{ID}.json"
+        manifest = json.loads(path.read_text())
+        manifest["notes"] = notes
+        path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
+        # the manifest changed, so its quality report is stale: write a fresh passing one
+        shutil.rmtree(root / "quality")
+        rows = json.loads((FIXTURES / "etf-bars.json").read_text())
+        norm = normalise([r for r in rows if r["symbol"] in NAMES],
+                         json.loads((FIXTURES / "etf-actions.json").read_text()), NAMES)
+        report = q.build_report(ID, [r for r in rows if r["symbol"] in NAMES], norm, None, norm.data.splits,
+                                created_utc="2026-01-01T00:00:00Z", code_commit="test",
+                                inputs={"manifest_sha256": sha256_file(path)})
+        report["status"] = "pass"
+        q.write_report(root, report)
+        self.assertEqual(load_dataset(ID, NAMES, root)[1]["universe_excluded"],
+                         {"count": 3, "names": ["APD", "BKNG", "GONE"]})
+
     def test_universe_kind_in_provenance(self):
         root = make_root(self.tmp)
         self.assertEqual(load_dataset(ID, NAMES, root)[1]["universe_kind"], "current-holdings-proxy")
@@ -200,6 +241,8 @@ class StockDatasetTests(unittest.TestCase):
         self.assertEqual(manifest["universe_kind"], "current-holdings-proxy")
         self.assertIn("ZZZ", manifest["notes"])
         self.assertIn("reverse split", manifest["notes"])
+        # one excluded name from the full-window list, none outside it
+        self.assertIn("excluded symbols (1: 1 of the structural_full_window list + 0 not in it)", manifest["notes"])
 
     def test_bars_dir_without_universe_kind_fails_loudly(self):
         root = make_root(Path(self.tmp))

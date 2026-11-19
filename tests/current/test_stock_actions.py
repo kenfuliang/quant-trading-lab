@@ -146,6 +146,78 @@ class StockActionsTests(SnapshotFixture):
         self.assertEqual([r["symbol"] for r in rejected], ["BAD SYMBOL"])
 
 
+def bar_rows(symbol, closes: dict):
+    return [{"symbol": symbol, "session": day, "c": str(close)} for day, close in closes.items()]
+
+
+class PostWindowAdjustmentTests(SnapshotFixture):
+    """Yahoo closes and dividends can be adjusted for events after the window end; Alpaca's are raw."""
+
+    def bars(self, files: dict):
+        folder = self.root / "normalized" / "bars"
+        folder.mkdir(parents=True)
+        for symbol, closes in files.items():
+            (folder / f"{symbol}.json").write_text(json.dumps(bar_rows(symbol, closes)))
+        return "normalized/bars"
+
+    def yahoo_body(self, symbol, factor):
+        """SPLITCO as Yahoo reports it: history adjusted for the in-window 4:1 split (the first five
+        sessions precede it) and, by `factor`, for an event after the window."""
+        def mutate(result):
+            quote = result["indicators"]["quote"][0]
+            for key in ("open", "high", "low", "close"):
+                quote[key] = [v / factor / (4 if i < 5 else 1) for i, v in enumerate(quote[key])]
+        return relabel(SPLITCO, symbol, mutate)
+
+    def test_post_window_ratio_uses_yahoo_splits_and_median(self):
+        yahoo = {"2024-01-02": 25.0, "2024-01-03": 25.5, "2024-01-09": 26.0}  # split-adjusted history
+        splits = [{"date": "2024-01-09", "numerator": 4, "denominator": 1}]
+        alpaca = {"2024-01-02": 100.0, "2024-01-03": 102.0, "2024-01-09": 26.0}
+        self.assertAlmostEqual(s.post_window_ratio(alpaca, yahoo, splits), 1.0)
+
+    def test_constant_25x_ratio_is_excluded_and_1_001_is_kept(self):
+        frame, _, _ = y.parse_chart(SPLITCO.read_bytes(), "SPLITCO")
+        traded = {day: float(row.close) for day, row in frame.iterrows()}  # the archive's raw closes
+        doc = self.snapshot({"BIGCO": self.yahoo_body("BIGCO", 25), "NEARCO": self.yahoo_body("NEARCO", 1.001)})
+        folder = self.bars({"BIGCO": traded, "NEARCO": traded})
+        actions, excluded = s.build_stock_actions(doc, self.root, bars_dir=folder)
+        self.assertEqual([e["symbol"] for e in excluded], ["BIGCO"])
+        self.assertIn("post-window", excluded[0]["reason"])
+        self.assertIn("25", excluded[0]["reason"])
+        self.assertEqual({e["symbol"] for e in actions["splits"]}, {"NEARCO"})
+        self.assertNotIn("BIGCO", {e["symbol"] for e in actions["cash_and_in_kind"]})
+        info = actions["post_window_adjustment"]
+        self.assertEqual([e["symbol"] for e in info["excluded"]], ["BIGCO"])
+        self.assertAlmostEqual(info["excluded"][0]["median_ratio"], 25.0, places=3)
+        self.assertEqual(info["checked"], 2)
+
+    def test_cli_bars_dir_excludes_and_refuses_a_second_write(self):
+        from scripts import data as data_cli
+        frame, _, _ = y.parse_chart(SPLITCO.read_bytes(), "SPLITCO")
+        traded = {day: float(row.close) for day, row in frame.iterrows()}
+        self.snapshot({"BIGCO": self.yahoo_body("BIGCO", 25)})
+        folder = self.bars({"BIGCO": traded})
+        argv = ["stock-actions", "--root", str(self.root), "--snapshot", "snap", "--out", "normalized/a.json",
+                "--bars-dir", folder]
+        self.assertEqual(data_cli.main(argv), 0)
+        doc = json.loads((self.root / "normalized" / "a.json").read_text())
+        self.assertEqual(doc["post_window_adjustment"]["excluded"][0]["symbol"], "BIGCO")
+        self.assertEqual(data_cli.main(argv), 1)
+
+    def test_without_bars_dir_nothing_is_checked(self):
+        doc = self.snapshot({"SPLITCO": SPLITCO.read_bytes()})
+        actions, excluded = s.build_stock_actions(doc, self.root)
+        self.assertEqual(excluded, [])
+        self.assertNotIn("post_window_adjustment", actions)
+
+    def test_symbol_without_bar_file_is_listed_unchecked(self):
+        doc = self.snapshot({"SPLITCO": SPLITCO.read_bytes()})
+        folder = self.bars({})
+        actions, excluded = s.build_stock_actions(doc, self.root, bars_dir=folder)
+        self.assertEqual(excluded, [])
+        self.assertEqual(actions["post_window_adjustment"]["unchecked"], ["SPLITCO"])
+
+
 class FetchOptionTests(SnapshotFixture):
     def opener(self, behaviour):
         self.requests = []
@@ -179,6 +251,17 @@ class FetchOptionTests(SnapshotFixture):
         self.assertEqual([r["status"] for r in rows[5:]], ["not_attempted"] * 4)
         doc = m.read_manifest(self.root, "s2")
         self.assertIn("stopped after 5 consecutive HTTP failures", doc["notes"])
+
+    def test_non_http_failures_count_toward_the_stop(self):
+        def behave(sym):
+            raise urllib.error.URLError("connection reset") if sym != "S2" else TimeoutError("timed out")
+        symbols = [f"S{i}" for i in range(9)]
+        with self.assertRaises(y.SnapshotIncomplete):
+            y.fetch_snapshot(symbols, "2024-01-01", "2024-01-31", "s5", self.root,
+                             opener=self.opener(behave), max_consecutive_http_failures=5)
+        self.assertEqual(len(self.requests), 5)
+        rows = json.loads((self.root / "raw" / "yahoo" / "s5" / "requests.json").read_text())
+        self.assertEqual([r["status"] for r in rows[5:]], ["not_attempted"] * 4)
 
     def test_success_resets_consecutive_counter(self):
         def behave(sym):

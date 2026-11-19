@@ -164,10 +164,7 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
             row["status"] = "failed"
             row["http_status"] = getattr(error, "code", row["http_status"])
             row["error"] = f"{type(error).__name__}: {error}"
-            if isinstance(row["http_status"], int) and row["http_status"] != 200:
-                consecutive += 1
-            else:
-                consecutive = 0
+            consecutive += 1  # HTTP statuses, URL errors, timeouts and rejected bodies all count
             if max_consecutive_http_failures and consecutive >= max_consecutive_http_failures:
                 stopped = True
         else:

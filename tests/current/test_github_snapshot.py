@@ -88,6 +88,44 @@ class GithubSnapshotTests(unittest.TestCase):
         self.assertEqual(rows[0]["http_status"], 403)
         self.assertIn("a.json", m.read_manifest(self.root, "gh3")["notes"])
 
+    def test_expand_errors_are_listed_in_the_manifest_notes(self):
+        opener = FakeOpener({"https://api.github.com/a.json": b"[]"})
+
+        def expand(name, body):
+            raise ValueError("bad listing")
+        g.fetch_urls({"a.json": "https://api.github.com/a.json"}, "gh5", self.root, opener=opener, now=NOW,
+                     expand=expand)
+        notes = m.read_manifest(self.root, "gh5")["notes"]
+        self.assertIn("expand errors", notes)
+        self.assertIn("a.json", notes)
+        self.assertIn("bad listing", notes)
+
+    def test_rights_wording_follows_the_fetched_licence(self):
+        opener = FakeOpener({"https://api.github.com/a.json": b"[]",
+                             "https://raw.githubusercontent.com/a/b/main/LICENSE": b"Apache License\nVersion 2.0\n"})
+        g.fetch_urls({"a.json": "https://api.github.com/a.json"}, "gh6", self.root, opener=opener, now=NOW)
+        none = m.read_manifest(self.root, "gh6")["rights"]
+        self.assertIn("licence not fetched", none["redistribution"])
+        self.assertNotIn("MIT", json.dumps(none))
+        g.fetch_urls({"b-LICENSE": "https://raw.githubusercontent.com/a/b/main/LICENSE"}, "gh7", self.root,
+                     opener=opener, now=NOW)
+        some = m.read_manifest(self.root, "gh7")["rights"]
+        self.assertIn("Apache License", some["redistribution"])
+        self.assertNotIn("MIT", json.dumps(some))
+
+    def test_redirect_to_a_non_allowlisted_host_is_refused(self):
+        import urllib.request
+        handler = g.AllowlistedRedirect()
+        request = urllib.request.Request("https://api.github.com/x")
+        followed = handler.redirect_request(request, None, 302, "Found", {},
+                                            "https://raw.githubusercontent.com/a/b/main/c.csv")
+        self.assertEqual(followed.full_url, "https://raw.githubusercontent.com/a/b/main/c.csv")
+        for target in ("https://evil.example.com/c.csv", "http://api.github.com/c", "https://api.github.com.evil.test/c"):
+            with self.assertRaises(ValueError):
+                handler.redirect_request(request, None, 302, "Found", {}, target)
+        opener = g.default_opener()  # a real opener built with the checking handler
+        self.assertTrue(any(isinstance(h, g.AllowlistedRedirect) for h in opener.handlers))
+
     def test_membership_sources_discovery_via_contents_api(self):
         routes = {u: (FIXTURES / f).read_bytes() for u, f in {
             "https://api.github.com/repos/fja05680/sp500/contents": "contents-fja05680.json",

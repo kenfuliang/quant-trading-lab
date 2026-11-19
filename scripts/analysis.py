@@ -37,7 +37,8 @@ from reporting.run_tearsheet import tearsheet_html  # noqa: E402
 from research.control import experiment_registry  # noqa: E402
 from research.control.analysis_view import load_analyses, render_analysis_page, safe_id  # noqa: E402
 from research.data.identity import coverage, intervals_for_dataset, read_identity  # noqa: E402
-from research.data.membership import read_membership  # noqa: E402
+from research.data.manifest import sha256_file  # noqa: E402
+from research.data.membership import membership_file_sha256, read_membership  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
@@ -133,16 +134,21 @@ def _universe(spec: dict, data, root: Path):
     if not spec.get("identity"):
         raise ValueError("spec names membership but no identity id; masking needs the identity map")
     membership = read_membership(root, membership_id)
+    membership_sha, membership_verified = membership_file_sha256(root, membership_id)  # raises on a mismatch
     identity = read_identity(root, spec["identity"])
+    identity_sha = sha256_file(Path(root) / "identity" / f"{spec['identity']}.json")
     built_for = (identity.get("inputs") or {}).get("membership_id")
     if built_for != membership_id:
         raise ValueError(f"identity {spec['identity']} was built for membership {built_for!r}, "
                          f"but the spec names membership {membership_id!r}")
     symbols = list(data.bars)
     intervals = intervals_for_dataset(membership, identity, symbols)
-    summary = coverage(membership, identity, symbols, data.sessions)["summary"]
+    cov = coverage(membership, identity, symbols, data.sessions)
     return (lambda fn: members_only(fn, intervals),
-            {"membership_id": membership_id, "identity_id": spec["identity"], "coverage_summary": summary})
+            {"membership_id": membership_id, "identity_id": spec["identity"], "coverage_summary": cov["summary"],
+             "membership_sha256": membership_sha, "identity_sha256": identity_sha,
+             "membership_manifest_verified": membership_verified, "names": len(symbols),
+             "late_or_never_count": len(cov["late_or_never_member_dataset_symbols"])})
 
 
 def _pbo(spec: dict, data, market: MarketConfig, wrap=None) -> dict:
@@ -227,7 +233,10 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     try:
         series = pd.Series(net, index=pd.to_datetime(tables["returns"]["date"]))
         stats = {f"{key} (last rung)": float(value) for key, value in steps[-1]["summary"].items() if value is not None}
-        html_page = tearsheet(series, stats, f"{spec.get('title', spec['spec_id'])} - {last.name}")
+        title = f"{spec.get('title', spec['spec_id'])} - {last.name}"
+        if doc["labels"]:  # the picture must carry the survivor-bias labels too
+            title += f" [{', '.join(doc['labels'])}]"
+        html_page = tearsheet(series, stats, title)
         doc["tearsheet"] = {"status": "written", "error": None}
     except Exception as exc:  # the tearsheet is optional; the analysis stands without it
         error = f"{type(exc).__name__}: {exc}"

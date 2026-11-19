@@ -164,6 +164,48 @@ def unresolved_candidates(intervals: dict, ids_by_symbol: dict, applied: list) -
     return out
 
 
+RENAME_NOTE = ("derived from adjacent membership intervals in {membership_id} (fja05680 file); "
+               "not independently verified")
+
+
+def derive_renames(identity: dict, membership: dict, dataset_symbols, max_gap_days: int = 7) -> list:
+    """Ticker-change records derived from adjacent membership intervals (unverified, no URL).
+
+    From the identity's unresolved candidates keep those where the old symbol's last member day and
+    the new symbol's first member day are at most ``max_gap_days`` apart, the new symbol is in the
+    dataset, the old symbol is a historical-only id (never a second current instrument), the new
+    symbol's first membership starts on the candidate day and the old symbol's last interval ends on
+    its last member day. Such a record cannot be told from an ordinary one-for-one replacement
+    using membership alone, so each is ``verified: false`` with a plain note, never a made-up URL.
+    """
+    wanted = {norm(s) for s in dataset_symbols}
+    intervals = membership["intervals"]
+    note = RENAME_NOTE.format(membership_id=(identity.get("inputs") or {}).get("membership_id"))
+    out = []
+    for cand in identity.get("unresolved_candidates", []):
+        old, new = cand["old"], cand["new"]
+        if norm(new) not in wanted:
+            continue
+        gap = (date.fromisoformat(cand["new_first_member_day"]) - date.fromisoformat(cand["old_last_member_day"])).days
+        if gap > max_gap_days:
+            continue
+        spans = identity["symbol_map"].get(old)
+        if not spans or not str(spans[-1]["id"]).startswith("sym:"):
+            continue
+        old_spans, new_spans = intervals.get(old) or [], intervals.get(new) or []
+        if not old_spans or not new_spans:
+            continue
+        if max(s["start"] for s in old_spans) != old_spans[-1]["start"] or old_spans[-1]["end"] != cand["old_last_member_day"]:
+            continue
+        if min(s["start"] for s in new_spans) != cand["new_first_member_day"]:
+            continue
+        if any(s["start"] > cand["old_last_member_day"] for s in old_spans):
+            continue
+        out.append({"old": old, "new": new, "date": cand["new_first_member_day"], "source_url": None,
+                    "source_note": note, "verified": False})
+    return sorted(out, key=lambda r: (r["date"], r["old"]))
+
+
 def resolve(identity: dict, symbol: str, day: str):
     """The ``instrument_id`` that ``symbol`` denotes on ``day`` (ISO date), or ``None``.
 
@@ -210,8 +252,25 @@ def coverage(membership: dict, identity: dict, dataset_symbols, sessions) -> dic
     return {"schema": COVERAGE_SCHEMA, "membership_id": membership.get("membership_id"),
             "identity_id": identity.get("identity_id"), "dataset_symbols": len(set(dataset_symbols)),
             "per_date": per_date, "summary": summary,
+            "late_or_never_member_dataset_symbols": _late_or_never(membership, identity, dataset_symbols),
             "notes": "with_data assumes every dataset symbol has full-window bars (the stock dataset keeps "
                      "structural_full_window names only); it counts instruments, not bars present on the date."}
+
+
+def _late_or_never(membership: dict, identity: dict, dataset_symbols) -> list:
+    """Dataset symbols whose first membership start is the new_first_member_day of an unresolved
+    candidate: probably a renamed company whose earlier membership sits under another symbol, so
+    the dataset sees it as a member late (or never)."""
+    intervals = membership["intervals"]
+    by_norm = {norm(s): s for s in dataset_symbols}
+    found = {}
+    for cand in identity.get("unresolved_candidates", []):
+        symbol = by_norm.get(norm(cand["new"]))
+        spans = intervals.get(cand["new"]) or []
+        if symbol and spans and min(s["start"] for s in spans) == cand["new_first_member_day"]:
+            found[symbol] = {"symbol": symbol, "first_member_day": cand["new_first_member_day"],
+                             "candidate_old": cand["old"]}
+    return [found[s] for s in sorted(found)]
 
 
 def intervals_for_dataset(membership: dict, identity: dict, dataset_symbols) -> dict:

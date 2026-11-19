@@ -68,6 +68,8 @@ class EngineParityCliTests(unittest.TestCase):
             self.assertEqual(manifest["config_hash"], config_hash(manifest["config"]))
             self.assertEqual(manifest["datasets"], receipt["inputs"])
             self.assertEqual(manifest["code_commit"], receipt["code_commit"])
+            self.assertNotIn("labels", manifest)  # ETF-style runs keep the old keys
+            self.assertNotIn("universe_kind", manifest)
         self.assertTrue(native_manifest["engine_version"].startswith("nautilus_trader "))
 
         fixture = synthetic_fixture()
@@ -212,6 +214,10 @@ class EngineParityCliTests(unittest.TestCase):
         self.assertEqual(receipt["status"], "passed")
         self.assertEqual(receipt["market"]["cost_model"], "adv")
         self.assertEqual(set(receipt["runs"]), {"screen", "nautilus"})
+        for entry in receipt["runs"].values():  # parity runs are labelled like analysis runs
+            manifest, _ = read_run(data / "runs" / entry["run_id"])
+            self.assertEqual(manifest["labels"], ["survivor-biased", "discovery-only"])
+            self.assertEqual(manifest["universe_kind"], "current-holdings-proxy")
 
     def test_instruments_or_max_instruments_required(self):
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):

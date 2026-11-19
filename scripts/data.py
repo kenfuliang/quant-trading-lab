@@ -7,6 +7,7 @@
   stock-actions write etf-normalise-format stock actions from a Yahoo stock snapshot (no network)
   identity      write instrument-identity/v1 (archive ids + membership symbols + sourced ticker changes)
                 under <data root>/identity/ and re-run the membership cross-checks with renames resolved
+  derive-renames  unverified ticker-change records from adjacent membership intervals (new symbol in the dataset)
   coverage      write membership-coverage/v1: per session, index members with data in a stock dataset
   normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair (or a per-symbol
                 bars directory) and write a manifest
@@ -136,7 +137,7 @@ def cmd_stock_actions(args):
         manifest = read_manifest(root, args.snapshot)
         out = root / args.out
         _relative(root, out)
-        actions, excluded = build_stock_actions(manifest, root)
+        actions, excluded = build_stock_actions(manifest, root, bars_dir=args.bars_dir)
         path = write_actions(out, actions)
     except FileExistsError as error:
         print(f"error: refusing to overwrite {error.filename}", file=sys.stderr)
@@ -148,6 +149,10 @@ def cmd_stock_actions(args):
           f"{len(actions['cash_and_in_kind'])} dividends, {len(excluded)} excluded symbols")
     for item in excluded:
         print(f"  excluded {item['symbol']}: {item['reason']}")
+    info = actions.get("post_window_adjustment")
+    if info:
+        print(f"post-window adjustment: checked {info['checked']}, unchecked {len(info['unchecked'])}, "
+              f"excluded {len(info['excluded'])}")
     print(f"actions {path}")
     return 0
 
@@ -226,6 +231,31 @@ def cmd_identity(args):
     return 0
 
 
+def cmd_derive_renames(args):
+    root = Path(args.root) if args.root else data_root()
+    try:
+        identity = identity_lib.read_identity(root, args.identity_id)
+        membership = membership_lib.read_membership(root, identity["inputs"]["membership_id"])
+        manifest = read_manifest(root, args.dataset_id)
+        rows, _actions = read_inputs(root, manifest)
+        symbols = sorted({row["symbol"] for row in rows})
+        existing = identity_lib.load_ticker_changes(args.ticker_changes)
+        known = {(c["old"], c["new"]) for c in existing}
+        records = [r for r in identity_lib.derive_renames(identity, membership, symbols, args.max_gap_days)
+                   if (r["old"], r["new"]) not in known]
+        if args.write and records:
+            merged = identity_lib.check_ticker_changes(existing + records)
+            Path(args.ticker_changes).write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
+    except (ValueError, ManifestError, OSError, KeyError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    print(f"Derived renames from {args.identity_id} for {len(symbols)} {args.dataset_id} symbols: "
+          f"{len(records)} new record(s){' written to ' + str(args.ticker_changes) if args.write and records else ''}")
+    for record in records:
+        print(f"  {record['old']} -> {record['new']} on {record['date']}")
+    return 0
+
+
 def _share(value):
     return "n/a" if value is None else f"{value:.4f}"
 
@@ -249,9 +279,12 @@ def cmd_coverage(args):
         print(f"error: {error}", file=sys.stderr)
         return 1
     summary = doc["summary"]
+    late = doc["late_or_never_member_dataset_symbols"]
     print(f"Coverage {args.coverage_id}: {summary['sessions']} sessions, {doc['dataset_symbols']} dataset symbols; "
           f"share of index members with data: min {_share(summary['min_share'])}, "
           f"median {_share(summary['median_share'])}")
+    print(f"  late or never member dataset symbols (first membership starts when an unresolved rename candidate "
+          f"starts): {len(late)}")
     for item in summary["worst_dates"]:
         print(f"  worst {item['date']}: {item['with_data']} of {item['in_index']} ({_share(item['share'])})")
     print(f"coverage {path}")
@@ -278,7 +311,7 @@ def _stock_inputs(root: Path, args):
     dropped = {item["symbol"] for item in excluded}
     symbols = [symbol for symbol in listed if symbol not in dropped]
     paths = [require(bars_dir / f"{symbol}.json") for symbol in symbols]
-    return symbols, paths, excluded, len(listed)
+    return symbols, paths, excluded, len(listed), len(listed) - len(symbols)
 
 
 def cmd_normalise(args):
@@ -297,10 +330,10 @@ def cmd_normalise(args):
     actions_path = require(root / args.actions) if stock else require(Path(args.actions))
     try:
         if stock:
-            symbols, bar_paths, excluded, listed = _stock_inputs(root, args)
+            symbols, bar_paths, excluded, listed, dropped_from_list = _stock_inputs(root, args)
             bars_stem = Path(args.bars_dir).name
         else:
-            bar_paths, excluded, listed = [require(Path(args.bars))], [], 0
+            bar_paths, excluded, listed, dropped_from_list = [require(Path(args.bars))], [], 0, 0
             bars_stem = bar_paths[0].stem
         inputs = [{"path": _relative(root, p), "sha256": sha256_file(p)} for p in (*bar_paths, actions_path)]
         source_path = require(root / "manifests" / (bars_stem + ".json"))
@@ -324,7 +357,8 @@ def cmd_normalise(args):
                  f"excluded {len(result.excluded)}")
         if stock:
             notes += (f"; universe {len(symbols)} of {listed} {args.status} symbols; "
-                      f"excluded symbols ({len(excluded)}): "
+                      f"excluded symbols ({len(excluded)}: {dropped_from_list} of the {args.status} list + "
+                      f"{len(excluded) - dropped_from_list} not in it): "
                       + "; ".join(f"{item['symbol']}: {item['reason']}" for item in excluded))
         manifest = {
             "schema": "dataset-manifest/v1", "dataset_id": args.dataset_id, "kind": "normalised",
@@ -448,6 +482,8 @@ def build_parser():
     sa = sub.add_parser("stock-actions", help="write etf-normalise-format actions from a stock Yahoo snapshot")
     sa.add_argument("--snapshot", required=True, help="Yahoo snapshot id")
     sa.add_argument("--out", required=True, help="output path relative to the data root (never overwritten)")
+    sa.add_argument("--bars-dir", help="directory (relative to the data root) of the archive's <SYMBOL>.json bars: "
+                    "excludes symbols whose Yahoo closes are adjusted for events after the window")
     sa.add_argument("--root", help="data root (default: shared data root)")
     sa.set_defaults(func=cmd_stock_actions)
     idn = sub.add_parser("identity", help="write instrument-identity/v1 and the resolved cross-checks")
@@ -457,6 +493,15 @@ def build_parser():
     idn.add_argument("--ticker-changes", type=Path, default=TICKER_CHANGES)
     idn.add_argument("--root", help="data root (default: shared data root)")
     idn.set_defaults(func=cmd_identity)
+    dr = sub.add_parser("derive-renames", help="derive unverified ticker-change records from adjacent "
+                        "membership intervals (new symbols in the dataset only)")
+    dr.add_argument("--identity-id", required=True, help="identity whose unresolved candidates are used")
+    dr.add_argument("--dataset-id", required=True, help="normalised stock dataset manifest id (its symbols)")
+    dr.add_argument("--ticker-changes", type=Path, default=TICKER_CHANGES)
+    dr.add_argument("--max-gap-days", type=int, default=7)
+    dr.add_argument("--write", action="store_true", help="append the new records to the ticker-changes file")
+    dr.add_argument("--root", help="data root (default: shared data root)")
+    dr.set_defaults(func=cmd_derive_renames)
     cv = sub.add_parser("coverage", help="write membership-coverage/v1 for a stock dataset")
     cv.add_argument("--membership-id", required=True)
     cv.add_argument("--identity-id", required=True)

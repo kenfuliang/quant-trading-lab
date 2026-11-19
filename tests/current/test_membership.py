@@ -116,6 +116,8 @@ class MembershipTests(unittest.TestCase):
             manifest = m.read_manifest(root, "mem1")
             self.assertEqual(manifest["files"][0]["path"], "membership/mem1.json")
             self.assertEqual(len(manifest["inputs"]), 2)
+            self.assertIn("fja05680-components.csv from snapshot snap", manifest["notes"])
+            self.assertIn("fja05680-LICENSE from snapshot snap", manifest["notes"])
 
     def test_other_source_parsers_and_first_trading_days(self):
         as_of, added = ms.parse_current_list("symbol,date added,date\nAAA,2000-01-01,2025-08-23\nZZZ,,2025-08-23\n")

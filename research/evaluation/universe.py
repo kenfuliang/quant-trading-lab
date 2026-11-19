@@ -11,7 +11,15 @@ from research.evaluation.market_model import Decision, TargetFn
 
 # Every stock result built on the current-holdings proxy carries both labels (docs/goals.md).
 LABELS = ("survivor-biased", "discovery-only")
+STOCK_UNIVERSE_KIND = "current-holdings-proxy"
 UNIVERSE_SIGNAL = ("*", "universe")  # (instrument, stage); the value is the masked-name count
+
+
+def stock_labels(datasets: dict | None, masked: bool = False) -> list[str]:
+    """The survivor-bias labels: the dataset is on the current-holdings proxy, or the analysis applies
+    membership masking (still a survivor dataset). Never taken from spec author input."""
+    kind = datasets.get("universe_kind") if isinstance(datasets, dict) else None
+    return list(LABELS) if kind == STOCK_UNIVERSE_KIND or masked else []
 
 
 def members_only(target_fn: TargetFn, intervals_by_symbol: dict) -> TargetFn:

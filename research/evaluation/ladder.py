@@ -14,6 +14,7 @@ from research.evaluation.metrics import METRIC_KEYS, summarize
 from research.evaluation.run_output import COLUMNS, config_hash, new_run_id, write_run
 from research.evaluation.screening_engine import run_screen
 from research.evaluation.strategies import build_target_fn
+from research.evaluation.universe import stock_labels
 
 ENGINE_VERSION = "screening_engine (project)"
 
@@ -33,6 +34,8 @@ def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict,
     its plain-data description, recorded in the run config so the run id and hash reflect the mask.
     """
     instruments = list(data.bars)
+    labels = stock_labels(base.get("datasets"), wrap is not None)
+    universe_kind = (base.get("datasets") or {}).get("universe_kind")
     ladder_id = config_hash([{"rung": r.name, "strategy": r.strategy, "market": market_config_dict(r.market)}
                              for r in rungs] + ([universe] if wrap is not None and universe else []))[:12]
     results, parent = [], None
@@ -63,6 +66,10 @@ def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict,
             "coverage": {"instruments": instruments, "sessions": len(result.returns)},
             "parent_run": parent,
         }
+        if labels:  # stock-class and masked runs only; ETF run manifests keep exactly the old keys
+            manifest["labels"] = labels
+            if universe_kind:
+                manifest["universe_kind"] = universe_kind
         tables = {name: getattr(result, name)[list(cols)] for name, cols in COLUMNS.items()}
         write_run(runs_root, manifest, tables)
         summary = summarize(result.returns, result.fills, rung.market.initial_cash)

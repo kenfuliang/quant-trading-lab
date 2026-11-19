@@ -107,10 +107,21 @@ def is_fixture(doc):
     return isinstance(datasets, dict) and datasets.get("dataset_id") == FIXTURE_DATASET
 
 
+# Control-local copy of the evaluation constants (control may not import evaluation): a dataset on the
+# current-holdings proxy is survivor-biased and discovery-only even if the document's labels are missing.
+PROXY_KIND = "current-holdings-proxy"
+PROXY_LABELS = ("survivor-biased", "discovery-only")
+
+
 def labels_of(doc):
-    """Plain-text labels of an analysis (e.g. survivor-biased); malformed values are dropped."""
+    """Plain-text labels of an analysis (e.g. survivor-biased); malformed values are dropped. A dataset
+    ``universe_kind`` of the current-holdings proxy adds its labels when the document lacks them."""
     labels = doc.get("labels") if isinstance(doc, dict) else None
-    return [label for label in labels if isinstance(label, str)] if isinstance(labels, list) else []
+    found = [label for label in labels if isinstance(label, str)] if isinstance(labels, list) else []
+    datasets = doc.get("datasets") if isinstance(doc, dict) else None
+    if isinstance(datasets, dict) and datasets.get("universe_kind") == PROXY_KIND:
+        found += [label for label in PROXY_LABELS if label not in found]
+    return found
 
 
 def _label_badges(doc):

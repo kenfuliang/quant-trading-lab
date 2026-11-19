@@ -25,7 +25,7 @@ TIMEOUT = 30
 MAX_REQUESTS = 14
 NAME_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,80}")
 RIGHTS = {"source": "github repo", "use": "private offline research",
-          "redistribution": "not permitted unless licence allows; MIT text kept with snapshot",
+          "redistribution": "not permitted unless licence allows; licence not fetched",
           "ruling": "owner 2026-11-18 (membership sources)"}
 BLOCKING = (403, 429)
 
@@ -37,17 +37,31 @@ def check_url(url: str) -> None:
         raise ValueError(f"URL not allowed (GitHub https hosts only: {', '.join(HOSTS)}): {url!r}")
 
 
+class AllowlistedRedirect(urllib.request.HTTPRedirectHandler):
+    """Follow a redirect only if its target passes ``check_url`` (GitHub https hosts only)."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        check_url(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def default_opener():
+    """An opener whose redirects are host-checked again; ``urlopen`` would follow them anywhere."""
+    return urllib.request.build_opener(AllowlistedRedirect)
+
+
 def _first_line(path: Path) -> str:
     text = path.read_text(encoding="utf-8", errors="replace")
     return next((line.strip() for line in text.splitlines() if line.strip()), "")
 
 
-def fetch_urls(urls: dict, snapshot_id, root, opener=urllib.request.urlopen, now=None, *,
+def fetch_urls(urls: dict, snapshot_id, root, opener=None, now=None, *,
                expand=None, max_requests=MAX_REQUESTS, rights=None) -> Path:
     """Fetch each named URL once. ``expand(name, body) -> {name: url}`` may queue follow-up URLs
     (e.g. a file found in a contents listing); every URL is host-checked before its request and the
     total number of requests is capped at ``max_requests``."""
     root = Path(root)
+    opener = opener or default_opener().open
     check_dataset_id(snapshot_id)
     queue = list(dict(urls).items())
     for name, url in queue:
@@ -129,12 +143,18 @@ def fetch_urls(urls: dict, snapshot_id, root, opener=urllib.request.urlopen, now
     block = dict(rights or RIGHTS)
     block["licences"] = {r["name"]: {"sha256": r["sha256"], "first_line": _first_line(folder / r["name"])}
                          for r in rows if r["status"] == "received" and r["name"].endswith("LICENSE")}
+    if rights is None:  # the wording follows what was fetched; no licence is assumed
+        block["redistribution"] = ("not permitted unless licence allows; fetched licence starts: "
+                                   + "; ".join(f"{n}: {v['first_line']!r}" for n, v in block["licences"].items())
+                                   if block["licences"] else RIGHTS["redistribution"])
+    expand_errors = [f"{r['name']}: {r['error']}" for r in rows if (r["error"] or "").startswith("expand failed")]
     write_manifest(root, {
         "schema": SCHEMA, "dataset_id": snapshot_id, "kind": "raw-snapshot",
         "created_utc": _utc(now if now is not None else datetime.now(timezone.utc)),
         "source": f"GitHub ({', '.join(HOSTS)}); {len(rows)} requests receipted",
         "inputs": [], "recipe": None, "rights": block, "files": files,
-        "notes": f"requests.json is the request receipt; failed or not attempted: {failed or 'none'}",
+        "notes": f"requests.json is the request receipt; failed or not attempted: {failed or 'none'}"
+                 f"; expand errors: {expand_errors or 'none'}",
     })
     if failed:
         raise SnapshotIncomplete(f"failed or not attempted: {', '.join(failed)}", folder, failed)

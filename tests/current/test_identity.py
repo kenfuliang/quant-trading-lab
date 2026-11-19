@@ -9,7 +9,7 @@ from pathlib import Path
 
 from research.data import identity
 from research.data.identity import (build_identity, coverage, cross_check_resolved, current_id, intervals_for_dataset,
-                                    resolve, write_coverage, write_identity)
+                                    resolve, write_coverage, write_identity, derive_renames)
 
 ARCHIVE = {"dataset_id": "arch", "universe": {"equities": [
     {"symbol": "META", "name": "META PLATFORMS", "issuer_identifier": "30303M102", "currency": "USD"},
@@ -96,6 +96,61 @@ class IdentityTests(unittest.TestCase):
     def test_committed_ticker_changes_are_valid_and_start_with_fb_meta(self):
         changes = identity.load_ticker_changes(Path(identity.__file__).resolve().parents[1] / "registry/ticker-changes.json")
         self.assertEqual((changes[0]["old"], changes[0]["new"], changes[0]["date"]), ("FB", "META", "2022-06-09"))
+
+    def test_derived_rename_records_are_unverified_and_cite_the_membership(self):
+        ident = built()
+        records = derive_renames(ident, MEMBERSHIP, ["META", "AAPL", "NEWCO", "BRK.B"])
+        self.assertEqual(records, [{
+            "old": "GONE", "new": "NEWCO", "date": "2018-03-15", "source_url": None, "verified": False,
+            "source_note": "derived from adjacent membership intervals in m1 (fja05680 file); "
+                           "not independently verified"}])
+        identity.check_ticker_changes(records)  # the loader accepts exactly this form
+        applied = build_identity(ARCHIVE, MEMBERSHIP, copy.deepcopy(CHANGES) + records)
+        self.assertEqual(resolve(applied, "GONE", "2017-01-03"), resolve(applied, "NEWCO", "2018-03-15"))
+        self.assertEqual(applied["unresolved_candidates"], [])
+        self.assertEqual(derive_renames(ident, MEMBERSHIP, ["META", "AAPL", "BRK.B"]), [])  # new not in dataset
+
+    def test_derived_renames_skip_unsafe_candidates(self):
+        base = {"inputs": {"membership_id": "m1"},
+                "symbol_map": {"OLD": [{"id": "sym:OLD", "start": None, "end": None}],
+                               "NEW": [{"id": "n", "start": None, "end": None}]}}
+
+        def cand(last, first):
+            return [{"old": "OLD", "new": "NEW", "old_last_member_day": last, "new_first_member_day": first}]
+        ok = dict(base, unresolved_candidates=cand("2018-01-02", "2018-01-03"))
+        member = {"intervals": {"OLD": [{"start": "2016-01-04", "end": "2018-01-02"}],
+                                "NEW": [{"start": "2018-01-03", "end": None}]}}
+        self.assertEqual(len(derive_renames(ok, member, ["NEW"])), 1)
+        # gap longer than 7 days
+        far = dict(base, unresolved_candidates=cand("2018-01-02", "2018-01-10"))
+        late = {"intervals": {"OLD": [{"start": "2016-01-04", "end": "2018-01-02"}],
+                              "NEW": [{"start": "2018-01-10", "end": None}]}}
+        self.assertEqual(derive_renames(far, late, ["NEW"]), [])
+        self.assertEqual(len(derive_renames(far, late, ["NEW"], max_gap_days=8)), 1)
+        # old symbol is itself a current archive instrument: two companies, not merged
+        both = dict(ok, symbol_map=dict(ok["symbol_map"], OLD=[{"id": "cur-id2", "start": None, "end": None}]))
+        self.assertEqual(derive_renames(both, member, ["NEW"]), [])
+        # the new symbol was a member before: its first start is not the candidate's
+        earlier = {"intervals": {"OLD": [{"start": "2016-01-04", "end": "2018-01-02"}],
+                                 "NEW": [{"start": "2010-01-04", "end": "2012-01-02"},
+                                         {"start": "2018-01-03", "end": None}]}}
+        self.assertEqual(derive_renames(ok, earlier, ["NEW"]), [])
+        # the old symbol returns later: not a clean rename
+        back = {"intervals": {"OLD": [{"start": "2016-01-04", "end": "2018-01-02"},
+                                      {"start": "2020-01-02", "end": None}],
+                              "NEW": [{"start": "2018-01-03", "end": None}]}}
+        self.assertEqual(derive_renames(ok, back, ["NEW"]), [])
+
+    def test_coverage_lists_late_or_never_member_dataset_symbols(self):
+        ident = built()
+        sessions = ["2016-01-04", "2018-03-15"]
+        cov = coverage(MEMBERSHIP, ident, ["META", "AAPL", "NEWCO", "BRK.B"], sessions)
+        self.assertEqual(cov["late_or_never_member_dataset_symbols"],
+                         [{"symbol": "NEWCO", "first_member_day": "2018-03-15", "candidate_old": "GONE"}])
+        renamed = build_identity(ARCHIVE, MEMBERSHIP, copy.deepcopy(CHANGES) + derive_renames(
+            ident, MEMBERSHIP, ["NEWCO"]))
+        self.assertEqual(coverage(MEMBERSHIP, renamed, ["META", "NEWCO"], sessions)[
+                             "late_or_never_member_dataset_symbols"], [])
 
     def test_coverage_per_date(self):
         ident = built()
@@ -201,6 +256,39 @@ class IdentityCommandTests(unittest.TestCase):
             with contextlib.redirect_stderr(err):
                 self.assertEqual(data_cli.main(argv), 1)
             self.assertIn("refusing to overwrite", err.getvalue())
+
+    def test_derive_renames_command_lists_and_appends_only_new_records(self):
+        from scripts import data as data_cli
+        from tests.current.test_stock_dataset import ID, NAMES, make_root
+        archive = {"dataset_id": "arch", "universe": {"equities": [
+            {"symbol": s, "name": s, "issuer_identifier": f"id-{s}", "currency": "USD"} for s in NAMES]}}
+        membership = {"schema": "membership/v1", "membership_id": "m9", "intervals": {
+            "AAA": [{"start": "2016-01-04", "end": None}], "PAR": [{"start": "2016-01-04", "end": None}],
+            "OLDKID": [{"start": "2016-01-04", "end": "2019-01-31"}], "KID": [{"start": "2019-02-01", "end": None}]}}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = make_root(Path(tmp))
+            ident = build_identity(archive, membership, [])
+            ident.update(identity_id="id9", created_utc="2026-11-18T00:00:00Z")
+            write_identity(root, ident)
+            (root / "membership").mkdir()
+            (root / "membership/m9.json").write_text(json.dumps(membership))
+            changes = root / "changes.json"
+            changes.write_text(json.dumps(CHANGES))
+            argv = ["derive-renames", "--root", str(root), "--identity-id", "id9", "--dataset-id", ID,
+                    "--ticker-changes", str(changes)]
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(data_cli.main(argv), 0)
+            self.assertIn("OLDKID -> KID on 2019-02-01", out.getvalue())
+            self.assertEqual(len(json.loads(changes.read_text())), 1)  # dry run writes nothing
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(data_cli.main(argv + ["--write"]), 0)
+                self.assertEqual(data_cli.main(argv + ["--write"]), 0)  # idempotent
+            written = json.loads(changes.read_text())
+            self.assertEqual([(c["old"], c["new"], c["verified"], c["source_url"]) for c in written],
+                             [("FB", "META", False, "https://example.test/meta"),
+                              ("OLDKID", "KID", False, None)])
+            identity.check_ticker_changes(written)
 
 
 if __name__ == "__main__":

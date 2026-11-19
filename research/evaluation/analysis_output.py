@@ -12,23 +12,13 @@ from pathlib import Path
 
 from research.evaluation.ladder import waterfall
 from research.evaluation.metrics import METRIC_KEYS
-from research.evaluation.universe import LABELS
+from research.evaluation.universe import LABELS, STOCK_UNIVERSE_KIND, stock_labels  # noqa: F401
 
 SCHEMA = "analysis-output/v1"
 
 
 def _safe(text: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]+", "-", str(text)).strip("-") or "analysis"
-
-
-STOCK_UNIVERSE_KIND = "current-holdings-proxy"
-
-
-def stock_labels(datasets: dict | None, masked: bool = False) -> list[str]:
-    """The survivor-bias labels: the dataset is on the current-holdings proxy, or the analysis applies
-    membership masking (still a survivor dataset). Never taken from spec author input."""
-    kind = datasets.get("universe_kind") if isinstance(datasets, dict) else None
-    return list(LABELS) if kind == STOCK_UNIVERSE_KIND or masked else []
 
 
 def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, comparison: dict | None,
@@ -53,6 +43,10 @@ def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, 
         "membership_id": (universe or {}).get("membership_id"),
         "identity_id": (universe or {}).get("identity_id"),
         "coverage_summary": (universe or {}).get("coverage_summary"),
+        "universe": None if not universe else {
+            **{k: universe.get(k) for k in ("membership_id", "identity_id", "membership_sha256", "identity_sha256",
+                                            "membership_manifest_verified", "names", "late_or_never_count")},
+            "excluded": (provenance["datasets"] or {}).get("universe_excluded")},
         "runs": [dict(step) for step in steps],
         "waterfall": waterfall(steps),
         "trust": {key: trust[key] for key in ("psr", "dsr", "pbo")},
@@ -112,7 +106,21 @@ def _fmt_small(value) -> str:
 def _universe_lines(doc: dict) -> list[str]:
     summary = doc.get("coverage_summary") or {}
     worst = (summary.get("worst_dates") or [{}])[0]
-    return [f"Universe: point-in-time membership `{doc['membership_id']}` (identity `{doc.get('identity_id')}`); "
+    block = doc.get("universe") or {}
+    parts = []
+    if block.get("names") is not None:
+        parts.append(f"{block['names']} names")
+    excluded = block.get("excluded")
+    if excluded:
+        shown = ", ".join(excluded["names"][:5]) + ("..." if len(excluded["names"]) > 5 else "")
+        parts.append(f"{excluded['count']} excluded incl. {shown} (see manifest notes)")
+        parts.append("dividends credited on the ex-date (pay date unknown)")
+    late = block.get("late_or_never_count")
+    if late is not None:
+        parts.append(f"{late} dataset names first join the index when an unresolved rename candidate starts "
+                     "(late or never members)")
+    head = "; ".join(parts) + "; " if parts else ""
+    return [f"Universe: {head}point-in-time membership `{doc['membership_id']}` (identity `{doc.get('identity_id')}`); "
             f"non-members are held at zero on each decision date. Index members with data: min "
             f"{_fmt(summary.get('min_share'))}, median {_fmt(summary.get('median_share'))}, worst date "
             f"{worst.get('date', 'n/a')}.", ""]

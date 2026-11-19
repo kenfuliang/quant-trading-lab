@@ -8,6 +8,10 @@ Rules (Plan 5, Task 1):
   of the ratios of that symbol's splits dated strictly after its ex-date, giving the raw amount.
 - Yahoo gives no pay date, so ``pay_date = ex_date`` and every cash event carries the label
   ``pay_date_unknown_credited_on_ex_date``.
+- Post-window adjustment: Yahoo closes and dividends can be adjusted for splits or spin-offs dated
+  after the window end, which our raw archive prices are not. With ``bars_dir`` a symbol whose
+  median archive/Yahoo close ratio over the last 20 window sessions (Yahoo closes first un-adjusted
+  for its own in-window splits) differs from 1 by more than 0.5% is excluded. No factor is inferred.
 - Archive symbols use dots (BRK.B); Yahoo uses dashes (BRK-B). The archive symbol is the key and
   the mapping is recorded in the document.
 """
@@ -16,12 +20,15 @@ from __future__ import annotations
 import csv
 import json
 from decimal import Decimal
+from statistics import median
 from pathlib import Path
 
 from research.data.yahoo_snapshot import SYMBOL_RE, parse_chart
 
 LABEL_PAY_DATE = "pay_date_unknown_credited_on_ex_date"
 MICRO = Decimal("0.000001")
+POST_WINDOW_SESSIONS = 20
+POST_WINDOW_TOLERANCE = 0.005
 
 
 def yahoo_symbol(symbol: str) -> str:
@@ -64,8 +71,31 @@ def _plain(number: Decimal) -> str:
     return text
 
 
-def build_stock_actions(snapshot_manifest: dict, root: Path) -> tuple[dict, list[dict]]:
+def post_window_ratio(alpaca_closes: dict, yahoo_closes: dict, yahoo_splits: list[dict],
+                      sessions: int = POST_WINDOW_SESSIONS) -> float | None:
+    """Median archive/Yahoo close over the last ``sessions`` common sessions, after un-adjusting the
+    Yahoo closes for Yahoo's own splits. None when the two share no session."""
+    theirs = {day: float(close) for day, close in yahoo_closes.items()}
+    for split in yahoo_splits:
+        for day in theirs:
+            if day < split["date"]:
+                theirs[day] *= split["numerator"] / split["denominator"]
+    common = sorted(set(alpaca_closes) & set(theirs))[-sessions:]
+    if not common:
+        return None
+    return float(median(float(alpaca_closes[day]) / theirs[day] for day in common))
+
+
+def _archive_closes(path: Path) -> dict:
+    return {row["session"]: float(row["c"]) for row in json.loads(path.read_text(encoding="utf-8"))}
+
+
+def build_stock_actions(snapshot_manifest: dict, root: Path, bars_dir=None) -> tuple[dict, list[dict]]:
+    """``bars_dir`` (relative to ``root``, or absolute) holds the archive's ``<SYMBOL>.json`` bars and
+    switches on the post-window adjustment check."""
     root = Path(root)
+    bars_path = (root / bars_dir) if bars_dir else None
+    checked, unchecked, post_window = 0, [], []
     snapshot_id = snapshot_manifest["dataset_id"]
     cash, splits_out, excluded, symbol_map = [], [], [], {}
     received = set()
@@ -78,11 +108,26 @@ def build_stock_actions(snapshot_manifest: dict, root: Path) -> tuple[dict, list
         request = yahoo_symbol(symbol)
         if request != symbol:
             symbol_map[symbol] = request
-        _frame, dividends, splits = parse_chart((root / entry["path"]).read_bytes(), request)
+        frame, dividends, splits = parse_chart((root / entry["path"]).read_bytes(), request)
         problem = _split_problem(splits)
         if problem:
             excluded.append({"symbol": symbol, "reason": problem})
             continue
+        if bars_path is not None:
+            bar_file = bars_path / f"{symbol}.json"
+            ratio = (post_window_ratio(_archive_closes(bar_file), frame["close"].to_dict(), splits)
+                     if bar_file.exists() else None)
+            if ratio is None:
+                unchecked.append(symbol)
+            else:
+                checked += 1
+                if abs(ratio - 1) > POST_WINDOW_TOLERANCE:
+                    post_window.append({"symbol": symbol, "median_ratio": round(ratio, 6)})
+                    excluded.append({"symbol": symbol, "reason": (
+                        f"post-window adjustment: median archive/Yahoo close ratio {ratio:.4f} over the last "
+                        f"{POST_WINDOW_SESSIONS} window sessions (Yahoo dividends and closes adjusted for events "
+                        "after the window, not corrected)")})
+                    continue
         ratios = [(item["date"], int(_ratio(item))) for item in splits]
         for item in splits:
             ratio = int(_ratio(item))
@@ -110,6 +155,10 @@ def build_stock_actions(snapshot_manifest: dict, root: Path) -> tuple[dict, list
            "rights": snapshot_manifest["rights"], "labels": [LABEL_PAY_DATE],
            "symbol_map": dict(sorted(symbol_map.items())),
            "excluded_symbols": excluded, "cash_and_in_kind": cash, "splits": splits_out}
+    if bars_path is not None:
+        doc["post_window_adjustment"] = {
+            "window_sessions": POST_WINDOW_SESSIONS, "tolerance": POST_WINDOW_TOLERANCE, "checked": checked,
+            "unchecked": unchecked, "excluded": sorted(post_window, key=lambda e: e["symbol"])}
     return doc, excluded
 
 
