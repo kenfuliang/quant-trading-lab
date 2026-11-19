@@ -371,13 +371,19 @@ class CliTests(unittest.TestCase):
     def test_log_rejects_dirty_or_mismatched_parity_receipt(self):
         self.setup_keep()
         for fields in ({"code_commit": "bbb222+dirty"}, {"status": "failed", "passed": False},
-                       {"mismatch_count": 3}, {"runs": {"nautilus": {"run_id": "OTHER"}}}):
+                       {"mismatch_count": 3}):
             with self.subTest(fields=fields):
                 self.make_parity(**fields)
                 code, _, err = self.run_cli(*self.keep_args())
                 self.assertEqual(code, 1, err)
                 self.assertIn("parity receipt P1", err)
         self.assertFalse(self.registry.exists())
+
+    def test_log_accepts_candidate_run_that_differs_from_the_parity_run(self):
+        self.setup_keep()
+        self.make_parity(runs={"nautilus": {"run_id": "SOME-OTHER-RUN"}})
+        code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 0, err)
 
     def test_log_rejects_when_engine_files_changed_between_commits(self):
         self.setup_keep()

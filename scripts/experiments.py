@@ -111,7 +111,7 @@ def verify_run_refs(record, args):
     if record["disposition"] != "keep":
         return
     run_refs.require_nautilus_run(nautilus)
-    run_refs.require_passed_parity(receipt, args.nautilus_run_id)
+    run_refs.require_passed_parity(receipt)
     changed = engine_files_changed(run_git, receipt["code_commit"], nautilus.get("code_commit") or "")
     if changed:
         raise RegistryError("engine files changed between the parity receipt commit and the run commit: "

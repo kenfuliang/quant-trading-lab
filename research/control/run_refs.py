@@ -105,8 +105,9 @@ def require_nautilus_run(manifest):
                             "a keep record needs a nautilus run")
 
 
-def require_passed_parity(receipt, nautilus_run_id):
-    """Rule 3: a clean, passing parity receipt for this nautilus run."""
+def require_passed_parity(receipt):
+    """Rule 3: a clean, passing parity receipt. It vouches for the engine code (checked by
+    commit identity at log time), not for the candidate run, so no run-id equality."""
     pid = receipt.get("parity_id")
     if receipt.get("status") != "passed" or receipt.get("passed") is not True:
         raise RegistryError(f"parity receipt {pid} did not pass (status {receipt.get('status')!r})")
@@ -115,6 +116,3 @@ def require_passed_parity(receipt, nautilus_run_id):
     commit = receipt.get("code_commit")
     if not isinstance(commit, str) or not commit or "+dirty" in commit:
         raise RegistryError(f"parity receipt {pid} code_commit {commit!r} is dirty or missing")
-    nautilus = ((receipt.get("runs") or {}).get("nautilus") or {}).get("run_id")
-    if nautilus != nautilus_run_id:
-        raise RegistryError(f"parity receipt {pid} covers nautilus run {nautilus!r}, not {nautilus_run_id!r}")

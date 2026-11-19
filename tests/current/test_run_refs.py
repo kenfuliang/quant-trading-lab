@@ -82,12 +82,13 @@ class ReaderTests(unittest.TestCase):
     def test_parity_requirements(self):
         good = {"parity_id": "P1", "status": "passed", "passed": True, "mismatch_count": 0,
                 "code_commit": "abc123", "runs": {"nautilus": {"run_id": "N1"}}}
-        run_refs.require_passed_parity(good, "N1")
+        run_refs.require_passed_parity(good)
+        run_refs.require_passed_parity({**good, "runs": {"nautilus": {"run_id": "N2"}}})  # candidate run may differ
         bad = [{**good, "status": "failed"}, {**good, "mismatch_count": 2}, {**good, "code_commit": "abc+dirty"},
-               {**good, "runs": {"nautilus": {"run_id": "N2"}}}, {**good, "runs": None}]
+               {**good, "passed": False}]
         for receipt in bad:
             with self.subTest(receipt=receipt), self.assertRaises(RegistryError):
-                run_refs.require_passed_parity(receipt, "N1")
+                run_refs.require_passed_parity(receipt)
 
 
 if __name__ == "__main__":
