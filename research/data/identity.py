@@ -168,23 +168,41 @@ RENAME_NOTE = ("derived from adjacent membership intervals in {membership_id} (f
                "not independently verified")
 
 
-def derive_renames(identity: dict, membership: dict, dataset_symbols, max_gap_days: int = 7) -> list:
+def derive_renames(identity: dict, membership: dict, dataset_symbols, max_gap_days: int = 7,
+                   added_dates: dict | None = None, existing=(), since: str | None = None) -> list:
     """Ticker-change records derived from adjacent membership intervals (unverified, no URL).
 
     From the identity's unresolved candidates keep those where the old symbol's last member day and
     the new symbol's first member day are at most ``max_gap_days`` apart, the new symbol is in the
     dataset, the old symbol is a historical-only id (never a second current instrument), the new
     symbol's first membership starts on the candidate day and the old symbol's last interval ends on
-    its last member day. Such a record cannot be told from an ordinary one-for-one replacement
-    using membership alone, so each is ``verified: false`` with a plain note, never a made-up URL.
+    its last member day, the old symbol is not a member before ``since`` ends (when given: only renames
+    that touch the analysis window), and neither the old symbol is the old side of two candidates, nor the
+    new symbol the new side of two, nor either already in ``existing`` records on the same side.
+
+    An ordinary one-for-one index replacement looks the same as a rename in the membership table. So
+    when ``added_dates`` (``{symbol: date added to the index or None}``, a second source for current
+    members) is given, a candidate is kept only if that source dates the new symbol's addition more
+    than ``max_gap_days`` before its first membership here: the company was already in the index,
+    under the old ticker. Each record is ``verified: false`` with a plain note, never a made-up URL.
     """
     wanted = {norm(s) for s in dataset_symbols}
     intervals = membership["intervals"]
     note = RENAME_NOTE.format(membership_id=(identity.get("inputs") or {}).get("membership_id"))
+    candidates = identity.get("unresolved_candidates", [])
+    old_counts, new_counts = {}, {}
+    for cand in candidates:
+        old_counts[cand["old"]] = old_counts.get(cand["old"], 0) + 1
+        new_counts[cand["new"]] = new_counts.get(cand["new"], 0) + 1
+    taken_old, taken_new = {c["old"] for c in existing}, {c["new"] for c in existing}
+    added = {norm(s): d for s, d in (added_dates or {}).items()}
     out = []
-    for cand in identity.get("unresolved_candidates", []):
+    for cand in candidates:
         old, new = cand["old"], cand["new"]
-        if norm(new) not in wanted:
+        if norm(new) not in wanted or old_counts[old] > 1 or new_counts[new] > 1 \
+                or old in taken_old or new in taken_new:
+            continue
+        if since and cand["old_last_member_day"] < since:
             continue
         gap = (date.fromisoformat(cand["new_first_member_day"]) - date.fromisoformat(cand["old_last_member_day"])).days
         if gap > max_gap_days:
@@ -201,8 +219,16 @@ def derive_renames(identity: dict, membership: dict, dataset_symbols, max_gap_da
             continue
         if any(s["start"] > cand["old_last_member_day"] for s in old_spans):
             continue
-        out.append({"old": old, "new": new, "date": cand["new_first_member_day"], "source_url": None,
-                    "source_note": note, "verified": False})
+        record = {"old": old, "new": new, "date": cand["new_first_member_day"], "source_url": None,
+                  "source_note": note, "verified": False}
+        if added_dates is not None:
+            first_added = added.get(norm(new))
+            if not first_added or (date.fromisoformat(cand["new_first_member_day"])
+                                   - date.fromisoformat(first_added)).days <= max_gap_days:
+                continue
+            record["corroboration"] = (f"hanshof/sp500_constituents dates the addition of {new} to "
+                                       f"{first_added}, before its first membership here on {cand['new_first_member_day']}")
+        out.append(record)
     return sorted(out, key=lambda r: (r["date"], r["old"]))
 
 

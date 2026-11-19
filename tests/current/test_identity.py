@@ -141,6 +141,38 @@ class IdentityTests(unittest.TestCase):
                               "NEW": [{"start": "2018-01-03", "end": None}]}}
         self.assertEqual(derive_renames(ok, back, ["NEW"]), [])
 
+    def test_derived_renames_need_a_second_source_and_unambiguous_symbols(self):
+        symbol_map = {s: [{"id": f"sym:{s}", "start": None, "end": None}] for s in ("OLD", "X")}
+        symbol_map["NEW"] = [{"id": "n", "start": None, "end": None}]
+
+        def cand(old, new, last, first):
+            return {"old": old, "new": new, "old_last_member_day": last, "new_first_member_day": first}
+        ident = {"inputs": {"membership_id": "m1"}, "symbol_map": symbol_map,
+                 "unresolved_candidates": [cand("OLD", "NEW", "2018-01-02", "2018-01-03")]}
+        member = {"intervals": {"OLD": [{"start": "2016-01-04", "end": "2018-01-02"}],
+                                "NEW": [{"start": "2018-01-03", "end": None}]}}
+        # a genuine addition (second source dates it on the same day) is not a rename
+        self.assertEqual(derive_renames(ident, member, ["NEW"], added_dates={"NEW": "2018-01-03"}), [])
+        self.assertEqual(derive_renames(ident, member, ["NEW"], added_dates={}), [])
+        found = derive_renames(ident, member, ["NEW"], added_dates={"NEW": "1999-05-01"})
+        self.assertEqual([(r["old"], r["new"]) for r in found], [("OLD", "NEW")])
+        self.assertIn("1999-05-01", found[0]["corroboration"])
+        self.assertEqual(found[0]["source_note"], "derived from adjacent membership intervals in m1 (fja05680 "
+                         "file); not independently verified")
+        # window filter
+        self.assertEqual(derive_renames(ident, member, ["NEW"], since="2019-01-01"), [])
+        self.assertEqual(len(derive_renames(ident, member, ["NEW"], since="2018-01-01")), 1)
+        # already in the registry on the same side
+        self.assertEqual(derive_renames(ident, member, ["NEW"], existing=[{"old": "Z", "new": "NEW"}]), [])
+        # two candidates share the new symbol: ambiguous, none is applied
+        both = dict(ident, unresolved_candidates=ident["unresolved_candidates"]
+                    + [cand("X", "NEW", "2018-01-02", "2018-01-03")])
+        self.assertEqual(derive_renames(both, member, ["NEW"]), [])
+        # a chain (X -> OLD earlier, OLD -> NEW later) is not ambiguous
+        chain = dict(ident, unresolved_candidates=[cand("X", "OLD", "2015-12-30", "2015-12-31")]
+                     + ident["unresolved_candidates"])
+        self.assertEqual([r["old"] for r in derive_renames(chain, member, ["NEW"])], ["OLD"])
+
     def test_coverage_lists_late_or_never_member_dataset_symbols(self):
         ident = built()
         sessions = ["2016-01-04", "2018-03-15"]

@@ -241,7 +241,17 @@ def cmd_derive_renames(args):
         symbols = sorted({row["symbol"] for row in rows})
         existing = identity_lib.load_ticker_changes(args.ticker_changes)
         known = {(c["old"], c["new"]) for c in existing}
-        records = [r for r in identity_lib.derive_renames(identity, membership, symbols, args.max_gap_days)
+        added = None
+        if not args.no_corroboration:
+            try:
+                other = _other_sources(root, identity["inputs"]["membership_id"])
+            except (ManifestError, OSError, ValueError):
+                other = {}
+            if "hanshof" in other:
+                added = other["hanshof"][1]
+        records = [r for r in identity_lib.derive_renames(identity, membership, symbols, args.max_gap_days,
+                                                          added_dates=added, existing=existing,
+                                                          since=args.since)
                    if (r["old"], r["new"]) not in known]
         if args.write and records:
             merged = identity_lib.check_ticker_changes(existing + records)
@@ -499,6 +509,10 @@ def build_parser():
     dr.add_argument("--dataset-id", required=True, help="normalised stock dataset manifest id (its symbols)")
     dr.add_argument("--ticker-changes", type=Path, default=TICKER_CHANGES)
     dr.add_argument("--max-gap-days", type=int, default=7)
+    dr.add_argument("--since", default="2016-01-01",
+                    help="only candidates whose old symbol was a member on or after this date (the dataset window)")
+    dr.add_argument("--no-corroboration", action="store_true",
+                    help="do not require the current-members list (hanshof) to date the new symbol's addition earlier")
     dr.add_argument("--write", action="store_true", help="append the new records to the ticker-changes file")
     dr.add_argument("--root", help="data root (default: shared data root)")
     dr.set_defaults(func=cmd_derive_renames)
