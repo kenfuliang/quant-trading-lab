@@ -159,10 +159,13 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
         "inputs": inputs,
         "code_commit": _code_commit(),
     }
-    folder = Path(args.out) / new_run_id(dict(base, kind="parity"), now)
+    parity_id = new_run_id(dict(base, kind="parity"), now)
+    folder = Path(args.out) / parity_id
     folder.mkdir(parents=True, exist_ok=False)
     receipt = {
         "schema": RECEIPT_SCHEMA,
+        "parity_id": parity_id,
+        "run_id": None,
         "created_utc": now.isoformat(),
         "use": "engineering evidence, not financial use; offline and order-free",
         "command": ["scripts/current/engine_parity.py", *argv],
@@ -255,6 +258,7 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
             "projected_seconds_500_names": native_seconds * 500 / len(instruments),
         },
         runs={screen.engine: screen_run, native.engine: native_run},
+        run_id=native_run["run_id"],
         status="passed" if report.passed else "mismatch",
         passed=report.passed,
         mismatch_count=len(report.mismatches),

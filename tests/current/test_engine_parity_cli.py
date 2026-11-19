@@ -85,6 +85,31 @@ class EngineParityCliTests(unittest.TestCase):
         for key in ("bars", "actions"):
             self.assertEqual(len(receipt["inputs"][key]["sha256"]), 64)
 
+    def test_receipt_has_parity_id_and_nautilus_run_id(self):
+        code = engine_parity.main(self._argv(), loader=lambda bars, actions, names: synthetic_fixture())
+        self.assertEqual(code, 0)
+        folder, receipt = self._receipt()
+        self.assertEqual(receipt["parity_id"], folder.name)
+        self.assertEqual(receipt["run_id"], receipt["runs"]["nautilus"]["run_id"])
+
+    def test_rejected_or_timing_only_receipt_has_null_run_id(self):
+        def loader(bars, actions, names):
+            raise MarketDataError("SPY: price not on the cent grid")
+
+        engine_parity.main(self._argv(), loader=loader)
+        folder, receipt = self._receipt()
+        self.assertEqual(receipt["parity_id"], folder.name)
+        self.assertIsNone(receipt["run_id"])
+        timing_out = self.root / "timing"
+        argv = self._argv()
+        argv[argv.index("--out") + 1] = str(timing_out)
+        engine_parity.main(argv + ["--timing-only"], loader=lambda bars, actions, names: synthetic_fixture())
+        path = next(timing_out.glob("*/receipt.json"))
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(receipt["status"], "timing_only")
+        self.assertEqual(receipt["parity_id"], path.parent.name)
+        self.assertIsNone(receipt["run_id"])
+
     def test_cli_records_rejected_input_and_exits_non_zero(self):
         def loader(bars, actions, names):
             raise MarketDataError("SPY: price not on the cent grid")
