@@ -47,7 +47,7 @@
       "aspect": "Universe and survivorship",
       "score": 2,
       "importance": "H",
-      "critique": "Point-in-time S&P 500 membership from fja05680 (MIT) with spot checks and listed cross-check differences, coverage per date (57.5% to 80.7% of members have data) and masking in runs; universe is still the current-holdings proxy, former members' prices are out of scope, every stock result stays survivor-biased and discovery-only",
+      "critique": "Point-in-time S&P 500 membership from fja05680 (MIT) with spot checks and listed cross-check differences, coverage per date (57.1% to 79.3% of members have data) and masking in runs; the dataset (409 names) excludes 62 symbols (split events, failed fetches, post-window adjustments) including large caps; universe is still the current-holdings proxy, former members' prices are out of scope, every stock result stays survivor-biased and discovery-only (labels in analysis, tearsheet and run manifests)",
       "next_action": "Former members' prices and sourced ticker changes before any G2 claim",
       "roadmap_step": 5,
       "evidence": [
@@ -64,7 +64,7 @@
       "aspect": "Instrument identity across ticker changes",
       "score": 1.5,
       "importance": "H",
-      "critique": "Identity table with dated symbols and issuer ids for current members; one ticker change applied (FB to META) and it is unverified (no source URL); 458 rename candidates unresolved",
+      "critique": "Identity table with dated symbols and issuer ids for current members; nine ticker changes applied (FB to META and eight derived from adjacent membership intervals corroborated by a current-members list), none verified (no source URL); 450 rename candidates unresolved, including real renames the corroboration cannot reach (BK to BNY, MMC to MRSH)",
       "next_action": "Cite sources for ticker changes and resolve the candidates",
       "roadmap_step": 5,
       "evidence": [
@@ -497,7 +497,7 @@
       "aspect": "Performance at scale",
       "score": 2,
       "importance": "M",
-      "critique": "Screening on all 416 stock names takes about 83 s (was 179 s), bit-identical results; native engine extrapolated to about 413 s from 20 measured names; single runs on a shared machine",
+      "critique": "Screening on all 416 names of the earlier dataset takes about 83 s (was 179 s), bit-identical results; native engine extrapolated to about 413 s from 20 measured names; single runs on a shared machine; the current dataset has 409 names",
       "next_action": "Measure native on all names if a study needs it",
       "roadmap_step": 5,
       "evidence": [
