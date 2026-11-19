@@ -35,7 +35,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 | Dataset manifest | `dataset-manifest/v1` | local | authoritative | implemented | research/data/manifest.py, scripts/data.py | research/data/yahoo_snapshot.py, research/evaluation/datasets.py, scripts/current/engine_parity.py | local, per dataset |
 | Instrument identity map | `instrument-identity/v1` | tracked | authoritative | planned | Plan 5 (instrument identity; not built) | Plan 5 universe loaders | permanent, tracked |
 | Normalised dataset cache | `normalised-cache/v1` | local | view | implemented | research/evaluation/datasets.py | research/evaluation/datasets.py | local, per manifest hash; rebuilt when any hash differs |
-| Universe membership history | `membership/v1` | tracked | authoritative | planned | Plan 5 (universe membership; not built) | Plan 5 universe loaders | permanent, tracked |
+| Universe membership history | `membership/v1` | local | authoritative | implemented | research/data/membership.py, scripts/data.py membership | scripts/data.py, tests/current/test_membership.py | local, per membership id; rights per source snapshot manifest |
 
 ## run
 

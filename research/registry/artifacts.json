@@ -214,14 +214,15 @@
       "schema_id": "membership/v1",
       "name": "Universe membership history",
       "stage": "data",
-      "location": "tracked",
+      "location": "local",
       "authority": "authoritative",
-      "producer": "Plan 5 (universe membership; not built)",
+      "producer": "research/data/membership.py, scripts/data.py membership",
       "consumers": [
-        "Plan 5 universe loaders"
+        "scripts/data.py",
+        "tests/current/test_membership.py"
       ],
-      "retention": "permanent, tracked",
-      "status": "planned"
+      "retention": "local, per membership id; rights per source snapshot manifest",
+      "status": "implemented"
     },
     {
       "schema_id": "instrument-identity/v1",

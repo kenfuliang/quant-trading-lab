@@ -2,12 +2,14 @@
 """Local ETF data library commands.
 
   fetch-yahoo   take one receipted raw Yahoo chart snapshot under <data root>/raw/yahoo/<snapshot-id>/
+  fetch-github  take one receipted raw GitHub snapshot (S&P 500 membership sources) under <data root>/raw/github/
+  membership    build membership/v1 from that snapshot (no network)
   stock-actions write etf-normalise-format stock actions from a Yahoo stock snapshot (no network)
   normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair (or a per-symbol
                 bars directory) and write a manifest
   quality       write a quality-report/v1 for a normalised dataset (optionally cross-checked to Yahoo)
 
-The only command that uses the network is fetch-yahoo; every request is receipted.
+The only commands that use the network are fetch-yahoo and fetch-github; every request is receipted.
 Exit codes: 0 ok, 1 failure or incomplete snapshot, 2 data absent.
 """
 import argparse
@@ -21,6 +23,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from research.data import github_snapshot, membership as membership_lib
 from research.data.manifest import ManifestError, read_manifest, sha256_file, write_manifest
 from research.data.root import DataAbsent, data_root, require
 from research.data.stock_actions import build_stock_actions, read_symbols_file, write_actions, yahoo_symbol
@@ -71,6 +74,56 @@ def cmd_fetch_yahoo(args):
         return 1
     print(f"Snapshot {args.snapshot_id}: {len(symbols)} received in {folder}")
     print(f"manifest {root / 'manifests' / (args.snapshot_id + '.json')}")
+    return 0
+
+
+def cmd_fetch_github(args):
+    root = Path(args.root) if args.root else data_root()
+    try:
+        if args.url:  # explicit follow-up fetch of named URLs (host-checked), no discovery
+            urls = dict(item.split("=", 1) for item in args.url)
+            folder = github_snapshot.fetch_urls(urls, args.snapshot_id, root)
+        else:
+            folder = github_snapshot.fetch_urls(github_snapshot.membership_sources(), args.snapshot_id, root,
+                                                expand=github_snapshot.expand_membership)
+    except SnapshotIncomplete as error:
+        print(f"error: {error}; receipt {error.snapshot_dir / 'requests.json'}", file=sys.stderr)
+        print(f"manifest {root / 'manifests' / (args.snapshot_id + '.json')}", file=sys.stderr)
+        return 1
+    except (ValueError, ManifestError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    except FileExistsError as error:
+        print(f"error: snapshot already exists: {error.filename}", file=sys.stderr)
+        return 1
+    print(f"GitHub snapshot {args.snapshot_id} in {folder}")
+    print(f"manifest {root / 'manifests' / (args.snapshot_id + '.json')}")
+    return 0
+
+
+def cmd_membership(args):
+    root = Path(args.root) if args.root else data_root()
+    try:
+        for snapshot in args.snapshot:
+            require(root / "manifests" / (snapshot + ".json"))
+        doc, inputs, rights = membership_lib.build_from_snapshot(root, args.snapshot, args.membership_id)
+        path = membership_lib.write_membership(root, doc)
+        write_manifest(root, membership_lib.membership_manifest(root, doc, path, inputs, rights))
+    except FileExistsError as error:
+        print(f"error: refusing to overwrite {error.filename}", file=sys.stderr)
+        return 1
+    except (ValueError, ManifestError, OSError, KeyError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    intervals = doc["intervals"]
+    print(f"Membership {args.membership_id}: {sum(len(v) for v in intervals.values())} intervals "
+          f"for {len(intervals)} symbols")
+    for check in doc["spot_checks"]:
+        print(f"  spot {check['name']}: {check['result']} ({json.dumps(check['observed'])[:120]})")
+    for check in doc["cross_checks"]:
+        print(f"  cross-check {check['source']}: {check['status']}"
+              + (f" ({check['reason']})" if check.get("reason") else ""))
+    print(f"membership {path}")
     return 0
 
 
@@ -266,6 +319,19 @@ def build_parser():
     fy.add_argument("--snapshot-id", required=True)
     fy.add_argument("--root", help="data root (default: shared data root)")
     fy.set_defaults(func=cmd_fetch_yahoo)
+    fg = sub.add_parser("fetch-github", help="fetch the S&P 500 membership sources (GitHub hosts only), receipted")
+    fg.add_argument("--snapshot-id", required=True)
+    fg.add_argument("--url", action="append", metavar="NAME=URL",
+                    help="fetch only these named URLs (GitHub hosts only; repeatable) instead of discovering")
+    fg.add_argument("--root", help="data root (default: shared data root)")
+    fg.set_defaults(func=cmd_fetch_github)
+    mb = sub.add_parser("membership", help="build membership/v1 from a GitHub snapshot (no network)")
+    mb.add_argument("--snapshot", required=True, action="append",
+                    help="GitHub snapshot id; repeat to combine (a later snapshot overrides an earlier "
+                         "one by file name)")
+    mb.add_argument("--membership-id", required=True)
+    mb.add_argument("--root", help="data root (default: shared data root)")
+    mb.set_defaults(func=cmd_membership)
     sa = sub.add_parser("stock-actions", help="write etf-normalise-format actions from a stock Yahoo snapshot")
     sa.add_argument("--snapshot", required=True, help="Yahoo snapshot id")
     sa.add_argument("--out", required=True, help="output path relative to the data root (never overwritten)")

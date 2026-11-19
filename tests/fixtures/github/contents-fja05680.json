@@ -1,0 +1,9 @@
+[
+  {"name": "LICENSE", "type": "file", "sha": "aaa", "download_url": "https://raw.githubusercontent.com/fja05680/sp500/master/LICENSE"},
+  {"name": "README.md", "type": "file", "sha": "bbb", "download_url": "https://raw.githubusercontent.com/fja05680/sp500/master/README.md"},
+  {"name": "S&P 500 Historical Components & Changes(01-17-2025).csv", "type": "file", "sha": "ccc", "download_url": "https://raw.githubusercontent.com/fja05680/sp500/master/S%26P%20500%20Historical%20Components%20%26%20Changes%2801-17-2025%29.csv"},
+  {"name": "S&P 500 Historical Components & Changes(11-01-2026).csv", "type": "file", "sha": "ddd", "download_url": "https://raw.githubusercontent.com/fja05680/sp500/master/S%26P%20500%20Historical%20Components%20%26%20Changes%2811-01-2026%29.csv"},
+  {"name": "S&P 500 Historical Components & Changes (Updated).csv", "type": "file", "sha": "fff", "download_url": "https://raw.githubusercontent.com/fja05680/sp500/master/S%26P%20500%20Historical%20Components%20%26%20Changes%20(Updated).csv"},
+  {"name": "S&P 500 Historical Components & Changes.csv", "type": "file", "sha": "ggg", "download_url": "https://raw.githubusercontent.com/fja05680/sp500/master/S%26P%20500%20Historical%20Components%20%26%20Changes.csv"},
+  {"name": "notebooks", "type": "dir", "sha": "eee", "download_url": null}
+]
