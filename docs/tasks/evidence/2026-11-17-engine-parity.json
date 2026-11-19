@@ -1,0 +1,87 @@
+{
+  "schema": "engine-parity-task-v1",
+  "receipt_schema": "parity-receipt/v1",
+  "status": "real_data_parity_rejected_at_load; synthetic_ci_parity_passed",
+  "use": "engineering evidence, not financial use; offline and order-free",
+  "plan": "docs/tasks/2026-11-17-offline-infra-p0-p1b-plan.md#task-6-local-real-data-parity-run-receipt-and-documentation",
+  "code": {
+    "commit": "1b47a821dce1177cc9d04224158145db7e2b2010",
+    "loader": "research/evaluation/sector_derivative.py",
+    "command": "scripts/current/engine_parity.py"
+  },
+  "inputs": {
+    "location": "main checkout, ignored data/ folder (not in the worktree)",
+    "bars": {
+      "path": "data/normalized/alpaca-sector-etfs-2016-2025-v1.json",
+      "sha256": "81aa4f61f99c05ffab0543ef5cc4d56578f2bd623402caef508b3a05a208c919",
+      "columns": ["symbol", "session", "source_timestamp", "ts_event", "ts_init", "o", "h", "l", "c", "v"]
+    },
+    "actions": {
+      "path": "data/normalized/alpaca-sector-etfs-2016-2025-v1-issuer-actions-v2.json",
+      "sha256": "e4717aecb97466be28e41ee1c8ea810506c67cff9335872a290540e23907967d",
+      "keys": ["schema", "cash_and_in_kind", "excluded_issuer_rows", "splits", "identities", "split_reviews", "source_workbook_sha256", "policy"]
+    },
+    "hashes_match_qualified_bundle": "data/qualified/alpaca-sector-etfs-2016-2025-v1-issuer-v2/inputs.json"
+  },
+  "command": "make parity-local PYTHON=/Users/kenfuliang/git/quant-trading-lab/.venv/bin/python",
+  "instruments": ["SPY", "XLB", "XLE", "XLF"],
+  "attempts": [
+    {
+      "attempt": 1,
+      "utc": "2026-11-18T03:19:45.966026+00:00",
+      "code_commit": "35465c6531413d00fdf49a848c2b35c1529e0eaa (working tree with the uncommitted loader and command; before the dirty flag existed)",
+      "receipt": ".local/parity/20261118T031945Z-30d7c8ba/receipt.json",
+      "receipt_sha256": "71ad419bd96a8e91edb2fa8dcb208cbbba1aa2918bb7d43dd0993bae65d02770",
+      "exit": 2,
+      "outcome": "rejected at load: actions not representable as cash dividends or splits: ['XLF-2016-09-19 (in_kind)']"
+    },
+    {
+      "attempt": 2,
+      "utc": "2026-11-18T03:22:04.306803+00:00",
+      "code_commit": "1b47a821dce1177cc9d04224158145db7e2b2010",
+      "receipt": ".local/parity/20261118T032204Z-2e0b1c4e/receipt.json",
+      "receipt_sha256": "20f8c2650cd014e0a0e3aad2fe97881c94781d075b1ed1c0d1633018e4e97679",
+      "exit": 2,
+      "outcome": "rejected at load: actions not representable as cash dividends or splits: ['XLF-2016-09-19 (in_kind)']"
+    }
+  ],
+  "result": {
+    "passed": false,
+    "status": "rejected",
+    "stage": "load",
+    "runs": null,
+    "parity_report": null,
+    "calendar": null,
+    "timing": null,
+    "cash_interest": "not modelled",
+    "make_exit": 2,
+    "script_exit": 1
+  },
+  "diagnostics_not_runs": {
+    "method": "read-only in-memory probe after the run; no outputs written; not a parity result",
+    "calendar_observed": {"sessions": 2514, "first": "2016-01-04", "last": "2025-12-31", "identical_across_instruments": true, "half_days": [], "half_days_note": "not marked by source"},
+    "off_cent_price_fields": {
+      "SPY": {"open": 37, "high": 271, "low": 305, "close": 88},
+      "XLB": {"open": 4, "high": 452, "low": 408, "close": 7},
+      "XLE": {"open": 19, "high": 467, "low": 461, "close": 36},
+      "XLF": {"open": 31, "high": 505, "low": 497, "close": 14}
+    },
+    "validate_without_XLF": "SPY: price not on the cent grid",
+    "action_dates_outside_sessions": ["SPY-2025-12-19 pay_date 2026-01-30"],
+    "splits_inside_dividend_windows": []
+  },
+  "synthetic_ci_parity": {
+    "test": "tests/current/test_engine_parity.py",
+    "cli_test": "tests/current/test_engine_parity_cli.py",
+    "passed": true
+  },
+  "checks": {
+    "new_tests": 6,
+    "make_check": {"exit": 0, "tests": 1130, "skipped": 6}
+  },
+  "data_modified": false,
+  "tolerances_or_engines_changed": false,
+  "broker_requests": 0,
+  "orders": 0,
+  "network": "none"
+}
