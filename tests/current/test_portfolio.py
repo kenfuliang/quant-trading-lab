@@ -265,6 +265,65 @@ class CombineTests(unittest.TestCase):
         bad["returns"].loc[10, "gross_return"] += 0.01
         self.assertGreater(pf.reconcile(bad, sl)["max_abs_return_error"], 0.009)
 
+    def test_gross_return_recorded_directly_on_a_floored_wipe_out_day(self):
+        a = _sleeve("A", [-1.0, 0.5, 0.5], D3)
+        b = _sleeve("B", [-1.2, 0.5, 0.5], D3)
+        t = pf.combine([a, b], "equal", rebalance="daily", rebalance_cost_bps=10.0)
+        r = t["returns"]
+        self.assertAlmostEqual(r["gross_return"].iloc[0], -1.0, places=15)  # sum(w * clamped), not net + cost
+        self.assertAlmostEqual(r["net_return"].iloc[0], -1.0, places=15)    # floored
+        self.assertGreater(r["cost"].iloc[0], 0.0)
+        self.assertGreater(abs(r["gross_return"].iloc[0] - (r["net_return"].iloc[0] + r["cost"].iloc[0])), 5e-4)
+        self.assertLess(pf.reconcile(t, [a, b])["max_abs_return_error"], 1e-12)
+
+    def test_cash_min_noise_is_clipped_to_zero(self):
+        for seed in range(6):
+            rng = np.random.default_rng(seed)
+            dates = [d.strftime("%Y-%m-%d") for d in pd.bdate_range("2024-01-02", periods=120)]
+            sl = [_sleeve(n, rng.normal(0, s, 120), dates) for n, s in (("A", 0.01), ("B", 0.02), ("C", 0.015))]
+            rec = pf.reconcile(pf.combine(sl, "equal", rebalance="daily"), sl)
+            self.assertGreaterEqual(rec["cash_min"], 0.0)
+
+    def test_zero_volatility_error_names_date_window_and_warm_up(self):
+        dates = [f"2024-01-{d:02d}" for d in range(2, 8)]
+        a = _sleeve("A", [0.01, -0.02, 0.015, 0.0, 0.01, -0.01], dates)
+        flat = _sleeve("FLAT", [0.0] * 6, dates)
+        with self.assertRaises(pf.PortfolioError) as cm:
+            pf.combine([a, flat], "inverse_vol", vol_window=3, rebalance="daily")
+        msg = str(cm.exception)
+        self.assertIn("2024-01-05", msg)  # dates[3], the rebalance session
+        self.assertIn("2024-01-02", msg)  # window start
+        self.assertIn("2024-01-04", msg)  # window end (t-1)
+        self.assertIn("warm-up", msg)
+
+    def test_stock_class_component_without_labels_is_refused_naming_it(self):
+        ok = _sleeve("OK", [0.0] * 3, D3)
+        bad = _sleeve("BAD", [0.0] * 3, D3)
+        bad.manifest["datasets"] = {"d": {"id": "x", "nested": {"universe_kind": "current-holdings-proxy"}}}
+        with self.assertRaises(pf.PortfolioError) as cm:
+            pf.combine([ok, bad], "equal")
+        self.assertIn("BAD", str(cm.exception))
+        self.assertIn("labels", str(cm.exception))
+        bad.manifest["labels"] = ["survivor-biased"]
+        tables = pf.combine([ok, bad], "equal")
+        m = pf.build_manifest([ok, bad], "equal", {}, tables, NOW, "c", exploratory=True)
+        self.assertEqual(m["labels"], ["survivor-biased"])
+        self.assertEqual(m["universe_kind"], "current-holdings-proxy")  # derived from the component datasets
+
+    def test_start_weights_and_rebalance_turnover(self):
+        dates = ["2024-01-30", "2024-01-31", "2024-02-01", "2024-02-02"]
+        a = _sleeve("A", [0.2, 0.1, 0.0, 0.0], dates)
+        b = _sleeve("B", [0.0, 0.0, 0.0, 0.1], dates)
+        t = pf.combine([a, b], "equal", rebalance="monthly", rebalance_cost_bps=0.0)
+        w = pf.start_weights(t, ["A", "B"])
+        wa1 = 0.5 * 1.2 / 1.1
+        wa2 = wa1 * 1.1 / (1 + wa1 * 0.1)
+        np.testing.assert_allclose(w[:, 0], [0.5, wa1, 0.5, 0.5], rtol=1e-12)
+        np.testing.assert_allclose(w.sum(axis=1), 1.0, atol=1e-12)
+        # Turnover: all-cash start (1.0) + the Feb 1 reset from the drifted weights.
+        expected = 1.0 + abs(0.5 - wa2) + abs(0.5 - (1 - wa2))
+        self.assertAlmostEqual(pf.rebalance_turnover(t, ["A", "B"]), expected, places=12)
+
 
 if __name__ == "__main__":
     unittest.main()

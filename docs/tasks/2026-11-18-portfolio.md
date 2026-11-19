@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-18
+updated: 2026-11-19
 owner: project-maintainers
 ---
 
@@ -17,7 +17,12 @@ owner: project-maintainers
   mechanism. They are not a research finding and support no strategy claim.** No trial was
   recorded in the tracked ledger (`research/registry/trial-ledger/` is untouched).
 - Receipt: [evidence JSON](evidence/2026-11-18-portfolio.json) (run ids, metrics, hashes;
-  no prices). Code: `research/evaluation/portfolio.py`, `scripts/portfolio.py`.
+  no prices). Code: `research/evaluation/portfolio.py`, `scripts/portfolio.py`,
+  `scripts/portfolio_repro.py`.
+- Reports (relative to the data root): `portfolio/20261119T074500Z-524435d5/20261119T080117Z/report.json`
+  and `portfolio/20261119T074508Z-032c4c17/20261119T080123Z/report.json`. The first reports,
+  `portfolio/<run id>/report.json`, stay as superseded history: they were written before the
+  final-review fixes (sleeve and combined turnover 0, risk shares from the first rebalance's weights).
 
 ```mermaid
 flowchart LR
@@ -46,11 +51,24 @@ The two new sleeves ran from a clean tree (code commit `d34954b`). The stock sle
 `survivor-biased` and `discovery-only` from its dataset (`universe_kind:
 current-holdings-proxy`). Screening time was not measured for this task.
 
-The stock sleeve loses 29% a year. The likely cause is its cost model, not the signal: the
-spec charges the ladder's usual flat 5 bp plus **$1 per trade** to a 409-name book of
-about $230 per position, so each trade costs about 40 bp. That is an unverified reading
-(no ablation was run) and is not tuned away here, because strategy tuning is outside this
-task. It does make the stock sleeve a useful stress case for the arithmetic below.
+The stock sleeve loses 29% a year, and the cause is verified by ablation (the 409 names, the
+same strategy and data, only the cost model changed; the engine reproduces the recorded run
+exactly):
+
+| Cost model | Net CAGR | Max drawdown |
+| --- | --- | --- |
+| 0 bp + $0 | 10.9% | 26.6% |
+| 5 bp + $0 | 6.3% | 27.6% |
+| 5 bp + $1 (recorded) | -29.0% | 96.8% |
+
+In the recorded run the book makes about 48 fills per session with a median fill of 1 share
+(about $94), so the $1 commission is about 1% of each fill. The strategy re-equalises ~409
+tiny positions every day (1-2 share top-ups), so the commission bleeds the account; the
+invested weight collapses from 0.83 (2016) to 0.42 (2019), 0.07 (2021) and 0.007 (2025), and the
+account ends mostly in cash. This is a property of the strategy and its cost model (daily
+re-equalisation of many tiny positions), **not of the combiner and not an engine bug**. It is
+not tuned away here, because strategy tuning is outside this task. It makes the stock sleeve a
+useful stress case for the arithmetic below.
 
 ## Combinations
 
@@ -74,17 +92,25 @@ returns from the start. This is a limit of the method on warm-up sleeves, and th
 
 | Figure | equal (3 sleeves) | inverse_vol (2 sleeves) |
 | --- | --- | --- |
-| Diversification ratio | 1.269 | 1.338 |
-| Risk shares (incumbent, ETF, stock) | 35.1%, 42.1%, 22.8% (sum 1.0003) | ETF 57.5%, stock 46.6% (sum 1.0414) |
-| Portfolio daily sigma | 0.569% | 0.534% |
+| Diversification ratio | 1.270 | 1.250 |
+| Risk shares (incumbent, ETF, stock) | 35.2%, 42.3%, 22.4% (sum 1.0) | ETF 49.9%, stock 50.1% (sum 1.0) |
+| Time-averaged start weights | 0.336, 0.335, 0.330 | ETF 0.315, stock 0.685 |
+| Portfolio daily sigma (gross return) | 0.569% | 0.534% |
 
 Sleeve `net_return` correlations: incumbent with ETF 0.542, incumbent with stock 0.329,
-ETF with stock 0.368. The risk-share sum departs from 1 when weights drift or re-target
-away from the first rebalance's weights and when costs are charged (the report states this).
-The inverse-volatility combination still ends deeply negative because the stock sleeve
-keeps a weight near half (50% at the first rebalance, equal because fewer than 60 sessions exist;
-later re-targeted by inverse volatility, which favours the stock sleeve, the lower-volatility
-one), and its return is far worse than its volatility suggests.
+ETF with stock 0.368. Both figures describe the weights actually held: the per-session start
+weights (targets on rebalance sessions, drifted weights otherwise) give contributions
+`c = w * r`, risk share is `Cov(c_i, gross return) / Var(gross return)` (sums to 1 exactly), and
+the diversification ratio uses the time-averaged start weights over the gross-return volatility.
+The first report used the first rebalance's weights and the post-cost return; for the equal
+combination the ratio moved from 1.269 to 1.270, and for inverse volatility from 1.338 to 1.250
+(the first rebalance is 50/50 but the mean target weights are ETF 0.31 / stock 0.69).
+
+The stock sleeve's low volatility (0.587% a day against the ETF sleeve's 0.841%) is not a
+sign of safety: it comes from the sleeve sitting in cash after the invested-weight collapse
+above. Inverse volatility therefore rewards it with the larger weight (mean target 0.69), and the
+combination still ends deeply negative because that sleeve's return is far worse than its
+volatility suggests.
 
 ### Reconciliation and bounds
 
@@ -95,10 +121,15 @@ one), and its return is far worse than its volatility suggests.
 | Maximum sum of weights | 1.0000000000000009 | 1.0000000000000004 |
 | Minimum cash | -8.9e-16 | -4.4e-16 |
 | Total rebalance cost (fraction of equity, summed) | 0.00166 | 0.00488 |
+| Combined rebalance turnover per year (sum of absolute weight changes / years) | 0.332 | 0.979 |
 
-The weights sum to 1 and cash is zero to within float rounding (the tiny negatives are
-rounding, not leverage). Rebalancing is a cost on returns, so the combined metrics show
-`turnover` 0 (the fills table is empty by design).
+The weights sum to 1 and cash is zero to within float rounding (the report clips rounding noise
+below 1e-12 to 0.0; it is not leverage). Rebalancing is a cost on returns, so the combined
+fills table is empty by design: the combined `turnover` is `null` with a note, and
+`rebalance_turnover_per_year` is the figure to read. Sleeve turnover now comes from each
+component's real fills and the sleeve's own initial cash (`config.market.initial_cash`): per
+year, incumbent 1.26, ETF trend 88.1, stock trend 59.5 (the first report showed 0 for all
+three because the empty combined fills table was used).
 
 ## Labels, use and trials
 
@@ -111,20 +142,26 @@ cycle id (`--cycle-id`, one ledger trial) and its own forward window; none exist
 
 ## Reproducibility
 
-The equal combination was recomputed from the same three component run ids and parameters
-with the same code, written to a temporary runs root and compared with the first run
-(a short script in the session scratchpad, since the CLI reads and writes one runs root):
+The equal combination was recomputed from the same component run ids and parameters with the
+same code (the reproduction script `scripts/portfolio_repro.py`, since the CLI reads and writes
+one runs root):
+
+```text
+scripts/portfolio_repro.py --run-id 20261119T074500Z-524435d5 --runs-root <data root>/runs
+```
 
 - `config_hash` identical: `524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712`.
-- All four tables read back equal, and the four parquet files are **byte-identical** (SHA-256
-  of `returns`, `positions`, `signals` and `fills` equal); the run ids differ only by the
-  timestamp prefix (`20261119T074500Z-524435d5` against `...T074537Z-524435d5`).
-- The temporary root was deleted; nothing was copied into the data root.
+- The SHA-256 of the `returns`, `positions`, `signals` and `fills` parquet files is **identical**
+  to the values in the original manifest; the temporary run id
+  (`20261119T080150Z-524435d5`) differs from the original only by its timestamp prefix.
+- The comparison is of parquet hashes; the evidence JSON records them. The temporary run
+  lived in a temporary directory that was deleted; nothing was copied into the data root.
 
 ## Validation actually performed
 
 - Run for real: two new sleeve analyses (engineering, clean tree), two combinations, one
-  refused combination, two reports, one reproducibility comparison. Unit tests for the
+  refused combination, two reports (regenerated after the final review, in the timestamped
+  layout), one reproducibility comparison, and the stock-sleeve cost ablation above. Unit tests for the
   combiner and the command ran offline in `make check` (see the Plan 7 task reports).
 - Not run: `--cycle-id` (no ledger trial), any financial-use sleeve (it would be refused: the
   datasets are not owner-accepted), membership masking, any forward window.
@@ -136,10 +173,19 @@ with the same code, written to a temporary runs root and compared with the first
   No lot sizes, no per-name limits, no netting inside or across sleeves.
 - Cash earns zero. Costs are rebalance turnover only; sleeve returns already include their own
   costs and none is charged twice.
-- The stock sleeve is survivor-biased and its costs are probably dominated by the flat $1
-  commission on small positions; the ETF and incumbent sleeves are on a
+- The stock sleeve is survivor-biased and its result is dominated by the flat $1 commission on
+  very small fills (ablation above); the ETF and incumbent sleeves are on a
   `pass-with-exceptions` dataset the owner has not accepted.
 - The inverse-volatility combination excludes the incumbent because of warm-up (see above).
 - Equal and inverse-volatility weighting are the only methods; no covariance or optimiser.
 - The combined numbers are dominated by one bad sleeve and say nothing about whether
   combining better strategies helps.
+
+## Deferred follow-ups
+
+Not implemented here:
+
+- An opt-in warm-up-aware `inverse_vol` so a sleeve with a leading warm-up (the incumbent) can
+  join an inverse-volatility combination.
+- Nested combinations (a combination as a component).
+- Validation of `--cycle-id` against a registered research cycle.

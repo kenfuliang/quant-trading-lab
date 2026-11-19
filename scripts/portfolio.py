@@ -9,11 +9,14 @@
       (--cycle-id) or none (--exploratory, the manifest says so), write the combined run
       under the runs root and print its run id. Exactly one of the two flags is required.
   report --run-id ID [--runs-root DIR] [--root DIR]
-      write <root>/portfolio/<run id>/report.json (portfolio-report/v1), exclusive create.
+      write <root>/portfolio/<run id>/<YYYYMMDDTHHMMSSZ>/report.json (portfolio-report/v1),
+      exclusive create; earlier reports (including the old flat <run id>/report.json) stay as history.
 
 The ledger trial is recorded before the run is written and its number goes in the manifest.
-The default ledger is the tracked research/registry/trial-ledger; use --exploratory (or a
-temporary --ledger-dir) for anything that is not a real research cycle. Offline and order-free.
+A counted trial can therefore have no run if write_run then fails: the count stays one too high
+(conservative, never one too low). The default ledger is the tracked
+research/registry/trial-ledger; use --exploratory (or a temporary --ledger-dir) for anything that
+is not a real research cycle. Offline and order-free.
 """
 from __future__ import annotations
 
@@ -35,7 +38,8 @@ from research.control.trial_ledger import TrialLedger  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.metrics import summarize  # noqa: E402
 from research.evaluation.portfolio import (METHODS, REBALANCE, PortfolioError, Sleeve, build_manifest,  # noqa: E402
-                                           combine, manifest_sha256, reconcile)
+                                           combine, manifest_sha256, reconcile, rebalance_turnover,
+                                           start_weights)
 from research.evaluation.run_output import RunOutputError, read_run, write_run  # noqa: E402
 
 SCHEMA = "portfolio-report/v1"
@@ -74,7 +78,7 @@ def _load_sleeve(runs: Path, run_id: str) -> Sleeve:
         manifest, tables = read_run(runs / _safe_id(run_id))
     except (RunOutputError, OSError, ValueError, KeyError) as error:
         raise PortfolioError(f"component {run_id}: {error}") from error
-    return Sleeve(run_id, manifest, tables["returns"])
+    return Sleeve(run_id, manifest, tables["returns"], tables["fills"])
 
 
 def _roots(args) -> tuple[Path, Path]:
@@ -122,36 +126,51 @@ def _clean(value):
     return value
 
 
-def _initial_cash(returns: pd.DataFrame, fallback: float) -> float:
-    first = returns.iloc[0]
+def _sleeve_initial_cash(sleeve: Sleeve, fallback: float) -> float:
+    """The sleeve's own starting cash: ``config.market.initial_cash`` when present, else the first
+    session's equity / (1 + net_return)."""
+    market = (sleeve.manifest.get("config") or {}).get("market")
+    if isinstance(market, dict) and isinstance(market.get("initial_cash"), (int, float)) and market["initial_cash"] > 0:
+        return float(market["initial_cash"])
+    first = sleeve.returns.iloc[0]
     denominator = 1 + float(first["net_return"])
     return float(first["equity"]) / denominator if denominator > 0 else fallback
 
 
-def diversification(sleeve_returns: pd.DataFrame, portfolio_returns: pd.Series, weights: np.ndarray) -> dict:
-    """Diversification ratio and risk-contribution shares.
+def _now() -> datetime:
+    return datetime.now(timezone.utc)
 
-    ``weights`` are the first rebalance's target weights ``w_i`` (the full-sample weights are not
-    constant: they drift and, for inverse_vol, re-target), and every statistic uses the full
-    sample with ddof 1:
 
-    - ``diversification_ratio = sum_i(w_i * sigma_i) / sigma_p`` where ``sigma_i`` is the standard
-      deviation of sleeve ``i``'s ``net_return`` and ``sigma_p`` that of the combined run's
-      ``net_return`` (after rebalance cost); ``None`` when ``sigma_p`` is zero.
-    - ``risk_contribution_share_i = w_i * Cov(r_i, r_p) / Var(r_p)``, ``r_p`` the combined
-      ``net_return``. The shares sum to about 1 only when the weights stay near the first
-      rebalance's and cost and cash are small; ``sum`` is reported so the gap is visible.
+def diversification(sleeve_returns: pd.DataFrame, gross_returns: pd.Series, start_weights_: np.ndarray) -> dict:
+    """Diversification ratio and risk-contribution shares for the weights actually used.
+
+    ``start_weights_`` has one row per session (the start-of-session weights ``w_{t,i}`` after any
+    rebalance, from ``portfolio.start_weights``), so equal-weight, drifting and re-targeted
+    (inverse_vol) combinations are all described by what was held. With sleeve returns ``r_{i,t}``
+    (floored at -1, as the combiner floors them) and ``r_gross,t = sum_i c_{i,t}``:
+
+    - contribution ``c_{i,t} = w_{t,i} * r_{i,t}``; ``risk_contribution_share_i = Cov(c_i, r_gross) /
+      Var(r_gross)``. It sums to 1 exactly (up to rounding) because ``r_gross`` is the sum of the
+      contributions; ``risk_contribution_sum`` is reported as a check. ``r_gross`` is the combined
+      ``gross_return`` (before rebalance cost), so cost does not enter the shares.
+    - ``diversification_ratio = sum_i(wbar_i * sigma_i) / sigma_gross`` with ``wbar_i`` the time-averaged
+      start weight, ``sigma_i`` the sample std (ddof 1) of sleeve ``i`` and ``sigma_gross`` that of
+      ``r_gross``; ``None`` when ``sigma_gross`` is zero. ``weights`` in the output is ``wbar``.
     """
-    sigma = sleeve_returns.std(axis=0, ddof=1).to_numpy(dtype=float)
-    sigma_p = float(portfolio_returns.std(ddof=1))
-    var_p = sigma_p ** 2
+    returns = sleeve_returns.clip(lower=-1.0).to_numpy(dtype=float)
+    weights = np.asarray(start_weights_, dtype=float)
+    average = weights.mean(axis=0)
+    sigma = np.std(returns, axis=0, ddof=1)
+    gross = gross_returns.to_numpy(dtype=float)
+    sigma_p = float(np.std(gross, ddof=1))
     if not (math.isfinite(sigma_p) and sigma_p > 1e-12):
-        return {"weights": weights.tolist(), "sleeve_sigma": sigma.tolist(), "portfolio_sigma": sigma_p,
+        return {"weights": average.tolist(), "sleeve_sigma": sigma.tolist(), "portfolio_sigma": sigma_p,
                 "diversification_ratio": None, "risk_contribution_share": None, "risk_contribution_sum": None}
-    covariance = np.array([float(sleeve_returns[c].cov(portfolio_returns)) for c in sleeve_returns.columns])
-    shares = weights * covariance / var_p
-    return {"weights": weights.tolist(), "sleeve_sigma": sigma.tolist(), "portfolio_sigma": sigma_p,
-            "diversification_ratio": float((weights * sigma).sum() / sigma_p),
+    contribution = weights * returns
+    shares = np.array([float(np.cov(contribution[:, i], gross, ddof=1)[0, 1]) for i in range(contribution.shape[1])]
+                      ) / sigma_p ** 2
+    return {"weights": average.tolist(), "sleeve_sigma": sigma.tolist(), "portfolio_sigma": sigma_p,
+            "diversification_ratio": float((average * sigma).sum() / sigma_p),
             "risk_contribution_share": shares.tolist(), "risk_contribution_sum": float(shares.sum())}
 
 
@@ -173,15 +192,20 @@ def build_report(runs: Path, run_id: str, now: datetime) -> dict:
         sleeves.append(sleeve)
     ids = [s.run_id for s in sleeves]
     cash = float(manifest["config"]["initial_cash"])
+    years = len(tables["returns"]) / 252
     dates = list(tables["returns"]["date"])
     frame = pd.DataFrame({s.run_id: s.returns.set_index("date").loc[dates, "net_return"].astype(float)
                           for s in sleeves})
-    portfolio_net = tables["returns"].set_index("date")["net_return"].astype(float)
-    weights = np.array([float(combination["weights_first_rebalance"][i]) for i in ids])
+    portfolio_gross = tables["returns"]["gross_return"].astype(float)
     recon = reconcile(tables, sleeves)
-    empty_fills = tables["fills"]
-    per_sleeve = {s.run_id: summarize(s.returns, empty_fills.iloc[0:0], _initial_cash(s.returns, cash))
+    per_sleeve = {s.run_id: summarize(s.returns, s.fills if s.fills is not None else tables["fills"].iloc[0:0],
+                                      _sleeve_initial_cash(s, cash))
                   for s in sleeves}
+    combined = summarize(tables["returns"], tables["fills"], cash)
+    combined["turnover"] = None
+    combined["turnover_note"] = ("not applicable: the combined fills table is empty by design; see "
+                                 "rebalance_turnover_per_year")
+    combined["rebalance_turnover_per_year"] = rebalance_turnover(tables, ids) / years
     passed = recon["max_abs_return_error"] <= RECONCILE_TOLERANCE
     report = {
         "schema": SCHEMA,
@@ -195,9 +219,9 @@ def build_report(runs: Path, run_id: str, now: datetime) -> dict:
         "exploratory": bool(combination.get("exploratory", False)),
         "trial": combination.get("trial"),
         "sessions": len(dates),
-        "metrics": {"combined": summarize(tables["returns"], tables["fills"], cash), "sleeves": per_sleeve},
+        "metrics": {"combined": combined, "sleeves": per_sleeve},
         "correlation": {"instruments": ids, "matrix": frame.corr().to_numpy(dtype=float).tolist()},
-        "diversification": diversification(frame, portfolio_net, weights),
+        "diversification": diversification(frame, portfolio_gross, start_weights(tables, ids)),
         "reconciliation": {**recon, "tolerance": RECONCILE_TOLERANCE,
                            "status": "PASS" if passed else "FAIL"},
         "limitations": LIMITATIONS,
@@ -207,8 +231,9 @@ def build_report(runs: Path, run_id: str, now: datetime) -> dict:
 
 def cmd_report(args) -> int:
     root, runs = _roots(args)
-    report = build_report(runs, args.run_id, datetime.now(timezone.utc))
-    folder = root / "portfolio" / _safe_id(args.run_id)
+    now = _now()
+    report = build_report(runs, args.run_id, now)
+    folder = root / "portfolio" / _safe_id(args.run_id) / now.strftime("%Y%m%dT%H%M%SZ")
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / "report.json"
     try:

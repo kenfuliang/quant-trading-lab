@@ -75,7 +75,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 | Forward plan | `forward-plan/v1` | tracked | authoritative | implemented | hand-maintained research/registry/forward-plans/FWD-SPY-EMA-1.json | scripts/progress.py | until superseded, tracked |
 | Incumbent registry | `incumbents/v1` | tracked | authoritative | implemented | hand-maintained research/registry/incumbents.json | scripts/stages.py, research/control/stage_view.py | until superseded, tracked |
 | Live-readiness gates | `gates/v1` | tracked | authoritative | implemented | hand-maintained research/registry/gates.json | scripts/progress.py, scripts/readiness.py | until superseded, tracked |
-| Portfolio report | `portfolio-report/v1` | local | view | implemented | scripts/portfolio.py report | none | local, shared data root under portfolio/&lt;run id&gt;/report.json |
+| Portfolio report | `portfolio-report/v1` | local | view | implemented | scripts/portfolio.py report | none | local, shared data root under portfolio/&lt;run id&gt;/&lt;UTC stamp&gt;/report.json (earlier flat portfolio/&lt;run id&gt;/report.json files remain as history) |
 | Readiness registry | `readiness/v1` | tracked | authoritative | implemented | hand-maintained research/registry/readiness.json | scripts/readiness.py, scripts/dashboard.py | until superseded, tracked |
 | Research decision template | none | tracked | authoritative | template-only | hand-filled from docs/templates/research-decision.md | research cycle authors | permanent once filled, tracked |
 | Research paper template | none | tracked | authoritative | template-only | hand-filled from docs/templates/research-paper.md | docs/research-standard.md | permanent once filled, tracked |

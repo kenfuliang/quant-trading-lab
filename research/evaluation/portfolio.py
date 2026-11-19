@@ -16,7 +16,7 @@ the first session of each calendar month (``monthly``) or every session (``daily
 
 Per session ``t`` with start weights ``w`` (after any rebalance) and sleeve returns ``r``:
 
-- ``gross_return = sum(w_i * r_i)``; ``cost = rebalance_cost_bps * sum|w_target - w_drifted| / 10_000``
+- ``gross_return = sum(w_i * r_i)`` (recorded directly, so a floored wipe-out day still reconciles); ``cost = rebalance_cost_bps * sum|w_target - w_drifted| / 10_000``
   on rebalance sessions (drifted weights are zero on the first session); ``net_return = gross_return - cost``;
   ``equity_t = equity_{t-1} * (1 + net_return)``.
 - Drift to the close: ``w_i <- w_i (1 + r_i) / (1 + gross_return)`` (cash is a zero-return asset).
@@ -42,7 +42,7 @@ from research.evaluation.metrics import ZERO_STD
 from research.evaluation.run_output import COLUMNS, DTYPES, config_hash, new_run_id
 
 __all__ = ["METHODS", "REBALANCE", "PortfolioError", "Sleeve", "combine", "build_manifest",
-           "reconcile", "manifest_sha256", "ENGINE", "ENGINE_VERSION"]
+           "reconcile", "start_weights", "rebalance_turnover", "manifest_sha256", "ENGINE", "ENGINE_VERSION"]
 
 METHODS = ("equal", "inverse_vol")
 REBALANCE = ("monthly", "daily")
@@ -59,6 +59,7 @@ class Sleeve:
     run_id: str
     manifest: dict
     returns: pd.DataFrame
+    fills: pd.DataFrame | None = None  # the component's own fills (report metrics only; the combiner ignores them)
 
 
 def manifest_sha256(manifest: dict) -> str:
@@ -92,10 +93,35 @@ def _validate(sleeves, method, gross, vol_window, rebalance, bps, initial_cash):
         if dates != first:
             raise PortfolioError(_first_difference(sleeves[0].run_id, first, s.run_id, dates))
     for s in sleeves:
+        _check_stock_labels(s)
+    for s in sleeves:
         values = s.returns["net_return"].to_numpy(dtype=float)
         if not np.isfinite(values).all():
             bad = s.returns["date"].iloc[int(np.argmax(~np.isfinite(values)))]
             raise PortfolioError(f"component {s.run_id} has a non-finite net_return on {bad}")
+
+
+def _universe_kinds(node) -> set[str]:
+    """Every ``universe_kind`` value found anywhere in a (nested) datasets structure."""
+    found: set[str] = set()
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key == "universe_kind" and isinstance(value, str) and value:
+                found.add(value)
+            else:
+                found |= _universe_kinds(value)
+    elif isinstance(node, (list, tuple)):
+        for value in node:
+            found |= _universe_kinds(value)
+    return found
+
+
+def _check_stock_labels(sleeve: Sleeve) -> None:
+    """Defence in depth: a component whose datasets carry a ``universe_kind`` must carry labels too."""
+    if _universe_kinds(sleeve.manifest.get("datasets")) and not sleeve.manifest.get("labels"):
+        raise PortfolioError(
+            f"component {sleeve.run_id} has a dataset universe_kind but its manifest has no labels; "
+            "refusing to combine it without the survivor-bias labels it should carry")
 
 
 def _first_difference(id_a, dates_a, id_b, dates_b) -> str:
@@ -108,7 +134,7 @@ def _first_difference(id_a, dates_a, id_b, dates_b) -> str:
             f"first extra session is {extra} in {longer}")
 
 
-def _target_weights(method, ids, returns, t, gross, window):
+def _target_weights(method, ids, returns, t, gross, window, dates):
     """Target sleeve weights and trailing sigmas for a rebalance on session ``t`` (information through t-1)."""
     n = len(ids)
     if method == "equal" or t < window:
@@ -118,7 +144,9 @@ def _target_weights(method, ids, returns, t, gross, window):
     for i, s in enumerate(sigma):
         if not np.isfinite(s) or s <= ZERO_STD:
             raise PortfolioError(
-                f"component {ids[i]} has zero or non-finite volatility over the {window} sessions before {t}")
+                f"component {ids[i]} has zero or non-finite volatility over the {window} sessions "
+                f"{dates[t - window]}..{dates[t - 1]} before rebalance session {dates[t]} (index {t}); "
+                "a sleeve with a leading warm-up (no position, constant returns) is the likely cause")
     inv = 1.0 / sigma
     return gross * inv / inv.sum(), sigma
 
@@ -142,7 +170,7 @@ def combine(sleeves: list[Sleeve], method: str, *, gross: float = 1.0, vol_windo
         is_rebalance = alive and (t == 0 or rebalance == "daily" or dates[t - 1][:7] != date[:7])
         cost = 0.0
         if is_rebalance:
-            target, sigma = _target_weights(method, ids, raw, t, gross, vol_window)
+            target, sigma = _target_weights(method, ids, raw, t, gross, vol_window, dates)
             cost = rebalance_cost_bps * float(np.abs(target - drifted).sum()) / 10_000
             start = target
             for i, run_id in enumerate(ids):
@@ -157,7 +185,7 @@ def combine(sleeves: list[Sleeve], method: str, *, gross: float = 1.0, vol_windo
         growth = start * (1 + clamped[t])
         total = float(growth.sum() + (1.0 - start.sum()))
         drifted = growth / total if (total > 0 and equity > 0) else np.zeros(n)
-        ret_rows.append((date, net + cost, cost, net, equity))
+        ret_rows.append((date, gross_r, cost, net, equity))
         for i, run_id in enumerate(ids):
             pos_rows.append((date, run_id, 0, float(drifted[i])))
         equity_prev = equity
@@ -185,7 +213,9 @@ def _frame(name: str, rows: list[tuple]) -> pd.DataFrame:
 
 def _label_union(sleeves: list[Sleeve]) -> tuple[list[str], list[str]]:
     labels = sorted({lab for s in sleeves for lab in (s.manifest.get("labels") or [])})
-    kinds = sorted({s.manifest["universe_kind"] for s in sleeves if s.manifest.get("universe_kind")})
+    kinds = sorted({k for s in sleeves
+                    for k in ({s.manifest["universe_kind"]} if s.manifest.get("universe_kind") else set())
+                    | _universe_kinds(s.manifest.get("datasets"))})
     return labels, kinds
 
 
@@ -244,32 +274,60 @@ def build_manifest(sleeves: list[Sleeve], method: str, params: dict, tables: dic
     return manifest
 
 
+def _target_and_positions(tables, ids):
+    dates = list(tables["returns"]["date"])
+    pos = tables["positions"].pivot(index="date", columns="instrument", values="weight").loc[dates, ids]
+    sig = tables["signals"]
+    target = (sig[sig["stage"] == "target_weight"].pivot(index="date", columns="instrument", values="value")
+              .reindex(columns=ids))
+    return dates, pos, target
+
+
+def start_weights(tables: dict[str, pd.DataFrame], ids: list[str]) -> np.ndarray:
+    """Start-of-session weights actually used, shape ``(sessions, len(ids))``: the ``target_weight``
+    signals on a rebalance session, else the previous close's position weights (zero before the first)."""
+    dates, pos, target = _target_and_positions(tables, ids)
+    out = np.zeros((len(dates), len(ids)))
+    prev = np.zeros(len(ids))
+    for t, date in enumerate(dates):
+        out[t] = target.loc[date].to_numpy(dtype=float) if date in target.index else prev
+        prev = pos.iloc[t].to_numpy(dtype=float)
+    return out
+
+
+def rebalance_turnover(tables: dict[str, pd.DataFrame], ids: list[str]) -> float:
+    """Sum over rebalance sessions of ``|w_target - w_drifted|`` (drifted weights are zero on the first)."""
+    dates, pos, target = _target_and_positions(tables, ids)
+    prev = np.zeros(len(ids))
+    total = 0.0
+    for t, date in enumerate(dates):
+        if date in target.index:
+            total += float(np.abs(target.loc[date].to_numpy(dtype=float) - prev).sum())
+        prev = pos.iloc[t].to_numpy(dtype=float)
+    return total
+
+
 def reconcile(tables: dict[str, pd.DataFrame], sleeves: list[Sleeve]) -> dict[str, float]:
     """Recompute portfolio gross return from the recorded weights and the sleeve returns.
 
     Start weights of session ``t`` are the ``target_weight`` signals on a rebalance session, else the
     previous close's position weights. Returns ``{max_abs_return_error, weights_sum_max, cash_min,
-    cost_total}`` (``cash_min`` is ``1 - max sum of weights``, unscaled by ``gross``)."""
+    cost_total}`` (``cash_min`` is ``1 - max sum of weights``, unscaled by ``gross``; rounding noise
+    below 1e-12 in magnitude is reported as 0.0)."""
     ids = [s.run_id for s in sleeves]
     returns = tables["returns"]
-    dates = list(returns["date"])
+    dates, pos, _ = _target_and_positions(tables, ids)
     clamped = np.maximum(np.column_stack([s.returns.set_index("date").loc[dates, "net_return"].to_numpy(dtype=float)
                                           for s in sleeves]), -1.0)
-    pos = tables["positions"].pivot(index="date", columns="instrument", values="weight").loc[dates, ids]
-    sig = tables["signals"]
-    target = (sig[sig["stage"] == "target_weight"].pivot(index="date", columns="instrument", values="value")
-              .reindex(columns=ids))
-    prev = np.zeros(len(ids))
+    weights = start_weights(tables, ids)
     worst = 0.0
-    for t, date in enumerate(dates):
-        start = target.loc[date].to_numpy(dtype=float) if date in target.index else prev
-        recomputed = float(start @ clamped[t])
-        worst = max(worst, abs(recomputed - float(returns["gross_return"].iloc[t])))
-        prev = pos.iloc[t].to_numpy(dtype=float)
+    for t in range(len(dates)):
+        worst = max(worst, abs(float(weights[t] @ clamped[t]) - float(returns["gross_return"].iloc[t])))
     sums = pos.sum(axis=1)
+    cash_min = float((1.0 - sums).min())
     return {
         "max_abs_return_error": float(worst),
         "weights_sum_max": float(sums.max()),
-        "cash_min": float((1.0 - sums).min()),
+        "cash_min": 0.0 if abs(cash_min) < 1e-12 else cash_min,
         "cost_total": float(returns["cost"].sum()),
     }

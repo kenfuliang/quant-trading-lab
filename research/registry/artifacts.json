@@ -96,7 +96,7 @@
       "authority": "view",
       "producer": "scripts/portfolio.py report",
       "consumers": [],
-      "retention": "local, shared data root under portfolio/<run id>/report.json",
+      "retention": "local, shared data root under portfolio/<run id>/<UTC stamp>/report.json (earlier flat portfolio/<run id>/report.json files remain as history)",
       "status": "implemented"
     },
     {

@@ -96,7 +96,11 @@ rebalancing is a turnover cost (default 5 bp) on returns. Components must have i
 date sets. Stock members make the combination survivor-biased and discovery-only; `use` is
 `financial` only if every component is. Trial rule: each combination is a trial, so a real
 one needs `--cycle-id` (one ledger trial) and its own frozen plan and forward window;
-`--exploratory` records none and is for demonstrations. Goals:
+`--exploratory` records none and is for demonstrations. The trial is recorded before the run
+is written, so a counted trial can have no run if `write_run` then fails (the count stays one too
+high: conservative). Reports go to `portfolio/<run id>/<UTC stamp>/report.json`, one new file per
+report. A stock-class component (a `universe_kind` in its datasets) must carry its labels or the
+combination is refused. Goals:
 [research baseline and selection](goals.md); plan:
 [Plan 7](tasks/2026-11-18-offline-infra-plan7-portfolio-plan.md); first demonstration:
 [portfolio record](tasks/2026-11-18-portfolio.md).
