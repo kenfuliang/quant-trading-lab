@@ -33,16 +33,19 @@ def _underwater(metrics):
     return "n/a" if sessions is None and days is None else f"{sessions if sessions is not None else '?'} / {days if days is not None else '?'}"
 
 
+def dominates(a, b):
+    """True when metrics `a` are at least as good as `b` on net CAGR (higher) and max
+    drawdown (lower) and strictly better on one. Both need non-None values; ties are False."""
+    return (a["net_cagr"] >= b["net_cagr"] and a["max_drawdown"] <= b["max_drawdown"]
+            and (a["net_cagr"] > b["net_cagr"] or a["max_drawdown"] < b["max_drawdown"]))
+
+
 def frontier_ids(records):
     """Record ids on the net CAGR (max) versus max drawdown (min) frontier, ties kept."""
     scored = [r for r in records if r["metrics"].get("net_cagr") is not None
               and r["metrics"].get("max_drawdown") is not None]
-
-    def dominates(a, b):
-        ma, mb = a["metrics"], b["metrics"]
-        return (ma["net_cagr"] >= mb["net_cagr"] and ma["max_drawdown"] <= mb["max_drawdown"]
-                and (ma["net_cagr"] > mb["net_cagr"] or ma["max_drawdown"] < mb["max_drawdown"]))
-    return {r["record_id"] for r in scored if not any(dominates(o, r) for o in scored if o is not r)}
+    return {r["record_id"] for r in scored
+            if not any(dominates(o["metrics"], r["metrics"]) for o in scored if o is not r)}
 
 
 def updated_date(records):

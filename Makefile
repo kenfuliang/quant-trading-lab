@@ -1,12 +1,12 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: help check docs-check boundaries-check evidence-index-check experiments-check progress progress-check research-index test dependencies doctor
+.PHONY: help check docs-check boundaries-check evidence-index-check experiments-check stages-check progress progress-check research-index test dependencies doctor
 
 help:
 	@echo "check: offline documentation, dependency, and behavior checks"
 	@echo "doctor: local engine and observer configuration check"
 
-check: docs-check boundaries-check evidence-index-check experiments-check progress-check dependencies test
+check: docs-check boundaries-check evidence-index-check experiments-check stages-check progress-check dependencies test
 
 boundaries-check:
 	$(PYTHON) scripts/check_boundaries.py
@@ -43,6 +43,14 @@ progress-check:
 
 progress:
 	$(PYTHON) scripts/progress.py build
+
+stages-check:
+	$(PYTHON) scripts/stages.py check
+
+.PHONY: stages
+stages:
+	$(PYTHON) scripts/stages.py build
+	$(PYTHON) scripts/dashboard.py
 
 experiments-check:
 	$(PYTHON) scripts/experiments.py check

@@ -17,6 +17,16 @@ class DashboardTests(unittest.TestCase):
             self.assertNotIn("Progress</button>", page)
             self.assertEqual(page.count("<iframe"), 1)
 
+    def test_pipeline_tab_appears_only_when_page_exists(self):
+        with tempfile.TemporaryDirectory() as t:
+            self.assertEqual(db.main(["--dir", t]), 0)
+            self.assertNotIn("Pipeline", (Path(t) / "index.html").read_text())
+            (Path(t) / "stages.html").write_text("z")
+            self.assertEqual(db.main(["--dir", t]), 0)
+            page = (Path(t) / "index.html").read_text()
+            self.assertIn("Pipeline", page)
+            self.assertIn("stages.html", page)
+
     def test_empty_folder_still_writes_a_page(self):
         with tempfile.TemporaryDirectory() as t:
             self.assertEqual(db.main(["--dir", t]), 0)
