@@ -21,7 +21,7 @@ SPEC = Path(analysis.ROOT) / "research/registry/analysis-specs/fixture-ladder.js
 def record(record_id, code, sharpe):
     return {"schema": registry.SCHEMA, "record_id": record_id, "logged_at": "2026-11-18T00:00:00+00:00",
             "name": record_id, "context": {"code": code, "period": "2005-2025", "costs_bp": 5.0},
-            "evidence_class": "development", "disposition": "control", "lesson": "test",
+            "evidence_class": "development", "disposition": "control", "lesson": "test", "imported": True,
             "metrics": {"sharpe": sharpe, "net_cagr": 0.1}}
 
 

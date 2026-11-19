@@ -15,7 +15,7 @@ def rec(rid, tags=(), disp="inconclusive", cagr=0.2, dd=0.1):
     return {"schema": reg.SCHEMA, "record_id": rid, "logged_at": "2026-11-09T00:00:00+00:00", "name": rid,
             "context": {"code": "C1", "period": "2020–2025"}, "evidence_class": "development",
             "disposition": disp, "lesson": "A lesson.", "metrics": {"net_cagr": cagr, "max_drawdown": dd},
-            "tags": list(tags)}
+            "tags": list(tags), "imported": True}
 
 
 class StagesCliTests(unittest.TestCase):

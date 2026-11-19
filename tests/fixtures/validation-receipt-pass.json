@@ -1,0 +1,8 @@
+{
+  "schema": "validation-receipt/v1",
+  "receipt_id": "VR-fixture",
+  "result": "pass",
+  "run_ids": ["REPLACED-BY-TEST"],
+  "validator": {"skill": "trade-leakage-audit"},
+  "researcher": {"skills": ["trade-experiment"]}
+}

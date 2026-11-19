@@ -1,6 +1,8 @@
 import contextlib
 import copy
+import hashlib
 import io
+import shutil
 import json
 import math
 import tempfile
@@ -17,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def rec(rid="a-1", cagr=0.2, dd=0.1, cls="development", disp="inconclusive", name="Variant", ctx="C1", at="2026-11-09T00:00:00+00:00", **extra):
-    base = {"schema": reg.SCHEMA, "record_id": rid, "logged_at": at, "name": name,
+    base = {"imported": True, "schema": reg.SCHEMA, "record_id": rid, "logged_at": at, "name": name,
             "context": {"code": ctx, "period": "2020-2025"}, "evidence_class": cls, "disposition": disp,
             "lesson": "A lesson.", "metrics": {"net_cagr": cagr, "max_drawdown": dd}}
     base.update(extra)
@@ -71,6 +73,50 @@ class RegistryCoreTests(unittest.TestCase):
         record["metrics"] = {}
         reg.append(self.path, record)
         self.assertEqual(len(reg.load(self.path)), 1)
+
+    def test_new_completed_record_without_run_refs_is_rejected(self):
+        for refs in ({}, {"run_id": "R1"}, {"run_manifest_sha256": "a" * 64},
+                     {"run_id": "R1", "run_manifest_sha256": "short"}):
+            with self.subTest(refs=refs), self.assertRaisesRegex(reg.RegistryError, "run_id|run_manifest_sha256"):
+                reg.validate(rec(imported=False, refs=refs))
+        reg.validate(rec(imported=False, refs={"run_id": "R1", "run_manifest_sha256": "a" * 64}))
+        with self.assertRaisesRegex(reg.RegistryError, "run_id.*run_manifest_sha256"):
+            reg.validate(rec(imported=False))  # no refs at all names both keys
+
+    def test_blocked_failed_and_abandoned_need_no_run_output(self):
+        reg.validate(rec(imported=False, disp="blocked"))
+        for attempt in ("failed", "abandoned"):
+            reg.validate(rec(imported=False, attempt=attempt))
+        with self.assertRaisesRegex(reg.RegistryError, "attempt"):
+            reg.validate(rec(imported=False, attempt="done"))
+        with self.assertRaisesRegex(reg.RegistryError, "run_id"):
+            reg.validate(rec(imported=False, attempt="completed"))
+
+    def test_imported_records_are_exempt(self):
+        reg.validate(rec(imported=True))
+        reg.validate(rec(imported=True, disp="keep"))
+        reg.validate(rec())  # rec() defaults to imported
+
+    def test_existing_registry_still_validates(self):
+        records = reg.load(ROOT / "research/registry/experiments.jsonl")
+        self.assertEqual(len(records), 110)
+
+    def test_keep_without_each_rule3_ref_names_it(self):
+        full = {"run_id": "R1", "run_manifest_sha256": "a" * 64,
+                "nautilus_run_id": "N1", "nautilus_run_manifest_sha256": "b" * 64,
+                "parity_receipt_id": "P1", "parity_receipt_sha256": "c" * 64,
+                "validation_receipt": "VR1", "validation_receipt_sha256": "d" * 64}
+        reg.validate(rec(imported=False, disp="keep", refs=dict(full)))
+        for group in (("nautilus_run_id", "nautilus_run_manifest_sha256"),
+                      ("parity_receipt_id", "parity_receipt_sha256"),
+                      ("validation_receipt", "validation_receipt_sha256")):
+            for key in group:
+                with self.subTest(missing=key):
+                    refs = {k: v for k, v in full.items() if k != key}
+                    with self.assertRaisesRegex(reg.RegistryError, key):
+                        reg.validate(rec(imported=False, disp="keep", refs=refs))
+        with self.assertRaisesRegex(reg.RegistryError, "parity_receipt_sha256"):
+            reg.validate(rec(imported=False, disp="keep", refs={**full, "parity_receipt_sha256": "zz"}))
 
 
 class ViewTests(unittest.TestCase):
@@ -176,6 +222,8 @@ class CliTests(unittest.TestCase):
         self.docs = self.root / "docs"
         (self.docs / "tasks/evidence").mkdir(parents=True)
         self.registry = self.root / "experiments.jsonl"
+        self.runs, self.parity, self.receipts = self.root / "runs", self.root / "parity", self.root / "vr"
+        self.make_run("R1")
         for target, value in [("DOCS", self.docs), ("RECEIPTS", self.docs / "tasks/evidence"),
                               ("EXEMPTIONS", self.root / "exempt.json")]:
             patcher = mock.patch.object(cli, target, value)
@@ -191,7 +239,44 @@ class CliTests(unittest.TestCase):
     def log(self, rid="t-1", *extra):
         return self.run_cli("log", "--id", rid, "--name", "Gate", "--context", "C1", "--period", "2020-2025",
                             "--disposition", "retire", "--lesson", "Did not help.",
-                            "--metrics", json.dumps({"net_cagr": 0.1, "max_drawdown": 0.2}), *extra)
+                            "--metrics", json.dumps({"net_cagr": 0.1, "max_drawdown": 0.2}),
+                            "--runs-root", str(self.runs), "--run-id", "R1", *extra)
+
+    def write_json(self, path, doc):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(doc, sort_keys=True))
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+    def make_run(self, run_id, **fields):
+        doc = {"run_id": run_id, "engine": "screen", "code_commit": "aaa111", "use": "financial",
+               "datasets": {"quality_status": "pass"}, **fields}
+        return self.write_json(self.runs / run_id / "manifest.json", doc)
+
+    def make_parity(self, parity_id="P1", **fields):
+        doc = {"parity_id": parity_id, "status": "passed", "passed": True, "mismatch_count": 0,
+               "code_commit": "bbb222", "runs": {"nautilus": {"run_id": "N1"}}, **fields}
+        return self.write_json(self.parity / parity_id / "receipt.json", doc)
+
+    def make_validation(self, receipt_id="VR1", **fields):
+        doc = json.loads((ROOT / "tests/fixtures/validation-receipt-pass.json").read_text())
+        doc.update(receipt_id=receipt_id, run_ids=["R1", "N1"], **fields)
+        return self.write_json(self.receipts / f"{receipt_id}.json", doc)
+
+    def keep_args(self, rid="k-1", *extra):
+        return ("log", "--id", rid, "--name", "Promote", "--context", "C1", "--period", "2020-2025",
+                "--disposition", "keep", "--lesson", "Held up.",
+                "--metrics", json.dumps({"net_cagr": 0.2, "max_drawdown": 0.1}),
+                "--runs-root", str(self.runs), "--parity-root", str(self.parity), "--receipts-dir", str(self.receipts),
+                "--run-id", "R1", "--nautilus-run-id", "N1", "--parity-receipt", "P1",
+                "--validation-receipt", "VR1", *extra)
+
+    def setup_keep(self):
+        self.make_run("N1", engine="nautilus", use="engineering", code_commit="ccc333")
+        self.make_parity()
+        self.make_validation()
+        patcher = mock.patch.object(cli, "run_git", lambda args: (0, ""))
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def test_log_render_check_cycle(self):
         self.assertEqual(self.log()[0], 0)
@@ -236,6 +321,141 @@ class CliTests(unittest.TestCase):
         self.log("t-2", "--ledger", ledger, "--cycle-id", "CY-1")
         trials = [r["refs"]["ledger_trial"]["trial_number"] for r in reg.load(self.registry)]
         self.assertEqual(trials, [1, 2])
+
+    def test_log_rejects_hash_mismatch_missing_file_and_non_financial_run(self):
+        code, _, err = self.log("t-1", "--run-id", "NOPE")
+        self.assertEqual(code, 1)
+        self.assertIn("not found", err)
+        self.make_run("R2", use="engineering")
+        self.assertEqual(self.log("t-2", "--run-id", "R2")[0], 1)
+        self.make_run("R3", datasets={"quality_status": "pass-with-exceptions"})
+        code, _, err = self.log("t-3", "--run-id", "R3")
+        self.assertEqual(code, 1)
+        self.assertIn("acceptance", err)
+        self.make_run("R4", datasets={"quality_status": "fail"})
+        self.assertEqual(self.log("t-4", "--run-id", "R4")[0], 1)
+        self.assertFalse(self.registry.exists())
+        # the sha is computed by the CLI from the file (not typed); a mismatch is covered in test_run_refs
+        self.assertEqual(self.log("t-5")[0], 0)
+        record = reg.load(self.registry)[0]
+        self.assertEqual(record["refs"]["run_id"], "R1")
+        self.assertEqual(record["refs"]["run_manifest_sha256"],
+                         hashlib.sha256((self.runs / "R1" / "manifest.json").read_bytes()).hexdigest())
+
+    def test_log_without_run_id_for_a_completed_record_names_the_missing_refs(self):
+        code, _, err = self.run_cli("log", "--id", "t-1", "--name", "X", "--context", "C", "--period", "P",
+                                    "--disposition", "retire", "--lesson", "l")
+        self.assertEqual(code, 1)
+        self.assertIn("run_id", err)
+        self.assertIn("run_manifest_sha256", err)
+
+    def test_log_accepts_pass_with_exceptions_when_accepted(self):
+        accepted = {"quality_status": "pass-with-exceptions",
+                    "acceptance": {"status": "accepted", "acceptance_sha256": "a" * 64}}
+        self.make_run("R2", datasets=accepted)
+        self.assertEqual(self.log("t-1", "--run-id", "R2")[0], 0)
+
+    def test_failed_and_blocked_records_log_without_a_run(self):
+        base = ("--name", "X", "--context", "C", "--period", "P", "--lesson", "l")
+        self.assertEqual(self.run_cli("log", "--id", "t-1", *base, "--disposition", "retire", "--attempt", "failed")[0], 0)
+        self.assertEqual(self.run_cli("log", "--id", "t-2", *base, "--disposition", "blocked")[0], 0)
+        self.assertEqual(reg.load(self.registry)[0]["attempt"], "failed")
+
+    def test_log_rejects_screen_engine_run_for_keep(self):
+        self.setup_keep()
+        self.make_run("N1", engine="screen")
+        code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 1)
+        self.assertIn("nautilus", err)
+
+    def test_log_rejects_dirty_or_mismatched_parity_receipt(self):
+        self.setup_keep()
+        for fields in ({"code_commit": "bbb222+dirty"}, {"status": "failed", "passed": False},
+                       {"mismatch_count": 3}, {"runs": {"nautilus": {"run_id": "OTHER"}}}):
+            with self.subTest(fields=fields):
+                self.make_parity(**fields)
+                code, _, err = self.run_cli(*self.keep_args())
+                self.assertEqual(code, 1, err)
+                self.assertIn("parity receipt P1", err)
+        self.assertFalse(self.registry.exists())
+
+    def test_log_rejects_when_engine_files_changed_between_commits(self):
+        self.setup_keep()
+        calls = []
+
+        def fake_git(args):
+            calls.append(args)
+            return 0, "research/evaluation/native_engine.py\n"
+        with mock.patch.object(cli, "run_git", fake_git):
+            code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 1)
+        self.assertIn("native_engine.py", err)
+        self.assertIn("bbb222", calls[0])
+        self.assertIn("ccc333", calls[0])
+        self.assertFalse(self.registry.exists())
+
+    def test_log_rejects_dirty_run_commit_for_keep(self):
+        self.setup_keep()
+        self.make_run("N1", engine="nautilus", code_commit="ccc333+dirty")
+        self.assertEqual(self.run_cli(*self.keep_args())[0], 1)
+
+    def test_log_rejects_bad_validation_receipt(self):
+        self.setup_keep()
+        for fields in ({"result": "fail"}, {"run_ids": ["R1"]}, {"schema": "other/v1"}):
+            with self.subTest(fields=fields):
+                doc = json.loads((ROOT / "tests/fixtures/validation-receipt-pass.json").read_text())
+                doc.update({"run_ids": ["R1", "N1"], **fields})
+                self.write_json(self.receipts / "VR1.json", doc)
+                self.assertEqual(self.run_cli(*self.keep_args())[0], 1)
+        (self.receipts / "VR1.json").unlink()
+        code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 1)
+        self.assertIn("not found", err)
+
+    def test_keep_needs_every_rule3_flag(self):
+        self.setup_keep()
+        args = list(self.keep_args())
+        names = {"--nautilus-run-id": "nautilus_run_id", "--parity-receipt": "parity_receipt_id",
+                 "--validation-receipt": "validation_receipt"}
+        for flag, key in names.items():
+            with self.subTest(flag=flag):
+                i = args.index(flag)
+                code, _, err = self.run_cli(*args[:i], *args[i + 2:])
+                self.assertEqual(code, 1)
+                self.assertIn(key, err)
+
+    def test_full_valid_keep_record_logs(self):
+        self.setup_keep()
+        code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 0, err)
+        refs = reg.load(self.registry)[0]["refs"]
+        self.assertEqual({k: refs[k] for k in ("run_id", "nautilus_run_id", "parity_receipt_id", "validation_receipt")},
+                         {"run_id": "R1", "nautilus_run_id": "N1", "parity_receipt_id": "P1", "validation_receipt": "VR1"})
+        for key, path in (("run_manifest_sha256", self.runs / "R1/manifest.json"),
+                          ("nautilus_run_manifest_sha256", self.runs / "N1/manifest.json"),
+                          ("parity_receipt_sha256", self.parity / "P1/receipt.json"),
+                          ("validation_receipt_sha256", self.receipts / "VR1.json")):
+            self.assertEqual(refs[key], hashlib.sha256(path.read_bytes()).hexdigest())
+
+    def test_dry_run_also_verifies_files(self):
+        self.assertEqual(self.log("t-1", "--run-id", "NOPE", "--dry-run")[0], 1)
+
+    def test_check_structure_passes_without_local_files(self):
+        self.setup_keep()
+        self.assertEqual(self.run_cli(*self.keep_args())[0], 0)
+        self.run_cli("render")
+        for root in (self.runs, self.parity, self.receipts):
+            shutil.rmtree(root)
+        code, _, err = self.run_cli("check")
+        self.assertEqual(code, 0, err)
+
+    def test_check_rejects_a_stored_new_record_that_skips_run_refs(self):
+        entry = {"prev": reg.GENESIS, "record": rec("x-1", imported=False)}
+        entry["hash"] = reg.canonical_hash({"prev": entry["prev"], "record": entry["record"]})
+        self.registry.write_text(json.dumps(entry, sort_keys=True) + "\n")
+        code, _, err = self.run_cli("check")
+        self.assertEqual(code, 1)
+        self.assertIn("run_id", err)
 
 
 if __name__ == "__main__":
