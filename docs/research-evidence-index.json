@@ -9,7 +9,7 @@
     "studies": 54,
     "published_plans": 52,
     "unowned_plans": 0,
-    "supporting_records_unassigned": 233
+    "supporting_records_unassigned": 234
   },
   "studies": [
     {
@@ -2504,6 +2504,7 @@
     "docs/tasks/2026-11-18-offline-infra-plan4-analysis-plan.md",
     "docs/tasks/2026-11-18-offline-infra-plan5-stocks-plan.md",
     "docs/tasks/2026-11-18-offline-infra-plan6-enforced-rules-plan.md",
+    "docs/tasks/2026-11-18-offline-infra-plan7-portfolio-plan.md",
     "docs/tasks/2026-11-18-stock-layer.md",
     "docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json",
     "docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json",
