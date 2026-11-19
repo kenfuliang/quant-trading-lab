@@ -36,6 +36,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 | Index membership coverage per session | `membership-coverage/v1` | local | view | implemented | research/data/identity.py, scripts/data.py coverage | tests/current/test_identity.py | local, per coverage id |
 | Instrument identity map | `instrument-identity/v1` | local | authoritative | implemented | research/data/identity.py, scripts/data.py identity | scripts/analysis.py, scripts/data.py, tests/current/test_identity.py | local, per identity id; the sourced research/registry/ticker-changes.json is tracked |
 | Normalised dataset cache | `normalised-cache/v1` | local | view | implemented | research/evaluation/datasets.py | research/evaluation/datasets.py | local, per manifest hash; rebuilt when any hash differs |
+| Quality acceptance | `quality-acceptance/v1` | local | authoritative | implemented | scripts/data.py accept (research/evaluation/acceptance.py) | scripts/analysis.py | local, beside the quality report it covers |
 | Universe membership history | `membership/v1` | local | authoritative | implemented | research/data/membership.py, scripts/data.py membership | scripts/data.py, tests/current/test_membership.py | local, per membership id; rights per source snapshot manifest |
 
 ## run
@@ -63,7 +64,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Validation receipt | `validation-receipt/v1` | tracked | authoritative | planned | Plan 6 (validation gate; not built) | Plan 6 decision records | permanent, tracked |
+| Validation receipt | `validation-receipt/v1` | tracked | authoritative | implemented | research/control/validation_receipts.py + scripts/validation.py + the Validation skills (trade-leakage-audit, trade-robust-evaluation, trade-promotion-review) | scripts/experiments.py | permanent, tracked |
 
 ## decide
 

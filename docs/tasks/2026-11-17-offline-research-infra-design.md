@@ -9,11 +9,13 @@ owner: project-maintainers
 Proposed design for the infrastructure that daily offline research needs before more
 views are worth building: a qualified free-data layer, one run harness with two engines,
 a standard per-run output and analysis computed from that output. It also maps the
-existing teams, skills and SOPs onto that infrastructure and names the gaps. P0 and
-P1a (the ETF data layer) and P1b are **implemented**. Real-data sector-ETF parity
+existing teams, skills and SOPs onto that infrastructure and names the gaps. P0, P1a
+(the ETF data layer), P1b, P2, P3 and P4 are **implemented**; only P5 (portfolio
+construction) is **planned**. Real-data sector-ETF parity
 **passed** with 0 mismatches on the frozen dataset `sector-etfs-2016-2025-n1`
-([task record](2026-11-17-engine-parity.md)). Every other component below is still
-**planned**. See the status column under [Phasing](#phasing). The [roadmap](../roadmap.md)
+([task record](2026-11-17-engine-parity.md)). Known open gaps are under
+[Not yet](#not-yet), for example no command yet produces a candidate's NautilusTrader run.
+See the status column under [Phasing](#phasing). The [roadmap](../roadmap.md)
 keeps sequencing authority. The owner approved this design on 2026-11-17 and folded it
 into M1 (data layer, harness, parity) and M2 (run output, analysis, enforced rules).
 
@@ -233,7 +235,10 @@ flowchart TD
     J -- pass --> K[Candidate for sealed forward window]
 ```
 
-Three rules become tool-enforced rather than documented only:
+### Three rules
+
+**Status: implemented (Plan 6, 2026-11-18)**, with the limits below. Three rules are
+tool-enforced rather than documented only:
 
 1. No financial run on a dataset version without a passed quality report. A
    pass-with-exceptions report allows financial use only when the data owner has
@@ -247,6 +252,38 @@ Three rules become tool-enforced rather than documented only:
 
 *(The precise wording of all three rules is this design's call.)*
 
+How they are enforced: `use: financial` marks a financial run, and `scripts/analysis.py run`
+refuses one without a covering acceptance (`scripts/data.py accept`, owner only).
+`scripts/experiments.py log` reads and hashes the run, parity and validation files,
+re-verifies the quality gate from the report on disk, requires the nautilus run to be a
+financial run bound to the candidate (same dataset hash, strategy, market, instruments) and
+compares engine files between full-SHA commits; `make check` re-verifies only tracked
+material (record shape and the tracked validation receipt). The promoting disposition is
+`keep`, never `imported`, `failed` or `abandoned`. Details:
+[workflow](../workflow.md#enforced-research-rules) and the [task record](2026-11-18-enforced-rules.md).
+
+Design call: a parity receipt vouches for the **engine code** (engine-file identity
+between the receipt's commit and the run's commit), not for the candidate strategy. The
+receipt's own nautilus run need not be the candidate's run.
+
+Limits:
+
+- Acceptance is bound to one report by SHA-256; it does not prove the owner understood the exceptions.
+- Roles in a validation receipt are self-reported. The tool enforces separation of
+  recorded roles, not independence of the model or session.
+- The 110 earlier records are `imported` and exempt.
+
+### Not yet
+
+- **No `keep` can be logged in practice.** No CLI produces a nautilus run for a candidate:
+  today's analyses are screening-engine runs only, and parity runs the fixed parity
+  strategy; parity runs are engineering runs and are rejected as the nautilus run. A
+  candidate confirmation command must exist before any record can promote.
+- The registry is an append-only local file; a self-consistent hand-forged chain is outside
+  what it can prevent.
+- No acceptance has been recorded for any real dataset; the owner has not accepted
+  the `sector-etfs-2016-2025-n1` exceptions.
+
 ## Phasing
 
 | Phase | Deliverable | Acceptance | Status |
@@ -256,7 +293,7 @@ Three rules become tool-enforced rather than documented only:
 | P1b | Screening engine and NautilusTrader confirmation on the fixture | Parity check passes in `make check` | Implemented: synthetic CI parity passes in `make check` ([plan](2026-11-17-offline-infra-p0-p1b-plan.md) Tasks 2–5). Real-data sector-ETF parity passed on a clean tree with 0 mismatches after the data layer resolved the earlier load rejection (XLF 2016 in-kind event, sub-cent prices) ([task record](2026-11-17-engine-parity.md); the [receipt of the earlier blocked run](evidence/2026-11-17-engine-parity.json) is history) |
 | P2 | Analysis: tearsheet, stage waterfall, trust panel | The incumbent SPY EMA/volatility traffic-light strategy is rebuilt through the harness; its waterfall and trust panel are computed; a reconciliation report compares it with the existing registry numbers and explains every difference (a difference is reported, not a gate) | Implemented 2026-11-18 (Plan 4): see the [incumbent rebuild record](2026-11-18-incumbent-rebuild.md); nested ladder hold, trend, trend capped by the gate (the legacy-030 structure), costs; lookahead passed; the rebuild runs on 2016-2025 ETF data, not 2005-2025 |
 | P3 | S&P 500 membership and coverage; instrument identity across ticker changes; liquidity-scaled stock costs; timing of a 500-name screening run | Membership table from `fja05680/sp500` (MIT), cross-checked against `index-constitution` and `hanshof/sp500_constituents`, spot-checked on known changes; coverage measured against the existing 500-name archive; one instrument identity per issuer across ticker changes; a stock cost model that scales with liquidity (average daily dollar volume) in place of a flat basis-point cost; a measured 500-name screening time. Acquiring former members' prices is out of scope | Implemented (Plan 5), with limits: current-holdings proxy of 409 names (62 symbols excluded: split events, failed fetches and post-window adjustments), coverage 57.1% to 79.3% of members, nine ticker changes applied and none verified, all stock results survivor-biased and discovery-only; screening all names about 83 s (measured on the earlier 416-name dataset) ([record](2026-11-18-stock-layer.md)) |
-| P4 | SOP and catalog updates; registry `refs` link | The three enforced rules each have a failing-then-passing test | Planned: Plan 6 |
+| P4 | SOP and catalog updates; registry `refs` link | The three enforced rules each have a failing-then-passing test | Implemented (2026-11-18, Plan 6): see [Three rules](#three-rules) and the [task record](2026-11-18-enforced-rules.md). Limits: acceptance is bound to a report hash; roles are self-reported; no CLI yet produces a candidate's nautilus run, so no `keep` can be logged ([Not yet](#not-yet)) |
 | P5 | Portfolio construction: a combiner that reads run outputs and writes a new run output. Equal-weight and inverse-volatility weighting, one cash account, no leverage | A combined run reproduces from its component run ids; weights, cash and costs reconcile to the component outputs; every combination counts as a trial in the trial count under [goals](../goals.md) | Planned: Plan 7 |
 
 P1a and P1b run in parallel after P0: P1b uses the synthetic fixture and the existing

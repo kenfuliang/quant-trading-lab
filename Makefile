@@ -3,13 +3,13 @@
 MAIN_CHECKOUT := $(abspath $(dir $(abspath $(shell git rev-parse --git-common-dir 2>/dev/null))))
 PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,$(MAIN_CHECKOUT)/.venv/bin/python)
 
-.PHONY: help check docs-check boundaries-check evidence-index-check experiments-check stages-check readiness-check artifacts-check golden-check progress progress-check research-index test dependencies doctor
+.PHONY: help check docs-check boundaries-check evidence-index-check experiments-check validation-check stages-check readiness-check artifacts-check golden-check progress progress-check research-index test dependencies doctor
 
 help:
 	@echo "check: offline documentation, dependency, and behavior checks"
 	@echo "doctor: local engine and observer configuration check"
 
-check: docs-check boundaries-check evidence-index-check experiments-check stages-check readiness-check artifacts-check golden-check progress-check dependencies test
+check: docs-check boundaries-check evidence-index-check experiments-check validation-check stages-check readiness-check artifacts-check golden-check progress-check dependencies test
 
 boundaries-check:
 	$(PYTHON) scripts/check_boundaries.py
@@ -85,6 +85,9 @@ golden-check:
 
 experiments-check:
 	$(PYTHON) scripts/experiments.py check
+
+validation-check:
+	$(PYTHON) scripts/validation.py check
 
 evidence-index-check:
 	$(PYTHON) scripts/current/research_index.py --check

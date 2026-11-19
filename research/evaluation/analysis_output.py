@@ -31,7 +31,7 @@ def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, 
     ``{membership_id, identity_id, coverage_summary}`` when point-in-time masking was applied, else ``None``.
     """
     stamp = datetime.fromisoformat(created_utc).strftime("%Y%m%dT%H%M%SZ")
-    return {
+    doc = {
         "schema": SCHEMA,
         "analysis_id": f"{stamp}-{_safe(spec['spec_id'])}",
         "spec_id": spec["spec_id"],
@@ -55,6 +55,10 @@ def build_analysis(spec: dict, steps: list[dict], trust: dict, lookahead: dict, 
         "tearsheet": tearsheet or {"status": "skipped", "error": None},
         "notes": list(spec.get("notes", [])),
     }
+    if provenance.get("use") == "financial":  # engineering documents keep exactly the old keys
+        doc["use"] = "financial"
+        doc["acceptance_sha256"] = provenance.get("acceptance_sha256")
+    return doc
 
 
 def write_analysis(root: Path, doc: dict, tearsheet_html: str | None, report_md: str) -> Path:

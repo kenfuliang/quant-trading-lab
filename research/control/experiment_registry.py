@@ -20,6 +20,12 @@ from research.control.rsi_contracts import canonical_hash
 SCHEMA = "experiment-record/v1"
 CLASSES = ("live", "paper", "shadow", "sealed_forward", "development")  # strongest first
 DISPOSITIONS = ("keep", "retire", "inconclusive", "control", "blocked")
+ATTEMPTS = ("completed", "failed", "abandoned")
+NO_RUN_ATTEMPTS = ("failed", "abandoned")
+RUN_REFS = ("run_id", "run_manifest_sha256")
+KEEP_REFS = ("nautilus_run_id", "nautilus_run_manifest_sha256", "parity_receipt_id", "parity_receipt_sha256",
+             "validation_receipt", "validation_receipt_sha256")
+_SHA256 = re.compile(r"^[0-9a-f]{64}$")
 METRICS = ("net_cagr", "max_drawdown", "longest_underwater_sessions",
            "longest_underwater_days", "calmar", "sharpe", "turnover")
 DRAWDOWN_TOLERANCE = 0.30  # mandate reassessment reference, a flag and not a gate
@@ -90,8 +96,39 @@ def validate(record):
             raise RegistryError("refs must be an object")
     if "imported" in record and not isinstance(record["imported"], bool):
         raise RegistryError("imported must be true or false")
+    if "attempt" in record and record["attempt"] not in ATTEMPTS:
+        raise RegistryError("attempt must be one of " + ", ".join(ATTEMPTS))
+    if record["disposition"] == "keep":
+        if record.get("imported") is True:
+            raise RegistryError("an imported record cannot be a keep: promotion needs the rule 3 evidence chain")
+        if record.get("attempt") in NO_RUN_ATTEMPTS:
+            raise RegistryError(f"a keep record cannot have attempt {record['attempt']!r}: "
+                                "a promoted candidate needs completed runs")
+    if record.get("imported") is not True:  # historical records predate the rules
+        _require_run_refs(record)
     canonical_hash(record)  # strict JSON only
     return record
+
+
+def _require_run_refs(record):
+    """Rules 2 and 3 for new records: shape only; the files are checked at log time."""
+    refs = record.get("refs") or {}
+    needed = []
+    if record["disposition"] != "blocked" and record.get("attempt") not in NO_RUN_ATTEMPTS:
+        needed += RUN_REFS
+    if record["disposition"] == "keep":
+        needed += KEEP_REFS
+    bad = [key for key in needed if not _present(refs, key)]
+    if bad:
+        raise RegistryError("a new " + record["disposition"] + " record needs refs " + ", ".join(bad)
+                            + " (run output" + (" and promotion evidence" if record["disposition"] == "keep" else "") + ")")
+
+
+def _present(refs, key):
+    value = refs.get(key)
+    if key.endswith("sha256"):
+        return isinstance(value, str) and bool(_SHA256.match(value))
+    return isinstance(value, str) and bool(value.strip())
 
 
 def _entry(prev, record):

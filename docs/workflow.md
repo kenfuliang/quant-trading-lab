@@ -116,6 +116,85 @@ and generated bulk data. This SOP does not automatically stage or publish files.
 - `.local/scratch/` holds exploration. It counts as evidence only once it is
   reproduced through the harness (a committed test or script with a receipt).
 
+## Enforced research rules
+
+Three research rules are enforced by tools, not by habit. Each has a failing-then-passing
+test; [the end-to-end scenario](../tests/current/test_enforced_rules.py) walks all three on
+temporary roots.
+
+```mermaid
+flowchart LR
+    Q[Quality report] -->|owner runs data.py accept| A[Acceptance, hash-bound]
+    A --> F[Financial run: use financial]
+    F -->|rule 2: log with run id| C[Completed record]
+    C -->|rule 3: keep only with 3 refs| K[Promoting record]
+    N[Nautilus run] --> K
+    P[Passing parity receipt] --> K
+    V[Validation receipt] --> K
+```
+
+1. **Financial use needs an accepted quality report.**
+   - A run is financial when its spec or command says `use: financial`; everything else is
+     `engineering` (the default, and what screening and parity runs are).
+   - A `pass` report needs nothing. A `pass-with-exceptions` report needs an acceptance
+     covering every check that is not `pass`. A `fail` report is never loadable.
+   - **Only the owner accepts.** Agents never run `scripts/data.py accept`, and no other
+     code path records an acceptance. The acceptance names one report by SHA-256, so a
+     changed report or dataset invalidates it.
+2. **A completed record needs a run output.** A new record (not `imported`) that is not
+   `blocked` needs `refs.run_id` and the run manifest's SHA-256, and that run must be
+   `use: financial` with a passing or accepted quality status. At log time the tool does
+   not trust the gate fields written in the manifest: it re-runs the financial-use check on
+   the quality report folder the manifest names (read inside the data root only) and
+   compares the acceptance hash; a report it cannot read is a rejection. The optional
+   `attempt` field (`completed` by default, `failed`, `abandoned`) lets an attempt that
+   never produced a run be logged honestly; those need no run output, and are never `keep`.
+3. **Promotion needs a NautilusTrader run, a passing parity receipt and a separate-role
+   validation receipt.** The registry disposition that promotes is `keep`; retire, control
+   and inconclusive do not. A `keep` record is never `imported` and never `failed` or
+   `abandoned`. It needs:
+   - a nautilus run that meets the same financial requirement as the candidate run
+     (`use: financial`, quality pass or accepted, gate re-verified) and is bound to it: the
+     same `datasets.manifest_sha256` and the same config `strategy`, `market` and
+     `instruments` (the engine differs by design). A parity run is an engineering run, so it
+     does not qualify;
+   - a clean passing parity receipt, with no engine file changed between its commit and the
+     run's commit. Both commits must be full 40-hex SHAs (not `HEAD`, a branch, a short SHA
+     or `+dirty`); the engine files are the evaluation engine modules, `run_output.py` and
+     `requirements.lock.txt`;
+   - a tracked [validation receipt](skills.md): a Validation-role skill that is not a
+     researcher skill, result `pass`, at least one check with status `pass` (waived checks
+     alone are not evidence), covering both run ids and naming the same parity receipt as
+     the record. At log time the receipt must live in the tracked
+     `research/registry/validation-receipts/` directory and be tracked by git, so commit it
+     first. `--receipts-dir` elsewhere is refused unless the test-only
+     `--allow-untracked-receipts` flag is given (it prints a warning).
+
+Where each is enforced:
+
+| Rule | At `scripts/experiments.py log` (reads local files) | In `make check` (tracked material only) |
+| --- | --- | --- |
+| 1 financial gate | `scripts/analysis.py run` refuses before writing anything | not checked (local data is absent in CI) |
+| 2 run output | manifest exists, SHA-256 matches, `use: financial`, quality gate re-verified from the report and acceptance on disk | record shape: `run_id` and hash present |
+| 3 promotion | nautilus run financial and bound to the candidate (dataset hash, strategy, market, instruments), parity receipt clean and passing, engine files unchanged between full-SHA commits, validation receipt valid, tracked by git and naming the same parity receipt | record shape (never `imported`, `failed` or `abandoned`), plus the tracked validation receipt (hash, allowed validator, `pass`, a passing check, run ids, parity receipt id) |
+
+The 110 records logged before these rules (`imported`) are exempt and validate unchanged;
+none of them is a `keep`.
+
+Limits, stated plainly:
+
+- A parity receipt vouches for the **engine code** (engine-file identity between commits),
+  not for the candidate strategy.
+- Roles in a validation receipt are **self-reported**. The tool enforces separation of
+  recorded roles, not the independence of the model or session that produced the work.
+- Acceptance is bound to a report hash, not to what the owner understood when accepting.
+- The registry is an append-only local file with a hash chain. A self-consistent
+  hand-forged chain (runs, receipts and records all written by hand) is outside what such a
+  file can prevent; the rules stop mistakes and shortcuts, not a determined forger.
+- No `keep` can be logged in practice yet: no command produces a candidate's NautilusTrader
+  run. Parity runs are engineering runs and are now rejected as the nautilus run (see the
+  [design](tasks/2026-11-17-offline-research-infra-design.md#three-rules)).
+
 ## Test budget and interpreter
 
 `make test` runs `scripts/run_tests.py`, which discovers `tests/`, times each

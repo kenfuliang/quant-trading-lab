@@ -66,6 +66,9 @@ def run_ladder(data: MarketData, rungs: list[Rung], runs_root: Path, base: dict,
             "coverage": {"instruments": instruments, "sessions": len(result.returns)},
             "parent_run": parent,
         }
+        if base.get("use") == "financial":  # engineering manifests keep exactly the old keys
+            manifest["use"] = "financial"
+            manifest["acceptance_sha256"] = base.get("acceptance_sha256")
         if labels:  # stock-class and masked runs only; ETF run manifests keep exactly the old keys
             manifest["labels"] = labels
             if universe_kind:

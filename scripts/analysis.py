@@ -40,6 +40,7 @@ from research.data.identity import coverage, intervals_for_dataset, read_identit
 from research.data.manifest import sha256_file  # noqa: E402
 from research.data.membership import membership_file_sha256, read_membership  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
+from research.evaluation.acceptance import AcceptanceError, verify_for_financial_use  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
 from research.evaluation.ladder import Rung, run_ladder  # noqa: E402
@@ -58,6 +59,7 @@ GOLDEN = ROOT / "tests/golden/fixture-ladder-summary.json"
 GOLDEN_NOW = datetime(2026, 1, 1, tzinfo=timezone.utc)
 SQRT_252 = math.sqrt(252)
 GOLDEN_ABS_TOL = 1e-9
+USES = ("engineering", "financial")
 GRID_NOTE ="PBO grid is an illustrative grid; not registry trials."
 
 
@@ -112,6 +114,17 @@ def _trial_code(spec: dict, comparison: dict, notes: list[str]) -> str:
     notes.append(f"comparison.trial_code not set; DSR trials use the first comparison record's code {code}, "
                  "so the record order decides the trial set.")
     return code
+
+
+def _financial_gate(spec: dict, root: Path, datasets: dict) -> dict:
+    """Verify the dataset's latest quality report for financial use before any run is written."""
+    relative = datasets.get("quality_report")
+    if spec.get("fixture") or not relative:
+        raise AcceptanceError("financial use needs a real dataset with a quality report; "
+                              "a fixture or unreported dataset is engineering only")
+    path = Path(root) / relative
+    report = json.loads(path.read_text(encoding="utf-8"))
+    return verify_for_financial_use(root, path.parent, report)
 
 
 def _rungs(spec: dict) -> list[Rung]:
@@ -182,13 +195,22 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     root = Path(root)
     commit = _code_commit()
     loader = loader or load_dataset
+    use = spec.get("use", "engineering")
+    if use not in USES:
+        raise ValueError(f"use must be one of {USES}, got {use!r}")
     data, datasets = _load(spec, root, loader)
+    gate = _financial_gate(spec, root, datasets) if use == "financial" else None
+    if gate:
+        datasets = {**datasets, "acceptance": gate}
     if len(datasets.get("inputs") or ()) > 2 and not datasets.get("universe_kind"):
         raise ValueError(f"dataset {datasets.get('dataset_id')} has many per-symbol input files (a stock archive) "
                          "but its manifest has no universe_kind; refusing an unlabelled stock analysis")
     rungs = _rungs(spec)
     wrap, universe = _universe(spec, data, root)
-    steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now,
+    base = {"code_commit": commit, "datasets": datasets}
+    if gate:
+        base.update(use="financial", acceptance_sha256=gate["acceptance_sha256"])
+    steps = run_ladder(data, rungs, root / "runs", base, now,
                        wrap=wrap, universe=None if universe is None else
                        {k: universe[k] for k in ("membership_id", "identity_id")})
     last, last_spec = rungs[-1], rungs[-1].strategy
@@ -227,7 +249,7 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
 
     spec_with_notes = {**spec, "notes": notes}
     doc = build_analysis(spec_with_notes, steps, trust, lookahead, comparison,
-                         {"code_commit": commit, "datasets": datasets}, now.isoformat(),
+                         base, now.isoformat(),
                          {"status": "skipped", "error": None}, universe)
     html_page = None
     try:
@@ -272,6 +294,10 @@ def golden_matches(expected, actual) -> bool:
 
 def cmd_run(args) -> int:
     spec = json.loads(args.spec.read_text(encoding="utf-8"))
+    if args.use:
+        if spec.get("use") not in (None, args.use):
+            raise ValueError(f"--use {args.use} conflicts with the spec's use {spec['use']!r}")
+        spec["use"] = args.use
     root = args.root or data_root()
     print(run_spec(spec, root, args.registry)["folder"])
     return 0
@@ -320,6 +346,8 @@ def main(argv=None) -> int:
     run.add_argument("--spec", type=Path, required=True)
     run.add_argument("--root", type=Path)
     run.add_argument("--registry", type=Path, default=REGISTRY)
+    run.add_argument("--use", choices=USES, help="engineering (default) or financial; financial needs an "
+                     "accepted quality report")
     run.set_defaults(fn=cmd_run)
     golden = sub.add_parser("golden")
     golden.add_argument("--update", action="store_true")
@@ -335,7 +363,7 @@ def main(argv=None) -> int:
     except DataAbsent as error:
         print(error, file=sys.stderr)
         return 2
-    except (DatasetBlocked, experiment_registry.RegistryError, OSError, ValueError, KeyError) as error:
+    except (DatasetBlocked, experiment_registry.RegistryError, AcceptanceError, OSError, ValueError, KeyError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 1
 

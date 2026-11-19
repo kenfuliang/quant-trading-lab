@@ -12,6 +12,7 @@
   normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair (or a per-symbol
                 bars directory) and write a manifest
   quality       write a quality-report/v1 for a normalised dataset (optionally cross-checked to Yahoo)
+  accept        the OWNER records quality-acceptance/v1 for a pass-with-exceptions report (financial use)
 
 The only commands that use the network are fetch-yahoo and fetch-github; every request is receipted.
 Exit codes: 0 ok, 1 failure or incomplete snapshot, 2 data absent.
@@ -32,6 +33,7 @@ from research.data.manifest import ManifestError, read_manifest, sha256_file, wr
 from research.data.root import DataAbsent, data_root, require
 from research.data.stock_actions import build_stock_actions, read_symbols_file, write_actions, yahoo_symbol
 from research.data.yahoo_snapshot import STOCK_RIGHTS, SnapshotIncomplete, fetch_snapshot, parse_chart
+from research.evaluation.acceptance import AcceptanceError, write_acceptance
 from research.evaluation.data_quality import build_failure_report, build_report, write_report
 from research.evaluation.datasets import load_dataset, read_inputs
 from research.evaluation.etf_normalise import RECIPE, normalise
@@ -463,6 +465,23 @@ def cmd_quality(args):
     return 0
 
 
+def cmd_accept(args):
+    root = Path(args.root) if args.root else data_root()
+    require(root / "quality" / args.dataset_id / args.report_stamp / "report.json")
+    accepts = [name.strip() for name in args.accepts.split(",") if name.strip()]
+    try:
+        path = write_acceptance(root, args.dataset_id, args.report_stamp, args.by, accepts, args.note,
+                                datetime.now(timezone.utc))
+    except FileExistsError as error:
+        print(f"error: acceptance already exists: {error.filename}", file=sys.stderr)
+        return 1
+    except (ValueError, AcceptanceError, OSError, KeyError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    print(f"Accepted {args.dataset_id} {args.report_stamp}: {path}")
+    return 0
+
+
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -541,6 +560,14 @@ def build_parser():
     ql.add_argument("--yahoo", help="Yahoo snapshot id for the cross-source check (default: blocked)")
     ql.add_argument("--root", help="data root (default: shared data root)")
     ql.set_defaults(func=cmd_quality)
+    ac = sub.add_parser("accept", help="owner only: accept the exceptions of a quality report for financial use")
+    ac.add_argument("--dataset-id", required=True)
+    ac.add_argument("--report-stamp", required=True, help="report folder name, e.g. 20261118T000000Z")
+    ac.add_argument("--by", required=True, help="the accepting owner's name")
+    ac.add_argument("--accepts", required=True, help="'all' or comma-separated check names")
+    ac.add_argument("--note", required=True)
+    ac.add_argument("--root", help="data root (default: shared data root)")
+    ac.set_defaults(func=cmd_accept)
     return parser
 
 
