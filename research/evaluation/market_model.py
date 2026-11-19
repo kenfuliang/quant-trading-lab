@@ -143,18 +143,53 @@ def history_view(data: MarketData, i: int) -> dict[str, pd.DataFrame]:
     and on or before session ``i`` (1.0 otherwise). ``close / split_factor`` is the close
     on session ``i``'s share basis. Splits after session ``i`` never affect the view.
     """
-    effective = {}
-    for split in data.splits:
-        k = data.sessions.index(split.effective_date)
+    cache = _view_cache(data)
+    included: dict[str, list[int]] = {}
+    for position, (k, name) in enumerate(cache.split_rows):
         if k <= i:
-            effective.setdefault(split.instrument, []).append((k, split.ratio))
+            included.setdefault(name, []).append(position)
     view = {}
-    for name, frame in data.bars.items():
-        factor = np.ones(i + 1)
-        for k, ratio in effective.get(name, ()):
-            factor[:k] *= ratio
-        view[name] = frame.iloc[: i + 1].assign(split_factor=factor)
+    for name in data.bars:
+        key = tuple(included.get(name, ()))
+        extended = cache.frames.get((name, key))
+        if extended is None:
+            extended = cache.frames[(name, key)] = _extended_frame(data, cache, name, key)
+        view[name] = extended.iloc[: i + 1]
     return view
+
+
+@dataclass
+class _ViewCache:
+    """Per-``MarketData`` precomputation behind ``history_view``: session index, split rows
+    ``(session index, instrument)`` in ``data.splits`` order, and the full-length frames with
+    ``split_factor`` per (instrument, set of splits already effective)."""
+
+    source_bars: tuple
+    splits: tuple
+    split_rows: tuple
+    frames: dict
+
+
+def _view_cache(data: MarketData) -> _ViewCache:
+    cache = data.__dict__.get("_history_view_cache")
+    bars = tuple(data.bars.values())
+    if (cache is not None and cache.splits is data.splits and len(cache.source_bars) == len(bars)
+            and all(a is b for a, b in zip(cache.source_bars, bars))):
+        return cache
+    index = {day: k for k, day in enumerate(data.sessions)}
+    rows = tuple((index[s.effective_date], s.instrument) for s in data.splits)
+    cache = _ViewCache(bars, data.splits, rows, {})
+    object.__setattr__(data, "_history_view_cache", cache)
+    return cache
+
+
+def _extended_frame(data: MarketData, cache: _ViewCache, name: str, key: tuple) -> pd.DataFrame:
+    frame = data.bars[name]
+    factor = np.ones(len(frame))
+    for position in key:
+        k = cache.split_rows[position][0]
+        factor[:k] *= data.splits[position].ratio
+    return frame.assign(split_factor=factor)
 
 
 def execution_price(open_px: float, side: str, cost_bps: float) -> float:

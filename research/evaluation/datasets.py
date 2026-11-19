@@ -132,8 +132,10 @@ def _restrict(data: MarketData, instruments: tuple[str, ...]) -> MarketData:
                       splits=tuple(s for s in data.splits if s.instrument in wanted))
 
 
-def load_dataset(dataset_id: str, instruments: tuple[str, ...],
+def load_dataset(dataset_id: str, instruments: tuple[str, ...] | None,
                  root: Path | None = None) -> tuple[MarketData, dict]:
+    """Load a verified, quality-gated dataset. ``instruments=None`` returns every instrument,
+    for the cached stock layer only (ETF datasets need an explicit list)."""
     base = Path(root) if root is not None else data_root()
     manifest = read_manifest(base, dataset_id, verify=True)
     if manifest["kind"] != "normalised" or len(manifest["inputs"]) < 2:
@@ -177,8 +179,10 @@ def load_dataset(dataset_id: str, instruments: tuple[str, ...],
                 _write_cache(cache, manifest_sha, data)
             except OSError:
                 cache_state = "uncached"
-        market = _restrict(data, tuple(instruments))
+        market = data if instruments is None else _restrict(data, tuple(instruments))
     else:
+        if instruments is None:
+            raise MarketDataError(f"{dataset_id}: instruments=None is only supported for stock-layer datasets")
         rows, actions = read_inputs(base, manifest)
         # The in-kind value is computed from the full rows, so a converted event survives
         # when its child instrument is not requested.

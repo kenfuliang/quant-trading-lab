@@ -5,6 +5,7 @@ import json
 import os
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 from unittest import mock
 
@@ -157,6 +158,64 @@ class EngineParityCliTests(unittest.TestCase):
             engine_parity.main(["run", "--dataset", ID, "--bars", str(self.bars), "--instruments", "AAA"])
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
             engine_parity.main(["run", "--instruments", "AAA"])
+
+    def _stock_stub(self):
+        fixture = synthetic_fixture()
+
+        def loader(dataset, instruments):
+            data = fixture
+            if instruments is not None:
+                wanted = set(instruments)
+                data = replace(fixture, bars={n: fixture.bars[n] for n in instruments},
+                               dividends=tuple(d for d in fixture.dividends if d.instrument in wanted),
+                               splits=tuple(s for s in fixture.splits if s.instrument in wanted))
+            return data, {"manifest_sha256": "0" * 64, "quality_status": "pass-with-exceptions",
+                          "quality_report": "quality/x/report.json", "half_days": [],
+                          "inputs": [{"path": "n/A.json", "sha256": "a" * 64}, {"path": "n/B.json", "sha256": "b" * 64},
+                                   {"path": "n/actions.json", "sha256": "c" * 64}],
+                          "universe_kind": "current-holdings-proxy"}
+        return loader
+
+    def test_max_instruments_cost_model_and_timing_only(self):
+        data = self.root / "dataroot"
+        data.mkdir()
+        make_root(data, report="pass-with-exceptions")
+        argv = ["run", "--dataset", ID, "--max-instruments", "2", "--cost-model", "adv", "--timing-only"]
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}):
+            code = engine_parity.main(argv, dataset_loader=self._stock_stub())
+        self.assertEqual(code, 0)
+        receipt = json.loads(next((data / "parity").glob("*/receipt.json")).read_text(encoding="utf-8"))
+        self.assertEqual(receipt["instruments"], ["AAA", "BBB"])  # first N, alphabetical
+        self.assertEqual(receipt["market"]["cost_model"], "adv")
+        self.assertEqual(receipt["status"], "timing_only")
+        self.assertIsNone(receipt["passed"])
+        self.assertIsNone(receipt["mismatches"])
+        self.assertIsNone(receipt["runs"])
+        self.assertEqual(receipt["claim"], "timing only; no parity or financial claim")
+        self.assertEqual(receipt["labels"], ["survivor-biased", "discovery-only"])
+        self.assertEqual(receipt["inputs"]["manifest_sha256"], "0" * 64)
+        self.assertEqual(receipt["inputs"]["quality_status"], "pass-with-exceptions")
+        self.assertEqual(receipt["inputs"]["bars"]["files"], 2)
+        self.assertEqual(receipt["inputs"]["actions"], [{"path": "n/actions.json", "sha256": "c" * 64}])
+        self.assertEqual(receipt["timing"]["universe_names"], 3)
+        self.assertFalse((data / "runs").exists())
+
+    def test_max_instruments_parity_with_adv_costs(self):
+        data = self.root / "dataroot"
+        data.mkdir()
+        make_root(data, report="pass-with-exceptions")
+        argv = ["run", "--dataset", ID, "--max-instruments", "3", "--cost-model", "adv"]
+        with mock.patch.dict(os.environ, {"QTL_DATA_ROOT": str(data)}):
+            code = engine_parity.main(argv, dataset_loader=self._stock_stub())
+        self.assertEqual(code, 0)
+        receipt = json.loads(next((data / "parity").glob("*/receipt.json")).read_text(encoding="utf-8"))
+        self.assertEqual(receipt["status"], "passed")
+        self.assertEqual(receipt["market"]["cost_model"], "adv")
+        self.assertEqual(set(receipt["runs"]), {"screen", "nautilus"})
+
+    def test_instruments_or_max_instruments_required(self):
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            engine_parity.main(["run", "--dataset", ID])
 
     def test_missing_dataset_manifest_exits_2(self):
         data = self.root / "dataroot"

@@ -69,22 +69,25 @@ def run_screen(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
     qty = {n: 0 for n in names}
     pending: dict[str, int] | None = None
     close_qty: list[dict[str, int]] = []  # holdings at each session close
+    index = {day: k for k, day in enumerate(sessions)}
+    splits_on: dict[str, list] = {}  # effective date -> splits, in data.splits order
+    for split in data.splits:
+        splits_on.setdefault(split.effective_date, []).append(split)
+    pays_on: dict[str, list] = {}  # pay date -> dividends, in data.dividends order
+    for div in data.dividends:
+        pays_on.setdefault(div.pay_date, []).append(div)
     marks, signals, fills = [], [], []
 
     for i, day in enumerate(sessions):
         # 1. splits
-        for split in data.splits:
-            if split.effective_date != day:
-                continue
+        for split in splits_on.get(day, ()):
             n, ratio = split.instrument, split.ratio
             qty[n] = qty[n] * ratio  # a whole-share forward split moves no cash
             if pending is not None and n in pending:
                 pending[n] = pending[n] * ratio
         # 2. dividends
-        for div in data.dividends:
-            if div.pay_date != day:
-                continue
-            ex_idx = sessions.index(div.ex_date)
+        for div in pays_on.get(day, ()):
+            ex_idx = index[div.ex_date]
             held = close_qty[ex_idx - 1][div.instrument] if ex_idx > 0 else 0
             cash += round(div.per_share * held, 2)
         # 3. orders
