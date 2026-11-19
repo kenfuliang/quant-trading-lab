@@ -318,12 +318,19 @@
       "id": "P2",
       "area": "Portfolio and risk",
       "aspect": "Portfolio construction across strategies",
-      "score": 1,
+      "score": 2,
       "importance": "M",
-      "critique": "Every study is one strategy",
-      "next_action": "Combiner for run outputs",
+      "critique": "Combiner of run outputs (equal and inverse-volatility, long-only, no leverage, cash earns zero) reproduces byte for byte and reconciles to its components; counts as a trial and inherits survivor-bias labels. Sleeve-level model only, one demonstration on engineering data that is not a finding, no share-level portfolio, no optimiser",
+      "next_action": "Combine strategies from a frozen plan with a forward window; share-level portfolio construction",
       "roadmap_step": 9,
-      "evidence": [],
+      "evidence": [
+        "research/evaluation/portfolio.py",
+        "scripts/portfolio.py",
+        "tests/current/test_portfolio.py",
+        "tests/current/test_portfolio_cli.py",
+        "docs/tasks/2026-11-18-portfolio.md",
+        "docs/tasks/evidence/2026-11-18-portfolio.json"
+      ],
       "gates": []
     },
     {

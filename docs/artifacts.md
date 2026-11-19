@@ -44,7 +44,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Experiment receipt | `experiment-receipt/v1` | tracked | authoritative | implemented | hand-filled from docs/templates/experiment-receipt.json, validated by research/control/experiment_receipts.py | scripts/check_experiment_receipt.py, scripts/experiments.py | permanent, tracked under docs/tasks/evidence |
-| Run output | `run-output/v1` | local | authoritative | implemented | research/evaluation/run_output.py write_run (via scripts/current/engine_parity.py) | research/evaluation/run_output.py read_run, research/evaluation/engine_contract.py | local, per worktree under .local/runs |
+| Run output | `run-output/v1` | local | authoritative | implemented | research/evaluation/run_output.py write_run (via scripts/current/engine_parity.py; combiner runs via scripts/portfolio.py combine add the optional combination key) | research/evaluation/run_output.py read_run, research/evaluation/engine_contract.py | local, per worktree under .local/runs |
 | Sector RSI epoch 3 execution plan | `sector-rsi-epoch3-execution/v1` | tracked | authoritative | frozen-study-specific | scripts/freeze_calmar_epoch3.py | research/plans/calmar-epoch3-c1.frozen.json, research/plans/calmar-epoch3-c2.frozen.json | permanent, frozen plan under research/plans |
 | T11 universe cloud plan | `t11-universe-cloud/v1` | local | authoritative | frozen-study-specific | scripts/prepare_t11_universe.py | scripts/capture_t11_universe.py | local, per worktree; closed study |
 
@@ -75,6 +75,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 | Forward plan | `forward-plan/v1` | tracked | authoritative | implemented | hand-maintained research/registry/forward-plans/FWD-SPY-EMA-1.json | scripts/progress.py | until superseded, tracked |
 | Incumbent registry | `incumbents/v1` | tracked | authoritative | implemented | hand-maintained research/registry/incumbents.json | scripts/stages.py, research/control/stage_view.py | until superseded, tracked |
 | Live-readiness gates | `gates/v1` | tracked | authoritative | implemented | hand-maintained research/registry/gates.json | scripts/progress.py, scripts/readiness.py | until superseded, tracked |
+| Portfolio report | `portfolio-report/v1` | local | view | implemented | scripts/portfolio.py report | none | local, shared data root under portfolio/&lt;run id&gt;/&lt;UTC stamp&gt;/report.json (earlier flat portfolio/&lt;run id&gt;/report.json files remain as history) |
 | Readiness registry | `readiness/v1` | tracked | authoritative | implemented | hand-maintained research/registry/readiness.json | scripts/readiness.py, scripts/dashboard.py | until superseded, tracked |
 | Research decision template | none | tracked | authoritative | template-only | hand-filled from docs/templates/research-decision.md | research cycle authors | permanent once filled, tracked |
 | Research paper template | none | tracked | authoritative | template-only | hand-filled from docs/templates/research-paper.md | docs/research-standard.md | permanent once filled, tracked |

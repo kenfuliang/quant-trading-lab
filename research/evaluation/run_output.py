@@ -50,8 +50,9 @@ MANIFEST_KEYS = (
     "schema", "run_id", "created_utc", "code_commit", "config", "config_hash",
     "engine", "engine_version", "datasets", "coverage", "parent_run",
 )
-# Written only by stock-class or membership-masked runs (survivor-bias labels); other keys are tolerated.
-OPTIONAL_MANIFEST_KEYS = ("labels", "universe_kind")
+# Written only by stock-class or membership-masked runs (survivor-bias labels), financial runs
+# (``use``, ``acceptance_sha256``) and combiner runs (``combination``); other keys are tolerated.
+OPTIONAL_MANIFEST_KEYS = ("labels", "universe_kind", "use", "acceptance_sha256", "combination")
 
 
 class RunOutputError(ValueError):

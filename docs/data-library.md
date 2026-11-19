@@ -282,7 +282,9 @@ flowchart LR
 ├── manifests/<id>.json                  dataset-manifest/v1: inputs with SHA-256, recipe, rights
 ├── quality/<id>/<YYYYMMDDTHHMMSSZ>/     quality-report/v1: report.json, report.md
 ├── parity/<parity_id>/receipt.json      parity receipts (earlier ones under legacy-worktree/)
-└── runs/<run_id>/                       run outputs
+├── runs/<run_id>/                       run outputs
+└── portfolio/<run_id>/<YYYYMMDDTHHMMSSZ>/report.json   portfolio-report/v1 for a combined run
+                                         (older flat <run_id>/report.json files stay as history)
 ```
 
 - **Normalised manifest.** `sector-etfs-2016-2025-n1` names the Alpaca bars and

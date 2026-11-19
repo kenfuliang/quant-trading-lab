@@ -85,6 +85,26 @@ manifests carry no `use` key. The acceptance (`quality-acceptance/v1`, see the
 [artifact catalog](artifacts.md)) is bound to one report by SHA-256. Rules and limits:
 [workflow](workflow.md#enforced-research-rules).
 
+## Combinations
+
+A combination (`scripts/portfolio.py combine`) weights several run outputs into one
+`run-output/v1` with `engine: "combiner"`. It is a sleeve-level model: each component
+contributes its own `net_return` (already net of its trading costs), positions are sleeves
+and `quantity` is 0. Weights are `equal` or `inverse_vol` (causal, trailing volatility),
+long-only and summing to at most `gross` (at most 1.0, so no leverage); cash earns zero;
+rebalancing is a turnover cost (default 5 bp) on returns. Components must have identical
+date sets. Stock members make the combination survivor-biased and discovery-only; `use` is
+`financial` only if every component is. Trial rule: each combination is a trial, so a real
+one needs `--cycle-id` (one ledger trial) and its own frozen plan and forward window;
+`--exploratory` records none and is for demonstrations. The trial is recorded before the run
+is written, so a counted trial can have no run if `write_run` then fails (the count stays one too
+high: conservative). Reports go to `portfolio/<run id>/<UTC stamp>/report.json`, one new file per
+report. A stock-class component (a `universe_kind` in its datasets) must carry its labels or the
+combination is refused. Goals:
+[research baseline and selection](goals.md); plan:
+[Plan 7](tasks/2026-11-18-offline-infra-plan7-portfolio-plan.md); first demonstration:
+[portfolio record](tasks/2026-11-18-portfolio.md).
+
 ## Stances
 
 Each stance is disclosed, not hidden:

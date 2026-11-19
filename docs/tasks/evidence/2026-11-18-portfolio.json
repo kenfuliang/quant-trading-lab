@@ -1,0 +1,345 @@
+{
+  "combinations": [
+    {
+      "code_commit": "d34954bb158f1315f9f397dd1d98b3052c5bc9fb",
+      "combined_metrics": {
+        "calmar": -0.11321321615404517,
+        "longest_underwater_days": 3561,
+        "longest_underwater_sessions": 2452,
+        "max_drawdown": 0.527778859906529,
+        "net_cagr": -0.059751542148133385,
+        "rebalance_turnover_per_year": 0.33207524347011885,
+        "sharpe": -0.6366596153421413,
+        "turnover": null,
+        "turnover_note": "not applicable: the combined fills table is empty by design; see rebalance_turnover_per_year"
+      },
+      "components": [
+        "20261118T213357Z-ea1330dc",
+        "20261119T074013Z-badfe854",
+        "20261119T074024Z-2579c05f"
+      ],
+      "config_hash": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
+      "correlation": {
+        "instruments": [
+          "20261118T213357Z-ea1330dc",
+          "20261119T074013Z-badfe854",
+          "20261119T074024Z-2579c05f"
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.5416149907810662,
+            0.3285615262275677
+          ],
+          [
+            0.5416149907810662,
+            1.0,
+            0.3684579088847745
+          ],
+          [
+            0.3285615262275677,
+            0.3684579088847745,
+            1.0
+          ]
+        ]
+      },
+      "diversification": {
+        "diversification_ratio": 1.2698591143770293,
+        "portfolio_sigma": 0.005690533336622444,
+        "risk_contribution_share": [
+          0.35240945993707007,
+          0.42316827848954003,
+          0.22442226157338982
+        ],
+        "risk_contribution_sum": 0.9999999999999999,
+        "sleeve_sigma": [
+          0.007370479356819996,
+          0.008414230705177078,
+          0.005873642403839058
+        ],
+        "weights": [
+          0.3356990753264269,
+          0.3345864569475746,
+          0.32971446772599955
+        ]
+      },
+      "exploratory": true,
+      "labels": [
+        "discovery-only",
+        "survivor-biased"
+      ],
+      "method": "equal",
+      "note": "three sleeves, defaults (monthly, 5 bp rebalance cost, gross 1.0)",
+      "reconciliation": {
+        "cash_min": 0.0,
+        "cost_total": 0.0016564229406426153,
+        "max_abs_return_error": 0.0,
+        "status": "PASS",
+        "tolerance": 1e-12,
+        "weights_sum_max": 1.0000000000000009
+      },
+      "report_rel_data_root": "portfolio/20261119T074500Z-524435d5/20261119T080117Z/report.json",
+      "run_id": "20261119T074500Z-524435d5",
+      "sessions": 2514,
+      "sleeve_metrics": {
+        "20261118T213357Z-ea1330dc": {
+          "calmar": 0.6544268793439556,
+          "longest_underwater_days": 746,
+          "longest_underwater_sessions": 512,
+          "max_drawdown": 0.16419580637261255,
+          "net_cagr": 0.10745414916579321,
+          "sharpe": 0.9311672067051961,
+          "turnover": 1.2637766907641268
+        },
+        "20261119T074013Z-badfe854": {
+          "calmar": 0.2094634716116581,
+          "longest_underwater_days": 1097,
+          "longest_underwater_sessions": 753,
+          "max_drawdown": 0.22254997501539509,
+          "net_cagr": 0.046616090373812424,
+          "sharpe": 0.40823857103027783,
+          "turnover": 88.1326496569655
+        },
+        "20261119T074024Z-2579c05f": {
+          "calmar": -0.2998551071214318,
+          "longest_underwater_days": 3575,
+          "longest_underwater_sessions": 2461,
+          "max_drawdown": 0.9678751525401533,
+          "net_cagr": -0.2902223075450998,
+          "sharpe": -3.627761739297286,
+          "turnover": 59.505013572687105
+        }
+      },
+      "superseded_note": "first report (before the final-review fixes): sleeve turnover 0 for lack of fills, combined turnover 0, risk shares from the first rebalance's weights; kept as history",
+      "superseded_report_rel_data_root": "portfolio/20261119T074500Z-524435d5/report.json",
+      "trial": null,
+      "universe_kind": "current-holdings-proxy",
+      "use": "engineering",
+      "weights_first_rebalance": {
+        "20261118T213357Z-ea1330dc": 0.3333333333333333,
+        "20261119T074013Z-badfe854": 0.3333333333333333,
+        "20261119T074024Z-2579c05f": 0.3333333333333333
+      }
+    },
+    {
+      "code_commit": "d34954bb158f1315f9f397dd1d98b3052c5bc9fb",
+      "combined_metrics": {
+        "calmar": -0.2088212532584343,
+        "longest_underwater_days": 3561,
+        "longest_underwater_sessions": 2452,
+        "max_drawdown": 0.8697888763029451,
+        "net_cagr": -0.18163040321982626,
+        "rebalance_turnover_per_year": 0.9786590169538968,
+        "sharpe": -2.3215411375038104,
+        "turnover": null,
+        "turnover_note": "not applicable: the combined fills table is empty by design; see rebalance_turnover_per_year"
+      },
+      "components": [
+        "20261119T074013Z-badfe854",
+        "20261119T074024Z-2579c05f"
+      ],
+      "config_hash": "032c4c17fcaa3b4d1c037769433d043cb0b2a573f442e0636c84567ff4733383",
+      "correlation": {
+        "instruments": [
+          "20261119T074013Z-badfe854",
+          "20261119T074024Z-2579c05f"
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.3684579088847745
+          ],
+          [
+            0.3684579088847745,
+            1.0
+          ]
+        ]
+      },
+      "diversification": {
+        "diversification_ratio": 1.250309668361429,
+        "portfolio_sigma": 0.0053383727264898736,
+        "risk_contribution_share": [
+          0.49919583052698024,
+          0.5008041694730193
+        ],
+        "risk_contribution_sum": 0.9999999999999996,
+        "sleeve_sigma": [
+          0.008414230705177078,
+          0.005873642403839058
+        ],
+        "weights": [
+          0.31527210803354333,
+          0.6847278919664561
+        ]
+      },
+      "exploratory": true,
+      "labels": [
+        "discovery-only",
+        "survivor-biased"
+      ],
+      "method": "inverse_vol",
+      "note": "two sleeves only: the incumbent has no position and zero volatility for its first 200 sessions (EMA200 warm-up), so inverse_vol over 60 sessions is refused for it, correctly: 'component 20261118T213357Z-ea1330dc has zero or non-finite volatility over the 60 sessions before 61'",
+      "reconciliation": {
+        "cash_min": 0.0,
+        "cost_total": 0.0048816443821867,
+        "max_abs_return_error": 8.673617379884035e-19,
+        "status": "PASS",
+        "tolerance": 1e-12,
+        "weights_sum_max": 1.0000000000000004
+      },
+      "report_rel_data_root": "portfolio/20261119T074508Z-032c4c17/20261119T080123Z/report.json",
+      "run_id": "20261119T074508Z-032c4c17",
+      "sessions": 2514,
+      "sleeve_metrics": {
+        "20261119T074013Z-badfe854": {
+          "calmar": 0.2094634716116581,
+          "longest_underwater_days": 1097,
+          "longest_underwater_sessions": 753,
+          "max_drawdown": 0.22254997501539509,
+          "net_cagr": 0.046616090373812424,
+          "sharpe": 0.40823857103027783,
+          "turnover": 88.1326496569655
+        },
+        "20261119T074024Z-2579c05f": {
+          "calmar": -0.2998551071214318,
+          "longest_underwater_days": 3575,
+          "longest_underwater_sessions": 2461,
+          "max_drawdown": 0.9678751525401533,
+          "net_cagr": -0.2902223075450998,
+          "sharpe": -3.627761739297286,
+          "turnover": 59.505013572687105
+        }
+      },
+      "superseded_note": "first report (before the final-review fixes): sleeve turnover 0 for lack of fills, combined turnover 0, risk shares from the first rebalance's weights; kept as history",
+      "superseded_report_rel_data_root": "portfolio/20261119T074508Z-032c4c17/report.json",
+      "trial": null,
+      "universe_kind": "current-holdings-proxy",
+      "use": "engineering",
+      "weights_first_rebalance": {
+        "20261119T074013Z-badfe854": 0.5,
+        "20261119T074024Z-2579c05f": 0.5
+      }
+    }
+  ],
+  "data_root_rel": "data (the QTL data root); every path below is relative to it",
+  "date_alignment": {
+    "first": "2016-01-04",
+    "last": "2025-12-31",
+    "result": "identical date sets for all three sleeves",
+    "sessions": 2514
+  },
+  "deferred_follow_ups": [
+    "opt-in warm-up-aware inverse_vol so the incumbent sleeve can join",
+    "nested combinations (a combination as a component)",
+    "cycle-id validation (--cycle-id is not checked against a registered research cycle)"
+  ],
+  "exploratory": true,
+  "refused": [
+    {
+      "components": [
+        "20261118T213357Z-ea1330dc",
+        "20261119T074013Z-badfe854",
+        "20261119T074024Z-2579c05f"
+      ],
+      "error": "component 20261118T213357Z-ea1330dc has zero or non-finite volatility over the 60 sessions before 61",
+      "method": "inverse_vol"
+    }
+  ],
+  "reproducibility": {
+    "all_identical": true,
+    "command": "scripts/portfolio_repro.py --run-id <combination run id> --runs-root <data root>/runs (project venv)",
+    "note": "for each run the recomputed config hash and the SHA-256 of all four parquet tables equal the original manifest's; the temporary runs were written to temporary directories and deleted. gross_return keeps the net_return + cost arithmetic except when the -1 floor binds, so the already written runs reproduce bit for bit",
+    "runs": {
+      "20261119T074500Z-524435d5": {
+        "all_identical": true,
+        "config_hash": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
+        "parquet_sha256": {
+          "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
+          "positions": "4964cceff63c00219099f2b5e026ce5a40036362bf8d52c0dc9b2a6f546a8084",
+          "returns": "38e40f5dda7899366d69d6e4408836b283373482c39f5c07630d2b4fdd62f064",
+          "signals": "a26be63f25cb1131d5fb7e8b9208ae069a35207d8706809641dd10d7e35608e6"
+        },
+        "temporary_run": "20261119T080747Z-524435d5"
+      },
+      "20261119T074508Z-032c4c17": {
+        "all_identical": true,
+        "config_hash": "032c4c17fcaa3b4d1c037769433d043cb0b2a573f442e0636c84567ff4733383",
+        "parquet_sha256": {
+          "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
+          "positions": "aebf530469b099e03f58ad33b510440c8af767125294bc79bfe095579d408704",
+          "returns": "d9c87b9838dfc25ab083290f129b73897242e4f8454cd4c1ec36492aa5c8f562",
+          "signals": "9ce73c03dfcbaa8c60e2b4ba06e1678450027e4f0f50df3167a94b70b64987ad"
+        },
+        "temporary_run": "20261119T080744Z-032c4c17"
+      }
+    },
+    "script": "scripts/portfolio_repro.py"
+  },
+  "runs_root_rel": "runs",
+  "schema_note": "Summary of the Plan 7 portfolio demonstration; no price data. Numbers demonstrate the mechanism and are not a research finding.",
+  "sleeve_analyses": {
+    "etf_trend": "analysis/20261119T074013Z-portfolio-sleeve-etf-trend",
+    "stock_trend": "analysis/20261119T074024Z-portfolio-sleeve-stock-trend"
+  },
+  "sleeve_code_commit": "d34954bb158f1315f9f397dd1d98b3052c5bc9fb (clean tree)",
+  "sleeves": {
+    "20261118T213357Z-ea1330dc": {
+      "dataset_id": "sector-etfs-2016-2025-n1",
+      "name": "incumbent",
+      "source": "costs rung of analysis 20261118T213357Z-incumbent-spy-gate (SPY, traffic-light gate, 5 bp + $1)"
+    },
+    "20261119T074013Z-badfe854": {
+      "dataset_id": "sector-etfs-2016-2025-n1",
+      "name": "etf_trend",
+      "source": "analysis/20261119T074013Z-portfolio-sleeve-etf-trend (sma_trend window 20, gross 0.95, 11 ETFs, 5 bp + $1)"
+    },
+    "20261119T074024Z-2579c05f": {
+      "dataset_id": "spy-equities-2016-2025-n2",
+      "labels": [
+        "survivor-biased",
+        "discovery-only"
+      ],
+      "name": "stock_trend",
+      "source": "analysis/20261119T074024Z-portfolio-sleeve-stock-trend (sma_trend window 20, gross 0.95, 409 stocks, 5 bp + $1)"
+    }
+  },
+  "specs": [
+    "research/registry/analysis-specs/portfolio-sleeve-etf-trend.json",
+    "research/registry/analysis-specs/portfolio-sleeve-stock-trend.json"
+  ],
+  "stock_sleeve_ablation": {
+    "cases": {
+      "0 bp + $0": {
+        "max_drawdown": 0.2662,
+        "net_cagr": 0.1091,
+        "sharpe": 0.783
+      },
+      "5 bp + $0": {
+        "max_drawdown": 0.276,
+        "net_cagr": 0.063,
+        "sharpe": 0.499
+      },
+      "5 bp + $1 (recorded)": {
+        "max_drawdown": 0.9679,
+        "net_cagr": -0.2902,
+        "sharpe": -3.628
+      }
+    },
+    "fills_per_session_recorded": 48.2,
+    "invested_weight_by_year_recorded": {
+      "2016": 0.829,
+      "2019": 0.42,
+      "2021": 0.065,
+      "2025": 0.007
+    },
+    "mean_inverse_vol_target_weights": {
+      "etf": 0.315,
+      "stock": 0.685
+    },
+    "median_fill_notional_usd": 94,
+    "median_fill_shares": 1,
+    "source": "reviewer ablation of the same strategy on the 409 names (engine reproduces the recorded run exactly)"
+  },
+  "tracked_ledger_trials_written": 0,
+  "use": "engineering"
+}

@@ -89,6 +89,17 @@
       "status": "implemented"
     },
     {
+      "schema_id": "portfolio-report/v1",
+      "name": "Portfolio report",
+      "stage": "decide",
+      "location": "local",
+      "authority": "view",
+      "producer": "scripts/portfolio.py report",
+      "consumers": [],
+      "retention": "local, shared data root under portfolio/<run id>/<UTC stamp>/report.json (earlier flat portfolio/<run id>/report.json files remain as history)",
+      "status": "implemented"
+    },
+    {
       "schema_id": "artifacts/v1",
       "name": "Artifact catalog",
       "stage": "decide",
@@ -107,7 +118,7 @@
       "stage": "run",
       "location": "local",
       "authority": "authoritative",
-      "producer": "research/evaluation/run_output.py write_run (via scripts/current/engine_parity.py)",
+      "producer": "research/evaluation/run_output.py write_run (via scripts/current/engine_parity.py; combiner runs via scripts/portfolio.py combine add the optional combination key)",
       "consumers": [
         "research/evaluation/run_output.py read_run",
         "research/evaluation/engine_contract.py"
