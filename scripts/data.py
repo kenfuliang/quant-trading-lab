@@ -2,6 +2,7 @@
 """Local ETF data library commands.
 
   fetch-yahoo   take one receipted raw Yahoo chart snapshot under <data root>/raw/yahoo/<snapshot-id>/
+  stock-actions write etf-normalise-format stock actions from a Yahoo stock snapshot (no network)
   normalise     prove the etf-normalise/v1 recipe applies to a bars+actions pair and write a manifest
   quality       write a quality-report/v1 for a normalised dataset (optionally cross-checked to Yahoo)
 
@@ -20,7 +21,8 @@ sys.path.insert(0, str(ROOT))
 
 from research.data.manifest import ManifestError, read_manifest, sha256_file, write_manifest
 from research.data.root import DataAbsent, data_root, require
-from research.data.yahoo_snapshot import SnapshotIncomplete, fetch_snapshot, parse_chart
+from research.data.stock_actions import build_stock_actions, read_symbols_file, write_actions, yahoo_symbol
+from research.data.yahoo_snapshot import STOCK_RIGHTS, SnapshotIncomplete, fetch_snapshot, parse_chart
 from research.evaluation.data_quality import build_failure_report, build_report, write_report
 from research.evaluation.etf_normalise import RECIPE, normalise
 from research.evaluation.market_model import MarketDataError
@@ -33,12 +35,27 @@ LEGACY_SOURCES = {"sector-etf-acquisition-v1": "alpaca", "current-spy-stock-libr
 
 def cmd_fetch_yahoo(args):
     root = Path(args.root) if args.root else data_root()
-    symbols = [s.strip().upper() for s in args.symbols.split(",") if s.strip()]
+    options = {}
+    if args.symbols_file:
+        try:
+            symbols, rejected = read_symbols_file(require(Path(args.symbols_file)))
+        except (OSError, ValueError) as error:
+            print(f"error: {error}", file=sys.stderr)
+            return 1
+        for item in rejected:
+            print(f"rejected {item['symbol']!r}: {item['reason']}", file=sys.stderr)
+        mapped = {s: yahoo_symbol(s) for s in symbols if yahoo_symbol(s) != s}
+        options = {"rights": STOCK_RIGHTS, "symbol_map": mapped, "pause": args.pause,
+                   "max_consecutive_http_failures": 5,
+                   "notes_extra": f"; symbols not fetched (fail SYMBOL_RE): {[r['symbol'] for r in rejected] or 'none'}"
+                                  f"; dot-to-dash request map: {mapped or 'none'}"}
+    else:
+        symbols = [s.strip().upper() for s in (args.symbols or "").split(",") if s.strip()]
     if not symbols:
         print("error: no symbols given", file=sys.stderr)
         return 1
     try:
-        folder = fetch_snapshot(symbols, args.start, args.end, args.snapshot_id, root)
+        folder = fetch_snapshot(symbols, args.start, args.end, args.snapshot_id, root, **options)
     except SnapshotIncomplete as error:
         print(f"error: {error}; receipt {error.snapshot_dir / 'requests.json'}", file=sys.stderr)
         print(f"manifest {root / 'manifests' / (args.snapshot_id + '.json')}", file=sys.stderr)
@@ -51,6 +68,28 @@ def cmd_fetch_yahoo(args):
         return 1
     print(f"Snapshot {args.snapshot_id}: {len(symbols)} received in {folder}")
     print(f"manifest {root / 'manifests' / (args.snapshot_id + '.json')}")
+    return 0
+
+
+def cmd_stock_actions(args):
+    root = Path(args.root) if args.root else data_root()
+    try:
+        manifest = read_manifest(root, args.snapshot)
+        out = root / args.out
+        _relative(root, out)
+        actions, excluded = build_stock_actions(manifest, root)
+        path = write_actions(out, actions)
+    except FileExistsError as error:
+        print(f"error: refusing to overwrite {error.filename}", file=sys.stderr)
+        return 1
+    except (ValueError, ManifestError, OSError, KeyError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+    print(f"Stock actions from {args.snapshot}: {len(actions['splits'])} splits, "
+          f"{len(actions['cash_and_in_kind'])} dividends, {len(excluded)} excluded symbols")
+    for item in excluded:
+        print(f"  excluded {item['symbol']}: {item['reason']}")
+    print(f"actions {path}")
     return 0
 
 
@@ -176,12 +215,20 @@ def build_parser():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
     fy = sub.add_parser("fetch-yahoo", help="fetch a receipted raw Yahoo snapshot")
-    fy.add_argument("--symbols", required=True, help="comma-separated, e.g. SPY,XLB")
+    fy.add_argument("--symbols", help="comma-separated, e.g. SPY,XLB")
+    fy.add_argument("--symbols-file", help="CSV with a `symbol` column (stock set: dots mapped to dashes, "
+                    "stock rights block, 5-failure stop)")
+    fy.add_argument("--pause", type=float, default=0.3, help="seconds between requests with --symbols-file")
     fy.add_argument("--start", required=True, help="YYYY-MM-DD")
     fy.add_argument("--end", required=True, help="YYYY-MM-DD, inclusive")
     fy.add_argument("--snapshot-id", required=True)
     fy.add_argument("--root", help="data root (default: shared data root)")
     fy.set_defaults(func=cmd_fetch_yahoo)
+    sa = sub.add_parser("stock-actions", help="write etf-normalise-format actions from a stock Yahoo snapshot")
+    sa.add_argument("--snapshot", required=True, help="Yahoo snapshot id")
+    sa.add_argument("--out", required=True, help="output path relative to the data root (never overwritten)")
+    sa.add_argument("--root", help="data root (default: shared data root)")
+    sa.set_defaults(func=cmd_stock_actions)
     nm = sub.add_parser("normalise", help="apply etf-normalise/v1 and write a normalised manifest")
     nm.add_argument("--bars", required=True, help="source bars JSON inside the data root")
     nm.add_argument("--actions", required=True, help="source issuer-actions JSON inside the data root")

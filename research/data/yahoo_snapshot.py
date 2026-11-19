@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -23,6 +24,10 @@ USER_AGENT = "research-snapshot/1"
 BASE_URL = "https://query1.finance.yahoo.com/v8/finance/chart/"
 RIGHTS = {"source": "yahoo", "use": "private offline research only",
           "redistribution": "not permitted", "ruling": "owner 2026-11-17"}
+# Stock set ruling: private offline research only, not redistributed (owner 2026-11-18).
+STOCK_RIGHTS = {"source": "yahoo", "use": "private offline research only",
+                "redistribution": "not permitted", "ruling": "owner 2026-11-18",
+                "scope": "stock symbols of the S&P 500 archive, 2016-2025"}
 TIMEOUT = 30
 SYMBOL_RE = re.compile(r"[A-Z][A-Z0-9.\-]{0,9}")
 
@@ -98,8 +103,15 @@ def _utc(now: datetime) -> str:
     return now.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request.urlopen, now=None) -> Path:
+def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request.urlopen, now=None,
+                   *, rights=None, symbol_map=None, pause=0, sleep=time.sleep,
+                   max_consecutive_http_failures=None, notes_extra="") -> Path:
+    """Fetch every symbol once. ``symbol_map`` maps a key symbol to the symbol requested from Yahoo;
+    files and receipts are keyed by the key symbol. ``pause`` seconds separate requests. After
+    ``max_consecutive_http_failures`` HTTP error statuses in a row the run stops; remaining symbols
+    are recorded as ``not_attempted``. Nothing is retried."""
     root = Path(root)
+    symbol_map = dict(symbol_map or {})
     check_dataset_id(snapshot_id)
     symbols = list(symbols)
     for symbol in symbols:
@@ -115,10 +127,19 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
     folder.mkdir(exist_ok=False)  # an existing snapshot id is refused
     receipt = folder / "requests.json"
     rows = []
+    consecutive, stopped = 0, False
     for attempt, symbol in enumerate(symbols, start=1):
+        if stopped:
+            rows.append({"attempt": attempt, "symbol": symbol, "url": None, "utc": None,
+                         "status": "not_attempted", "http_status": None, "bytes": None, "sha256": None,
+                         "error": "run stopped after consecutive HTTP failures", "rejected": None})
+            continue
+        if attempt > 1 and pause:
+            sleep(pause)
         stamp = now if now is not None else datetime.now(timezone.utc)
-        url = chart_url(symbol, start, end)
-        row = {"attempt": attempt, "symbol": symbol, "url": url, "utc": _utc(stamp), "status": "reserved",
+        requested = symbol_map.get(symbol, symbol)
+        url = chart_url(requested, start, end)
+        row = {"attempt": attempt, "symbol": symbol, "request_symbol": requested, "url": url, "utc": _utc(stamp), "status": "reserved",
                "http_status": None, "bytes": None, "sha256": None, "error": None, "rejected": None}
         rows.append(row)
         _write_receipt(receipt, rows)
@@ -132,7 +153,7 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
             if row["http_status"] != 200:
                 raise ValueError(f"HTTP status {row['http_status']}")
             try:
-                parse_chart(body, symbol)
+                parse_chart(body, requested)
             except Exception:
                 # keep the provider's unedited body as evidence, outside the manifest files
                 with open(folder / f"rejected-{symbol}.json", "xb") as handle:
@@ -143,23 +164,35 @@ def fetch_snapshot(symbols, start, end, snapshot_id, root, opener=urllib.request
             row["status"] = "failed"
             row["http_status"] = getattr(error, "code", row["http_status"])
             row["error"] = f"{type(error).__name__}: {error}"
+            if isinstance(row["http_status"], int) and row["http_status"] != 200:
+                consecutive += 1
+            else:
+                consecutive = 0
+            if max_consecutive_http_failures and consecutive >= max_consecutive_http_failures:
+                stopped = True
         else:
+            consecutive = 0
             with open(folder / f"response-{symbol}.json", "xb") as handle:
                 handle.write(body)
             row["status"] = "received"
         _write_receipt(receipt, rows)
+    _write_receipt(receipt, rows)
     files = [{"path": f"raw/yahoo/{snapshot_id}/response-{r['symbol']}.json", "sha256": r["sha256"]}
              for r in rows if r["status"] == "received"]
     for entry in files:
         if sha256_file(root / entry["path"]) != entry["sha256"]:
             raise ManifestError(f"{entry['path']}: sha256 mismatch after write")
-    failed = [r["symbol"] for r in rows if r["status"] == "failed"]
+    failed = [r["symbol"] for r in rows if r["status"] in ("failed", "not_attempted")]
+    skipped = [r["symbol"] for r in rows if r["status"] == "not_attempted"]
+    stop_note = (f"; stopped after {max_consecutive_http_failures} consecutive HTTP failures, "
+                 f"{len(skipped)} symbols not attempted" if skipped else "")
     write_manifest(root, {
         "schema": SCHEMA, "dataset_id": snapshot_id, "kind": "raw-snapshot",
         "created_utc": _utc(now if now is not None else datetime.now(timezone.utc)),
         "source": f"Yahoo Finance chart endpoint {BASE_URL}<SYMBOL>, interval 1d, {start}..{end}",
-        "inputs": [], "recipe": None, "rights": dict(RIGHTS), "files": files,
-        "notes": f"requests.json is the request receipt; failed symbols: {failed or 'none'}",
+        "inputs": [], "recipe": None, "rights": dict(rights or RIGHTS), "files": files,
+        "notes": f"requests.json is the request receipt; failed symbols: {failed or 'none'}"
+                 f"{stop_note}{notes_extra}",
     })
     if failed:
         raise SnapshotIncomplete(f"failed symbols: {', '.join(failed)}", folder, failed)
