@@ -247,31 +247,33 @@
   ],
   "reproducibility": {
     "all_identical": true,
-    "command": "scripts/portfolio_repro.py --run-id 20261119T074500Z-524435d5 --runs-root <data root>/runs",
-    "config_hash_original": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
-    "config_hash_recomputed": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
-    "note": "the comparison is of the parquet SHA-256 values recorded in the manifests; the temporary run was written to a temporary directory and deleted",
-    "original_run": "20261119T074500Z-524435d5",
-    "parquet_sha256_original": {
-      "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
-      "positions": "4964cceff63c00219099f2b5e026ce5a40036362bf8d52c0dc9b2a6f546a8084",
-      "returns": "38e40f5dda7899366d69d6e4408836b283373482c39f5c07630d2b4fdd62f064",
-      "signals": "a26be63f25cb1131d5fb7e8b9208ae069a35207d8706809641dd10d7e35608e6"
+    "command": "scripts/portfolio_repro.py --run-id <combination run id> --runs-root <data root>/runs (project venv)",
+    "note": "for each run the recomputed config hash and the SHA-256 of all four parquet tables equal the original manifest's; the temporary runs were written to temporary directories and deleted. gross_return keeps the net_return + cost arithmetic except when the -1 floor binds, so the already written runs reproduce bit for bit",
+    "runs": {
+      "20261119T074500Z-524435d5": {
+        "all_identical": true,
+        "config_hash": "524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712",
+        "parquet_sha256": {
+          "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
+          "positions": "4964cceff63c00219099f2b5e026ce5a40036362bf8d52c0dc9b2a6f546a8084",
+          "returns": "38e40f5dda7899366d69d6e4408836b283373482c39f5c07630d2b4fdd62f064",
+          "signals": "a26be63f25cb1131d5fb7e8b9208ae069a35207d8706809641dd10d7e35608e6"
+        },
+        "temporary_run": "20261119T080747Z-524435d5"
+      },
+      "20261119T074508Z-032c4c17": {
+        "all_identical": true,
+        "config_hash": "032c4c17fcaa3b4d1c037769433d043cb0b2a573f442e0636c84567ff4733383",
+        "parquet_sha256": {
+          "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
+          "positions": "aebf530469b099e03f58ad33b510440c8af767125294bc79bfe095579d408704",
+          "returns": "d9c87b9838dfc25ab083290f129b73897242e4f8454cd4c1ec36492aa5c8f562",
+          "signals": "9ce73c03dfcbaa8c60e2b4ba06e1678450027e4f0f50df3167a94b70b64987ad"
+        },
+        "temporary_run": "20261119T080744Z-032c4c17"
+      }
     },
-    "parquet_sha256_recomputed": {
-      "fills": "ca3bac89401c0b529d35fc1139b7019889fdaa931f6bfef81ece6ce697162e57",
-      "positions": "4964cceff63c00219099f2b5e026ce5a40036362bf8d52c0dc9b2a6f546a8084",
-      "returns": "38e40f5dda7899366d69d6e4408836b283373482c39f5c07630d2b4fdd62f064",
-      "signals": "a26be63f25cb1131d5fb7e8b9208ae069a35207d8706809641dd10d7e35608e6"
-    },
-    "script": "scripts/portfolio_repro.py",
-    "tables_equal": {
-      "fills": true,
-      "positions": true,
-      "returns": true,
-      "signals": true
-    },
-    "temporary_run": "20261119T080150Z-524435d5"
+    "script": "scripts/portfolio_repro.py"
   },
   "runs_root_rel": "runs",
   "schema_note": "Summary of the Plan 7 portfolio demonstration; no price data. Numbers demonstrate the mechanism and are not a research finding.",

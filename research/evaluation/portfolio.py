@@ -16,7 +16,7 @@ the first session of each calendar month (``monthly``) or every session (``daily
 
 Per session ``t`` with start weights ``w`` (after any rebalance) and sleeve returns ``r``:
 
-- ``gross_return = sum(w_i * r_i)`` (recorded directly, so a floored wipe-out day still reconciles); ``cost = rebalance_cost_bps * sum|w_target - w_drifted| / 10_000``
+- ``gross_return = sum(w_i * r_i)`` (recorded as ``net_return + cost``, the original arithmetic, so written runs reproduce bit for bit; recorded directly only when the -1 floor binds, so a wipe-out day still reconciles); ``cost = rebalance_cost_bps * sum|w_target - w_drifted| / 10_000``
   on rebalance sessions (drifted weights are zero on the first session); ``net_return = gross_return - cost``;
   ``equity_t = equity_{t-1} * (1 + net_return)``.
 - Drift to the close: ``w_i <- w_i (1 + r_i) / (1 + gross_return)`` (cash is a zero-return asset).
@@ -181,11 +181,12 @@ def combine(sleeves: list[Sleeve], method: str, *, gross: float = 1.0, vol_windo
             start = drifted if alive else np.zeros(n)
         gross_r = float(start @ clamped[t])
         net = max(gross_r - cost, -1.0)
+        recorded_gross = gross_r if gross_r - cost < -1.0 else net + cost  # floor binds: keep the true gross
         equity = equity_prev * (1 + net)
         growth = start * (1 + clamped[t])
         total = float(growth.sum() + (1.0 - start.sum()))
         drifted = growth / total if (total > 0 and equity > 0) else np.zeros(n)
-        ret_rows.append((date, gross_r, cost, net, equity))
+        ret_rows.append((date, recorded_gross, cost, net, equity))
         for i, run_id in enumerate(ids):
             pos_rows.append((date, run_id, 0, float(drifted[i])))
         equity_prev = equity

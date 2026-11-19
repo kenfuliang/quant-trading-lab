@@ -7,7 +7,8 @@ Reads the combination and its components (every hash verified), recombines with 
 parameters into a temporary runs root (never the real one) and prints one JSON object: the
 config hashes and the SHA-256 of each parquet table, original against recomputed. The temporary
 run id differs from the original only by its timestamp prefix. Exit 0 when the config hash and all
-four tables are identical, 1 otherwise. Offline, order-free, writes nothing outside the temp root.
+four tables are identical, 1 otherwise. Run it with the project venv: pyarrow/pandas versions
+change parquet bytes, so another environment can report a spurious mismatch. Offline, order-free, writes nothing outside the temp root.
 """
 from __future__ import annotations
 

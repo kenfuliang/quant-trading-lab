@@ -324,6 +324,15 @@ class CombineTests(unittest.TestCase):
         expected = 1.0 + abs(0.5 - wa2) + abs(0.5 - (1 - wa2))
         self.assertAlmostEqual(pf.rebalance_turnover(t, ["A", "B"]), expected, places=12)
 
+    def test_gross_return_keeps_net_plus_cost_arithmetic_when_the_floor_does_not_bind(self):
+        # Written runs must stay byte-identical: gross_return is net_return + cost (the original formula).
+        for seed in range(5):
+            rng = np.random.default_rng(seed)
+            dates = [d.strftime("%Y-%m-%d") for d in pd.bdate_range("2024-01-02", periods=300)]
+            sl = [_sleeve(n, rng.normal(0, s, 300), dates) for n, s in (("A", 0.01), ("B", 0.02), ("C", 0.015))]
+            r = pf.combine(sl, "inverse_vol", vol_window=20)["returns"]
+            np.testing.assert_array_equal(r["gross_return"].to_numpy(), (r["net_return"] + r["cost"]).to_numpy())
+
 
 if __name__ == "__main__":
     unittest.main()

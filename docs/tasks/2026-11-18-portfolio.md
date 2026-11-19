@@ -142,20 +142,24 @@ cycle id (`--cycle-id`, one ledger trial) and its own forward window; none exist
 
 ## Reproducibility
 
-The equal combination was recomputed from the same component run ids and parameters with the
-same code (the reproduction script `scripts/portfolio_repro.py`, since the CLI reads and writes
-one runs root):
+Both combinations were recomputed from their component run ids and parameters with the same
+code (the reproduction script `scripts/portfolio_repro.py`, run with the project venv because
+pyarrow and pandas versions change parquet bytes; the CLI reads and writes one runs root):
 
 ```text
-scripts/portfolio_repro.py --run-id 20261119T074500Z-524435d5 --runs-root <data root>/runs
+scripts/portfolio_repro.py --run-id <combination run id> --runs-root <data root>/runs
 ```
 
-- `config_hash` identical: `524435d5410828c2e1266ae6ac2627ae7e7acd00ac74a4101db99e2d8d802712`.
-- The SHA-256 of the `returns`, `positions`, `signals` and `fills` parquet files is **identical**
-  to the values in the original manifest; the temporary run id
-  (`20261119T080150Z-524435d5`) differs from the original only by its timestamp prefix.
-- The comparison is of parquet hashes; the evidence JSON records them. The temporary run
-  lived in a temporary directory that was deleted; nothing was copied into the data root.
+| Run | `config_hash` | Four parquet SHA-256 | Temporary run id |
+| --- | --- | --- | --- |
+| equal `20261119T074500Z-524435d5` | identical | identical | `20261119T080747Z-524435d5` |
+| inverse_vol `20261119T074508Z-032c4c17` | identical | identical | `20261119T080744Z-032c4c17` |
+
+- The comparison is of the parquet hashes recorded in the manifests (listed in the evidence
+  JSON); each temporary run differs from its original only by the timestamp prefix and lived in
+  a temporary directory that was deleted. Nothing was copied into the data root.
+- The combiner records `gross_return` as `net_return + cost` (the original arithmetic) and the
+  directly computed gross only when the -100% floor binds, so these written runs stay byte-identical.
 
 ## Validation actually performed
 
