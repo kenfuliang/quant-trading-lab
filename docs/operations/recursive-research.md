@@ -116,6 +116,12 @@ next prerequisites; it cannot replenish a closed program or declare readiness fr
 a high score. A missing input is a named blocker, not permission to launch another
 cycle. Consultation does not launch agents.
 
+Before a `keep` disposition, a Validation skill (`trade-leakage-audit`,
+`trade-robust-evaluation` or `trade-promotion-review`, never one of the cycle's own
+Research skills) records a [validation receipt](../skills.md#validation-receipts-and-promotion)
+with `scripts/validation.py create`; the registry record cites it. Roles are recorded
+and separated, not proven independent.
+
 Before closing a new cycle, validate its receipt using the
 [GRS receipt contract](../research-standard.md#experiment-receipt-contract).
 Retain the actual validation exit and findings. Validation checks structure and

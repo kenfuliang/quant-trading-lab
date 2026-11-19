@@ -410,11 +410,46 @@ class CliTests(unittest.TestCase):
         for fields in ({"result": "fail"}, {"run_ids": ["R1"]}, {"schema": "other/v1"}):
             with self.subTest(fields=fields):
                 doc = json.loads((ROOT / "tests/fixtures/validation-receipt-pass.json").read_text())
-                doc.update({"run_ids": ["R1", "N1"], **fields})
+                doc.update({"receipt_id": "VR1", "run_ids": ["R1", "N1"], **fields})
                 self.write_json(self.receipts / "VR1.json", doc)
                 self.assertEqual(self.run_cli(*self.keep_args())[0], 1)
         (self.receipts / "VR1.json").unlink()
         code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 1)
+        self.assertIn("not found", err)
+
+    def test_log_rejects_keep_with_research_skill_validator(self):
+        self.setup_keep()
+        self.make_validation(validator={"skill": "trade-experiment"})
+        code, _, err = self.run_cli(*self.keep_args())
+        self.assertEqual(code, 1)
+        self.assertIn("Validation skill", err)
+        self.assertFalse(self.registry.exists())
+
+    def test_check_verifies_the_tracked_validation_receipt_of_a_keep_record(self):
+        self.setup_keep()
+        patcher = mock.patch.object(cli, "VALIDATION_RECEIPTS", self.receipts)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.assertEqual(self.run_cli(*self.keep_args())[0], 0)
+        self.run_cli("render")
+        self.assertEqual(self.run_cli("check")[0], 0)  # no runs or parity files are read
+        original = (self.receipts / "VR1.json").read_bytes()
+        (self.receipts / "VR1.json").write_bytes(original + b" ")  # tampered: sha mismatch
+        code, _, err = self.run_cli("check")
+        self.assertEqual(code, 1)
+        self.assertIn("sha256 mismatch", err)
+        doc = json.loads(original)
+        for fields, text in (({"run_ids": ["OTHER"]}, "does not cover"),
+                             ({"validator": {"skill": "trade-experiment"}}, "Validation skill")):
+            sha = self.write_json(self.receipts / "VR1.json", {**doc, **fields})
+            records = reg.load(self.registry)
+            records[0]["refs"]["validation_receipt_sha256"] = sha  # sha now matches; content must still fail
+            errors = cli.check_validation_refs(records)
+            self.assertEqual(len(errors), 1)
+            self.assertIn(text, errors[0])
+        (self.receipts / "VR1.json").unlink()
+        code, _, err = self.run_cli("check")
         self.assertEqual(code, 1)
         self.assertIn("not found", err)
 
@@ -450,7 +485,10 @@ class CliTests(unittest.TestCase):
         self.setup_keep()
         self.assertEqual(self.run_cli(*self.keep_args())[0], 0)
         self.run_cli("render")
-        for root in (self.runs, self.parity, self.receipts):
+        patcher = mock.patch.object(cli, "VALIDATION_RECEIPTS", self.receipts)  # tracked, so it stays
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        for root in (self.runs, self.parity):  # local data is absent
             shutil.rmtree(root)
         code, _, err = self.run_cli("check")
         self.assertEqual(code, 0, err)

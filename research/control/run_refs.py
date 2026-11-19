@@ -10,8 +10,8 @@ from pathlib import Path
 import re
 
 from research.control.experiment_registry import RegistryError
+from research.control.validation_receipts import SCHEMA as VALIDATION_SCHEMA, ValidationReceiptError, load_receipt
 
-VALIDATION_SCHEMA = "validation-receipt/v1"
 _SEGMENT = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,199}$")
 _SHA = re.compile(r"^[0-9a-f]{64}$")
 
@@ -63,19 +63,22 @@ def read_parity_receipt(parity_root, parity_id, expected_sha=None):
 
 
 def read_validation_receipt(receipts_dir, receipt_id, expected_sha, run_ids):
-    """Read a tracked validation receipt and check the shape Task 4 formalises further.
+    """Read a tracked validation receipt with the full `validation-receipt/v1` validation.
 
-    Verified here: file exists, sha256 matches, valid JSON, schema, `result == "pass"`,
-    and `run_ids` contains every id in `run_ids`.
+    Verified: file exists, sha256 matches (when given), the whole shape, the validator
+    allowlist and role separation, `result == "pass"`, and `run_ids` covers every given id.
     """
     safe_segment(receipt_id, "validation receipt id")
-    receipt, sha = _read_json(Path(receipts_dir) / f"{receipt_id}.json", f"validation receipt {receipt_id}", expected_sha)
-    if receipt.get("schema") != VALIDATION_SCHEMA:
-        raise RegistryError(f"validation receipt {receipt_id} is not {VALIDATION_SCHEMA}")
+    path = Path(receipts_dir) / f"{receipt_id}.json"
+    receipt, sha = _read_json(path, f"validation receipt {receipt_id}", expected_sha)
+    try:
+        load_receipt(path)
+    except ValidationReceiptError as error:
+        raise RegistryError(f"validation receipt {receipt_id}: {error}") from None
     if receipt.get("result") != "pass":
         raise RegistryError(f"validation receipt {receipt_id} result is {receipt.get('result')!r}, not 'pass'")
-    listed = receipt.get("run_ids")
-    missing = [r for r in run_ids if not isinstance(listed, list) or r not in listed]
+    listed = receipt["run_ids"]
+    missing = [r for r in run_ids if r not in listed]
     if missing:
         raise RegistryError(f"validation receipt {receipt_id} does not cover run ids {missing}")
     return receipt, sha

@@ -64,7 +64,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Validation receipt | `validation-receipt/v1` | tracked | authoritative | planned | Plan 6 (validation gate; not built) | Plan 6 decision records | permanent, tracked |
+| Validation receipt | `validation-receipt/v1` | tracked | authoritative | implemented | research/control/validation_receipts.py + scripts/validation.py + the Validation skills (trade-leakage-audit, trade-robust-evaluation, trade-promotion-review) | scripts/experiments.py | permanent, tracked |
 
 ## decide
 

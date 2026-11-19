@@ -68,6 +68,27 @@ def check(registry_path):
         relative = path.relative_to(DOCS).as_posix()
         if relative not in covered and relative not in exempt:
             errors.append(f"receipt {relative} has no registry record; run scripts/experiments.py log --receipt")
+    errors += check_validation_refs(records)
+    return errors
+
+
+def check_validation_refs(records):
+    """Structural check of tracked validation receipts a record points at (no local files)."""
+    errors = []
+    for record in records:
+        refs = record.get("refs") or {}
+        receipt_id = refs.get("validation_receipt")
+        if not receipt_id:
+            continue
+        run_ids = [refs[k] for k in ("run_id", "nautilus_run_id") if refs.get(k)]
+        if not run_refs.is_sha256(refs.get("validation_receipt_sha256")):
+            errors.append(f"record {record.get('record_id')}: refs.validation_receipt_sha256 is missing or malformed")
+            continue
+        try:
+            run_refs.read_validation_receipt(VALIDATION_RECEIPTS, receipt_id,
+                                             refs.get("validation_receipt_sha256"), run_ids)
+        except RegistryError as error:
+            errors.append(f"record {record.get('record_id')}: {error}")
     return errors
 
 

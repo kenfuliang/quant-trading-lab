@@ -191,6 +191,23 @@ limits are recorded in the [foundation checklist](tasks/2026-10-27-rsi-foundatio
 | [/ask-ml](../.agents/skills/ask-ml/SKILL.md) | What should the model predict, and does it improve on a simple baseline? | [Role contract](advisory-team.md#ask-ml) |
 | [/ask-ml-infra](../.agents/skills/ask-ml-infra/SKILL.md) | Can data, transforms, training and model artifacts be reproduced and operated reliably? | [Role contract](advisory-team.md#ask-ml-infra) |
 
+## Validation receipts and promotion
+
+A registry `keep` record promotes a candidate, so it needs a tracked
+`validation-receipt/v1` (schema in the [artifact catalog](artifacts.md)), created with
+`scripts/validation.py create` and stored under `research/registry/validation-receipts/`.
+The receipt names the run ids, the parity receipt, the validator skill, the researcher
+skills and the checks. The Validation allowlist is `trade-leakage-audit`,
+`trade-robust-evaluation` and `trade-promotion-review`. The Research skills
+(`trade-research-design`, `trade-feature-engineering`, `trade-experiment`,
+`trade-performance-diagnosis`, `trade-candidate-evolution`) may not validate their own
+runs, and the validator may not be among the researcher skills. `scripts/experiments.py log`
+reads the receipt, and `make check` re-verifies the tracked file's SHA-256, validity and
+run ids for every record that cites one.
+
+Limit: skill names are self-reported. The tool enforces separation of recorded roles, not
+the independence of the model or session that produced the work.
+
 ## Invocation
 
 Use the exact advisory chat prefix listed above followed by a question. Match the

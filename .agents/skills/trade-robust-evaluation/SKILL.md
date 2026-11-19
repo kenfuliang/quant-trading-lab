@@ -39,3 +39,22 @@ eligibility, tested criteria and results, trial/data exposure limitations,
 uncertainty, missing checks and the smallest useful next action. Distinguish checks
 actually run from proposals. Do not infer paper/live readiness or guaranteed loss
 limits. Record durable evidence under the [development workflow](../../../docs/workflow.md).
+
+## Validation receipt
+
+A `keep` registry record needs a tracked validation receipt (`validation-receipt/v1`,
+`research/registry/validation-receipts/<id>.json`). When this skill is the validator,
+record the result after the evaluation:
+
+```sh
+.venv/bin/python scripts/validation.py create --receipt-id <id> --run-id <run> \
+  --run-id <nautilus-run> --parity-receipt-id <parity> --validator-skill trade-robust-evaluation \
+  --researcher-skills trade-experiment --check name:pass:detail --result pass --notes "..."
+```
+
+The receipt lists every run id the record cites, each check as `pass`, `fail` or
+`waived` with a detail, and a `pass` result needs at least one check and no failed
+check. The validator must not be one of the researcher skills, and a Research skill
+may not validate its own runs. Skill names are self-reported: the tool enforces
+separation of recorded roles, not the independence of the model or session that
+produced the work. Commit the receipt; `scripts/experiments.py log` and `check` verify it.

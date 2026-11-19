@@ -1,8 +1,12 @@
 {
   "schema": "validation-receipt/v1",
   "receipt_id": "VR-fixture",
-  "result": "pass",
+  "created_utc": "2026-11-18T00:00:00+00:00",
   "run_ids": ["REPLACED-BY-TEST"],
+  "parity_receipt_id": "P1",
   "validator": {"skill": "trade-leakage-audit"},
-  "researcher": {"skills": ["trade-experiment"]}
+  "researcher": {"skills": ["trade-experiment"]},
+  "checks": [{"name": "leakage", "status": "pass", "detail": "no findings in scope"}],
+  "result": "pass",
+  "notes": "fixture"
 }
