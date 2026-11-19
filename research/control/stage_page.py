@@ -132,7 +132,9 @@ def _analysis_trust(analyses):
     if not found:
         return ""
     rows = "".join(
-        f'<tr data-analysis="{_e(r["analysis_id"])}"><td>{_e(r["spec_id"])}</td><td>{_e(r["analysis_id"])}</td>'
+        f'<tr data-analysis="{_e(r["analysis_id"])}"><td>{_e(r["spec_id"])}'
+        + "".join(f'<br><span class="badge" data-label="{_e(label)}">{_e(label)}</span>' for label in r["labels"])
+        + f'</td><td>{_e(r["analysis_id"])}</td>'
         f'<td>{_e(r["psr"])}<br><span class="muted">{_e(r["psr_reason"])} {_e(r["psr_inputs"])}</span></td>'
         f'<td>{_e(r["dsr"])}<br><span class="muted">{_e(r["dsr_reason"])} {_e(r["dsr_inputs"])}</span></td>'
         f'<td>{_e(r["pbo"])}<br><span class="muted">{_e(r["pbo_reason"])}</span></td>'

@@ -33,18 +33,21 @@ sys.path.insert(0, str(ROOT))
 from research.data.root import DataAbsent, data_root, parity_root, require, runs_root  # noqa: E402
 from research.data.manifest import ManifestError  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
-from research.evaluation.market_model import MarketConfig, MarketDataError, sma_trend_targets, validate  # noqa: E402
+from research.evaluation.market_model import (  # noqa: E402
+    MarketConfig, MarketDataError, market_config_dict, sma_trend_targets, validate)
 from research.evaluation.native_engine import run_native  # noqa: E402
 from research.evaluation.parity import compare  # noqa: E402
 from research.evaluation.run_output import COLUMNS, config_hash, new_run_id, write_run  # noqa: E402
 from research.evaluation.screening_engine import EngineError, EngineResult, run_screen  # noqa: E402
 from research.evaluation.sector_derivative import load_sector_derivative  # noqa: E402
+from research.evaluation.universe import LABELS  # noqa: E402
 
 RECEIPT_SCHEMA = "parity-receipt/v1"
 STRATEGY = {"name": "sma_trend_targets", "window": 20, "gross": 0.95}
 TOLERANCES = {"quantities": "identical", "fill_dates": "identical", "cash_equity_usd_per_session": 0.01}
 CASH_INTEREST = "not modelled"
 HALF_DAYS_NOTE = "not marked by source"
+TIMING_ONLY_CLAIM = "timing only; no parity or financial claim"
 
 
 def _sha256(path: Path) -> str:
@@ -106,6 +109,9 @@ def _write(runs: Path, result: EngineResult, base: dict, parent: str | None, now
         "coverage": {"instruments": base["instruments"], "sessions": len(result.returns)},
         "parent_run": parent,
     }
+    if base.get("labels"):  # stock-class datasets only; ETF manifests keep exactly the old keys
+        manifest["labels"] = base["labels"]
+        manifest["universe_kind"] = base["universe_kind"]
     tables = {name: getattr(result, name)[list(cols)] for name, cols in COLUMNS.items()}
     path = write_run(runs, manifest, tables)
     return {"run_id": run_id, "manifest_sha256": _sha256(path / "manifest.json")}
@@ -122,7 +128,21 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
         print(exc, file=sys.stderr)
         return 2
     now = datetime.now(timezone.utc)
-    instruments = tuple(name.strip() for name in args.instruments.split(",") if name.strip())
+    instruments = tuple(name.strip() for name in (args.instruments or "").split(",") if name.strip())
+    universe_names = None
+    if args.max_instruments is not None:
+        if args.max_instruments < 1:
+            print("--max-instruments must be at least 1", file=sys.stderr)
+            return 2
+        if not instruments:  # stock layer: the first N symbols in alphabetical order
+            try:
+                universe = dataset_loader(args.dataset, None)[0]
+            except (MarketDataError, DatasetBlocked, ManifestError) as exc:
+                print(f"cannot list the dataset's instruments: {exc}", file=sys.stderr)
+                return 2
+            universe_names = len(universe.bars)
+            instruments = tuple(sorted(universe.bars))
+        instruments = instruments[: args.max_instruments]
     if args.dataset:
         inputs = {"dataset_id": args.dataset}  # completed from the loader's provenance
     else:
@@ -131,10 +151,10 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
             "actions": {"path": str(args.actions), "sha256": _sha256(args.actions)},
         }
     half_days = None
-    market = MarketConfig()
+    market = MarketConfig(cost_model=args.cost_model)
     base = {
         "strategy": STRATEGY,
-        "market": dataclasses.asdict(market),
+        "market": market_config_dict(market),
         "instruments": list(instruments),
         "inputs": inputs,
         "code_commit": _code_commit(),
@@ -149,6 +169,8 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
         "code_commit": base["code_commit"],
         "inputs": inputs,
         "instruments": list(instruments),
+        "max_instruments": args.max_instruments,
+        "timing_only": bool(args.timing_only),
         "strategy": STRATEGY,
         "market": base["market"],
         "tolerances": TOLERANCES,
@@ -167,12 +189,24 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
     try:
         if args.dataset:
             data, provenance = dataset_loader(args.dataset, instruments)
-            bars_input, actions_input = provenance["inputs"]
+            if provenance.get("universe_kind") == "current-holdings-proxy":
+                receipt["labels"] = list(LABELS)
+                receipt["universe_kind"] = "current-holdings-proxy"
+                base["labels"] = list(LABELS)
+                base["universe_kind"] = "current-holdings-proxy"
+            files = provenance["inputs"]
             inputs.update(
                 manifest_sha256=provenance["manifest_sha256"],
                 quality_report=provenance["quality_report"],
-                quality_status=provenance["quality_status"],
-                bars=bars_input, actions=actions_input)
+                quality_status=provenance["quality_status"])
+            if len(files) == 2:
+                inputs.update(bars=files[0], actions=files[1])
+            else:  # stock layer: one bar file per symbol plus the actions file(s)
+                bars = [f for f in files if "actions" not in f["path"]]
+                inputs.update(
+                    bars={"files": len(bars), "sha256_of_sorted_sha256s": hashlib.sha256(
+                        "\n".join(sorted(f["sha256"] for f in bars)).encode()).hexdigest()},
+                    actions=[f for f in files if "actions" in f["path"]])
             half_days = provenance["half_days"]
         else:
             data = loader(args.bars, args.actions, instruments)
@@ -194,6 +228,23 @@ def run(args, argv: list[str], loader, dataset_loader=load_dataset) -> int:
         print(f"parity rejected at {stage}: {exc}", file=sys.stderr)
         print(folder / "receipt.json")
         return 1
+    if args.timing_only:
+        receipt.update(
+            timing={
+                "screening_seconds": screen_seconds,
+                "native_seconds": native_seconds,
+                "projected_seconds_500_names": native_seconds * 500 / len(instruments),
+                **({"universe_names": universe_names,
+                    "projected_seconds_universe": native_seconds * universe_names / len(instruments)}
+                   if universe_names else {}),
+            },
+            runs=None, status="timing_only", passed=None, mismatch_count=None, mismatches=None,
+            claim=TIMING_ONLY_CLAIM,
+        )
+        _write_receipt(folder, receipt)
+        print(folder / "receipt.json")
+        print(f"timing only: screening {screen_seconds:.1f}s, native {native_seconds:.1f}s; no parity claim")
+        return 0
     report = compare(screen, native)
     screen_run = _write(Path(args.runs), screen, base, None, now)
     native_run = _write(Path(args.runs), native, base, screen_run["run_id"], now)
@@ -228,7 +279,15 @@ def main(argv=None, loader=load_sector_derivative, dataset_loader=load_dataset) 
     cmd.add_argument("--dataset", default=None, help="dataset id under <data root>/manifests (not with --bars/--actions)")
     cmd.add_argument("--bars", type=Path, default=None)
     cmd.add_argument("--actions", type=Path, default=None)
-    cmd.add_argument("--instruments", required=True, help="comma-separated, e.g. SPY,XLB,XLE,XLF")
+    cmd.add_argument("--instruments", default=None, help="comma-separated, e.g. SPY,XLB,XLE,XLF")
+    cmd.add_argument("--max-instruments", type=int, default=None,
+                     help="use only the first N instruments (with --dataset and no --instruments: "
+                          "the first N symbols of the dataset in alphabetical order)")
+    cmd.add_argument("--cost-model", choices=("flat", "adv"), default="flat",
+                     help="MarketConfig.cost_model (default flat)")
+    cmd.add_argument("--timing-only", action="store_true",
+                     help="time both engines and record the receipt without a parity or financial claim "
+                          "(no run outputs written, status timing_only)")
     cmd.add_argument("--out", type=Path, default=None, help="parity receipts root (default <data root>/parity)")
     cmd.add_argument("--runs", type=Path, default=None, help="run outputs root (default <data root>/runs)")
     argv = list(sys.argv[1:] if argv is None else argv)
@@ -237,6 +296,8 @@ def main(argv=None, loader=load_sector_derivative, dataset_loader=load_dataset) 
         parser.error("--dataset cannot be combined with --bars/--actions")
     if not args.dataset and not (args.bars and args.actions):
         parser.error("give --dataset, or both --bars and --actions")
+    if not args.instruments and not (args.dataset and args.max_instruments):
+        parser.error("give --instruments, or --dataset with --max-instruments")
     args.out = args.out if args.out is not None else parity_root()
     args.runs = args.runs if args.runs is not None else runs_root()
     return run(args, argv, loader, dataset_loader)

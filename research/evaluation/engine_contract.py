@@ -45,6 +45,31 @@ def check_config(config: MarketConfig) -> None:
     cents = config.commission_usd * 100
     if abs(cents - round(cents)) > 1e-6:
         raise EngineError(f"MarketConfig.commission_usd must be on the cent grid, got {config.commission_usd}")
+    _check_cost_model(config)
+
+
+def _check_cost_model(config: MarketConfig) -> None:
+    """``cost_model`` is flat or adv; adv tiers are (minimum ADV, bp) pairs with finite
+    non-negative values, strictly descending minimums, ending in a 0 minimum."""
+    if config.cost_model not in ("flat", "adv"):
+        raise EngineError(f"MarketConfig.cost_model must be 'flat' or 'adv', got {config.cost_model!r}")
+    if config.cost_model == "flat":
+        return
+    tiers = config.adv_tiers
+    if not isinstance(tiers, (tuple, list)) or not tiers:
+        raise EngineError("MarketConfig.adv_tiers must be a non-empty sequence of (minimum ADV, bp) pairs")
+    previous = math.inf
+    for tier in tiers:
+        if not isinstance(tier, (tuple, list)) or len(tier) != 2:
+            raise EngineError(f"MarketConfig.adv_tiers entries must be (minimum ADV, bp) pairs, got {tier!r}")
+        for value in tier:
+            if isinstance(value, bool) or not isinstance(value, numbers.Real) or not math.isfinite(value) or value < 0:
+                raise EngineError(f"MarketConfig.adv_tiers values must be finite and >= 0, got {tier!r}")
+        if tier[0] >= previous:
+            raise EngineError("MarketConfig.adv_tiers minimums must be strictly descending")
+        previous = tier[0]
+    if tiers[-1][0] != 0:
+        raise EngineError("MarketConfig.adv_tiers must end with a 0 minimum so every ADV has a tier")
 
 
 def checked_targets(decision: Decision, names) -> dict[str, int]:

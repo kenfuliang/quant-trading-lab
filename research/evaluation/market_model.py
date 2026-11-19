@@ -7,6 +7,7 @@ Signals use data up to the close of day t; orders fill at the open of t+1.
 """
 from __future__ import annotations
 
+import dataclasses
 import math
 from dataclasses import dataclass
 from typing import Callable
@@ -36,6 +37,13 @@ class Split:
 
 @dataclass(frozen=True)
 class MarketData:
+    """Sessions, per-instrument bar frames, dividends and splits.
+
+    The frames must be treated as immutable after construction: ``history_view`` and both engines
+    cache views and derived arrays per ``MarketData``, keyed on the identity of the frame objects, so
+    an in-place edit of a frame would not invalidate them and results would silently go stale.
+    """
+
     sessions: tuple[str, ...]
     bars: dict[str, pd.DataFrame]
     dividends: tuple[Dividend, ...]
@@ -46,11 +54,83 @@ class MarketDataError(ValueError):
     pass
 
 
+ADV_WINDOW = 20
+DEFAULT_ADV_TIERS = ((1e9, 2.0), (1e8, 5.0), (2e7, 10.0), (0.0, 25.0))
+
+
 @dataclass(frozen=True)
 class MarketConfig:
+    """Cost configuration shared by both engines.
+
+    ``cost_model="flat"`` charges ``cost_bps`` on every fill. ``"adv"`` charges the tier bp
+    of the instrument's average daily dollar volume (see ``cost_bps``); ``adv_tiers`` are
+    ``(minimum ADV in USD, bp)`` pairs, checked in order (descending minimums, last is 0).
+    """
+
     initial_cash: float = 100_000.0
     cost_bps: float = 5.0
     commission_usd: float = 1.0
+    cost_model: str = "flat"
+    adv_tiers: tuple[tuple[float, float], ...] = DEFAULT_ADV_TIERS
+
+
+def market_config_dict(config: MarketConfig) -> dict:
+    """The config as recorded in manifests, receipts and hashes.
+
+    The liquidity fields are left out under the default ``flat`` model, so the recorded
+    dict (and every run id / ``config_hash`` built from it) is exactly what it was before
+    ``cost_model`` existed. With ``adv`` they are included.
+    """
+    out = dataclasses.asdict(config)
+    if config.cost_model == "flat":
+        del out["cost_model"], out["adv_tiers"]
+    return out
+
+
+def _tier_bps(adv: float, config: MarketConfig) -> float:
+    """Tier bp for an average daily dollar volume; NaN (short history) gets the last tier."""
+    if adv == adv:
+        for minimum, bp in config.adv_tiers:
+            if adv >= minimum:
+                return float(bp)
+    return float(config.adv_tiers[-1][1])
+
+
+def cost_bps(data: MarketData, instrument: str, i: int, config: MarketConfig) -> float:
+    """Slippage in bp for a fill at the open of session ``i + 1``, decided at the close of ``i``.
+
+    ``flat``: ``config.cost_bps``. ``adv``: the tier of the median of ``close * volume`` over
+    sessions ``i - 20 .. i - 1`` (the 20 sessions strictly before decision session ``i``;
+    neither ``i`` nor the fill session ``i + 1`` contribute). Fewer than 20 prior sessions
+    gives the lowest-liquidity (last) tier. The screening engine passes ``j - 1`` for a
+    fill at session ``j``; the NautilusTrader engine builds the quote for session ``j``
+    from the same index. Raw (unadjusted) close and volume are used. The Alpaca archive's
+    volume is raw too (AAPL's 4:1 split of 2020-08-31 shows volume about 4.6x the previous
+    session with the close down about 3.9x), so close times volume is split-invariant and a
+    split inside the window does not distort ADV; only a real volume change does. Applied
+    identically in both engines.
+    """
+    if config.cost_model == "flat":
+        return float(config.cost_bps)
+    if i < ADV_WINDOW:
+        return _tier_bps(float("nan"), config)
+    frame = data.bars[instrument].iloc[i - ADV_WINDOW: i]
+    return _tier_bps(float((frame["close"] * frame["volume"]).median()), config)
+
+
+def cost_table(data: MarketData, config: MarketConfig) -> dict[str, np.ndarray]:
+    """``cost_bps(data, name, i, config)`` for every instrument and ``i``, vectorised.
+
+    Entry ``i`` is the bp for the fill at session ``i + 1`` (the last entry is unused).
+    """
+    table = {}
+    for name, frame in data.bars.items():
+        if config.cost_model == "flat":
+            table[name] = np.full(len(frame), float(config.cost_bps))
+            continue
+        adv = (frame["close"] * frame["volume"]).rolling(ADV_WINDOW).median().shift(1).to_numpy(dtype=float)
+        table[name] = np.array([_tier_bps(float(v), config) for v in adv])
+    return table
 
 
 @dataclass(frozen=True)
@@ -67,23 +147,59 @@ TargetFn = Callable[[str, dict[str, pd.DataFrame], dict[str, int], float], Decis
 def history_view(data: MarketData, i: int) -> dict[str, pd.DataFrame]:
     """What both engines pass to ``TargetFn`` after the close of session ``i``.
 
-    Bars up to and including session ``i`` (raw prices, copies) with an added
+    Bars up to and including session ``i`` (raw prices; slices of cached per-``MarketData`` frames,
+    not copies, so a strategy must not modify them) with an added
     ``split_factor`` column: the product of the ratios of splits effective after that row
     and on or before session ``i`` (1.0 otherwise). ``close / split_factor`` is the close
     on session ``i``'s share basis. Splits after session ``i`` never affect the view.
     """
-    effective = {}
-    for split in data.splits:
-        k = data.sessions.index(split.effective_date)
+    cache = _view_cache(data)
+    included: dict[str, list[int]] = {}
+    for position, (k, name) in enumerate(cache.split_rows):
         if k <= i:
-            effective.setdefault(split.instrument, []).append((k, split.ratio))
+            included.setdefault(name, []).append(position)
     view = {}
-    for name, frame in data.bars.items():
-        factor = np.ones(i + 1)
-        for k, ratio in effective.get(name, ()):
-            factor[:k] *= ratio
-        view[name] = frame.iloc[: i + 1].assign(split_factor=factor)
+    for name in data.bars:
+        key = tuple(included.get(name, ()))
+        extended = cache.frames.get((name, key))
+        if extended is None:
+            extended = cache.frames[(name, key)] = _extended_frame(data, cache, name, key)
+        view[name] = extended.iloc[: i + 1]
     return view
+
+
+@dataclass
+class _ViewCache:
+    """Per-``MarketData`` precomputation behind ``history_view``: session index, split rows
+    ``(session index, instrument)`` in ``data.splits`` order, and the full-length frames with
+    ``split_factor`` per (instrument, set of splits already effective)."""
+
+    source_bars: tuple
+    splits: tuple
+    split_rows: tuple
+    frames: dict
+
+
+def _view_cache(data: MarketData) -> _ViewCache:
+    cache = data.__dict__.get("_history_view_cache")
+    bars = tuple(data.bars.values())
+    if (cache is not None and cache.splits is data.splits and len(cache.source_bars) == len(bars)
+            and all(a is b for a, b in zip(cache.source_bars, bars))):
+        return cache
+    index = {day: k for k, day in enumerate(data.sessions)}
+    rows = tuple((index[s.effective_date], s.instrument) for s in data.splits)
+    cache = _ViewCache(bars, data.splits, rows, {})
+    object.__setattr__(data, "_history_view_cache", cache)
+    return cache
+
+
+def _extended_frame(data: MarketData, cache: _ViewCache, name: str, key: tuple) -> pd.DataFrame:
+    frame = data.bars[name]
+    factor = np.ones(len(frame))
+    for position in key:
+        k = cache.split_rows[position][0]
+        factor[:k] *= data.splits[position].ratio
+    return frame.assign(split_factor=factor)
 
 
 def execution_price(open_px: float, side: str, cost_bps: float) -> float:

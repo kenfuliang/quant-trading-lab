@@ -1,6 +1,7 @@
 import unittest
 from dataclasses import replace
 
+import numpy as np
 import pandas as pd
 
 from research.evaluation.market_model import (
@@ -137,7 +138,32 @@ class MarketModelTests(unittest.TestCase):
             self.assertAlmostEqual(d.signals[(k, "trend")], close / bars[k]["close"].iloc[-20:].mean() - 1)
 
 
+def _reference_history_view(data, i):
+    """Verbatim copy of the original per-session-copy construction; guards the optimised view."""
+    effective = {}
+    for split in data.splits:
+        k = data.sessions.index(split.effective_date)
+        if k <= i:
+            effective.setdefault(split.instrument, []).append((k, split.ratio))
+    view = {}
+    for name, frame in data.bars.items():
+        factor = np.ones(i + 1)
+        for k, ratio in effective.get(name, ()):
+            factor[:k] *= ratio
+        view[name] = frame.iloc[: i + 1].assign(split_factor=factor)
+    return view
+
+
 class HistoryViewTests(unittest.TestCase):
+    def test_history_view_matches_reference(self):
+        for ratio in (2, 4):
+            data = synthetic_fixture(split_ratio=ratio)
+            for i in range(len(data.sessions)):
+                got, want = history_view(data, i), _reference_history_view(data, i)
+                self.assertEqual(list(got), list(want))
+                for name in want:
+                    pd.testing.assert_frame_equal(got[name], want[name], check_exact=True)
+
     def test_split_factor_around_the_bbb_split(self):
         data = synthetic_fixture()
         k = data.sessions.index(data.splits[0].effective_date)

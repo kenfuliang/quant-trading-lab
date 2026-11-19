@@ -29,7 +29,11 @@ CHECKS = ("sessions", "half_days", "duplicates", "non_finite", "non_positive", "
           "ohlc", "gaps", "cent_rounding", "actions_converted", "actions_excluded", "cross_source",
           "split_events")
 MAX_ITEMS = 50
+TOP_BREACHES_PER_SYMBOL = 10
+LARGE_UNIVERSE = 20  # above this the cross-source detail text lists only the worst symbols
+LABEL_PAY_DATE = "pay_date_unknown_credited_on_ex_date"
 GAP_LIMIT = 0.25
+SPLIT_CONSISTENCY_TOLERANCE = 0.15  # raw close x ratio vs the previous close, each split session
 ABS_TOLERANCE = 0.01
 REL_TOLERANCE = 5e-4  # 5 bp
 PRICE_KEYS = ("o", "h", "l", "c")
@@ -168,6 +172,7 @@ def _check_cross_source(norm: Normalised, yahoo, yahoo_splits: dict) -> dict:
     if yahoo is None:
         return _check("cross_source", "blocked", [], "no Yahoo snapshot supplied")
     diffs, items, notes, per_symbol = [], [], [], {}
+    top_by_symbol: dict[str, list] = {}
     for name, frame in norm.data.bars.items():
         if name not in yahoo:
             notes.append(f"{name}: not in snapshot")
@@ -176,28 +181,36 @@ def _check_cross_source(norm: Normalised, yahoo, yahoo_splits: dict) -> dict:
         ours = frame["close"].astype(float)
         for missing in ours.index.difference(theirs.index):
             notes.append(f"{name} {missing}: not in snapshot")
-        own = []
+        own, own_items = [], []
         for day in ours.index.intersection(theirs.index):
             diff = abs(float(theirs[day]) - float(ours[day]))
             diffs.append(diff)
             own.append(diff)
             if diff > max(ABS_TOLERANCE, REL_TOLERANCE * float(ours[day])):
-                items.append({"symbol": name, "session": day, "alpaca_close": float(ours[day]),
-                              "yahoo_close_unadjusted": round(float(theirs[day]), 6),
-                              "abs_diff": round(diff, 6)})
+                own_items.append({"symbol": name, "session": day, "alpaca_close": float(ours[day]),
+                                  "yahoo_close_unadjusted": round(float(theirs[day]), 6),
+                                  "abs_diff": round(diff, 6)})
+        items.extend(own_items)
+        if own_items:
+            top_by_symbol[name] = sorted(own_items, key=lambda i: -i["abs_diff"])[:TOP_BREACHES_PER_SYMBOL]
         if own:
-            per_symbol[name] = {"compared": len(own),
-                                "breaches": sum(1 for i in items if i["symbol"] == name),
+            per_symbol[name] = {"compared": len(own), "breaches": len(own_items),
                                 "max_abs_diff": round(float(max(own)), 6),
                                 "p99_abs_diff": round(float(np.percentile(own, 99)), 6)}
     items.sort(key=lambda i: -i["abs_diff"])
     stats = {"compared": len(diffs), "breaches": len(items),
              "max_abs_diff": round(float(max(diffs)), 6) if diffs else 0.0,
              "p99_abs_diff": round(float(np.percentile(diffs, 99)), 6) if diffs else 0.0,
-             "by_symbol": per_symbol,
+             "by_symbol": per_symbol, "top_breaches_by_symbol": top_by_symbol,
              "not_compared": notes[:MAX_ITEMS], "not_compared_count": len(notes)}
+    listed = per_symbol
+    if len(per_symbol) > LARGE_UNIVERSE:
+        worst = sorted(per_symbol, key=lambda s: -per_symbol[s]["breaches"])[:10]
+        listed = {s: per_symbol[s] for s in worst}
     summary = "; ".join(f"{s} {v['breaches']}/{v['compared']} max {v['max_abs_diff']} p99 {v['p99_abs_diff']}"
-                        for s, v in per_symbol.items())
+                        for s, v in listed.items())
+    if len(per_symbol) > LARGE_UNIVERSE:
+        summary = f"worst 10 of {len(per_symbol)} symbols: {summary}"
     detail = (f"compared {stats['compared']} closes (Yahoo un-adjusted with Yahoo's own splits); "
               f"breaches {len(items)}; max {stats['max_abs_diff']}; p99 {stats['p99_abs_diff']}; "
               f"tolerance max({ABS_TOLERANCE}, 5 bp of close); not compared {len(notes)}. "
@@ -252,6 +265,55 @@ def _check_split_events(norm: Normalised, yahoo, splits: tuple[Split, ...], yaho
                   f"our split records vs Yahoo split events for {len(symbols)} symbols in {first}..{last}")
 
 
+def _check_split_consistency(norm: Normalised) -> dict:
+    """On each split session the raw close times the ratio must be within 15% of the previous close."""
+    items = []
+    for split in norm.data.splits:
+        close = norm.data.bars[split.instrument]["close"].astype(float)
+        day = split.effective_date
+        if day not in close.index or close.index.get_loc(day) == 0:
+            items.append({"symbol": split.instrument, "date": day, "ratio": split.ratio,
+                          "problem": "no bar on the split session or no previous session"})
+            continue
+        before = float(close.iloc[close.index.get_loc(day) - 1])
+        implied = float(close[day]) * split.ratio / before
+        if abs(implied - 1) > SPLIT_CONSISTENCY_TOLERANCE:
+            items.append({"symbol": split.instrument, "date": day, "ratio": split.ratio,
+                          "implied_move": round(implied, 6), "problem": "raw close x ratio is not within "
+                          f"{SPLIT_CONSISTENCY_TOLERANCE:.0%} of the previous close"})
+    return _check("split_consistency", "fail" if items else "pass", items,
+                  f"{len(norm.data.splits)} split sessions: raw close x ratio vs the previous close, "
+                  f"tolerance {SPLIT_CONSISTENCY_TOLERANCE:.0%}")
+
+
+def _check_post_window_adjustment(info: dict) -> dict:
+    items = [dict(item) for item in info.get("excluded", [])]
+    return _check("actions_post_window_adjustment", "exception" if items else "pass", items,
+                  f"symbols left out because Yahoo closes and dividends are adjusted for events after the "
+                  f"window (median archive/Yahoo close ratio over the last {info.get('window_sessions')} sessions "
+                  f"differs from 1 by more than {info.get('tolerance')}); checked {info.get('checked')}, "
+                  f"unchecked {len(info.get('unchecked', []))}; items are the measured ratios")
+
+
+def _check_universe(excluded_symbols: list[dict]) -> dict:
+    items = [{"symbol": e["symbol"], "reason": e["reason"]} for e in excluded_symbols]
+    return _check("universe", "exception" if items else "pass", items,
+                  "symbols left out of the dataset universe (not part of any run)")
+
+
+def _check_pay_date_assumed(norm: Normalised, actions: dict) -> dict:
+    """Cash events whose pay date is unknown and was set to the ex-date."""
+    names = set(norm.data.bars)
+    counts: dict[str, int] = {}
+    for event in actions.get("cash_and_in_kind", []):
+        if event.get("symbol") in names and event.get("pay_date_label") == LABEL_PAY_DATE:
+            counts[event["symbol"]] = counts.get(event["symbol"], 0) + 1
+    items = [{"symbol": s, "events": n} for s, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]
+    return _check("pay_date_assumed", "exception" if items else "pass", items,
+                  f"cash dividends credited on the ex-date because the pay date is unknown ({LABEL_PAY_DATE}); "
+                  "items are events per symbol", count=sum(counts.values()))
+
+
 def _code_commit() -> str:
     """Git HEAD of the code that built the report, ``+dirty`` when the tree has changes."""
     def git(*args):
@@ -280,8 +342,13 @@ def _inputs(inputs: dict | None) -> dict:
 
 def build_report(dataset_id: str, rows: list[dict], norm: Normalised, yahoo, splits: tuple[Split, ...],
                  created_utc: str | None = None, yahoo_splits: dict | None = None,
-                 inputs: dict | None = None, code_commit: str | None = None) -> dict:
-    """``splits`` are our split records; ``yahoo_splits`` maps symbol to Yahoo's split events."""
+                 inputs: dict | None = None, code_commit: str | None = None,
+                 excluded_symbols: list[dict] | None = None, actions: dict | None = None) -> dict:
+    """``splits`` are our split records; ``yahoo_splits`` maps symbol to Yahoo's split events.
+
+    Stock datasets pass ``excluded_symbols`` (adds the ``universe`` check) and ``actions`` (adds
+    ``pay_date_assumed``); without them the checks are exactly the ETF set.
+    """
     created = created_utc or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     yahoo_splits = yahoo_splits or {}
     built = {
@@ -302,6 +369,15 @@ def build_report(dataset_id: str, rows: list[dict], norm: Normalised, yahoo, spl
         "split_events": _check_split_events(norm, yahoo, splits, yahoo_splits),
     }
     checks = [built[name] for name in CHECKS]
+    if norm.data.splits:
+        checks.append(_check_split_consistency(norm))
+    if excluded_symbols is not None:
+        checks.append(_check_universe(excluded_symbols))
+    if actions is not None and "post_window_adjustment" in actions:
+        checks.append(_check_post_window_adjustment(actions["post_window_adjustment"]))
+    if actions is not None and any(e.get("pay_date_label") == LABEL_PAY_DATE
+                                   for e in actions.get("cash_and_in_kind", [])):
+        checks.append(_check_pay_date_assumed(norm, actions))
     return {"schema": SCHEMA, "dataset_id": dataset_id, "recipe": RECIPE, "created_utc": created,
             "status": _status(checks), "checks": checks, "inputs": _inputs(inputs),
             "code_commit": code_commit or _code_commit(),

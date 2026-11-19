@@ -1,0 +1,82 @@
+[
+  {
+    "old": "FB",
+    "new": "META",
+    "date": "2022-06-09",
+    "source_url": null,
+    "source_note": "Meta Platforms, Inc. (formerly Facebook, Inc.) renamed itself in October 2021 and moved its Nasdaq ticker from FB to META with trading under the new symbol from 2022-06-09. Confirm against the company's Form 8-K or the Nasdaq trader notice; no URL is recorded because none could be checked offline.",
+    "verified": false
+  },
+  {
+    "old": "TMK",
+    "new": "GL",
+    "date": "2019-08-08",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of GL to 1989-04-30, before its first membership here on 2019-08-08"
+  },
+  {
+    "old": "BLL",
+    "new": "BALL",
+    "date": "2022-05-10",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of BALL to 1984-10-31, before its first membership here on 2022-05-10"
+  },
+  {
+    "old": "ANTM",
+    "new": "ELV",
+    "date": "2022-06-28",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of ELV to 2002-07-25, before its first membership here on 2022-06-28"
+  },
+  {
+    "old": "NLOK",
+    "new": "GEN",
+    "date": "2022-11-08",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of GEN to 2003-03-25, before its first membership here on 2022-11-08"
+  },
+  {
+    "old": "PKI",
+    "new": "RVTY",
+    "date": "2023-05-16",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of RVTY to 1985-05-31, before its first membership here on 2023-05-16"
+  },
+  {
+    "old": "RE",
+    "new": "EG",
+    "date": "2023-07-10",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of EG to 2017-06-19, before its first membership here on 2023-07-10"
+  },
+  {
+    "old": "ABC",
+    "new": "COR",
+    "date": "2023-08-30",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of COR to 2001-08-30, before its first membership here on 2023-08-30"
+  },
+  {
+    "old": "FLT",
+    "new": "CPAY",
+    "date": "2024-03-25",
+    "source_url": null,
+    "source_note": "derived from adjacent membership intervals in sp500-membership-20261118 (fja05680 file); not independently verified",
+    "verified": false,
+    "corroboration": "hanshof/sp500_constituents dates the addition of CPAY to 2018-06-20, before its first membership here on 2024-03-25"
+  }
+]

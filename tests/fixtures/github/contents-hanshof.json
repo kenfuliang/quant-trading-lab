@@ -1,0 +1,5 @@
+[
+  {"name": "README.md", "type": "file", "sha": "h1", "download_url": "https://raw.githubusercontent.com/hanshof/sp500_constituents/main/README.md"},
+  {"name": "LICENSE", "type": "file", "sha": "h2", "download_url": "https://raw.githubusercontent.com/hanshof/sp500_constituents/main/LICENSE"},
+  {"name": "sp500_constituents.csv", "type": "file", "sha": "h3", "download_url": "https://raw.githubusercontent.com/hanshof/sp500_constituents/main/sp500_constituents.csv"}
+]

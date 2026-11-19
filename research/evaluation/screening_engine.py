@@ -11,7 +11,9 @@ Per-session order (a contract; the NautilusTrader engine reproduces it exactly):
    are those held at the close of the session before ``ex_date``.
 3. Orders from the decision made at close d-1: the order is target minus current holding
    (zero means no order). Sells first, then buys, each sorted by instrument name. Fill
-   price ``execution_price(open, side, cost_bps)``; commission per fill; fill
+   price ``execution_price(open, side, bps)`` with ``bps = cost_bps(data, n, i - 1, config)``
+   (flat ``config.cost_bps``, or the ADV tier from sessions i-21..i-2: strictly before the
+   decision session i-1); commission per fill; fill
    ``cost = commission + |price - open| * quantity``. Overspend rule: after all sells have
    filled, buys are processed in order and a buy that would leave
    ``cash - (price * quantity + commission) < 0`` raises ``EngineError`` (never skipped
@@ -47,6 +49,7 @@ from research.evaluation.market_model import (
     MarketConfig,
     MarketData,
     TargetFn,
+    cost_table,
     execution_price,
     history_view,
     validate,
@@ -61,26 +64,30 @@ def run_screen(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
     sessions = list(data.sessions)
     names = sorted(data.bars)
     cols = {n: {c: data.bars[n][c].to_numpy() for c in ("open", "close")} for n in names}
+    bps = cost_table(data, config)  # bps[n][i - 1]: tier at the decision session, for the fill at i
     cash = float(config.initial_cash)
     qty = {n: 0 for n in names}
     pending: dict[str, int] | None = None
     close_qty: list[dict[str, int]] = []  # holdings at each session close
+    index = {day: k for k, day in enumerate(sessions)}
+    splits_on: dict[str, list] = {}  # effective date -> splits, in data.splits order
+    for split in data.splits:
+        splits_on.setdefault(split.effective_date, []).append(split)
+    pays_on: dict[str, list] = {}  # pay date -> dividends, in data.dividends order
+    for div in data.dividends:
+        pays_on.setdefault(div.pay_date, []).append(div)
     marks, signals, fills = [], [], []
 
     for i, day in enumerate(sessions):
         # 1. splits
-        for split in data.splits:
-            if split.effective_date != day:
-                continue
+        for split in splits_on.get(day, ()):
             n, ratio = split.instrument, split.ratio
             qty[n] = qty[n] * ratio  # a whole-share forward split moves no cash
             if pending is not None and n in pending:
                 pending[n] = pending[n] * ratio
         # 2. dividends
-        for div in data.dividends:
-            if div.pay_date != day:
-                continue
-            ex_idx = sessions.index(div.ex_date)
+        for div in pays_on.get(day, ()):
+            ex_idx = index[div.ex_date]
             held = close_qty[ex_idx - 1][div.instrument] if ex_idx > 0 else 0
             cash += round(div.per_share * held, 2)
         # 3. orders
@@ -90,7 +97,7 @@ def run_screen(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
             ordered += [("BUY", n, d) for n, d in diffs.items() if d > 0]
             for side, n, q in ordered:
                 open_px = float(cols[n]["open"][i])
-                price = execution_price(open_px, side, config.cost_bps)
+                price = execution_price(open_px, side, float(bps[n][i - 1]))
                 value = price * q
                 if side == "SELL":
                     cash += value - config.commission_usd

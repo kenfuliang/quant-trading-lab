@@ -12,6 +12,7 @@ from pathlib import Path
 SCHEMA = "dataset-manifest/v1"
 KINDS = ("raw-snapshot", "normalised")
 KEYS = ("schema", "dataset_id", "kind", "created_utc", "source", "inputs", "recipe", "rights", "files", "notes")
+OPTIONAL_KEYS = ("universe_kind",)
 
 
 class ManifestError(ValueError):
@@ -35,7 +36,7 @@ def _validate(manifest: dict) -> None:
     if not isinstance(manifest, dict):
         raise ManifestError("manifest must be an object")
     missing = [k for k in KEYS if k not in manifest]
-    extra = [k for k in manifest if k not in KEYS]
+    extra = [k for k in manifest if k not in KEYS and k not in OPTIONAL_KEYS]
     if missing or extra:
         raise ManifestError(f"manifest keys: missing {missing}, unexpected {extra}")
     if manifest["schema"] != SCHEMA:
@@ -43,6 +44,9 @@ def _validate(manifest: dict) -> None:
     if manifest["kind"] not in KINDS:
         raise ManifestError(f"kind must be one of {KINDS}")
     check_dataset_id(manifest["dataset_id"])
+    if "universe_kind" in manifest and (not isinstance(manifest["universe_kind"], str)
+                                        or not manifest["universe_kind"]):
+        raise ManifestError("universe_kind must be a non-empty string")
     for key in ("inputs", "files"):
         if not isinstance(manifest[key], list) or any(
                 not isinstance(e, dict) or set(e) != {"path", "sha256"} for e in manifest[key]):

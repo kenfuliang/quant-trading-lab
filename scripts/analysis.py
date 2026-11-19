@@ -36,6 +36,9 @@ import pandas as pd  # noqa: E402
 from reporting.run_tearsheet import tearsheet_html  # noqa: E402
 from research.control import experiment_registry  # noqa: E402
 from research.control.analysis_view import load_analyses, render_analysis_page, safe_id  # noqa: E402
+from research.data.identity import coverage, intervals_for_dataset, read_identity  # noqa: E402
+from research.data.manifest import sha256_file  # noqa: E402
+from research.data.membership import membership_file_sha256, read_membership  # noqa: E402
 from research.data.root import DataAbsent, data_root  # noqa: E402
 from research.evaluation.analysis_output import build_analysis, render_report, write_analysis  # noqa: E402
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
@@ -47,6 +50,7 @@ from research.evaluation.run_output import read_run  # noqa: E402
 from research.evaluation.screening_engine import run_screen  # noqa: E402
 from research.evaluation.strategies import build_target_fn  # noqa: E402
 from research.evaluation.trust import dsr, pbo, psr  # noqa: E402
+from research.evaluation.universe import members_only  # noqa: E402
 
 REGISTRY = ROOT / "research/registry/experiments.jsonl"
 FIXTURE_SPEC = ROOT / "research/registry/analysis-specs/fixture-ladder.json"
@@ -121,12 +125,39 @@ def _load(spec: dict, root: Path, loader):
     return data, {"dataset_id": spec["dataset_id"], **provenance}
 
 
-def _pbo(spec: dict, data, market: MarketConfig) -> dict:
+def _universe(spec: dict, data, root: Path):
+    """``(wrap, universe)`` for a spec that names ``membership`` (and the ``identity`` that maps its
+    symbols to the dataset), else ``(None, None)``. ``universe`` is the plain-data record for the output."""
+    membership_id = spec.get("membership")
+    if not membership_id:
+        return None, None
+    if not spec.get("identity"):
+        raise ValueError("spec names membership but no identity id; masking needs the identity map")
+    membership = read_membership(root, membership_id)
+    membership_sha, membership_verified = membership_file_sha256(root, membership_id)  # raises on a mismatch
+    identity = read_identity(root, spec["identity"])
+    identity_sha = sha256_file(Path(root) / "identity" / f"{spec['identity']}.json")
+    built_for = (identity.get("inputs") or {}).get("membership_id")
+    if built_for != membership_id:
+        raise ValueError(f"identity {spec['identity']} was built for membership {built_for!r}, "
+                         f"but the spec names membership {membership_id!r}")
+    symbols = list(data.bars)
+    intervals = intervals_for_dataset(membership, identity, symbols)
+    cov = coverage(membership, identity, symbols, data.sessions)
+    return (lambda fn: members_only(fn, intervals),
+            {"membership_id": membership_id, "identity_id": spec["identity"], "coverage_summary": cov["summary"],
+             "membership_sha256": membership_sha, "identity_sha256": identity_sha,
+             "membership_manifest_verified": membership_verified, "names": len(symbols),
+             "late_or_never_count": len(cov["late_or_never_member_dataset_symbols"])})
+
+
+def _pbo(spec: dict, data, market: MarketConfig, wrap=None) -> dict:
     grid = spec.get("pbo_grid")
     if not grid:
         return {"value": None, "reason": "no pbo_grid in spec"}
     zero = dataclasses.replace(market, cost_bps=0.0, commission_usd=0.0)
-    columns = {json.dumps(item, sort_keys=True): run_screen(data, build_target_fn(item), zero).returns["net_return"].to_numpy()
+    wrap = wrap or (lambda fn: fn)
+    columns = {json.dumps(item, sort_keys=True): run_screen(data, wrap(build_target_fn(item)), zero).returns["net_return"].to_numpy()
                for item in grid}
     out = pbo(pd.DataFrame(columns))
     out["grid_size"] = len(grid)
@@ -152,8 +183,14 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
     commit = _code_commit()
     loader = loader or load_dataset
     data, datasets = _load(spec, root, loader)
+    if len(datasets.get("inputs") or ()) > 2 and not datasets.get("universe_kind"):
+        raise ValueError(f"dataset {datasets.get('dataset_id')} has many per-symbol input files (a stock archive) "
+                         "but its manifest has no universe_kind; refusing an unlabelled stock analysis")
     rungs = _rungs(spec)
-    steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now)
+    wrap, universe = _universe(spec, data, root)
+    steps = run_ladder(data, rungs, root / "runs", {"code_commit": commit, "datasets": datasets}, now,
+                       wrap=wrap, universe=None if universe is None else
+                       {k: universe[k] for k in ("membership_id", "identity_id")})
     last, last_spec = rungs[-1], rungs[-1].strategy
     _, tables = read_run(root / "runs" / steps[-1]["run_id"])
     net = tables["returns"]["net_return"].to_numpy(dtype=float)
@@ -182,20 +219,24 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
                    "this inflates n")
     trust = {"psr": {**psr(net), "warmup_sessions": warmup, "warmup_note": warmup_note},
              "dsr": {**trust_dsr, "warmup_sessions": warmup, "warmup_note": warmup_note},
-             "pbo": _pbo(spec, data, last.market)}
+             "pbo": _pbo(spec, data, last.market, wrap)}
     if spec.get("pbo_grid"):
         notes.append(GRID_NOTE)
-    lookahead = check_lookahead(data, lambda d: build_target_fn(last_spec), last.market, cutoffs=spec.get("cutoffs", 5))
+    lookahead = check_lookahead(data, lambda d: (wrap or (lambda fn: fn))(build_target_fn(last_spec)), last.market,
+                                cutoffs=spec.get("cutoffs", 5))
 
     spec_with_notes = {**spec, "notes": notes}
     doc = build_analysis(spec_with_notes, steps, trust, lookahead, comparison,
                          {"code_commit": commit, "datasets": datasets}, now.isoformat(),
-                         {"status": "skipped", "error": None})
+                         {"status": "skipped", "error": None}, universe)
     html_page = None
     try:
         series = pd.Series(net, index=pd.to_datetime(tables["returns"]["date"]))
         stats = {f"{key} (last rung)": float(value) for key, value in steps[-1]["summary"].items() if value is not None}
-        html_page = tearsheet(series, stats, f"{spec.get('title', spec['spec_id'])} - {last.name}")
+        title = f"{spec.get('title', spec['spec_id'])} - {last.name}"
+        if doc["labels"]:  # the picture must carry the survivor-bias labels too
+            title += f" [{', '.join(doc['labels'])}]"
+        html_page = tearsheet(series, stats, title)
         doc["tearsheet"] = {"status": "written", "error": None}
     except Exception as exc:  # the tearsheet is optional; the analysis stands without it
         error = f"{type(exc).__name__}: {exc}"

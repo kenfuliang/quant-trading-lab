@@ -98,6 +98,37 @@ class QualityTests(unittest.TestCase):
         self.assertEqual(cross["stats"]["breaches"], 0)
         self.assertEqual(check(report, "split_events")["status"], "pass")
 
+    def test_split_consistency_passes_a_consistent_split_and_fails_a_bad_one(self):
+        rows = clean_rows()
+        for r in rows[2:]:
+            r.update(o="5.00", h="5.25", l="4.95", c="5.10")
+        actions = {"cash_and_in_kind": [],
+                   "splits": [{"id": "s", "symbol": "AAA", "kind": "split", "ex_date": "2024-01-04", "ratio": "2"}]}
+        good = check(report_for(rows, actions), "split_consistency")
+        self.assertEqual((good["status"], good["count"]), ("pass", 0))
+        bad_rows = clean_rows()  # a 2:1 split with no price drop: 10.20 * 2 / 10.20 = 2.0
+        bad = check(report_for(bad_rows, actions), "split_consistency")
+        self.assertEqual(bad["status"], "fail")
+        self.assertEqual((bad["items"][0]["symbol"], bad["items"][0]["date"]), ("AAA", "2024-01-04"))
+
+    def test_split_consistency_absent_without_splits(self):
+        self.assertNotIn("split_consistency", [c["name"] for c in report_for(clean_rows())["checks"]])
+
+    def test_post_window_adjustment_check_lists_excluded_names_and_ratios(self):
+        rows = clean_rows()
+        norm = normalise(rows, NO_ACTIONS, ("AAA",))
+
+        def build(excluded):
+            actions = dict(NO_ACTIONS, post_window_adjustment={
+                "window_sessions": 20, "tolerance": 0.005, "checked": 5, "unchecked": [], "excluded": excluded})
+            return q.build_report("ds", rows, norm, None, norm.data.splits, actions=actions, code_commit="t")
+        found = check(build([{"symbol": "BKNG", "median_ratio": 25.0}]), "actions_post_window_adjustment")
+        self.assertEqual(found["status"], "exception")
+        self.assertEqual(found["items"], [{"symbol": "BKNG", "median_ratio": 25.0}])
+        self.assertEqual(check(build([]), "actions_post_window_adjustment")["status"], "pass")
+        plain = q.build_report("ds", rows, norm, None, norm.data.splits, code_commit="t")
+        self.assertNotIn("actions_post_window_adjustment", [c["name"] for c in plain["checks"]])
+
     def test_cross_source_uses_yahoo_splits_not_ours(self):
         # Yahoo knows a 1231:1000 split we do not; its closes before it are scaled by 1000/1231.
         rows = clean_rows()

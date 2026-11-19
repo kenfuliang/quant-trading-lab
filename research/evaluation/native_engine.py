@@ -15,7 +15,8 @@ Event layout per session d (America/New_York):
   ``adjust_account`` (in exact cents), so the split moves no cash net, as in the
   screening engine, and the cash account never dips below zero.
   Pending targets for the instrument are scaled by the ratio.
-- 09:30: quote per instrument with bid ``execution_price(open, "SELL")`` and ask
+- 09:30: quote per instrument (bp from ``cost_bps(data, name, i - 1, config)``, the tier at the
+  decision session) with bid ``execution_price(open, "SELL")`` and ask
   ``execution_price(open, "BUY")``. Once every instrument's quote has arrived, the
   orders from the decision at close d-1 are submitted: sells first; after all sells
   fill, buys in instrument order, each checked against the account cash with the known
@@ -75,6 +76,7 @@ from research.evaluation.market_model import (
     MarketConfig,
     MarketData,
     TargetFn,
+    cost_table,
     execution_price,
     history_view,
     validate,
@@ -113,10 +115,10 @@ class _SplitPlan:
 
 
 def _split_plans(data: MarketData) -> dict[str, list[_SplitPlan]]:
-    sessions = list(data.sessions)
+    index = {day: k for k, day in enumerate(data.sessions)}
     plans: dict[str, list[_SplitPlan]] = {}
     for split in data.splits:
-        i = sessions.index(split.effective_date)
+        i = index[split.effective_date]
         frame = data.bars[split.instrument]
         prev_close = float(frame["close"].iloc[i - 1]) if i > 0 else float(frame["open"].iloc[i])
         plan = _SplitPlan(split.instrument, split.ratio, prev_close, round(prev_close / split.ratio, 2))
@@ -124,9 +126,12 @@ def _split_plans(data: MarketData) -> dict[str, list[_SplitPlan]]:
     return plans
 
 
-def _events(data: MarketData, names: list[str], plans: dict[str, list[_SplitPlan]], cost_bps: float):
+def _events(data: MarketData, names: list[str], plans: dict[str, list[_SplitPlan]], config: MarketConfig):
+    bps = cost_table(data, config)  # bps[n][i - 1]: tier at the decision session i - 1, for the quote at i
     size = Quantity.from_int(QUOTE_SIZE)
     events, ts_info = [], {}
+    columns = {n: {c: data.bars[n][c].to_numpy(dtype=float) for c in ("open", "high", "low", "close", "volume")}
+               for n in names}
     for i, day in enumerate(data.sessions):
         for plan in plans.get(day, []):
             for kind, px in ((SPLIT_SELL, plan.prev_close), (SPLIT_BUY, plan.new_price)):
@@ -136,17 +141,17 @@ def _events(data: MarketData, names: list[str], plans: dict[str, list[_SplitPlan
         opened, closed = _ts(day, OPEN), _ts(day, CLOSE)
         ts_info[opened], ts_info[closed] = (day, OPEN), (day, CLOSE)
         for name in names:
-            row = data.bars[name].iloc[i]
-            open_px = float(row["open"])
+            col = columns[name]
+            open_px = float(col["open"][i])
             events.append(QuoteTick(
                 _iid(name),
-                _price(execution_price(open_px, "SELL", cost_bps)),
-                _price(execution_price(open_px, "BUY", cost_bps)),
+                _price(execution_price(open_px, "SELL", float(bps[name][max(i - 1, 0)]))),
+                _price(execution_price(open_px, "BUY", float(bps[name][max(i - 1, 0)]))),
                 size, size, opened, opened,
             ))
             events.append(Bar(
-                _bar_type(name), _price(open_px), _price(float(row["high"])), _price(float(row["low"])),
-                _price(float(row["close"])), Quantity.from_int(int(row["volume"])), closed, closed,
+                _bar_type(name), _price(open_px), _price(float(col["high"][i])), _price(float(col["low"][i])),
+                _price(float(col["close"][i])), Quantity.from_int(int(col["volume"][i])), closed, closed,
             ))
     return events, ts_info
 
@@ -161,6 +166,11 @@ class _DividendModule(SimulationModule):
     def __init__(self, data: MarketData, ts_info: dict[int, tuple[str, str]]):
         super().__init__(SimulationModuleConfig())
         self.dividends = data.dividends
+        self.exes_on: dict[str, list[int]] = {}   # ex date -> dividend indexes, ascending
+        self.pays_on: dict[str, list[int]] = {}   # pay date -> dividend indexes, ascending
+        for k, div in enumerate(data.dividends):
+            self.exes_on.setdefault(div.ex_date, []).append(k)
+            self.pays_on.setdefault(div.pay_date, []).append(k)
         self.ts_info = ts_info
         self.last_day = None
         self.entitled: dict[int, int] = {}
@@ -171,16 +181,15 @@ class _DividendModule(SimulationModule):
         if day == self.last_day:
             return
         self.last_day = day
-        for k, div in enumerate(self.dividends):
-            if div.ex_date == day:
-                self.entitled[k] = _held(self.exchange.cache, div.instrument)
-        for k, div in enumerate(self.dividends):
-            if div.pay_date == day:
-                shares = self.entitled.get(k, 0)
-                if shares:
-                    credit = Money(round(div.per_share * shares, 2), USD)
-                    self.exchange.adjust_account(credit)
-                    self.credits.append((day, div.instrument, shares, credit.as_double()))
+        for k in self.exes_on.get(day, ()):
+            self.entitled[k] = _held(self.exchange.cache, self.dividends[k].instrument)
+        for k in self.pays_on.get(day, ()):
+            div = self.dividends[k]
+            shares = self.entitled.get(k, 0)
+            if shares:
+                credit = Money(round(div.per_share * shares, 2), USD)
+                self.exchange.adjust_account(credit)
+                self.credits.append((day, div.instrument, shares, credit.as_double()))
 
     def process(self, ts_now):
         pass
@@ -204,6 +213,7 @@ class _ScreenStrategy(Strategy):
         self.names = sorted(data.bars)
         self.by_iid = {_iid(n): n for n in self.names}
         self.sessions = list(data.sessions)
+        self.session_index = {day: k for k, day in enumerate(self.sessions)}
         self.plans = plans
         self.ts_info = ts_info
         self.refund = refund
@@ -344,7 +354,7 @@ class _ScreenStrategy(Strategy):
             raise EngineError(f"{day}: orders still outstanding at the close")
         qty = {n: self._qty(n) for n in self.names}
         self.marks.append(mark(day, self._cash(), qty, {n: self.closes[day][n] for n in self.names}))
-        i = self.sessions.index(day)
+        i = self.session_index[day]
         if i == len(self.sessions) - 1:
             self.pending = None
             return
@@ -378,7 +388,7 @@ def _early_stop_message(engine: BacktestEngine, strategy: _ScreenStrategy, sessi
 def _fill_rows(report: pd.DataFrame, data: MarketData, sequence: dict[str, int]) -> list[tuple]:
     if report.empty:
         return []
-    sessions = list(data.sessions)
+    index = {day: k for k, day in enumerate(data.sessions)}
     rows = []
     for client_order_id, row in report.iterrows():
         if SPLIT_TAG in (row["tags"] or []):
@@ -389,7 +399,7 @@ def _fill_rows(report: pd.DataFrame, data: MarketData, sequence: dict[str, int])
         quantity = int(float(row["filled_qty"]))
         price = float(row["avg_px"])
         commission = sum(Money.from_str(c).as_double() for c in row["commissions"])
-        open_px = float(data.bars[name]["open"].iloc[sessions.index(day)])
+        open_px = float(data.bars[name]["open"].iloc[index[day]])
         rows.append((ts.value, sequence[str(client_order_id)],
                      (day, name, str(row["side"]), quantity, price, commission + abs(price - open_px) * quantity)))
     rows.sort(key=lambda r: (r[0], r[1]))
@@ -401,7 +411,7 @@ def run_native(data: MarketData, target_fn: TargetFn, config: MarketConfig) -> E
     check_config(config)
     names = sorted(data.bars)
     plans = _split_plans(data)
-    events, ts_info = _events(data, names, plans, config.cost_bps)
+    events, ts_info = _events(data, names, plans, config)
 
     engine = BacktestEngine(BacktestEngineConfig(logging=LoggingConfig(log_level="ERROR", bypass_logging=True)))
     try:

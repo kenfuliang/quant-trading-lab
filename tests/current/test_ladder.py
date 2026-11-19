@@ -44,6 +44,31 @@ class LadderTests(unittest.TestCase):
             with self.assertRaises(Exception):  # exclusive create: same inputs, same instant
                 run_ladder(synthetic_fixture(), RUNGS, root, base, now)
 
+    def test_stock_run_manifests_carry_labels_and_universe_kind(self):
+        now = datetime(2026, 11, 18, 12, 0, tzinfo=timezone.utc)
+        stock = {"code_commit": "abc", "datasets": {"dataset_id": "s", "universe_kind": "current-holdings-proxy"}}
+        plain = {"code_commit": "abc", "datasets": {"dataset_id": "s", "universe_kind": None}}
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, base in (("stock", stock), ("etf", plain)):
+                results = run_ladder(synthetic_fixture(), RUNGS[:1], Path(tmp) / name, base, now)
+                manifest, _ = read_run(Path(tmp) / name / results[0]["run_id"])
+                if name == "stock":
+                    self.assertEqual(manifest["labels"], ["survivor-biased", "discovery-only"])
+                    self.assertEqual(manifest["universe_kind"], "current-holdings-proxy")
+                else:  # an ETF run keeps exactly the old keys: hashes and goldens stay identical
+                    self.assertNotIn("labels", manifest)
+                    self.assertNotIn("universe_kind", manifest)
+
+    def test_masked_run_is_labelled_without_universe_kind(self):
+        now = datetime(2026, 11, 18, 12, 0, tzinfo=timezone.utc)
+        base = {"code_commit": "abc", "datasets": {"dataset_id": "s"}}
+        with tempfile.TemporaryDirectory() as tmp:
+            results = run_ladder(synthetic_fixture(), RUNGS[:1], Path(tmp), base, now, wrap=lambda fn: fn,
+                                 universe={"membership_id": "m", "identity_id": "i"})
+            manifest, _ = read_run(Path(tmp) / results[0]["run_id"])
+        self.assertEqual(manifest["labels"], ["survivor-biased", "discovery-only"])
+        self.assertNotIn("universe_kind", manifest)
+
     def test_waterfall_deltas_and_none_propagation(self):
         def summary(**kw):
             return {k: kw.get(k, 1.0) for k in METRIC_KEYS}
