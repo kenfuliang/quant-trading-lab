@@ -6,8 +6,10 @@
 
 Reads the screening run ``<runs>/<ID>`` and rebuilds exactly the candidate it records (strategy,
 market config, instruments, dataset, and the membership mask when masked). The dataset is
-reloaded and its manifest SHA-256 must equal the run's; a membership mask is rebuilt with its
-membership and identity hashes verified; a ``use: financial`` run re-verifies the quality gate
+reloaded and its manifest SHA-256 must equal the run's; a membership mask is rebuilt from the
+recorded membership and identity ids (the membership manifest is verified when one exists, and the
+membership and identity file hashes must equal the ones the run recorded, when it recorded them);
+a ``use: financial`` run re-verifies the quality gate
 from the data root and its acceptance must equal the run's. The core then re-runs the screening
 engine (it must reproduce the stored tables exactly), runs NautilusTrader and compares.
 
@@ -115,16 +117,25 @@ def run(args, argv: list[str], loader, native_runner, commit_fn) -> int:
     if candidate["universe"]:
         require(root / "membership" / f"{candidate['universe']['membership_id']}.json")
         require(root / "identity" / f"{candidate['universe']['identity_id']}.json")
-        wrap, universe_verified = analysis._universe(
-            {"membership": candidate["universe"]["membership_id"], "identity": candidate["universe"]["identity_id"]},
-            data, root)
+        stored_universe = candidate["universe"]
+        try:
+            wrap, universe_verified = analysis._universe(
+                {"membership": stored_universe["membership_id"], "identity": stored_universe["identity_id"]},
+                data, root)
+        except ValueError as error:  # e.g. the identity was built for another membership
+            raise ConfirmError(f"the stored universe cannot be rebuilt: {error}") from error
+        for key in ("membership_sha256", "identity_sha256"):  # recorded by newer runs; older runs have none
+            if key in stored_universe and stored_universe[key] != universe_verified[key]:
+                raise ConfirmError(f"{key} is {universe_verified[key]} now, the screening run recorded "
+                                   f"{stored_universe[key]}; the universe input changed")
         target_fn = wrap(target_fn)
     confirmation = confirm(data, target_fn, candidate["market"], tables, run_native_fn=native_runner)
 
     now = datetime.now(timezone.utc)
     native = confirmation.native
     n_manifest = native_manifest(manifest, native, code_commit=commit, now=now,
-                                 engine_version=engine_parity._engine_version(native.engine))
+                                 engine_version=engine_parity._engine_version(native.engine),
+                                 agreed=confirmation.report.passed)
     n_tables = {name: getattr(native, name)[list(columns)] for name, columns in COLUMNS.items()}
     native_path = write_run(runs, n_manifest, n_tables)
     native_sha = _sha256(native_path / "manifest.json")
@@ -170,7 +181,7 @@ def main(argv=None, loader=load_dataset, native_runner=run_native, commit_fn=ana
         print(error, file=sys.stderr)
         return 2
     except (ConfirmError, DatasetBlocked, AcceptanceError, ManifestError, MarketDataError, RunOutputError, EngineError,
-            OSError, ValueError, KeyError) as error:
+            OSError) as error:  # the known refusals; programming errors (KeyError, TypeError, ...) propagate
         print(f"error: {error}", file=sys.stderr)
         return 1
 

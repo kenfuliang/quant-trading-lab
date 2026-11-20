@@ -110,8 +110,8 @@
       "aspect": "Backtest engines",
       "score": 4,
       "importance": "H",
-      "critique": "Screen and NautilusTrader engines agree on the CI fixture, on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches) and, through the candidate confirmation command, on an 11-instrument ETF sma_trend run and the stateful traffic-light incumbent (0 mismatches each, stored runs reproduce exactly); the native engine cannot yet run a 409-name book (order submit rate limit stops the first rebalance); code shared by both engines is not covered by parity",
-      "next_action": "Handle the native order-rate limit on wide books with its own parity evidence; test shared-code rules independently",
+      "critique": "Screen and NautilusTrader engines agree on the CI fixture, on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches) and, through the candidate confirmation command, on an 11-instrument ETF sma_trend run and the stateful traffic-light incumbent (0 mismatches each, stored runs reproduce exactly); the native engine cannot yet run a 409-name book (the first rebalance submits more orders in one bar than NautilusTrader's default max_order_submit_rate of 100 per second); code shared by both engines is not covered by parity",
+      "next_action": "Handle the native order submit rate (default 100 orders per second) on wide books with its own parity evidence; test shared-code rules independently",
       "roadmap_step": 3,
       "evidence": [
         "research/evaluation/parity.py",
@@ -284,7 +284,7 @@
       "aspect": "Reproducibility and lineage",
       "score": 4.5,
       "importance": "H",
-      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads it and re-verifies the quality gate), and keep records a financial nautilus run bound to the candidate, the parity receipt and tracked validation receipt hashes; the candidate confirmation command now produces the nautilus run and receipt, and the whole keep path is tested end to end in temporary roots; but no completed record has used these links for real (the 110 existing records are exempt imports) and no real dataset has an owner-accepted quality report",
+      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads it and re-verifies the quality gate), and keep records a financial nautilus run bound to the candidate, a candidate-confirmation parity receipt naming exactly the cited screening and nautilus runs (ids and manifest hashes) and the tracked validation receipt hash; the candidate confirmation command produces the nautilus run and that receipt, and the whole keep path, including rejection of a foreign, stale or plain parity receipt, is tested end to end in temporary roots; but no completed record has used these links for real (the 110 existing records are exempt imports) and no real dataset has an owner-accepted quality report",
       "next_action": "Owner acceptance of a quality report, then log the first completed record with run hashes",
       "roadmap_step": 6,
       "evidence": [

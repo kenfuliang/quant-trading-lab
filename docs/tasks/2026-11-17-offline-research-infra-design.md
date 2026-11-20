@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-19
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -262,9 +262,13 @@ material (record shape and the tracked validation receipt). The promoting dispos
 `keep`, never `imported`, `failed` or `abandoned`. Details:
 [workflow](../workflow.md#enforced-research-rules) and the [task record](2026-11-18-enforced-rules.md).
 
-Design call: a parity receipt vouches for the **engine code** (engine-file identity
-between the receipt's commit and the run's commit), not for the candidate strategy. The
-receipt's own nautilus run need not be the candidate's run.
+Design call (revised by the Plan 8 final review): the parity receipt for a `keep` must be the
+`candidate-confirmation` receipt (`scripts/confirm.py`) for exactly the two cited runs. It
+vouches for the **engine code** (engine-file identity between the receipt's commit and the
+run's commit) and for **these two runs agreeing**; `log` checks the receipt's `runs.screen` and
+`runs.nautilus` run ids and manifest hashes against the cited refs. It does not validate the
+strategy's merit. This replaces the earlier Plan 6 call that the receipt's nautilus run need not
+be the candidate's run.
 
 Limits:
 

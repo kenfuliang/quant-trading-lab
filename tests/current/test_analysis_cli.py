@@ -1,5 +1,6 @@
 """Offline tests of scripts/analysis.py: run, DSR trial counts and the golden summary."""
 import contextlib
+import hashlib
 import io
 import json
 import math
@@ -367,7 +368,10 @@ class AnalysisCliTests(unittest.TestCase):
         summary = doc["coverage_summary"]
         self.assertEqual(summary["sessions"], len(sessions))
         self.assertAlmostEqual(summary["min_share"], 1 / 2)  # ZZZ is a member with no data; BBB left, CCC not in yet
-        self.assertEqual(manifest["config"]["universe"], {"membership_id": "mem1", "identity_id": "idn1"})
+        self.assertEqual(manifest["config"]["universe"], {
+            "membership_id": "mem1", "identity_id": "idn1",
+            "membership_sha256": hashlib.sha256(json.dumps(membership).encode()).hexdigest(),
+            "identity_sha256": hashlib.sha256(json.dumps(ident).encode()).hexdigest()})
         self.assertEqual(set(tables["positions"]["instrument"]), {"AAA", "BBB", "CCC"})
         self.assertEqual(doc["lookahead"]["status"], "pass")
         self.assertIn("point-in-time membership `mem1`", report)

@@ -6,6 +6,8 @@ import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
+import numpy as np
+
 from research.control import run_refs
 from research.evaluation import confirm as core
 from research.evaluation.ladder import Rung, run_ladder
@@ -97,6 +99,30 @@ class ConfirmCoreTests(unittest.TestCase):
         with self.assertRaisesRegex(core.ConfirmError, "returns"):
             core.confirm(self.data, self.target_fn, self.market, short)
 
+    def test_one_ulp_difference_in_stored_tables_is_refused(self):
+        for table, column in (("returns", "equity"), ("fills", "price"), ("signals", "value")):
+            tables = {name: frame.copy() for name, frame in self.tables.items()}
+            old = tables[table].loc[3, column]
+            tables[table].loc[3, column] = np.nextafter(old, np.inf)
+            self.assertNotEqual(tables[table].loc[3, column], old)
+            with self.subTest(table=table), self.assertRaisesRegex(core.ConfirmError, f"{table}.{column}"):
+                core.confirm(self.data, self.target_fn, self.market, tables,
+                             run_native_fn=lambda *a: self.fail("native must not run"))
+
+    def test_unknown_config_keys_are_refused(self):
+        extra = copy.deepcopy(self.manifest)
+        extra["config"]["slippage_override"] = 3
+        with self.assertRaisesRegex(core.ConfirmError, "slippage_override"):
+            core.candidate_from_manifest(extra)
+
+    def test_disagreeing_native_run_carries_no_financial_fields(self):
+        manifest = core.native_manifest(self.manifest, self.confirmation.native, code_commit="d" * 40,
+                                        now=NOW, engine_version="v", agreed=False)
+        for key in ("use", "acceptance_sha256"):
+            self.assertNotIn(key, manifest)
+        with self.assertRaisesRegex(Exception, "not a financial-use run"):
+            run_refs.require_financial_run(manifest)
+
     def test_native_manifest_satisfies_rule3_binding(self):
         manifest = core.native_manifest(self.manifest, self.confirmation.native, code_commit="d" * 40,
                                         now=NOW, engine_version="nautilus_trader test")
@@ -175,6 +201,9 @@ class ConfirmCoreTests(unittest.TestCase):
         self.assertTrue(receipt["bindable"])
         self.assertEqual(receipt["candidate"]["ladder"]["rung"], "trend")
         run_refs.require_passed_parity(receipt)
+        run_refs.require_confirmation(receipt, self.manifest["run_id"], "1" * 64, "N1", "2" * 64)
+        with self.assertRaisesRegex(Exception, "runs.nautilus"):
+            run_refs.require_confirmation(receipt, self.manifest["run_id"], "1" * 64, "N2", "2" * 64)
         with self.assertRaisesRegex(Exception, "dirty"):
             run_refs.require_passed_parity(self._receipt(self.confirmation, code_commit="e" * 40 + "+dirty"))
         unhashed = {k: v for k, v in self.manifest.items() if k not in ("use", "acceptance_sha256")}

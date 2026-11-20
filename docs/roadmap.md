@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-19
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -105,7 +105,7 @@ Plans 1-6, step 9 is Plan 7, and steps 7, 8 and 10 have no plan yet.
 | 7 | Views and chart conventions read run outputs (strategy, stage, trust, data-quality pages) | Step 4 | Planned; no new chart framework |
 | 8 | Run-output storage and retention rule; policy that legacy studies stay frozen and only incumbents are rebuilt | Step 4 | Planned |
 | 9 | P5 portfolio construction: combiner of run outputs; equal-weight and inverse-volatility weighting, cash account, no leverage; combinations count as trials per [goals](goals.md) | Step 4 | Implemented (Plan 7), with limits: sleeve-level model, one demonstration, no research finding ([record](tasks/2026-11-18-portfolio.md)) |
-| 10 | Candidate confirmation: run a screened candidate through the NautilusTrader engine under the same frozen configuration, so the rule 3 refs (nautilus run, parity receipt, validation receipt) can be produced and a `keep` record becomes possible | Steps 4, 6 | Implemented (Plan 8): `scripts/confirm.py` and `research/evaluation/confirm.py`; the full path (financial screening run, confirmation, validation receipt, `keep` dry run) is tested in temporary roots (`tests/current/test_keep_path.py`). Limits: no `keep` is logged for real, because no real dataset has an owner-accepted quality report and no validation receipt exists; confirmation vouches for engine agreement on one frozen candidate, not for the strategy; the native engine stops on a 409-name book (order submit rate limit), so a stock candidate cannot be confirmed yet. See the [task record](tasks/2026-11-19-candidate-confirmation.md) |
+| 10 | Candidate confirmation: run a screened candidate through the NautilusTrader engine under the same frozen configuration, so the rule 3 refs (nautilus run, parity receipt, validation receipt) can be produced and a `keep` record becomes possible | Steps 4, 6 | Implemented (Plan 8): `scripts/confirm.py` and `research/evaluation/confirm.py`; the full path (financial screening run, confirmation, validation receipt, `keep` dry run) is tested in temporary roots (`tests/current/test_keep_path.py`). Limits: no `keep` is logged for real, because no real dataset has an owner-accepted quality report and no validation receipt exists; the confirmation receipt vouches for engine-file identity and for the two cited runs agreeing (`log` requires it to name exactly the cited screening and NautilusTrader runs), not for the strategy's merit; the native engine stops on the 409-name book because its first rebalance submits more orders in one bar than NautilusTrader's default `max_order_submit_rate` of 100 per second, so a stock candidate cannot be confirmed yet. See the [task record](tasks/2026-11-19-candidate-confirmation.md) |
 
 The user-requested [Alpaca integration slice](tasks/2026-10-25-alpaca-paper-integration.md)
 also adds partial M5 evidence: native/fake-broker order lifecycle, saved-SPY signal

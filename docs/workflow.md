@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-19
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -176,15 +176,18 @@ Where each is enforced:
 | --- | --- | --- |
 | 1 financial gate | `scripts/analysis.py run` refuses before writing anything | not checked (local data is absent in CI) |
 | 2 run output | manifest exists, SHA-256 matches, `use: financial`, quality gate re-verified from the report and acceptance on disk | record shape: `run_id` and hash present |
-| 3 promotion | nautilus run financial and bound to the candidate (dataset hash, strategy, market, instruments), parity receipt clean and passing, engine files unchanged between full-SHA commits, validation receipt valid, tracked by git and naming the same parity receipt | record shape (never `imported`, `failed` or `abandoned`), plus the tracked validation receipt (hash, allowed validator, `pass`, a passing check, run ids, parity receipt id) |
+| 3 promotion | nautilus run financial and bound to the candidate (dataset hash, strategy, market, instruments), parity receipt clean and passing **and the `candidate-confirmation` receipt for exactly the cited screening and NautilusTrader runs** (run ids and manifest hashes, stored screening run reproduced, dataset-hash-bound), engine files unchanged between full-SHA commits, validation receipt valid, tracked by git and naming the same parity receipt | record shape (never `imported`, `failed` or `abandoned`), plus the tracked validation receipt (hash, allowed validator, `pass`, a passing check, run ids, parity receipt id) |
 
 The 110 records logged before these rules (`imported`) are exempt and validate unchanged;
 none of them is a `keep`.
 
 Limits, stated plainly:
 
-- A parity receipt vouches for the **engine code** (engine-file identity between commits),
-  not for the candidate strategy.
+- A confirmation receipt vouches for two things: **engine-file identity** between the
+  receipt commit and the run commit, and that **these two runs agree** (the screening run
+  reproduced from its stored tables, then matched by the NautilusTrader run). It does not
+  validate the strategy's merit or the data. A plain `engine_parity` receipt (no `kind`)
+  cannot back a `keep`.
 - Roles in a validation receipt are **self-reported**. The tool enforces separation of
   recorded roles, not the independence of the model or session that produced the work.
 - Acceptance is bound to a report hash, not to what the owner understood when accepting.
@@ -227,9 +230,18 @@ flowchart LR
    --parity-receipt ... --validation-receipt ...` (try `--dry-run` first).
 
 Confirmation limits: it proves the screening and NautilusTrader engines agree on one frozen
-candidate (and that the stored screening run reproduces); it does not validate the strategy, and
-the parity receipt still vouches for the engine code, not for the strategy. A 409-name stock book currently stops in the
-native engine (order submit rate limit), so only narrower candidates can be confirmed today.
+candidate (and that the stored screening run reproduces); it does not validate the strategy's
+merit or the data. `log` accepts a `keep` only when the parity receipt is the
+`candidate-confirmation` receipt whose `runs.screen` and `runs.nautilus` are exactly the cited
+run ids and manifest hashes. The receipt's `bindable` flag means **dataset-hash-bound**: the
+screening run records a dataset manifest SHA-256, which was re-checked against the data on disk.
+For a masked run the stored `membership_sha256` and `identity_sha256` (recorded by runs made
+from this change on) are compared with the files on disk; older masked runs record only the ids,
+so only the membership manifest (when present) is verified for them. The native sleeve limit: the
+409-name stock book submits several hundred orders in one bar, above NautilusTrader's default
+`RiskEngineConfig.max_order_submit_rate` of 100 orders per second (`100/00:00:01`, verified in
+nautilus_trader 1.231.0), so it stops at the first multi-name rebalance; only narrower candidates
+(fewer orders per bar) can be confirmed today.
 
 ## Combining run outputs
 

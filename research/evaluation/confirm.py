@@ -28,7 +28,9 @@ from research.evaluation.screening_engine import run_screen
 RECEIPT_SCHEMA = "parity-receipt/v1"
 KIND = "candidate-confirmation"
 CANDIDATE_KEYS = ("strategy", "market", "instruments")
+KNOWN_CONFIG_KEYS = ("engine", *CANDIDATE_KEYS, "ladder", "universe")
 COPIED_KEYS = ("use", "acceptance_sha256", "labels", "universe_kind")
+FINANCIAL_KEYS = ("use", "acceptance_sha256")
 TOLERANCES = {"quantities": "identical", "fill_dates": "identical", "cash_equity_usd_per_session": 0.01}
 CASH_INTEREST = "not modelled"
 ENGINEERING_USE = "engineering evidence, not financial use; offline and order-free"
@@ -56,6 +58,10 @@ def candidate_from_manifest(manifest: dict) -> dict:
     config = manifest.get("config")
     if manifest.get("engine") != "screen" or not isinstance(config, dict) or config.get("engine") != "screen":
         raise ConfirmError(f"run {run_id} engine is {manifest.get('engine')!r}; only a screen run can be confirmed")
+    unknown = sorted(set(config) - set(KNOWN_CONFIG_KEYS))
+    if unknown:
+        raise ConfirmError(f"run {run_id} config has keys {unknown} that confirmation does not rebuild; "
+                           "refusing to confirm a candidate it cannot fully reproduce")
     missing = [key for key in CANDIDATE_KEYS if key not in config]
     if missing:
         raise ConfirmError(f"run {run_id} config is missing {missing}; it is not a ladder or analysis screening run")
@@ -124,8 +130,11 @@ def confirm(data: MarketData, target_fn, market: MarketConfig, stored_tables: di
 
 
 def native_manifest(screen_manifest: dict, native_result: EngineResult, *, code_commit: str, now: datetime,
-                    engine_version: str) -> dict:
-    """The NautilusTrader run manifest: the screening config with only ``engine`` changed."""
+                    engine_version: str, agreed: bool = True) -> dict:
+    """The NautilusTrader run manifest: the screening config with only ``engine`` changed.
+
+    When the engines did not agree (``agreed`` False) the run is written without ``use`` and
+    ``acceptance_sha256``, so it fails the financial-run gate on its own and can back no keep."""
     config = {key: value for key, value in screen_manifest["config"].items() if key != "ladder"}
     config["engine"] = native_result.engine
     manifest = {
@@ -141,7 +150,7 @@ def native_manifest(screen_manifest: dict, native_result: EngineResult, *, code_
         "parent_run": screen_manifest["run_id"],
     }
     for key in COPIED_KEYS:
-        if key in screen_manifest:
+        if key in screen_manifest and (agreed or key not in FINANCIAL_KEYS):
             manifest[key] = screen_manifest[key]
     return manifest
 

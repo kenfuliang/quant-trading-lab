@@ -103,7 +103,7 @@
       "label": "stock_sleeve_sma_trend",
       "message": "error: order O-20160202-143000-001-000-101 not accepted: Exceeded MAX_ORDER_SUBMIT_RATE",
       "native_run_written": false,
-      "note": "NautilusTrader's default order submit rate limit is exceeded by the first multi-name rebalance on 2016-02-02. Not tuned. Before the CLI fix commit the same error escaped as a traceback.",
+      "note": "The first multi-name rebalance on 2016-02-02 submits more orders in one bar than NautilusTrader's default RiskEngineConfig.max_order_submit_rate of 100/00:00:01 (100 orders per second; verified in nautilus_trader 1.231.0). Not tuned. Before the CLI fix commit the same error escaped as a traceback.",
       "receipt_written": false,
       "screen_run_id": "20261119T074024Z-2579c05f",
       "status": "refused (native engine error)"

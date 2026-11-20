@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-19
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -63,7 +63,7 @@ owner: project-maintainers
 1. Confirmation must refuse (naming the reason) when the stored screening run no longer reproduces, when the dataset hash differs, when the run is not a `screen` run, or when a financial run's quality gate no longer verifies.
 2. A mismatch between engines must leave a receipt with `status: "mismatch"` and the first mismatches, exit 1, and must not produce a receipt that satisfies rule 3.
 3. The NautilusTrader manifest must satisfy Plan 6's `require_nautilus_run` binding: same `datasets.manifest_sha256` and equal `strategy`, `market` and `instruments`.
-4. A masked candidate must be rebuilt with the same membership and identity (hashes verified), or refused.
+4. A masked candidate must be rebuilt from the same membership and identity ids, or refused. What is verified: the membership manifest hash (when a manifest exists) and, when the screening run recorded `membership_sha256` and `identity_sha256`, that the files on disk still have those hashes; older masked runs record ids only.
 5. Nothing is written to the registry, the trial ledger or any acceptance by this command.
 
 ---

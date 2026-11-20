@@ -5,9 +5,11 @@ temp parity root and temp validation-receipts directory. Git is faked. Never tou
 registry, trial ledger, acceptances or run outputs. Each rejection is asserted before its success.
 """
 import contextlib
+import dataclasses
 import hashlib
 import io
 import json
+import shutil
 import tempfile
 import unittest
 from datetime import datetime, timezone
@@ -18,6 +20,7 @@ from research.control import experiment_registry as reg
 from research.evaluation import acceptance
 from research.evaluation.datasets import load_dataset
 from research.evaluation.run_output import read_run
+from research.evaluation.screening_engine import run_screen
 from scripts import analysis, confirm
 from scripts import experiments as cli
 from scripts import validation as validation_cli
@@ -158,6 +161,77 @@ class KeepPathTests(unittest.TestCase):
         self.validation("VR2", [screen_id, dirty_native], dirty_parity)
         self.rejected("dirty", "--run-id", screen_id, "--nautilus-run-id", dirty_native,
                       "--parity-receipt", dirty_parity, "--validation-receipt", "VR2")
+
+    # -- rule 3 ties the receipt to the cited runs ---------------------------------------------
+    def financial_run(self, spec, now):
+        return analysis.run_spec(spec, self.data, registry_path=self.registry, now=now,
+                                 tearsheet=lambda *a: "<html/>")["doc"]["runs"][0]["run_id"]
+
+    def keep_args(self, screen_id, native_id, parity_id, receipt_id):
+        self.validation(receipt_id, [screen_id, native_id], parity_id)
+        return ("--run-id", screen_id, "--nautilus-run-id", native_id, "--parity-receipt", parity_id,
+                "--validation-receipt", receipt_id)
+
+    def test_keep_needs_the_confirmation_of_exactly_the_cited_runs(self):
+        make_root(self.data, report="pass-with-exceptions")
+        stamp = Path(load_dataset(ID, ("AAA", "KID", "PAR"), self.data)[1]["quality_report"]).parent.name
+        acceptance.write_acceptance(self.data, ID, stamp, "owner", ["all"], "fixture", NOW)
+        x = self.financial_run(dict(SPEC), NOW)
+        other = dict(SPEC, spec_id="other", rungs=[{"name": "bh", "strategy": {"name": "buy_hold", "gross": 0.5},
+                                                    "market": {"cost_bps": 0, "commission_usd": 0}}])
+        y = self.financial_run(other, datetime(2026, 11, 19, 12, 5, tzinfo=timezone.utc))
+        n_x, p_x = self.confirm(x, CLEAN)
+        n_y, p_y = self.confirm(y, CLEAN)
+
+        # a mismatching native run for X (perturbed fills) cited with a foreign passing receipt for Y
+        def perturbed(data, fn, market):
+            result = run_screen(data, fn, market)
+            fills = result.fills.copy()
+            fills.loc[0, "price"] += 5.0
+            return dataclasses.replace(result, engine="nautilus", fills=fills)
+        argv = ["--run-id", x, "--root", str(self.data), "--runs-root", str(self.runs),
+                "--parity-root", str(self.parity)]
+        with mock.patch.object(confirm, "datetime", **{"now.return_value": datetime(2026, 11, 19, 14, 0, tzinfo=timezone.utc)}):
+            code, out, err = self.quiet(confirm.main, argv, native_runner=perturbed, commit_fn=lambda: CLEAN)
+        self.assertEqual(code, 1, err)
+        bad_native = out.splitlines()[0].removeprefix("native run: ")
+        self.rejected("use=None", *self.keep_args(x, bad_native, p_y, "VRA"))  # defence in depth: not financial
+        # even with the financial fields restored by hand, the receipt is not the confirmation of these runs
+        path = self.runs / bad_native / "manifest.json"
+        doc = json.loads(path.read_text())
+        doc.update(use="financial", acceptance_sha256=json.loads((self.runs / x / "manifest.json").read_text())["acceptance_sha256"])
+        path.write_text(json.dumps(doc, sort_keys=True))
+        self.rejected("runs.", *self.keep_args(x, bad_native, p_y, "VRA2"))
+
+        # the receipt of another screening run, and a native run that is not the receipt's
+        self.rejected("runs.", *self.keep_args(x, n_x, p_y, "VRB"))
+        self.rejected("not bound", *self.keep_args(x, n_y, p_x, "VRC"))  # caught earlier by the run binding
+
+        # a stale screening run: the same spec re-run later is a different run than the one confirmed
+        stale = self.financial_run(dict(SPEC), datetime(2026, 11, 19, 12, 30, tzinfo=timezone.utc))
+        self.assertNotEqual(stale, x)
+        self.rejected("runs.screen", *self.keep_args(stale, n_x, p_x, "VRD"))
+
+        # a universe swap: a masked run M with X's strategy, market, instruments and dataset, kept
+        # with the native run and receipt of the unmasked confirmation of X
+        manifest = json.loads((self.runs / x / "manifest.json").read_text())
+        masked = dict(manifest, run_id="masked-1", config=dict(manifest["config"], universe={
+            "membership_id": "m", "identity_id": "i"}))
+        shutil.copytree(self.runs / x, self.runs / "masked-1")
+        (self.runs / "masked-1" / "manifest.json").write_text(json.dumps(masked, sort_keys=True))
+        self.rejected("runs.screen", *self.keep_args("masked-1", n_x, p_x, "VRE"))
+
+        # a plain engine-parity receipt (no kind) is refused
+        plain = json.loads((self.parity / p_x / "receipt.json").read_text())
+        plain.pop("kind")
+        plain["parity_id"] = "plain-1"
+        (self.parity / "plain-1").mkdir()
+        (self.parity / "plain-1" / "receipt.json").write_text(json.dumps(plain, sort_keys=True))
+        self.rejected("candidate-confirmation", *self.keep_args(x, n_x, "plain-1", "VRF"))
+
+        # the matching confirmation is accepted
+        code, _, err = self.log(*self.keep_args(x, n_x, p_x, "VRG"))
+        self.assertEqual(code, 0, err)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-19
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -47,9 +47,12 @@ accepted quality report: a financial screening run, `confirm`, a `keep` dry run 
 a validation receipt (the message names it), rejected for a receipt that does not cover both runs
 and for a Research skill as validator, accepted with a valid receipt from a Validation skill (a
 non-dry log into the temporary registry also works), and a `--allow-dirty` confirmation rejected
-as dirty. The test passed on its first run because Tasks 1 and 2 already existed; each rejection
-is asserted before its success, and the rejection messages are checked by text. It never touches
-the real registry (its hash is asserted unchanged).
+as dirty. A second scenario (added by the final review fix wave, red first) shows that a `keep` is
+rejected for a mismatching native run cited with a foreign passing receipt, a receipt of another
+screening run, a stale screening run, a masked run kept with an unmasked confirmation (universe
+swap) and a plain engine-parity receipt, and accepted only for the matching confirmation. Each
+rejection is asserted before its success, and the rejection messages are checked by text. It never
+touches the real registry (its hash is asserted unchanged).
 
 ## Real-data confirmations (engineering use)
 
@@ -65,8 +68,10 @@ Both passing runs ran from a clean tree (commit `cf21a36`) and the dataset manif
 stored run's. The second (a stateful strategy with a gate) shows the "stored run equals re-run"
 claim holds for more than a stateless trend.
 **Finding (stock sleeve).** The native engine stops at the first multi-name rebalance (2016-02-02)
-with `Exceeded MAX_ORDER_SUBMIT_RATE`: NautilusTrader's risk engine rejects a burst of more than its
-default submit rate, and a 409-name rebalance exceeds it. This is the native engine's limit on a
+with `Exceeded MAX_ORDER_SUBMIT_RATE`: NautilusTrader's risk engine rejects more orders per second than
+`RiskEngineConfig.max_order_submit_rate`, whose default is `100/00:00:01` (100 orders per second;
+verified in nautilus_trader 1.231.0), and the 409-name book submits several hundred orders in one
+bar, so the first multi-name rebalance exceeds it. This is the native engine's limit on a
 wide book, not a mismatch and not a tuned result; the engine and tolerances were left as they are.
 Raising the rate limit is a native-engine change with its own parity evidence, so it is a
 follow-up, not part of this task. Consequence: **the stock sleeve cannot yet be confirmed, so a
@@ -81,11 +86,20 @@ runs, and touches only the error path.
 ## Limits
 
 - Confirmation proves the two engines agree on one frozen candidate and that the stored screening
-  run reproduces. It does not validate the strategy or the data; the parity receipt still vouches
-  for the engine code, not the strategy.
+  run reproduces. It does not validate the strategy's merit or the data. After the final review fix
+  wave, `log` accepts a `keep` only when the parity receipt is the `candidate-confirmation` receipt
+  naming exactly the cited screening and NautilusTrader runs (ids and manifest hashes); the
+  receipt vouches for engine-file identity between commits and for these two runs agreeing.
+- The receipt's `bindable` means dataset-hash-bound (a dataset manifest SHA-256 was recorded and
+  re-checked). For a masked run, the membership and identity file hashes are compared only when the
+  screening run recorded them (runs made after the fix wave); older masked runs record ids only,
+  and only the membership manifest (when present) is verified for them.
+- A confirmation that disagrees writes its native run without `use` and `acceptance_sha256`, so it
+  fails the financial-run gate on its own.
 - Roles in the validation receipt are self-reported (Plan 6).
 - A real `keep` still needs an owner-accepted quality report, a validation receipt from a
   Validation skill, a clean tree and the owner's decision
   ([workflow](../workflow.md)). None exists for any real dataset.
-- A wide book (hundreds of names) hits the native order-rate limit (above).
+- A book that submits more than 100 orders in one bar (the 409-name stock book) exceeds
+  NautilusTrader's default `max_order_submit_rate` of 100 per second (above).
 - Receipts and runs are local files under the data root; they are not tracked.

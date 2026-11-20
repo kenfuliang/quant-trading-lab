@@ -218,7 +218,7 @@ class ConfirmCliTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("outside the data root", err)
 
-    def masked_root(self, with_manifest=True):
+    def masked_root(self, with_manifest=True, stored_universe=None):
         from research.data.identity import build_identity
         symbols = ("AAA", "BBB", "CCC")
         sessions = synthetic_fixture().sessions
@@ -239,7 +239,8 @@ class ConfirmCliTests(unittest.TestCase):
                 "created_utc": "2026-11-18T00:00:00Z", "source": "test", "inputs": [], "recipe": "r",
                 "rights": {}, "files": [{"path": "membership/mem1.json", "sha256": sha256_file(path)}], "notes": "n"})
         wrap, block = analysis._universe({"membership": "mem1", "identity": "idn1"}, synthetic_fixture(), self.root)
-        universe = {k: block[k] for k in ("membership_id", "identity_id")}
+        universe = {k: block[k] for k in ("membership_id", "identity_id", "membership_sha256", "identity_sha256")}
+        universe.update(stored_universe or {})
         (self.root / "manifests").mkdir(exist_ok=True)
         (self.root / "manifests" / "stock-ds.json").write_text("{}")  # presence only; the loader is injected
         datasets = {"dataset_id": "stock-ds", "manifest_sha256": "abc123", "universe_kind": "current-holdings-proxy"}
@@ -250,14 +251,17 @@ class ConfirmCliTests(unittest.TestCase):
     def test_masked_candidate_rebuilds_mask_and_verifies_hashes(self):
         run_id, loader = self.masked_root()
         manifest, _ = read_run(self.runs / run_id)
-        self.assertEqual(manifest["config"]["universe"], {"membership_id": "mem1", "identity_id": "idn1"})
+        stored = {"membership_id": "mem1", "identity_id": "idn1",
+                  "membership_sha256": sha(self.root / "membership" / "mem1.json"),
+                  "identity_sha256": sha(self.root / "identity" / "idn1.json")}
+        self.assertEqual(manifest["config"]["universe"], stored)
         code, _, err = self.run_main(run_id, loader=loader)
         self.assertEqual(code, 0, err)
         (native,) = self.native_runs()
         (receipt,) = self.receipts()
-        self.assertEqual(native["config"]["universe"], {"membership_id": "mem1", "identity_id": "idn1"})
+        self.assertEqual(native["config"]["universe"], stored)
         self.assertEqual(native["labels"], ["survivor-biased", "discovery-only"])
-        self.assertEqual(receipt["candidate"]["universe"], {"membership_id": "mem1", "identity_id": "idn1"})
+        self.assertEqual(receipt["candidate"]["universe"], stored)
         verified = receipt["universe_verified"]
         self.assertTrue(verified["membership_manifest_verified"])
         self.assertEqual(verified["membership_sha256"], sha(self.root / "membership" / "mem1.json"))
@@ -273,6 +277,41 @@ class ConfirmCliTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("error:", err)
         self.assertEqual(self.receipts(), [])
+
+    def test_masked_candidate_refused_when_stored_universe_hash_differs(self):
+        for key in ("membership_sha256", "identity_sha256"):
+            with self.subTest(key=key):
+                self.setUp()  # a fresh root per variant
+                run_id, loader = self.masked_root(stored_universe={key: "0" * 64})
+                code, _, err = self.run_main(run_id, loader=loader)
+                self.assertEqual(code, 1)
+                self.assertIn(key, err)
+                self.assertEqual(self.receipts(), [])
+
+    def test_masked_candidate_from_a_run_without_stored_hashes_still_confirms(self):
+        run_id, loader = self.masked_root()
+        path = self.runs / run_id / "manifest.json"
+        manifest = json.loads(path.read_text())
+        self.assertIn("membership_sha256", manifest["config"]["universe"])
+        legacy_universe = {"membership_id": "mem1", "identity_id": "idn1"}
+        legacy_run = self.screen(synthetic_fixture(), manifest["datasets"], wrap=analysis._universe(
+            {"membership": "mem1", "identity": "idn1"}, synthetic_fixture(), self.root)[0], universe=legacy_universe,
+            base_extra=None)
+        legacy_run_manifest = read_run(self.runs / legacy_run)[0]
+        self.assertEqual(legacy_run_manifest["config"]["universe"], legacy_universe)
+        code, _, err = self.run_main(legacy_run, loader=loader)
+        self.assertEqual(code, 0, err)
+
+    def test_identity_built_for_another_membership_is_a_clean_refusal(self):
+        run_id, loader = self.masked_root()
+        path = self.root / "identity" / "idn1.json"
+        doc = json.loads(path.read_text())
+        doc["inputs"] = {**(doc.get("inputs") or {}), "membership_id": "other"}
+        path.write_text(json.dumps(doc))
+        code, _, err = self.run_main(run_id, loader=loader)
+        self.assertEqual(code, 1)
+        self.assertIn("error:", err)
+        self.assertIn("other", err)
 
     def test_masked_candidate_refused_when_membership_absent(self):
         run_id, loader = self.masked_root()
@@ -315,6 +354,35 @@ class ConfirmCliTests(unittest.TestCase):
         self.assertIn("mismatch", out + err)
         self.assertEqual(len(self.native_runs()), 1)  # evidence kept, never overwritten
         self.assertEqual(receipt["run_id"], self.native_runs()[0]["run_id"])
+
+    def test_mismatch_native_run_is_written_without_financial_fields(self):
+        run_id, _, _ = self.financial_root()
+
+        def perturbed(data, target_fn, market):
+            result = run_screen(data, target_fn, market)
+            fills = result.fills.copy()
+            fills.loc[0, "price"] += 0.05
+            return dataclasses.replace(result, engine="nautilus", fills=fills)
+
+        code, _, err = self.run_main(run_id, native_runner=perturbed)
+        self.assertEqual(code, 1, err)
+        (native,) = self.native_runs()
+        for key in ("use", "acceptance_sha256"):
+            self.assertNotIn(key, native)
+        from research.control import run_refs
+        with self.assertRaisesRegex(Exception, "not a financial-use run"):
+            run_refs.require_financial_run(native)
+        (receipt,) = self.receipts()
+        self.assertEqual(receipt["status"], "mismatch")
+
+    def test_programming_errors_are_not_swallowed(self):
+        run_id = self.fixture_run()
+        for error in (KeyError("x"), TypeError("bad"), AttributeError("nope")):
+            def broken(data, target_fn, market, error=error):
+                raise error
+            with self.subTest(error=type(error).__name__), self.assertRaises(type(error)):
+                self.run_main(run_id, native_runner=broken)
+        self.assertEqual(self.receipts(), [])
 
     def test_no_registry_ledger_or_acceptance_written(self):
         before = {p: p.read_bytes() for p in Path(analysis.ROOT, "research/registry").rglob("*") if p.is_file()}

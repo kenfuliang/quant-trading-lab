@@ -290,8 +290,13 @@ class CliTests(unittest.TestCase):
         return self.write_json(self.runs / run_id / "manifest.json", doc)
 
     def make_parity(self, parity_id="P1", **fields):
-        doc = {"parity_id": parity_id, "status": "passed", "passed": True, "mismatch_count": 0,
-               "code_commit": "b" * 40, "runs": {"nautilus": {"run_id": "N1"}}, **fields}
+        def manifest_sha(run_id):
+            path = self.runs / run_id / "manifest.json"
+            return hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else "0" * 64
+        doc = {"parity_id": parity_id, "kind": "candidate-confirmation", "status": "passed", "passed": True,
+               "mismatch_count": 0, "code_commit": "b" * 40, "stored_screen_identical": True, "bindable": True,
+               "runs": {"screen": {"run_id": "R1", "manifest_sha256": manifest_sha("R1")},
+                        "nautilus": {"run_id": "N1", "manifest_sha256": manifest_sha("N1")}}, **fields}
         return self.write_json(self.parity / parity_id / "receipt.json", doc)
 
     def make_validation(self, receipt_id="VR1", **fields):
@@ -416,11 +421,21 @@ class CliTests(unittest.TestCase):
                 self.assertIn("parity receipt P1", err)
         self.assertFalse(self.registry.exists())
 
-    def test_log_accepts_candidate_run_that_differs_from_the_parity_run(self):
+    def test_log_rejects_a_parity_receipt_that_is_not_the_confirmation_of_the_cited_runs(self):
         self.setup_keep()
-        self.make_parity(runs={"nautilus": {"run_id": "SOME-OTHER-RUN"}})
-        code, _, err = self.run_cli(*self.keep_args())
-        self.assertEqual(code, 0, err)
+        good = json.loads((self.parity / "P1" / "receipt.json").read_text())
+        cases = {"runs.nautilus": {"runs": {**good["runs"], "nautilus": {"run_id": "SOME-OTHER-RUN",
+                                                                         "manifest_sha256": "d" * 64}}},
+                 "runs.screen": {"runs": {**good["runs"], "screen": {"run_id": "R0", "manifest_sha256": "d" * 64}}},
+                 "candidate-confirmation": {"kind": None},
+                 "stored_screen_identical": {"stored_screen_identical": False},
+                 "not bindable": {"bindable": False}}
+        for text, fields in cases.items():
+            with self.subTest(text):
+                self.make_parity(**fields)
+                self.keep_refused(text)
+        self.make_parity()
+        self.assertEqual(self.run_cli(*self.keep_args())[0], 0)
 
     def test_log_rejects_when_engine_files_changed_between_commits(self):
         self.setup_keep()

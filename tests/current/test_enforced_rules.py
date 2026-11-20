@@ -125,9 +125,13 @@ class EnforcedRulesScenario(unittest.TestCase):
         self.write_json(self.runs / "N1" / "manifest.json", bound)
         keep += ("--nautilus-run-id", "N1")
         self.rejected("parity_receipt_id", *keep)
-        self.write_json(self.parity / "P1" / "receipt.json", {
-            "parity_id": "P1", "status": "passed", "passed": True, "mismatch_count": 0, "code_commit": "b" * 40,
-            "run_id": "N1"})
+        confirmation = {
+            "parity_id": "P1", "kind": "candidate-confirmation", "status": "passed", "passed": True,
+            "mismatch_count": 0, "code_commit": "b" * 40, "run_id": "N1", "stored_screen_identical": True,
+            "bindable": True, "runs": {
+                "screen": {"run_id": self.run_id, "manifest_sha256": sha(self.runs / self.run_id / "manifest.json")},
+                "nautilus": {"run_id": "N1", "manifest_sha256": sha(self.runs / "N1" / "manifest.json")}}}
+        self.write_json(self.parity / "P1" / "receipt.json", confirmation)
         keep += ("--parity-receipt", "P1")
         self.rejected("validation_receipt", *keep)
         keep += ("--validation-receipt", "VR1")
@@ -157,6 +161,15 @@ class EnforcedRulesScenario(unittest.TestCase):
             **bound, "config": {**bound["config"], "strategy": {"kind": "other"}}})
         self.rejected("not bound", *keep)
         self.write_json(self.runs / "N1" / "manifest.json", bound)
+        # a plain engine-parity receipt (no kind) and a confirmation of other runs are not enough
+        self.write_json(self.parity / "P1" / "receipt.json",
+                        {k: v for k, v in confirmation.items() if k not in ("kind", "runs")})
+        self.rejected("candidate-confirmation", *keep)
+        stale = {**confirmation, "runs": {**confirmation["runs"], "screen": {
+            "run_id": "OLD", "manifest_sha256": "0" * 64}}}
+        self.write_json(self.parity / "P1" / "receipt.json", stale)
+        self.rejected("runs.screen", *keep)
+        self.write_json(self.parity / "P1" / "receipt.json", confirmation)
         self.assertEqual(self.log(*keep)[0], 0)
         refs = reg.load(self.registry)[1]["refs"]
         self.assertEqual(refs["validation_receipt_sha256"], sha(self.receipts / "VR1.json"))
