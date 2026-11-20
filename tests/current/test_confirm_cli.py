@@ -339,6 +339,20 @@ class ConfirmCliTests(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertIn("blocked: data absent", err)
 
+    def test_native_engine_failure_is_a_refusal_not_a_traceback(self):
+        from research.evaluation.engine_contract import EngineError
+
+        def failing(data, target_fn, market):
+            raise EngineError("order O-1 not accepted: Exceeded MAX_ORDER_SUBMIT_RATE")
+
+        run_id = self.fixture_run()
+        code, _, err = self.run_main(run_id, native_runner=failing)
+        self.assertEqual(code, 1)
+        self.assertIn("error:", err)
+        self.assertIn("MAX_ORDER_SUBMIT_RATE", err)
+        self.assertEqual(self.receipts(), [])
+        self.assertEqual(len(list(self.runs.iterdir())), 1)  # no native run written
+
 
 if __name__ == "__main__":
     unittest.main()

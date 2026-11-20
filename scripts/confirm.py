@@ -36,6 +36,7 @@ from research.evaluation.acceptance import AcceptanceError  # noqa: E402
 from research.evaluation.confirm import (  # noqa: E402
     ConfirmError, build_receipt, candidate_from_manifest, confirm, native_manifest)
 from research.evaluation.datasets import DatasetBlocked, load_dataset  # noqa: E402
+from research.evaluation.engine_contract import EngineError  # noqa: E402
 from research.evaluation.market_model import MarketDataError  # noqa: E402
 from research.evaluation.native_engine import run_native  # noqa: E402
 from research.evaluation.run_output import COLUMNS, RunOutputError, new_run_id, read_run, write_run  # noqa: E402
@@ -168,7 +169,7 @@ def main(argv=None, loader=load_dataset, native_runner=run_native, commit_fn=ana
     except DataAbsent as error:
         print(error, file=sys.stderr)
         return 2
-    except (ConfirmError, DatasetBlocked, AcceptanceError, ManifestError, MarketDataError, RunOutputError,
+    except (ConfirmError, DatasetBlocked, AcceptanceError, ManifestError, MarketDataError, RunOutputError, EngineError,
             OSError, ValueError, KeyError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 1
