@@ -1363,6 +1363,7 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/2026-11-18-offline-infra-plan7-portfolio-plan.md](../docs/tasks/2026-11-18-offline-infra-plan7-portfolio-plan.md)
 - [docs/tasks/2026-11-18-portfolio.md](../docs/tasks/2026-11-18-portfolio.md)
 - [docs/tasks/2026-11-18-stock-layer.md](../docs/tasks/2026-11-18-stock-layer.md)
+- [docs/tasks/2026-11-19-dashboard-reuse-review.md](../docs/tasks/2026-11-19-dashboard-reuse-review.md)
 - [docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json](../docs/tasks/evidence/2026-10-25-alpaca-paper-integration.json)
 - [docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json](../docs/tasks/evidence/2026-10-25-alpaca-us-stock-pilot.json)
 - [docs/tasks/evidence/2026-10-25-existing-risk-gates.json](../docs/tasks/evidence/2026-10-25-existing-risk-gates.json)
