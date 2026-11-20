@@ -1,0 +1,115 @@
+{
+  "acceptance_written": false,
+  "code_commit_runs_1_2": "cf21a36a2d2d5c29c4060d2ef04914e12ed7f400",
+  "confirmations": [
+    {
+      "accepted": false,
+      "bindable": true,
+      "code_commit": "cf21a36a2d2d5c29c4060d2ef04914e12ed7f400",
+      "dataset_id": "sector-etfs-2016-2025-n1",
+      "dataset_manifest_sha256": "ddfa944c3ff09ea117cebe04e61d746fc3a22cefdda6d7a90c954063bbaefced",
+      "instruments": [
+        "SPY",
+        "XLB",
+        "XLE",
+        "XLF",
+        "XLI",
+        "XLK",
+        "XLP",
+        "XLRE",
+        "XLU",
+        "XLV",
+        "XLY"
+      ],
+      "label": "etf_sleeve_sma_trend",
+      "market": {
+        "commission_usd": 1,
+        "cost_bps": 5,
+        "initial_cash": 100000.0
+      },
+      "mismatch_count": 0,
+      "native_manifest_sha256": "7b9fbc68a85e59178f533f655283f29dd75eead8ff70393352b280c5c7599198",
+      "native_run_id": "20261120T065117Z-bc294994",
+      "parity_id": "20261120T065117Z-604c9050",
+      "parity_receipt_rel": "parity/20261120T065117Z-604c9050/receipt.json",
+      "quality_status": "pass-with-exceptions",
+      "screen_manifest_sha256": "0c1ffbe6a5a09acf71f0d3f7d071e816045eaacad6df825b7e757c26d4e4d2bc",
+      "screen_run_id": "20261119T074013Z-badfe854",
+      "sessions": 2514,
+      "status": "passed",
+      "stored_screen_identical": true,
+      "strategy": {
+        "gross": 0.95,
+        "name": "sma_trend",
+        "window": 20
+      },
+      "timing_seconds": {
+        "native_seconds": 13.6,
+        "screening_seconds": 2.16
+      }
+    },
+    {
+      "accepted": false,
+      "bindable": true,
+      "code_commit": "cf21a36a2d2d5c29c4060d2ef04914e12ed7f400",
+      "dataset_id": "sector-etfs-2016-2025-n1",
+      "dataset_manifest_sha256": "ddfa944c3ff09ea117cebe04e61d746fc3a22cefdda6d7a90c954063bbaefced",
+      "instruments": [
+        "SPY"
+      ],
+      "label": "incumbent_costs_rung_traffic_light",
+      "market": {
+        "commission_usd": 1,
+        "cost_bps": 5,
+        "initial_cash": 100000.0
+      },
+      "mismatch_count": 0,
+      "native_manifest_sha256": "05c4b9cb6431ed42c7da1ef99b5d928a2bba68a6632e0f30206f841af7a63fff",
+      "native_run_id": "20261120T065125Z-1bf6cadf",
+      "parity_id": "20261120T065125Z-07246157",
+      "parity_receipt_rel": "parity/20261120T065125Z-07246157/receipt.json",
+      "quality_status": "pass-with-exceptions",
+      "screen_manifest_sha256": "c6d5158244091520f2508c9e55e443b16c8b39ba71ee12cfda017b781d4602d6",
+      "screen_run_id": "20261118T213357Z-ea1330dc",
+      "sessions": 2514,
+      "status": "passed",
+      "stored_screen_identical": true,
+      "strategy": {
+        "caps": {
+          "green": 1.0,
+          "red": 0.0,
+          "yellow": 0.5
+        },
+        "fast": 50,
+        "gross": 0.99,
+        "name": "traffic_light",
+        "proposal": "ema",
+        "recover_green_vol": 0.2,
+        "recover_red_vol": 0.35,
+        "recover_sessions": 5,
+        "red_vol": 0.4,
+        "slow": 200,
+        "vol_window": 20,
+        "yellow_vol": 0.25
+      },
+      "timing_seconds": {
+        "native_seconds": 0.48,
+        "screening_seconds": 0.29
+      }
+    },
+    {
+      "exit_code": 1,
+      "instruments": 409,
+      "label": "stock_sleeve_sma_trend",
+      "message": "error: order O-20160202-143000-001-000-101 not accepted: Exceeded MAX_ORDER_SUBMIT_RATE",
+      "native_run_written": false,
+      "note": "NautilusTrader's default order submit rate limit is exceeded by the first multi-name rebalance on 2016-02-02. Not tuned. Before the CLI fix commit the same error escaped as a traceback.",
+      "receipt_written": false,
+      "screen_run_id": "20261119T074024Z-2579c05f",
+      "status": "refused (native engine error)"
+    }
+  ],
+  "registry_written": false,
+  "schema_note": "Summary of real-data candidate confirmations; run ids, receipt ids, statuses, timings, no prices. Paths are relative to the data root (the QTL data root). Engineering use: the datasets have no owner-accepted quality report, so none of these receipts can back a keep.",
+  "use": "engineering"
+}

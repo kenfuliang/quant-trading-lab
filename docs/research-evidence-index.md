@@ -1479,3 +1479,4 @@ Discovered task/receipt files not assigned to a study above. Their presence is n
 - [docs/tasks/evidence/2026-11-18-incumbent-rebuild.json](../docs/tasks/evidence/2026-11-18-incumbent-rebuild.json)
 - [docs/tasks/evidence/2026-11-18-portfolio.json](../docs/tasks/evidence/2026-11-18-portfolio.json)
 - [docs/tasks/evidence/2026-11-18-stock-layer.json](../docs/tasks/evidence/2026-11-18-stock-layer.json)
+- [docs/tasks/evidence/2026-11-19-candidate-confirmation.json](../docs/tasks/evidence/2026-11-19-candidate-confirmation.json)

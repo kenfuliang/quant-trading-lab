@@ -228,8 +228,8 @@ flowchart LR
 
 Confirmation limits: it proves the screening and NautilusTrader engines agree on one frozen
 candidate (and that the stored screening run reproduces); it does not validate the strategy, and
-the parity receipt still vouches for the engine code, not for the strategy. Strategies the native
-engine does not support are refused, and a stock-sized run takes minutes.
+the parity receipt still vouches for the engine code, not for the strategy. A 409-name stock book currently stops in the
+native engine (order submit rate limit), so only narrower candidates can be confirmed today.
 
 ## Combining run outputs
 

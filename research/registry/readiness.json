@@ -1,6 +1,6 @@
 {
   "schema": "readiness/v1",
-  "assessed": "2026-11-18",
+  "assessed": "2026-11-19",
   "aspects": [
     {
       "id": "D1",
@@ -108,17 +108,20 @@
       "id": "R1",
       "area": "Research and evaluation",
       "aspect": "Backtest engines",
-      "score": 3.5,
+      "score": 4,
       "importance": "H",
-      "critique": "Screen and NautilusTrader engines agree on the CI fixture and on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches); code shared by both engines is not covered by parity; one run",
-      "next_action": "Repeat on a wider instrument set; test shared-code rules independently",
+      "critique": "Screen and NautilusTrader engines agree on the CI fixture, on the frozen sector-ETF dataset (4 instruments, 2,514 sessions, 0 mismatches) and, through the candidate confirmation command, on an 11-instrument ETF sma_trend run and the stateful traffic-light incumbent (0 mismatches each, stored runs reproduce exactly); the native engine cannot yet run a 409-name book (order submit rate limit stops the first rebalance); code shared by both engines is not covered by parity",
+      "next_action": "Handle the native order-rate limit on wide books with its own parity evidence; test shared-code rules independently",
       "roadmap_step": 3,
       "evidence": [
         "research/evaluation/parity.py",
         "tests/current/test_engine_parity.py",
         "tests/current/test_engine_parity_cli.py",
         "scripts/current/engine_parity.py",
-        "docs/tasks/2026-11-17-engine-parity.md"
+        "docs/tasks/2026-11-17-engine-parity.md",
+        "research/evaluation/confirm.py",
+        "scripts/confirm.py",
+        "docs/tasks/2026-11-19-candidate-confirmation.md"
       ],
       "gates": [
         "G3.2"
@@ -279,17 +282,19 @@
       "id": "R11",
       "area": "Research and evaluation",
       "aspect": "Reproducibility and lineage",
-      "score": 4,
+      "score": 4.5,
       "importance": "H",
-      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads it and re-verifies the quality gate), and keep records a financial nautilus run bound to the candidate, the parity receipt and tracked validation receipt hashes; but no completed record has used these links yet (the 110 existing records are exempt imports) and no command yet produces a candidate nautilus run",
-      "next_action": "Log the first completed record with run hashes; add a candidate confirmation command",
+      "critique": "Hash-chained registry, receipts, run-output/v1 with hashes; new completed records must now carry the run manifest hash (log time reads it and re-verifies the quality gate), and keep records a financial nautilus run bound to the candidate, the parity receipt and tracked validation receipt hashes; the candidate confirmation command now produces the nautilus run and receipt, and the whole keep path is tested end to end in temporary roots; but no completed record has used these links for real (the 110 existing records are exempt imports) and no real dataset has an owner-accepted quality report",
+      "next_action": "Owner acceptance of a quality report, then log the first completed record with run hashes",
       "roadmap_step": 6,
       "evidence": [
         "research/control/experiment_receipts.py",
         "research/evaluation/run_output.py",
         "research/registry/experiments.jsonl",
         "research/control/run_refs.py",
-        "tests/current/test_enforced_rules.py"
+        "tests/current/test_enforced_rules.py",
+        "tests/current/test_keep_path.py",
+        "scripts/confirm.py"
       ],
       "gates": []
     },

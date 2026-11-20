@@ -9,7 +9,7 @@
     "studies": 54,
     "published_plans": 52,
     "unowned_plans": 0,
-    "supporting_records_unassigned": 238
+    "supporting_records_unassigned": 239
   },
   "studies": [
     {
@@ -2622,6 +2622,7 @@
     "docs/tasks/evidence/2026-11-18-enforced-rules.json",
     "docs/tasks/evidence/2026-11-18-incumbent-rebuild.json",
     "docs/tasks/evidence/2026-11-18-portfolio.json",
-    "docs/tasks/evidence/2026-11-18-stock-layer.json"
+    "docs/tasks/evidence/2026-11-18-stock-layer.json",
+    "docs/tasks/evidence/2026-11-19-candidate-confirmation.json"
   ]
 }
