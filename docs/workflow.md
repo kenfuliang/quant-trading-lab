@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-18
+updated: 2026-11-19
 owner: project-maintainers
 ---
 
@@ -191,9 +191,45 @@ Limits, stated plainly:
 - The registry is an append-only local file with a hash chain. A self-consistent
   hand-forged chain (runs, receipts and records all written by hand) is outside what such a
   file can prevent; the rules stop mistakes and shortcuts, not a determined forger.
-- No `keep` can be logged in practice yet: no command produces a candidate's NautilusTrader
-  run. Parity runs are engineering runs and are now rejected as the nautilus run (see the
-  [design](tasks/2026-11-17-offline-research-infra-design.md#three-rules)).
+- A real `keep` still needs four things this repository cannot supply by itself: an
+  **owner-accepted quality report** for the dataset (`scripts/data.py accept`; none is
+  recorded for any real dataset), a **validation receipt** written by a Validation-role
+  skill (`scripts/validation.py create`, committed first), a **clean working tree** (a
+  `+dirty` confirmation is rejected), and **the owner's decision** to log it. The produce-the-refs
+  path itself exists and is exercised end to end in temporary roots
+  (`tests/current/test_keep_path.py`); no `keep` has been logged to the real registry.
+
+### Producing the rule 3 refs
+
+```mermaid
+flowchart LR
+    A["scripts/analysis.py run<br/>spec with use: financial<br/>(accepted quality report)"] --> S["screening run (screen)"]
+    S --> C["scripts/confirm.py --run-id S<br/>clean tree"]
+    C --> N["NautilusTrader run<br/>(parent = S)"]
+    C --> P["parity receipt<br/>kind candidate-confirmation"]
+    S --> V["scripts/validation.py create<br/>Validation skill, run ids S and N,<br/>parity id; commit it"]
+    N --> V
+    P --> V
+    V --> K["scripts/experiments.py log<br/>--disposition keep --run-id S<br/>--nautilus-run-id N --parity-receipt P<br/>--validation-receipt V"]
+```
+
+1. Run the spec with `use: financial` (`scripts/analysis.py run`); this refuses until the
+   owner has accepted the quality report. Note the screening run id.
+2. From a clean tree, `scripts/confirm.py --run-id <screening run>`. It reloads the same
+   dataset (manifest hash must match), re-runs the screening engine (it must reproduce the
+   stored run exactly), runs NautilusTrader on the same frozen candidate, compares, and
+   writes the NautilusTrader run and a `parity-receipt/v1` with `kind:
+   "candidate-confirmation"`. Exit 0 only for a pass; a mismatch or a refusal is a finding,
+   and nothing is tuned. `--allow-dirty` is engineering only and its receipt cannot back a `keep`.
+3. A Validation-role skill writes the validation receipt (`scripts/validation.py create`
+   with both run ids and the parity id) and it is committed.
+4. `scripts/experiments.py log --disposition keep --run-id ... --nautilus-run-id ...
+   --parity-receipt ... --validation-receipt ...` (try `--dry-run` first).
+
+Confirmation limits: it proves the screening and NautilusTrader engines agree on one frozen
+candidate (and that the stored screening run reproduces); it does not validate the strategy, and
+the parity receipt still vouches for the engine code, not for the strategy. Strategies the native
+engine does not support are refused, and a stock-sized run takes minutes.
 
 ## Combining run outputs
 
