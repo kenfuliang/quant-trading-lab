@@ -194,6 +194,8 @@ def verify_run_refs(record, args):
     run_refs.require_nautilus_run(nautilus, candidate=run)
     reverify_quality_gate(nautilus, runs.parent)
     run_refs.require_passed_parity(receipt)
+    run_refs.require_confirmation(receipt, refs["run_id"], refs["run_manifest_sha256"],
+                                  refs["nautilus_run_id"], refs["nautilus_run_manifest_sha256"])
     changed = engine_files_changed(run_git, receipt["code_commit"], nautilus.get("code_commit") or "")
     if changed:
         raise RegistryError("engine files changed between the parity receipt commit and the run commit: "

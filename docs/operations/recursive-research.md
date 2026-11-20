@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-10-31
+updated: 2026-11-20
 owner: research-maintainers
 ---
 
@@ -119,8 +119,10 @@ cycle. Consultation does not launch agents.
 Before a `keep` disposition, a Validation skill (`trade-leakage-audit`,
 `trade-robust-evaluation` or `trade-promotion-review`, never one of the cycle's own
 Research skills) records a [validation receipt](../skills.md#validation-receipts-and-promotion)
-with `scripts/validation.py create`; the registry record cites it. Roles are recorded
-and separated, not proven independent.
+with `scripts/validation.py create`; the registry record cites it. The parity receipt the
+record cites comes from `scripts/confirm.py`, and the validator checks that it is the
+candidate-confirmation receipt for exactly the two cited runs (screening and NautilusTrader).
+Roles are recorded and separated, not proven independent.
 
 Before closing a new cycle, validate its receipt using the
 [GRS receipt contract](../research-standard.md#experiment-receipt-contract).

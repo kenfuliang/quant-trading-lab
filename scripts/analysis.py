@@ -212,7 +212,8 @@ def run_spec(spec: dict, root: Path, registry_path: Path = REGISTRY, now: dateti
         base.update(use="financial", acceptance_sha256=gate["acceptance_sha256"])
     steps = run_ladder(data, rungs, root / "runs", base, now,
                        wrap=wrap, universe=None if universe is None else
-                       {k: universe[k] for k in ("membership_id", "identity_id")})
+                       {k: universe[k] for k in ("membership_id", "identity_id", "membership_sha256",
+                                                 "identity_sha256")})
     last, last_spec = rungs[-1], rungs[-1].strategy
     _, tables = read_run(root / "runs" / steps[-1]["run_id"])
     net = tables["returns"]["net_return"].to_numpy(dtype=float)

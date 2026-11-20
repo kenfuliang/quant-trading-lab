@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-18
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -176,24 +176,72 @@ Where each is enforced:
 | --- | --- | --- |
 | 1 financial gate | `scripts/analysis.py run` refuses before writing anything | not checked (local data is absent in CI) |
 | 2 run output | manifest exists, SHA-256 matches, `use: financial`, quality gate re-verified from the report and acceptance on disk | record shape: `run_id` and hash present |
-| 3 promotion | nautilus run financial and bound to the candidate (dataset hash, strategy, market, instruments), parity receipt clean and passing, engine files unchanged between full-SHA commits, validation receipt valid, tracked by git and naming the same parity receipt | record shape (never `imported`, `failed` or `abandoned`), plus the tracked validation receipt (hash, allowed validator, `pass`, a passing check, run ids, parity receipt id) |
+| 3 promotion | nautilus run financial and bound to the candidate (dataset hash, strategy, market, instruments), parity receipt clean and passing **and the `candidate-confirmation` receipt for exactly the cited screening and NautilusTrader runs** (run ids and manifest hashes, stored screening run reproduced, dataset-hash-bound), engine files unchanged between full-SHA commits, validation receipt valid, tracked by git and naming the same parity receipt | record shape (never `imported`, `failed` or `abandoned`), plus the tracked validation receipt (hash, allowed validator, `pass`, a passing check, run ids, parity receipt id) |
 
 The 110 records logged before these rules (`imported`) are exempt and validate unchanged;
 none of them is a `keep`.
 
 Limits, stated plainly:
 
-- A parity receipt vouches for the **engine code** (engine-file identity between commits),
-  not for the candidate strategy.
+- A confirmation receipt vouches for two things: **engine-file identity** between the
+  receipt commit and the run commit, and that **these two runs agree** (the screening run
+  reproduced from its stored tables, then matched by the NautilusTrader run). It does not
+  validate the strategy's merit or the data. A plain `engine_parity` receipt (no `kind`)
+  cannot back a `keep`.
 - Roles in a validation receipt are **self-reported**. The tool enforces separation of
   recorded roles, not the independence of the model or session that produced the work.
 - Acceptance is bound to a report hash, not to what the owner understood when accepting.
 - The registry is an append-only local file with a hash chain. A self-consistent
   hand-forged chain (runs, receipts and records all written by hand) is outside what such a
   file can prevent; the rules stop mistakes and shortcuts, not a determined forger.
-- No `keep` can be logged in practice yet: no command produces a candidate's NautilusTrader
-  run. Parity runs are engineering runs and are now rejected as the nautilus run (see the
-  [design](tasks/2026-11-17-offline-research-infra-design.md#three-rules)).
+- A real `keep` still needs four things this repository cannot supply by itself: an
+  **owner-accepted quality report** for the dataset (`scripts/data.py accept`; none is
+  recorded for any real dataset), a **validation receipt** written by a Validation-role
+  skill (`scripts/validation.py create`, committed first), a **clean working tree** (a
+  `+dirty` confirmation is rejected), and **the owner's decision** to log it. The produce-the-refs
+  path itself exists and is exercised end to end in temporary roots
+  (`tests/current/test_keep_path.py`); no `keep` has been logged to the real registry.
+
+### Producing the rule 3 refs
+
+```mermaid
+flowchart LR
+    A["scripts/analysis.py run<br/>spec with use: financial<br/>(accepted quality report)"] --> S["screening run (screen)"]
+    S --> C["scripts/confirm.py --run-id S<br/>clean tree"]
+    C --> N["NautilusTrader run<br/>(parent = S)"]
+    C --> P["parity receipt<br/>kind candidate-confirmation"]
+    S --> V["scripts/validation.py create<br/>Validation skill, run ids S and N,<br/>parity id; commit it"]
+    N --> V
+    P --> V
+    V --> K["scripts/experiments.py log<br/>--disposition keep --run-id S<br/>--nautilus-run-id N --parity-receipt P<br/>--validation-receipt V"]
+```
+
+1. Run the spec with `use: financial` (`scripts/analysis.py run`); this refuses until the
+   owner has accepted the quality report. Note the screening run id.
+2. From a clean tree, `scripts/confirm.py --run-id <screening run>`. It reloads the same
+   dataset (manifest hash must match), re-runs the screening engine (it must reproduce the
+   stored run exactly), runs NautilusTrader on the same frozen candidate, compares, and
+   writes the NautilusTrader run and a `parity-receipt/v1` with `kind:
+   "candidate-confirmation"`. Exit 0 only for a pass; a mismatch or a refusal is a finding,
+   and nothing is tuned. `--allow-dirty` is engineering only and its receipt cannot back a `keep`.
+3. A Validation-role skill writes the validation receipt (`scripts/validation.py create`
+   with both run ids and the parity id) and it is committed.
+4. `scripts/experiments.py log --disposition keep --run-id ... --nautilus-run-id ...
+   --parity-receipt ... --validation-receipt ...` (try `--dry-run` first).
+
+Confirmation limits: it proves the screening and NautilusTrader engines agree on one frozen
+candidate (and that the stored screening run reproduces); it does not validate the strategy's
+merit or the data. `log` accepts a `keep` only when the parity receipt is the
+`candidate-confirmation` receipt whose `runs.screen` and `runs.nautilus` are exactly the cited
+run ids and manifest hashes. The receipt's `bindable` flag means **dataset-hash-bound**: the
+screening run records a dataset manifest SHA-256, which was re-checked against the data on disk.
+For a masked run the stored `membership_sha256` and `identity_sha256` (recorded by runs made
+from this change on) are compared with the files on disk; older masked runs record only the ids,
+so only the membership manifest (when present) is verified for them. The native sleeve limit: the
+409-name stock book submits several hundred orders in one bar, above NautilusTrader's default
+`RiskEngineConfig.max_order_submit_rate` of 100 orders per second (`100/00:00:01`, verified in
+nautilus_trader 1.231.0), so it stops at the first multi-name rebalance; only narrower candidates
+(fewer orders per bar) can be confirmed today.
 
 ## Combining run outputs
 
