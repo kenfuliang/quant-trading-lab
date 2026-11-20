@@ -90,6 +90,31 @@ class ReaderTests(unittest.TestCase):
             with self.subTest(receipt=receipt), self.assertRaises(RegistryError):
                 run_refs.require_passed_parity(receipt)
 
+    def test_confirmation_must_name_exactly_the_cited_runs(self):
+        good = {"parity_id": "P1", "kind": "candidate-confirmation", "stored_screen_identical": True,
+                "bindable": True, "runs": {"screen": {"run_id": "S1", "manifest_sha256": "a" * 64},
+                                           "nautilus": {"run_id": "N1", "manifest_sha256": "b" * 64}}}
+        cited = ("S1", "a" * 64, "N1", "b" * 64)
+        run_refs.require_confirmation(good, *cited)
+        runs = good["runs"]
+        bad = {
+            "kind": {**good, "kind": None},
+            "foreign native run": {**good, "runs": {**runs, "nautilus": {"run_id": "N9", "manifest_sha256": "b" * 64}}},
+            "native sha": {**good, "runs": {**runs, "nautilus": {"run_id": "N1", "manifest_sha256": "c" * 64}}},
+            "stale screen run": {**good, "runs": {**runs, "screen": {"run_id": "S0", "manifest_sha256": "a" * 64}}},
+            "screen sha": {**good, "runs": {**runs, "screen": {"run_id": "S1", "manifest_sha256": "d" * 64}}},
+            "no runs": {k: v for k, v in good.items() if k != "runs"},
+            "not identical": {**good, "stored_screen_identical": False},
+            "not bindable": {**good, "bindable": False},
+        }
+        for label, receipt in bad.items():
+            with self.subTest(label), self.assertRaises(RegistryError):
+                run_refs.require_confirmation(receipt, *cited)
+        with self.assertRaisesRegex(RegistryError, "runs.nautilus"):
+            run_refs.require_confirmation(bad["foreign native run"], *cited)
+        with self.assertRaisesRegex(RegistryError, "candidate-confirmation"):
+            run_refs.require_confirmation(bad["kind"], *cited)
+
 
 if __name__ == "__main__":
     unittest.main()

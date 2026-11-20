@@ -52,7 +52,7 @@ Authority is `authoritative` for the source of truth and `view` for a derived re
 
 | Name | Schema id | Location | Authority | Status | Producer | Consumers | Retention |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Engine parity receipt | `parity-receipt/v1` | local | authoritative | implemented | scripts/current/engine_parity.py run (make parity-local) | docs/tasks/2026-11-17-engine-parity.md evidence | local, shared data root under parity/ |
+| Engine parity receipt | `parity-receipt/v1` | local | authoritative | implemented | scripts/current/engine_parity.py run (make parity-local); scripts/confirm.py (candidate confirmation) | docs/tasks/2026-11-17-engine-parity.md evidence, scripts/experiments.py log (keep: --parity-receipt) | local, shared data root under parity/ |
 
 ## diagnose
 

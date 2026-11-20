@@ -134,8 +134,8 @@ def require_nautilus_run(manifest, candidate=None):
 
 
 def require_passed_parity(receipt):
-    """Rule 3: a clean, passing parity receipt. It vouches for the engine code (checked by
-    commit identity at log time), not for the candidate run, so no run-id equality."""
+    """Rule 3: a clean, passing parity receipt. This checks the receipt itself; that it is the
+    confirmation of the two cited runs is `require_confirmation`'s job."""
     pid = receipt.get("parity_id")
     if receipt.get("status") != "passed" or receipt.get("passed") is not True:
         raise RegistryError(f"parity receipt {pid} did not pass (status {receipt.get('status')!r})")
@@ -144,3 +144,24 @@ def require_passed_parity(receipt):
     commit = receipt.get("code_commit")
     if not isinstance(commit, str) or not commit or "+dirty" in commit:
         raise RegistryError(f"parity receipt {pid} code_commit {commit!r} is dirty or missing")
+
+
+def require_confirmation(receipt, run_id, run_sha, nautilus_id, nautilus_sha):
+    """Rule 3: the parity receipt is the candidate-confirmation receipt for exactly the two cited
+    runs (screening `run_id`/`run_sha`, NautilusTrader `nautilus_id`/`nautilus_sha`), so it vouches
+    for the engine code and for these two runs agreeing. A plain engine-parity receipt is refused."""
+    pid = receipt.get("parity_id")
+    if receipt.get("kind") != "candidate-confirmation":
+        raise RegistryError(f"parity receipt {pid} kind is {receipt.get('kind')!r}, a keep needs a "
+                            "candidate-confirmation receipt (scripts/confirm.py)")
+    runs = receipt.get("runs")
+    runs = runs if isinstance(runs, dict) else {}
+    for name, want_id, want_sha in (("screen", run_id, run_sha), ("nautilus", nautilus_id, nautilus_sha)):
+        got = runs.get(name)
+        if got != {"run_id": want_id, "manifest_sha256": want_sha}:
+            raise RegistryError(f"parity receipt {pid} runs.{name} is {got!r}, not the cited run {want_id} "
+                                f"(manifest sha256 {want_sha}); it does not confirm these runs")
+    if receipt.get("stored_screen_identical") is not True:
+        raise RegistryError(f"parity receipt {pid} stored_screen_identical is not true")
+    if receipt.get("bindable") is not True:
+        raise RegistryError(f"parity receipt {pid} is not bindable (no dataset hash binds it)")

@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-09
+updated: 2026-11-20
 owner: project-maintainers
 ---
 
@@ -204,6 +204,12 @@ skills and the checks. The Validation allowlist is `trade-leakage-audit`,
 runs, and the validator may not be among the researcher skills. `scripts/experiments.py log`
 reads the receipt, and `make check` re-verifies the tracked file's SHA-256, validity and
 run ids for every record that cites one.
+
+The parity receipt a `keep` cites is produced by `scripts/confirm.py` (the NautilusTrader
+confirmation of a stored screening run, `kind: "candidate-confirmation"`). A validator must
+check that this receipt names exactly the two cited runs (`runs.screen` and `runs.nautilus`,
+run ids and manifest hashes) and that it passed; `scripts/experiments.py log` enforces the same
+and refuses a plain engine-parity receipt or the receipt of other runs.
 
 Limit: skill names are self-reported. The tool enforces separation of recorded roles, not
 the independence of the model or session that produced the work.
