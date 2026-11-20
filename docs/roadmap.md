@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-11-18
+updated: 2026-11-19
 owner: project-maintainers
 ---
 
@@ -92,19 +92,20 @@ removes an unconditional database choice and puts proof of native behavior first
 The [readiness checklist](readiness-checklist.md) is the status view of this
 sequence: it scores each area and links evidence. This table owns the order and
 dependencies; the plan numbers are the master plan's order: steps 1-6 match
-Plans 1-6, step 9 is Plan 7, and steps 7-8 have no plan yet.
+Plans 1-6, step 9 is Plan 7, and steps 7, 8 and 10 have no plan yet.
 
 | Step | Scope | Depends on | State |
 | --- | --- | --- | --- |
-| 1 | P0 run output and P1b two engines with parity, per the [P0/P1b plan](tasks/2026-11-17-offline-infra-p0-p1b-plan.md) | — | Implemented on the synthetic CI fixture (branch `claude/offline-infra-p0-p1b`). Real-data parity is blocked at load; see the [engine parity task record](tasks/2026-11-17-engine-parity.md). Its blockers (sub-cent source prices, in-kind distributions, payments after the data window) are routed to the step 3 data-layer plan |
+| 1 | P0 run output and P1b two engines with parity, per the [P0/P1b plan](tasks/2026-11-17-offline-infra-p0-p1b-plan.md) | — | Implemented. Parity passes on the synthetic CI fixture in `make check`, and on real data since step 3 resolved the load blockers (sub-cent source prices, in-kind distributions, payments after the data window); see the [engine parity task record](tasks/2026-11-17-engine-parity.md) |
 | 2 | Conventions document: instrument and strategy identity, metric definitions and units, annualisation, benchmarks, cost levels, period and crisis windows, trial counting, schema-version rules; with the artifact catalog, readiness checklist and workflow rules | — | Done: [research conventions](conventions.md), [artifact catalog](artifacts.md), [readiness checklist](readiness-checklist.md), [workflow](workflow.md) (Plan 2) |
-| 3 | P1a ETF data layer: Yahoo snapshots (owner ruling: private offline use only), own adjustment, quality report; shared data root `QTL_DATA_ROOT` and receipt relocation | P0 | Planned; Plan 3 |
+| 3 | P1a ETF data layer: Yahoo snapshots (owner ruling: private offline use only), own adjustment, quality report; shared data root `QTL_DATA_ROOT` and receipt relocation | P0 | Implemented (Plan 3): shared data root, receipted Yahoo snapshots, normalisation recipe, quality report and dataset loader; real-data parity passes on SPY and three sector ETFs. Open: the owner has not accepted the quality report's exceptions, so no dataset is cleared for `use: financial`. See the [engine parity record](tasks/2026-11-17-engine-parity.md) and [data library](data-library.md) |
 | 4 | P2 analysis: tearsheet, stage waterfall, trust panel; rebuild of the incumbent SPY strategy | Steps 1–3 | Implemented (Plan 4): metrics, ablation ladder, PSR/DSR/PBO, lookahead check, tearsheet and Analysis tab; the incumbent SPY gate was rebuilt as a nested ladder (hold, EMA trend, trend capped by the gate as in legacy-030, costs) on the checked 2016-2025 ETF dataset with a reconciliation against legacy-030, see the [incumbent rebuild record](tasks/2026-11-18-incumbent-rebuild.md). Dataset acceptance by the owner remains open |
 | 5 | P3 S&P 500 membership and coverage from free sources; instrument identity; liquidity-scaled stock costs; 500-name timing | Step 4 | Implemented (Plan 5): Yahoo stock actions, a 409-symbol stock dataset (`n2`) with quality report, point-in-time membership, identity, coverage, `members_only` masking, survivor-bias labels, the `adv` liquidity cost model and a measured timing (screening all 416 names of the earlier dataset about 83 s, native extrapolated about 413 s); limits: current-holdings proxy, large caps excluded by the split rule, nine ticker changes applied and none verified, results discovery-only. See the [stock layer record](tasks/2026-11-18-stock-layer.md). Stock research may start as discovery-only |
 | 6 | P4 enforced SOP rules and catalog updates | Step 4 | Implemented (Plan 6): quality acceptance gate for `use: financial`, run-output refs for completed records, `keep` needs a nautilus run, parity receipt and validation receipt; limits: roles self-reported, no candidate confirmation command so no `keep` is possible yet. See the [task record](tasks/2026-11-18-enforced-rules.md) |
 | 7 | Views and chart conventions read run outputs (strategy, stage, trust, data-quality pages) | Step 4 | Planned; no new chart framework |
 | 8 | Run-output storage and retention rule; policy that legacy studies stay frozen and only incumbents are rebuilt | Step 4 | Planned |
 | 9 | P5 portfolio construction: combiner of run outputs; equal-weight and inverse-volatility weighting, cash account, no leverage; combinations count as trials per [goals](goals.md) | Step 4 | Implemented (Plan 7), with limits: sleeve-level model, one demonstration, no research finding ([record](tasks/2026-11-18-portfolio.md)) |
+| 10 | Candidate confirmation: run a screened candidate through the NautilusTrader engine under the same frozen configuration, so the rule 3 refs (nautilus run, parity receipt, validation receipt) can be produced and a `keep` record becomes possible | Steps 4, 6 | Planned; no plan yet. Until it exists, no `keep` can be logged |
 
 The user-requested [Alpaca integration slice](tasks/2026-10-25-alpaca-paper-integration.md)
 also adds partial M5 evidence: native/fake-broker order lifecycle, saved-SPY signal
