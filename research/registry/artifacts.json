@@ -132,9 +132,10 @@
       "stage": "confirm",
       "location": "local",
       "authority": "authoritative",
-      "producer": "scripts/current/engine_parity.py run (make parity-local)",
+      "producer": "scripts/current/engine_parity.py run (make parity-local); scripts/confirm.py (candidate confirmation)",
       "consumers": [
-        "docs/tasks/2026-11-17-engine-parity.md evidence"
+        "docs/tasks/2026-11-17-engine-parity.md evidence",
+        "scripts/experiments.py log (keep: --parity-receipt)"
       ],
       "retention": "local, shared data root under parity/",
       "status": "implemented"
